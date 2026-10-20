@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   experimental: {
     agentFeedback: true,
   },
@@ -14,6 +13,17 @@ const nextConfig: NextConfig = {
         as: "*.css",
       },
     },
+  },
+  images: {
+    formats: ["image/avif", "image/webp"],
+  },
+  // Preserve WordPress URLs that had trailing slashes / alternate spellings.
+  trailingSlash: true,
+  async redirects() {
+    return [
+      { source: "/blog/author/:slug*", destination: "/blog/", permanent: true },
+      { source: "/blog/category/:slug*", destination: "/blog/", permanent: false },
+    ];
   },
 };
 

@@ -1,0 +1,130 @@
+@import "tailwindcss";
+@config "../../tailwind.config.ts";
+
+/* Raw tokens as CSS variables (mirrors tailwind.config.ts) for use in plain CSS. */
+:root {
+  --color-primary: #256acc;
+  --color-primary-hover: #1a56a8;
+  --color-navy: #0b254b;
+  --color-ink: #1a2748;
+  --color-body: #4b5563;
+  --color-teal: #0d7c66;
+  --color-orange: #eb8b01;
+  --color-surface: #f2f6f9;
+  --announce-bg: radial-gradient(48.02% 406.67% at 51.08% 60%, #068e5a 0%, #003621 100%);
+  --content-width: 1340px;
+  --header-offset: 120px;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-offset);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-body);
+  font-family: var(--font-roboto), Roboto, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer components {
+  .container-content {
+    @apply mx-auto w-full max-w-content px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Long-form article / legal typography */
+  .prose-axon {
+    @apply text-[16px] leading-[1.75] text-ink-2 sm:text-[17px];
+  }
+  .prose-axon h2 {
+    @apply mt-10 mb-4 font-display text-[24px] leading-tight font-bold text-navy sm:text-[28px];
+  }
+  .prose-axon h3 {
+    @apply mt-8 mb-3 text-[20px] leading-snug font-semibold text-navy;
+  }
+  .prose-axon h4 {
+    @apply mt-6 mb-2 text-[17px] font-semibold text-navy;
+  }
+  .prose-axon p {
+    @apply my-4;
+  }
+  .prose-axon ul {
+    @apply my-4 list-disc space-y-2 pl-6 marker:text-primary;
+  }
+  .prose-axon ol {
+    @apply my-4 list-decimal space-y-2 pl-6 marker:font-semibold marker:text-primary;
+  }
+  .prose-axon a {
+    @apply font-medium text-primary underline decoration-primary/30 underline-offset-2 hover:text-primary-hover hover:decoration-primary;
+  }
+  .prose-axon strong {
+    @apply font-semibold text-ink;
+  }
+}
+
+/* Scroll reveal: progressive enhancement only — never hides content by default. */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry calc(0% + var(--reveal-delay, 0%)) entry calc(45% + var(--reveal-delay, 0%));
+    }
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Logo marquee: pause on hover / focus; reduced motion shows a static wrapped row. */
+.marquee-track {
+  animation: marquee 45s linear infinite;
+}
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+    transform: none;
+  }
+}
