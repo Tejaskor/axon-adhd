@@ -17,7 +17,7 @@ const groups = [
 
 export default function SitemapPage() {
   return (
-    <section className="-mt-[84px] pt-[140px] pb-20">
+    <section className="-mt-[var(--header-height)] pt-[140px] pb-20">
       <Container className="max-w-[1100px]">
         <h1 className="mb-10 font-display text-[32px] font-bold text-navy sm:text-[44px]">SiteMap</h1>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">

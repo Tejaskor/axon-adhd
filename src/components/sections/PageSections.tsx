@@ -38,7 +38,7 @@ function Ctas({ ctas, light, className }: { ctas?: Array<{ label: string; href: 
 
 export function PageHero({ data }: { data: PageHeroData }) {
   return (
-    <section className="relative -mt-[84px] overflow-hidden bg-gradient-to-b from-primary-soft via-white to-white pt-[130px] pb-14 sm:pb-20" aria-labelledby="page-title">
+    <section className="relative -mt-[var(--header-height)] overflow-hidden bg-gradient-to-b from-primary-soft via-white to-white pt-[130px] pb-14 sm:pb-20" aria-labelledby="page-title">
       <Container>
         <div className="grid items-center gap-10 md:grid-cols-[1.05fr_1fr] lg:gap-14">
           <div>

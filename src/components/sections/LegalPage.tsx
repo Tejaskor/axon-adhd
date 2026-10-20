@@ -8,7 +8,7 @@ import { breadcrumbJsonLd } from "@/lib/seo";
 export function LegalPage({ title, path, blocks }: { title: string; path: string; blocks: Block[] }) {
   return (
     <>
-      <section className="-mt-[84px] bg-gradient-to-b from-primary-soft to-white pt-[140px] pb-8">
+      <section className="-mt-[var(--header-height)] bg-gradient-to-b from-primary-soft to-white pt-[140px] pb-8">
         <Container className="max-w-[900px]">
           <h1 className="font-display text-[30px] leading-tight font-bold text-navy sm:text-[42px]">{title}</h1>
         </Container>

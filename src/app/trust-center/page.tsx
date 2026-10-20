@@ -18,7 +18,7 @@ export const metadata = pageMetadata({ title: tc.meta.title, description: tc.met
 export default function TrustCenterPage() {
   return (
     <>
-      <section className="relative -mt-[84px] overflow-hidden bg-navy pt-[140px] pb-16 text-white sm:pb-20" aria-labelledby="page-title">
+      <section className="relative -mt-[var(--header-height)] overflow-hidden bg-navy pt-[140px] pb-16 text-white sm:pb-20" aria-labelledby="page-title">
         <Image src={tc.hero.image.src} alt="" fill priority sizes="100vw" className="object-cover opacity-25" />
         <Container className="relative">
           <p className="mb-3 text-[13px] font-semibold tracking-[0.14em] text-[#8EB8F2] uppercase">{tc.hero.eyebrow}</p>

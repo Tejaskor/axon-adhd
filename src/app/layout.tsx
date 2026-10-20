@@ -42,8 +42,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
-        <AnnouncementBar />
-        <Header />
+        {/* One sticky stack so the announcement bar (whose height varies when it wraps) stays above the header. */}
+        <div className="sticky top-0 z-40">
+          <AnnouncementBar />
+          <Header />
+        </div>
         <main id="content" tabIndex={-1} className="flex-1 focus:outline-none">
           {children}
         </main>

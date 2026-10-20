@@ -14,23 +14,20 @@ import { MobileNav } from "./MobileNav";
 
 export function Header() {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const navRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   // Close dropdowns on Escape / outside click.
   useEffect(() => {
     if (!openMenu) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpenMenu(null);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      // Return focus to the trigger when the keyboard user was inside the menu.
+      if (navRef.current?.contains(document.activeElement)) navRef.current.querySelector<HTMLButtonElement>(`[aria-controls="mega-${openMenu.toLowerCase()}"]`)?.focus();
+      setOpenMenu(null);
+    };
     const onClick = (e: MouseEvent) => !navRef.current?.contains(e.target as Node) && setOpenMenu(null);
     document.addEventListener("keydown", onKey);
     document.addEventListener("mousedown", onClick);
@@ -56,11 +53,12 @@ export function Header() {
   const isActive = (href: string) => href !== "/" && pathname.startsWith(href.replace(/\/$/, ""));
 
   return (
-    <header className="sticky top-0 z-40 px-4 pt-3 pb-2 transition-[padding] duration-300 ease-brand" data-scrolled={scrolled || undefined}>
+    // pt-3 + h-20 + pb-1 = 96px = --header-height (globals.css), which page heroes pull up behind the header.
+    // Stickiness lives on the wrapper in app/layout.tsx; height is constant (no compact-on-scroll).
+    <header className="px-4 pt-3 pb-1">
       <div
         className={cn(
-          "mx-auto flex w-full max-w-content items-center justify-between gap-4 rounded-xl2 border px-4 transition-all duration-300 ease-brand sm:px-6",
-          scrolled ? "border-white/70 bg-white/90 py-2 shadow-header backdrop-blur-xl" : "border-transparent bg-white/70 py-3 backdrop-blur-md",
+          "relative mx-auto flex h-20 w-full max-w-content items-center justify-between gap-3 rounded-[9999px] bg-white/55 px-3 shadow-[0_8px_28px_rgba(15,27,46,.06)] backdrop-blur-xl backdrop-saturate-150 transition-colors duration-300 ease-brand xs:px-4 lg:gap-[clamp(10px,2.2vw,32px)]",
         )}
       >
         <Link href="/" aria-label={`${site.name} home`} className="shrink-0">
@@ -70,21 +68,23 @@ export function Header() {
             width={site.logo.width}
             height={site.logo.height}
             priority
-            sizes="(max-width: 480px) 102px, 136px"
-            className={cn("w-auto transition-[height] duration-300", scrolled ? "h-9" : "h-11")}
+            sizes="(max-width: 480px) 111px, (max-width: 1180px) 148px, 125px"
+            className="h-[39px] w-auto xs:h-[52px] lg:h-11"
           />
         </Link>
 
-        <nav ref={navRef} aria-label="Main" className="relative hidden lg:block">
-          <ul className="flex items-center gap-1 font-sans">
+        {/* flex-1 + left-aligned list: links sit after the logo and the CTAs are pushed right (live-site layout).
+            Items stretch to the full bar height so the pointer can travel into a mega panel without leaving its item. */}
+        <nav ref={navRef} aria-label="Main" className="hidden flex-1 self-stretch lg:flex">
+          <ul className="flex items-stretch gap-3 font-sans xl:gap-5">
             {mainNav.map((item) => {
               if (item.kind === "link") {
                 return (
-                  <li key={item.label}>
+                  <li key={item.label} className="flex items-center">
                     <Link
                       href={item.href}
                       aria-current={isActive(item.href) ? "page" : undefined}
-                      className="rounded-pill px-4 py-2 text-[clamp(13px,1.02vw,16px)] font-medium text-ink-menu hover:text-brand aria-[current=page]:text-brand"
+                      className="rounded-pill px-2.5 py-1.5 text-[16px] leading-[1.2] font-normal text-ink-menu hover:text-brand aria-[current=page]:text-brand xl:px-3"
                     >
                       {item.label}
                     </Link>
@@ -94,19 +94,26 @@ export function Header() {
               const open = openMenu === item.label;
               const panelId = `mega-${item.label.toLowerCase()}`;
               return (
-                <li key={item.label} className="static" onMouseEnter={() => hoverOpen(item.label)} onMouseLeave={hoverClose}>
+                <li
+                  key={item.label}
+                  className="static flex items-center"
+                  onMouseEnter={() => hoverOpen(item.label)}
+                  onMouseLeave={hoverClose}
+                  // Close when keyboard focus moves to something outside this item (e.g. tabbing past the last panel link).
+                  onBlur={(e) => e.relatedTarget && !e.currentTarget.contains(e.relatedTarget) && open && setOpenMenu(null)}
+                >
                   <button
                     type="button"
                     aria-expanded={open}
                     aria-controls={panelId}
                     onClick={() => setOpenMenu(open ? null : item.label)}
                     className={cn(
-                      "inline-flex items-center gap-1 rounded-pill px-4 py-2 text-[clamp(13px,1.02vw,16px)] font-medium text-ink-menu transition-colors hover:text-brand",
+                      "inline-flex items-center gap-1 rounded-pill px-2.5 py-1.5 text-[16px] leading-[1.2] font-normal text-ink-menu transition-colors hover:text-brand xl:px-3",
                       (open || isActive(item.href)) && "text-brand",
                     )}
                   >
                     {item.label}
-                    <ChevronDown aria-hidden className={cn("size-4 transition-transform duration-200", open && "rotate-180")} />
+                    <ChevronDown aria-hidden className={cn("size-[15px] shrink-0 transition-transform duration-200", open && "rotate-180")} />
                   </button>
                   {open && <MegaMenu item={item} id={panelId} onNavigate={closeAll} />}
                 </li>
@@ -115,11 +122,11 @@ export function Header() {
           </ul>
         </nav>
 
-        <div className="hidden items-center gap-2.5 lg:flex">
-          <ButtonLink href={ctas.evaluation.href} variant="outline" size="sm" className="font-ui text-[13.5px]">
+        <div className="hidden shrink-0 items-center gap-3 lg:flex xl:gap-4">
+          <ButtonLink href={ctas.evaluation.href} variant="white" size="sm" className="cta-trace h-[54px]! rounded-[9999px]! border border-line-3 [--cta-trace-color:#3B82F6] [--cta-trace-offset:1px] text-[clamp(13px,1.02vw,16px)]! leading-[1.25] font-normal! text-navy! shadow-[0_1px_2px_rgba(15,27,46,.06)] hover:border-primary/30 xl:px-5">
             {ctas.evaluation.label}
           </ButtonLink>
-          <ButtonLink href={ctas.screening.href} size="sm" className="font-ui text-[13.5px] shadow-cta">
+          <ButtonLink href={ctas.screening.href} size="sm" className="cta-trace h-[54px]! rounded-[9999px]! [--cta-trace-color:#BFDBFE] text-[clamp(13px,1.02vw,16px)]! leading-[1.25] font-normal! shadow-[0_6px_18px_rgba(37,106,204,.28)]! hover:shadow-[0_8px_22px_rgba(37,106,204,.34)]! xl:px-5">
             {ctas.screening.label}
           </ButtonLink>
         </div>
