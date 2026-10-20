@@ -153,75 +153,54 @@ body {
 }
 
 /*
- * Header CTA hover: a highlight traces the pill border. ::before is a conic gradient masked to a thin ring
- * (radius inherited, so it follows the pill exactly); ::after is a blurred copy behind the button for a soft glow.
- * Paused (not removed) when idle so mouse-leave fades out without snapping. Set --cta-trace-color per button and
- * --cta-trace-offset to the button's border width.
+ * Header CTA hover: a short glowing dash travels around the pill border.
+ * Markup: <svg class="cta-trace-line"><rect rx="27" pathLength="100"/></svg> inside each .cta-trace button
+ * (Header.tsx). The rect covers the button's border box, so with rx = half the 54px height it is exactly the
+ * pill outline; pathLength normalises the perimeter to 100, so the dash moves at constant speed at any width.
+ * (A conic-gradient sweep was used before, but on a ~5.5:1 pill its highlight shrank to ~20px and its speed varied
+ * ~18x, so it read as an invisible flicker.) Paused rather than removed when idle, so mouse-leave fades out without
+ * snapping. Set --cta-trace-color per button and --cta-trace-offset to the button's border width.
  */
-@property --cta-trace-angle {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
-}
-@keyframes cta-trace {
+@keyframes cta-trace-run {
   to {
-    --cta-trace-angle: 360deg;
+    stroke-dashoffset: -100;
   }
 }
 .cta-trace {
   position: relative;
 }
-.cta-trace::before,
-.cta-trace::after {
-  content: "";
+.cta-trace-line {
   position: absolute;
-  inset: calc(var(--cta-trace-offset, 0px) * -1);
-  border-radius: inherit;
+  top: calc(var(--cta-trace-offset, 0px) * -1);
+  left: calc(var(--cta-trace-offset, 0px) * -1);
+  width: calc(100% + var(--cta-trace-offset, 0px) * 2);
+  height: calc(100% + var(--cta-trace-offset, 0px) * 2);
+  overflow: visible;
   pointer-events: none;
-  background: conic-gradient(
-    from var(--cta-trace-angle),
-    transparent 0deg 240deg,
-    color-mix(in srgb, var(--cta-trace-color) 35%, transparent) 300deg,
-    var(--cta-trace-color) 345deg,
-    transparent 360deg
-  );
   opacity: 0;
   transition: opacity 0.4s var(--ease);
-  animation: cta-trace 2.6s linear infinite paused;
+  filter: drop-shadow(0 0 3px var(--cta-trace-color));
 }
-.cta-trace::before {
-  padding: 1.5px;
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  mask-composite: exclude;
+.cta-trace-line rect {
+  fill: none;
+  stroke: var(--cta-trace-color);
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+  stroke-dasharray: 16 84;
+  animation: cta-trace-run 2.6s linear infinite paused;
 }
-.cta-trace::after {
-  z-index: -1;
-  filter: blur(6px);
-}
-.cta-trace:hover::before,
-.cta-trace:focus-visible::before {
+.cta-trace:hover .cta-trace-line,
+.cta-trace:focus-visible .cta-trace-line {
   opacity: 1;
-  animation-play-state: running;
 }
-.cta-trace:hover::after,
-.cta-trace:focus-visible::after {
-  opacity: 0.45;
+.cta-trace:hover .cta-trace-line rect,
+.cta-trace:focus-visible .cta-trace-line rect {
   animation-play-state: running;
 }
 @media (prefers-reduced-motion: reduce) {
-  .cta-trace::before,
-  .cta-trace::after {
+  /* Static, fully highlighted border instead of the travelling dash. */
+  .cta-trace-line rect {
     animation: none;
-    background: var(--cta-trace-color);
-  }
-  .cta-trace:hover::after,
-  .cta-trace:focus-visible::after {
-    opacity: 0.25;
+    stroke-dasharray: none;
   }
 }
