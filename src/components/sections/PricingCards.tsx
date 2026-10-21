@@ -1,84 +1,65 @@
-import { Check, Clock3 } from "lucide-react";
-import { EARLY_DISCOUNT, pricing, type Plan } from "@/content/pricing";
+import Image from "next/image";
+import { BadgeCheck, Check } from "lucide-react";
+import { founder } from "@/content/pages/about";
+import { pricing } from "@/content/pricing";
 import { ButtonLink } from "@/components/ui/Button";
-import { Badge } from "@/components/ui/Badge";
-import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { applyDiscount, cn, formatPrice } from "@/lib/utils";
+import { Reveal } from "@/components/ui/Reveal";
+import { PricingPanel } from "./PricingPanel";
 import { ProcessSteps } from "./ProcessSteps";
 
-function Price({ plan }: { plan: Plan }) {
-  if (!plan.discounted) return <p className="font-display text-[44px] leading-none font-extrabold text-navy">{formatPrice(plan.price)}</p>;
-  const { final, savings } = applyDiscount(plan.price, EARLY_DISCOUNT);
-  return (
-    <div>
-      <p className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-        <span className="text-[20px] font-semibold text-muted-2 line-through" aria-label={`Regular price ${formatPrice(plan.price)}`}>
-          {formatPrice(plan.price)}
-        </span>
-        <span className="font-display text-[44px] leading-none font-extrabold text-navy">{formatPrice(final)}</span>
-      </p>
-      <p className="mt-2 flex flex-wrap items-center gap-2 text-[13px] font-semibold">
-        <span className="rounded-pill bg-teal px-2.5 py-0.5 text-white">SAVE {Math.round(EARLY_DISCOUNT * 100)}%</span>
-        <span className="text-teal">(Save {formatPrice(savings)})</span>
-      </p>
-      {plan.breakdown && <p className="mt-2 text-[13px] text-muted">{plan.breakdown}</p>}
-    </div>
-  );
-}
-
+/** Two soft panels: founder intro (left) and the interactive pricing card (right), then the 3-step strip. */
 export function PricingCards() {
+  const intro = pricing.founderIntro;
   return (
-    <section id="pricing" className="bg-gradient-to-b from-white via-primary-soft/60 to-white py-16 sm:py-20" aria-labelledby="pricing-title">
-      <Container>
-        <SectionHeading id="pricing-title" eyebrow={pricing.eyebrow} title={pricing.title} subtitle={pricing.intro} />
-        <div className="grid items-stretch gap-6 md:grid-cols-3">
-          {pricing.plans.map((plan) => (
-            <article
-              key={plan.id}
-              aria-labelledby={`plan-${plan.id}`}
-              className={cn(
-                "relative flex flex-col rounded-xl2 border bg-white p-7 sm:p-8",
-                plan.highlight ? "border-primary shadow-[0_20px_50px_rgba(37,106,204,.18)] ring-1 ring-primary md:-my-3" : "border-line-2 shadow-card",
-              )}
-            >
-              {plan.badge && (
-                <Badge tone={plan.badge.tone} className="mb-4 self-start">
-                  {plan.badge.tone === "primary" ? "★" : plan.badge.tone === "teal" ? "✓" : "◆"} {plan.badge.label}
-                </Badge>
-              )}
-              <h3 id={`plan-${plan.id}`} className="text-[20px] font-bold text-navy">
-                {plan.name}
-              </h3>
-              <div className="mt-4">
-                <Price plan={plan} />
-              </div>
-              {plan.discounted ? (
-                <p className="mt-4 flex gap-2 rounded-[10px] bg-orange-soft px-3 py-2.5 text-[13.5px] leading-snug text-ink-2">
-                  <Clock3 aria-hidden className="mt-0.5 size-4 shrink-0 text-orange" />
-                  {plan.description}
-                </p>
-              ) : (
-                <p className="mt-4 text-[15px] text-body">{plan.description}</p>
-              )}
-              {plan.lead && <p className="mt-5 text-[14px] font-semibold text-teal">✓ {plan.lead}</p>}
-              <ul className={cn("flex-1 space-y-2.5", plan.lead ? "mt-3" : "mt-6")}>
-                {plan.features.map((f) => (
-                  <li key={f} className="flex gap-2.5 text-[15px] text-ink-2">
-                    <Check aria-hidden className="mt-0.5 size-4 shrink-0 text-teal" strokeWidth={3} />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <ButtonLink href={plan.cta.href} variant={plan.highlight ? "primary" : "outline"} className={cn("mt-7 w-full whitespace-normal text-center", plan.highlight && "shadow-cta")}>
-                {plan.cta.label}
+    <section id="pricing" className="bg-white py-16 font-inter sm:py-20 lg:py-24" aria-labelledby="pricing-title">
+      <div className="mx-auto w-full max-w-[1180px] px-4 sm:px-6 lg:px-8">
+        <div className="grid items-stretch gap-4 md:grid-cols-2">
+          <Reveal className="flex">
+            <div className="flex w-full flex-col overflow-hidden rounded-[20px] bg-[#F6F7F9] px-5 pt-10 pb-6 sm:px-8 sm:pt-14 sm:pb-8">
+              <h2 id="pricing-title" className="font-inter text-[32px] leading-[1.12] font-medium tracking-[-0.02em] text-navy sm:text-[40px]">
+                <span className="text-[#1D5FC0]">{intro.titleAccent}</span>
+                <br />
+                {intro.titleRest}
+              </h2>
+              <p className="mt-4 max-w-[480px] text-[15px] leading-relaxed text-ink-2 sm:text-[16px]">{intro.text}</p>
+              <ButtonLink href={intro.cta.href} size="md" className="mt-6 self-start rounded-full! bg-[#1D5FC0]! px-6 font-inter! hover:bg-[#174E9E]!">
+                {intro.cta.label}
               </ButtonLink>
-              {plan.footnote && <p className="mt-3 text-center text-[12.5px] text-muted">{plan.footnote}</p>}
-            </article>
-          ))}
+
+              <div className="mt-10 grid flex-1 items-end gap-3 sm:mt-14 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+                {/* Founder portrait + frosted name tag. The source photo is a small circular crop, so it is shown round rather than stretched. */}
+                <figure className="relative flex aspect-[3/4] max-h-[420px] flex-col items-center overflow-hidden rounded-[16px] bg-[radial-gradient(90%_60%_at_50%_30%,#FFFFFF_0%,#E3EAF7_55%,#C9D3E3_100%)] pt-[14%] shadow-[0_10px_30px_rgba(15,27,46,.12)]">
+                  <Image src={founder.image.src} alt={founder.image.alt} width={founder.image.width} height={founder.image.height} className="aspect-square h-auto w-[min(62%,190px)] rounded-full object-cover shadow-[0_12px_30px_rgba(15,27,46,.18)] ring-4 ring-white" />
+                  <figcaption className="absolute inset-x-2 bottom-2 rounded-[12px] border border-white/20 bg-[#0B1B3F]/45 px-3.5 py-3 text-white backdrop-blur-md">
+                    <span className="flex items-center gap-1.5 text-[14px] font-semibold">
+                      {founder.name}
+                      <BadgeCheck aria-label="Verified" className="size-4 fill-white text-[#1D5FC0]" />
+                    </span>
+                    <span className="mt-0.5 block text-[12px] leading-snug text-white/80">{founder.title}</span>
+                  </figcaption>
+                </figure>
+                {/* Credentials card */}
+                <ul className="flex flex-col gap-2.5 self-end rounded-[16px] border border-black/[0.05] bg-white p-4 shadow-[0_1px_3px_rgba(15,27,46,.06)]">
+                  {intro.credentials.map((c) => (
+                    <li key={c} className="flex gap-2.5 text-[13.5px] leading-snug text-ink-2">
+                      <span aria-hidden className="mt-0.5 grid size-4 shrink-0 place-items-center rounded-full bg-[#E8F2FC] text-[#1D5FC0]">
+                        <Check className="size-3" strokeWidth={3} />
+                      </span>
+                      {c}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </Reveal>
+          <Reveal delay={0.08} className="flex">
+            <div className="w-full">
+              <PricingPanel />
+            </div>
+          </Reveal>
         </div>
         <ProcessSteps steps={pricing.steps} />
-      </Container>
+      </div>
     </section>
   );
 }

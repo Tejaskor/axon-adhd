@@ -12,7 +12,7 @@ export const metadata = pageMetadata({ title: caseStudiesPage.title, description
 export default function CaseStudiesPage() {
   return (
     <>
-      <section className="-mt-[84px] bg-gradient-to-b from-primary-soft to-white pt-[140px] pb-10">
+      <section className="-mt-[var(--header-height)] bg-gradient-to-b from-primary-soft to-white pt-[140px] pb-10">
         <Container>
           <SectionHeading as="h1" title={caseStudiesPage.title} subtitle={caseStudiesPage.subtitle} />
           <Image src={caseStudiesPage.hero.src} alt={caseStudiesPage.hero.alt} width={caseStudiesPage.hero.width} height={caseStudiesPage.hero.height} priority sizes="(max-width: 1340px) 100vw, 1100px" className="mx-auto h-auto w-full max-w-[1100px] rounded-xl2 shadow-soft" />

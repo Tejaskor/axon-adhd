@@ -1,9 +1,10 @@
 import Image from "next/image";
-import { ArrowRight, CheckCircle2, Quote } from "lucide-react";
+import { ArrowRight, Brain, CheckCircle2, Quote, Target } from "lucide-react";
 import type { BadgesSection, CtaSection, FeaturesSection, PageHero as PageHeroData, PageSection, QuotesSection, SplitSection, StepsSection, Tone } from "@/content/pages/types";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { FeatureIcon } from "@/components/ui/FeatureIcon";
+import { GlassCard } from "@/components/ui/GlassCard";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { cn } from "@/lib/utils";
@@ -36,9 +37,62 @@ function Ctas({ ctas, light, className }: { ctas?: Array<{ label: string; href: 
   );
 }
 
-export function PageHero({ data }: { data: PageHeroData }) {
+/** Rounded blue gradient card; H1 + subtitle mirror the home `Hero` type scale. Stacks below md, gradient turns vertical so copy stays on the dark end. */
+function BannerHero({ data }: { data: PageHeroData }) {
+  // A lone CTA stays glass; with several, the first is the solid white primary.
+  const solidFirst = data.ctas.length > 1;
   return (
-    <section className="relative -mt-[84px] overflow-hidden bg-gradient-to-b from-primary-soft via-white to-white pt-[130px] pb-14 sm:pb-20" aria-labelledby="page-title">
+    <section className="relative -mt-[var(--header-height)] pt-2 sm:pt-3" aria-labelledby="page-title">
+      <div className="relative isolate overflow-hidden rounded-[20px] bg-[linear-gradient(180deg,#10458D_0%,#256ACC_55%,#8EB8F2_100%)] pt-[120px] pb-12 sm:rounded-[28px] sm:pt-[130px] sm:pb-16 md:flex md:min-h-[640px] md:items-center md:bg-[linear-gradient(100deg,#10458D_0%,#256ACC_48%,#7FB0EC_78%,#CFE3F8_100%)] md:pb-20 lg:rounded-[32px]">
+        {/* Background spans the viewport; content (and the glow that tracks the image) is capped at 1440px. */}
+        <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
+          {/* Soft light pool behind the image, like the reference's bright centre. */}
+          <div aria-hidden className="absolute bottom-0 left-1/2 -z-10 size-[420px] -translate-x-1/2 translate-y-1/4 rounded-full bg-white/30 blur-3xl md:top-1/2 md:right-[2%] md:bottom-auto md:left-auto md:size-[620px] md:translate-x-0 md:-translate-y-1/2" />
+
+          <div className="grid items-center gap-10 md:grid-cols-[1.1fr_1fr] lg:gap-14">
+            <div className="max-w-[600px]">
+              {data.eyebrow && <p className="mb-3 text-[13px] font-semibold tracking-[0.14em] text-white/80 uppercase">{data.eyebrow}</p>}
+              <h1 id="page-title" className="font-geist text-[32px] leading-[1.4] font-normal text-balance text-white">
+                {data.title}
+              </h1>
+              {data.text.map((t) => (
+                <p key={t} className="mt-4 max-w-[560px] font-inter text-[18px] leading-[1.6] font-normal text-pretty text-white/90 sm:text-[20px]">
+                  {t}
+                </p>
+              ))}
+              {data.ctas.length > 0 && (
+                <div className="mt-8 flex flex-col gap-3 xs:flex-row xs:flex-wrap lg:mt-10">
+                  {data.ctas.map((cta, i) => (
+                    <ButtonLink key={cta.label} href={cta.href} variant={solidFirst && i === 0 ? "white" : "glass"} size="lg" className={cn("group px-9 text-center font-inter! text-[16px]! leading-[1.25] font-medium whitespace-normal", !(solidFirst && i === 0) && "cta-trace cta-trace-tricolor [--cta-trace-offset:1px]")}>
+                      {cta.label}
+                      <ArrowRight aria-hidden className="size-[18px] shrink-0 transition-transform duration-300 ease-brand group-hover:translate-x-1" />
+                    </ButtonLink>
+                  ))}
+                </div>
+              )}
+              {data.note && <p className="mt-3 text-[13px] text-white/75">{data.note}</p>}
+              {data.trust && <TrustBar light />}
+            </div>
+            <Image
+              src={data.image.src}
+              alt={data.image.alt}
+              width={data.image.width}
+              height={data.image.height}
+              priority
+              sizes="(max-width: 767px) 300px, (max-width: 1023px) 420px, 560px"
+              className="mx-auto h-auto w-full max-w-[300px] drop-shadow-[0_24px_40px_rgba(6,26,54,.28)] sm:max-w-[420px] md:max-w-[560px]"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function PageHero({ data }: { data: PageHeroData }) {
+  if (data.variant === "banner") return <BannerHero data={data} />;
+  return (
+    <section className="relative -mt-[var(--header-height)] overflow-hidden bg-gradient-to-b from-primary-soft via-white to-white pt-[130px] pb-14 sm:pb-20" aria-labelledby="page-title">
       <Container>
         <div className="grid items-center gap-10 md:grid-cols-[1.05fr_1fr] lg:gap-14">
           <div>
@@ -62,8 +116,42 @@ export function PageHero({ data }: { data: PageHeroData }) {
   );
 }
 
+/** White band with an eyebrow pill, navy heading and horizontal glass cards tinted green / blue / orange. */
+function MissionFeatures({ data }: { data: FeaturesSection }) {
+  return (
+    <section id={data.id} className="relative isolate overflow-hidden bg-[#FFFFFF] py-16 font-inter sm:py-20 lg:py-24">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[980px] text-center">
+          {data.eyebrow && (
+            <div className="flex items-center justify-center gap-4 sm:gap-6">
+              <span aria-hidden className="h-px w-10 bg-gradient-to-r from-transparent to-[#2578CA]/40 sm:w-20" />
+              <p className="inline-flex items-center gap-2.5 rounded-full border border-[#2578CA]/25 bg-[#2578CA]/[0.07] px-5 py-2.5 text-[13px] font-medium tracking-[0.2em] text-[#2578CA] uppercase shadow-[inset_0_1px_0_rgba(255,255,255,.8),0_6px_18px_rgba(37,120,202,.08)] backdrop-blur-md sm:px-6 sm:text-[15px]">
+                <Target aria-hidden className="size-[18px]" strokeWidth={2} />
+                {data.eyebrow}
+              </p>
+              <span aria-hidden className="h-px w-10 bg-gradient-to-l from-transparent to-[#2578CA]/40 sm:w-20" />
+            </div>
+          )}
+          <h2 className="mt-6 font-inter text-[30px] leading-[1.2] font-bold tracking-[-0.02em] text-balance text-navy sm:text-[40px] lg:text-[52px]">{data.title}</h2>
+          {data.subtitle && <p className="mx-auto mt-5 max-w-[900px] text-[16px] leading-[1.75] text-pretty text-body sm:text-[18px]">{data.subtitle}</p>}
+        </div>
+        <ul className="mx-auto mt-10 grid max-w-[640px] gap-5 sm:mt-12 lg:max-w-[1320px] lg:grid-cols-3 lg:gap-5 xl:gap-6">
+          {data.items.map((item, i) => (
+            <li key={item.title} className="flex">
+              <Reveal delay={Math.min(i, 6) * 0.08} className="flex w-full">
+                <GlassCard index={i} icon={item.icon} title={item.title} text={item.text} />
+              </Reveal>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
 function Features({ data }: { data: FeaturesSection }) {
   const variant = data.variant ?? "card";
+  if (variant === "mission") return <MissionFeatures data={data} />;
   const dark = data.tone === "navy";
   const grid = (
     <ul className={cn("grid gap-5", data.image ? "sm:grid-cols-2" : cols[data.columns ?? 3])}>
@@ -124,7 +212,7 @@ function Features({ data }: { data: FeaturesSection }) {
         ) : (
           grid
         )}
-        {data.quote && <blockquote className={cn("mx-auto mt-10 max-w-[760px] text-center font-display text-[19px] font-semibold italic sm:text-[22px]", dark ? "text-white" : "text-primary-deep")}>{data.quote}</blockquote>}
+        {data.quote && <blockquote className={cn("mx-auto mt-10 max-w-[760px] text-center text-[19px] font-semibold italic sm:text-[22px]", dark ? "text-white" : "text-primary-deep")}>{data.quote}</blockquote>}
         {data.footnote && <p className={cn("mx-auto mt-8 max-w-[820px] text-center text-[16px] font-medium", dark ? "text-white/85" : "text-ink-2")}>{data.footnote}</p>}
         <Ctas ctas={data.ctas} light={dark} className="justify-center" />
       </Container>
@@ -143,7 +231,7 @@ function Steps({ data }: { data: StepsSection }) {
               <Reveal delay={Math.min(i, 5) * 0.06} className="h-full overflow-hidden rounded-panel border border-line-2 bg-white shadow-card">
                 {step.image && <Image src={step.image.src} alt={step.image.alt} width={step.image.width} height={step.image.height} sizes="(max-width: 1024px) 100vw, 420px" className="aspect-[16/10] w-full object-cover" />}
                 <div className="p-6">
-                  <span className="mb-3 inline-grid size-9 place-items-center rounded-full bg-primary font-display text-[15px] font-bold text-white" aria-hidden>
+                  <span className="mb-3 inline-grid size-9 place-items-center rounded-full bg-primary text-[15px] font-bold text-white" aria-hidden>
                     {i + 1}
                   </span>
                   <h3 className="text-[18px] font-bold text-navy">
@@ -161,7 +249,92 @@ function Steps({ data }: { data: StepsSection }) {
   );
 }
 
+/** Icon chip tints for the axon feature list, in item order. */
+const axonTones = [
+  "bg-[#E3EEFF] text-[#2563EB]",
+  "bg-[#DDF5EE] text-[#0F9F7E]",
+  "bg-[#ECE7FF] text-[#6D4AE0]",
+  "bg-[#DCF4F4] text-[#0E97A0]",
+  "bg-[#F0E8FD] text-[#7C4DDB]",
+];
+
+function withHighlight(text: string, word?: string) {
+  if (!word || !text.includes(word)) return text;
+  const [before, ...rest] = text.split(word);
+  return (
+    <>
+      {before}
+      <strong className="font-bold text-[#1D4FAF]">{word}</strong>
+      {rest.join(word)}
+    </>
+  );
+}
+
+/** "Why We Chose the Name": copy + icon list on the left, neuron GIF card on soft blue rings on the right. */
+function AxonSplit({ data }: { data: SplitSection }) {
+  const [first, ...rest] = data.title.split(" ");
+  return (
+    <section id={data.id} className="relative isolate scroll-mt-[var(--header-offset)] overflow-hidden bg-[linear-gradient(180deg,#F7FAFE_0%,#EEF4FC_100%)] py-16 font-inter sm:py-20 lg:py-24">
+      <div className="mx-auto grid w-full max-w-[1440px] items-center gap-12 px-4 sm:px-6 md:grid-cols-[1.25fr_1fr] lg:gap-16 lg:px-8">
+        <Reveal>
+          {data.eyebrow && (
+            <p className="inline-flex items-center gap-2 rounded-full bg-[#E3EEFB] px-4 py-2 text-[15px] font-medium text-[#1D5FC0] sm:text-[17px]">
+              <Brain aria-hidden className="size-5" strokeWidth={1.75} />
+              {data.eyebrow}
+            </p>
+          )}
+          <h2 className="mt-4 font-display text-[44px] leading-[1.05] font-extrabold tracking-[-0.02em] sm:text-[56px] lg:text-[64px]">
+            <span className="bg-gradient-to-r from-[#1D4ED8] to-[#1D5FC0] bg-clip-text text-transparent">{first}</span>{" "}
+            <span className="bg-gradient-to-r from-[#1A9FD0] to-[#22C083] bg-clip-text text-transparent">{rest.join(" ")}</span>
+          </h2>
+          {data.paragraphs?.map((p) => (
+            <p key={p} className="mt-4 max-w-[640px] text-[17px] leading-[1.7] text-body sm:text-[19px]">
+              {withHighlight(p, data.highlight)}
+            </p>
+          ))}
+          {data.features && (
+            <ul className="mt-8 space-y-5 sm:mt-10 sm:space-y-6">
+              {data.features.map((f, i) => (
+                <li key={f.title} className="group flex items-start gap-4 sm:gap-5">
+                  {f.icon && (
+                    <span aria-hidden className={cn("grid size-12 shrink-0 place-items-center rounded-full transition duration-300 ease-brand group-hover:scale-110 group-hover:shadow-[0_8px_20px_rgba(29,79,175,.15)] sm:size-14", axonTones[i % axonTones.length])}>
+                      <FeatureIcon name={f.icon} className="size-5 sm:size-6" />
+                    </span>
+                  )}
+                  <div className="pt-1">
+                    <h3 className="font-inter text-[17px] leading-snug font-semibold text-navy sm:text-[18px]">{f.title}</h3>
+                    {f.text && <p className="mt-1 text-[15px] leading-relaxed text-body sm:text-[16px]">{f.text}</p>}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </Reveal>
+        <Reveal delay={0.1} className="relative mx-auto w-full max-w-[460px]">
+          {/* Soft rings, arc and dots behind the card */}
+          <div aria-hidden className="absolute top-1/2 left-1/2 -z-10 aspect-square w-[150%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,#D6E8FB_0%,#E4F0FC_55%,rgba(238,244,252,0)_72%)]" />
+          <div aria-hidden className="absolute top-1/2 left-1/2 -z-10 aspect-square w-[118%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#D3E6FA]/70" />
+          <div aria-hidden className="absolute top-[-6%] right-[-22%] -z-10 aspect-square w-[95%] rounded-full border-r-[1.5px] border-[#BBD7F4]" />
+          <span aria-hidden className="absolute top-[14%] -left-[10%] size-3 rounded-full bg-[#5CCFD8]" />
+          <span aria-hidden className="absolute top-[50%] -right-[16%] size-4 rounded-full bg-[#5CCFD8]" />
+          <span aria-hidden className="absolute bottom-[24%] -right-[10%] size-2.5 rounded-full bg-[#9EC7F2]" />
+          {/* The GIF has a black ground, so the card is black and the GIF is contained (never cropped). */}
+          {data.image && (
+            <div
+              role="img"
+              aria-label={data.image.alt}
+              style={{ backgroundImage: `url("${encodeURI(data.image.src)}")` }}
+              className="mx-auto aspect-[37/58] w-full max-w-[300px] overflow-hidden rounded-[24px] bg-black bg-contain bg-center bg-no-repeat shadow-[0_30px_60px_rgba(11,37,75,.35)] ring-1 ring-white/10 sm:max-w-[360px]"
+            />
+          )}
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 function Split({ data }: { data: SplitSection }) {
+  if (data.variant === "axon") return <AxonSplit data={data} />;
   const dark = data.tone === "navy";
   return (
     <section id={data.id} className={cn("scroll-mt-[var(--header-offset)] py-16 sm:py-20", toneClass[data.tone ?? "white"])}>

@@ -7,7 +7,7 @@ import { TrustBar } from "./TrustBar";
 /** Full-bleed hero: muted looping video on ≥768px, poster image on mobile (as on the live site). */
 export function Hero() {
   return (
-    <section aria-labelledby="hero-title" className="relative -mt-[84px] flex min-h-[533px] items-center overflow-hidden pt-[120px] pb-10 sm:min-h-[640px] lg:min-h-[100vh] lg:pt-[140px]">
+    <section aria-labelledby="hero-title" className="relative -mt-[var(--header-height)] flex min-h-[533px] items-center overflow-hidden pt-[120px] pb-10 sm:min-h-[640px] lg:min-h-[100vh] lg:pt-[140px]">
       <Image src={hero.poster.src} alt="" fill priority sizes="100vw" className="-z-30 object-cover" />
       {/* Light wash keeps the H1 + trust bar legible over the footage (stronger on mobile). */}
       <div aria-hidden className="absolute inset-0 -z-10 bg-white/65 sm:bg-transparent sm:bg-gradient-to-r sm:from-white/85 sm:via-white/45 sm:to-transparent" />

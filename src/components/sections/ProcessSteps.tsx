@@ -9,7 +9,7 @@ export function ProcessSteps({ steps }: { steps: Array<{ title: string; text: st
         <Fragment key={step.title}>
           {i > 0 && <ArrowRight aria-hidden className="mx-auto size-5 shrink-0 rotate-90 text-primary/60 md:rotate-0" />}
           <li className="flex flex-1 items-start gap-4">
-            <span className="grid size-10 shrink-0 place-items-center rounded-full bg-primary font-display text-[16px] font-bold text-white" aria-hidden>
+            <span className="grid size-10 shrink-0 place-items-center rounded-full bg-primary text-[16px] font-bold text-white" aria-hidden>
               {i + 1}
             </span>
             <div>
