@@ -16,6 +16,8 @@ export type PageHero = {
   image: ImageAsset;
   trust?: boolean;
   note?: string;
+  /** split (default): copy beside a framed image · banner: rounded blue gradient card with a cut-out image */
+  variant?: "split" | "banner";
 };
 
 export type FeatureItem = { title: string; text?: string; icon?: IconName; image?: ImageAsset; detail?: string };
@@ -29,8 +31,8 @@ export type FeaturesSection = {
   lead?: string;
   items: FeatureItem[];
   columns?: 2 | 3 | 4 | 5 | 6;
-  /** card: icon card · stat: big number title · check: compact checklist · flow: arrowed chain */
-  variant?: "card" | "stat" | "check" | "flow";
+  /** card: icon card · stat: big number title · check: compact checklist · flow: arrowed chain · mission: glass cards on the green/blue/orange brand gradient */
+  variant?: "card" | "stat" | "check" | "flow" | "mission";
   tone?: Tone;
   image?: ImageAsset;
   quote?: string;
@@ -60,6 +62,11 @@ export type SplitSection = {
   ctas?: Cta[];
   tone?: Tone;
   note?: string;
+  /** axon: eyebrow pill, two-tone title, icon feature list and the image shown as a card background */
+  variant?: "axon";
+  features?: FeatureItem[];
+  /** Word in the paragraphs to emphasise. */
+  highlight?: string;
 };
 
 export type CtaSection = { type: "cta"; title: string; subtitle?: string; primary: Cta; secondary?: Cta; note?: string };

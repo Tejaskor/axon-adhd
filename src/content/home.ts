@@ -1,3 +1,4 @@
+import type { IconName } from "@/components/ui/FeatureIcon";
 import { ctas, links } from "./site";
 
 export const hero = {
@@ -19,6 +20,8 @@ export const symptoms = {
     "I feel frustrated with myself",
     "I've wondered if it's ADHD",
   ],
+  /** One icon per item, in order. */
+  icons: ["todo", "mind", "overwhelm", "hourglass", "frown", "question"] satisfies IconName[],
   reassurance: ["You’re not lazy. You’re not broken.", "You may just need the right support."],
   ctaLead: "Take the First Step",
   cta: ctas.screening,
