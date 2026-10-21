@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Star } from "lucide-react";
 import { site } from "@/content/site";
 import { trustBar } from "@/content/trust";
+import { cn } from "@/lib/utils";
 
 /** Hairline divider between trust items (desktop row only; hidden once items stack on phones). */
 function Separator() {

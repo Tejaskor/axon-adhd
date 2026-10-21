@@ -16,7 +16,7 @@ export function GettingHelpSimple() {
               <Reveal delay={i * 0.08} className="h-full overflow-hidden rounded-panel border border-line-2 bg-white shadow-card">
                 <div className="relative">
                   <Image src={step.image.src} alt={step.image.alt} width={step.image.width} height={step.image.height} sizes="(max-width: 1024px) 100vw, 420px" className="aspect-[3/2] w-full object-cover" />
-                  <span className="absolute top-4 left-4 grid size-10 place-items-center rounded-full bg-primary font-display text-[16px] font-bold text-white shadow-cta" aria-hidden>
+                  <span className="absolute top-4 left-4 grid size-10 place-items-center rounded-full bg-primary text-[16px] font-bold text-white shadow-cta" aria-hidden>
                     {i + 1}
                   </span>
                 </div>

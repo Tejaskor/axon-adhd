@@ -31,6 +31,15 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const navRef = useRef<HTMLElement>(null);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Top of page: flat full-width white bar. Once scrolled: floating glass pill.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   // Close dropdowns on Escape / outside click.
   useEffect(() => {
@@ -66,22 +75,26 @@ export function Header() {
   const isActive = (href: string) => href !== "/" && pathname.startsWith(href.replace(/\/$/, ""));
 
   return (
-    // pt-3 + h-20 + pb-1 = 96px = --header-height (globals.css), which page heroes pull up behind the header.
-    // Stickiness lives on the wrapper in app/layout.tsx; height is constant (no compact-on-scroll).
-    <header className="px-4 pt-3 pb-1">
+    // Both states total 96px = --header-height (globals.css), which page heroes pull up behind the header:
+    // top = h-[92px] + pb-1; scrolled = pt-3 + h-20 + pb-1. Stickiness lives on the wrapper in app/layout.tsx.
+    <header className={cn("pb-1 transition-[padding] duration-500 ease-brand", scrolled ? "px-4 pt-3" : "px-0 pt-0")}>
       <div
         className={cn(
-          "relative mx-auto flex h-20 w-full max-w-content items-center justify-between gap-3 rounded-[9999px] bg-white/55 px-3 shadow-[0_8px_28px_rgba(15,27,46,.06)] backdrop-blur-xl backdrop-saturate-150 transition-colors duration-300 ease-brand xs:px-4 lg:gap-[clamp(10px,2.2vw,32px)]",
+          "relative mx-auto flex w-full items-center justify-between gap-3 border transition-[max-width,height,padding,border-radius,background-color,border-color,box-shadow] duration-500 ease-brand lg:gap-[clamp(10px,2.2vw,32px)]",
+          scrolled
+            ? "h-20 max-w-[1340px] rounded-[40px] border-white/60 bg-white/50 px-3 shadow-[0_12px_36px_rgba(15,27,46,.12),inset_0_1px_0_rgba(255,255,255,.7)] backdrop-blur-xl backdrop-saturate-150 xs:px-4"
+            : // Full-bleed bar; side padding keeps the content on the 1340px content column.
+              "h-[92px] max-w-full rounded-t-none rounded-b-[24px] border-transparent bg-white px-[max(16px,calc((100%-1340px)/2+16px))] shadow-[0_1px_0_rgba(15,27,46,.06),0_6px_20px_rgba(15,27,46,.04)]",
         )}
       >
         <Link href="/" aria-label={`${site.name} home`} className="shrink-0">
           <Image
-            src={site.logo.src}
+            src={site.headerLogo.src}
             alt={site.name}
-            width={site.logo.width}
-            height={site.logo.height}
+            width={site.headerLogo.width}
+            height={site.headerLogo.height}
             priority
-            sizes="(max-width: 480px) 111px, (max-width: 1180px) 148px, 125px"
+            unoptimized
             className="h-[39px] w-auto xs:h-[52px] lg:h-11"
           />
         </Link>

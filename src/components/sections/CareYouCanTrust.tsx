@@ -13,7 +13,7 @@ export function CareYouCanTrust() {
           {careYouCanTrust.stats.map((s) => (
             <div key={s.label} className="flex flex-col-reverse rounded-panel bg-white p-6 text-center shadow-card">
               <dt className="mt-2 text-[14px] text-muted">{s.lead}</dt>
-              <dd className="font-display text-[34px] leading-none font-extrabold text-primary">
+              <dd className="text-[34px] leading-none font-extrabold text-primary">
                 {s.prefix && <span className="mr-1.5 text-[18px] font-bold text-navy">{s.prefix}</span>}
                 {s.value}
                 <span className="text-[26px]">{s.suffix}</span>

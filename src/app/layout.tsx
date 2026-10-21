@@ -1,15 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Manrope, Roboto } from "next/font/google";
+import { Geist, Inter, Manrope, Roboto } from "next/font/google";
 import "@/styles/globals.css";
-import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { site } from "@/content/site";
 import { organizationJsonLd } from "@/lib/seo";
 
-const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-roboto", display: "swap" });
+const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-roboto", display: "swap" });
 const manrope = Manrope({ subsets: ["latin"], weight: ["500", "600", "700", "800"], variable: "--font-manrope", display: "swap" });
+// Geist + Inter: About page hero + mission sections only.
+const geist = Geist({ subsets: ["latin"], weight: ["400"], variable: "--font-geist", display: "swap" });
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-inter", display: "swap" });
 
 export const metadata: Metadata = {
@@ -34,7 +35,7 @@ export const viewport: Viewport = { themeColor: "#256ACC", width: "device-width"
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${roboto.variable} ${manrope.variable} ${inter.variable}`}>
+    <html lang="en" className={`${roboto.variable} ${manrope.variable} ${geist.variable} ${inter.variable}`}>
       <body className="flex min-h-dvh flex-col">
         <a
           href="#content"
@@ -42,9 +43,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
-        {/* One sticky stack so the announcement bar (whose height varies when it wraps) stays above the header. */}
         <div className="sticky top-0 z-40">
-          <AnnouncementBar />
           <Header />
         </div>
         <main id="content" tabIndex={-1} className="flex-1 focus:outline-none">

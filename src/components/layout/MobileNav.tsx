@@ -40,7 +40,7 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
       <div className="flex h-full flex-col">
         <div className="flex items-center justify-between border-b border-line-2 px-5 py-4">
           <Link href="/" onNavigate={onClose} aria-label={`${site.name} home`}>
-            <Image src={site.logo.src} alt={site.name} width={site.logo.width} height={site.logo.height} className="h-9 w-auto" />
+            <Image src={site.headerLogo.src} alt={site.name} width={site.headerLogo.width} height={site.headerLogo.height} unoptimized className="h-9 w-auto" />
           </Link>
           <button type="button" onClick={onClose} aria-label="Close menu" className="rounded-full p-2 text-ink hover:bg-surface">
             <X className="size-6" aria-hidden />

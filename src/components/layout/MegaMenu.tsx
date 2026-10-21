@@ -15,7 +15,7 @@ export function MegaMenu({ item, id, onNavigate }: { item: MegaItem; id: string;
     <div id={id} className="absolute inset-x-0 top-full z-50 rounded-[20px] border border-white/70 bg-white p-[22px] shadow-panel">
       <div className="grid min-h-[258px] grid-cols-[1fr_320px] gap-[26px]">
         <div>
-          <p className="mb-1 px-1.5 font-ui text-[12px] font-bold tracking-[0.09em] text-muted uppercase">{item.eyebrow}</p>
+          <p className="mb-1 px-1.5 text-[12px] font-bold tracking-[0.09em] text-muted uppercase">{item.eyebrow}</p>
           <ul className="grid grid-flow-col grid-cols-2 grid-rows-2 content-start gap-x-[18px] gap-y-1.5">
             {item.links.map((link) => (
               <li key={link.href}>
@@ -27,7 +27,7 @@ export function MegaMenu({ item, id, onNavigate }: { item: MegaItem; id: string;
                   <span className="grid size-11 shrink-0 place-items-center rounded-[12px] bg-[rgba(59,130,246,.12)] text-brand shadow-[inset_0_0_0_1px_rgba(59,130,246,.1)] transition-[transform,background-color] duration-200 ease-brand group-hover:scale-[1.06] group-hover:bg-[rgba(59,130,246,.2)]">
                     <NavIcon name={link.icon} className="size-5" />
                   </span>
-                  <span className="pt-px font-ui">
+                  <span className="pt-px">
                     <span className="block text-[14.5px] leading-[1.25] font-bold text-ink-menu group-hover:text-brand">{link.label}</span>
                     <span className="mt-0.5 line-clamp-2 block text-[12.5px] leading-[1.4] text-muted">{link.description}</span>
                   </span>
@@ -36,7 +36,7 @@ export function MegaMenu({ item, id, onNavigate }: { item: MegaItem; id: string;
             ))}
           </ul>
         </div>
-        <div className="flex h-full flex-col overflow-hidden rounded-panel border border-white/75 bg-white/60 font-ui shadow-[0_12px_28px_rgba(15,27,46,.1)]">
+        <div className="flex h-full flex-col overflow-hidden rounded-panel border border-white/75 bg-white/60 shadow-[0_12px_28px_rgba(15,27,46,.1)]">
           <Image src={item.featured.image.src} alt={item.featured.image.alt} width={item.featured.image.width} height={item.featured.image.height} sizes="320px" className="h-28 w-full shrink-0 object-cover" />
           <div className="flex flex-1 flex-col px-[15px] pt-[13px] pb-[15px]">
             <p className="mb-[5px] text-[15px] leading-[1.25] font-bold text-ink-menu">{item.featured.title}</p>

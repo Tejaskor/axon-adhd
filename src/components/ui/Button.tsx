@@ -2,12 +2,13 @@ import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 import { cn, isExternal } from "@/lib/utils";
 
-type Variant = "primary" | "outline" | "white" | "ghost" | "dark";
+type Variant = "primary" | "outline" | "glass" | "white" | "ghost" | "dark";
 type Size = "sm" | "md" | "lg";
 
 const variants: Record<Variant, string> = {
   primary: "bg-primary text-white hover:bg-primary-hover shadow-[0_6px_16px_rgba(37,106,204,.25)]",
   outline: "border border-primary text-primary bg-white hover:bg-primary hover:text-white",
+  glass: "border border-white/30 bg-white/[0.14] text-white backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,.4),0_10px_30px_rgba(6,26,54,.22)] hover:bg-white/[0.22]",
   white: "bg-white text-primary hover:bg-primary-soft",
   ghost: "text-primary hover:text-primary-hover underline-offset-4 hover:underline px-0!",
   dark: "bg-navy text-white hover:bg-navy-2",
