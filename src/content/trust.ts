@@ -44,6 +44,14 @@ export const complianceBadges = [
   { src: "/images/badges/soc2.webp", alt: "SOC 2 certified badge", width: 448, height: 218 },
 ] satisfies ImageAsset[];
 
+/** Full-colour versions of the compliance badges (footer). */
+export const complianceBadgesColor = [
+  { src: "/images/badges/color/hipaa.png", alt: "HIPAA compliant badge", width: 379, height: 189 },
+  { src: "/images/badges/color/gdpr.png", alt: "EU GDPR compliant badge", width: 332, height: 327 },
+  { src: "/images/badges/color/ccpa.png", alt: "CCPA compliant badge", width: 468, height: 454 },
+  { src: "/images/badges/color/soc2.png", alt: "SOC 2 Type 2 certified badge", width: 251, height: 414 },
+] satisfies ImageAsset[];
+
 export type Review = { name: string; avatar: string; text: string };
 
 /** Google reviews as rendered by the Trustindex widget on the live home page. */
