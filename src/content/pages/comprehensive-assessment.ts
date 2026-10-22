@@ -13,24 +13,34 @@ export const comprehensiveAssessmentPage: PageContent = {
   sections: [
     {
       type: "hero",
+      variant: "photo",
+      eyebrow: "Comprehensive ADHD Assessment",
       title: "Comprehensive ADHD Assessment & Evaluation in Arlington, VA",
       text: [
         "Start with a free behavioral health check, then move to a full, clinically validated ADHD assessment and evaluation in Arlington, VA, designed to provide accurate diagnoses and personalized treatment recommendations.",
       ],
       ctas: [ctas.evaluation, ctas.screening],
       image: { src: "/images/hero/Comprehensive-ADHD-Assessment-Made-Simple.webp", alt: "Comprehensive ADHD Assessment Made Simple", width: 1672, height: 941 },
+      // Placeholder photo: swap for a woman-centred lifestyle image (see hero brief) by changing this src only.
+      background: { src: "/images/hero/adhd-assessment-hero-bg.webp", alt: "", width: 2027, height: 776 },
+      video: { id: "esUAxx-UXCM", title: "Could You Have Undiagnosed ADHD?" },
       trust: true,
     },
     {
-      type: "features",
+      type: "assessmentOverview",
+      eyebrow: "Comprehensive ADHD Assessment",
       title: "Comprehensive ADHD Evaluation in Arlington, VA",
+      accent: "Arlington, VA",
       subtitle: "A complete assessment designed to bring accuracy, clarity, and direction to your ADHD journey.",
-      columns: 4,
+      checks: ["Evidence-based", "Clinically validated", "Personalized insights"],
+      background: { src: "/images/assessment/adhd-evaluation-workspace-bg.webp", alt: "Laptop on a sunlit desk beside a plant, books and a notebook", width: 1774, height: 887 },
+      video: { id: "DY1l9JxNwms", title: "AXON ADHD Comprehensive Assessment Video" },
+      // Card copy is the page's existing approved wording (carried over from the features block this section replaces).
       items: [
-        { title: "Licensed Clinicians", text: "Board-certified professionals with ADHD expertise", image: { src: "/images/services/Frame-1618877902-1.svg", alt: "", width: 64, height: 48 } },
-        { title: "HIPAA Compliant", text: "Your health data is fully protected and encrypted", image: { src: "/images/services/Frame-1618877903-1-1.svg", alt: "", width: 79, height: 48 } },
-        { title: "Insurance Accepted", text: "Most insurance plans reimburse this comprehensive evaluation.", image: { src: "/images/services/Frame-1618877903-2-1.svg", alt: "", width: 83, height: 48 } },
-        { title: "Official Documentation", text: "Diagnosis and report for care and accommodations.", image: { src: "/images/services/Frame-1618877903-3.svg", alt: "", width: 79, height: 48 } },
+        { title: "Licensed Clinicians", text: "Board-certified professionals with ADHD expertise", icon: "clinician", image: { src: "/images/assessment/features/licensed-adhd-clinician.webp", alt: "Female clinician speaking with an adult patient in a bright, modern consultation room", width: 1536, height: 1024 } },
+        { title: "HIPAA Compliant", text: "Your health data is fully protected and encrypted", icon: "shield", image: { src: "/images/assessment/features/hipaa-data-security.webp", alt: "Laptop displaying a digital security shield on a desk in a modern workspace", width: 1536, height: 1024 } },
+        { title: "Insurance Accepted", text: "Most insurance plans reimburse this comprehensive evaluation.", icon: "insurance", image: { src: "/images/assessment/features/adhd-insurance-coverage.webp", alt: "Insurance coverage paperwork and a pen on a desk in a bright office", width: 1536, height: 1024 } },
+        { title: "Official Documentation", text: "Diagnosis and report for care and accommodations.", icon: "document", image: { src: "/images/assessment/features/adhd-evaluation-report.webp", alt: "Comprehensive ADHD evaluation report on a desk beside a laptop, notebook, and pen", width: 1536, height: 1024 } },
       ],
     },
     {

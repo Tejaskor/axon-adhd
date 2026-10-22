@@ -8,9 +8,11 @@ import { GlassCard } from "@/components/ui/GlassCard";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { cn } from "@/lib/utils";
+import { AssessmentOverview } from "./AssessmentOverview";
 import { ContactSection } from "./ContactSection";
 import { CTABand } from "./CTABand";
 import { FAQAccordion } from "./FAQAccordion";
+import { HeroVideoCard } from "./HeroVideoCard";
 import { LatestBlogs } from "./LatestBlogs";
 import { LogoMarquee } from "./LogoMarquee";
 import { TrustBar } from "./TrustBar";
@@ -89,8 +91,55 @@ function BannerHero({ data }: { data: PageHeroData }) {
   );
 }
 
+/**
+ * Wide rounded photo panel below the sticky header (not pulled behind it): copy left, compact YouTube card
+ * lower-right. A left-weighted scrim keeps white copy readable while the photo stays bright on the right.
+ * The panel bleeds 40px past the 1340px header container so from 1452px up the copy lines up with the header.
+ */
+function PhotoHero({ data }: { data: PageHeroData }) {
+  const bg = data.background ?? data.image;
+  return (
+    <section className="px-3 pt-3 pb-10 sm:px-6 sm:pt-4 sm:pb-14" aria-labelledby="page-title">
+      <div className="relative isolate mx-auto max-w-[1440px] overflow-hidden rounded-[20px] bg-navy sm:rounded-[24px] lg:rounded-[32px]">
+        <Image src={bg.src} alt={bg.alt} fill priority sizes="(max-width: 1440px) 100vw, 1440px" className="-z-20 object-cover object-[70%_center] md:object-center" />
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(6,22,46,.78)_0%,rgba(6,22,46,.62)_65%,rgba(6,22,46,.45)_100%)] md:bg-[linear-gradient(90deg,rgba(6,22,46,.82)_0%,rgba(6,22,46,.66)_36%,rgba(6,22,46,.22)_66%,rgba(6,22,46,0)_100%)]"
+        />
+        <div className="mx-auto grid max-w-content gap-8 px-5 py-10 sm:px-10 sm:py-12 md:grid-cols-[1fr_232px] md:items-center md:gap-8 lg:min-h-[480px] lg:grid-cols-[1fr_300px] lg:py-14 xl:grid-cols-[1fr_380px] xl:gap-12 min-[1452px]:px-4">
+          <div className="max-w-[640px] self-center xl:max-w-[740px]">
+            {data.eyebrow && <p className="mb-3 text-[13px] font-semibold tracking-[0.14em] text-white/80 uppercase">{data.eyebrow}</p>}
+            <h1 id="page-title" className="font-display text-[30px] leading-[1.15] font-bold tracking-[-0.5px] text-balance text-white sm:text-[36px] lg:text-[42px]">
+              {data.title}
+            </h1>
+            {data.text.map((t) => (
+              <p key={t} className="mt-4 max-w-[580px] text-[16px] leading-relaxed text-pretty text-white/85 lg:text-[17px]">
+                {t}
+              </p>
+            ))}
+            {data.ctas.length > 0 && (
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                {data.ctas.map((cta, i) => (
+                  <ButtonLink key={cta.label} href={cta.href} variant={i === 0 ? "primary" : "glass"} size="lg" className={cn("group text-center whitespace-normal xl:px-6 xl:whitespace-nowrap", i > 0 && "border-white/70! bg-transparent! shadow-none! hover:bg-white/15!")}>
+                    {cta.label}
+                    <ArrowRight aria-hidden className="size-[18px] shrink-0 transition-transform duration-300 ease-brand group-hover:translate-x-1" />
+                  </ButtonLink>
+                ))}
+              </div>
+            )}
+            {data.note && <p className="mt-3 text-[13px] text-white/75">{data.note}</p>}
+            {data.trust && <TrustBar light className="mt-6 gap-y-3 lg:mt-7" />}
+          </div>
+          {data.video && <HeroVideoCard id={data.video.id} title={data.video.title} className="mx-auto w-full max-w-[420px] md:mx-0 md:max-w-none" />}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function PageHero({ data }: { data: PageHeroData }) {
   if (data.variant === "banner") return <BannerHero data={data} />;
+  if (data.variant === "photo") return <PhotoHero data={data} />;
   return (
     <section className="relative -mt-[var(--header-height)] overflow-hidden bg-gradient-to-b from-primary-soft via-white to-white pt-[130px] pb-14 sm:pb-20" aria-labelledby="page-title">
       <Container>
@@ -442,6 +491,8 @@ export function PageSections({ sections }: { sections: PageSection[] }) {
         switch (section.type) {
           case "hero":
             return <PageHero key={i} data={section} />;
+          case "assessmentOverview":
+            return <AssessmentOverview key={i} data={section} />;
           case "features":
             return <Features key={i} data={section} />;
           case "steps":

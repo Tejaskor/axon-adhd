@@ -7,12 +7,13 @@ import { NavIcon } from "./NavIcon";
 type MegaItem = Extract<NavItem, { kind: "mega" }>;
 
 /**
- * White mega panel spanning the header bar (positioned against the bar in Header.tsx):
- * link list on the left (two sub-columns), featured card on the right.
+ * White mega panel positioned against the header bar (Header.tsx) and centred on it, capped at 1320px with
+ * 16px side margins so it never stretches across the full-bleed top-of-page bar; in the floating pill (≤1340px)
+ * it sits just inside the pill's edges. Link list on the left (two sub-columns), featured card on the right.
  */
 export function MegaMenu({ item, id, onNavigate }: { item: MegaItem; id: string; onNavigate: () => void }) {
   return (
-    <div id={id} className="absolute inset-x-0 top-full z-50 rounded-[20px] border border-white/70 bg-white p-[22px] shadow-panel">
+    <div id={id} className="absolute inset-x-0 top-full z-50 mx-auto w-[min(1320px,calc(100%-32px))] rounded-[20px] border border-white/70 bg-white p-[22px] shadow-panel">
       <div className="grid min-h-[258px] grid-cols-[1fr_320px] gap-[26px]">
         <div>
           <p className="mb-1 px-1.5 text-[12px] font-bold tracking-[0.09em] text-muted uppercase">{item.eyebrow}</p>

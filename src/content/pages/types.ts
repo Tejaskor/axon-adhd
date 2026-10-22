@@ -16,11 +16,29 @@ export type PageHero = {
   image: ImageAsset;
   trust?: boolean;
   note?: string;
-  /** split (default): copy beside a framed image · banner: rounded blue gradient card with a cut-out image */
-  variant?: "split" | "banner";
+  /** split (default): copy beside a framed image · banner: rounded blue gradient card with a cut-out image · photo: rounded full-bleed photo panel, `image` floats in a glass card */
+  variant?: "split" | "banner" | "photo";
+  /** Background photograph for the `photo` variant (decorative). */
+  background?: ImageAsset;
+  /** YouTube video shown as a floating card in the `photo` variant (replaces `image` there). */
+  video?: { id: string; title: string };
 };
 
-export type FeatureItem = { title: string; text?: string; icon?: IconName; image?: ImageAsset; detail?: string };
+/** Photo + playable-laptop overview followed by four photo feature cards (see AssessmentOverview). */
+export type AssessmentOverviewSection = {
+  type: "assessmentOverview";
+  eyebrow: string;
+  title: string;
+  /** Substring of `title` rendered in the brand blue. */
+  accent: string;
+  subtitle: string;
+  checks: string[];
+  background: ImageAsset;
+  video: { id: string; title: string };
+  items: Array<{ title: string; text: string; icon: "clinician" | "shield" | "insurance" | "document"; image: ImageAsset }>;
+};
+
+export type FeatureItem ={ title: string; text?: string; icon?: IconName; image?: ImageAsset; detail?: string };
 
 export type FeaturesSection = {
   type: "features";
@@ -79,7 +97,7 @@ export type FaqSectionData = { type: "faq"; title: string; subtitle?: string; fa
 
 export type SharedSection = { type: "blogs" } | { type: "contact" } | { type: "logos" };
 
-export type PageSection = PageHero | FeaturesSection | StepsSection | SplitSection | CtaSection | QuotesSection | BadgesSection | FaqSectionData | SharedSection;
+export type PageSection = PageHero | AssessmentOverviewSection | FeaturesSection | StepsSection | SplitSection | CtaSection | QuotesSection | BadgesSection | FaqSectionData | SharedSection;
 
 export type PageContent = {
   path: string;
