@@ -16,21 +16,21 @@ import { TrustBar } from "./TrustBar";
  * Copy is limited to what the existing service page already states (price, inclusions, audiences, eligibility).
  */
 
-const wrap = "mx-auto w-full max-w-[1320px] px-4 sm:px-6 lg:px-8";
+export const wrap = "mx-auto w-full max-w-[1320px] px-4 sm:px-6 lg:px-8";
 const wrapWide = "mx-auto w-full max-w-[1320px] px-4 sm:px-6 lg:px-8";
-const h2 = "font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.025em] text-balance text-[#123D6A] sm:text-[40px] lg:text-[48px]";
-const lead = "text-[17px] leading-[1.75] text-pretty text-[#44566E] sm:text-[19px]";
-const primaryBtn = "bg-[#2578CA]! text-white! shadow-[0_8px_20px_rgba(37,120,202,.28)]! hover:bg-[#195FA8]!";
-const lightBtn = "bg-white! text-[#195FA8]! shadow-[0_8px_24px_rgba(8,32,64,.22)]! hover:bg-[#E8F2FC]!";
+export const h2 = "font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.025em] text-balance text-[#123D6A] sm:text-[40px] lg:text-[48px]";
+export const lead = "text-[17px] leading-[1.75] text-pretty text-[#44566E] sm:text-[19px]";
+export const primaryBtn = "bg-[#2578CA]! text-white! shadow-[0_8px_20px_rgba(37,120,202,.28)]! hover:bg-[#195FA8]!";
+export const lightBtn = "bg-white! text-[#195FA8]! shadow-[0_8px_24px_rgba(8,32,64,.22)]! hover:bg-[#E8F2FC]!";
 
 const checkout = links.accommodationCheckout;
 const ctaLabel = "Explore Accommodation Support";
 
-function Arrow() {
+export function Arrow() {
   return <ArrowRight aria-hidden className="size-[18px] shrink-0 transition-transform duration-300 ease-brand group-hover:translate-x-1" />;
 }
 
-function IconChip({ children, className }: { children: ReactNode; className?: string }) {
+export function IconChip({ children, className }: { children: ReactNode; className?: string }) {
   return (
     <span aria-hidden className={cn("grid size-11 shrink-0 place-items-center rounded-xl bg-[#E8F2FC] text-[#2578CA] transition-colors duration-300 group-hover:bg-[#2578CA] group-hover:text-white", className)}>
       {children}
@@ -38,7 +38,7 @@ function IconChip({ children, className }: { children: ReactNode; className?: st
   );
 }
 
-function Eyebrow({ children, light }: { children: ReactNode; light?: boolean }) {
+export function Eyebrow({ children, light }: { children: ReactNode; light?: boolean }) {
   return (
     <p className={cn("inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[12px] font-semibold tracking-[0.12em] uppercase", light ? "bg-white/15 text-white" : "bg-[#E8F2FC] text-[#195FA8]")}>
       <span aria-hidden className={cn("size-1.5 rounded-full", light ? "bg-white" : "bg-[#2578CA]")} />
@@ -542,15 +542,15 @@ export function AccommodationCTA() {
 /* ----------------------------------------------------- Latest blogs */
 
 /** Editorial layout: one large featured post beside two stacked horizontal posts. */
-export function AccommodationBlogs() {
+export function AccommodationBlogs({ title = "Latest Blogs", subtitle = "Explore helpful resources about ADHD, evaluations, and support options." }: { title?: string; subtitle?: string } = {}) {
   return (
     <section className="bg-white py-20 sm:py-24 lg:py-28" aria-labelledby="blogs-title">
       <div className={wrap}>
         <Reveal className="mx-auto max-w-[760px] text-center">
           <h2 id="blogs-title" className={h2}>
-            Latest Blogs
+            {title}
           </h2>
-          <p className={cn(lead, "mt-4")}>Explore helpful resources about ADHD, evaluations, and support options.</p>
+          <p className={cn(lead, "mt-4")}>{subtitle}</p>
         </Reveal>
         <ul className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {blogPosts.slice(0, 3).map((post, i) => {
@@ -613,7 +613,11 @@ const contactFormSkin = [
   "[&_form>p:last-child]:text-center [&_form>p:last-child]:text-[#5B6B84]",
 ].join(" ");
 
-export function AccommodationContact() {
+export function AccommodationContact({
+  eyebrow = "LET'S TALK",
+  description = "We provide comprehensive ADHD assessments for adults across Arlington, including Rosslyn, Clarendon, Ballston, and the 22209 area.",
+  placeholders = true,
+}: { eyebrow?: string | null; description?: string; placeholders?: boolean } = {}) {
   return (
     <section id="contact" className="relative isolate scroll-mt-[var(--header-offset)] overflow-hidden bg-[linear-gradient(135deg,#F3F8FE_0%,#E8F2FC_55%,#F7FAFF_100%)] py-16 sm:py-20 lg:py-24" aria-labelledby="contact-title">
       {/* Decorative background: curved shapes (upper-right, lower-left) and dot patterns (upper-left, lower-right) */}
@@ -626,12 +630,14 @@ export function AccommodationContact() {
 
       <div className={cn(wrap, "grid items-center gap-12 md:grid-cols-[1fr_1fr] lg:gap-16")}>
         <Reveal>
-          <p className="flex items-center gap-3 text-[14px] font-medium tracking-[0.2em] text-[#2578CA]">
-            <span aria-hidden className="h-px w-10 bg-[#2578CA]" />
-            {"LET'S TALK"}
-          </p>
-          <h2 className="mt-5 font-display text-[clamp(34px,4vw,54px)] leading-[1.1] font-extrabold tracking-[-0.025em] text-balance text-[#0F2F5E]">Get your ADHD care right.</h2>
-          <p className="mt-5 max-w-[600px] text-[17px] leading-[1.65] text-pretty text-[#5B6B84] sm:text-[19px]">We provide comprehensive ADHD assessments for adults across Arlington, including Rosslyn, Clarendon, Ballston, and the 22209 area.</p>
+          {eyebrow && (
+            <p className="flex items-center gap-3 text-[14px] font-medium tracking-[0.2em] text-[#2578CA] uppercase">
+              <span aria-hidden className="h-px w-10 bg-[#2578CA]" />
+              {eyebrow}
+            </p>
+          )}
+          <h2 className={cn("font-display text-[clamp(34px,4vw,54px)] leading-[1.1] font-extrabold tracking-[-0.025em] text-balance text-[#0F2F5E]", eyebrow && "mt-5")}>Get your ADHD care right.</h2>
+          <p className="mt-5 max-w-[600px] text-[17px] leading-[1.65] text-pretty text-[#5B6B84] sm:text-[19px]">{description}</p>
           <ul className="mt-8 space-y-4">
             {contactPoints.map((c) => (
               <li key={c.title} className="flex items-center gap-4 sm:gap-5">
@@ -661,7 +667,7 @@ export function AccommodationContact() {
               Contact Us
             </h2>
             <p className="mt-3 mb-7 text-[16px] leading-relaxed text-[#5B6B84]">{"We'd love to hear from you. Please fill out the form and we'll get back to you as soon as possible."}</p>
-            <ContactForm placeholders />
+            <ContactForm placeholders={placeholders} />
           </div>
         </Reveal>
       </div>

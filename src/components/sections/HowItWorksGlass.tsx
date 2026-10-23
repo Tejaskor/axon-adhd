@@ -28,7 +28,7 @@ function Ring({ pct, color, label }: { pct: number; color: string; label: string
   );
 }
 
-function Screening() {
+export function Screening() {
   return (
     <div aria-hidden className="rounded-2xl border border-white bg-white/85 p-3.5 shadow-[0_6px_18px_rgba(11,37,75,.06)]">
       <div className="flex items-center gap-1.5">
@@ -56,7 +56,7 @@ function Screening() {
   );
 }
 
-function Results() {
+export function Results() {
   return (
     <div aria-hidden className="rounded-2xl border border-white bg-white/85 p-3.5 shadow-[0_6px_18px_rgba(11,37,75,.06)]">
       <div className="flex items-start justify-between gap-2">
