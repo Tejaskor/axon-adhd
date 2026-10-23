@@ -98,6 +98,16 @@ body {
   }
 }
 
+/* Accommodation report preview: progress bar fills once on load (disabled via motion-safe). */
+@keyframes acc-bar {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
 /* Scroll reveal: progressive enhancement only — never hides content by default. */
 @keyframes reveal-up {
   from {
