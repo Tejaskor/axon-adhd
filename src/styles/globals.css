@@ -98,6 +98,16 @@ body {
   }
 }
 
+/* Accommodation report preview: progress bar fills once on load (disabled via motion-safe). */
+@keyframes acc-bar {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
 /* Scroll reveal: progressive enhancement only — never hides content by default. */
 @keyframes reveal-up {
   from {
@@ -115,6 +125,112 @@ body {
       animation: reveal-up linear both;
       animation-timeline: view();
       animation-range: entry calc(0% + var(--reveal-delay, 0%)) entry calc(45% + var(--reveal-delay, 0%));
+    }
+  }
+}
+
+/*
+ * "From Diagnosis to Thriving" journey (StepsJourney): the base styles are the finished composition, which is also the fallback.
+ * Where scroll timelines exist (desktop ≥740px tall, motion allowed) the stage pins on a 340svh track and each glass panel rises
+ * into focus in turn. `cover` progress with a 340svh track pins from 22.7% to 77.3%, so the slices below sit inside that window.
+ */
+@keyframes journey-dock {
+  0% {
+    opacity: 0.4;
+    transform: translateY(36px) scale(0.97);
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 20px 50px rgba(37, 106, 204, 0.08);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.02);
+    border-color: rgba(37, 106, 204, 0.55);
+    box-shadow: 0 0 0 4px rgba(37, 106, 204, 0.12), 0 28px 60px rgba(37, 106, 204, 0.22);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 20px 50px rgba(37, 106, 204, 0.12);
+  }
+}
+@keyframes journey-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes journey-node {
+  50% {
+    box-shadow: 0 0 0 6px rgba(37, 106, 204, 0.2);
+  }
+  100% {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+@media (min-width: 1024px) and (min-height: 740px) and (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .journey {
+      height: 340svh;
+      view-timeline: --journey block;
+    }
+    .journey-stage {
+      position: sticky;
+      top: var(--header-offset);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: calc(100svh - var(--header-offset));
+    }
+    .journey-slot.reveal {
+      animation: none;
+    }
+    .journey-panel,
+    .journey-fill,
+    .journey-node {
+      animation-timeline: --journey;
+      animation-fill-mode: both;
+      animation-timing-function: linear;
+    }
+    .journey-panel {
+      animation-name: journey-dock;
+    }
+    .journey-slot:nth-child(1) .journey-panel { animation-range: cover 24% cover 40%; }
+    .journey-slot:nth-child(2) .journey-panel { animation-range: cover 40% cover 56%; }
+    .journey-slot:nth-child(3) .journey-panel { animation-range: cover 56% cover 72%; }
+    .journey-fill {
+      animation-name: journey-fill;
+      animation-range: cover 24% cover 56%;
+    }
+    .journey-node {
+      animation-name: journey-node;
+    }
+    .journey-node-1 { animation-range: cover 24% cover 30%; }
+    .journey-node-2 { animation-range: cover 38% cover 46%; }
+    .journey-node-3 { animation-range: cover 54% cover 62%; }
+  }
+}
+
+/* Connector lines / progress bars draw in with the section (same progressive-enhancement gate as .reveal). */
+@keyframes draw-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .draw-x {
+      animation: draw-x linear both;
+      animation-timeline: view();
+      animation-range: entry 15% entry 75%;
     }
   }
 }
@@ -144,65 +260,48 @@ body {
 }
 
 /*
- * Header CTA hover: a highlight traces the pill border. ::before is a conic gradient masked to a thin ring
- * (radius inherited, so it follows the pill exactly); ::after is a blurred copy behind the button for a soft glow.
- * Paused (not removed) when idle so mouse-leave fades out without snapping. Set --cta-trace-color per button and
- * --cta-trace-offset to the button's border width.
+ * Header CTA hover: a short glowing dash travels around the pill border.
+ * Markup: <svg class="cta-trace-line"><rect rx="27" pathLength="100"/></svg> inside each .cta-trace button
+ * (Header.tsx). The rect covers the button's border box, so with rx = half the 54px height it is exactly the
+ * pill outline; pathLength normalises the perimeter to 100, so the dash moves at constant speed at any width.
+ * (A conic-gradient sweep was used before, but on a ~5.5:1 pill its highlight shrank to ~20px and its speed varied
+ * ~18x, so it read as an invisible flicker.) Paused rather than removed when idle, so mouse-leave fades out without
+ * snapping. Set --cta-trace-color per button and --cta-trace-offset to the button's border width.
  */
-@property --cta-trace-angle {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
-}
-@keyframes cta-trace {
+@keyframes cta-trace-run {
   to {
-    --cta-trace-angle: 360deg;
+    stroke-dashoffset: -100;
   }
 }
 .cta-trace {
   position: relative;
 }
-.cta-trace::before,
-.cta-trace::after {
-  content: "";
+.cta-trace-line {
   position: absolute;
-  inset: calc(var(--cta-trace-offset, 0px) * -1);
-  border-radius: inherit;
+  top: calc(var(--cta-trace-offset, 0px) * -1);
+  left: calc(var(--cta-trace-offset, 0px) * -1);
+  width: calc(100% + var(--cta-trace-offset, 0px) * 2);
+  height: calc(100% + var(--cta-trace-offset, 0px) * 2);
+  overflow: visible;
   pointer-events: none;
-  background: conic-gradient(
-    from var(--cta-trace-angle),
-    transparent 0deg 240deg,
-    color-mix(in srgb, var(--cta-trace-color) 35%, transparent) 300deg,
-    var(--cta-trace-color) 345deg,
-    transparent 360deg
-  );
   opacity: 0;
   transition: opacity 0.4s var(--ease);
-  animation: cta-trace 2.6s linear infinite paused;
+  filter: drop-shadow(0 0 3px var(--cta-trace-color));
 }
-.cta-trace::before {
-  padding: 1.5px;
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  mask-composite: exclude;
+.cta-trace-line rect {
+  fill: none;
+  stroke: var(--cta-trace-color);
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+  stroke-dasharray: 16 84;
+  animation: cta-trace-run 2.6s linear infinite paused;
 }
-.cta-trace::after {
-  z-index: -1;
-  filter: blur(6px);
-}
-.cta-trace:hover::before,
-.cta-trace:focus-visible::before {
+.cta-trace:hover .cta-trace-line,
+.cta-trace:focus-visible .cta-trace-line {
   opacity: 1;
-  animation-play-state: running;
 }
-.cta-trace:hover::after,
-.cta-trace:focus-visible::after {
-  opacity: 0.45;
+.cta-trace:hover .cta-trace-line rect,
+.cta-trace:focus-visible .cta-trace-line rect {
   animation-play-state: running;
 }
 /* Tricolour variant: the whole ring is a rotating brand gradient. No ::after glow — it would bleed through glass buttons. */
@@ -214,13 +313,9 @@ body {
   display: none;
 }
 @media (prefers-reduced-motion: reduce) {
-  .cta-trace::before,
-  .cta-trace::after {
+  /* Static, fully highlighted border instead of the travelling dash. */
+  .cta-trace-line rect {
     animation: none;
-    background: var(--cta-trace-color);
-  }
-  .cta-trace:hover::after,
-  .cta-trace:focus-visible::after {
-    opacity: 0.25;
+    stroke-dasharray: none;
   }
 }
