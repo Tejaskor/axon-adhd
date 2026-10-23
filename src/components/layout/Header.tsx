@@ -12,6 +12,19 @@ import { cn } from "@/lib/utils";
 import { MegaMenu } from "./MegaMenu";
 import { MobileNav } from "./MobileNav";
 
+/**
+ * Decorative pill outline for the CTA hover trace (.cta-trace-line in globals.css). rx = half the 54px button height.
+ * Fail-safe without the stylesheet (e.g. a stale CSS bundle): width/height="0" keep it out of layout and fill="none"
+ * keeps the rect from painting the SVG default black; the CSS overrides these presentation attributes.
+ */
+function TraceLine() {
+  return (
+    <svg aria-hidden="true" focusable="false" className="cta-trace-line" width="0" height="0">
+      <rect width="100%" height="100%" rx="27" pathLength={100} fill="none" />
+    </svg>
+  );
+}
+
 export function Header() {
   const pathname = usePathname();
   const [openMenu, setOpenMenu] = useState<string | null>(null);
@@ -138,9 +151,11 @@ export function Header() {
         <div className="hidden shrink-0 items-center gap-3 lg:flex xl:gap-4">
           <ButtonLink href={ctas.evaluation.href} variant="white" size="sm" className="cta-trace h-[54px]! rounded-[9999px]! border border-line-3 [--cta-trace-color:#3B82F6] [--cta-trace-offset:1px] text-[clamp(13px,1.02vw,16px)]! leading-[1.25] font-normal! text-navy! shadow-[0_1px_2px_rgba(15,27,46,.06)] hover:border-primary/30 xl:px-5">
             {ctas.evaluation.label}
+            <TraceLine />
           </ButtonLink>
           <ButtonLink href={ctas.screening.href} size="sm" className="cta-trace h-[54px]! rounded-[9999px]! [--cta-trace-color:#BFDBFE] text-[clamp(13px,1.02vw,16px)]! leading-[1.25] font-normal! shadow-[0_6px_18px_rgba(37,106,204,.28)]! hover:shadow-[0_8px_22px_rgba(37,106,204,.34)]! xl:px-5">
             {ctas.screening.label}
+            <TraceLine />
           </ButtonLink>
         </div>
 

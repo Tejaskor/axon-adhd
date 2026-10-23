@@ -1,3 +1,4 @@
+import type { IconName } from "@/components/ui/FeatureIcon";
 import { links } from "./site";
 
 /** Discount applied when payment is completed within 24h of the free screening. */
@@ -7,8 +8,7 @@ export type Plan = {
   id: string;
   badge?: { label: string; tone: "teal" | "primary" | "orange" };
   name: string;
-  /** Short label for the plan tabs. */
-  tab: string;
+  icon: IconName;
   /** Base price in USD. 0 = free. Discounted price is computed in code. */
   price: number;
   discounted: boolean;
@@ -31,7 +31,7 @@ export const pricing = {
       id: "screening",
       badge: { label: "START HERE", tone: "teal" },
       name: "Behavioral Health Screening",
-      tab: "Free Screening",
+      icon: "file",
       price: 0,
       discounted: false,
       description: "Start with clarity — completely free.",
@@ -50,7 +50,7 @@ export const pricing = {
       id: "evaluation",
       badge: { label: "MOST POPULAR", tone: "primary" },
       name: "Comprehensive ADHD Evaluation",
-      tab: "Evaluation",
+      icon: "brain",
       price: 577,
       discounted: true,
       description:
@@ -73,7 +73,7 @@ export const pricing = {
       id: "package",
       badge: { label: "For students & professionals", tone: "orange" },
       name: "Evaluation + Accommodation Package",
-      tab: "Eval + Accommodations",
+      icon: "graduation",
       price: 827,
       discounted: true,
       breakdown: "$577 (Evaluation) + $250 (Accommodation Support)",
@@ -90,18 +90,6 @@ export const pricing = {
       footnote: "",
     },
   ] satisfies Plan[],
-  /** Left panel: founder introduction (facts drawn from the About page bio). */
-  founderIntro: {
-    titleAccent: "Care designed by",
-    titleRest: "Dr. Aaron Dodini",
-    text: "A licensed clinical psychologist who founded Dodini Behavioral Health in 2001, Dr. Dodini built AXON ADHD to replace slow, costly evaluation models with faster, more affordable, and more accurate ADHD diagnoses.",
-    credentials: ["Licensed clinical psychologist", "Marriage & family therapist", "Founded Dodini Behavioral Health in 2001"],
-    cta: { label: "About us", href: "/about-adhd-evaluation/" },
-  },
-  /** Price toggle: with / without the 24-hour early-payment discount. */
-  discountOptions: ["Paid within 24 hours", "Standard price"],
-  assurances: ["Start with a free screening — no credit card required", "Clinician-led care", "Superbills provided"],
-  secureNote: "Secure & confidential",
   steps: [
     { title: "Take the Free Screening", text: "Complete a quick online assessment at no cost." },
     { title: "Make Payment Within 24 Hours", text: "Complete the evaluation or package payment within 24 hours to get 10% off." },

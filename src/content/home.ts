@@ -65,16 +65,19 @@ export const gettingHelp = {
     {
       title: "FREE Behavioral Health Screening",
       text: "Valid tools to screen for ADHD and related conditions",
+      icon: "file" as IconName,
       image: { src: "/images/services/FREE-Behavioral-Health-Screening.webp", alt: "FREE Behavioral Health Screening", width: 1548, height: 1016 },
     },
     {
       title: "Comprehensive ADHD Evaluation",
       text: "Diagnosis and Treatment from our ADHD experts",
+      icon: "brain" as IconName,
       image: { src: "/images/services/Comprehensive-ADHD-Evaluation.webp", alt: "Comprehensive ADHD Evaluation", width: 1536, height: 1024 },
     },
     {
       title: "Personalized ADHD Care",
       text: "Access ADHD support, medication, coaching, and therapy",
+      icon: "users" as IconName,
       image: { src: "/images/services/Personalized-ADHD-Care.webp", alt: "Personalized ADHD Care", width: 1540, height: 1021 },
     },
   ],

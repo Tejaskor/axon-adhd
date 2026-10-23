@@ -13,28 +13,41 @@ export const comprehensiveAssessmentPage: PageContent = {
   sections: [
     {
       type: "hero",
+      variant: "photo",
+      eyebrow: "Comprehensive ADHD Assessment",
       title: "Comprehensive ADHD Assessment & Evaluation in Arlington, VA",
       text: [
         "Start with a free behavioral health check, then move to a full, clinically validated ADHD assessment and evaluation in Arlington, VA, designed to provide accurate diagnoses and personalized treatment recommendations.",
       ],
       ctas: [ctas.evaluation, ctas.screening],
       image: { src: "/images/hero/Comprehensive-ADHD-Assessment-Made-Simple.webp", alt: "Comprehensive ADHD Assessment Made Simple", width: 1672, height: 941 },
+      // Placeholder photo: swap for a woman-centred lifestyle image (see hero brief) by changing this src only.
+      background: { src: "/images/hero/adhd-assessment-hero-bg.webp", alt: "", width: 2027, height: 776 },
+      video: { id: "esUAxx-UXCM", title: "Could You Have Undiagnosed ADHD?" },
       trust: true,
     },
     {
-      type: "features",
+      type: "assessmentOverview",
+      eyebrow: "Comprehensive ADHD Assessment",
       title: "Comprehensive ADHD Evaluation in Arlington, VA",
+      accent: "Arlington, VA",
       subtitle: "A complete assessment designed to bring accuracy, clarity, and direction to your ADHD journey.",
-      columns: 4,
+      checks: ["Evidence-based", "Clinically validated", "Personalized insights"],
+      background: { src: "/images/assessment/adhd-evaluation-workspace-bg.webp", alt: "Laptop on a sunlit desk beside a plant, books and a notebook", width: 1774, height: 887 },
+      video: { id: "DY1l9JxNwms", title: "AXON ADHD Comprehensive Assessment Video" },
+      // Card copy is the page's existing approved wording (carried over from the features block this section replaces).
       items: [
-        { title: "Licensed Clinicians", text: "Board-certified professionals with ADHD expertise", image: { src: "/images/services/Frame-1618877902-1.svg", alt: "", width: 64, height: 48 } },
-        { title: "HIPAA Compliant", text: "Your health data is fully protected and encrypted", image: { src: "/images/services/Frame-1618877903-1-1.svg", alt: "", width: 79, height: 48 } },
-        { title: "Insurance Accepted", text: "Most insurance plans reimburse this comprehensive evaluation.", image: { src: "/images/services/Frame-1618877903-2-1.svg", alt: "", width: 83, height: 48 } },
-        { title: "Official Documentation", text: "Diagnosis and report for care and accommodations.", image: { src: "/images/services/Frame-1618877903-3.svg", alt: "", width: 79, height: 48 } },
+        { title: "Licensed Clinicians", text: "Board-certified professionals with ADHD expertise", icon: "clinician", image: { src: "/images/assessment/features/licensed-adhd-clinician.webp", alt: "Female clinician speaking with an adult patient in a bright, modern consultation room", width: 1536, height: 1024 } },
+        { title: "HIPAA Compliant", text: "Your health data is fully protected and encrypted", icon: "shield", image: { src: "/images/assessment/features/hipaa-data-security.webp", alt: "Laptop displaying a digital security shield on a desk in a modern workspace", width: 1536, height: 1024 } },
+        { title: "Insurance Accepted", text: "Most insurance plans reimburse this comprehensive evaluation.", icon: "insurance", image: { src: "/images/assessment/features/adhd-insurance-coverage.webp", alt: "Insurance coverage paperwork and a pen on a desk in a bright office", width: 1536, height: 1024 } },
+        { title: "Official Documentation", text: "Diagnosis and report for care and accommodations.", icon: "document", image: { src: "/images/assessment/features/adhd-evaluation-report.webp", alt: "Comprehensive ADHD evaluation report on a desk beside a laptop, notebook, and pen", width: 1536, height: 1024 } },
       ],
     },
     {
       type: "steps",
+      variant: "journey",
+      eyebrow: "YOUR ADHD JOURNEY",
+      accent: "Three Easy Steps",
       title: "From Diagnosis to Thriving in Three Easy Steps with AXON ADHD.",
       items: [
         { title: "Complete Free Screening", text: "Quick, guided questions to identify symptoms.", image: { src: "/images/services/Complete-Free-Screening.webp", alt: "Complete Free Screening", width: 2652, height: 2079 } },
@@ -44,6 +57,9 @@ export const comprehensiveAssessmentPage: PageContent = {
     },
     {
       type: "split",
+      variant: "glass",
+      eyebrow: "Free Assessment",
+      accent: "Free Assessment",
       title: "What You'll Learn from the Free Assessment",
       paragraphs: [
         "Comprehensive, personalised, and evidence-based ADHD support designed to help you thrive.",
@@ -51,19 +67,35 @@ export const comprehensiveAssessmentPage: PageContent = {
         "In just a few minutes, you’ll receive a score indicating your risk for ADHD or related conditions, helping you take the first step toward a clear diagnosis.",
       ],
       list: ["Clinically validated self report questionnaires", "Instant feedback on results", "Personalised summary and next steps"],
-      image: { src: "/images/services/FreeAssessment.webp", alt: "Free ADHD assessment results on a laptop", width: 1934, height: 1334 },
+      features: [
+        { title: "Guided Screening", text: "Short, structured questions about your symptoms and experiences." },
+        { title: "Personalised Summary", text: "A clear overview of your screening results." },
+        { title: "Suggested Next Steps", text: "Information on potential follow-up options such as evaluation, treatment, and support." },
+      ],
+      // Quick facts use details already on this page ("5-10 minutes", "Instant feedback on results", "Clinically validated self report questionnaires"); no question count is published, so none is shown.
+      details: [
+        { title: "5–10 minutes", text: "Estimated time" },
+        { title: "Self-report questionnaires", text: "Clinically validated" },
+        { title: "Instant feedback", text: "Get your results right away" },
+      ],
+      image: { src: "/images/free-assessment-preview.webp", alt: "Preview of the free ADHD assessment and screening results", width: 2473, height: 1707 },
     },
     {
       type: "features",
       id: "how-it-works",
-      title: "How It Works",
-      subtitle: "A simple, three-step process to understand your ADHD symptoms and access professional support.",
-      variant: "flow",
-      tone: "surface",
+      variant: "glassFlow",
+      eyebrow: "How It Works",
+      accent: "Clarity",
+      title: "A Simple Path to Clarity",
+      subtitle: "A straightforward three-step process to understand your ADHD symptoms and access professional support.",
       items: [
-        { title: "Complete Online Screening", text: "Answer research-backed questions in just 5-10 minutes" },
-        { title: "Get Instant Results", text: "Receive your preliminary score and personalized insights" },
-        { title: "Proceed to Comprehensive ADHD Evaluation", text: "Take the full eval from the comfort of your own home and have an official diagnosis you can trust." },
+        { title: "Complete Online Screening", text: "Answer research-backed questions about your symptoms and experiences in just 5–10 minutes." },
+        { title: "Get Instant Results", text: "Receive your preliminary score and personalized insights to help you understand your results." },
+        {
+          title: "Proceed to Comprehensive Evaluation",
+          text: "Take the full evaluation from the comfort of your own home and have an official diagnosis you can trust.",
+          image: { src: "/images/assessment/features/licensed-adhd-clinician.webp", alt: "Clinician speaking with an adult patient in a bright, modern consultation room", width: 1536, height: 1024 },
+        },
       ],
     },
     {
