@@ -189,7 +189,6 @@ function PhotoHero({ data }: { data: PageHeroData }) {
 export function PageHero({ data }: { data: PageHeroData }) {
   if (data.variant === "banner") return <BannerHero data={data} />;
   if (data.variant === "photo") return <PhotoHero data={data} />;
-  if (data.variant === "photo") return <PhotoHero data={data} />;
   return (
     <section className="relative -mt-[var(--header-height)] overflow-hidden bg-gradient-to-b from-primary-soft via-white to-white pt-[130px] pb-14 sm:pb-20" aria-labelledby="page-title">
       <Container>
