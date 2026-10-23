@@ -12,7 +12,7 @@ export const metadata = pageMetadata({ title: "ADHD Blog | Expert Guides & Artic
 export default function BlogIndexPage() {
   return (
     <>
-      <section className="-mt-[84px] bg-gradient-to-b from-primary-soft to-white pt-[140px] pb-10">
+      <section className="-mt-[var(--header-height)] bg-gradient-to-b from-primary-soft to-white pt-[140px] pb-10">
         <Container>
           <SectionHeading as="h1" title={blogPage.title} subtitle={blogPage.intro} />
           <Image src={blogPage.hero.src} alt={blogPage.hero.alt} width={blogPage.hero.width} height={blogPage.hero.height} priority sizes="(max-width: 1340px) 100vw, 1100px" className="mx-auto h-auto w-full max-w-[1100px] rounded-xl2 shadow-soft" />

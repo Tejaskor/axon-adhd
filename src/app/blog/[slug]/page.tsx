@@ -37,7 +37,7 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
 
   return (
     <article>
-      <header className="-mt-[84px] bg-gradient-to-b from-primary-soft to-white pt-[130px] pb-10">
+      <header className="-mt-[var(--header-height)] bg-gradient-to-b from-primary-soft to-white pt-[130px] pb-10">
         <Container className="max-w-[1100px]">
           <nav aria-label="Breadcrumb" className="mb-5 text-[14px] text-muted">
             <ol className="flex flex-wrap items-center gap-1.5">

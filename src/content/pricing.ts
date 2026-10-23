@@ -1,3 +1,4 @@
+import type { IconName } from "@/components/ui/FeatureIcon";
 import { links } from "./site";
 
 /** Discount applied when payment is completed within 24h of the free screening. */
@@ -7,6 +8,7 @@ export type Plan = {
   id: string;
   badge?: { label: string; tone: "teal" | "primary" | "orange" };
   name: string;
+  icon: IconName;
   /** Base price in USD. 0 = free. Discounted price is computed in code. */
   price: number;
   discounted: boolean;
@@ -29,6 +31,7 @@ export const pricing = {
       id: "screening",
       badge: { label: "START HERE", tone: "teal" },
       name: "Behavioral Health Screening",
+      icon: "file",
       price: 0,
       discounted: false,
       description: "Start with clarity — completely free.",
@@ -47,6 +50,7 @@ export const pricing = {
       id: "evaluation",
       badge: { label: "MOST POPULAR", tone: "primary" },
       name: "Comprehensive ADHD Evaluation",
+      icon: "brain",
       price: 577,
       discounted: true,
       description:
@@ -69,6 +73,7 @@ export const pricing = {
       id: "package",
       badge: { label: "For students & professionals", tone: "orange" },
       name: "Evaluation + Accommodation Package",
+      icon: "graduation",
       price: 827,
       discounted: true,
       breakdown: "$577 (Evaluation) + $250 (Accommodation Support)",

@@ -18,11 +18,11 @@ export const metadata = pageMetadata({ title: tc.meta.title, description: tc.met
 export default function TrustCenterPage() {
   return (
     <>
-      <section className="relative -mt-[84px] overflow-hidden bg-navy pt-[140px] pb-16 text-white sm:pb-20" aria-labelledby="page-title">
+      <section className="relative -mt-[var(--header-height)] overflow-hidden bg-navy pt-[140px] pb-16 text-white sm:pb-20" aria-labelledby="page-title">
         <Image src={tc.hero.image.src} alt="" fill priority sizes="100vw" className="object-cover opacity-25" />
         <Container className="relative">
           <p className="mb-3 text-[13px] font-semibold tracking-[0.14em] text-[#8EB8F2] uppercase">{tc.hero.eyebrow}</p>
-          <h1 id="page-title" className="font-display text-[32px] font-bold sm:text-[46px]">
+          <h1 id="page-title" className="text-[32px] font-bold sm:text-[46px]">
             {tc.hero.title}
           </h1>
           <p className="mt-4 max-w-[760px] text-[17px] leading-relaxed text-white/85">{tc.hero.text}</p>
@@ -144,7 +144,7 @@ export default function TrustCenterPage() {
             {tc.residency.stats.map((s) => (
               <div key={s.value} className="flex flex-col-reverse rounded-panel bg-white/10 p-6 text-center">
                 <dt className="mt-2 text-[15px] text-white/80">{s.text}</dt>
-                <dd className="font-display text-[36px] font-extrabold text-[#8EB8F2]">{s.value}</dd>
+                <dd className="text-[36px] font-extrabold text-[#8EB8F2]">{s.value}</dd>
               </div>
             ))}
           </dl>

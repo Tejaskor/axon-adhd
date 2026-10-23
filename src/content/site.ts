@@ -5,6 +5,8 @@ export const site = {
   legalName: "AXON Digital Health & Diagnosis",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.axonadhd.com",
   logo: { src: "/images/brand/Axon-Digital-Health-Ek-Mukta-font-ADHD.webp", width: 454, height: 160 },
+  /** Vector logo for the header + mobile menu (JSON-LD keeps the raster `logo`). */
+  headerLogo: { src: "/images/header/logo.svg", width: 114, height: 40 },
   footerLogo: { src: "/images/brand/axonadhd.svg", width: 136, height: 48 },
   ogImage: "/images/brand/Understand-ADHD-Find-Your-Next-Step.webp",
   email: "info@axonadhd.com",
@@ -45,8 +47,3 @@ export const ctas = {
   evaluation: { label: "Take Comprehensive ADHD Evaluation", href: links.comprehensive },
   screening: { label: "Start Free ADHD Screening", href: links.freeScreening },
 } satisfies Record<string, Cta>;
-
-export const announcement = {
-  text: "Take the First Step Toward Better Brain Health",
-  cta: ctas.screening,
-};

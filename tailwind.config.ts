@@ -33,7 +33,8 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-roboto)", "Roboto", "Arial", "sans-serif"],
         display: ["var(--font-manrope)", "Manrope", "Arial", "sans-serif"],
-        ui: ["var(--font-inter)", "Inter", "-apple-system", "Segoe UI", "Arial", "sans-serif"],
+        geist: ["var(--font-geist)", "Geist", "Arial", "sans-serif"],
+        inter: ["var(--font-inter)", "Inter", "Arial", "sans-serif"],
       },
       maxWidth: { content: "1340px", prose: "820px" },
       borderRadius: { card: "14px", panel: "16px", xl2: "18px", pill: "50px" },

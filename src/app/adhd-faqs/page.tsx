@@ -15,7 +15,7 @@ export const metadata = pageMetadata({
 export default function FaqPage() {
   return (
     <>
-      <section className="-mt-[84px] bg-gradient-to-b from-primary-soft to-surface pt-[140px] pb-16 sm:pb-20">
+      <section className="-mt-[var(--header-height)] bg-gradient-to-b from-primary-soft to-surface pt-[140px] pb-16 sm:pb-20">
         <Container className="max-w-[960px]">
           <SectionHeading as="h1" title="Frequently Asked Questions" subtitle="We have the answers for you!" />
           <FAQTabs tabs={faqTabs} />
