@@ -119,6 +119,112 @@ body {
   }
 }
 
+/*
+ * "From Diagnosis to Thriving" journey (StepsJourney): the base styles are the finished composition, which is also the fallback.
+ * Where scroll timelines exist (desktop ≥740px tall, motion allowed) the stage pins on a 340svh track and each glass panel rises
+ * into focus in turn. `cover` progress with a 340svh track pins from 22.7% to 77.3%, so the slices below sit inside that window.
+ */
+@keyframes journey-dock {
+  0% {
+    opacity: 0.4;
+    transform: translateY(36px) scale(0.97);
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 20px 50px rgba(37, 106, 204, 0.08);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.02);
+    border-color: rgba(37, 106, 204, 0.55);
+    box-shadow: 0 0 0 4px rgba(37, 106, 204, 0.12), 0 28px 60px rgba(37, 106, 204, 0.22);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 20px 50px rgba(37, 106, 204, 0.12);
+  }
+}
+@keyframes journey-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes journey-node {
+  50% {
+    box-shadow: 0 0 0 6px rgba(37, 106, 204, 0.2);
+  }
+  100% {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+@media (min-width: 1024px) and (min-height: 740px) and (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .journey {
+      height: 340svh;
+      view-timeline: --journey block;
+    }
+    .journey-stage {
+      position: sticky;
+      top: var(--header-offset);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: calc(100svh - var(--header-offset));
+    }
+    .journey-slot.reveal {
+      animation: none;
+    }
+    .journey-panel,
+    .journey-fill,
+    .journey-node {
+      animation-timeline: --journey;
+      animation-fill-mode: both;
+      animation-timing-function: linear;
+    }
+    .journey-panel {
+      animation-name: journey-dock;
+    }
+    .journey-slot:nth-child(1) .journey-panel { animation-range: cover 24% cover 40%; }
+    .journey-slot:nth-child(2) .journey-panel { animation-range: cover 40% cover 56%; }
+    .journey-slot:nth-child(3) .journey-panel { animation-range: cover 56% cover 72%; }
+    .journey-fill {
+      animation-name: journey-fill;
+      animation-range: cover 24% cover 56%;
+    }
+    .journey-node {
+      animation-name: journey-node;
+    }
+    .journey-node-1 { animation-range: cover 24% cover 30%; }
+    .journey-node-2 { animation-range: cover 38% cover 46%; }
+    .journey-node-3 { animation-range: cover 54% cover 62%; }
+  }
+}
+
+/* Connector lines / progress bars draw in with the section (same progressive-enhancement gate as .reveal). */
+@keyframes draw-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .draw-x {
+      animation: draw-x linear both;
+      animation-timeline: view();
+      animation-range: entry 15% entry 75%;
+    }
+  }
+}
+
 @keyframes slide-in {
   from {
     transform: translateX(100%);

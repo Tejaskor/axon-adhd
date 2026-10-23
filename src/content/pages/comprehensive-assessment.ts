@@ -45,6 +45,9 @@ export const comprehensiveAssessmentPage: PageContent = {
     },
     {
       type: "steps",
+      variant: "journey",
+      eyebrow: "YOUR ADHD JOURNEY",
+      accent: "Three Easy Steps",
       title: "From Diagnosis to Thriving in Three Easy Steps with AXON ADHD.",
       items: [
         { title: "Complete Free Screening", text: "Quick, guided questions to identify symptoms.", image: { src: "/images/services/Complete-Free-Screening.webp", alt: "Complete Free Screening", width: 2652, height: 2079 } },
@@ -54,6 +57,9 @@ export const comprehensiveAssessmentPage: PageContent = {
     },
     {
       type: "split",
+      variant: "glass",
+      eyebrow: "Free Assessment",
+      accent: "Free Assessment",
       title: "What You'll Learn from the Free Assessment",
       paragraphs: [
         "Comprehensive, personalised, and evidence-based ADHD support designed to help you thrive.",
@@ -61,19 +67,35 @@ export const comprehensiveAssessmentPage: PageContent = {
         "In just a few minutes, you’ll receive a score indicating your risk for ADHD or related conditions, helping you take the first step toward a clear diagnosis.",
       ],
       list: ["Clinically validated self report questionnaires", "Instant feedback on results", "Personalised summary and next steps"],
-      image: { src: "/images/services/FreeAssessment.webp", alt: "Free ADHD assessment results on a laptop", width: 1934, height: 1334 },
+      features: [
+        { title: "Guided Screening", text: "Short, structured questions about your symptoms and experiences." },
+        { title: "Personalised Summary", text: "A clear overview of your screening results." },
+        { title: "Suggested Next Steps", text: "Information on potential follow-up options such as evaluation, treatment, and support." },
+      ],
+      // Quick facts use details already on this page ("5-10 minutes", "Instant feedback on results", "Clinically validated self report questionnaires"); no question count is published, so none is shown.
+      details: [
+        { title: "5–10 minutes", text: "Estimated time" },
+        { title: "Self-report questionnaires", text: "Clinically validated" },
+        { title: "Instant feedback", text: "Get your results right away" },
+      ],
+      image: { src: "/images/free-assessment-preview.webp", alt: "Preview of the free ADHD assessment and screening results", width: 2473, height: 1707 },
     },
     {
       type: "features",
       id: "how-it-works",
-      title: "How It Works",
-      subtitle: "A simple, three-step process to understand your ADHD symptoms and access professional support.",
-      variant: "flow",
-      tone: "surface",
+      variant: "glassFlow",
+      eyebrow: "How It Works",
+      accent: "Clarity",
+      title: "A Simple Path to Clarity",
+      subtitle: "A straightforward three-step process to understand your ADHD symptoms and access professional support.",
       items: [
-        { title: "Complete Online Screening", text: "Answer research-backed questions in just 5-10 minutes" },
-        { title: "Get Instant Results", text: "Receive your preliminary score and personalized insights" },
-        { title: "Proceed to Comprehensive ADHD Evaluation", text: "Take the full eval from the comfort of your own home and have an official diagnosis you can trust." },
+        { title: "Complete Online Screening", text: "Answer research-backed questions about your symptoms and experiences in just 5–10 minutes." },
+        { title: "Get Instant Results", text: "Receive your preliminary score and personalized insights to help you understand your results." },
+        {
+          title: "Proceed to Comprehensive Evaluation",
+          text: "Take the full evaluation from the comfort of your own home and have an official diagnosis you can trust.",
+          image: { src: "/images/assessment/features/licensed-adhd-clinician.webp", alt: "Clinician speaking with an adult patient in a bright, modern consultation room", width: 1536, height: 1024 },
+        },
       ],
     },
     {

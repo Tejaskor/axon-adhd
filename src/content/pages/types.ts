@@ -50,7 +50,9 @@ export type FeaturesSection = {
   items: FeatureItem[];
   columns?: 2 | 3 | 4 | 5 | 6;
   /** card: icon card · stat: big number title · check: compact checklist · flow: arrowed chain · mission: glass cards on the green/blue/orange brand gradient */
-  variant?: "card" | "stat" | "check" | "flow" | "mission";
+  variant?: "card" | "stat" | "check" | "flow" | "mission" | "glassFlow";
+  /** glassFlow: substring of `title` shown in the brand blue. */
+  accent?: string;
   tone?: Tone;
   image?: ImageAsset;
   quote?: string;
@@ -65,6 +67,11 @@ export type StepsSection = {
   subtitle?: string;
   items: Array<{ title: string; text: string; image?: ImageAsset }>;
   tone?: Tone;
+  /** journey: frosted-glass, scroll-driven three-step layout (StepsJourney); step images are not used. */
+  variant?: "journey";
+  eyebrow?: string;
+  /** Substring of `title` rendered in the brand blue. */
+  accent?: string;
 };
 
 export type SplitSection = {
@@ -81,8 +88,11 @@ export type SplitSection = {
   tone?: Tone;
   note?: string;
   /** axon: eyebrow pill, two-tone title, icon feature list and the image shown as a card background */
-  variant?: "axon";
+  variant?: "axon" | "glass";
   features?: FeatureItem[];
+  /** glass: the substring of `title` shown in blue (the label above it is `eyebrow`), and the quick-facts row. */
+  accent?: string;
+  details?: Array<{ title: string; text: string }>;
   /** Word in the paragraphs to emphasise. */
   highlight?: string;
 };
