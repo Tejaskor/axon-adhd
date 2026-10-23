@@ -394,15 +394,15 @@ function Split({ data }: { data: SplitSection }) {
   return (
     <section id={data.id} className={cn("scroll-mt-[var(--header-offset)] py-16 sm:py-20", toneClass[data.tone ?? "white"])}>
       <Container>
-        <div className="grid items-center gap-10 md:grid-cols-2 lg:gap-16">
-          <Reveal className={cn(data.reverse && "md:order-2")}>
+        <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 lg:gap-16">
+          <Reveal className={cn("min-w-0", data.reverse && "md:order-2")}>
             {data.video ? (
               <video src={data.video} autoPlay muted loop playsInline preload="none" aria-hidden className="h-auto w-full rounded-xl2 shadow-soft" />
             ) : (
               data.image && <Image src={data.image.src} alt={data.image.alt} width={data.image.width} height={data.image.height} sizes="(max-width: 1024px) 100vw, 620px" unoptimized={data.image.src.endsWith(".gif")} className="mx-auto h-auto w-full max-w-[620px] rounded-xl2 shadow-soft" />
             )}
           </Reveal>
-          <Reveal delay={0.08}>
+          <Reveal delay={0.08} className="min-w-0">
             {data.eyebrow && <p className={cn("mb-3 text-[13px] font-semibold tracking-[0.14em] uppercase", dark ? "text-white/80" : "text-primary")}>{data.eyebrow}</p>}
             <h2 className={cn("font-display text-[26px] leading-tight font-bold sm:text-[34px] lg:text-[38px]", dark ? "text-white" : "text-navy")}>{data.title}</h2>
             {data.paragraphs?.map((p) => (
