@@ -35,7 +35,7 @@ export const viewport: Viewport = { themeColor: "#256ACC", width: "device-width"
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${roboto.variable} ${manrope.variable} ${geist.variable} ${inter.variable}`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${roboto.variable} ${manrope.variable} ${geist.variable} ${inter.variable}`}>
       <body className="flex min-h-dvh flex-col">
         <a
           href="#content"
