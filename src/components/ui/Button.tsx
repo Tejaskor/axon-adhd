@@ -14,7 +14,8 @@ const variants: Record<Variant, string> = {
   dark: "bg-navy text-white hover:bg-navy-2",
 };
 
-// min-h (not h) so a label that has to wrap on narrow screens grows instead of clipping.
+// min-h (not h) so a label that has to wrap on narrow screens grows instead of clipping. Labels stay on one line from
+// sm (768px); below it they may wrap, otherwise long CTAs ("Take Comprehensive ADHD Evaluation") outgrow phone widths.
 // Text is 15px on mobile, 16px from md (1024px), matching the live site's CTAs.
 const sizes: Record<Size, string> = {
   sm: "min-h-11 px-4 py-2 text-[14px] md:text-[15px]",
@@ -24,7 +25,7 @@ const sizes: Record<Size, string> = {
 
 export function buttonClasses({ variant = "primary", size = "md", className }: { variant?: Variant; size?: Size; className?: string } = {}) {
   return cn(
-    "inline-flex items-center justify-center gap-2 rounded-pill font-sans font-normal leading-snug text-center whitespace-nowrap transition-colors duration-200 ease-brand focus-visible:outline-offset-4",
+    "inline-flex items-center justify-center gap-2 rounded-pill font-sans font-normal leading-snug text-center whitespace-nowrap max-sm:whitespace-normal transition-colors duration-200 ease-brand focus-visible:outline-offset-4",
     variants[variant],
     sizes[size],
     className,

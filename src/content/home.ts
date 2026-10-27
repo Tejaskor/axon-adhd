@@ -70,6 +70,7 @@ export const services = {
       href: "/comprehensive-adhd-assessment/",
       icon: "screening",
       video: "/videos/patient.mp4",
+      thumbnail: "/images/homepage/how-we-support-you/Behavioral-Health-Screening.webp",
       tone: "blue",
     },
     {
@@ -79,6 +80,7 @@ export const services = {
       href: "/comprehensive-adhd-assessment/",
       icon: "assessment",
       video: "/videos/Comprehensive-ADHD-Evaluation-snippit.mp4",
+      thumbnail: "/images/homepage/how-we-support-you/Comprehensive-ADHD-Assessment.webp",
       tone: "teal",
     },
     {
@@ -88,6 +90,7 @@ export const services = {
       href: "/adhd-care/",
       icon: "care",
       video: "/videos/ADHD-Care-snippit-1.mp4",
+      thumbnail: "/images/homepage/how-we-support-you/ADHD-Care.webp",
       tone: "violet",
     },
   ] as const,
