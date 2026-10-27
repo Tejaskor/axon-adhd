@@ -60,7 +60,7 @@ export function AssessmentOverview({ data }: { data: AssessmentOverviewSection }
         <circle cx="200" cy="200" r="140" stroke="currentColor" strokeWidth="1.5" />
         <circle cx="200" cy="200" r="90" stroke="currentColor" strokeWidth="1.5" />
       </svg>
-      <div aria-hidden className="pointer-events-none absolute top-10 right-6 hidden h-24 w-40 bg-[radial-gradient(circle,rgba(37,106,204,.22)_1.5px,transparent_1.5px)] [background-size:14px_14px] lg:block" />
+      <div aria-hidden className="pointer-events-none absolute top-10 right-6 hidden h-24 w-40 bg-[radial-gradient(circle,rgba(37,120,202,.22)_1.5px,transparent_1.5px)] [background-size:14px_14px] lg:block" />
 
       {/* ≥1024px: one large canvas. The photo is scaled up (132% wide, shifted left/up) so its laptop reads big on the right;
           the real player is mapped onto that laptop's screen on an identical layer. Cards overlap the canvas bottom. */}
@@ -109,8 +109,8 @@ export function AssessmentOverview({ data }: { data: AssessmentOverviewSection }
                     </span>
                     <span aria-hidden className="absolute -top-[6px] left-[40%] hidden size-3 rounded-full bg-primary ring-[5px] ring-primary/15 lg:block" />
                     <div className="flex-1 px-6 pt-[52px] pb-4">
-                      <h3 className="font-display text-[21px] leading-tight font-bold text-navy">{item.title}</h3>
-                      <p className="mt-2 text-[15px] leading-relaxed text-body">{item.text}</p>
+                      <h3 className="type-h4 text-navy">{item.title}</h3>
+                      <p className="type-body mt-2 text-body">{item.text}</p>
                     </div>
                     <div className="relative mx-3 mb-3 aspect-[16/10] overflow-hidden rounded-[20px]">
                       <Image src={item.image.src} alt={item.image.alt} fill sizes="(max-width: 639px) 92vw, (max-width: 1023px) 46vw, 330px" className="object-cover transition-transform duration-500 ease-brand group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100" />

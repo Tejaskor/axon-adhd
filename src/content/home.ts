@@ -9,26 +9,58 @@ export const hero = {
   poster: { src: "/images/hero/herofollback.webp", alt: "", width: 1710, height: 926 },
 };
 
+const signImage = (name: string, alt: string, width = 1672, height = 941) => ({ src: `/images/homepage/adhd-signs/${name}.webp`, alt, width, height });
+
 export const symptoms = {
-  title: "Does this sound like you?",
-  subtitle: "Common signs that ADHD may be affecting your life",
+  title: { lead: "Does this ", highlight: "sound like you?" },
+  subtitle: "Many adults experience these signs. They can be part of ADHD and you’re not alone.",
+  /** In order; `icon` is a FeatureIcon name and `tone` picks the card accent. */
   items: [
-    "I start tasks but don't finish",
-    "My mind feels constantly busy",
-    "I feel overwhelmed by simple things",
-    "I struggle with time and deadlines",
-    "I feel frustrated with myself",
-    "I've wondered if it's ADHD",
-  ],
-  /** One icon per item, in order. */
-  icons: ["todo", "mind", "overwhelm", "hourglass", "frown", "question"] satisfies IconName[],
+    {
+      title: "I start tasks but don’t finish",
+      icon: "todo",
+      tone: "green",
+      image: signImage("adhd-task-initiation", "Woman resting her chin on her hand, distracted from her work", 1816, 866),
+    },
+    {
+      title: "My mind feels constantly busy",
+      icon: "mind",
+      tone: "blue",
+      image: signImage("adhd-racing-thoughts-man", "Man deep in thought with a tangled thought bubble"),
+    },
+    {
+      title: "I feel overwhelmed by simple things",
+      icon: "overwhelm",
+      tone: "orange",
+      image: signImage("adhd-overwhelmed-woman", "Woman holding her head, feeling overwhelmed"),
+    },
+    {
+      title: "I struggle with time and deadlines",
+      icon: "hourglass",
+      tone: "purple",
+      image: signImage("adhd-time-management-still-life", "Desk calendar with sticky notes beside an alarm clock"),
+    },
+    {
+      title: "I feel frustrated with myself",
+      icon: "frown",
+      tone: "coral",
+      image: signImage("adhd-self-frustration-man", "Man resting his head on his hand, looking frustrated"),
+    },
+    {
+      title: "I’ve wondered if it’s ADHD",
+      icon: "question",
+      tone: "yellow",
+      image: signImage("adhd-self-discovery-woman", "Woman looking thoughtful beside floating question marks"),
+    },
+  ] satisfies Array<{ title: string; icon: IconName; tone: string; image: unknown }>,
   reassurance: ["You’re not lazy. You’re not broken.", "You may just need the right support."],
-  ctaLead: "Take the First Step",
   cta: ctas.screening,
 };
 
 export const services = {
-  title: "How we support you",
+  /** Rendered as `title` + " " + `titleAccent` (accent in a blue-to-cyan gradient): "How we support you". */
+  title: "How we",
+  titleAccent: "support you",
   subtitle: "Comprehensive, personalized, and evidence-based ADHD support designed to help you thrive.",
   items: [
     {
@@ -38,6 +70,7 @@ export const services = {
       href: "/comprehensive-adhd-assessment/",
       icon: "screening",
       video: "/videos/patient.mp4",
+      tone: "blue",
     },
     {
       title: "Comprehensive ADHD Assessment",
@@ -46,6 +79,7 @@ export const services = {
       href: "/comprehensive-adhd-assessment/",
       icon: "assessment",
       video: "/videos/Comprehensive-ADHD-Evaluation-snippit.mp4",
+      tone: "teal",
     },
     {
       title: "ADHD Care",
@@ -54,63 +88,145 @@ export const services = {
       href: "/adhd-care/",
       icon: "care",
       video: "/videos/ADHD-Care-snippit-1.mp4",
+      tone: "violet",
     },
   ] as const,
 };
 
-export const gettingHelp = {
-  title: "Getting help is simple",
-  subtitle: "Three easy steps to clarity and support",
+const journeyImage = (name: string, alt: string) => ({ src: `/images/homepage/journey-to-clarity/journey-${name}.webp`, alt, width: 1672, height: 941 });
+
+export const journeyToClarity = {
+  title: "Your Journey to Clarity",
+  subtitle: "Six simple steps. Answers and support, from wherever you are.",
   steps: [
     {
-      title: "FREE Behavioral Health Screening",
-      text: "Valid tools to screen for ADHD and related conditions",
-      icon: "file" as IconName,
-      image: { src: "/images/services/FREE-Behavioral-Health-Screening.webp", alt: "FREE Behavioral Health Screening", width: 1548, height: 1016 },
+      title: "Free Screening",
+      text: "Answer questions about ADHD and your well-being. Get immediate results.",
+      image: journeyImage("free-screening", "Woman at a laptop completing an ADHD screening on attention, focus, well-being and daily life"),
     },
     {
-      title: "Comprehensive ADHD Evaluation",
-      text: "Diagnosis and Treatment from our ADHD experts",
-      icon: "brain" as IconName,
-      image: { src: "/images/services/Comprehensive-ADHD-Evaluation.webp", alt: "Comprehensive ADHD Evaluation", width: 1536, height: 1024 },
+      title: "Review Your Results",
+      text: "See whether a comprehensive evaluation may be helpful.",
+      image: journeyImage("review-results", "Man at a laptop reviewing his screening results"),
     },
     {
-      title: "Personalized ADHD Care",
-      text: "Access ADHD support, medication, coaching, and therapy",
-      icon: "users" as IconName,
-      image: { src: "/images/services/Personalized-ADHD-Care.webp", alt: "Personalized ADHD Care", width: 1540, height: 1021 },
+      title: "Online Evaluation",
+      text: "Complete validated assessments and objective QbCheck testing from home.",
+      image: journeyImage("online-evaluation", "Woman wearing headphones completing an online ADHD assessment"),
+    },
+    {
+      title: "Clinician Consultation",
+      text: "Meet virtually with a licensed ADHD specialist.",
+      image: journeyImage("clinician-consultation", "Patient on a video call with a licensed ADHD clinician"),
+    },
+    {
+      title: "Report & Recommendations",
+      text: "Receive your diagnostic findings and personalized next steps.",
+      image: journeyImage("report-recommendations", "Woman reading her diagnostic report and recommendations on a tablet"),
+    },
+    {
+      title: "Support & Next Steps",
+      text: "Explore treatment, coaching, and accommodation options.",
+      image: journeyImage("support-next-steps", "Smiling student outdoors with treatment, coaching and accommodation options"),
     },
   ],
-  note: "Take our free screener to see if you’re at risk for ADHD or other conditions before paying for a full evaluation.",
-  cta: { label: "Start Free Screening", href: links.freeScreening },
+  ctas: [ctas.evaluation, ctas.screening],
+  disclaimer: "Screening is not a diagnosis. Clinical findings depend on a comprehensive evaluation.",
 };
 
 export const mythBuster = {
-  question: "Why can't I figure this out?!",
-  feelings: { src: "/images/services/CGF.webp", alt: "confusion guessing frustration", width: 1563, height: 143 },
-  image: { src: "/images/services/Why-cant-I-figure-this-out.webp", alt: "Adult experiencing ADHD symptoms", width: 1821, height: 1215 },
+  question: { lead: "Why can’t I ", highlight: "figure this out?!" },
+  feelings: ["Confusion", "Guessing", "Frustration"],
+  confused: {
+    src: "/images/homepage/adhd-understanding/adhd-confusion-woman.webp",
+    alt: "Woman resting her chin in her hands, looking up in confusion beneath question marks",
+    width: 2280,
+    height: 2524,
+  },
+  // Reading order (also the mobile order); ADHDMythBuster places each stage around the loop by `key`.
+  stages: [
+    {
+      key: "symptoms",
+      title: "Many different symptoms",
+      image: {
+        src: "/images/homepage/adhd-understanding/adhd-symptoms-illustration.webp",
+        alt: "A worried face, a brain, a thought cloud, a checklist and puzzle pieces",
+        width: 1536,
+        height: 1024,
+      },
+    },
+    { key: "treatments", title: "Failed treatments" },
+    {
+      key: "frustration",
+      title: "Frustration and hopelessness",
+      image: {
+        src: "/images/homepage/adhd-understanding/adhd-frustration-woman.webp",
+        alt: "Woman holding her head in frustration under a tangled scribble",
+        width: 1784,
+        height: 2116,
+      },
+    },
+    {
+      key: "exhaustion",
+      title: "Exhaustion",
+      image: {
+        src: "/images/homepage/adhd-understanding/adhd-exhaustion-woman.webp",
+        alt: "Woman asleep on a stack of books beside a laptop",
+        width: 2500,
+        height: 1460,
+      },
+    },
+  ],
+  clarity: {
+    label: "Diagnostic clarity",
+    text: "A clearer understanding can help guide the next step.",
+    image: { src: "/images/homepage/adhd-understanding/adhd-diagnostic-clarity.webp", width: 1309, height: 1201 },
+    relief: {
+      src: "/images/homepage/adhd-understanding/adhd-relief-woman.webp",
+      alt: "Woman smiling calmly with her hands over her heart",
+      width: 1964,
+      height: 2588,
+    },
+  },
   title: "Attention Deficit Hyperactivity Disorder",
   subtitle: "It’s not what most people think",
-  diagram: { src: "/images/services/Attention-Deficit-Hyperactivity-Disorder.webp", alt: "Attention Deficit Hyperactivity Disorder", width: 1131, height: 756 },
-  myths: ["ADHD ≠ Lack of attention", "ADHD ≠ Lack of effort", "ADHD ≠ Lack of intelligence"],
-  definition: "ADHD = brain type that is highly sensitive and reactive to stimuli, leading to inconsistent attention, hyperfocus, and emotional reactivity.",
-};
+  brain: { src: "/images/homepage/adhd-understanding/adhd-brain-illustration.webp", alt: "Illustration of a human brain", width: 1536, height: 1024 },
+  concepts: [
+    { label: "Attention", icon: "target", tone: "blue" },
+    { label: "Effort", icon: "gear", tone: "teal" },
+    { label: "Intelligence", icon: "bulb", tone: "orange" },
+  ],
+  myths: [
+    { text: "ADHD ≠ Lack of attention", tone: "blue" },
+    { text: "ADHD ≠ Lack of effort", tone: "teal" },
+    { text: "ADHD ≠ Lack of intelligence", tone: "orange" },
+  ],
+  definition: "ADHD is a different way of regulating attention, motivation, and emotions—not a lack of ability.",
+} as const;
 
 export const weSeeYou = {
   title: "We see you.",
   subtitle: "Your experience is valid.",
-  affirmations: ["You're not lazy", "You're not broken", "You're not alone", "You've been missing the right explanation"],
-  image: { src: "/images/services/ImageWithFallback-1.webp", alt: "Personalized ADHD Care", width: 592, height: 444 },
-};
+  /** `icon`/`tone` are picked up by WeSeeYou. */
+  affirmations: [
+    { title: "You’re not lazy", icon: "person", tone: "green" },
+    { title: "You’re not broken", icon: "heart", tone: "blue" },
+    { title: "You’re not alone", icon: "people", tone: "orange" },
+    { title: "There’s a reason it feels hard", icon: "bulb", tone: "purple" },
+  ],
+  image: { src: "/images/services/ImageWithFallback-1.webp", alt: "A smiling woman talking with an ADHD clinician who is taking notes", width: 592, height: 444 },
+  ctas: [ctas.screening, ctas.evaluation],
+} as const;
 
 export const whyAxon = {
-  title: "You deserve clarity not guesswork",
+  title: { lead: "You deserve ", highlight: "clarity", tail: " not guesswork" },
   subtitle: "What makes AXON different",
+  /** `icon`/`tone` are picked up by WhyAxon. */
   points: [
-    { title: "Science-backed ADHD testing", text: "FDA Cleared adhd test, state of the art ADHD assessment", icon: "flask" },
-    { title: "Clear, defensible diagnosis", text: "A report you can trust and share with providers.", icon: "file" },
-    { title: "Fast results in days", text: "No months-long wait. Answers when you need them.", icon: "clock" },
-    { title: "Personalized treatment plan", text: "Tailored next steps built for your life.", icon: "target" },
+    { title: "Science-backed ADHD testing", text: "FDA Cleared adhd test, state of the art ADHD assessment.", icon: "gear", tone: "blue" },
+    { title: "Clear, defensible diagnosis", text: "A report you can trust and share with providers.", icon: "clipboard", tone: "green" },
+    { title: "Fast results in days", text: "No months-long wait. Answers when you need them.", icon: "clock", tone: "orange" },
+    { title: "Personalized treatment plan", text: "Tailored next steps built for your life.", icon: "checklist", tone: "purple" },
   ] as const,
 };
 
@@ -122,24 +238,26 @@ export const readyBand = {
 
 export const careYouCanTrust = {
   title: "Care you can trust",
-  subtitle: "Built on clinical standards you can rely on",
+  subtitle: "Built on clinical standards, advanced technology and a patient-first approach.",
+  /** `icon`/`tone` are picked up by CareYouCanTrust. */
   stats: [
-    { lead: "Gained clarity", value: "100", suffix: "+", label: "Clients" },
-    { lead: "Than traditional testing.", value: "10", suffix: "%", label: "less", prefix: "Costs" },
-    { lead: "No Traffic, No Hassel", value: "1", suffix: "%", label: "Online Testing" },
+    { label: "Clients", value: { count: 1000, suffix: "+" }, text: "Gained clarity on their ADHD journey.", icon: "users", tone: "blue" },
+    { label: "Lower Cost", value: { count: 90, suffix: "%" }, text: "Than traditional testing.", icon: "coins", tone: "teal" },
+    { label: "Online Testing", value: { count: 100, suffix: "%" }, text: "No traffic, no waiting rooms, no hassle.", icon: "laptop", tone: "orange" },
   ],
   features: [
-    { title: "Licensed ADHD specialists", text: "Fully accredited clinicians specializing in ADHD.", icon: "badge" },
-    { title: "Evidence-based assessments", text: "FDA cleared device provides accurate objective data, clear diagnosis", icon: "flask" },
-    { title: "Fast appointment availability", text: "Most patients seen within days", icon: "calendar" },
-    { title: "Insurance-friendly options", text: "Superbill provided for insurance reimbursement.", icon: "receipt" },
-    { title: "HIPAA secure and private", text: "End-to-end encryption to protect your information.", icon: "shield" },
-    { title: "Comprehensive ADHD care", text: "Assessment, diagnosis, and personalized treatment in one place.", icon: "heart" },
-  ] as const,
-};
+    { title: "Licensed ADHD specialists", text: "Fully accredited clinicians.", icon: "shield", tone: "blue" },
+    { title: "Evidence-based assessments", text: "FDA cleared device for accurate data.", icon: "assessment", tone: "teal" },
+    { title: "Fast appointment availability", text: "Most patients seen within days.", icon: "calendar", tone: "blue" },
+    { title: "Insurance-friendly options", text: "Superbill provided for reimbursement.", icon: "card", tone: "orange" },
+    { title: "HIPAA secure and private", text: "End-to-end encryption.", icon: "lock", tone: "pink" },
+    { title: "Comprehensive ADHD care", text: "Assessment, diagnosis, and treatment in one place.", icon: "care", tone: "purple" },
+  ],
+} as const;
 
 export const testimonialsSection = {
-  title: "Real People. Real Relief.",
+  title: "Real People.",
+  titleAccent: "Real Relief.",
   subtitle: "Real stories. Real diagnoses. Real clarity.",
 };
 
@@ -151,7 +269,15 @@ export const latestBlogs = {
 export const faqSection = { title: "Frequently Asked Questions", subtitle: "We have the answers for you!" };
 
 export const finalCta = {
-  title: "You're not broken-and we'll prove it.",
+  /** Rendered as `title` + " " + `titleAccent` (the accent in light blue): "You're not broken-and we'll prove it." */
+  title: "You're not broken-and",
+  titleAccent: "we'll prove it.",
+  /** `icon`/`tone` are picked up by FinalCTA. */
+  benefits: [
+    { text: "Reduce anxiety and overwhelm", icon: "brain", tone: "purple" },
+    { text: "Feel more in control", icon: "user", tone: "blue" },
+    { text: "Build a healthier, happier future", icon: "growth", tone: "green" },
+  ],
   text: "Many high-achieving adults are told they can’t have ADHD because they’re successful, so it often goes misdiagnosed. But untreated ADHD can lead to anxiety, depression, binge eating, substance use, and loneliness. If you feel unheard, the right diagnosis can help you find the treatment that works.",
   lead: "Take the next step with our comprehensive diagnostic evaluation.",
   primary: { label: "Start Comprehensive Assessment", href: links.comprehensive },

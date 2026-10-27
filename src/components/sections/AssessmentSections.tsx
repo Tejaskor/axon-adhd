@@ -21,7 +21,7 @@ function AccentTitle({ title, accent }: { title: string; accent?: string }) {
   return (
     <>
       {before}
-      {accent && <span className="text-[#2578CA]">{accent}</span>}
+      {accent && <span className="text-primary">{accent}</span>}
       {after}
     </>
   );
@@ -34,7 +34,7 @@ function BlueBanner({ children }: { children: ReactNode }) {
 /* ------------------------------------------------ What You'll Learn */
 
 const learnTones = [
-  { Icon: FileText, panel: "bg-[#F0F6FD]", tile: "bg-[#E1EEFC] text-[#2578CA]" },
+  { Icon: FileText, panel: "bg-[#F0F6FD]", tile: "bg-[#E1EEFC] text-primary" },
   { Icon: ChartColumn, panel: "bg-[#EAF8F3]", tile: "bg-[#D6F2E8] text-[#12998A]" },
   { Icon: Compass, panel: "bg-[#FFF5EA]", tile: "bg-[#FFE8CC] text-[#EB8B01]" },
 ] as const;
@@ -69,8 +69,8 @@ export function AssessmentLearn({ data }: { data: SplitSection }) {
                         <Icon className="size-7" strokeWidth={1.75} />
                       </span>
                       <div className="min-w-0">
-                        <h3 className="text-[18px] leading-tight font-bold text-[#123D6A]">{f.title}</h3>
-                        <p className="mt-1 text-[15.5px] leading-snug text-[#536985]">{f.text}</p>
+                        <h3 className="type-h4 text-[#123D6A]">{f.title}</h3>
+                        <p className="type-body mt-1 text-[#536985]">{f.text}</p>
                       </div>
                     </div>
                   </Reveal>
@@ -92,19 +92,19 @@ export function AssessmentLearn({ data }: { data: SplitSection }) {
           )}
           {data.details && (
             <Reveal delay={0.15}>
-              <div className="mt-6 rounded-[24px] border border-[#D8E8F8] bg-[#F3F8FE] px-6 py-5">
+              <div className="mt-6 rounded-[24px] border border-primary-100 bg-[#F3F8FE] px-6 py-5">
                 <p className="text-[12.5px] font-bold tracking-[0.14em] text-[#5B6B80] uppercase">Quick and easy</p>
                 <ul className="mt-4 grid gap-4 sm:grid-cols-3 sm:gap-0">
                   {data.details.map((d, i) => {
                     const Icon = detailIcons[i % detailIcons.length];
                     return (
-                      <li key={d.title} className="flex items-center gap-3 sm:px-4 sm:first:pl-0 sm:last:pr-0 sm:[&:not(:first-child)]:border-l sm:[&:not(:first-child)]:border-[#D8E8F8]">
-                        <span aria-hidden className="grid size-11 shrink-0 place-items-center rounded-full bg-white text-[#2578CA] shadow-[0_4px_12px_rgba(37,120,202,.12)]">
+                      <li key={d.title} className="flex items-center gap-3 sm:px-4 sm:first:pl-0 sm:last:pr-0 sm:[&:not(:first-child)]:border-l sm:[&:not(:first-child)]:border-primary-100">
+                        <span aria-hidden className="grid size-11 shrink-0 place-items-center rounded-full bg-white text-primary shadow-[0_4px_12px_rgba(37,120,202,.12)]">
                           <Icon className="size-5" />
                         </span>
                         <span>
-                          <span className="block text-[15.5px] leading-tight font-bold text-[#123D6A]">{d.title}</span>
-                          <span className="mt-0.5 block text-[13.5px] leading-snug text-[#536985]">{d.text}</span>
+                          <span className="type-body block font-bold text-[#123D6A]">{d.title}</span>
+                          <span className="type-small mt-0.5 block text-[#536985]">{d.text}</span>
                         </span>
                       </li>
                     );
@@ -139,18 +139,18 @@ export function AssessmentHowItWorks({ data }: { data: FeaturesSection }) {
             return (
               <li key={item.title} className="flex">
                 <Reveal delay={i * 0.08} className="flex w-full">
-                  <article className="flex w-full flex-col rounded-[26px] border border-[#D8E8F8] bg-white p-6 shadow-[0_10px_30px_rgba(18,61,106,.07)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_44px_rgba(37,120,202,.15)] sm:p-7">
+                  <article className="flex w-full flex-col rounded-[26px] border border-primary-100 bg-white p-6 shadow-[0_10px_30px_rgba(18,61,106,.07)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_44px_rgba(37,120,202,.15)] sm:p-7">
                     <div className="flex items-center gap-3">
-                      <span aria-hidden className="grid size-14 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#4B91D6] to-[#2578CA] font-display text-[19px] font-bold text-white shadow-[0_8px_20px_rgba(37,120,202,.30)]">
+                      <span aria-hidden className="grid size-14 shrink-0 place-items-center rounded-full bg-gradient-to-br from-primary-400 to-primary font-display text-[19px] font-bold text-white shadow-[0_8px_20px_rgba(37,120,202,.30)]">
                         0{i + 1}
                       </span>
-                      {!last && <span aria-hidden className="hidden h-px flex-1 border-t-2 border-dashed border-[#9CC4EC] lg:block" />}
+                      {!last && <span aria-hidden className="hidden h-px flex-1 border-t-2 border-dashed border-primary-300 lg:block" />}
                     </div>
-                    <h3 className="mt-5 text-[21px] leading-snug font-bold text-[#123D6A]">
+                    <h3 className="type-h4 mt-5 text-[#123D6A]">
                       <span className="sr-only">Step {i + 1}: </span>
                       {item.title}
                     </h3>
-                    <p className="mt-2 text-[16px] leading-relaxed text-[#536985]">{item.text}</p>
+                    <p className="type-body mt-2 text-[#536985]">{item.text}</p>
                     <div className="mt-6 flex-1">
                       {i === 0 && <Screening />}
                       {i === 1 && <Results />}
@@ -175,25 +175,25 @@ export function AssessmentHowItWorks({ data }: { data: FeaturesSection }) {
 
 export function AssessmentBannerCta({ data }: { data: CtaSection }) {
   return (
-    <section className="relative isolate overflow-hidden bg-[linear-gradient(110deg,#2578CA_0%,#1F68B1_50%,#174D86_100%)] py-16 text-white sm:py-20 lg:py-24" aria-labelledby="official-title">
+    <section className="relative isolate overflow-hidden bg-[linear-gradient(110deg,#2578CA_0%,#1E64AA_50%,#19528C_100%)] py-16 text-white sm:py-20 lg:py-24" aria-labelledby="official-title">
       <div aria-hidden className="absolute -top-32 -left-24 -z-10 size-[380px] rounded-full bg-white/[0.06]" />
-      <div aria-hidden className="absolute -right-20 -bottom-40 -z-10 size-[460px] rounded-full bg-[#80B5E8]/10" />
+      <div aria-hidden className="absolute -right-20 -bottom-40 -z-10 size-[460px] rounded-full bg-primary-300/10" />
       <div className={cn(wrap, "grid items-center gap-10 lg:grid-cols-[1.5fr_1fr] lg:gap-16")}>
         <Reveal>
-          <h2 id="official-title" className="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.025em] text-balance sm:text-[42px] lg:text-[50px]">
+          <h2 id="official-title" className="type-h2 text-balance">
             {data.title}
           </h2>
-          {data.subtitle && <p className="mt-6 max-w-[760px] text-[17px] leading-[1.75] text-white/90 sm:text-[19px]">{data.subtitle}</p>}
+          {data.subtitle && <p className="type-lead mt-6 max-w-[760px] text-white/90">{data.subtitle}</p>}
         </Reveal>
         <Reveal delay={0.1}>
           <BlueBanner>
             <div className="flex flex-col gap-4">
-              <ButtonLink href={data.primary.href} size="lg" className={cn("group h-auto! min-h-14 py-3 text-center whitespace-normal", lightBtn)}>
+              <ButtonLink href={data.primary.href} size="lg" className={cn("group whitespace-normal", lightBtn)}>
                 {data.primary.label}
                 <Arrow />
               </ButtonLink>
               {data.secondary && (
-                <ButtonLink href={data.secondary.href} variant="outline" size="lg" className="h-auto! min-h-14 border-white/70! bg-transparent! py-3 text-center whitespace-normal text-white! hover:bg-white! hover:text-[#195FA8]!">
+                <ButtonLink href={data.secondary.href} variant="outline" size="lg" className="border-white/70! bg-transparent! whitespace-normal text-white! hover:bg-white! hover:text-primary-600!">
                   {data.secondary.label}
                 </ButtonLink>
               )}
@@ -229,8 +229,8 @@ export function AssessmentConfidence({ data }: { data: FeaturesSection }) {
                 <div className="group flex items-start gap-5">
                   <IconChip className="size-14 rounded-2xl">{item.icon && <FeatureIcon name={item.icon} className="size-7" />}</IconChip>
                   <div>
-                    <h3 className="text-[20px] leading-snug font-bold text-[#123D6A]">{item.title}</h3>
-                    <p className="mt-2 text-[16px] leading-relaxed text-[#536985]">{item.text}</p>
+                    <h3 className="type-h4 text-[#123D6A]">{item.title}</h3>
+                    <p className="type-body mt-2 text-[#536985]">{item.text}</p>
                   </div>
                 </div>
               </Reveal>
@@ -261,8 +261,8 @@ export function AssessmentOpensDoors({ data }: { data: FeaturesSection }) {
                 <div className="group flex items-center gap-5 rounded-[22px] bg-white p-6 shadow-[0_8px_24px_rgba(18,61,106,.08)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(37,120,202,.16)] sm:p-7">
                   <IconChip className="size-16 rounded-2xl">{item.icon && <FeatureIcon name={item.icon} className="size-8" />}</IconChip>
                   <div>
-                    <h3 className="text-[20px] leading-snug font-bold text-[#123D6A]">{item.title}</h3>
-                    <p className="mt-1.5 text-[16px] leading-relaxed text-[#536985]">{item.text}</p>
+                    <h3 className="type-h4 text-[#123D6A]">{item.title}</h3>
+                    <p className="type-body mt-1.5 text-[#536985]">{item.text}</p>
                   </div>
                 </div>
               </Reveal>
@@ -294,10 +294,10 @@ export function AssessmentProcess({ data }: { data: StepsSection }) {
                   {step.image && <Image src={step.image.src} alt={step.image.alt} width={step.image.width} height={step.image.height} sizes="(max-width: 1023px) 100vw, 620px" className="aspect-[16/10] w-full rounded-[26px] object-cover shadow-[0_22px_50px_rgba(18,61,106,.16)]" />}
                 </Reveal>
                 <Reveal delay={0.08}>
-                  <span aria-hidden className="grid size-14 place-items-center rounded-full bg-[#2578CA] font-display text-[22px] font-bold text-white shadow-[0_8px_20px_rgba(37,120,202,.30)]">
+                  <span aria-hidden className="grid size-14 place-items-center rounded-full bg-primary font-display text-[22px] font-bold text-white shadow-[0_8px_20px_rgba(37,120,202,.30)]">
                     {i + 1}
                   </span>
-                  <h3 className="mt-5 font-display text-[26px] leading-tight font-extrabold text-[#123D6A] sm:text-[30px]">
+                  <h3 className="type-h3 mt-5 text-[#123D6A]">
                     <span className="sr-only">Step {i + 1}: </span>
                     {step.title}
                   </h3>
@@ -316,20 +316,20 @@ export function AssessmentProcess({ data }: { data: StepsSection }) {
 
 export function AssessmentClosingCta({ data }: { data: CtaSection }) {
   return (
-    <section className="relative isolate overflow-hidden bg-[linear-gradient(115deg,#123D6A_0%,#1B5E96_60%,#2578CA_100%)] py-20 text-center text-white sm:py-24 lg:py-28" aria-labelledby="closing-title">
-      <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_0%,rgba(128,181,232,.25),transparent_55%)]" />
+    <section className="relative isolate overflow-hidden bg-[linear-gradient(115deg,#123D6A_0%,#1E64AA_60%,#2578CA_100%)] py-20 text-center text-white sm:py-24 lg:py-28" aria-labelledby="closing-title">
+      <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_0%,rgba(134,182,229,.25),transparent_55%)]" />
       <Reveal className={cn(wrap, "max-w-[900px]")}>
-        <h2 id="closing-title" className="font-display text-[34px] leading-[1.08] font-extrabold tracking-[-0.03em] text-balance sm:text-[48px] lg:text-[58px]">
+        <h2 id="closing-title" className="type-h2 text-balance">
           {data.title}
         </h2>
-        {data.subtitle && <p className="mx-auto mt-6 max-w-[720px] text-[17px] leading-[1.7] text-white/90 sm:text-[20px]">{data.subtitle}</p>}
+        {data.subtitle && <p className="type-lead mx-auto mt-6 max-w-[720px] text-white/90">{data.subtitle}</p>}
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <ButtonLink href={data.primary.href} size="lg" className={cn("group h-auto! min-h-16 px-9 py-3 text-center text-[17px] whitespace-normal", lightBtn)}>
+          <ButtonLink href={data.primary.href} size="lg" className={cn("group whitespace-normal", lightBtn)}>
             {data.primary.label}
             <Arrow />
           </ButtonLink>
           {data.secondary && (
-            <ButtonLink href={data.secondary.href} variant="outline" size="lg" className="h-auto! min-h-16 border-white/70! bg-transparent! px-9 py-3 text-center text-[17px] whitespace-normal text-white! hover:bg-white! hover:text-[#195FA8]!">
+            <ButtonLink href={data.secondary.href} variant="outline" size="lg" className="border-white/70! bg-transparent! whitespace-normal text-white! hover:bg-white! hover:text-primary-600!">
               {data.secondary.label}
             </ButtonLink>
           )}

@@ -28,16 +28,16 @@ export default function CaseStudiesPage() {
                   <article className="group flex h-full flex-col overflow-hidden rounded-panel border border-line-2 bg-white shadow-card">
                     <Image src={cs.image.src} alt="" width={cs.image.width} height={cs.image.height} sizes="(max-width: 1024px) 100vw, 420px" className="aspect-[16/9] w-full object-cover" />
                     <div className="flex flex-1 flex-col p-6">
-                      <p className="flex items-center gap-1.5 text-[13px] text-muted">
+                      <p className="type-small flex items-center gap-1.5 text-muted">
                         <CalendarDays aria-hidden className="size-3.5" /> Aaron Dodini | {cs.date} | {cs.time}
                       </p>
-                      <h2 className="mt-3 text-[19px] leading-snug font-bold text-navy">
+                      <h2 className="type-h4 mt-3 text-navy">
                         <a href={href} className="hover:text-primary">
                           {cs.title}
                         </a>
                       </h2>
-                      <p className="mt-2 flex-1 text-[15px] leading-relaxed text-body">{cs.excerpt}</p>
-                      <a href={href} className="mt-4 text-[15px] font-semibold text-primary hover:text-primary-hover">
+                      <p className="type-body mt-2 flex-1 text-body">{cs.excerpt}</p>
+                      <a href={href} className="type-body mt-4 font-semibold text-primary hover:text-primary-hover">
                         Read More » <span className="sr-only">about {cs.title}</span>
                       </a>
                     </div>

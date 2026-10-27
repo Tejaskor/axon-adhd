@@ -1,10 +1,57 @@
 @import "tailwindcss";
 @config "../../tailwind.config.ts";
 
+/*
+ * Site type scale (modelled on thinkitive.com): Manrope throughout, fluid sizes that scale with the viewport.
+ * h1/h2/body are thinkitive.com's own values; h3/small its other recurring sizes; h4 and lead bridge the gaps.
+ * Colour is deliberately not set — headings keep AXON navy, copy its greys, and text on dark grounds stays white.
+ * Heading utilities set the weight; text utilities leave weight to the element.
+ */
+@utility type-h1 {
+  font-size: calc(16.8px + 1.625vw);
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -1px;
+}
+@utility type-h2 {
+  font-size: calc(18px + 1.25vw);
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -1px;
+}
+@utility type-h3 {
+  font-size: calc(16px + 0.625vw);
+  line-height: 1.35;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+@utility type-h4 {
+  font-size: calc(14px + 0.3125vw);
+  line-height: 1.4;
+  font-weight: 600;
+}
+@utility type-lead {
+  font-size: calc(14px + 0.375vw);
+  line-height: 1.65;
+}
+@utility type-body {
+  font-size: calc(13.2px + 0.25vw);
+  line-height: 1.7;
+}
+@utility type-small {
+  font-size: max(12.5px, calc(11.2px + 0.25vw));
+  line-height: 1.6;
+}
+
 /* Raw tokens as CSS variables (mirrors tailwind.config.ts) for use in plain CSS. */
 :root {
-  --color-primary: #256acc;
-  --color-primary-hover: #1a56a8;
+  --color-primary: #2578ca;
+  --color-primary-hover: #1e64aa;
+  --color-primary-100: #dceaf8;
+  --color-primary-200: #b6d3f0;
+  --color-primary-400: #5498db;
+  --color-primary-600: #1e64aa;
+  --color-primary-700: #19528c;
   --color-navy: #0b254b;
   --color-ink: #1a2748;
   --color-body: #4b5563;
@@ -28,11 +75,11 @@ html {
 body {
   background: #ffffff;
   color: var(--color-body);
-  font-family: var(--font-roboto), Roboto, Arial, sans-serif;
+  font-family: var(--font-manrope), Manrope, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Headings are Manrope everywhere; all other text (incl. form controls, which inherit via preflight) is Roboto. */
+/* Manrope everywhere (body above, headings here); form controls inherit it via preflight. */
 @layer base {
   h1,
   h2,
@@ -45,7 +92,7 @@ body {
 }
 
 :focus-visible {
-  outline: 3px solid #2563eb;
+  outline: 3px solid #2578CA;
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -139,19 +186,19 @@ body {
     opacity: 0.4;
     transform: translateY(36px) scale(0.97);
     border-color: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 20px 50px rgba(37, 106, 204, 0.08);
+    box-shadow: 0 20px 50px rgba(37,120,202, 0.08);
   }
   50% {
     opacity: 1;
     transform: translateY(-4px) scale(1.02);
-    border-color: rgba(37, 106, 204, 0.55);
-    box-shadow: 0 0 0 4px rgba(37, 106, 204, 0.12), 0 28px 60px rgba(37, 106, 204, 0.22);
+    border-color: rgba(37,120,202, 0.55);
+    box-shadow: 0 0 0 4px rgba(37,120,202, 0.12), 0 28px 60px rgba(37,120,202, 0.22);
   }
   100% {
     opacity: 1;
     transform: none;
     border-color: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 20px 50px rgba(37, 106, 204, 0.12);
+    box-shadow: 0 20px 50px rgba(37,120,202, 0.12);
   }
 }
 @keyframes journey-fill {
@@ -164,7 +211,7 @@ body {
 }
 @keyframes journey-node {
   50% {
-    box-shadow: 0 0 0 6px rgba(37, 106, 204, 0.2);
+    box-shadow: 0 0 0 6px rgba(37,120,202, 0.2);
   }
   100% {
     background-color: var(--color-primary);
@@ -317,5 +364,154 @@ body {
   .cta-trace-line rect {
     animation: none;
     stroke-dasharray: none;
+  }
+}
+
+/*
+ * ADHD myth-buster diagrams (ADHDMythBuster). Sizes inside each diagram use cqw so the composition scales as one piece.
+ *
+ * Journey arrows (left diagram, wrapped in <ArmOnView>): drawn in full by default. Once JS arms the diagram
+ * ([data-armed]) they start hidden, and when it scrolls into view ([data-inview]) each arrow draws itself along its curve
+ * in turn (--i = arrow index, 0.9s apart) and its arrowhead fades in; it holds, then retracts along the same curve and
+ * draws again — a continuous 7s loop travelling around the circle. .myth-emph / .myth-halo repeat on the same cycle,
+ * delayed by --k (index of the arrow that reaches that stage) so each stage reacts as its arrow finishes drawing.
+ */
+.myth-diagram {
+  container-type: inline-size;
+}
+.myth-halo {
+  opacity: 0;
+}
+/*
+ * 7s loop: draw in (0–16%), hold, retract forward along the curve (75–91%), rest hidden until the next pass.
+ * Dash pattern is "1 2" (pathLength 1) and the hidden offsets overshoot to ±1.05, so a fully hidden arrow has no
+ * zero-length dash left on the path — otherwise its round line cap would still paint a dot.
+ */
+@keyframes myth-draw {
+  0% {
+    stroke-dashoffset: 1.05;
+  }
+  16%,
+  75% {
+    stroke-dashoffset: 0;
+  }
+  91%,
+  100% {
+    stroke-dashoffset: -1.05;
+  }
+}
+@keyframes myth-show {
+  0%,
+  14% {
+    opacity: 0;
+  }
+  18%,
+  86% {
+    opacity: 1;
+  }
+  90%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes myth-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+}
+@keyframes myth-float {
+  50% {
+    transform: translateY(-4px);
+  }
+}
+@keyframes myth-breathe {
+  50% {
+    opacity: 0.55;
+  }
+}
+@keyframes myth-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes myth-emph {
+  0%,
+  10%,
+  100% {
+    scale: 1;
+  }
+  4% {
+    scale: 1.04;
+  }
+}
+@keyframes myth-emph-lift {
+  0%,
+  10%,
+  100% {
+    translate: 0 0;
+  }
+  4% {
+    translate: 0 -4px;
+  }
+}
+@keyframes myth-halo {
+  0%,
+  14%,
+  100% {
+    opacity: 0;
+    scale: 0.85;
+  }
+  4% {
+    opacity: 1;
+    scale: 1;
+  }
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .myth-pop {
+      animation: myth-pop linear both;
+      animation-timeline: view();
+      animation-range: entry 10% entry 70%;
+    }
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .myth-diagram[data-armed] .myth-arrow-line {
+    stroke-dashoffset: 1.05;
+  }
+  .myth-diagram[data-armed] .myth-arrow-head {
+    opacity: 0;
+  }
+  /* Same 7s cycle per arrow, offset 0.9s each, so the drawing (and later the retracting) runs around the loop in order. */
+  .myth-diagram[data-inview] .myth-arrow-line {
+    animation: myth-draw 7s ease-in-out calc(0.3s + var(--i) * 0.9s) infinite both;
+  }
+  .myth-diagram[data-inview] .myth-arrow-head {
+    animation: myth-show 7s linear calc(0.3s + var(--i) * 0.9s) infinite both;
+  }
+  .myth-diagram[data-inview] .myth-emph {
+    animation: myth-emph 7s ease-in-out calc(1.4s + var(--k) * 0.9s) infinite both;
+  }
+  .myth-diagram[data-inview] .myth-emph-lift {
+    animation-name: myth-emph-lift;
+  }
+  .myth-diagram[data-inview] .myth-halo {
+    animation: myth-halo 7s ease-in-out calc(1.4s + var(--k) * 0.9s) infinite both;
+  }
+  .myth-float {
+    animation: myth-float 7s ease-in-out infinite;
+  }
+  .myth-float-late {
+    animation-duration: 8s;
+    animation-delay: -3s;
+  }
+  .myth-breathe {
+    animation: myth-breathe 6s ease-in-out infinite;
+  }
+  .myth-ring {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: myth-spin 120s linear infinite;
   }
 }

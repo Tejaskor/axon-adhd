@@ -10,7 +10,7 @@ type FieldProps = { label: string; id: string; error?: string; required?: boolea
 export function Field({ label, id, error, required, children, className }: FieldProps) {
   return (
     <div className={cn("flex flex-col gap-1.5", className)}>
-      <label htmlFor={id} className="text-[14px] font-medium text-ink-2">
+      <label htmlFor={id} className="type-small font-medium text-ink-2">
         {label}
         {required && (
           <span className="text-danger" aria-hidden>
@@ -21,7 +21,7 @@ export function Field({ label, id, error, required, children, className }: Field
       </label>
       {children}
       {error && (
-        <p id={`${id}-error`} role="alert" className="text-[13px] text-danger">
+        <p id={`${id}-error`} role="alert" className="type-small text-danger">
           {error}
         </p>
       )}

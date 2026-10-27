@@ -80,7 +80,7 @@ export function ContactForm({ placeholders = false }: { placeholders?: boolean }
         </div>
 
         {serverError && (
-          <p id="contact-error" role="alert" className="rounded-[10px] border border-danger/30 bg-[#FFF0F0] px-4 py-3 text-[14px] text-danger">
+          <p id="contact-error" role="alert" className="type-small rounded-[10px] border border-danger/30 bg-[#FFF0F0] px-4 py-3 text-danger">
             {serverError}
           </p>
         )}
@@ -88,7 +88,7 @@ export function ContactForm({ placeholders = false }: { placeholders?: boolean }
         <Button type="submit" size="lg" disabled={isSubmitting} className="w-full sm:w-auto sm:justify-self-start">
           {isSubmitting ? "Sending..." : "Submit"}
         </Button>
-        <p className="text-[13px] leading-relaxed text-muted">
+        <p className="type-small text-muted">
           By submitting this form, you agree to our{" "}
           <Link href="/axon-adhd-privacy-policy/" className="font-medium text-primary underline underline-offset-2">
             Privacy Policy

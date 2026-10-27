@@ -30,7 +30,7 @@ export default function Page() {
       <AdhdCareTools data={at(5, "split")} />
       <AssessmentClosingCta data={at(6, "cta")} />
       <AccommodationBlogs title={latestBlogs.title} subtitle={latestBlogs.subtitle} />
-      <AccommodationContact eyebrow={null} description={contactSection.subtitle} placeholders={false} />
+      <AccommodationContact eyebrow={null} description={contactSection.subtitle} placeholders={false} compact />
 
       <JsonLd
         data={breadcrumbJsonLd([

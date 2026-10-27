@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Inter, Manrope, Roboto } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "@/styles/globals.css";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
@@ -7,11 +7,8 @@ import { JsonLd } from "@/components/ui/JsonLd";
 import { site } from "@/content/site";
 import { organizationJsonLd } from "@/lib/seo";
 
-const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-roboto", display: "swap" });
-const manrope = Manrope({ subsets: ["latin"], weight: ["500", "600", "700", "800"], variable: "--font-manrope", display: "swap" });
-// Geist + Inter: About page hero + mission sections only.
-const geist = Geist({ subsets: ["latin"], weight: ["400"], variable: "--font-geist", display: "swap" });
-const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-inter", display: "swap" });
+// Manrope is the only family (headings, body, nav, buttons, footer) — see the type scale in globals.css.
+const manrope = Manrope({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-manrope", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -31,11 +28,11 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport: Viewport = { themeColor: "#256ACC", width: "device-width", initialScale: 1 };
+export const viewport: Viewport = { themeColor: "#2578CA", width: "device-width", initialScale: 1 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${roboto.variable} ${manrope.variable} ${geist.variable} ${inter.variable}`}>
+    <html lang="en" data-scroll-behavior="smooth" className={manrope.variable}>
       <body className="flex min-h-dvh flex-col">
         <a
           href="#content"
