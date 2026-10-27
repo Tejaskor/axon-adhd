@@ -3,15 +3,30 @@ import { Fragment, type ReactNode } from "react";
 import type { Block } from "@/content/types";
 import { isExternal, slugify } from "@/lib/utils";
 
-const TOKEN = /(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/g;
+const TOKEN = /(\*\*[^*]+\*\*|\*[^*]+\*|\[[^\]]+\]\([^)]+\)|\n)/g;
 
-/** Renders the inline syntax used in content files: `**bold**` and `[label](href)`. */
+/**
+ * Renders the inline syntax used in content files: `**bold**`, `*italic*`, `[label](href)` and `\n` line breaks.
+ * Bold and italic may wrap a link (`**[label](href)**`).
+ */
 export function Inline({ text }: { text: string }) {
   const parts = text.split(TOKEN).filter(Boolean);
   return (
     <>
       {parts.map((part, i) => {
-        if (part.startsWith("**") && part.endsWith("**")) return <strong key={i}>{part.slice(2, -2)}</strong>;
+        if (part === "\n") return <br key={i} />;
+        if (part.startsWith("**") && part.endsWith("**"))
+          return (
+            <strong key={i}>
+              <Inline text={part.slice(2, -2)} />
+            </strong>
+          );
+        if (part.length > 2 && part.startsWith("*") && part.endsWith("*"))
+          return (
+            <em key={i}>
+              <Inline text={part.slice(1, -1)} />
+            </em>
+          );
         const link = /^\[([^\]]+)\]\(([^)]+)\)$/.exec(part);
         if (link) {
           const [, label, href] = link;

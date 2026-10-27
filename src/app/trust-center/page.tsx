@@ -21,11 +21,11 @@ export default function TrustCenterPage() {
       <section className="relative -mt-[var(--header-height)] overflow-hidden bg-navy pt-[140px] pb-16 text-white sm:pb-20" aria-labelledby="page-title">
         <Image src={tc.hero.image.src} alt="" fill priority sizes="100vw" className="object-cover opacity-25" />
         <Container className="relative">
-          <p className="mb-3 text-[13px] font-semibold tracking-[0.14em] text-[#8EB8F2] uppercase">{tc.hero.eyebrow}</p>
-          <h1 id="page-title" className="text-[32px] font-bold sm:text-[46px]">
+          <p className="mb-3 text-[13px] font-semibold tracking-[0.14em] text-primary-300 uppercase">{tc.hero.eyebrow}</p>
+          <h1 id="page-title" className="type-h1">
             {tc.hero.title}
           </h1>
-          <p className="mt-4 max-w-[760px] text-[17px] leading-relaxed text-white/85">{tc.hero.text}</p>
+          <p className="type-body mt-4 max-w-[760px] text-white/85">{tc.hero.text}</p>
           <div className="mt-8 flex flex-col gap-3 xs:flex-row">
             <ButtonLink href={tc.hero.ctas[0].href} variant="white" size="lg" newTab>
               {tc.hero.ctas[0].label}
@@ -40,7 +40,7 @@ export default function TrustCenterPage() {
                 <ShieldCheck aria-hidden className="size-6 shrink-0 text-[#65C98A]" />
                 <span>
                   <span className="block font-semibold">{h.title}</span>
-                  <span className="text-[14px] text-white/75">{h.text}</span>
+                  <span className="type-small text-white/75">{h.text}</span>
                 </span>
               </li>
             ))}
@@ -57,14 +57,14 @@ export default function TrustCenterPage() {
                 <Badge tone={a.status === "Completed" ? "teal" : "orange"} className="self-start">
                   {a.status}
                 </Badge>
-                <h3 className="mt-4 text-[19px] font-bold text-navy">{a.title}</h3>
-                <p className="mt-2 flex-1 text-[15px] leading-relaxed text-body">{a.text}</p>
-                <p className="mt-4 text-[13px] font-medium text-muted">{a.by}</p>
+                <h3 className="type-h4 mt-4 text-navy">{a.title}</h3>
+                <p className="type-body mt-2 flex-1 text-body">{a.text}</p>
+                <p className="type-small mt-4 font-medium text-muted">{a.by}</p>
               </li>
             ))}
           </ul>
           <div className="mt-10 text-center">
-            <p className="text-[15px] font-semibold text-ink-2">{tc.assessments.alignedLead}</p>
+            <p className="type-body font-semibold text-ink-2">{tc.assessments.alignedLead}</p>
             <ul className="mt-4 flex flex-wrap justify-center gap-2">
               {tc.assessments.aligned.map((a) => (
                 <li key={a}>
@@ -92,8 +92,8 @@ export default function TrustCenterPage() {
                 <span className="mb-4 grid size-12 place-items-center rounded-[12px] bg-primary-soft text-primary">
                   <FeatureIcon name={p.icon} className="size-6" />
                 </span>
-                <h3 className="text-[18px] font-bold text-navy">{p.title}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-body">{p.text}</p>
+                <h3 className="type-h4 text-navy">{p.title}</h3>
+                <p className="type-body mt-2 text-body">{p.text}</p>
               </li>
             ))}
           </ul>
@@ -107,7 +107,7 @@ export default function TrustCenterPage() {
               <SectionHeading eyebrow={tc.hipaa.eyebrow} title={tc.hipaa.title} subtitle={tc.hipaa.subtitle} align="left" className="mb-6 sm:mb-6" />
               <ul className="space-y-3">
                 {tc.hipaa.list.map((li) => (
-                  <li key={li} className="flex gap-3 text-[16px] text-ink-2">
+                  <li key={li} className="type-body flex gap-3 text-ink-2">
                     <CheckCircle2 aria-hidden className="mt-0.5 size-5 shrink-0 text-teal" />
                     {li}
                   </li>
@@ -116,16 +116,16 @@ export default function TrustCenterPage() {
               <dl className="mt-8 grid grid-cols-2 gap-4">
                 {tc.hipaa.facts.map((f) => (
                   <div key={f.label} className="rounded-card bg-surface px-4 py-3">
-                    <dt className="text-[13px] text-muted">{f.label}</dt>
-                    <dd className="text-[15px] font-semibold text-navy">{f.value}</dd>
+                    <dt className="type-small text-muted">{f.label}</dt>
+                    <dd className="type-body font-semibold text-navy">{f.value}</dd>
                   </div>
                 ))}
               </dl>
             </div>
             <aside className="self-start rounded-xl2 bg-primary-soft p-8">
               <FileLock2 aria-hidden className="size-10 text-primary" />
-              <h3 className="mt-4 text-[22px] font-bold text-navy">{tc.hipaa.baa.title}</h3>
-              <p className="mt-2 text-[16px] text-body">{tc.hipaa.baa.text}</p>
+              <h3 className="type-h4 mt-4 text-navy">{tc.hipaa.baa.title}</h3>
+              <p className="type-body mt-2 text-body">{tc.hipaa.baa.text}</p>
               <div className="mt-6 flex flex-col gap-3">
                 <ButtonLink href={tc.hipaa.baa.ctas[0].href}>{tc.hipaa.baa.ctas[0].label}</ButtonLink>
                 <ButtonLink href={tc.hipaa.baa.ctas[1].href} variant="outline">
@@ -143,8 +143,8 @@ export default function TrustCenterPage() {
           <dl className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {tc.residency.stats.map((s) => (
               <div key={s.value} className="flex flex-col-reverse rounded-panel bg-white/10 p-6 text-center">
-                <dt className="mt-2 text-[15px] text-white/80">{s.text}</dt>
-                <dd className="text-[36px] font-extrabold text-[#8EB8F2]">{s.value}</dd>
+                <dt className="type-body mt-2 text-white/80">{s.text}</dt>
+                <dd className="text-[36px] font-extrabold text-primary-300">{s.value}</dd>
               </div>
             ))}
           </dl>
@@ -157,15 +157,15 @@ export default function TrustCenterPage() {
           <ul className="mx-auto grid max-w-[900px] gap-6 md:grid-cols-2">
             {tc.reports.items.map((r) => (
               <li key={r.title} className="flex flex-col rounded-panel border border-line-2 bg-white p-6 shadow-card">
-                <h3 className="text-[19px] font-bold text-navy">{r.title}</h3>
-                <p className="mt-2 flex-1 text-[15px] text-body">{r.text}</p>
+                <h3 className="type-h4 text-navy">{r.title}</h3>
+                <p className="type-body mt-2 flex-1 text-body">{r.text}</p>
                 <ButtonLink href={trustVaultUrl} variant="outline" size="sm" className="mt-5 self-start" newTab>
                   Request access <span className="sr-only">to {r.title}</span>
                 </ButtonLink>
               </li>
             ))}
           </ul>
-          <p className="mt-6 text-center text-[14px] text-muted">{tc.reports.note}</p>
+          <p className="type-small mt-6 text-center text-muted">{tc.reports.note}</p>
         </Container>
       </section>
 
@@ -175,8 +175,8 @@ export default function TrustCenterPage() {
           <div className="grid gap-8 lg:grid-cols-[1.6fr_1fr]">
             <Accordion items={faqItems(tc.faq.items)} />
             <aside className="self-start rounded-panel bg-white p-7 shadow-card">
-              <h3 className="text-[19px] font-bold text-navy">{tc.faq.aside.title}</h3>
-              <p className="mt-2 text-[15px] text-body">{tc.faq.aside.text}</p>
+              <h3 className="type-h4 text-navy">{tc.faq.aside.title}</h3>
+              <p className="type-body mt-2 text-body">{tc.faq.aside.text}</p>
               <ButtonLink href={tc.faq.aside.cta.href} className="mt-5">
                 {tc.faq.aside.cta.label}
               </ButtonLink>

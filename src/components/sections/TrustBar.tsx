@@ -21,7 +21,7 @@ export function TrustBar({ light, className }: { light?: boolean; className?: st
               <Star key={i} className="size-[18px] fill-current" />
             ))}
           </span>
-          <span className={cn("text-[15px] font-semibold", light ? "text-white" : "text-ink-2")}>
+          <span className={cn("type-body font-semibold", light ? "text-white" : "text-ink-2")}>
             {trustBar.rating} <span className={cn("font-normal", light ? "text-white/75" : "text-muted")}>{trustBar.reviews}</span>
             <span className="sr-only"> on Google</span>
           </span>
@@ -34,7 +34,7 @@ export function TrustBar({ light, className }: { light?: boolean; className?: st
             <Image key={a.src} src={a.src} alt="" width={38} height={38} className="size-[38px] rounded-full border-2 border-white object-cover shadow-soft" />
           ))}
         </span>
-        <span className={cn("max-w-[140px] text-center text-[12.5px] leading-[1.35] font-semibold", light ? "text-white" : "text-ink-2")}>{trustBar.helped}</span>
+        <span className={cn("type-small max-w-[140px] text-center font-semibold", light ? "text-white" : "text-ink-2")}>{trustBar.helped}</span>
       </li>
       <Separator light={light} />
       <li>

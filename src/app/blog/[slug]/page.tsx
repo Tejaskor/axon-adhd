@@ -58,8 +58,8 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
               </li>
             </ol>
           </nav>
-          <h1 className="font-display text-[28px] leading-[1.2] font-bold text-ink sm:text-[40px]">{post.title}</h1>
-          <p className="mt-4 flex flex-wrap items-center gap-4 text-[14px] text-muted">
+          <h1 className="type-h1 text-ink">{post.title}</h1>
+          <p className="type-small mt-4 flex flex-wrap items-center gap-4 text-muted">
             <span className="inline-flex items-center gap-2">
               <Image src={author.image.src} alt="" width={32} height={32} className="size-8 rounded-full" />
               {post.author}
@@ -79,13 +79,13 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
             <Blocks blocks={content} />
             {faqs.length > 0 && (
               <section aria-labelledby="post-faq" className="not-prose mt-12">
-                <h2 id="post-faq" className="mb-5 font-display text-[26px] font-bold text-navy">
+                <h2 id="post-faq" className="type-h2 mb-5 text-navy">
                   Frequently Asked Questions
                 </h2>
                 <Accordion items={faqItems(faqs)} defaultOpen={null} />
               </section>
             )}
-            <p className="mt-8 flex flex-wrap gap-2 text-[14px] text-primary">
+            <p className="type-small mt-8 flex flex-wrap gap-2 text-primary">
               {post.tags.map((t) => (
                 <span key={t}>#{t}</span>
               ))}
@@ -93,8 +93,8 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
             <aside className="mt-10 flex flex-col gap-5 rounded-xl2 bg-surface p-6 sm:flex-row sm:items-center" aria-label="About the author">
               <Image src={author.image.src} alt={author.image.alt} width={96} height={96} className="size-24 shrink-0 rounded-full" />
               <div>
-                <p className="text-[19px] font-bold text-navy">{author.name}</p>
-                <p className="text-[14px] text-muted">{author.title}</p>
+                <p className="type-lead font-bold text-navy">{author.name}</p>
+                <p className="type-small text-muted">{author.title}</p>
               </div>
             </aside>
           </div>
@@ -118,7 +118,7 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
                 </nav>
               )}
               <div className="rounded-panel bg-navy p-6 text-white">
-                <h2 className="font-display text-[20px] font-bold">{blogPage.freeGuide.title}</h2>
+                <h2 className="type-h4">{blogPage.freeGuide.title}</h2>
                 <ButtonLink href={links.freeScreening} variant="white" size="sm" className="mt-4">
                   {blogPage.freeGuide.cta}
                 </ButtonLink>

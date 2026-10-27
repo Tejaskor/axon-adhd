@@ -18,15 +18,15 @@ import { TrustBar } from "./TrustBar";
 export function AdhdCareHero({ data }: { data: PageHero }) {
   return (
     <section aria-labelledby="page-title" className="relative -mt-[var(--header-height)] overflow-hidden bg-[linear-gradient(135deg,#F3F8FE_0%,#E8F2FC_55%,#F7FAFF_100%)] pt-[calc(var(--header-height)+32px)] pb-16 sm:pb-20 lg:pt-[calc(var(--header-height)+44px)] lg:pb-24">
-      <div aria-hidden className="absolute top-0 right-0 hidden h-full w-[46%] bg-[radial-gradient(circle_at_60%_40%,rgba(128,181,232,.28),transparent_68%)] md:block" />
+      <div aria-hidden className="absolute top-0 right-0 hidden h-full w-[46%] bg-[radial-gradient(circle_at_60%_40%,rgba(134,182,229,.28),transparent_68%)] md:block" />
       <div className={cn(wrap, "relative grid items-center gap-12 md:grid-cols-[1.05fr_0.95fr] lg:gap-16")}>
         <div>
-          {data.eyebrow && <p className="mb-4 text-[13px] font-semibold tracking-[0.14em] text-[#2578CA] uppercase">{data.eyebrow}</p>}
+          {data.eyebrow && <p className="mb-4 text-[13px] font-semibold tracking-[0.14em] text-primary uppercase">{data.eyebrow}</p>}
           <h1 id="page-title" className="font-display text-[clamp(32px,4.6vw,54px)] leading-[1.1] font-extrabold tracking-[-0.03em] text-balance text-[#123D6A]">
             {data.title}
           </h1>
           {data.text.map((t) => (
-            <p key={t} className="mt-6 max-w-[620px] text-[17px] leading-[1.7] text-pretty text-[#33465E] sm:text-[19px]">
+            <p key={t} className="type-lead mt-6 max-w-[620px] text-pretty text-[#33465E]">
               {t}
             </p>
           ))}
@@ -38,7 +38,7 @@ export function AdhdCareHero({ data }: { data: PageHero }) {
                   href={cta.href}
                   size="lg"
                   variant={i === 0 ? "primary" : "outline"}
-                  className={cn("group px-9", i === 0 ? primaryBtn : "border-[#2578CA]! text-[#2578CA]! hover:bg-[#2578CA]! hover:text-white!")}
+                  className={cn("group", i === 0 ? primaryBtn : "border-primary! text-primary! hover:bg-primary! hover:text-white!")}
                 >
                   {cta.label}
                   <Arrow />
@@ -46,12 +46,12 @@ export function AdhdCareHero({ data }: { data: PageHero }) {
               ))}
             </div>
           )}
-          {data.note && <p className="mt-3 text-[13.5px] text-[#5B6B80]">{data.note}</p>}
+          {data.note && <p className="type-small mt-3 text-[#5B6B80]">{data.note}</p>}
           {data.trust && <TrustBar className="mt-10 items-center gap-x-5 gap-y-4 lg:flex-nowrap [&>li]:shrink-0 max-lg:[&>li[aria-hidden]]:hidden [&_a]:-my-2 [&_a]:-ml-1.5 [&_a_img]:h-[64px] lg:[&_a_img]:h-[68px]" />}
         </div>
         <Reveal delay={0.1}>
           <div className="relative">
-            <div aria-hidden className="absolute -right-3 -bottom-3 size-full rounded-[30px] bg-[#2578CA]/12" />
+            <div aria-hidden className="absolute -right-3 -bottom-3 size-full rounded-[30px] bg-primary/12" />
             <Image
               src={data.image.src}
               alt={data.image.alt}
@@ -82,13 +82,13 @@ export function AdhdCareServices({ data }: { data: FeaturesSection }) {
           {data.subtitle && <p className={cn(lead, "mt-5")}>{data.subtitle}</p>}
         </Reveal>
         <Reveal delay={0.05}>
-          <ul className="mt-12 grid gap-8 rounded-[28px] border border-[#D8E8F8] bg-[#F3F8FE] p-7 sm:grid-cols-2 sm:p-10 lg:grid-cols-4 lg:gap-0 lg:p-0">
+          <ul className="mt-12 grid gap-8 rounded-[28px] border border-primary-100 bg-[#F3F8FE] p-7 sm:grid-cols-2 sm:p-10 lg:grid-cols-4 lg:gap-0 lg:p-0">
             {data.items.map((item) => (
-              <li key={item.title} className="lg:px-8 lg:py-10 lg:[&:not(:first-child)]:border-l lg:[&:not(:first-child)]:border-[#D8E8F8]">
+              <li key={item.title} className="lg:px-8 lg:py-10 lg:[&:not(:first-child)]:border-l lg:[&:not(:first-child)]:border-primary-100">
                 <div className="group">
                   <IconChip className="size-16 rounded-full bg-white shadow-[0_8px_20px_rgba(37,120,202,.12)]">{item.icon && <FeatureIcon name={item.icon} className="size-7" />}</IconChip>
-                  <h3 className="mt-5 text-[20px] leading-snug font-bold text-[#123D6A]">{item.title}</h3>
-                  {item.text && <p className="mt-2 text-[16px] leading-relaxed text-[#536985]">{item.text}</p>}
+                  <h3 className="type-h4 mt-5 text-[#123D6A]">{item.title}</h3>
+                  {item.text && <p className="type-body mt-2 text-[#536985]">{item.text}</p>}
                 </div>
               </li>
             ))}
@@ -101,7 +101,7 @@ export function AdhdCareServices({ data }: { data: FeaturesSection }) {
 
 /* ------------------------------------------------ "The ADHD brain is specialized" */
 
-const tileTones = ["bg-[#E3EFFC] text-[#2578CA]", "bg-[#DDF7EF] text-[#12998A]", "bg-[#FFE8EC] text-[#E5484D]", "bg-[#EEE9FF] text-[#6D4AE0]"];
+const tileTones = ["bg-[#E3EFFC] text-primary", "bg-[#DDF7EF] text-[#12998A]", "bg-[#FFE8EC] text-[#E5484D]", "bg-[#EEE9FF] text-[#6D4AE0]"];
 
 export function AdhdCareSpecialized({ data }: { data: FeaturesSection }) {
   return (
@@ -123,8 +123,8 @@ export function AdhdCareSpecialized({ data }: { data: FeaturesSection }) {
                     {item.icon && <FeatureIcon name={item.icon} className="size-7" />}
                   </span>
                   <div>
-                    <h3 className="text-[20px] leading-snug font-bold text-[#123D6A]">{item.title}</h3>
-                    {item.text && <p className="mt-1.5 text-[16px] leading-relaxed text-[#536985]">{item.text}</p>}
+                    <h3 className="type-h4 text-[#123D6A]">{item.title}</h3>
+                    {item.text && <p className="type-body mt-1.5 text-[#536985]">{item.text}</p>}
                   </div>
                 </div>
               </Reveal>
@@ -152,11 +152,11 @@ export function AdhdCarePath({ data }: { data: FeaturesSection }) {
           {data.items.map((item, i) => (
             <li key={item.title} className="flex">
               <Reveal delay={i * 0.06} className="flex w-full">
-                <div className="group relative flex w-full flex-col overflow-hidden rounded-[24px] border border-[#D8E8F8] bg-[linear-gradient(180deg,#F8FBFF_0%,#EEF5FD_100%)] p-7 transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(37,120,202,.15)]">
-                  <span aria-hidden className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#2578CA] to-[#80B5E8]" />
+                <div className="group relative flex w-full flex-col overflow-hidden rounded-[24px] border border-primary-100 bg-[linear-gradient(180deg,#F8FBFF_0%,#EEF5FD_100%)] p-7 transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(37,120,202,.15)]">
+                  <span aria-hidden className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary to-primary-300" />
                   <IconChip className="size-14 rounded-2xl bg-white shadow-[0_6px_16px_rgba(37,120,202,.12)]">{item.icon && <FeatureIcon name={item.icon} className="size-7" />}</IconChip>
-                  <h3 className="mt-5 text-[19px] leading-snug font-bold text-[#123D6A]">{item.title}</h3>
-                  {item.text && <p className="mt-2 text-[15.5px] leading-relaxed text-[#536985]">{item.text}</p>}
+                  <h3 className="type-h4 mt-5 text-[#123D6A]">{item.title}</h3>
+                  {item.text && <p className="type-body mt-2 text-[#536985]">{item.text}</p>}
                 </div>
               </Reveal>
             </li>
@@ -185,8 +185,8 @@ export function AdhdCareTools({ data }: { data: SplitSection }) {
           {data.list && (
             <ul className="mt-8 grid gap-x-6 gap-y-4 sm:grid-cols-2">
               {data.list.map((li) => (
-                <li key={li} className="flex items-start gap-3.5 text-[17px] leading-snug text-[#15243A]">
-                  <span aria-hidden className="mt-0.5 grid size-7 shrink-0 place-items-center rounded-full bg-[#2578CA] text-white">
+                <li key={li} className="type-body flex items-start gap-3.5 text-[#15243A]">
+                  <span aria-hidden className="mt-0.5 grid size-7 shrink-0 place-items-center rounded-full bg-primary text-white">
                     <Check className="size-4" strokeWidth={3} />
                   </span>
                   {li}

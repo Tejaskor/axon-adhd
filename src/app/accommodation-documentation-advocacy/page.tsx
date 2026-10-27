@@ -27,7 +27,7 @@ export default function Page() {
       <ServiceAudience />
       <AccommodationCTA />
       <AccommodationBlogs />
-      <AccommodationContact />
+      <AccommodationContact compact />
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", path: "/" },

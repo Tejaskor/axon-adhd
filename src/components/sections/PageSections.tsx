@@ -48,7 +48,7 @@ function BannerHero({ data }: { data: PageHeroData }) {
   const solidFirst = data.ctas.length > 1;
   return (
     <section className="relative -mt-[var(--header-height)] pt-2 sm:pt-3" aria-labelledby="page-title">
-      <div className="relative isolate overflow-hidden rounded-[20px] bg-[linear-gradient(180deg,#10458D_0%,#256ACC_55%,#8EB8F2_100%)] pt-[120px] pb-12 sm:rounded-[28px] sm:pt-[130px] sm:pb-16 md:flex md:min-h-[640px] md:items-center md:bg-[linear-gradient(100deg,#10458D_0%,#256ACC_48%,#7FB0EC_78%,#CFE3F8_100%)] md:pb-20 lg:rounded-[32px]">
+      <div className="relative isolate overflow-hidden rounded-[20px] bg-[linear-gradient(180deg,#19528C_0%,#2578CA_55%,#86B6E5_100%)] pt-[120px] pb-12 sm:rounded-[28px] sm:pt-[130px] sm:pb-16 md:flex md:min-h-[640px] md:items-center md:bg-[linear-gradient(100deg,#19528C_0%,#2578CA_48%,#86B6E5_78%,#C9DEF4_100%)] md:pb-20 lg:rounded-[32px]">
         {/* Background spans the viewport; content (and the glow that tracks the image) is capped at 1440px. */}
         <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
           {/* Soft light pool behind the image, like the reference's bright centre. */}
@@ -57,25 +57,25 @@ function BannerHero({ data }: { data: PageHeroData }) {
           <div className="grid items-center gap-10 md:grid-cols-[1.1fr_1fr] lg:gap-14">
             <div className="max-w-[600px]">
               {data.eyebrow && <p className="mb-3 text-[13px] font-semibold tracking-[0.14em] text-white/80 uppercase">{data.eyebrow}</p>}
-              <h1 id="page-title" className="font-geist text-[32px] leading-[1.4] font-normal text-balance text-white">
+              <h1 id="page-title" className="type-h1 text-balance text-white">
                 {data.title}
               </h1>
               {data.text.map((t) => (
-                <p key={t} className="mt-4 max-w-[560px] font-inter text-[18px] leading-[1.6] font-normal text-pretty text-white/90 sm:text-[20px]">
+                <p key={t} className="type-lead mt-4 max-w-[560px] font-normal text-pretty text-white/90">
                   {t}
                 </p>
               ))}
               {data.ctas.length > 0 && (
                 <div className="mt-8 flex flex-col gap-3 xs:flex-row xs:flex-wrap lg:mt-10">
                   {data.ctas.map((cta, i) => (
-                    <ButtonLink key={cta.label} href={cta.href} variant={solidFirst && i === 0 ? "white" : "glass"} size="lg" className={cn("group px-9 text-center font-inter! text-[16px]! leading-[1.25] font-medium whitespace-normal", !(solidFirst && i === 0) && "cta-trace cta-trace-tricolor [--cta-trace-offset:1px]")}>
+                    <ButtonLink key={cta.label} href={cta.href} variant={solidFirst && i === 0 ? "white" : "glass"} size="lg" className={cn("group whitespace-normal", !(solidFirst && i === 0) && "cta-trace cta-trace-tricolor [--cta-trace-offset:1px]")}>
                       {cta.label}
                       <ArrowRight aria-hidden className="size-[18px] shrink-0 transition-transform duration-300 ease-brand group-hover:translate-x-1" />
                     </ButtonLink>
                   ))}
                 </div>
               )}
-              {data.note && <p className="mt-3 text-[13px] text-white/75">{data.note}</p>}
+              {data.note && <p className="type-small mt-3 text-white/75">{data.note}</p>}
               {data.trust && <TrustBar light />}
             </div>
             <Image
@@ -112,11 +112,11 @@ function BannerHero({ data }: { data: PageHeroData }) {
 //         <div className="mx-auto grid max-w-content gap-8 px-5 py-10 sm:px-10 sm:py-12 md:grid-cols-[1fr_232px] md:items-center md:gap-8 lg:min-h-[690px] lg:grid-cols-[1fr_300px] lg:py-[88px] xl:grid-cols-[1fr_380px] xl:gap-12 min-[1372px]:px-4">
 //           <div className="max-w-[640px] self-center xl:max-w-[740px]">
 //             {data.eyebrow && <p className="mb-3 text-[13px] font-semibold tracking-[0.14em] text-white/80 uppercase">{data.eyebrow}</p>}
-//             <h1 id="page-title" className="font-display text-[30px] leading-[1.15] font-bold tracking-[-0.5px] text-balance text-white sm:text-[36px] lg:text-[42px]">
+//             <h1 id="page-title" className="type-h1 text-balance text-white">
 //               {data.title}
 //             </h1>
 //             {data.text.map((t) => (
-//               <p key={t} className="mt-4 max-w-[580px] text-[16px] leading-relaxed text-pretty text-white/85 lg:text-[17px]">
+//               <p key={t} className="type-body mt-4 max-w-[580px] text-pretty text-white/85">
 //                 {t}
 //               </p>
 //             ))}
@@ -130,7 +130,7 @@ function BannerHero({ data }: { data: PageHeroData }) {
 //                 ))}
 //               </div>
 //             )}
-//             {data.note && <p className="mt-3 text-[13px] text-white/75">{data.note}</p>}
+//             {data.note && <p className="type-small mt-3 text-white/75">{data.note}</p>}
 //             {data.trust && <TrustBar light className="mt-6 gap-y-3 lg:mt-7" />}
 //           </div>
 //           {data.video && <HeroVideoCard id={data.video.id} title={data.video.title} className="mx-auto w-full max-w-[420px] md:mx-0 md:max-w-none" />}
@@ -158,11 +158,11 @@ function PhotoHero({ data }: { data: PageHeroData }) {
         <div className="mx-auto grid max-w-content gap-8 px-5 py-10 sm:px-10 sm:py-12 md:grid-cols-[1fr_232px] md:items-center md:gap-8 lg:min-h-[480px] lg:grid-cols-[1fr_300px] lg:py-14 xl:grid-cols-[1fr_380px] xl:gap-12 min-[1452px]:px-4">
           <div className="max-w-[640px] self-center xl:max-w-[740px]">
             {data.eyebrow && <p className="mb-3 text-[13px] font-semibold tracking-[0.14em] text-white/80 uppercase">{data.eyebrow}</p>}
-            <h1 id="page-title" className="font-display text-[30px] leading-[1.15] font-bold tracking-[-0.5px] text-balance text-white sm:text-[36px] lg:text-[42px]">
+            <h1 id="page-title" className="type-h1 text-balance text-white">
               {data.title}
             </h1>
             {data.text.map((t) => (
-              <p key={t} className="mt-4 max-w-[580px] text-[16px] leading-relaxed text-pretty text-white/85 lg:text-[17px]">
+              <p key={t} className="type-body mt-4 max-w-[580px] text-pretty text-white/85">
                 {t}
               </p>
             ))}
@@ -176,7 +176,7 @@ function PhotoHero({ data }: { data: PageHeroData }) {
                 ))}
               </div>
             )}
-            {data.note && <p className="mt-3 text-[13px] text-white/75">{data.note}</p>}
+            {data.note && <p className="type-small mt-3 text-white/75">{data.note}</p>}
             {data.trust && <TrustBar light className="mt-6 gap-y-3 lg:mt-7" />}
           </div>
           {data.video && <HeroVideoCard id={data.video.id} title={data.video.title} className="mx-auto w-full max-w-[420px] md:mx-0 md:max-w-none" />}
@@ -195,16 +195,16 @@ export function PageHero({ data }: { data: PageHeroData }) {
         <div className="grid items-center gap-10 md:grid-cols-[1.05fr_1fr] lg:gap-14">
           <div>
             {data.eyebrow && <p className="mb-3 text-[13px] font-semibold tracking-[0.14em] text-primary uppercase">{data.eyebrow}</p>}
-            <h1 id="page-title" className="font-display text-[28px] leading-[1.2] font-bold tracking-[-0.5px] text-ink sm:text-[36px] lg:text-[46px]">
+            <h1 id="page-title" className="type-h1 text-ink">
               {data.title}
             </h1>
             {data.text.map((t) => (
-              <p key={t} className="mt-4 text-[16px] leading-relaxed text-body sm:text-[18px]">
+              <p key={t} className="type-body mt-4 text-body">
                 {t}
               </p>
             ))}
             <Ctas ctas={data.ctas} />
-            {data.note && <p className="mt-3 text-[13px] text-muted">{data.note}</p>}
+            {data.note && <p className="type-small mt-3 text-muted">{data.note}</p>}
             {data.trust && <TrustBar />}
           </div>
           <Image src={data.image.src} alt={data.image.alt} width={data.image.width} height={data.image.height} priority sizes="(max-width: 1024px) 100vw, 640px" className="h-auto w-full rounded-xl2 shadow-soft" />
@@ -222,16 +222,16 @@ function MissionFeatures({ data }: { data: FeaturesSection }) {
         <div className="mx-auto max-w-[980px] text-center">
           {data.eyebrow && (
             <div className="flex items-center justify-center gap-4 sm:gap-6">
-              <span aria-hidden className="h-px w-10 bg-gradient-to-r from-transparent to-[#2578CA]/40 sm:w-20" />
-              <p className="inline-flex items-center gap-2.5 rounded-full border border-[#2578CA]/25 bg-[#2578CA]/[0.07] px-5 py-2.5 text-[13px] font-medium tracking-[0.2em] text-[#2578CA] uppercase shadow-[inset_0_1px_0_rgba(255,255,255,.8),0_6px_18px_rgba(37,120,202,.08)] backdrop-blur-md sm:px-6 sm:text-[15px]">
+              <span aria-hidden className="h-px w-10 bg-gradient-to-r from-transparent to-primary/40 sm:w-20" />
+              <p className="inline-flex items-center gap-2.5 rounded-full border border-primary/25 bg-primary/[0.07] px-5 py-2.5 text-[13px] font-medium tracking-[0.2em] text-primary uppercase shadow-[inset_0_1px_0_rgba(255,255,255,.8),0_6px_18px_rgba(37,120,202,.08)] backdrop-blur-md sm:px-6 sm:text-[15px]">
                 <Target aria-hidden className="size-[18px]" strokeWidth={2} />
                 {data.eyebrow}
               </p>
-              <span aria-hidden className="h-px w-10 bg-gradient-to-l from-transparent to-[#2578CA]/40 sm:w-20" />
+              <span aria-hidden className="h-px w-10 bg-gradient-to-l from-transparent to-primary/40 sm:w-20" />
             </div>
           )}
-          <h2 className="mt-6 font-inter text-[30px] leading-[1.2] font-bold tracking-[-0.02em] text-balance text-navy sm:text-[40px] lg:text-[52px]">{data.title}</h2>
-          {data.subtitle && <p className="mx-auto mt-5 max-w-[900px] text-[16px] leading-[1.75] text-pretty text-body sm:text-[18px]">{data.subtitle}</p>}
+          <h2 className="type-h2 mt-6 text-balance text-navy">{data.title}</h2>
+          {data.subtitle && <p className="type-body mx-auto mt-5 max-w-[900px] text-pretty text-body">{data.subtitle}</p>}
         </div>
         <ul className="mx-auto mt-10 grid max-w-[640px] gap-5 sm:mt-12 lg:max-w-[1320px] lg:grid-cols-3 lg:gap-5 xl:gap-6">
           {data.items.map((item, i) => (
@@ -259,22 +259,22 @@ function Features({ data }: { data: FeaturesSection }) {
           <Reveal delay={Math.min(i, 6) * 0.05} className="flex w-full">
             {variant === "stat" ? (
               <div className={cn("w-full rounded-panel p-6", dark ? "bg-white/10" : "border border-line-2 bg-white shadow-card")}>
-                <h3 className={cn("font-display text-[30px] leading-none font-extrabold sm:text-[34px]", dark ? "text-[#8EB8F2]" : "text-primary")}>{item.title}</h3>
-                {item.text && <p className={cn("mt-3 text-[16px] font-semibold", dark ? "text-white" : "text-navy")}>{item.text}</p>}
-                {item.detail && <p className={cn("mt-1 text-[14px]", dark ? "text-white/70" : "text-muted")}>{item.detail}</p>}
+                <h3 className={cn("type-h3", dark ? "text-primary-300" : "text-primary")}>{item.title}</h3>
+                {item.text && <p className={cn("type-body mt-3 font-semibold", dark ? "text-white" : "text-navy")}>{item.text}</p>}
+                {item.detail && <p className={cn("type-small mt-1", dark ? "text-white/70" : "text-muted")}>{item.detail}</p>}
               </div>
             ) : variant === "check" ? (
               <div className="flex w-full items-start gap-3 rounded-card border border-line-2 bg-white px-5 py-4 shadow-card">
                 <CheckCircle2 aria-hidden className="mt-0.5 size-5 shrink-0 text-teal" />
                 <div>
                   <h3 className="text-[16px] font-semibold text-ink-2">{item.title}</h3>
-                  {item.text && <p className="mt-1 text-[14.5px] text-body">{item.text}</p>}
+                  {item.text && <p className="type-small mt-1 text-body">{item.text}</p>}
                 </div>
               </div>
             ) : variant === "flow" ? (
               <div className={cn("relative w-full rounded-panel p-6 text-center", dark ? "bg-white/10" : "border border-line-2 bg-white shadow-card")}>
-                <h3 className={cn("font-display text-[20px] font-bold", dark ? "text-white" : "text-navy")}>{item.title}</h3>
-                {item.text && <p className={cn("mt-2 text-[15px]", dark ? "text-white/80" : "text-body")}>{item.text}</p>}
+                <h3 className={cn("type-h4", dark ? "text-white" : "text-navy")}>{item.title}</h3>
+                {item.text && <p className={cn("type-body mt-2", dark ? "text-white/80" : "text-body")}>{item.text}</p>}
                 {i < data.items.length - 1 && <ArrowRight aria-hidden className="absolute top-1/2 -right-4 z-10 hidden size-6 -translate-y-1/2 rounded-full bg-primary p-1 text-white md:block" />}
               </div>
             ) : (
@@ -288,8 +288,8 @@ function Features({ data }: { data: FeaturesSection }) {
                     </span>
                   )
                 )}
-                <h3 className={cn("text-[18px] font-bold", dark ? "text-white" : "text-navy")}>{item.title}</h3>
-                {item.text && <p className={cn("mt-2 text-[15px] leading-relaxed", dark ? "text-white/80" : "text-body")}>{item.text}</p>}
+                <h3 className={cn("type-h4", dark ? "text-white" : "text-navy")}>{item.title}</h3>
+                {item.text && <p className={cn("type-body mt-2", dark ? "text-white/80" : "text-body")}>{item.text}</p>}
               </div>
             )}
           </Reveal>
@@ -302,7 +302,7 @@ function Features({ data }: { data: FeaturesSection }) {
     <section id={data.id} className={cn("py-16 sm:py-20", toneClass[data.tone ?? "white"])}>
       <Container>
         <SectionHeading eyebrow={data.eyebrow} title={data.title} subtitle={data.subtitle} tone={dark ? "light" : "dark"} />
-        {data.lead && <p className={cn("-mt-4 mb-8 text-center text-[17px] font-semibold", dark ? "text-white" : "text-navy")}>{data.lead}</p>}
+        {data.lead && <p className={cn("type-body -mt-4 mb-8 text-center font-semibold", dark ? "text-white" : "text-navy")}>{data.lead}</p>}
         {data.image ? (
           <div className="grid items-center gap-10 md:grid-cols-[1fr_1.2fr]">
             <Image src={data.image.src} alt={data.image.alt} width={data.image.width} height={data.image.height} sizes="(max-width: 1024px) 100vw, 560px" className="h-auto w-full rounded-xl2 shadow-soft" />
@@ -311,8 +311,8 @@ function Features({ data }: { data: FeaturesSection }) {
         ) : (
           grid
         )}
-        {data.quote && <blockquote className={cn("mx-auto mt-10 max-w-[760px] text-center text-[19px] font-semibold italic sm:text-[22px]", dark ? "text-white" : "text-primary-deep")}>{data.quote}</blockquote>}
-        {data.footnote && <p className={cn("mx-auto mt-8 max-w-[820px] text-center text-[16px] font-medium", dark ? "text-white/85" : "text-ink-2")}>{data.footnote}</p>}
+        {data.quote && <blockquote className={cn("type-lead mx-auto mt-10 max-w-[760px] text-center font-semibold italic", dark ? "text-white" : "text-primary-deep")}>{data.quote}</blockquote>}
+        {data.footnote && <p className={cn("type-body mx-auto mt-8 max-w-[820px] text-center font-medium", dark ? "text-white/85" : "text-ink-2")}>{data.footnote}</p>}
         <Ctas ctas={data.ctas} light={dark} className="justify-center" />
       </Container>
     </section>
@@ -334,11 +334,11 @@ function Steps({ data }: { data: StepsSection }) {
                   <span className="mb-3 inline-grid size-9 place-items-center rounded-full bg-primary text-[15px] font-bold text-white" aria-hidden>
                     {i + 1}
                   </span>
-                  <h3 className="text-[18px] font-bold text-navy">
+                  <h3 className="type-h4 text-navy">
                     <span className="sr-only">Step {i + 1}: </span>
                     {step.title}
                   </h3>
-                  <p className="mt-2 text-[15px] leading-relaxed text-body">{step.text}</p>
+                  <p className="type-body mt-2 text-body">{step.text}</p>
                 </div>
               </Reveal>
             </li>
@@ -351,7 +351,7 @@ function Steps({ data }: { data: StepsSection }) {
 
 /** Icon chip tints for the axon feature list, in item order. */
 const axonTones = [
-  "bg-[#E3EEFF] text-[#2563EB]",
+  "bg-[#E3EEFF] text-primary",
   "bg-[#DDF5EE] text-[#0F9F7E]",
   "bg-[#ECE7FF] text-[#6D4AE0]",
   "bg-[#DCF4F4] text-[#0E97A0]",
@@ -364,7 +364,7 @@ function withHighlight(text: string, word?: string) {
   return (
     <>
       {before}
-      <strong className="font-bold text-[#1D4FAF]">{word}</strong>
+      <strong className="font-bold text-primary-700">{word}</strong>
       {rest.join(word)}
     </>
   );
@@ -378,17 +378,17 @@ function AxonSplit({ data }: { data: SplitSection }) {
       <div className="mx-auto grid w-full max-w-[1440px] items-center gap-12 px-4 sm:px-6 md:grid-cols-[1.25fr_1fr] lg:gap-16 lg:px-8">
         <Reveal>
           {data.eyebrow && (
-            <p className="inline-flex items-center gap-2 rounded-full bg-[#E3EEFB] px-4 py-2 text-[15px] font-medium text-[#1D5FC0] sm:text-[17px]">
+            <p className="type-body inline-flex items-center gap-2 rounded-full bg-[#E3EEFB] px-4 py-2 font-medium text-primary-600">
               <Brain aria-hidden className="size-5" strokeWidth={1.75} />
               {data.eyebrow}
             </p>
           )}
-          <h2 className="mt-4 font-display text-[44px] leading-[1.05] font-extrabold tracking-[-0.02em] sm:text-[56px] lg:text-[64px]">
-            <span className="bg-gradient-to-r from-[#1D4ED8] to-[#1D5FC0] bg-clip-text text-transparent">{first}</span>{" "}
+          <h2 className="type-h2 mt-4">
+            <span className="bg-gradient-to-r from-primary-600 to-primary-600 bg-clip-text text-transparent">{first}</span>{" "}
             <span className="bg-gradient-to-r from-[#1A9FD0] to-[#22C083] bg-clip-text text-transparent">{rest.join(" ")}</span>
           </h2>
           {data.paragraphs?.map((p) => (
-            <p key={p} className="mt-4 max-w-[640px] text-[17px] leading-[1.7] text-body sm:text-[19px]">
+            <p key={p} className="type-lead mt-4 max-w-[640px] text-body">
               {withHighlight(p, data.highlight)}
             </p>
           ))}
@@ -397,13 +397,13 @@ function AxonSplit({ data }: { data: SplitSection }) {
               {data.features.map((f, i) => (
                 <li key={f.title} className="group flex items-start gap-4 sm:gap-5">
                   {f.icon && (
-                    <span aria-hidden className={cn("grid size-12 shrink-0 place-items-center rounded-full transition duration-300 ease-brand group-hover:scale-110 group-hover:shadow-[0_8px_20px_rgba(29,79,175,.15)] sm:size-14", axonTones[i % axonTones.length])}>
+                    <span aria-hidden className={cn("grid size-12 shrink-0 place-items-center rounded-full transition duration-300 ease-brand group-hover:scale-110 group-hover:shadow-[0_8px_20px_rgba(25,82,140,.15)] sm:size-14", axonTones[i % axonTones.length])}>
                       <FeatureIcon name={f.icon} className="size-5 sm:size-6" />
                     </span>
                   )}
                   <div className="pt-1">
-                    <h3 className="font-inter text-[17px] leading-snug font-semibold text-navy sm:text-[18px]">{f.title}</h3>
-                    {f.text && <p className="mt-1 text-[15px] leading-relaxed text-body sm:text-[16px]">{f.text}</p>}
+                    <h3 className="type-h4 text-navy">{f.title}</h3>
+                    {f.text && <p className="type-body mt-1 text-body">{f.text}</p>}
                   </div>
                 </li>
               ))}
@@ -412,12 +412,12 @@ function AxonSplit({ data }: { data: SplitSection }) {
         </Reveal>
         <Reveal delay={0.1} className="relative mx-auto w-full max-w-[460px]">
           {/* Soft rings, arc and dots behind the card */}
-          <div aria-hidden className="absolute top-1/2 left-1/2 -z-10 aspect-square w-[150%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,#D6E8FB_0%,#E4F0FC_55%,rgba(238,244,252,0)_72%)]" />
-          <div aria-hidden className="absolute top-1/2 left-1/2 -z-10 aspect-square w-[118%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#D3E6FA]/70" />
-          <div aria-hidden className="absolute top-[-6%] right-[-22%] -z-10 aspect-square w-[95%] rounded-full border-r-[1.5px] border-[#BBD7F4]" />
+          <div aria-hidden className="absolute top-1/2 left-1/2 -z-10 aspect-square w-[150%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,#DCEAF8_0%,#E4F0FC_55%,rgba(238,244,252,0)_72%)]" />
+          <div aria-hidden className="absolute top-1/2 left-1/2 -z-10 aspect-square w-[118%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-100/70" />
+          <div aria-hidden className="absolute top-[-6%] right-[-22%] -z-10 aspect-square w-[95%] rounded-full border-r-[1.5px] border-primary-200" />
           <span aria-hidden className="absolute top-[14%] -left-[10%] size-3 rounded-full bg-[#5CCFD8]" />
           <span aria-hidden className="absolute top-[50%] -right-[16%] size-4 rounded-full bg-[#5CCFD8]" />
-          <span aria-hidden className="absolute bottom-[24%] -right-[10%] size-2.5 rounded-full bg-[#9EC7F2]" />
+          <span aria-hidden className="absolute bottom-[24%] -right-[10%] size-2.5 rounded-full bg-primary-200" />
           {/* The GIF has a black ground, so the card is black and the GIF is contained (never cropped). */}
           {data.image && (
             <div
@@ -450,16 +450,16 @@ function Split({ data }: { data: SplitSection }) {
           </Reveal>
           <Reveal delay={0.08}>
             {data.eyebrow && <p className={cn("mb-3 text-[13px] font-semibold tracking-[0.14em] uppercase", dark ? "text-white/80" : "text-primary")}>{data.eyebrow}</p>}
-            <h2 className={cn("font-display text-[26px] leading-tight font-bold sm:text-[34px] lg:text-[38px]", dark ? "text-white" : "text-navy")}>{data.title}</h2>
+            <h2 className={cn("type-h2", dark ? "text-white" : "text-navy")}>{data.title}</h2>
             {data.paragraphs?.map((p) => (
-              <p key={p} className={cn("mt-4 text-[16px] leading-[1.75] sm:text-[17px]", dark ? "text-white/85" : "text-body")}>
+              <p key={p} className={cn("type-body mt-4", dark ? "text-white/85" : "text-body")}>
                 {p}
               </p>
             ))}
             {data.list && (
               <ul className="mt-6 space-y-3">
                 {data.list.map((li) => (
-                  <li key={li} className={cn("flex gap-3 text-[16px]", dark ? "text-white" : "text-ink-2")}>
+                  <li key={li} className={cn("type-body flex gap-3", dark ? "text-white" : "text-ink-2")}>
                     <CheckCircle2 aria-hidden className="mt-0.5 size-5 shrink-0 text-teal" />
                     {li}
                   </li>
@@ -467,7 +467,7 @@ function Split({ data }: { data: SplitSection }) {
               </ul>
             )}
             <Ctas ctas={data.ctas} light={dark} />
-            {data.note && <p className={cn("mt-3 text-[13px]", dark ? "text-white/70" : "text-muted")}>{data.note}</p>}
+            {data.note && <p className={cn("type-small mt-3", dark ? "text-white/70" : "text-muted")}>{data.note}</p>}
           </Reveal>
         </div>
       </Container>
@@ -485,14 +485,14 @@ function Quotes({ data }: { data: QuotesSection }) {
             <li key={q.name} className="mb-6 break-inside-avoid">
               <figure className="rounded-panel border border-line-2 bg-white p-6 shadow-card">
                 <Quote aria-hidden className="size-7 text-primary/30" />
-                <blockquote className="mt-3 text-[15px] leading-relaxed text-body">{q.quote}</blockquote>
+                <blockquote className="type-body mt-3 text-body">{q.quote}</blockquote>
                 <figcaption className="mt-5 flex items-center gap-3 border-t border-line-2 pt-4">
                   <span className="grid size-10 shrink-0 place-items-center rounded-full bg-primary font-semibold text-white" aria-hidden>
                     {q.name.charAt(0)}
                   </span>
                   <span>
-                    <span className="block text-[15px] font-semibold text-navy">{q.name}</span>
-                    <span className="block text-[13px] text-muted">{q.role}</span>
+                    <span className="type-body block font-semibold text-navy">{q.name}</span>
+                    <span className="type-small block text-muted">{q.role}</span>
                   </span>
                 </figcaption>
               </figure>
@@ -530,7 +530,7 @@ function Cta({ data }: { data: CtaSection }) {
   return (
     <>
       <CTABand title={data.title} subtitle={data.subtitle} primary={data.primary} secondary={data.secondary} />
-      {data.note && <p className="-mt-8 mb-10 text-center text-[13px] text-muted">{data.note}</p>}
+      {data.note && <p className="type-small -mt-8 mb-10 text-center text-muted">{data.note}</p>}
     </>
   );
 }
@@ -543,8 +543,6 @@ export function PageSections({ sections }: { sections: PageSection[] }) {
         switch (section.type) {
           case "hero":
             return <PageHero key={i} data={section} />;
-          case "assessmentOverview":
-            return <AssessmentOverview key={i} data={section} />;
           case "assessmentOverview":
             return <AssessmentOverview key={i} data={section} />;
           case "features":

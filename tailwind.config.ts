@@ -17,8 +17,25 @@ const config: Config = {
     },
     extend: {
       colors: {
-        primary: { DEFAULT: "#256ACC", hover: "#1A56A8", deep: "#10458D", soft: "#EFF6FF", tint: "#ECF3FA" },
-        brand: { DEFAULT: "#2563EB", 2: "#3B82F6" },
+        // Brand blue #2578CA and its scale. Light steps for backgrounds, glass and hover fills; dark steps for hover,
+        // active and high-contrast text. `hover`/`deep`/`soft`/`tint` are named aliases kept for existing classes.
+        primary: {
+          DEFAULT: "#2578CA",
+          hover: "#1E64AA",
+          deep: "#19528C",
+          soft: "#EEF5FC",
+          tint: "#ECF3FA",
+          100: "#DCEAF8",
+          150: "#C9DEF4",
+          200: "#B6D3F0",
+          300: "#86B6E5",
+          400: "#5498DB",
+          500: "#2578CA",
+          600: "#1E64AA",
+          700: "#19528C",
+          800: "#143F6D",
+        },
+        brand: { DEFAULT: "#2578CA", 2: "#5498DB" },
         navy: { DEFAULT: "#0B254B", 2: "#10294D", footer: "#061A36", mid: "#1D3C67" },
         ink: { DEFAULT: "#1A2748", 2: "#30353A", 3: "#1E242A", 4: "#27313F", menu: "#0F1B2E" },
         body: "#4B5563",
@@ -31,10 +48,12 @@ const config: Config = {
         announce: { from: "#068E5A", to: "#003621" },
       },
       fontFamily: {
-        sans: ["var(--font-roboto)", "Roboto", "Arial", "sans-serif"],
+        // One family site-wide (thinkitive.com type system). `display`/`geist`/`inter` are kept as aliases so existing
+        // class names resolve to Manrope instead of needing a sweep.
+        sans: ["var(--font-manrope)", "Manrope", "Arial", "sans-serif"],
         display: ["var(--font-manrope)", "Manrope", "Arial", "sans-serif"],
-        geist: ["var(--font-geist)", "Geist", "Arial", "sans-serif"],
-        inter: ["var(--font-inter)", "Inter", "Arial", "sans-serif"],
+        geist: ["var(--font-manrope)", "Manrope", "Arial", "sans-serif"],
+        inter: ["var(--font-manrope)", "Manrope", "Arial", "sans-serif"],
       },
       maxWidth: { content: "1340px", prose: "820px" },
       borderRadius: { card: "14px", panel: "16px", xl2: "18px", pill: "50px" },

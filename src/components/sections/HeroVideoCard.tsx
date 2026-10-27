@@ -34,7 +34,7 @@ export function HeroVideoCard({ id, title, className }: { id: string; title: str
           </button>
         )}
       </div>
-      <p className="px-2 pt-2 pb-1 text-[14px] leading-snug font-semibold text-white xl:text-[16px]">{title}</p>
+      <p className="type-body px-2 pt-2 pb-1 font-semibold text-white">{title}</p>
     </div>
   );
 }

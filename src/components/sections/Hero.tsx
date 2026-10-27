@@ -35,7 +35,7 @@ export function Hero() {
       <div className="container-content">
         {/* Wide enough for the one-row trust bar; the H1 wraps by its explicit lines, not this width. */}
         <div className="max-w-[700px]">
-          <h1 id="hero-title" className="font-display text-[24px] leading-[35px] font-bold tracking-[-1px] text-ink xs:text-[28px] xs:leading-[1.25] sm:text-[40px] sm:leading-[1.2] lg:text-[50px] lg:leading-[1.5]">
+          <h1 id="hero-title" className="type-h1 text-ink">
             {hero.titleLines.map((line) => (
               <span key={line} className="block">
                 {line}
@@ -43,13 +43,13 @@ export function Hero() {
             ))}
             <span className="block text-primary-deep">{hero.titleAccent}</span>
           </h1>
-          <p className="mt-4 text-[15px] leading-[26px] font-medium text-body sm:text-[16px] lg:text-[18px] lg:leading-[1.4]">{hero.subtitle}</p>
+          <p className="type-body mt-4 font-medium text-body">{hero.subtitle}</p>
           <div className="mt-8 flex flex-col gap-3 xs:flex-row xs:flex-wrap sm:gap-4 lg:mt-10">
-            <ButtonLink href={ctas.evaluation.href} className="h-auto! min-h-12 py-2.5 whitespace-normal text-center sm:text-[17px]!">
+            <ButtonLink href={ctas.evaluation.href} className="whitespace-normal">
               {ctas.evaluation.label}
               <ArrowRight aria-hidden className="size-[18px] shrink-0" strokeWidth={2.75} />
             </ButtonLink>
-            <ButtonLink href={ctas.screening.href} variant="outline" className="sm:text-[17px]!">
+            <ButtonLink href={ctas.screening.href} variant="outline" className="">
               {ctas.screening.label}
               <ArrowRight aria-hidden className="size-[18px] shrink-0" strokeWidth={2.75} />
             </ButtonLink>

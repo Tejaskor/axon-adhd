@@ -41,7 +41,7 @@ export default function Page() {
       <AssessmentProcess data={at(8, "steps")} />
       <AssessmentClosingCta data={at(9, "cta")} />
       <AccommodationBlogs title={latestBlogs.title} subtitle={latestBlogs.subtitle} />
-      <AccommodationContact eyebrow={null} description={contactSection.subtitle} placeholders={false} />
+      <AccommodationContact eyebrow={null} description={contactSection.subtitle} placeholders={false} compact />
 
       <JsonLd
         data={breadcrumbJsonLd([
