@@ -33,10 +33,12 @@ import {
   Waypoints,
   Zap,
   type LucideIcon,
+  Lightbulb,
 } from "lucide-react";
 
 const icons = {
   award: Award,
+  bulb: Lightbulb,
   badge: BadgeCheck,
   brain: Brain,
   calendar: CalendarCheck,
