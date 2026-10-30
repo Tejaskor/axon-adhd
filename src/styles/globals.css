@@ -515,3 +515,71 @@ body {
     animation: myth-spin 120s linear infinite;
   }
 }
+
+/*
+ * ADHD Care hero (AdhdCareHero): QbCheck dashboard whose report cards pop out of it and then drift gently.
+ * The base styles are the finished, static composition (also the reduced-motion fallback). From 640px the stage
+ * is a 100 × 73 grid where 1 unit = 1cqw; each card sits at --x/--y (width --w) and pops out from its source
+ * point on the dashboard, --fx/--fy units away from the card's centre. Below 640px the cards are a plain grid.
+ */
+.qb-stage {
+  container-type: inline-size;
+}
+@media (min-width: 640px) {
+  .qb-card {
+    position: absolute;
+    top: calc(var(--y) * 1cqw);
+    left: calc(var(--x) * 1cqw);
+    width: calc(var(--w) * 1cqw);
+    --from-x: calc(var(--fx) * 1cqw);
+    --from-y: calc(var(--fy) * 1cqw);
+  }
+}
+@keyframes qb-rise {
+  from {
+    opacity: 0;
+    translate: 0 18px;
+    scale: 0.96;
+  }
+}
+@keyframes qb-pop {
+  from {
+    opacity: 0;
+    translate: var(--from-x, 0) var(--from-y, 18px);
+    scale: 0.3;
+  }
+  45% {
+    opacity: 1;
+  }
+}
+@keyframes qb-float {
+  50% {
+    transform: translate3d(0, -7px, 0);
+  }
+}
+/* Hero copy (heading, text, CTA, trust row) fades up in sequence, offset by --d seconds. */
+@keyframes qb-in {
+  from {
+    opacity: 0;
+    translate: 0 14px;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .qb-in {
+    animation: qb-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--d, 0) * 1s) backwards;
+  }
+  .qb-dash {
+    animation: qb-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s backwards;
+  }
+  /*
+   * Cards pop out in turn (slight overshoot), then each drifts on its own period so they never move in step.
+   * Entrances fill `backwards` only: their end state is the element's own style, and letting them end (rather than
+   * hold) drops the scaled compositor layer so the screenshots are re-rasterised at 1:1 instead of staying soft.
+   */
+  .qb-card {
+    animation: qb-pop 0.9s cubic-bezier(0.34, 1.36, 0.64, 1) calc(0.6s + var(--i) * 0.14s) backwards;
+  }
+  .qb-float {
+    animation: qb-float calc(6s + var(--i) * 0.8s) ease-in-out calc(1.6s + var(--i) * 0.14s) infinite;
+  }
+}

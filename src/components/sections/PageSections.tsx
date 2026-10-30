@@ -146,41 +146,68 @@ function BannerHero({ data }: { data: PageHeroData }) {
  * The panel bleeds 40px past the 1340px header container so from 1452px up the copy lines up with the header.
  */
 function PhotoHero({ data }: { data: PageHeroData }) {
-  const bg = data.background ?? data.image;
+  const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
   return (
-    <section className="px-3 pt-3 pb-10 sm:px-6 sm:pt-4 sm:pb-14" aria-labelledby="page-title">
-      <div className="relative isolate mx-auto max-w-[1440px] overflow-hidden rounded-[20px] bg-navy sm:rounded-[24px] lg:rounded-[32px]">
-        <Image src={bg.src} alt={bg.alt} fill priority sizes="(max-width: 1440px) 100vw, 1440px" className="-z-20 object-cover object-[70%_center] md:object-center" />
-        <div
-          aria-hidden
-          className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(6,22,46,.78)_0%,rgba(6,22,46,.62)_65%,rgba(6,22,46,.45)_100%)] md:bg-[linear-gradient(90deg,rgba(6,22,46,.82)_0%,rgba(6,22,46,.66)_36%,rgba(6,22,46,.22)_66%,rgba(6,22,46,0)_100%)]"
-        />
-        <div className="mx-auto grid max-w-content gap-8 px-5 py-10 sm:px-10 sm:py-12 md:grid-cols-[1fr_232px] md:items-center md:gap-8 lg:min-h-[480px] lg:grid-cols-[1fr_300px] lg:py-14 xl:grid-cols-[1fr_380px] xl:gap-12 min-[1452px]:px-4">
-          <div className="max-w-[640px] self-center xl:max-w-[740px]">
-            {data.eyebrow && <p className="mb-3 text-[13px] font-semibold tracking-[0.14em] text-white/80 uppercase">{data.eyebrow}</p>}
-            <h1 id="page-title" className="type-h1 text-balance text-white">
-              {data.title}
-            </h1>
-            {data.text.map((t) => (
-              <p key={t} className="type-body mt-4 max-w-[580px] text-pretty text-white/85">
-                {t}
-              </p>
-            ))}
-            {data.ctas.length > 0 && (
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                {data.ctas.map((cta, i) => (
-                  <ButtonLink key={cta.label} href={cta.href} variant={i === 0 ? "primary" : "glass"} size="lg" className={cn("group text-center whitespace-normal xl:px-6 xl:whitespace-nowrap", i > 0 && "border-white/70! bg-transparent! shadow-none! hover:bg-white/15!")}>
-                    {cta.label}
-                    <ArrowRight aria-hidden className="size-[18px] shrink-0 transition-transform duration-300 ease-brand group-hover:translate-x-1" />
-                  </ButtonLink>
-                ))}
-              </div>
+    <section className="relative isolate w-full overflow-hidden bg-[linear-gradient(115deg,#EAF4FF_0%,#B9DCFF_52%,#B8F2EE_100%)] lg:flex lg:min-h-[calc(100svh-var(--header-height))] lg:flex-col lg:before:grow lg:before:content-[''] lg:after:grow-[3] lg:after:content-['']" aria-labelledby="page-title">
+      {/* Soft gradient: light blue behind the copy, sky blue and cyan blending across, a gentle #6BAEFF accent low on the right. The accent and the two curved lines (10–15% opacity) are dropped on phones. */}
+      <div aria-hidden className="absolute inset-0 -z-10 hidden bg-[radial-gradient(ellipse_60%_70%_at_92%_100%,rgba(107,174,255,.55),transparent_70%),radial-gradient(ellipse_45%_55%_at_58%_0%,rgba(184,242,238,.6),transparent_70%)] md:block" />
+      <svg aria-hidden viewBox="0 0 1440 700" preserveAspectRatio="none" fill="none" className="absolute inset-0 -z-10 hidden size-full md:block">
+        <path d="M-20 560C260 470 520 640 820 540S1240 380 1460 450" stroke="rgba(37,120,202,.12)" strokeWidth="1.5" />
+        <path d="M-20 140C240 70 540 230 860 130S1260 40 1460 110" stroke="rgba(37,120,202,.1)" strokeWidth="1.5" />
+      </svg>
+      {/* Bottom edge blend: fades into #F4F8FD, where the next section's own gradient begins */}
+      <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-[clamp(72px,12vh,128px)] bg-[linear-gradient(0deg,#F4F8FD,rgba(244,248,253,0))]" />
+
+      {/* Same side padding as the navbar (Header.tsx): content sits on the 1340px column with 16px inside, so the copy lines up with the logo and the video card with the navbar's right edge. Stacked below 1024px, 54 / 46 with a 40px gap from 1280px. */}
+      <div className="grid w-full gap-8 px-[max(16px,calc((100%-1340px)/2+16px))] pt-8 pb-12 sm:pt-10 sm:pb-14 lg:grid-cols-[minmax(0,1fr)_400px] lg:items-center lg:gap-10 lg:pt-[clamp(8px,1.6vh,20px)] lg:pb-[clamp(20px,4vh,48px)] xl:grid-cols-[minmax(0,54fr)_minmax(0,46fr)]">
+        <div className="min-w-0 self-center">
+          {data.eyebrow && <p className="mb-4 text-[13px] font-semibold tracking-[0.14em] text-primary uppercase">{data.eyebrow}</p>}
+          <h1 id="page-title" className="max-w-[720px] font-display text-[clamp(32px,6.4vw,44px)] leading-[1.1] font-semibold tracking-[-0.025em] text-balance text-[#0F2F55] lg:text-[clamp(32px,min(3.7vw,6.6vh),52px)]">
+            {after !== undefined ? (
+              <>
+                {before}
+                <span className="box-decoration-clone bg-[linear-gradient(95deg,#1B5FAE_0%,#2578CA_60%,#2880D0_100%)] bg-clip-text text-transparent">{data.accent}</span>
+                {after}
+              </>
+            ) : (
+              data.title
             )}
-            {data.note && <p className="type-small mt-3 text-white/75">{data.note}</p>}
-            {data.trust && <TrustBar light className="mt-6 gap-y-3 lg:mt-7" />}
-          </div>
-          {data.video && <HeroVideoCard id={data.video.id} title={data.video.title} className="mx-auto w-full max-w-[420px] md:mx-0 md:max-w-none" />}
+          </h1>
+          {data.text.map((t) => (
+            <p key={t} className="mt-6 max-w-[620px] text-[16px] leading-[1.6] text-pretty text-[#33465E] sm:text-[17px] lg:mt-[clamp(16px,3.2vh,32px)] lg:text-[clamp(18px,2.2vh,19px)]">
+              {t}
+            </p>
+          ))}
+          {data.ctas.length > 0 && (
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center lg:mt-[clamp(16px,3.2vh,32px)]">
+              {data.ctas.map((cta, i) => (
+                <ButtonLink
+                  key={cta.label}
+                  href={cta.href}
+                  variant={i === 0 ? "primary" : "glass"}
+                  size="lg"
+                  className={cn(
+                    "group min-h-[52px]! justify-center border px-7! text-[16px]! text-center whitespace-normal xl:whitespace-nowrap",
+                    i === 0 ? "border-transparent" : "border-primary! bg-white/70! text-primary! shadow-none! hover:bg-white! hover:text-primary-600!",
+                  )}
+                >
+                  {cta.label}
+                  <ArrowRight aria-hidden className="size-[18px] shrink-0 transition-transform duration-300 ease-brand group-hover:translate-x-1" />
+                </ButtonLink>
+              ))}
+            </div>
+          )}
+          {data.note && <p className="type-small mt-3 text-[#5B6B80]">{data.note}</p>}
+          {data.trust && (
+            <div className="mt-6 border-t border-primary/15 pt-6 lg:mt-[clamp(16px,3.2vh,32px)] lg:pt-[clamp(16px,3.2vh,32px)]">
+              {/* Two sections (Google rating | adults helped) on one row from 1280px, divider between; they wrap naturally below that */}
+              <TrustBar
+                className="mt-0! items-center gap-x-6 gap-y-4 xl:flex-nowrap [&>li]:shrink-0 [&>li:nth-child(n+4)]:hidden! max-xl:[&>li:nth-child(2)]:hidden [&>li[aria-hidden]]:h-12 [&>li:first-child>img]:size-11 [&>li:first-child_svg]:size-5 [&>li:first-child>span>span:last-child]:text-[17px] [&>li[aria-hidden]]:bg-primary/20 [&>li:nth-child(3)]:flex-row [&>li:nth-child(3)]:gap-3.5 [&>li:nth-child(3)_img]:size-[46px] [&>li:nth-child(3)_img]:shadow-[0_4px_10px_rgba(18,61,106,.22)] [&>li:nth-child(3)>span:last-child]:max-w-[210px] [&>li:nth-child(3)>span:last-child]:text-left [&>li:nth-child(3)>span:last-child]:text-[18px] [&>li:nth-child(3)>span:last-child]:leading-snug [&>li:nth-child(3)>span:last-child]:font-normal [&>li:nth-child(3)>span:last-child]:text-[#0F2F55] [&>li:nth-child(3)>span:last-child::first-line]:font-semibold"
+              />
+            </div>
+          )}
         </div>
+        {data.video && <HeroVideoCard id={data.video.id} title={data.video.title} className="w-full max-w-[640px] lg:max-w-none" />}
       </div>
     </section>
   );
