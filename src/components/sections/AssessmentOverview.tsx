@@ -33,11 +33,13 @@ export function AssessmentOverview({ data }: { data: AssessmentOverviewSection }
   );
   const copy = (
     <>
-      <p className="flex items-center gap-3 text-[12px] font-semibold tracking-[0.16em] text-primary uppercase lg:text-[clamp(11px,0.9vw,14px)]">
-        <span aria-hidden className="h-0.5 w-8 rounded-full bg-primary" />
-        {data.eyebrow}
-      </p>
-      <div className="mt-3 lg:mt-[1.2vw]">{heading}</div>
+      {data.eyebrow && (
+        <p className="flex items-center gap-3 text-[12px] font-semibold tracking-[0.16em] text-primary uppercase lg:text-[clamp(11px,0.9vw,14px)]">
+          <span aria-hidden className="h-0.5 w-8 rounded-full bg-primary" />
+          {data.eyebrow}
+        </p>
+      )}
+      <div className={data.eyebrow ? "mt-3 lg:mt-[1.2vw]" : undefined}>{heading}</div>
       <p className="mt-4 max-w-[520px] text-[16px] leading-relaxed text-pretty text-body lg:mt-[1.4vw] lg:max-w-[28em] lg:text-[clamp(14px,1.3vw,20px)] lg:leading-[1.6]">{data.subtitle}</p>
       <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2 lg:mt-[1.8vw] lg:gap-x-[1.6vw]">
         {data.checks.map((c) => (

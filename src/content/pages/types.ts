@@ -11,6 +11,8 @@ export type PageHero = {
   type: "hero";
   eyebrow?: string;
   title: string;
+  /** photo: substring of `title` shown in a blue gradient. */
+  accent?: string;
   text: string[];
   ctas: Cta[];
   image: ImageAsset;
@@ -27,7 +29,7 @@ export type PageHero = {
 /** Photo + playable-laptop overview followed by four photo feature cards (see AssessmentOverview). */
 export type AssessmentOverviewSection = {
   type: "assessmentOverview";
-  eyebrow: string;
+  eyebrow?: string;
   title: string;
   /** Substring of `title` rendered in the brand blue. */
   accent: string;
@@ -53,6 +55,8 @@ export type FeaturesSection = {
   variant?: "card" | "stat" | "check" | "flow" | "mission" | "glassFlow";
   /** glassFlow: substring of `title` shown in the brand blue. */
   accent?: string;
+  /** YouTube video shown with the section (ADHD Care services). */
+  video?: { id: string; title: string };
   tone?: Tone;
   image?: ImageAsset;
   quote?: string;
