@@ -42,7 +42,7 @@ export type AssessmentOverviewSection = {
   items: Array<{ title: string; text: string; icon: "clinician" | "shield" | "insurance" | "document"; image: ImageAsset }>;
 };
 
-export type FeatureItem ={ title: string; text?: string; icon?: IconName; image?: ImageAsset; detail?: string; /** gap variant: card colour. */ accent?: "blue" | "red" | "green" | "orange" | "purple" | "teal" };
+export type FeatureItem ={ title: string; text?: string; icon?: IconName; image?: ImageAsset; detail?: string; /** gap / ribbon variants: card colour (ribbon uses blue, red, green, orange; campusBanner uses blue, orange, green). */ accent?: "blue" | "red" | "green" | "orange" | "purple" | "teal" | "pink" | "cyan" };
 
 export type FeaturesSection = {
   type: "features";
@@ -54,7 +54,7 @@ export type FeaturesSection = {
   items: FeatureItem[];
   columns?: 2 | 3 | 4 | 5 | 6;
   /** card: icon card · stat: big number title · check: compact checklist · flow: arrowed chain · mission: glass cards on the green/blue/orange brand gradient */
-  variant?: "card" | "stat" | "check" | "flow" | "mission" | "glassFlow" | "partner" | "gap";
+  variant?: "card" | "stat" | "check" | "flow" | "mission" | "glassFlow" | "partner" | "gap" | "ribbon" | "campusBanner" | "earlyReferral";
   /** partner: white split card (lead + check list + quote beside `image`); glassFlow: substring of `title` shown in the brand blue / bold. */
   accent?: string;
   /** YouTube video shown with the section (ADHD Care services). */
@@ -71,10 +71,10 @@ export type StepsSection = {
   id?: string;
   title: string;
   subtitle?: string;
-  items: Array<{ title: string; text: string; image?: ImageAsset }>;
+  items: Array<{ title: string; text: string; image?: ImageAsset; /** stack: extra sub-points shown under the text. */ details?: Array<{ title: string; text: string }>; /** stack: optional smaller second screenshot overlapping the main one. */ inset?: ImageAsset }>;
   tone?: Tone;
-  /** journey: frosted-glass, scroll-driven three-step layout (StepsJourney); step images are not used. */
-  variant?: "journey";
+  /** journey: frosted-glass, scroll-driven three-step layout (StepsJourney); step images are not used. stack: sticky, overlapping pastel cards with browser-framed screenshots (WorkflowStack). */
+  variant?: "journey" | "stack";
   eyebrow?: string;
   /** Substring of `title` rendered in the brand blue. */
   accent?: string;
@@ -103,7 +103,8 @@ export type SplitSection = {
   highlight?: string;
 };
 
-export type CtaSection = { type: "cta"; title: string; subtitle?: string; primary: Cta; secondary?: Cta; note?: string };
+/** `arcs`: full-width blue banner, left-aligned copy and both buttons over concentric arcs. `screening`: gradient banner with pill, accented title, copy and CTA beside three floating glass stat cards (see ScreeningBanner). */
+export type CtaSection = { type: "cta"; title: string; subtitle?: string; primary: Cta; secondary?: Cta; note?: string; variant?: "screening" | "arcs"; eyebrow?: string; accent?: string; stats?: Array<{ value: string; label: string; accent: "cyan" | "green" | "orange" }> };
 
 export type QuotesSection = { type: "quotes"; title: string; subtitle?: string; items: Array<{ quote: string; name: string; role: string }> };
 
