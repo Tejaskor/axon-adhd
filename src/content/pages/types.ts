@@ -19,7 +19,9 @@ export type PageHero = {
   trust?: boolean;
   note?: string;
   /** split (default): copy beside a framed image · banner: rounded blue gradient card with a cut-out image · photo: rounded full-bleed photo panel, `image` floats in a glass card */
-  variant?: "split" | "banner" | "photo";
+  variant?: "split" | "banner" | "photo" | "network";
+  /** network variant: glass hub label and the partner logos placed around it (clockwise from the top). `image` is not rendered. */
+  network?: { hubLabel: string; logos: ImageAsset[] };
   /** Background photograph for the `photo` variant (decorative). */
   background?: ImageAsset;
   /** YouTube video shown as a floating card in the `photo` variant (replaces `image` there). */

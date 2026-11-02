@@ -40,7 +40,23 @@ export const universityReferralPage: PageContent = {
   sections: [
     {
       type: "hero",
+      variant: "network",
+      eyebrow: "FOR UNIVERSITIES",
       title: "ADHD Referral for Universities Made Simple",
+      accent: "Universities",
+      network: {
+        hubLabel: "REFERRAL-FOR-UNIVERSITIES",
+        logos: [
+          { src: "/images/trust/partners/george-mason-disability-services-logo.svg", alt: "George Mason University Disability Services logo", width: 569, height: 181 },
+          { src: "/images/trust/partners/american-university-logo.svg", alt: "American University logo", width: 1137, height: 183 },
+          { src: "/images/trust/partners/william-and-mary-logo.svg", alt: "William & Mary logo", width: 1227, height: 126 },
+          { src: "/images/trust/partners/virginia-tech-logo.svg", alt: "Virginia Tech logo", width: 248, height: 124 },
+          { src: "/images/trust/partners/marymount-university-logo.svg", alt: "Marymount University logo", width: 349, height: 124 },
+          { src: "/images/trust/logo14.webp", alt: "Western Governors University logo", width: 833, height: 204 },
+          { src: "/images/trust/gw.webp", alt: "George Washington University logo", width: 1827, height: 861 },
+          { src: "/images/trust/logo3.webp", alt: "Northern Virginia Family Service logo", width: 433, height: 204 },
+        ],
+      },
       text: ["Universities don’t have a visibility problem they have a timing problem. Students are often identified too late, when they’re already behind and at risk. AXON ADHD catches early signals and connects them to support before issues escalate."],
       ctas: [contact("Claim Your University Account"), howItWorks],
       image: { src: "/images/hero/ADHD-University-Referral-Support.webp", alt: "hero section referral university", width: 1672, height: 941 },

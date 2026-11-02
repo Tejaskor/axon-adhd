@@ -1,5 +1,7 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
-import { ArrowRight, Brain, CheckCircle2, Quote, Target } from "lucide-react";
+import type { ImageAsset } from "@/content/types";
+import { ArrowRight, Brain, CheckCircle2, GraduationCap, Quote, Target } from "lucide-react";
 import type { BadgesSection, CtaSection, FeaturesSection, PageHero as PageHeroData, PageSection, QuotesSection, SplitSection, StepsSection, Tone } from "@/content/pages/types";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -213,9 +215,152 @@ function PhotoHero({ data }: { data: PageHeroData }) {
   );
 }
 
+const glassCard = "border border-white/70 bg-[linear-gradient(145deg,rgba(255,255,255,.82),rgba(255,255,255,.5))] backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,.9),0_12px_30px_rgba(6,26,54,.16)]";
+
+/** Partner logo on its own glass card. `multiply` drops the white boxes baked into some logo files so they sit on the glass. */
+function NetworkLogoCard({ logo, className, style }: { logo: ImageAsset; className?: string; style?: CSSProperties }) {
+  return (
+    <div style={style} className={cn("flex items-center justify-center rounded-[18px] px-[8%] sm:rounded-[22px]", glassCard, className)}>
+      <Image src={logo.src} alt={logo.alt} width={logo.width} height={logo.height} sizes="160px" className="h-auto max-h-[62%] w-auto max-w-full object-contain mix-blend-multiply max-sm:max-h-9" />
+    </div>
+  );
+}
+
+/** Glass hub circle with the graduation cap and label. */
+function NetworkHub({ label, className }: { label: string; className?: string }) {
+  return (
+    <div className={cn("relative flex flex-col items-center justify-center rounded-full border border-white/80 bg-[radial-gradient(circle_at_35%_28%,rgba(255,255,255,.92),rgba(255,255,255,.5)_62%,rgba(190,221,250,.45))] text-center backdrop-blur-2xl shadow-[inset_0_2px_0_rgba(255,255,255,.95),0_0_0_10px_rgba(255,255,255,.12),0_24px_60px_rgba(6,26,54,.22)]", className)}>
+      <span aria-hidden className="absolute inset-[7%] rounded-full border border-white/70" />
+      <GraduationCap aria-hidden className="relative size-[26%] text-primary-700" strokeWidth={1.6} />
+      <span className="relative mt-[4%] max-w-[78%] text-[clamp(12px,3.3cqw,21px)] leading-[1.2] font-bold tracking-[0.01em] text-navy">{label}</span>
+    </div>
+  );
+}
+
+/** Position (% of a square stage) of item `i` of `n` on the ring, clockwise from the top. */
+const ringPoint = (i: number, n: number, rx: number, ry: number, offset = 0) => {
+  const a = ((i + offset) / n) * Math.PI * 2 - Math.PI / 2;
+  return { x: 50 + rx * Math.cos(a), y: 50 + ry * Math.sin(a) };
+};
+
+/**
+ * Rich-blue rounded canvas: frosted glass copy panel on the left, circular referral network on the right (glass hub, dashed ring,
+ * logo cards). Below lg the two stack; below sm the ring becomes a hub over a two-column card grid so nothing overlaps.
+ */
+function NetworkHero({ data }: { data: PageHeroData }) {
+  const logos = data.network?.logos ?? [];
+  const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
+  const RX = 37;
+  const RY = 41;
+  return (
+    <section className="relative -mt-[var(--header-height)] pt-2 sm:pt-3" aria-labelledby="page-title">
+      <div className="relative isolate overflow-hidden rounded-[20px] bg-[linear-gradient(135deg,#0F5FC4_0%,#1D78DC_42%,#5FB0F2_100%)] pt-[112px] pb-8 sm:rounded-[28px] sm:pt-[124px] sm:pb-12 lg:rounded-[32px] lg:pb-14">
+        {/* Soft light pools and two flowing wave bands. */}
+        <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_55%_60%_at_88%_6%,rgba(190,228,255,.55),transparent_70%),radial-gradient(ellipse_50%_50%_at_8%_100%,rgba(120,190,250,.4),transparent_70%),radial-gradient(ellipse_40%_40%_at_60%_60%,rgba(255,255,255,.14),transparent_70%)]" />
+        <svg aria-hidden viewBox="0 0 1440 800" preserveAspectRatio="none" fill="none" className="absolute inset-0 -z-10 size-full">
+          <path d="M-40 150C260 60 520 40 760 -20L1000 -40C1180 40 1320 80 1480 20V-40H-40Z" fill="rgba(255,255,255,.1)" />
+          <path d="M-40 760C240 700 520 820 840 700S1260 520 1480 600V860H-40Z" fill="rgba(255,255,255,.1)" />
+          <path d="M-40 640C300 560 560 760 900 640S1300 480 1480 540" stroke="rgba(255,255,255,.28)" strokeWidth="1.5" />
+          <path d="M-40 200C260 110 560 260 880 160S1280 60 1480 110" stroke="rgba(255,255,255,.22)" strokeWidth="1.5" />
+        </svg>
+
+        <div className="mx-auto grid w-full max-w-[1440px] items-center gap-8 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-6 lg:px-8 xl:grid-cols-[minmax(0,.95fr)_minmax(0,1.05fr)]">
+          {/* Left: frosted glass panel */}
+          <div className="relative overflow-hidden rounded-[28px] border border-white/70 bg-[linear-gradient(140deg,rgba(255,255,255,.78)_0%,rgba(255,255,255,.52)_55%,rgba(255,255,255,.4)_100%)] p-6 backdrop-blur-2xl shadow-[inset_0_1px_0_rgba(255,255,255,.95),0_30px_80px_rgba(6,26,54,.25)] sm:rounded-[36px] sm:p-10 lg:rounded-[44px] lg:p-12">
+            <span aria-hidden className="pointer-events-none absolute -top-24 -left-16 size-72 rounded-full bg-white/50 blur-3xl" />
+            <div className="relative">
+              {data.eyebrow && (
+                <p className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-white/80 bg-white/60 px-4 py-2 text-[13px] font-bold tracking-[0.02em] text-navy uppercase shadow-[inset_0_1px_0_rgba(255,255,255,.9),0_4px_14px_rgba(37,120,202,.12)] backdrop-blur-md">
+                  <GraduationCap aria-hidden className="size-[18px] text-navy" strokeWidth={2} />
+                  {data.eyebrow}
+                </p>
+              )}
+              <h1 id="page-title" className="font-display text-[clamp(34px,7.4vw,48px)] leading-[1.08] font-bold tracking-[-0.03em] text-balance text-navy lg:text-[clamp(40px,4vw,62px)]">
+                {after !== undefined ? (
+                  <>
+                    {before}
+                    <span className="relative inline-block text-primary">
+                      {data.accent}
+                      <svg aria-hidden viewBox="0 0 240 12" preserveAspectRatio="none" fill="none" className="absolute inset-x-0 -bottom-2 h-2.5 w-full">
+                        <path d="M2 9C60 2 150 2 238 7" stroke="#3C8BD9" strokeWidth="2.5" strokeLinecap="round" />
+                      </svg>
+                    </span>
+                    {after}
+                  </>
+                ) : (
+                  data.title
+                )}
+              </h1>
+              {data.text.map((t) => (
+                <p key={t} className="mt-7 max-w-[600px] text-[16px] leading-[1.6] text-pretty text-[#1F3350] sm:text-[17px] lg:text-[18px]">
+                  {t}
+                </p>
+              ))}
+              {data.ctas.length > 0 && (
+                <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                  {data.ctas.map((cta, i) => (
+                    <ButtonLink
+                      key={cta.label}
+                      href={cta.href}
+                      variant={i === 0 ? "primary" : "outline"}
+                      size="lg"
+                      className={cn("group whitespace-normal", i === 0 ? "bg-[linear-gradient(135deg,#1F6FD0,#0F5FC4)]" : "border-primary/70 bg-white/40 backdrop-blur-md hover:bg-primary")}
+                    >
+                      {cta.label}
+                      {i === 0 && <ArrowRight aria-hidden className="size-[18px] shrink-0 transition-transform duration-300 ease-brand group-hover:translate-x-1" />}
+                    </ButtonLink>
+                  ))}
+                </div>
+              )}
+              {data.note && <p className="type-small mt-3 text-[#33465E]">{data.note}</p>}
+              {data.trust && <TrustBar className="mt-8" />}
+            </div>
+          </div>
+
+          {/* Right: referral network */}
+          <div className="@container mx-auto w-full max-w-[640px] lg:max-w-none">
+            {/* Phones: hub over a two-column card grid */}
+            <div className="flex flex-col items-center gap-5 sm:hidden">
+              <NetworkHub label={data.network?.hubLabel ?? ""} className="size-[180px]" />
+              <ul className="grid w-full grid-cols-2 gap-3">
+                {logos.map((logo) => (
+                  <li key={logo.src} className="flex">
+                    <NetworkLogoCard logo={logo} className="h-[72px] w-full" />
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* sm and up: ring */}
+            <div className="relative mx-auto hidden aspect-square w-full max-w-[680px] sm:block">
+              <svg aria-hidden viewBox="0 0 100 100" fill="none" className="absolute inset-0 size-full">
+                <ellipse cx="50" cy="50" rx={RX} ry={RY} stroke="rgba(255,255,255,.75)" strokeWidth=".3" strokeDasharray="1.4 1.4" />
+                {logos.map((_, i) => {
+                  const p = ringPoint(i, logos.length, RX, RY, 0.5);
+                  return (
+                    <g key={i}>
+                      <circle cx={p.x} cy={p.y} r="1.5" fill="rgba(255,255,255,.55)" />
+                      <circle cx={p.x} cy={p.y} r=".8" fill="#1D6FD6" />
+                    </g>
+                  );
+                })}
+              </svg>
+              <NetworkHub label={data.network?.hubLabel ?? ""} className="absolute top-1/2 left-1/2 size-[36%] -translate-x-1/2 -translate-y-1/2" />
+              {logos.map((logo, i) => {
+                const p = ringPoint(i, logos.length, RX, RY);
+                return <NetworkLogoCard key={logo.src} logo={logo} style={{ left: `${p.x}%`, top: `${p.y}%` }} className="absolute h-[12.5%] w-[26%] -translate-x-1/2 -translate-y-1/2" />;
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function PageHero({ data }: { data: PageHeroData }) {
+  if (data.variant === "network") return <NetworkHero data={data} />;
   if (data.variant === "banner") return <BannerHero data={data} />;
-  if (data.variant === "photo") return <PhotoHero data={data} />;
   if (data.variant === "photo") return <PhotoHero data={data} />;
   return (
     <section className="relative -mt-[var(--header-height)] overflow-hidden bg-gradient-to-b from-primary-soft via-white to-white pt-[130px] pb-14 sm:pb-20" aria-labelledby="page-title">
