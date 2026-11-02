@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import type { ImageAsset } from "@/content/types";
-import { ArrowRight, Brain, Check, CheckCircle2, Coins, Frown, GraduationCap, Lock, Quote, Shield, ShieldCheck, Star, Target, TrendingUp, TriangleAlert } from "lucide-react";
+import { ArrowRight, BriefcaseMedical, Brain, Check, CheckCircle2, Clock, Coins, Frown, GraduationCap, HeartPulse, Lock, Quote, Shield, ShieldCheck, ShieldPlus, Star, Target, TrendingDown, TrendingUp, TriangleAlert, Users } from "lucide-react";
 import type { BadgesSection, CtaSection, FeatureItem, FeaturesSection, PageHero as PageHeroData, PageSection, QuotesSection, SplitSection, StepsSection, Tone } from "@/content/pages/types";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -13,6 +13,7 @@ import { trustBar } from "@/content/trust";
 import { cn } from "@/lib/utils";
 import { AssessmentOverview } from "./AssessmentOverview";
 import { StepsJourney } from "./StepsJourney";
+import { WorkflowStack } from "./WorkflowStack";
 import { TestimonialCarousel } from "./TestimonialCarousel";
 import { ContactSection } from "./ContactSection";
 import { CTABand } from "./CTABand";
@@ -558,7 +559,7 @@ function PartnerFeatures({ data }: { data: FeaturesSection }) {
   );
 }
 
-type GapAccent = NonNullable<FeatureItem["accent"]>;
+type GapAccent = Exclude<NonNullable<FeatureItem["accent"]>, "pink" | "cyan">;
 const gapAccents: Record<GapAccent, { icon: typeof Brain; color: string; pale: string; border: string }> = {
   blue: { icon: GraduationCap, color: "#0868DC", pale: "#E3EEFD", border: "#D3E4FA" },
   red: { icon: TrendingUp, color: "#E5243B", pale: "#FDE6EA", border: "#F8D3D9" },
@@ -605,7 +606,7 @@ function GapFeatures({ data }: { data: FeaturesSection }) {
 
         <ul className="mt-10 grid gap-5 sm:mt-14 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {data.items.map((item, i) => {
-            const a = gapAccents[item.accent ?? "blue"];
+            const a = gapAccents[(item.accent as GapAccent) ?? "blue"] ?? gapAccents.blue;
             const Icon = a.icon;
             return (
               <li key={item.title} className="flex">
@@ -633,8 +634,264 @@ function GapFeatures({ data }: { data: FeaturesSection }) {
   );
 }
 
+/** Head profile with two question marks (no Lucide equivalent). */
+function HeadQuestionIcon({ className }: { className?: string }) {
+  return (
+    <svg aria-hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <path d="M12.5 3C8.4 3 5.5 6 5.5 10c0 2.3 1 4 2.5 5.2V20h7.5v-3h1c.8 0 1.5-.6 1.5-1.5V13l1.3-.6-1.5-2.5C17.6 5.8 15.6 3 12.5 3Z" />
+      <path d="M10 8.2a1.3 1.3 0 1 1 1.8 1.2c-.5.2-.8.6-.8 1.1M11 12.3h.01M14.2 8.6a1 1 0 1 1 1.4.9c-.4.2-.6.5-.6.9M15 11.4h.01" strokeWidth="1.5" />
+    </svg>
+  );
+}
+
+type RibbonAccent = "blue" | "red" | "green" | "orange";
+const ribbonAccents: Record<RibbonAccent, { icon: typeof Brain | typeof HeadQuestionIcon; color: string; pale: string; label: string }> = {
+  blue: { icon: HeadQuestionIcon, color: "#1673E8", pale: "#E5F2FF", label: "#10294D" },
+  red: { icon: HeartPulse, color: "#E83E70", pale: "#FCE8EF", label: "#B3234F" },
+  green: { icon: GraduationCap, color: "#16A56A", pale: "#E2F8EB", label: "#0F6B49" },
+  orange: { icon: Coins, color: "#F0A126", pale: "#FFF2D9", label: "#1F2A44" },
+};
+const RIBBON_NOTCH = 28;
+const ribbonClip = `polygon(0 0, calc(100% - ${RIBBON_NOTCH}px) 0, 100% 50%, calc(100% - ${RIBBON_NOTCH}px) 100%, 0 100%, ${RIBBON_NOTCH}px 50%)`;
+
+/** Centered heading over four pastel chevron ribbons, each with a stem and dot leading to its description. 2x2 on tablet, a vertical timeline on phones. */
+function RibbonFeatures({ data }: { data: FeaturesSection }) {
+  const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
+  return (
+    <section id={data.id} className="bg-white py-12 sm:py-16">
+      <Container>
+        <div>
+          <div className="mx-auto max-w-[960px] text-center">
+            <h2 className="type-h2 text-balance text-[#10294D]">
+              {after !== undefined ? (
+                <>
+                  {before}
+                  <span className="text-[#1673E8]">{data.accent}</span>
+                  {after}
+                </>
+              ) : (
+                data.title
+              )}
+            </h2>
+            {data.subtitle && <p className="type-body mx-auto mt-4 text-pretty text-[#465A78]">{data.subtitle}</p>}
+          </div>
+
+          <ol className="mt-10 grid gap-x-3 gap-y-8 sm:grid-cols-2 lg:mt-12 lg:flex lg:gap-0">
+            {data.items.map((item, i) => {
+              const a = ribbonAccents[(item.accent as RibbonAccent) ?? "blue"] ?? ribbonAccents.blue;
+              const Icon = a.icon;
+              const last = i === data.items.length - 1;
+              return (
+                <li key={item.title} className={cn("relative pl-8 sm:pl-0 lg:flex-1", i > 0 && "lg:-ml-[22px]")}>
+                  <Reveal delay={i * 0.08}>
+                    {/* Phone timeline: dot on a line running down to the next stage */}
+                    <span aria-hidden className="absolute top-[42px] left-[5px] size-[11px] rounded-full sm:hidden" style={{ backgroundColor: a.color }} />
+                    {!last && <span aria-hidden className="absolute top-[50px] -bottom-8 left-[10px] w-px sm:hidden" style={{ backgroundColor: a.color, opacity: 0.45 }} />}
+
+                    <div className="flex h-[88px] items-center gap-3 pr-9 pl-10 lg:gap-3.5" style={{ backgroundColor: a.pale, clipPath: ribbonClip }}>
+                      <span className="grid size-[54px] shrink-0 place-items-center rounded-full" style={{ backgroundColor: `${a.color}26`, color: a.color }}>
+                        <Icon aria-hidden className="size-[26px]" />
+                      </span>
+                      <h3 className="text-[17px] leading-tight font-bold lg:text-[18px]" style={{ color: a.label }}>
+                        {item.title}
+                      </h3>
+                    </div>
+
+                    {/* Desktop/tablet stem + dot */}
+                    <div aria-hidden className="hidden flex-col items-center sm:flex">
+                      <span className="h-9 w-px" style={{ backgroundColor: a.color, opacity: 0.45 }} />
+                      <span className="size-[11px] rounded-full" style={{ backgroundColor: a.color }} />
+                    </div>
+                    <p className="mx-auto mt-3 max-w-[230px] text-[16px] leading-snug font-medium text-[#10294D] sm:mt-4 sm:text-center lg:max-w-[210px]">{item.text}</p>
+                  </Reveal>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+/** Translucent blue campus skyline (columned hall with a flag, trees, hills) for the banner's lower left. Decorative. */
+function CampusIllustration({ className }: { className?: string }) {
+  const tree = (x: number, y: number, k: number) => (
+    <g key={`${x}-${y}`} transform={`translate(${x} ${y}) scale(${k})`} fill="#1D6CB8" fillOpacity=".6">
+      <rect x="-3" y="40" width="6" height="30" rx="2" />
+      <ellipse cx="0" cy="22" rx="20" ry="30" />
+      <ellipse cx="-9" cy="38" rx="13" ry="16" />
+      <ellipse cx="10" cy="36" rx="13" ry="17" />
+    </g>
+  );
+  return (
+    <svg aria-hidden viewBox="0 0 620 300" fill="none" className={className} preserveAspectRatio="xMinYMax meet">
+      {/* hills */}
+      <path d="M0 250C120 215 260 230 400 250S560 262 620 244V300H0Z" fill="#2A86D0" fillOpacity=".35" />
+      {/* hall */}
+      <g fill="#8FC5F2" fillOpacity=".5">
+        <rect x="150" y="190" width="300" height="12" />
+        <rect x="136" y="202" width="328" height="12" />
+        <rect x="124" y="214" width="352" height="14" />
+        <rect x="140" y="118" width="320" height="16" />
+        <path d="M300 62 460 118H140Z" />
+        <rect x="104" y="150" width="60" height="64" />
+        <rect x="436" y="150" width="60" height="64" />
+      </g>
+      <g fill="#C3E1FA" fillOpacity=".55">
+        {[170, 214, 258, 302, 346, 390].map((x) => (
+          <rect key={x} x={x} y="134" width="20" height="56" rx="2" />
+        ))}
+        <circle cx="300" cy="96" r="9" fillOpacity=".35" />
+        <rect x="298" y="20" width="3" height="44" />
+        <path d="M301 20 332 30 301 40Z" />
+      </g>
+      <g fill="#2A86D0" fillOpacity=".55">
+        <rect x="116" y="170" width="12" height="24" rx="6" />
+        <rect x="472" y="170" width="12" height="24" rx="6" />
+      </g>
+      {tree(44, 170, 1.05)}
+      {tree(96, 205, 0.7)}
+      {tree(520, 178, 1)}
+      {tree(580, 205, 0.7)}
+    </svg>
+  );
+}
+
+const campusAccents = {
+  blue: { icon: Users, color: "#1769D2", pale: "#E4EEFD" },
+  orange: { icon: Coins, color: "#E87518", pale: "#FDEBDB" },
+  green: { icon: TrendingDown, color: "#168A45", pale: "#E1F4E7" },
+} as const;
+
+/** One unified blue gradient banner: heading, copy and campus illustration on the left, three white statistic cards on the right. */
+function CampusBannerFeatures({ data }: { data: FeaturesSection }) {
+  const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
+  return (
+    <section id={data.id} className="bg-white py-10 sm:py-14">
+      <Container>
+        <div className="relative isolate overflow-hidden rounded-[24px] bg-[linear-gradient(115deg,#07539A_0%,#0873C2_55%,#078DD0_100%)] px-5 pt-10 pb-12 shadow-[0_24px_50px_-24px_rgba(7,83,154,.55)] sm:rounded-[30px] sm:px-8 sm:pt-12 sm:pb-14 lg:px-10 lg:py-[72px]">
+          {/* Soft waves along the bottom edge */}
+          <svg aria-hidden viewBox="0 0 1440 200" preserveAspectRatio="none" fill="none" className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-28 w-full sm:h-36">
+            <path d="M0 150C260 110 520 170 820 140S1260 80 1440 110V200H0Z" fill="#5FB4EC" fillOpacity=".22" />
+            <path d="M480 200C760 120 1060 130 1440 90V200Z" fill="#8FD0F5" fillOpacity=".28" />
+          </svg>
+          <CampusIllustration className="pointer-events-none absolute bottom-0 left-0 -z-10 h-[44%] w-auto max-w-[78%] opacity-90 lg:h-[46%] lg:max-w-[42%]" />
+
+          <div className="grid items-center gap-8 lg:grid-cols-[40fr_60fr] lg:gap-8">
+            <div className="lg:pb-28">
+              <h2 className="text-[clamp(28px,2.7vw,44px)] leading-[1.15] font-bold tracking-[-0.02em] text-white">
+                {after !== undefined ? (
+                  <>
+                    <span className="block">{before.trim()}</span>
+                    <span className="block text-[#48DDF2]">{data.accent}</span>
+                    {after.trim() && <span className="block">{after.trim()}</span>}
+                  </>
+                ) : (
+                  data.title
+                )}
+              </h2>
+              {data.subtitle && <p className="mt-5 max-w-[400px] text-[16px] leading-[1.65] text-white/90 sm:text-[17px]">{data.subtitle}</p>}
+            </div>
+
+            <ul className="grid gap-4 sm:grid-cols-3 sm:gap-4 lg:gap-5">
+              {data.items.map((item, i) => {
+                const a = campusAccents[(item.accent as keyof typeof campusAccents) ?? "blue"] ?? campusAccents.blue;
+                const Icon = a.icon;
+                return (
+                  <li key={item.title} className="flex">
+                    <Reveal delay={i * 0.08} className="flex w-full">
+                      <div className="flex w-full flex-col items-center rounded-[22px] bg-white px-5 py-7 text-center shadow-[0_14px_30px_-14px_rgba(6,40,90,.45)] sm:px-4 lg:px-5 lg:py-8">
+                        <span className="grid size-[68px] place-items-center rounded-full" style={{ backgroundColor: a.pale, color: a.color }}>
+                          <Icon aria-hidden className="size-8" strokeWidth={1.9} />
+                        </span>
+                        <p className="mt-4 text-[clamp(26px,2.5vw,38px)] leading-none font-extrabold tracking-[-0.02em] whitespace-nowrap" style={{ color: a.color }}>
+                          {item.title}
+                        </p>
+                        <p className="mt-3 text-[16px] leading-snug font-medium text-[#10294D]">{item.text}</p>
+                      </div>
+                    </Reveal>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
+        {data.footnote && <p className="mt-6 rounded-xl bg-[linear-gradient(100deg,#43A55F_0%,#3A8F8A_45%,#2466C8_100%)] px-5 py-3.5 text-center text-[15px] leading-snug font-semibold text-white sm:text-[17px]">{data.footnote}</p>}
+      </Container>
+    </section>
+  );
+}
+
+const earlyAccents = {
+  purple: { icon: Target, color: "#873DE0", pale: "#EFE4FC", bg: "#F8F4FE", border: "#E9DDF9" },
+  green: { icon: ShieldPlus, color: "#19A875", pale: "#DDF5EC", bg: "#F3FBF7", border: "#D9F0E5" },
+  orange: { icon: GraduationCap, color: "#F0A126", pale: "#FDEFD6", bg: "#FFF9EF", border: "#F8E8CB" },
+  pink: { icon: BriefcaseMedical, color: "#E94D9B", pale: "#FCE1EF", bg: "#FEF3F8", border: "#F8DCEA" },
+  cyan: { icon: HeartPulse, color: "#17AFC7", pale: "#D8F2F7", bg: "#F1FAFC", border: "#D3EEF3" },
+} as const;
+
+/** Centered heading (accented title with hand underline), then the supplied clinician image beside five pastel benefit cards. */
+function EarlyReferralFeatures({ data }: { data: FeaturesSection }) {
+  const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
+  return (
+    <section id={data.id} className="relative isolate overflow-hidden bg-[#F5F9FE] py-12 sm:py-16">
+      <Container>
+        <div className="mx-auto max-w-[1000px] text-center">
+          <h2 className="type-h2 text-[#10294D]">
+            {after !== undefined ? (
+              <>
+                {before}
+                <span className="text-[#0878E8]">
+                  {data.accent}
+                </span>
+                {after}
+              </>
+            ) : (
+              data.title
+            )}
+          </h2>
+          {data.subtitle && <p className="type-body mx-auto mt-5 text-pretty text-[#60758F]">{data.subtitle}</p>}
+        </div>
+
+        <div className="mt-10 grid gap-6 sm:mt-12 lg:grid-cols-[1.7fr_1fr] lg:items-center">
+          {data.image && (
+            <div className="relative aspect-[1024/609] overflow-hidden rounded-[20px] shadow-[0_18px_40px_-20px_rgba(16,41,77,.35)]">
+              <Image src={data.image.src} alt={data.image.alt} fill priority={false} sizes="(max-width: 1023px) 100vw, 50vw" className="object-cover object-center" />
+            </div>
+          )}
+          <ul className="grid gap-3">
+            {data.items.map((item, i) => {
+              const a = earlyAccents[(item.accent as keyof typeof earlyAccents) ?? "purple"] ?? earlyAccents.purple;
+              const Icon = a.icon;
+              return (
+                <li key={item.title} className="flex">
+                  <Reveal delay={Math.min(i, 5) * 0.06} className="flex w-full">
+                    <div className="flex w-full items-center gap-3.5 rounded-[18px] border px-4 py-3.5 shadow-[0_8px_22px_-14px_rgba(16,41,77,.22)] sm:px-5" style={{ backgroundColor: a.bg, borderColor: a.border }}>
+                      <span className="grid size-12 shrink-0 place-items-center rounded-[14px]" style={{ backgroundColor: a.pale, color: a.color }}>
+                        <Icon aria-hidden className="size-6" strokeWidth={1.9} />
+                      </span>
+                      <div className="min-w-0">
+                        <h3 className="text-[15px] leading-snug font-bold text-[#10294D]">{item.title}</h3>
+                        {item.text && <p className="mt-0.5 text-[13px] leading-snug text-[#60758F]">{item.text}</p>}
+                      </div>
+                    </div>
+                  </Reveal>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
 function Features({ data }: { data: FeaturesSection }) {
   const variant = data.variant ?? "card";
+  if (variant === "earlyReferral") return <EarlyReferralFeatures data={data} />;
+  if (variant === "campusBanner") return <CampusBannerFeatures data={data} />;
+  if (variant === "ribbon") return <RibbonFeatures data={data} />;
   if (variant === "gap") return <GapFeatures data={data} />;
   if (variant === "partner") return <PartnerFeatures data={data} />;
   if (variant === "mission") return <MissionFeatures data={data} />;
@@ -709,6 +966,7 @@ function Features({ data }: { data: FeaturesSection }) {
 
 function Steps({ data }: { data: StepsSection }) {
   if (data.variant === "journey") return <StepsJourney data={data} />;
+  if (data.variant === "stack") return <WorkflowStack data={data} />;
   return (
     <section id={data.id} className={cn("scroll-mt-[var(--header-offset)] py-16 sm:py-20", toneClass[data.tone ?? "surface"])}>
       <Container>
@@ -1025,7 +1283,194 @@ function Badges({ data }: { data: BadgesSection }) {
   );
 }
 
+const screeningAccents = {
+  cyan: { icon: Clock, ink: "#7FE3FF", border: "rgba(110,215,255,.95)", glow: "rgba(70,200,255,.55)", tint: "linear-gradient(135deg,rgba(60,170,255,.5) 0%,rgba(20,100,210,.38) 55%,rgba(12,70,170,.3) 100%)" },
+  green: { icon: Users, ink: "#8FF0CE", border: "rgba(100,235,190,.9)", glow: "rgba(60,220,170,.45)", tint: "linear-gradient(135deg,rgba(40,200,170,.5) 0%,rgba(20,130,160,.38) 55%,rgba(12,80,150,.3) 100%)" },
+  orange: { icon: GraduationCap, ink: "#FFC565", border: "rgba(255,190,100,.95)", glow: "rgba(255,170,60,.5)", tint: "linear-gradient(135deg,rgba(235,160,70,.45) 0%,rgba(70,100,170,.38) 55%,rgba(14,75,165,.3) 100%)" },
+} as const;
+
+/** Faint campus (columned hall, flag, trees) for the banner's lower right. Decorative. */
+function ScreeningCampus({ className }: { className?: string }) {
+  const tree = (x: number, k: number) => (
+    <g key={x} transform={`translate(${x} 0) scale(${k})`} fill="#3E86D8" fillOpacity=".4">
+      <rect x="-3" y="150" width="6" height="40" />
+      <ellipse cx="0" cy="110" rx="26" ry="55" />
+      <ellipse cx="-12" cy="140" rx="18" ry="28" />
+      <ellipse cx="13" cy="138" rx="18" ry="30" />
+    </g>
+  );
+  return (
+    <svg aria-hidden viewBox="0 0 520 220" fill="none" preserveAspectRatio="xMaxYMax meet" className={className}>
+      <path d="M0 200C120 185 260 190 520 176V220H0Z" fill="#4A92E0" fillOpacity=".28" />
+      <g fill="#7FB4F0" fillOpacity=".34">
+        <path d="M400 60 500 96H300Z" />
+        <rect x="304" y="96" width="192" height="10" />
+        <rect x="270" y="112" width="70" height="80" />
+        <rect x="440" y="112" width="80" height="80" />
+        <rect x="300" y="190" width="200" height="8" />
+      </g>
+      <g fill="#A9D0F8" fillOpacity=".38">
+        {[322, 352, 382, 412, 442, 472].map((x) => (
+          <rect key={x} x={x} y="106" width="12" height="84" />
+        ))}
+        <rect x="399" y="22" width="2" height="38" />
+        <path d="M400 22 420 29 400 36Z" />
+      </g>
+      {tree(230, 0.9)}
+      {tree(170, 0.7)}
+    </svg>
+  );
+}
+
+/** Rich blue banner: pill, accented title, copy and white CTA on the left; three staggered glass stat cards on the right. */
+function ScreeningBanner({ data }: { data: CtaSection }) {
+  const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
+  const offsets = ["lg:ml-0", "lg:ml-[14%]", "lg:ml-[4%]"];
+  return (
+    <section className="relative isolate overflow-hidden bg-[linear-gradient(120deg,#0A3D94_0%,#0B58C4_52%,#1273DA_100%)] py-14 sm:py-16 lg:py-20" aria-label={data.title}>
+          <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_45%_60%_at_85%_0%,rgba(90,170,255,.35),transparent_70%),radial-gradient(ellipse_40%_50%_at_0%_100%,rgba(30,120,230,.45),transparent_70%)]" />
+          <svg aria-hidden viewBox="0 0 1440 300" preserveAspectRatio="none" fill="none" className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 w-full sm:h-52">
+            <path d="M0 170C220 120 380 250 700 220S1160 120 1440 190V300H0Z" fill="#0F6BD8" fillOpacity=".35" />
+            <path d="M0 150C220 100 380 230 700 200S1160 100 1440 170" stroke="#48DDF2" strokeOpacity=".55" strokeWidth="2" />
+            <path d="M0 215C260 190 500 270 840 245S1260 190 1440 225" stroke="#48DDF2" strokeOpacity=".25" strokeWidth="1.5" />
+          </svg>
+          <ScreeningCampus className="pointer-events-none absolute right-0 bottom-0 -z-10 hidden h-[30%] w-auto sm:block" />
+
+
+      <Container>
+        <div>
+          <div className="grid grid-cols-[minmax(0,1fr)] items-center gap-10 lg:grid-cols-[minmax(0,56fr)_minmax(0,44fr)] lg:gap-4">
+            <div>
+              {data.eyebrow && (
+                <p className="inline-flex items-center gap-2.5 rounded-full bg-[#DCEBFF] px-5 py-2.5 text-[15px] font-semibold text-[#0B58C4] shadow-[0_6px_18px_-6px_rgba(120,190,255,.7)]">
+                  <Target aria-hidden className="size-5" strokeWidth={2.2} />
+                  {data.eyebrow}
+                </p>
+              )}
+              <h2 className={cn(data.eyebrow && "mt-6", "text-[clamp(26px,2.4vw,42px)] leading-[1.2] font-bold tracking-[-0.02em] text-white lg:whitespace-nowrap")}>
+                {after !== undefined ? (
+                  <>
+                    <span className="block">{before.split("First Step")[0].trim()}</span>
+                    <span className="block">
+                    First Step {before.split("First Step")[1]}
+                    <span className="relative inline-block text-[#27D7F5]">
+                      {data.accent}
+                      <svg aria-hidden viewBox="0 0 300 12" preserveAspectRatio="none" fill="none" className="absolute inset-x-0 -bottom-2 h-2.5 w-full">
+                        <path d="M3 9C60 3 150 3 297 6" stroke="#27D7F5" strokeWidth="3" strokeLinecap="round" />
+                      </svg>
+                    </span>
+                    {after}
+                    </span>
+                  </>
+                ) : (
+                  data.title
+                )}
+              </h2>
+              {data.subtitle && <p className="mt-6 max-w-[560px] text-[16px] leading-[1.7] text-white/95 sm:text-[18px]">{data.subtitle}</p>}
+              <ButtonLink href={data.primary.href} variant="white" size="lg" className="group mt-8 w-full whitespace-normal! px-5! text-center font-semibold text-[#0B58C4] sm:whitespace-nowrap! shadow-[0_12px_30px_-8px_rgba(120,190,255,.8)] transition duration-300 ease-brand hover:-translate-y-0.5 hover:shadow-[0_16px_34px_-8px_rgba(120,190,255,.95)] sm:w-auto">
+                {data.primary.label}
+                <ArrowRight aria-hidden className="size-5 shrink-0 transition-transform duration-300 ease-brand group-hover:translate-x-1" />
+              </ButtonLink>
+            </div>
+
+            <ul className="grid gap-3 lg:gap-4 lg:pb-6">
+              {(data.stats ?? []).map((st, i) => {
+                const a = screeningAccents[st.accent];
+                const Icon = a.icon;
+                return (
+                  <li key={st.value} className={cn("flex", offsets[i])}>
+                    <Reveal delay={i * 0.1} className="w-full">
+                      <div className="relative flex items-center gap-3 overflow-hidden rounded-[14px] border px-3.5 py-3 text-white backdrop-blur-xl backdrop-saturate-150 sm:gap-4 sm:px-4 sm:py-3.5" style={{ background: a.tint, borderColor: a.border, boxShadow: `0 0 22px -2px ${a.glow}, 0 12px 28px -12px rgba(4,30,90,.6), inset 0 0 18px ${a.glow}, inset 0 1px 0 rgba(255,255,255,.55)` }}>
+                        {/* Soft top sheen */}
+                        <span aria-hidden className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,.16)_0%,transparent_45%)]" />
+                        <span className="relative grid size-12 shrink-0 place-items-center rounded-full bg-[rgba(10,50,120,.38)] shadow-[inset_0_0_14px_rgba(255,255,255,.12)] sm:size-14" style={{ color: a.ink }}>
+                          <Icon aria-hidden className="size-6 sm:size-7" strokeWidth={2} />
+                        </span>
+                        <span aria-hidden className="relative h-10 w-px shrink-0 sm:h-12" style={{ backgroundColor: a.ink, opacity: 0.85 }} />
+                        <div className="relative min-w-0">
+                          <p className="text-[clamp(20px,1.9vw,30px)] leading-none font-extrabold tracking-[-0.02em]">{st.value}</p>
+                          <p className="mt-1.5 text-[13px] leading-snug text-white sm:text-[14px]">{st.label}</p>
+                        </div>
+                      </div>
+                    </Reveal>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+/** Full-width blue banner: left-aligned two-line title (accent in cyan), copy and two pills over glowing waves and concentric arcs. */
+function ArcsBanner({ data }: { data: CtaSection }) {
+  const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
+  const cut = before.lastIndexOf("for");
+  const line1 = cut > 0 ? before.slice(0, cut).trim() : before.trim();
+  const line2 = cut > 0 ? before.slice(cut) : "";
+  return (
+    <section className="relative isolate overflow-hidden bg-[linear-gradient(100deg,#0B5FCB_0%,#0A56BC_45%,#0A4CAB_100%)] py-12 sm:py-16 lg:py-[76px]" aria-label={data.title}>
+      <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_50%_70%_at_8%_100%,rgba(40,130,240,.45),transparent_70%),radial-gradient(ellipse_40%_60%_at_90%_10%,rgba(30,110,220,.35),transparent_70%)]" />
+      {/* Static concentric circles centred on the bottom-right corner; they stop short of the left side and fade out before it. */}
+      <svg aria-hidden viewBox="0 0 1440 460" preserveAspectRatio="xMaxYMax slice" fill="none" className="pointer-events-none absolute inset-0 -z-10 size-full">
+        <defs>
+          <linearGradient id="arcs-fade" x1="0" y1="0" x2="1" y2="0">
+            <stop offset=".6" stopColor="#fff" stopOpacity="0" />
+            <stop offset=".8" stopColor="#fff" stopOpacity=".85" />
+            <stop offset="1" stopColor="#fff" stopOpacity="1" />
+          </linearGradient>
+          <mask id="arcs-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="1440" height="460">
+            <rect width="1440" height="460" fill="url(#arcs-fade)" />
+          </mask>
+        </defs>
+        <g mask="url(#arcs-mask)" stroke="#A9D6FF" strokeWidth="1.3">
+          {Array.from({ length: 8 }, (_, i) => (
+            <circle key={i} cx="1440" cy="460" r={55 + i * 62} strokeOpacity={0.32 - i * 0.02} />
+          ))}
+        </g>
+      </svg>
+      <Container>
+        <h2 className="text-[clamp(26px,2.7vw,42px)] leading-[1.18] font-bold tracking-[-0.02em] text-white">
+          {after !== undefined ? (
+            <>
+              <span className="block lg:inline">{line1}</span>{" "}
+              <span className="block lg:inline">
+                {line2}
+                <span className="relative inline-block text-[#1DE4F2]">
+                  {data.accent}
+                  <svg aria-hidden viewBox="0 0 300 12" preserveAspectRatio="none" fill="none" className="absolute inset-x-0 -bottom-2.5 h-2.5 w-full">
+                    <path d="M2 8C70 3 190 3 298 5" stroke="#1DE4F2" strokeWidth="3" strokeLinecap="round" />
+                  </svg>
+                </span>
+                {after}
+              </span>
+            </>
+          ) : (
+            data.title
+          )}
+        </h2>
+        {data.subtitle && <p className="mt-5 max-w-[560px] text-[15px] leading-[1.65] text-white sm:text-[16px] lg:max-w-none lg:text-[clamp(15px,1.1vw,18px)]">{data.subtitle}</p>}
+        <div className="mt-6 flex flex-col gap-3 xs:flex-row xs:flex-wrap xs:items-center sm:gap-4">
+          <ButtonLink href={data.primary.href} variant="white" size="lg" className="group whitespace-normal text-center font-bold! text-[#0A4DB0] shadow-[0_10px_26px_-10px_rgba(0,0,0,.4)] transition duration-300 ease-brand hover:-translate-y-0.5">
+            {data.primary.label}
+            <ArrowRight aria-hidden className="size-5 shrink-0 transition-transform duration-300 ease-brand group-hover:translate-x-1" strokeWidth={2.5} />
+          </ButtonLink>
+          {data.secondary && (
+            <ButtonLink href={data.secondary.href} size="lg" className="whitespace-normal border border-white bg-transparent text-center font-bold! text-white shadow-none transition duration-300 ease-brand hover:bg-white/10">
+              {data.secondary.label}
+            </ButtonLink>
+          )}
+        </div>
+      </Container>
+    </section>
+  );
+}
+
 function Cta({ data }: { data: CtaSection }) {
+  if (data.variant === "arcs") return <ArcsBanner data={data} />;
+  if (data.variant === "screening") return <ScreeningBanner data={data} />;
   return (
     <>
       <CTABand title={data.title} subtitle={data.subtitle} primary={data.primary} secondary={data.secondary} />
