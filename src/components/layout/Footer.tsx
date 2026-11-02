@@ -5,16 +5,27 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import { footerNav } from "@/content/nav";
 import { site } from "@/content/site";
 import { complianceBadgesColor } from "@/content/trust";
+import { cn } from "@/lib/utils";
 import { SocialIcon } from "./SocialIcon";
+
+/** Brand-coloured social discs, keyed by `site.social[].label`. */
+const socialStyle: Record<string, string> = {
+  Facebook: "bg-[#21407A] text-[#1877F2]",
+  LinkedIn: "bg-[#1A9BEF] text-[#0B2A4F]",
+  Instagram: "bg-[radial-gradient(circle_at_30%_110%,#FDD835_0%,#F56040_35%,#C13584_65%,#5851DB_100%)] text-white",
+  YouTube: "bg-[#21407A] text-[#FF0000]",
+  X: "border border-white/25 bg-black text-white",
+  TikTok: "border border-white/25 bg-black text-white",
+};
 
 function FooterLinks({ title, links }: { title: string; links: Array<{ label: string; href: string }> }) {
   return (
     <div>
-      <h2 className="flex items-center font-display text-[17px] font-semibold tracking-[-0.01em] text-white capitalize lg:h-[68px]">{title}</h2>
-      <ul className="mt-5 space-y-3.5">
+      <h2 className="flex items-center font-display text-[15px] font-extrabold tracking-[0.08em] text-white uppercase lg:h-[68px]">{title}</h2>
+      <ul className="mt-6 space-y-4">
         {links.map((l) => (
           <li key={l.href}>
-            <Link href={l.href} className="type-body text-white/75 transition-colors duration-200 hover:text-white">
+            <Link href={l.href} className="type-body text-white/95 transition-colors hover:text-[#4FC3F7]">
               {l.label}
             </Link>
           </li>
@@ -26,11 +37,11 @@ function FooterLinks({ title, links }: { title: string; links: Array<{ label: st
 
 export function Footer() {
   return (
-    <footer className="relative isolate overflow-hidden bg-[radial-gradient(60%_80%_at_85%_0%,rgba(41,121,230,.35),transparent_70%),radial-gradient(50%_70%_at_0%_100%,rgba(23,105,210,.22),transparent_70%),linear-gradient(160deg,#0C2F6B_0%,#08224F_45%,#061A3D_100%)] text-white">
+    <footer className="relative isolate overflow-hidden bg-[linear-gradient(81.25deg,#061A36_0.51%,#1D3C67_100%)] text-white">
       {/* Full-width faded wordmark resting on the footer's bottom edge, behind the content. */}
       <p
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 translate-y-[0.16em] text-center font-serif text-[14vw] leading-none font-bold whitespace-nowrap text-white/[0.035] select-none"
+        className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 translate-y-[0.16em] text-center font-serif text-[14vw] leading-none font-bold whitespace-nowrap text-white/[0.06] select-none"
       >
         AXON ADHD
       </p>
@@ -39,7 +50,7 @@ export function Footer() {
           <Link href="/" aria-label={`${site.name} home`} className="flex h-14 items-center sm:h-[68px]">
             <Image src={site.footerLogo.src} alt="AXON ADHD Brand Logo" width={site.footerLogo.width} height={site.footerLogo.height} className="h-14 w-auto sm:h-[68px]" />
           </Link>
-          <p className="type-body mt-6 max-w-[520px] leading-[1.75] text-white/75">{site.blurb}</p>
+          <p className="type-body mt-6 max-w-[520px] text-white/95">{site.blurb}</p>
         </div>
 
         <div>
@@ -50,16 +61,16 @@ export function Footer() {
         </div>
 
         <div className="sm:col-span-2 lg:col-span-1">
-          <h2 className="flex items-center font-display text-[17px] font-semibold tracking-[-0.01em] text-white capitalize lg:h-[68px]">Contact Us</h2>
-          <address className="type-body mt-5 space-y-3.5 not-italic">
-            <a href={`mailto:${site.email}`} className="flex items-center gap-3.5 text-white/75 transition-colors duration-200 hover:text-white">
-              <Mail aria-hidden className="size-6 shrink-0 text-[#6CB4FF]" strokeWidth={1.6} /> {site.email}
+          <h2 className="flex items-center font-display text-[15px] font-extrabold tracking-[0.08em] text-white uppercase lg:h-[68px]">Contact Us</h2>
+          <address className="type-body mt-6 space-y-4 not-italic">
+            <a href={`mailto:${site.email}`} className="flex items-center gap-4 text-white/95 transition-colors hover:text-[#4FC3F7]">
+              <Mail aria-hidden className="size-6 shrink-0 text-[#29B6F6]" strokeWidth={1.5} /> {site.email}
             </a>
-            <a href={site.phoneHref} className="flex items-center gap-3.5 text-white/75 transition-colors duration-200 hover:text-white">
-              <Phone aria-hidden className="size-6 shrink-0 text-[#6CB4FF]" strokeWidth={1.6} /> {site.phone}
+            <a href={site.phoneHref} className="flex items-center gap-4 text-white/95 transition-colors hover:text-[#4FC3F7]">
+              <Phone aria-hidden className="size-6 shrink-0 text-[#29B6F6]" strokeWidth={1.5} /> {site.phone}
             </a>
-            <a href={site.address.mapUrl} target="_blank" rel="noopener noreferrer" className="flex items-start gap-3.5 leading-[1.8] text-white/75 transition-colors duration-200 hover:text-white">
-              <MapPin aria-hidden className="mt-1 size-6 shrink-0 text-[#6CB4FF]" strokeWidth={1.6} />
+            <a href={site.address.mapUrl} target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 leading-[1.9] text-white/95 transition-colors hover:text-[#4FC3F7]">
+              <MapPin aria-hidden className="mt-1 size-6 shrink-0 text-[#29B6F6]" strokeWidth={1.5} />
               <span>
                 {site.address.street},
                 <br />
@@ -80,14 +91,14 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.label}
-                className="grid size-10 place-items-center rounded-full border border-white/15 bg-white/[0.08] text-white shadow-[inset_0_1px_0_rgba(255,255,255,.12)] backdrop-blur-md transition duration-200 ease-brand hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/[0.16]"
+                className={cn("grid size-10 place-items-center rounded-full transition-transform duration-200 ease-brand hover:-translate-y-0.5 hover:scale-105", socialStyle[s.label])}
               >
                 <SocialIcon name={s.label} className="size-[18px]" />
               </a>
             </li>
           ))}
         </ul>
-        <ul className="flex flex-wrap items-center gap-5 rounded-[18px] border border-white/10 bg-white/[0.05] px-5 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,.08)] backdrop-blur-md sm:gap-7" aria-label="Compliance certifications">
+        <ul className="flex flex-wrap items-center gap-5 sm:gap-7" aria-label="Compliance certifications">
           {complianceBadgesColor.map((b) => (
             <li key={b.src}>
               <Link href="/trust-center/" className="block transition duration-300 ease-brand hover:-translate-y-0.5 hover:drop-shadow-[0_6px_14px_rgba(0,0,0,.35)]">
@@ -98,19 +109,19 @@ export function Footer() {
         </ul>
       </div>
 
-      <div className="border-t border-white/[0.12] bg-[#051634]/40">
+      <div className="border-t border-white/10">
         <div className="type-body mx-auto flex w-full max-w-[1440px] flex-col items-center gap-4 px-4 py-7 sm:px-6 lg:flex-row lg:justify-between lg:px-12">
-          <p className="text-white/70">{site.copyright}</p>
+          <p className="text-white/95">{site.copyright}</p>
           <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
             {footerNav.legal.map((l, i) => (
               <Fragment key={l.href}>
                 {i > 0 && (
-                  <li aria-hidden className="hidden text-white/30 xs:list-item">
+                  <li aria-hidden className="hidden text-[#29B6F6] xs:list-item">
                     |
                   </li>
                 )}
                 <li>
-                  <Link href={l.href} className="text-white/70 transition-colors duration-200 hover:text-white">
+                  <Link href={l.href} className="text-white/95 transition-colors hover:text-[#4FC3F7]">
                     {l.label}
                   </Link>
                 </li>
