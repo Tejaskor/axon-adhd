@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { BookOpen, Building2, ChevronRight, House, Scale, type LucideIcon } from "lucide-react";
-import { PageIntro } from "@/components/sections/LegalPage";
+import { PageIntro, legalBg } from "@/components/sections/LegalPage";
 import { Reveal } from "@/components/ui/Reveal";
 import { blogPosts } from "@/content/blogs";
 import { footerNav, mainNav } from "@/content/nav";
@@ -46,14 +46,14 @@ const groups: Array<{ title: string; icon: LucideIcon; tone: string; disc: strin
 export default function SitemapPage() {
   return (
     <>
-      <PageIntro title="SiteMap" path="/sitemap/" />
-      <section className="px-4 pb-16 sm:px-6 sm:pb-20 lg:pb-24">
+      <PageIntro title="SiteMap" path="/sitemap/" width="max-w-[1180px]" />
+      <section className={cn(legalBg, "px-4 pt-8 pb-16 sm:px-6 sm:pt-10 sm:pb-20")}>
         <div className="mx-auto grid w-full max-w-[1180px] gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {groups.map((g, i) => (
             <Reveal key={g.title} delay={i * 0.07} className="flex">
               <nav
                 aria-labelledby={`sm-${g.title}`}
-                className={cn("w-full rounded-[22px] border bg-gradient-to-br to-white p-5 shadow-[0_12px_36px_rgba(15,27,46,.07)] sm:p-6", g.tone)}
+                className={cn("w-full rounded-[22px] border bg-white bg-gradient-to-br to-white p-5 shadow-[0_12px_36px_rgba(15,27,46,.07)] sm:p-6", g.tone)}
               >
                 <div className="mb-4 flex items-center gap-3">
                   <span aria-hidden className={cn("grid size-11 shrink-0 place-items-center rounded-full border border-white/50 bg-gradient-to-br text-white", g.disc)}>

@@ -1,30 +1,19 @@
-import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import type { ReactNode } from "react";
 import type { Block } from "@/content/types";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { Blocks, Inline } from "@/components/ui/RichText";
 import { breadcrumbJsonLd } from "@/lib/seo";
 import { slugify } from "@/lib/utils";
-import { LegalToc } from "./LegalToc";
 
-/** Plain text of a heading block (content files may use **bold** / [link](href) syntax). */
-const plain = (text: string) => text.replace(/\*\*/g, "").replace(/\[([^\]]+)\]\([^)]*\)/g, "$1");
+/** Light-blue page ground shared by the legal pages and the site map. */
+export const legalBg = "bg-[#E7F1FD]";
 
-/** Shared page header: soft gradient band, breadcrumb and title (used by the legal pages and the site map). */
-export function PageIntro({ title, path, children }: { title: string; path: string; children?: React.ReactNode }) {
+/** Centered page header: title, optional intro lines, then a divider (legal pages and the site map). */
+export function PageIntro({ title, path, width = "max-w-[980px]", children }: { title: string; path: string; width?: string; children?: ReactNode }) {
   return (
-    <section className="-mt-[var(--header-height)] bg-gradient-to-b from-primary-soft to-white px-4 pt-[140px] pb-10 sm:px-6 sm:pb-12 lg:pt-[150px]">
-      <div className="mx-auto w-full max-w-[1180px]">
-        <nav aria-label="Breadcrumb" className="type-small mb-4 flex items-center gap-1.5 text-muted">
-          <Link href="/" className="transition-colors hover:text-primary">
-            Home
-          </Link>
-          <ChevronRight aria-hidden className="size-3.5" />
-          <span aria-current="page" className="font-medium text-navy">
-            {title}
-          </span>
-        </nav>
-        <h1 className="type-h1 max-w-[900px] text-balance text-navy">{title}</h1>
+    <section className={`-mt-[var(--header-height)] ${legalBg} px-4 pt-[124px] sm:px-6 sm:pt-[132px]`}>
+      <div className={`mx-auto w-full ${width} border-b border-[#CFDDEE] pb-8 text-center sm:pb-10`}>
+        <h1 className="font-display text-[28px] leading-tight font-bold tracking-[-0.02em] text-balance text-[#111827] sm:text-[34px] lg:text-[38px]">{title}</h1>
         {children}
       </div>
       <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: title, path }])} />
@@ -32,47 +21,67 @@ export function PageIntro({ title, path, children }: { title: string; path: stri
   );
 }
 
+/** Policy text inside a section card: site font, gray copy, bold black sub-headings, blue list markers. */
+const sectionProse = [
+  "font-sans text-[15px] leading-[1.75] text-[#4B5563] break-words sm:text-[16px]",
+  "[&_p]:my-2.5 [&>*:first-child]:mt-0 [&>*:last-child]:mb-0",
+  "[&_h3]:mt-5 [&_h3]:mb-1.5 [&_h3]:font-sans [&_h3]:text-[15.5px] [&_h3]:font-bold [&_h3]:text-[#111827] sm:[&_h3]:text-[16.5px]",
+  "[&_h4]:mt-4 [&_h4]:mb-1 [&_h4]:font-sans [&_h4]:text-[15px] [&_h4]:font-bold [&_h4]:text-[#111827] sm:[&_h4]:text-[16px]",
+  "[&_ul]:my-2.5 [&_ul]:list-disc [&_ul]:space-y-1.5 [&_ul]:pl-5 [&_ul]:marker:text-primary",
+  "[&_ol]:my-2.5 [&_ol]:list-decimal [&_ol]:space-y-1.5 [&_ol]:pl-5 [&_ol]:marker:font-semibold [&_ol]:marker:text-primary",
+  "[&_a]:text-primary [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:text-primary-hover",
+  "[&_strong]:font-semibold [&_strong]:text-[#111827]",
+].join(" ");
+
+type Section = { title: string; id: string; blocks: Block[] };
+
 /**
- * Shared template for Terms, Privacy and Telehealth policies: gradient header (title, lead paragraph and the effective-date
- * line), then a sticky table of contents beside the policy text in a card. Everything before the first numbered heading is
- * treated as the introduction; the rest is the body.
+ * Shared template for Terms, Privacy and Telehealth policies: centered header (title, lead paragraph and the effective-date
+ * line), then each numbered section in its own white card. Everything before the first numbered heading is the introduction.
  */
 export function LegalPage({ title, path, blocks }: { title: string; path: string; blocks: Block[] }) {
   const firstSection = blocks.findIndex((b) => b.type === "h2");
-  const intro = blocks.slice(0, Math.max(firstSection, 0));
-  const body = blocks.slice(Math.max(firstSection, 0));
+  const intro = firstSection === -1 ? [] : blocks.slice(0, firstSection);
   const [lead, ...meta] = intro;
-  const toc = body.flatMap((b) => (b.type === "h2" && "text" in b ? [{ id: slugify(b.text), label: plain(b.text) }] : []));
+
+  const sections: Section[] = [];
+  for (const b of firstSection === -1 ? blocks : blocks.slice(firstSection)) {
+    if (b.type === "h2" && "text" in b) sections.push({ title: b.text, id: slugify(b.text), blocks: [] });
+    else sections.at(-1)?.blocks.push(b);
+  }
 
   return (
     <>
       <PageIntro title={title} path={path}>
         {lead && "text" in lead && (
-          <p className="type-lead mt-4 max-w-[820px] text-pretty text-body">
+          <p className="mx-auto mt-4 max-w-[640px] font-sans text-[16px] leading-[1.7] text-pretty text-[#4B5563] sm:text-[17px]">
             <Inline text={lead.text} />
           </p>
         )}
-        {meta.length > 0 && (
-          <div className="mt-5 flex flex-wrap gap-2.5">
-            {meta.map((m, i) =>
-              "text" in m ? (
-                <p key={i} className="type-small rounded-full border border-primary/20 bg-white/80 px-4 py-1.5 text-primary shadow-[0_4px_14px_rgba(37,120,202,.08)] backdrop-blur-sm">
-                  <Inline text={m.text} />
-                </p>
-              ) : null,
-            )}
-          </div>
+        {meta.map((m, i) =>
+          "text" in m ? (
+            <p key={i} className="mx-auto mt-3 max-w-[760px] font-sans text-[13px] leading-relaxed text-[#6B7280] sm:text-[14px]">
+              <Inline text={m.text} />
+            </p>
+          ) : null,
         )}
       </PageIntro>
 
-      <div className="px-4 pb-16 sm:px-6 sm:pb-20 lg:pb-24">
-        <div className="mx-auto grid w-full max-w-[1180px] gap-6 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-10 xl:grid-cols-[280px_minmax(0,1fr)] xl:gap-12">
-          <LegalToc items={toc} />
-          <article className="min-w-0 rounded-[22px] border border-black/[0.05] bg-white p-6 shadow-[0_12px_36px_rgba(15,27,46,.07)] sm:p-10 lg:p-12">
-            <div className="prose-axon break-words [&_h2]:border-b [&_h2]:border-line-2 [&_h2]:pb-3 [&_h2:first-child]:mt-0">
-              <Blocks blocks={body} />
-            </div>
-          </article>
+      <div className={`${legalBg} px-4 pt-8 pb-16 sm:px-6 sm:pt-10 sm:pb-20`}>
+        <div className="mx-auto w-full max-w-[980px] space-y-3.5 sm:space-y-4">
+          {sections.map((s) => (
+            <section key={s.id} id={s.id} aria-labelledby={`${s.id}-title`} className="rounded-[14px] bg-white px-5 py-6 shadow-[0_2px_10px_rgba(15,27,46,.05)] sm:px-7 sm:py-7">
+              <h2 id={`${s.id}-title`} className="flex items-start gap-2.5 font-sans text-[17px] leading-snug font-bold text-[#163E78] sm:text-[18px]">
+                <span aria-hidden className="mt-[0.5em] size-[7px] shrink-0 rounded-full bg-primary" />
+                <span>
+                  <Inline text={s.title} />
+                </span>
+              </h2>
+              <div className={`mt-3.5 ml-[3px] border-l-2 border-[#D7E2F0] pl-4 sm:pl-5 ${sectionProse}`}>
+                <Blocks blocks={s.blocks} />
+              </div>
+            </section>
+          ))}
         </div>
       </div>
     </>
