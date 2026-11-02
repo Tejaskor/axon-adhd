@@ -78,7 +78,10 @@ export function FAQTabs({ tabs }: { tabs: FaqTab[] }) {
       </div>
       {tabs.map((tab, i) => (
         <div key={tab.id} role="tabpanel" id={`panel-${tab.id}`} aria-labelledby={`tab-${tab.id}`} hidden={active !== i} className="mx-auto mt-8 max-w-[1200px]">
+          {/* Re-keyed when the tab becomes active, so switching tabs always shows that tab's first question open. */}
           <Accordion
+            key={active === i ? `${tab.id}-active` : tab.id}
+            defaultOpen={0}
             variant="minimal"
             items={tab.items.map((f, j) => ({
               id: `${tab.id}-${j}`,
