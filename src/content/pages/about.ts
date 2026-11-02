@@ -22,7 +22,8 @@ export const aboutPage: PageContent = {
       title: "Clarity, Connection, Care, and ADHD Evaluation That’s AXON ADHD.",
       text: ["At AXON ADHD, our ADHD evaluation process is inspired by the brain’s natural communication pathways, bringing clarity and precision to ADHD understanding."],
       ctas: [
-        { label: "Meet Your Aaron", href: "#Meet" },
+        { label: "Start Free ADHD Screening", href: links.freeScreening },
+        { label: "Take a Comprehensive Evaluation", href: links.comprehensive },
       ],
       image: { src: "/images/hero/about hero section.webp", alt: "Illustrated brain with glowing neural pathways", width: 1272, height: 1236 },
       variant: "banner",
@@ -79,6 +80,7 @@ export const aboutPage: PageContent = {
         "Our HIPAA-compliant platform enables patients to receive personalized mental and behavioral health care from anywhere through secure, encrypted audio and video sessions.",
         "With AXON, geographic and scheduling barriers are no longer obstacles. Patients can connect with licensed professionals safely, efficiently, and confidentially at their convenience.",
       ],
+      list: ["HIPAA-compliant platform", "Secure, encrypted data and communication", "Continuity of care anytime, anywhere"],
       image: { src: "/images/services/Transforming-ADHD-Care-with-Science-and-Compassion-.webp", alt: "Transforming ADHD Care with Science and Compassion", width: 1875, height: 1563 },
     },
     {
@@ -99,6 +101,7 @@ export const aboutPage: PageContent = {
         "Many individuals struggle to fit therapy into their busy schedules, from long commutes to inconsistent availability. AXON Digital Health bridges this gap by delivering clinical-grade ADHD and behavioral health care directly to patients’ devices.",
         "Our model helps users stay consistent with care, supporting meaningful progress and improved mental wellness over time.",
       ],
+      list: ["Flexible and convenient care", "Access from home, work, or on the go", "Improved engagement and long-term outcomes"],
       image: { src: "/images/services/Overcoming-Barriers-to-Collaborative-Care.webp", alt: "Overcoming Barriers to Collaborative Care", width: 1913, height: 1050 },
       reverse: true,
     },
