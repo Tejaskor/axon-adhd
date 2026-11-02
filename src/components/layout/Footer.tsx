@@ -37,7 +37,26 @@ function FooterLinks({ title, links }: { title: string; links: Array<{ label: st
 
 export function Footer() {
   return (
-    <footer className="relative isolate overflow-hidden bg-[linear-gradient(81.25deg,#061A36_0.51%,#1D3C67_100%)] text-white">
+    // The wave strip overlaps the previous section's bottom padding (negative margin), so its transparent top shows that
+    // section's background. Only the navy body takes pointer events.
+    <footer className="pointer-events-none relative z-10 -mt-[calc(var(--footer-wave)*0.55)] text-white [--footer-wave:clamp(52px,8vw,140px)]">
+      <svg aria-hidden viewBox="0 0 1440 120" preserveAspectRatio="none" className="-mb-px block h-[var(--footer-wave)] w-full">
+        <defs>
+          <linearGradient id="footer-wave-back" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stopColor="#3F8FEA" />
+            <stop offset="100%" stopColor="#1C63D1" />
+          </linearGradient>
+          {/* Same colours as the body gradient so the front wave runs straight into it. */}
+          <linearGradient id="footer-wave-front" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0.5%" stopColor="#061A36" />
+            <stop offset="100%" stopColor="#1D3C67" />
+          </linearGradient>
+        </defs>
+        <path d="M0,66 C320,26 640,52 980,38 C1200,28 1310,-4 1440,6 L1440,120 L0,120 Z" fill="url(#footer-wave-back)" />
+        <path d="M0,80 C340,52 700,68 1000,56 C1210,48 1330,36 1440,52 L1440,120 L0,120 Z" fill="#1A4FA6" fillOpacity=".7" />
+        <path d="M0,90 C300,70 640,68 960,78 C1180,85 1310,100 1440,104 L1440,120 L0,120 Z" fill="url(#footer-wave-front)" />
+      </svg>
+      <div className="pointer-events-auto relative isolate overflow-hidden bg-[linear-gradient(81.25deg,#061A36_0.51%,#1D3C67_100%)]">
       {/* Full-width faded wordmark resting on the footer's bottom edge, behind the content. */}
       <p
         aria-hidden
@@ -45,7 +64,7 @@ export function Footer() {
       >
         AXON ADHD
       </p>
-      <div className="mx-auto grid w-full max-w-[1440px] gap-10 px-4 pt-12 pb-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.7fr_0.9fr_0.9fr_1.3fr] lg:gap-12 lg:px-12 lg:pt-16 lg:pb-10">
+      <div className="mx-auto grid w-full max-w-[1440px] gap-10 px-4 pt-6 pb-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.7fr_0.9fr_0.9fr_1.3fr] lg:gap-12 lg:px-12 lg:pt-6 lg:pb-10">
         <div className="sm:col-span-2 lg:col-span-1">
           <Link href="/" aria-label={`${site.name} home`} className="flex h-14 items-center sm:h-[68px]">
             <Image src={site.footerLogo.src} alt="AXON ADHD Brand Logo" width={site.footerLogo.width} height={site.footerLogo.height} className="h-14 w-auto sm:h-[68px]" />
@@ -129,6 +148,7 @@ export function Footer() {
             ))}
           </ul>
         </div>
+      </div>
       </div>
     </footer>
   );
