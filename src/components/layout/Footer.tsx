@@ -21,7 +21,7 @@ const socialStyle: Record<string, string> = {
 function FooterLinks({ title, links }: { title: string; links: Array<{ label: string; href: string }> }) {
   return (
     <div>
-      <h2 className="flex items-center font-display text-[17px] font-bold tracking-normal text-white uppercase lg:h-[68px]">{title}</h2>
+      <h2 className="flex items-center font-display text-[15px] font-extrabold tracking-[0.08em] text-white uppercase lg:h-[68px]">{title}</h2>
       <ul className="mt-6 space-y-4">
         {links.map((l) => (
           <li key={l.href}>
@@ -37,26 +37,7 @@ function FooterLinks({ title, links }: { title: string; links: Array<{ label: st
 
 export function Footer() {
   return (
-    <footer className="bg-white text-white">
-      {/* Layered waves rising from white into the navy body: light dome cresting right of centre, two mid layers, navy front. */}
-      <svg aria-hidden viewBox="0 0 1440 80" preserveAspectRatio="none" className="-mb-px block h-[clamp(40px,5.6vw,96px)] w-full">
-        <defs>
-          <linearGradient id="footer-wave-light" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0%" stopColor="#6AB2F7" />
-            <stop offset="100%" stopColor="#2F7FE0" />
-          </linearGradient>
-          {/* Same colours as the body gradient so the front wave runs straight into it. */}
-          <linearGradient id="footer-wave-front" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0%" stopColor="#041C46" />
-            <stop offset="100%" stopColor="#0A2B60" />
-          </linearGradient>
-        </defs>
-        <path d="M0,52 C265,38 575,22 795,13 C930,5 1015,1 1105,12 C1235,30 1340,50 1440,62 L1440,80 L0,80 Z" fill="url(#footer-wave-light)" />
-        <path d="M0,60 C300,52 600,38 860,30 C1000,26 1110,24 1200,34 C1300,46 1380,58 1440,66 L1440,80 L0,80 Z" fill="#2C74D6" fillOpacity=".9" />
-        <path d="M0,66 C320,62 640,50 900,44 C1080,40 1220,44 1440,70 L1440,80 L0,80 Z" fill="#1A55B4" fillOpacity=".85" />
-        <path d="M0,72 C350,70 650,60 900,54 C1100,50 1270,58 1440,76 L1440,80 L0,80 Z" fill="url(#footer-wave-front)" />
-      </svg>
-      <div className="relative isolate overflow-hidden bg-[linear-gradient(81.25deg,#041C46_0%,#0A2B60_100%)]">
+    <footer className="relative isolate overflow-hidden bg-[linear-gradient(81.25deg,#061A36_0.51%,#1D3C67_100%)] text-white">
       {/* Full-width faded wordmark resting on the footer's bottom edge, behind the content. */}
       <p
         aria-hidden
@@ -64,7 +45,7 @@ export function Footer() {
       >
         AXON ADHD
       </p>
-      <div className="mx-auto grid w-full max-w-[1440px] gap-10 px-4 pt-6 pb-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.7fr_0.9fr_0.9fr_1.3fr] lg:gap-12 lg:px-12 lg:pt-6 lg:pb-10">
+      <div className="mx-auto grid w-full max-w-[1440px] gap-10 px-4 pt-12 pb-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.7fr_0.9fr_0.9fr_1.3fr] lg:gap-12 lg:px-12 lg:pt-16 lg:pb-10">
         <div className="sm:col-span-2 lg:col-span-1">
           <Link href="/" aria-label={`${site.name} home`} className="flex h-14 items-center sm:h-[68px]">
             <Image src={site.footerLogo.src} alt="AXON ADHD Brand Logo" width={site.footerLogo.width} height={site.footerLogo.height} className="h-14 w-auto sm:h-[68px]" />
@@ -80,7 +61,7 @@ export function Footer() {
         </div>
 
         <div className="sm:col-span-2 lg:col-span-1">
-          <h2 className="flex items-center font-display text-[17px] font-bold tracking-normal text-white uppercase lg:h-[68px]">Contact Us</h2>
+          <h2 className="flex items-center font-display text-[15px] font-extrabold tracking-[0.08em] text-white uppercase lg:h-[68px]">Contact Us</h2>
           <address className="type-body mt-6 space-y-4 not-italic">
             <a href={`mailto:${site.email}`} className="flex items-center gap-4 text-white/95 transition-colors hover:text-[#4FC3F7]">
               <Mail aria-hidden className="size-6 shrink-0 text-[#29B6F6]" strokeWidth={1.5} /> {site.email}
@@ -148,7 +129,6 @@ export function Footer() {
             ))}
           </ul>
         </div>
-      </div>
       </div>
     </footer>
   );
