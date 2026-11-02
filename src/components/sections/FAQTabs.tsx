@@ -77,10 +77,9 @@ export function FAQTabs({ tabs }: { tabs: FaqTab[] }) {
         </div>
       </div>
       {tabs.map((tab, i) => (
-        <div key={tab.id} role="tabpanel" id={`panel-${tab.id}`} aria-labelledby={`tab-${tab.id}`} hidden={active !== i} className="mx-auto mt-6 max-w-content">
+        <div key={tab.id} role="tabpanel" id={`panel-${tab.id}`} aria-labelledby={`tab-${tab.id}`} hidden={active !== i} className="mx-auto mt-8 max-w-[1200px]">
           <Accordion
-            variant="cards"
-            columns={2}
+            variant="minimal"
             items={tab.items.map((f, j) => ({
               id: `${tab.id}-${j}`,
               title: f.q,

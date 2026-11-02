@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Plus } from "lucide-react";
 import { useEffect, useId, useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
@@ -14,9 +14,10 @@ export type AccordionItem = {
 
 /**
  * - `default`: one bordered panel with dividers (content pages, blog, trust center).
+ * - `minimal`: single-column cards, Privacy-page type, "+" that turns into "×" (the /adhd-faqs page).
  * - `cards`: separate rounded cards with a rotating chevron and a blue bar beside the answer (home page FAQ and /adhd-faqs).
  */
-type Variant = "default" | "cards";
+type Variant = "default" | "cards" | "minimal";
 
 const styles: Record<
   Variant,
@@ -38,6 +39,28 @@ const styles: Record<
       ),
     title: "",
     body: "type-body prose-axon px-5 pt-1 pb-6 sm:px-7 [&>*:first-child]:mt-0 [&>*:last-child]:mb-0",
+  },
+  minimal: {
+    list: "flex flex-col gap-3 sm:gap-3.5",
+    // Closed: white with a hairline border; hover tints it light blue. Open: soft grey-blue fill, no border.
+    item: (open) =>
+      cn(
+        "rounded-[10px] border transition-[background-color,border-color] duration-300 ease-brand",
+        open ? "border-transparent bg-[#F1F5F9]" : "border-[#E4E9F0] bg-white hover:border-[#BCD4EF] hover:bg-[#EEF5FD]",
+      ),
+    button: (open) =>
+      cn(
+        "flex w-full items-center gap-4 rounded-[10px] px-4 py-[18px] text-left transition-colors duration-200 sm:px-5",
+        open ? "pb-2.5 text-[#111827]" : "text-[#111827] hover:text-primary",
+      ),
+    title: "min-w-0 flex-1 font-sans text-[15px] leading-snug font-semibold sm:text-[16px]",
+    // Same text styling as the Privacy Policy body: site font, grey copy, blue list markers and links.
+    body: cn(
+      "mx-4 mb-5 border-l-2 border-primary pl-3.5 font-sans text-[14px] leading-[1.75] break-words text-[#4B5563] sm:mx-5 sm:pl-4 sm:text-[15px]",
+      "[&_p]:my-2 [&>*:first-child]:mt-0 [&>*:last-child]:mb-0",
+      "[&_ul]:my-2 [&_ul]:list-disc [&_ul]:space-y-1 [&_ul]:pl-5 [&_ul]:marker:text-primary [&_ol]:my-2 [&_ol]:list-decimal [&_ol]:space-y-1 [&_ol]:pl-5 [&_ol]:marker:text-primary",
+      "[&_a]:text-primary [&_a]:underline [&_a]:underline-offset-2 [&_strong]:font-semibold [&_strong]:text-[#111827]",
+    ),
   },
   cards: {
     list: "flex flex-col gap-4",
@@ -71,6 +94,9 @@ const styles: Record<
 };
 
 function Icon({ variant, open }: { variant: Variant; open: boolean }) {
+  if (variant === "minimal") {
+    return <Plus aria-hidden strokeWidth={1.5} className={cn("size-5 shrink-0 transition-transform duration-300 ease-brand", open ? "rotate-45 text-[#374151]" : "text-current")} />;
+  }
   if (variant === "cards") {
     return (
       <ChevronDown

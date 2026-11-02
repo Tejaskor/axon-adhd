@@ -14,12 +14,12 @@ export const metadata = pageMetadata({
 export default function FaqPage() {
   return (
     <>
-      <section className="-mt-[var(--header-height)] bg-[linear-gradient(180deg,#FFFFFF_0%,#EFEFEF_100%)] pt-[150px] pb-[50px] lg:pb-10 xl:pb-[50px]">
+      <section className="-mt-[var(--header-height)] bg-white pt-[150px] pb-16 sm:pb-20">
         <Container>
           {/* Only the heading block is centred; the toggle centres itself and answers stay left-aligned. */}
           <div className="flex flex-col items-center gap-5 text-center">
-            <h1 className="text-[22px] leading-[1.2] font-semibold text-[#1E242A] sm:text-[40px]">Frequently Asked Questions</h1>
-            <p className="text-[18px] text-[#888D92]">We have the answers for you!</p>
+            <h1 className="font-sans text-[26px] leading-[1.2] font-bold text-[#111827] sm:text-[36px]">Frequently Asked Questions</h1>
+            <p className="-mt-2 font-sans text-[15px] text-[#6B7280] sm:text-[16px]">We have the answers for you!</p>
           </div>
           <div className="mt-5">
             <FAQTabs tabs={faqTabs} />
