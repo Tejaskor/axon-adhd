@@ -1,83 +1,138 @@
 import Link from "next/link";
-import { BookOpen, Building2, ChevronRight, House, Scale, type LucideIcon } from "lucide-react";
-import { PageIntro, legalBg } from "@/components/sections/LegalPage";
-import { Reveal } from "@/components/ui/Reveal";
-import { blogPosts } from "@/content/blogs";
-import { footerNav, mainNav } from "@/content/nav";
-import { pageMetadata } from "@/lib/seo";
-import { cn } from "@/lib/utils";
+import { ButtonLink } from "@/components/ui/Button";
+import { JsonLd } from "@/components/ui/JsonLd";
+import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({ title: "Site Map", description: "Every page on the AXON ADHD website.", path: "/sitemap/" });
 
-const services = mainNav.flatMap((item) => (item.kind === "mega" ? item.links.map((l) => ({ label: l.label, href: l.href })) : []));
+type Leaf = { label: string; href: string };
+type Item = { label: string; href?: string; children?: Leaf[] };
+type Group = { title: string; items: Item[] };
 
-/** Each group gets a brand tint (card wash, border, icon disc) so the four columns read as distinct blocks. */
-const groups: Array<{ title: string; icon: LucideIcon; tone: string; disc: string; links: Array<{ label: string; href: string }> }> = [
+/** Numbered tree, matching the live site map: groups → numbered pages (1.1, 1.2…) → un-numbered sub-pages. */
+const groups: Group[] = [
   {
     title: "Quick Links",
-    icon: House,
-    tone: "from-[#22C083]/[0.12] border-[#22C083]/30",
-    disc: "from-[#4FE0AE] to-[#16A56E] shadow-[0_8px_20px_rgba(34,192,131,.35)]",
-    links: [{ label: "Home", href: "/" }, ...services],
+    items: [
+      { label: "Home", href: "/" },
+      {
+        label: "Services",
+        children: [
+          { label: "ADHD Assessments", href: "/comprehensive-adhd-assessment/" },
+          { label: "ADHD Care", href: "/adhd-care/" },
+          { label: "Accommodation Documentation & Advocacy", href: "/accommodation-documentation-advocacy/" },
+        ],
+      },
+      {
+        label: "Referral",
+        children: [
+          { label: "Referral University", href: "/adhd-referral-for-universities/" },
+          { label: "Referral PCP", href: "/referral-adhd-partners/" },
+        ],
+      },
+      {
+        label: "Resources",
+        children: [
+          { label: "Blog", href: "/blog/" },
+          { label: "Case Study", href: "/case-studies/" },
+        ],
+      },
+    ],
   },
   {
     title: "Company",
-    icon: Building2,
-    tone: "from-primary/[0.12] border-primary/30",
-    disc: "from-primary-400 to-primary-600 shadow-[0_8px_20px_rgba(37,120,202,.35)]",
-    links: [...footerNav.company, { label: "Trust Center", href: "/trust-center/" }],
-  },
-  {
-    title: "Blog",
-    icon: BookOpen,
-    tone: "from-[#EB8B01]/[0.12] border-[#EB8B01]/30",
-    disc: "from-[#FFC15A] to-[#E08200] shadow-[0_8px_20px_rgba(235,139,1,.35)]",
-    links: blogPosts.map((p) => ({ label: p.title, href: `/blog/${p.slug}/` })),
+    items: [
+      { label: "About", href: "/about-adhd-evaluation/" },
+      { label: "FAQ", href: "/adhd-faqs/" },
+      { label: "Testimonials", href: "/#Testimonials" },
+      { label: "Contact Us", href: "/#contact" },
+    ],
   },
   {
     title: "Legal Pages",
-    icon: Scale,
-    tone: "from-[#8B5CF6]/[0.12] border-[#8B5CF6]/30",
-    disc: "from-[#A78BFA] to-[#7C3AED] shadow-[0_8px_20px_rgba(124,58,237,.32)]",
-    links: footerNav.legal,
+    items: [
+      { label: "Privacy Policy", href: "/axon-adhd-privacy-policy/" },
+      { label: "Terms & Conditions", href: "/terms-conditions/" },
+      { label: "Telehealth Policy", href: "/telehealth-policy/" },
+      { label: "Sitemap", href: "/sitemap/" },
+    ],
   },
 ];
 
-export default function SitemapPage() {
+function Label({ label, href }: { label: string; href?: string }) {
+  return href ? (
+    <Link href={href} className="text-[15px] leading-snug text-ink-2 underline-offset-2 transition-colors hover:text-primary hover:underline">
+      {label}
+    </Link>
+  ) : (
+    <span className="text-[15px] leading-snug text-ink-2">{label}</span>
+  );
+}
+
+/** One column: dark root box, gray numbered boxes on a trunk line, and L-shaped connectors to sub-pages. */
+function Tree({ group, n }: { group: Group; n: number }) {
   return (
-    <>
-      <PageIntro title="SiteMap" path="/sitemap/" width="max-w-[1180px]" />
-      <section className={cn(legalBg, "px-4 pt-8 pb-16 sm:px-6 sm:pt-10 sm:pb-20")}>
-        <div className="mx-auto grid w-full max-w-[1180px] gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
-          {groups.map((g, i) => (
-            <Reveal key={g.title} delay={i * 0.07} className="flex">
-              <nav
-                aria-labelledby={`sm-${g.title}`}
-                className={cn("w-full rounded-[22px] border bg-white bg-gradient-to-br to-white p-5 shadow-[0_12px_36px_rgba(15,27,46,.07)] sm:p-6", g.tone)}
-              >
-                <div className="mb-4 flex items-center gap-3">
-                  <span aria-hidden className={cn("grid size-11 shrink-0 place-items-center rounded-full border border-white/50 bg-gradient-to-br text-white", g.disc)}>
-                    <g.icon className="size-5 stroke-[1.7]" />
-                  </span>
-                  <h2 id={`sm-${g.title}`} className="type-h4 text-navy">
-                    {g.title}
-                  </h2>
-                </div>
-                <ul className="space-y-0.5">
-                  {g.links.map((l) => (
-                    <li key={l.href}>
-                      <Link href={l.href} className="group type-body flex items-start justify-between gap-2 rounded-[12px] px-3 py-2.5 font-medium text-ink-2 transition-colors duration-200 hover:bg-white hover:text-primary">
-                        <span className="min-w-0 leading-snug">{l.label}</span>
-                        <ChevronRight aria-hidden className="mt-1 size-4 shrink-0 text-primary/40 transition duration-200 group-hover:translate-x-0.5 group-hover:text-primary" />
-                      </Link>
+    <nav aria-labelledby={`sm-${n}`}>
+      <h2 id={`sm-${n}`} className="text-[22px] leading-tight font-bold text-primary sm:text-[24px]">
+        {group.title}
+      </h2>
+      <div className="mt-6 pl-4">
+        <span aria-hidden className="relative z-10 grid size-6 place-items-center bg-[#2B2B2B] text-[12px] font-semibold text-white">
+          {n}
+        </span>
+        {/* The list's left border is the trunk running down from the centre of the root box. */}
+        <ol className="ml-3 border-l border-[#9CA3AF] pt-3 pb-1">
+          {group.items.map((item, i) => (
+            <li key={item.label} className="pt-3 pl-8">
+              <div className="relative flex min-h-6 items-center gap-3.5 before:absolute before:top-1/2 before:-left-8 before:w-8 before:border-t before:border-[#9CA3AF]">
+                <span aria-hidden className="grid h-6 w-[35px] shrink-0 place-items-center bg-[#555] text-[11.5px] font-semibold text-white">
+                  {n}.{i + 1}
+                </span>
+                <Label label={item.label} href={item.href} />
+              </div>
+              {item.children && (
+                <ul className="ml-[17px] border-l border-[#9CA3AF] pb-1">
+                  {item.children.map((c) => (
+                    <li key={c.href} className="pt-4 pl-11">
+                      <div className="relative before:absolute before:top-[0.7em] before:-left-11 before:w-10 before:border-t before:border-[#9CA3AF]">
+                        <Label label={c.label} href={c.href} />
+                      </div>
                     </li>
                   ))}
                 </ul>
-              </nav>
-            </Reveal>
+              )}
+            </li>
+          ))}
+        </ol>
+      </div>
+    </nav>
+  );
+}
+
+export default function SitemapPage() {
+  return (
+    <section className="-mt-[var(--header-height)] bg-white pt-[128px] pb-20 sm:pt-[136px] sm:pb-24">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
+        <h1 className="text-[34px] leading-tight font-bold tracking-[-0.02em] text-navy sm:text-[40px]">
+          Site<span className="text-primary">Map</span>
+        </h1>
+        <span aria-hidden className="mt-2 block h-[3px] w-14 rounded-full bg-gradient-to-r from-[#22C083] to-primary" />
+        <p className="mt-6 text-[16px] text-body sm:text-[17px]">For Easy Navigation and Better Visibility.</p>
+        <ButtonLink
+          href="/#contact"
+          variant="outline"
+          className="mt-7 h-[52px] w-[220px] rounded-[4px]! border-2 bg-white text-[14px] font-semibold tracking-[0.04em] uppercase hover:bg-primary hover:text-white"
+        >
+          Contact Us
+        </ButtonLink>
+
+        <div className="mt-14 grid gap-12 sm:mt-16 md:grid-cols-2 lg:grid-cols-3 lg:gap-10">
+          {groups.map((g, i) => (
+            <Tree key={g.title} group={g} n={i + 1} />
           ))}
         </div>
-      </section>
-    </>
+      </div>
+      <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Site Map", path: "/sitemap/" }])} />
+    </section>
   );
 }
