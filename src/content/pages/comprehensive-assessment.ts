@@ -14,8 +14,8 @@ export const comprehensiveAssessmentPage: PageContent = {
     {
       type: "hero",
       variant: "photo",
-      eyebrow: "Comprehensive ADHD Assessment",
       title: "Comprehensive ADHD Assessment & Evaluation in Arlington, VA",
+      accent: "ADHD Assessment &",
       text: [
         "Start with a free behavioral health check, then move to a full, clinically validated ADHD assessment and evaluation in Arlington, VA, designed to provide accurate diagnoses and personalized treatment recommendations.",
       ],
@@ -28,7 +28,6 @@ export const comprehensiveAssessmentPage: PageContent = {
     },
     {
       type: "assessmentOverview",
-      eyebrow: "Comprehensive ADHD Assessment",
       title: "Comprehensive ADHD Evaluation in Arlington, VA",
       accent: "Arlington, VA",
       subtitle: "A complete assessment designed to bring accuracy, clarity, and direction to your ADHD journey.",
@@ -46,7 +45,6 @@ export const comprehensiveAssessmentPage: PageContent = {
     {
       type: "steps",
       variant: "journey",
-      eyebrow: "YOUR ADHD JOURNEY",
       accent: "Three Easy Steps",
       title: "From Diagnosis to Thriving in Three Easy Steps with AXON ADHD.",
       items: [
@@ -58,7 +56,6 @@ export const comprehensiveAssessmentPage: PageContent = {
     {
       type: "split",
       variant: "glass",
-      eyebrow: "Free Assessment",
       accent: "Free Assessment",
       title: "What You'll Learn from the Free Assessment",
       paragraphs: [
@@ -84,18 +81,13 @@ export const comprehensiveAssessmentPage: PageContent = {
       type: "features",
       id: "how-it-works",
       variant: "glassFlow",
-      eyebrow: "How It Works",
-      accent: "Clarity",
-      title: "A Simple Path to Clarity",
-      subtitle: "A straightforward three-step process to understand your ADHD symptoms and access professional support.",
+      accent: "Works",
+      title: "How It Works",
+      subtitle: "A simple, three-step process to understand your ADHD symptoms and access professional support.",
       items: [
-        { title: "Complete Online Screening", text: "Answer research-backed questions about your symptoms and experiences in just 5–10 minutes." },
-        { title: "Get Instant Results", text: "Receive your preliminary score and personalized insights to help you understand your results." },
-        {
-          title: "Proceed to Comprehensive Evaluation",
-          text: "Take the full evaluation from the comfort of your own home and have an official diagnosis you can trust.",
-          image: { src: "/images/assessment/features/licensed-adhd-clinician.webp", alt: "Clinician speaking with an adult patient in a bright, modern consultation room", width: 1536, height: 1024 },
-        },
+        { title: "Complete Online Screening", text: "Answer research-backed questions in just 5–10 minutes." },
+        { title: "Get Instant Results", text: "Receive your preliminary score and personalized insights." },
+        { title: "Proceed to Comprehensive ADHD Evaluation", text: "Take the full eval from the comfort of your own home and have an official diagnosis you can trust." },
       ],
     },
     {

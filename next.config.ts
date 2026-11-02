@@ -16,6 +16,10 @@ const nextConfig: NextConfig = {
   },
   images: {
     formats: ["image/avif", "image/webp"],
+    // Vercel's /_next/image endpoint answers 402 (OPTIMIZED_IMAGE_REQUEST_PAYMENT_REQUIRED) once the account's image-optimization
+    // quota is used up, which blanks every <Image>. The sources in /public are already compressed WebP (<0.5 MB each), so they
+    // are served straight from the CDN instead. Remove this line if the plan's optimization quota is raised.
+    unoptimized: true,
   },
   // Preserve WordPress URLs that had trailing slashes / alternate spellings.
   trailingSlash: true,

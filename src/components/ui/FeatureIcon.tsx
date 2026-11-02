@@ -13,6 +13,7 @@ import {
   FileText,
   FlaskConical,
   GraduationCap,
+  House,
   HeartHandshake,
   HeartPulse,
   Hourglass,
@@ -32,10 +33,12 @@ import {
   Waypoints,
   Zap,
   type LucideIcon,
+  Lightbulb,
 } from "lucide-react";
 
 const icons = {
   award: Award,
+  bulb: Lightbulb,
   badge: BadgeCheck,
   brain: Brain,
   calendar: CalendarCheck,
@@ -46,6 +49,7 @@ const icons = {
   file: FileText,
   flask: FlaskConical,
   graduation: GraduationCap,
+  home: House,
   handshake: HeartHandshake,
   heart: HeartPulse,
   lock: Lock,

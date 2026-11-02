@@ -23,9 +23,9 @@ export function MegaMenu({ item, id, onNavigate }: { item: MegaItem; id: string;
                 <Link
                   href={link.href}
                   onNavigate={onNavigate}
-                  className="group flex items-start gap-[13px] rounded-[14px] px-3 py-2.5 transition-colors hover:bg-[rgba(59,130,246,.08)] focus-visible:bg-[rgba(59,130,246,.08)]"
+                  className="group flex items-start gap-[13px] rounded-[14px] px-3 py-2.5 transition-colors hover:bg-[rgba(37,120,202,.08)] focus-visible:bg-[rgba(37,120,202,.08)]"
                 >
-                  <span className="grid size-11 shrink-0 place-items-center rounded-[12px] bg-[rgba(59,130,246,.12)] text-brand shadow-[inset_0_0_0_1px_rgba(59,130,246,.1)] transition-[transform,background-color] duration-200 ease-brand group-hover:scale-[1.06] group-hover:bg-[rgba(59,130,246,.2)]">
+                  <span className="grid size-11 shrink-0 place-items-center rounded-[12px] bg-[rgba(37,120,202,.12)] text-brand shadow-[inset_0_0_0_1px_rgba(37,120,202,.1)] transition-[transform,background-color] duration-200 ease-brand group-hover:scale-[1.06] group-hover:bg-[rgba(37,120,202,.2)]">
                     <NavIcon name={link.icon} className="size-5" />
                   </span>
                   <span className="pt-px">

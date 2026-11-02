@@ -6,7 +6,7 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
 
-const glass = "border border-white/80 bg-white/70 backdrop-blur-sm shadow-[0_18px_44px_rgba(37,106,204,.12)] lg:backdrop-blur-xl";
+const glass = "border border-white/80 bg-white/70 backdrop-blur-sm shadow-[0_18px_44px_rgba(37,120,202,.12)] lg:backdrop-blur-xl";
 
 /** Benefit-row accents, in item order: blue · teal · amber. */
 const rowTones = [
@@ -24,24 +24,24 @@ const detailIcons: ComponentType<{ className?: string }>[] = [Clock, FileText, Z
 export function FreeAssessmentGlass({ data }: { data: SplitSection }) {
   const [lead, tail] = data.accent && data.title.includes(data.accent) ? data.title.split(data.accent) : [data.title, ""];
   return (
-    <section id={data.id} className="scroll-mt-[var(--header-offset)] bg-[radial-gradient(55%_60%_at_12%_30%,rgba(37,106,204,.14),transparent),radial-gradient(50%_55%_at_92%_70%,rgba(86,160,255,.18),transparent),linear-gradient(180deg,#F6FAFF_0%,#EAF2FD_100%)] py-12 sm:py-16">
+    <section id={data.id} className="scroll-mt-[var(--header-offset)] bg-[radial-gradient(55%_60%_at_12%_30%,rgba(37,120,202,.14),transparent),radial-gradient(50%_55%_at_92%_70%,rgba(84,152,219,.18),transparent),linear-gradient(180deg,#F6FAFF_0%,#EAF2FD_100%)] py-12 sm:py-16">
       <Container>
-        <div className="rounded-[28px] border border-white/80 bg-white/45 p-5 shadow-[0_30px_80px_rgba(37,106,204,.14)] backdrop-blur-sm sm:rounded-[36px] sm:p-8 lg:p-12">
+        <div className="rounded-[28px] border border-white/80 bg-white/45 p-5 shadow-[0_30px_80px_rgba(37,120,202,.14)] backdrop-blur-sm sm:rounded-[36px] sm:p-8 lg:p-12">
           <div className="grid gap-8 lg:grid-cols-[1fr_1.05fr] lg:gap-12">
             <div className="contents lg:flex lg:flex-col">
               <div className="order-1">
                 {data.eyebrow && (
-                  <p className="inline-flex items-center gap-2 rounded-full border border-white bg-white/75 px-3.5 py-1.5 text-[12px] font-bold tracking-[0.12em] text-primary uppercase shadow-[0_4px_14px_rgba(37,106,204,.10)]">
+                  <p className="inline-flex items-center gap-2 rounded-full border border-white bg-white/75 px-3.5 py-1.5 text-[12px] font-bold tracking-[0.12em] text-primary uppercase shadow-[0_4px_14px_rgba(37,120,202,.10)]">
                     <Sparkles className="size-3.5" aria-hidden />
                     {data.eyebrow}
                   </p>
                 )}
-                <h2 className="mt-5 font-display text-[30px] leading-[1.12] font-bold tracking-[-0.02em] text-balance text-navy sm:text-[38px] lg:text-[46px]">
+                <h2 className="type-h2 mt-5 text-balance text-navy">
                   {lead}
                   {data.accent && <span className="text-primary">{data.accent}</span>}
                   {tail}
                 </h2>
-                <div className="mt-5 max-w-[560px] space-y-4 text-[15px] leading-relaxed text-body sm:text-[16px]">
+                <div className="type-body mt-5 max-w-[560px] space-y-4 text-body">
                   {data.paragraphs?.map((p) => (
                     <p key={p}>{p}</p>
                   ))}
@@ -54,13 +54,13 @@ export function FreeAssessmentGlass({ data }: { data: SplitSection }) {
                   return (
                     <li key={f.title}>
                       <Reveal delay={i * 0.06}>
-                        <div className={cn("group flex items-center gap-4 rounded-[22px] px-4 py-3.5 transition duration-300 ease-brand hover:-translate-y-0.5 hover:shadow-[0_22px_48px_rgba(37,106,204,.18)] motion-reduce:transition-none motion-reduce:hover:translate-y-0", glass)}>
+                        <div className={cn("group flex items-center gap-4 rounded-[22px] px-4 py-3.5 transition duration-300 ease-brand hover:-translate-y-0.5 hover:shadow-[0_22px_48px_rgba(37,120,202,.18)] motion-reduce:transition-none motion-reduce:hover:translate-y-0", glass)}>
                           <span className={cn("flex size-12 shrink-0 items-center justify-center rounded-full", chip)}>
                             <Icon className="size-6" aria-hidden />
                           </span>
                           <div className="min-w-0 flex-1">
-                            <h3 className="text-[17px] leading-tight font-bold text-navy">{f.title}</h3>
-                            <p className="mt-0.5 text-[14px] leading-snug text-body">{f.text}</p>
+                            <h3 className="type-h4 text-navy">{f.title}</h3>
+                            <p className="type-small mt-0.5 text-body">{f.text}</p>
                           </div>
                           <span aria-hidden className={cn("flex size-9 shrink-0 items-center justify-center rounded-full transition-transform duration-300 group-hover:translate-x-0.5", chip)}>
                             <ChevronRight className="size-5" />
@@ -91,12 +91,12 @@ export function FreeAssessmentGlass({ data }: { data: SplitSection }) {
                       const Icon = detailIcons[i % detailIcons.length];
                       return (
                         <li key={d.title} className="flex items-center gap-3 sm:px-4 sm:first:pl-0 sm:last:pr-0 sm:[&:not(:first-child)]:border-l sm:[&:not(:first-child)]:border-line-3">
-                          <span className="flex size-11 shrink-0 items-center justify-center rounded-full border border-white bg-white/80 text-primary shadow-[0_4px_12px_rgba(37,106,204,.12)]">
+                          <span className="flex size-11 shrink-0 items-center justify-center rounded-full border border-white bg-white/80 text-primary shadow-[0_4px_12px_rgba(37,120,202,.12)]">
                             <Icon className="size-5" aria-hidden />
                           </span>
                           <span>
-                            <span className="block text-[15px] leading-tight font-bold text-navy">{d.title}</span>
-                            <span className="block text-[13px] leading-snug text-body">{d.text}</span>
+                            <span className="type-body block font-bold text-navy">{d.title}</span>
+                            <span className="type-small block text-body">{d.text}</span>
                           </span>
                         </li>
                       );

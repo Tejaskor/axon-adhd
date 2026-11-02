@@ -31,10 +31,10 @@ export function Modal({ open, onClose, title, children }: { open: boolean; onClo
         <button type="button" onClick={onClose} aria-label="Close" className="absolute top-3 right-3 rounded-full p-2 text-muted hover:bg-surface hover:text-ink">
           <X className="size-5" aria-hidden />
         </button>
-        <h3 id="modal-title" className="font-display text-[24px] font-bold text-navy">
+        <h3 id="modal-title" className="type-h3 text-navy">
           {title}
         </h3>
-        <div className="mt-3 text-[15px] leading-relaxed text-body">{children}</div>
+        <div className="type-body mt-3 text-body">{children}</div>
       </div>
     </dialog>
   );

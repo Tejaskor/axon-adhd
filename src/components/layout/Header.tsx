@@ -31,16 +31,6 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const navRef = useRef<HTMLElement>(null);
-  const [scrolled, setScrolled] = useState(false);
-
-  // Top of page: flat full-width white bar. Once scrolled: floating glass pill.
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   // Close dropdowns on Escape / outside click.
   useEffect(() => {
     if (!openMenu) return;
@@ -75,18 +65,10 @@ export function Header() {
   const isActive = (href: string) => href !== "/" && pathname.startsWith(href.replace(/\/$/, ""));
 
   return (
-    // Both states total 96px = --header-height (globals.css), which page heroes pull up behind the header:
-    // top = h-[92px] + pb-1; scrolled = pt-3 + h-20 + pb-1. Stickiness lives on the wrapper in app/layout.tsx.
-    <header className={cn("pb-1 transition-[padding] duration-500 ease-brand", scrolled ? "px-4 pt-3" : "px-0 pt-0")}>
-      <div
-        className={cn(
-          "relative mx-auto flex w-full items-center justify-between gap-3 border transition-[max-width,height,padding,border-radius,background-color,border-color,box-shadow] duration-500 ease-brand lg:gap-[clamp(10px,2.2vw,32px)]",
-          scrolled
-            ? "h-20 max-w-[1340px] rounded-[40px] border-white/60 bg-white/50 px-3 shadow-[0_12px_36px_rgba(15,27,46,.12),inset_0_1px_0_rgba(255,255,255,.7)] backdrop-blur-xl backdrop-saturate-150 xs:px-4"
-            : // Full-bleed bar; side padding keeps the content on the 1340px content column.
-              "h-[92px] max-w-full rounded-t-none rounded-b-[24px] border-transparent bg-white px-[max(16px,calc((100%-1340px)/2+16px))] shadow-[0_1px_0_rgba(15,27,46,.06),0_6px_20px_rgba(15,27,46,.04)]",
-        )}
-      >
+    // pt-3 + h-20 + pb-1 = 96px = --header-height (globals.css), which page heroes pull up behind the header.
+    // Stickiness lives on the wrapper in app/layout.tsx; the floating glass pill looks the same at the top and while scrolling.
+    <header className="px-4 pt-3 pb-1">
+      <div className="relative mx-auto flex h-20 w-full max-w-[1340px] items-center justify-between gap-3 rounded-[40px] border border-white/60 bg-white/50 px-3 shadow-[0_12px_36px_rgba(15,27,46,.12),inset_0_1px_0_rgba(255,255,255,.7)] backdrop-blur-xl backdrop-saturate-150 xs:px-4 lg:gap-[clamp(10px,2.2vw,32px)]">
         <Link href="/" aria-label={`${site.name} home`} className="shrink-0">
           <Image
             src={site.headerLogo.src}
@@ -149,11 +131,11 @@ export function Header() {
         </nav>
 
         <div className="hidden shrink-0 items-center gap-3 lg:flex xl:gap-4">
-          <ButtonLink href={ctas.evaluation.href} variant="white" size="sm" className="cta-trace h-[54px]! rounded-[9999px]! border border-line-3 [--cta-trace-color:#3B82F6] [--cta-trace-offset:1px] text-[clamp(13px,1.02vw,16px)]! leading-[1.25] font-normal! text-navy! shadow-[0_1px_2px_rgba(15,27,46,.06)] hover:border-primary/30 xl:px-5">
+          <ButtonLink href={ctas.evaluation.href} variant="white" size="sm" className="cta-trace h-[54px]! rounded-[9999px]! border border-line-3 [--cta-trace-color:#2578CA] [--cta-trace-offset:1px] text-[clamp(13px,1.02vw,16px)]! leading-[1.25] font-normal! text-navy! shadow-[0_1px_2px_rgba(15,27,46,.06)] hover:border-primary/30 xl:px-5">
             {ctas.evaluation.label}
             <TraceLine />
           </ButtonLink>
-          <ButtonLink href={ctas.screening.href} size="sm" className="cta-trace h-[54px]! rounded-[9999px]! [--cta-trace-color:#BFDBFE] text-[clamp(13px,1.02vw,16px)]! leading-[1.25] font-normal! shadow-[0_6px_18px_rgba(37,106,204,.28)]! hover:shadow-[0_8px_22px_rgba(37,106,204,.34)]! xl:px-5">
+          <ButtonLink href={ctas.screening.href} size="sm" className="cta-trace h-[54px]! rounded-[9999px]! [--cta-trace-color:#C9DEF4] text-[clamp(13px,1.02vw,16px)]! leading-[1.25] font-normal! shadow-[0_6px_18px_rgba(37,120,202,.28)]! hover:shadow-[0_8px_22px_rgba(37,120,202,.34)]! xl:px-5">
             {ctas.screening.label}
             <TraceLine />
           </ButtonLink>

@@ -29,12 +29,12 @@ export default function BlogIndexPage() {
               ))}
             </ul>
             <aside aria-labelledby="categories-title" className="self-start rounded-panel border border-line-2 bg-surface-2 p-6">
-              <h2 id="categories-title" className="text-[18px] font-bold text-navy">
+              <h2 id="categories-title" className="type-h4 text-navy">
                 Categories
               </h2>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {blogPage.categories.map((c) => (
-                  <li key={c} className="rounded-pill bg-white px-3 py-1.5 text-[14px] text-ink-2 shadow-card">
+                  <li key={c} className="type-small rounded-pill bg-white px-3 py-1.5 text-ink-2 shadow-card">
                     {c}
                   </li>
                 ))}

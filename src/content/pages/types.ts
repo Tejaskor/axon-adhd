@@ -11,13 +11,17 @@ export type PageHero = {
   type: "hero";
   eyebrow?: string;
   title: string;
+  /** photo: substring of `title` shown in a blue gradient. */
+  accent?: string;
   text: string[];
   ctas: Cta[];
   image: ImageAsset;
   trust?: boolean;
   note?: string;
   /** split (default): copy beside a framed image · banner: rounded blue gradient card with a cut-out image · photo: rounded full-bleed photo panel, `image` floats in a glass card */
-  variant?: "split" | "banner" | "photo";
+  variant?: "split" | "banner" | "photo" | "network";
+  /** network variant: glass hub label and the partner logos placed around it (clockwise from the top). `image` is not rendered. */
+  network?: { hubLabel: string; logos: ImageAsset[] };
   /** Background photograph for the `photo` variant (decorative). */
   background?: ImageAsset;
   /** YouTube video shown as a floating card in the `photo` variant (replaces `image` there). */
@@ -27,7 +31,7 @@ export type PageHero = {
 /** Photo + playable-laptop overview followed by four photo feature cards (see AssessmentOverview). */
 export type AssessmentOverviewSection = {
   type: "assessmentOverview";
-  eyebrow: string;
+  eyebrow?: string;
   title: string;
   /** Substring of `title` rendered in the brand blue. */
   accent: string;
@@ -38,7 +42,7 @@ export type AssessmentOverviewSection = {
   items: Array<{ title: string; text: string; icon: "clinician" | "shield" | "insurance" | "document"; image: ImageAsset }>;
 };
 
-export type FeatureItem ={ title: string; text?: string; icon?: IconName; image?: ImageAsset; detail?: string };
+export type FeatureItem ={ title: string; text?: string; icon?: IconName; image?: ImageAsset; detail?: string; /** gap variant: card colour. */ accent?: "blue" | "red" | "green" | "orange" | "purple" | "teal" };
 
 export type FeaturesSection = {
   type: "features";
@@ -50,9 +54,11 @@ export type FeaturesSection = {
   items: FeatureItem[];
   columns?: 2 | 3 | 4 | 5 | 6;
   /** card: icon card · stat: big number title · check: compact checklist · flow: arrowed chain · mission: glass cards on the green/blue/orange brand gradient */
-  variant?: "card" | "stat" | "check" | "flow" | "mission" | "glassFlow";
-  /** glassFlow: substring of `title` shown in the brand blue. */
+  variant?: "card" | "stat" | "check" | "flow" | "mission" | "glassFlow" | "partner" | "gap";
+  /** partner: white split card (lead + check list + quote beside `image`); glassFlow: substring of `title` shown in the brand blue / bold. */
   accent?: string;
+  /** YouTube video shown with the section (ADHD Care services). */
+  video?: { id: string; title: string };
   tone?: Tone;
   image?: ImageAsset;
   quote?: string;
@@ -101,13 +107,17 @@ export type CtaSection = { type: "cta"; title: string; subtitle?: string; primar
 
 export type QuotesSection = { type: "quotes"; title: string; subtitle?: string; items: Array<{ quote: string; name: string; role: string }> };
 
-export type BadgesSection = { type: "badges"; title: string; subtitle: string; badges: ImageAsset[]; image?: ImageAsset };
+/** Centered heading (pill, title with an accented lead, subtitle) over a paged testimonial carousel (see TestimonialCarousel). */
+export type TestimonialCarouselSection = { type: "testimonialCarousel"; eyebrow: string; title: string; accent: string; subtitle: string; items: Array<{ quote: string; name: string; role: string }> };
+
+/** `compliance`: pill + accented title + subtitle + note bar beside a certification orbit built from `badges` (HIPAA, GDPR, CCPA, SOC 2 order). */
+export type BadgesSection = { type: "badges"; title: string; subtitle: string; badges: ImageAsset[]; image?: ImageAsset; variant?: "compliance"; eyebrow?: string; accent?: string; note?: string };
 
 export type FaqSectionData = { type: "faq"; title: string; subtitle?: string; faqs: Faq[] };
 
 export type SharedSection = { type: "blogs" } | { type: "contact" } | { type: "logos" };
 
-export type PageSection = PageHero | AssessmentOverviewSection | FeaturesSection | StepsSection | SplitSection | CtaSection | QuotesSection | BadgesSection | FaqSectionData | SharedSection;
+export type PageSection = PageHero | AssessmentOverviewSection | FeaturesSection | StepsSection | SplitSection | CtaSection | QuotesSection | TestimonialCarouselSection | BadgesSection | FaqSectionData | SharedSection;
 
 export type PageContent = {
   path: string;

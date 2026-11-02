@@ -1,8 +1,8 @@
 import type { IconName } from "@/components/ui/FeatureIcon";
 import { links } from "./site";
 
-/** Discount applied when payment is completed within 24h of the free screening. */
-export const EARLY_DISCOUNT = 0.1;
+/** Flat discount (USD) on the evaluation when payment is completed within the offer window after the free screening. */
+export const EARLY_DISCOUNT = 50;
 
 export type Plan = {
   id: string;
@@ -13,6 +13,9 @@ export type Plan = {
   price: number;
   discounted: boolean;
   breakdown?: string;
+  /** Short line under the plan name (paid plans; the free plan uses `description` there). */
+  summary?: string;
+  /** Free plan: the line under the name. Paid plans: the 24-hour discount panel text. */
   description: string;
   lead?: string;
   features: string[];
@@ -22,10 +25,9 @@ export type Plan = {
 };
 
 export const pricing = {
-  eyebrow: "PRICING",
   title: "Choose Your Next Step",
   intro:
-    "Start with a free screening to get clarity. If you complete the comprehensive evaluation payment within 24 hours, you'll receive 10% off.",
+    "Start with a free screening to get clarity. If you complete the comprehensive evaluation payment within 10 minutes, you'll receive $50 off.",
   plans: [
     {
       id: "screening",
@@ -53,8 +55,9 @@ export const pricing = {
       icon: "brain",
       price: 577,
       discounted: true,
+      summary: "A complete, in-depth evaluation with clinical insights and a personalized plan.",
       description:
-        "Get 10% off when you complete the evaluation payment within 24 hours after finishing your free screening.",
+        "Complete your payment within 10 minutes and save $50.",
       features: [
         "Comprehensive ADHD evaluation",
         "FDA-cleared QbCheck objective testing",
@@ -65,7 +68,7 @@ export const pricing = {
         "Results in days, not months",
         "Consultation to discuss next steps",
       ],
-      cta: { label: "Get 10% Off My Evaluation →", href: links.comprehensive },
+      cta: { label: "Get $50 Off My Evaluation →", href: links.comprehensive },
       footnote: "Secure & confidential • Clinician-led • Superbills provided",
       highlight: true,
     },
@@ -73,12 +76,13 @@ export const pricing = {
       id: "package",
       badge: { label: "For students & professionals", tone: "orange" },
       name: "Evaluation + Accommodation Package",
-      icon: "graduation",
+      icon: "home",
       price: 827,
       discounted: true,
       breakdown: "$577 (Evaluation) + $250 (Accommodation Support)",
+      summary: "Comprehensive evaluation with documentation and ongoing support.",
       description:
-        "Get 10% off when you complete the package payment within 24 hours after finishing your free screening.",
+        "Complete your payment within 10 minutes and save $50 (on the comprehensive evaluation).",
       lead: "Everything in the evaluation, plus:",
       features: [
         "Accommodation documentation & advocacy package",
@@ -92,7 +96,7 @@ export const pricing = {
   ] satisfies Plan[],
   steps: [
     { title: "Take the Free Screening", text: "Complete a quick online assessment at no cost." },
-    { title: "Make Payment Within 24 Hours", text: "Complete the evaluation or package payment within 24 hours to get 10% off." },
+    { title: "Make Payment Within 10 Minutes", text: "Complete the evaluation or package payment within 10 minutes to get $50 off." },
     { title: "Get Clarity and Support", text: "Receive a detailed evaluation and next-step guidance." },
   ],
 };

@@ -32,9 +32,13 @@ export function pageMetadata({ title, description, path, image = site.ogImage, t
   };
 }
 
-/** Strips inline markup used in content files (`**bold**`, `[label](href)`). */
+/** Strips inline markup used in content files (`**bold**`, `*italic*`, `[label](href)`, `\n` line breaks). */
 export function plainText(text: string) {
-  return text.replace(/\*\*/g, "").replace(/\[([^\]]+)\]\([^)]*\)/g, "$1");
+  return text
+    .replace(/\*\*/g, "")
+    .replace(/\*([^*]+)\*/g, "$1")
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+    .replace(/\s*\n\s*/g, " ");
 }
 
 function blocksToText(blocks: Block[]) {
