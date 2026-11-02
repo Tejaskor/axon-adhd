@@ -91,6 +91,40 @@ body {
   }
 }
 
+/* Cursors: hand on everything clickable, arrow on plain content, I-beam in text fields. Base layer, so component utilities (e.g. disabled:cursor-not-allowed) still win. */
+@layer base {
+  body {
+    cursor: default;
+  }
+
+  a[href],
+  area[href],
+  button,
+  summary,
+  select,
+  label[for],
+  label:has(> input:is([type="checkbox"], [type="radio"])),
+  [role="button"],
+  [role="link"],
+  [role="tab"],
+  [role="menuitem"],
+  [role="option"],
+  [role="switch"],
+  input:is([type="button"], [type="submit"], [type="reset"], [type="checkbox"], [type="radio"], [type="file"]) {
+    cursor: pointer;
+  }
+
+  input:not([type="button"], [type="submit"], [type="reset"], [type="checkbox"], [type="radio"], [type="file"]),
+  textarea {
+    cursor: text;
+  }
+
+  :is(button, select, input, textarea, [role="button"], [role="tab"], [role="menuitem"]):disabled,
+  [aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+}
+
 :focus-visible {
   outline: 3px solid #2578CA;
   outline-offset: 2px;

@@ -1,4 +1,5 @@
 import { faqTabs } from "../faqs";
+import { complianceBadgesColor } from "../trust";
 import type { ImageAsset } from "../types";
 import type { PageContent } from "./types";
 
@@ -17,6 +18,18 @@ export const endorsements = [
   { name: "Ryan R. Gorman, MSN, RN, PMHNP-BC", role: "Adult Psychiatric Mental Health Nurse Practitioner", quote: "As a psychiatric nurse practitioner, I’ve referred multiple clients to Dr. Dodini and AXON ADHD for ADHD assessment and have received 100% positive feedback. My clients describe the process as thorough, accurate, and clearly explained, and many share real relief in finally having an answer after years of negative self-perception. Whenever I reach out, Dr. Dodini is quick to respond and consistently warm, kind, and eager to help. I genuinely trust him with my clients. As a provider licensed in multiple states, I also appreciate being able to refer clients outside of Virginia, especially when local options are limited or wait times are long." },
   { name: "Danielle Vaeth", role: "QbTech, Head of Strategic Market Development - US", quote: "Having worked closely with Dr. Aaron Dodini for the past decade and as part of the ADHD Expert Consortium, I’ve seen firsthand his commitment to improving how ADHD is identified and treated. AXON ADHD is a natural extension of that work–bringing together objective measurement, clinical insight, and scalable access in a way that actually moves the field forward." },
 ];
+
+/** Names and designations as listed on the live university referral page; quotes are the originals in `endorsements`. */
+const universityTestimonials = [
+  { name: "Julia Stanford, MD", role: "JCStanford MD, Concierge Internal Medicine & Pediatrics" },
+  { name: "Sam Pappas, MD", role: "Pappas Health" },
+  { name: "S.S., MD", role: "President, Premier Primary Care Physicians; Professor, Georgetown University School of Medicine" },
+  { name: "Jennie Byrne, MD, Ph.D", role: "Constellation PLL" },
+  { name: "Dr Arti Lal, MD", role: "Austin, Texas" },
+  { name: "Sarah Cheyette, MD", role: "Pediatric Neurologist ADHD Expert" },
+  { name: "Ryan R. Gorman, MSN, RN, PMHNP-BC", role: "Adult Psychiatric Mental Health Nurse Practitioner" },
+  { name: "Danielle Vaeth", role: "QbTech, Head of Strategic Market Development - US" },
+].map((t, i) => ({ ...t, quote: endorsements[i].quote }));
 
 const earlyReferral = [
   { title: "Earlier Diagnosis & Intervention", text: "Identify ADHD before complications develop, enabling timely treatment and support.", icon: "schedule" as const },
@@ -40,26 +53,44 @@ export const universityReferralPage: PageContent = {
   sections: [
     {
       type: "hero",
+      variant: "network",
+      eyebrow: "FOR UNIVERSITIES",
       title: "ADHD Referral for Universities Made Simple",
+      accent: "Universities",
+      network: {
+        hubLabel: "REFERRAL-FOR-UNIVERSITIES",
+        logos: [
+          { src: "/images/trust/partners/george-mason-disability-services-logo.svg", alt: "George Mason University Disability Services logo", width: 569, height: 181 },
+          { src: "/images/trust/partners/american-university-logo.svg", alt: "American University logo", width: 1137, height: 183 },
+          { src: "/images/trust/partners/william-and-mary-logo.svg", alt: "William & Mary logo", width: 1227, height: 126 },
+          { src: "/images/trust/partners/virginia-tech-logo.svg", alt: "Virginia Tech logo", width: 248, height: 124 },
+          { src: "/images/trust/partners/marymount-university-logo.svg", alt: "Marymount University logo", width: 349, height: 124 },
+          { src: "/images/trust/logo14.webp", alt: "Western Governors University logo", width: 833, height: 204 },
+          { src: "/images/trust/gw.webp", alt: "George Washington University logo", width: 1827, height: 861 },
+          { src: "/images/trust/logo3.webp", alt: "Northern Virginia Family Service logo", width: 433, height: 204 },
+        ],
+      },
       text: ["Universities don’t have a visibility problem they have a timing problem. Students are often identified too late, when they’re already behind and at risk. AXON ADHD catches early signals and connects them to support before issues escalate."],
       ctas: [contact("Claim Your University Account"), howItWorks],
       image: { src: "/images/hero/ADHD-University-Referral-Support.webp", alt: "hero section referral university", width: 1672, height: 941 },
       trust: true,
       note: "1000’s — Students & patients supported across universities and clinics",
     },
-    { type: "badges", title: "Clinical Standards & Compliance You Can Trust", subtitle: "We follow industry-leading medical, privacy, and security frameworks to ensure every assessment, referral, and report is handled with complete integrity.", badges: clinicalBadges, image: img("clinical-standard.webp", "Clinical standards and compliance", 1341, 1173) },
+    { type: "testimonialCarousel", eyebrow: "Trusted by Universities & Clinics", title: "1,000’s Students & Patients Supported", accent: "1,000’s", subtitle: "Across universities and clinics, professionals trust AXON ADHD to deliver timely, high-quality support.", items: universityTestimonials },
+    { type: "badges", variant: "compliance", eyebrow: "Compliance & Security", title: "Clinical Standards & Compliance You Can Trust", accent: "You Can Trust", subtitle: "We follow industry-leading medical, privacy, and security frameworks to ensure every assessment, referral, and report is handled with complete integrity.", note: "Your privacy, security, and trust are at the center of everything we do.", badges: complianceBadgesColor },
     {
       type: "features",
       title: "Why Partner With AXON ADHD",
       subtitle: "Purpose-built to deliver high-quality ADHD support while saving time and creating value for universities and student support programs.",
       lead: "For Universities & Colleges",
-      tone: "surface",
-      image: img("referral-universityy.webp", "AXON ADHD university partnership", 1254, 1254),
+      variant: "partner",
+      accent: "AXON ADHD",
+      image: { src: "/images/referral-for-universities/WhyPartnerWithAxonADHD.webp", alt: "Two university students talking at a library table, with labels for student success, retention and financial protection", width: 820, height: 667 },
       items: [
         { title: "Early Identification of at risk students", text: "ADHD, depression, anxiety, and substance abuse are the leading causes of drop out.", icon: "user" },
         { title: "Protect the Investment", text: "A lost semester can cost families dearly and the school risks losing the student entirely.", icon: "shield" },
         { title: "One streamlined screening", text: "for ADHD, anxiety, depression, and substance use", icon: "clipboard" },
-        { title: "Fast, Accurate, Affordable Diagosis", text: "without adding staff or operational burden", icon: "clock" },
+        { title: "Fast, Accurate, Affordable Diagnosis", text: "without adding staff or operational burden", icon: "clock" },
       ],
       quote: "“Early ADHD identification protects both student outcomes and institutional revenue.”",
     },
@@ -67,14 +98,15 @@ export const universityReferralPage: PageContent = {
       type: "features",
       title: "The Hidden ADHD Gap",
       subtitle: "Understanding the scale of undiagnosed ADHD and its impact on individuals, institutions, and healthcare systems.",
-      variant: "stat",
+      variant: "gap",
+      accent: "ADHD Gap",
       items: [
-        { title: "1 in 4", text: "College students have ADHD", detail: "Higher prevalence than general population" },
-        { title: "3x", text: "Higher dropout risk", detail: "Compared to neurotypical peers" },
-        { title: "Only 25%", text: "Receive academic accommodations", detail: "Despite diagnosis or suspected ADHD" },
-        { title: "-0.5 to -1.0 GPA", text: "Average GPA gap", detail: "Vs. peers without ADHD or related conditions." },
-        { title: "60%", text: "Have a comorbid mental health condition", detail: "Anxiety, depression, or both" },
-        { title: "$1,400+", text: "Additional annual cost per student", detail: "From unmanaged ADHD to institutions" },
+        { title: "1 in 4", accent: "blue", text: "College students have ADHD", detail: "Higher prevalence than general population" },
+        { title: "3x", accent: "red", text: "Higher dropout risk", detail: "Compared to neurotypical peers" },
+        { title: "Only 25%", accent: "green", text: "Receive academic accommodations", detail: "Despite diagnosis or suspected ADHD" },
+        { title: "-0.5 to -1.0 GPA", accent: "orange", text: "Average GPA gap", detail: "Vs. peers without ADHD or related conditions." },
+        { title: "60%", accent: "purple", text: "Have a comorbid mental health condition", detail: "Anxiety, depression, or both" },
+        { title: "$1,400+", accent: "teal", text: "Additional annual cost per student", detail: "From unmanaged ADHD to institutions" },
       ],
     },
     {
