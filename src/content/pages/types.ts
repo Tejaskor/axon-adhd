@@ -42,7 +42,7 @@ export type AssessmentOverviewSection = {
   items: Array<{ title: string; text: string; icon: "clinician" | "shield" | "insurance" | "document"; image: ImageAsset }>;
 };
 
-export type FeatureItem ={ title: string; text?: string; icon?: IconName; image?: ImageAsset; detail?: string };
+export type FeatureItem ={ title: string; text?: string; icon?: IconName; image?: ImageAsset; detail?: string; /** gap variant: card colour. */ accent?: "blue" | "red" | "green" | "orange" | "purple" | "teal" };
 
 export type FeaturesSection = {
   type: "features";
@@ -54,8 +54,8 @@ export type FeaturesSection = {
   items: FeatureItem[];
   columns?: 2 | 3 | 4 | 5 | 6;
   /** card: icon card · stat: big number title · check: compact checklist · flow: arrowed chain · mission: glass cards on the green/blue/orange brand gradient */
-  variant?: "card" | "stat" | "check" | "flow" | "mission" | "glassFlow";
-  /** glassFlow: substring of `title` shown in the brand blue. */
+  variant?: "card" | "stat" | "check" | "flow" | "mission" | "glassFlow" | "partner" | "gap";
+  /** partner: white split card (lead + check list + quote beside `image`); glassFlow: substring of `title` shown in the brand blue / bold. */
   accent?: string;
   /** YouTube video shown with the section (ADHD Care services). */
   video?: { id: string; title: string };
@@ -107,13 +107,17 @@ export type CtaSection = { type: "cta"; title: string; subtitle?: string; primar
 
 export type QuotesSection = { type: "quotes"; title: string; subtitle?: string; items: Array<{ quote: string; name: string; role: string }> };
 
-export type BadgesSection = { type: "badges"; title: string; subtitle: string; badges: ImageAsset[]; image?: ImageAsset };
+/** Centered heading (pill, title with an accented lead, subtitle) over a paged testimonial carousel (see TestimonialCarousel). */
+export type TestimonialCarouselSection = { type: "testimonialCarousel"; eyebrow: string; title: string; accent: string; subtitle: string; items: Array<{ quote: string; name: string; role: string }> };
+
+/** `compliance`: pill + accented title + subtitle + note bar beside a certification orbit built from `badges` (HIPAA, GDPR, CCPA, SOC 2 order). */
+export type BadgesSection = { type: "badges"; title: string; subtitle: string; badges: ImageAsset[]; image?: ImageAsset; variant?: "compliance"; eyebrow?: string; accent?: string; note?: string };
 
 export type FaqSectionData = { type: "faq"; title: string; subtitle?: string; faqs: Faq[] };
 
 export type SharedSection = { type: "blogs" } | { type: "contact" } | { type: "logos" };
 
-export type PageSection = PageHero | AssessmentOverviewSection | FeaturesSection | StepsSection | SplitSection | CtaSection | QuotesSection | BadgesSection | FaqSectionData | SharedSection;
+export type PageSection = PageHero | AssessmentOverviewSection | FeaturesSection | StepsSection | SplitSection | CtaSection | QuotesSection | TestimonialCarouselSection | BadgesSection | FaqSectionData | SharedSection;
 
 export type PageContent = {
   path: string;

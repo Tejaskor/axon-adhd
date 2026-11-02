@@ -1,17 +1,19 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import type { ImageAsset } from "@/content/types";
-import { ArrowRight, Brain, CheckCircle2, GraduationCap, Quote, Target } from "lucide-react";
-import type { BadgesSection, CtaSection, FeaturesSection, PageHero as PageHeroData, PageSection, QuotesSection, SplitSection, StepsSection, Tone } from "@/content/pages/types";
+import { ArrowRight, Brain, Check, CheckCircle2, Coins, Frown, GraduationCap, Lock, Quote, Shield, ShieldCheck, Star, Target, TrendingUp, TriangleAlert } from "lucide-react";
+import type { BadgesSection, CtaSection, FeatureItem, FeaturesSection, PageHero as PageHeroData, PageSection, QuotesSection, SplitSection, StepsSection, Tone } from "@/content/pages/types";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { FeatureIcon } from "@/components/ui/FeatureIcon";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { trustBar } from "@/content/trust";
 import { cn } from "@/lib/utils";
 import { AssessmentOverview } from "./AssessmentOverview";
 import { StepsJourney } from "./StepsJourney";
+import { TestimonialCarousel } from "./TestimonialCarousel";
 import { ContactSection } from "./ContactSection";
 import { CTABand } from "./CTABand";
 import { FAQAccordion } from "./FAQAccordion";
@@ -215,13 +217,14 @@ function PhotoHero({ data }: { data: PageHeroData }) {
   );
 }
 
-const glassCard = "border border-white/70 bg-[linear-gradient(145deg,rgba(255,255,255,.82),rgba(255,255,255,.5))] backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,.9),0_12px_30px_rgba(6,26,54,.16)]";
+const glassCard = "border border-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,.95),0_12px_30px_rgba(6,40,110,.22)]";
 
 /** Partner logo on its own glass card. `multiply` drops the white boxes baked into some logo files so they sit on the glass. */
 function NetworkLogoCard({ logo, className, style }: { logo: ImageAsset; className?: string; style?: CSSProperties }) {
   return (
-    <div style={style} className={cn("flex items-center justify-center rounded-[18px] px-[8%] sm:rounded-[22px]", glassCard, className)}>
-      <Image src={logo.src} alt={logo.alt} width={logo.width} height={logo.height} sizes="160px" className="h-auto max-h-[62%] w-auto max-w-full object-contain mix-blend-multiply max-sm:max-h-9" />
+    <div style={style} className={cn("isolate rounded-[22px] sm:rounded-[30px]", glassCard, className)}>
+      <span aria-hidden className="absolute inset-0 -z-10 rounded-[inherit] bg-[linear-gradient(145deg,rgba(255,255,255,.98),rgba(244,249,255,.96))]" />
+      <Image src={logo.src} alt={logo.alt} fill sizes="260px" className="object-contain p-[3%_5%] mix-blend-multiply brightness-[1.06]" />
     </div>
   );
 }
@@ -229,82 +232,159 @@ function NetworkLogoCard({ logo, className, style }: { logo: ImageAsset; classNa
 /** Glass hub circle with the graduation cap and label. */
 function NetworkHub({ label, className }: { label: string; className?: string }) {
   return (
-    <div className={cn("relative flex flex-col items-center justify-center rounded-full border border-white/80 bg-[radial-gradient(circle_at_35%_28%,rgba(255,255,255,.92),rgba(255,255,255,.5)_62%,rgba(190,221,250,.45))] text-center backdrop-blur-2xl shadow-[inset_0_2px_0_rgba(255,255,255,.95),0_0_0_10px_rgba(255,255,255,.12),0_24px_60px_rgba(6,26,54,.22)]", className)}>
-      <span aria-hidden className="absolute inset-[7%] rounded-full border border-white/70" />
-      <GraduationCap aria-hidden className="relative size-[26%] text-primary-700" strokeWidth={1.6} />
-      <span className="relative mt-[4%] max-w-[78%] text-[clamp(12px,3.3cqw,21px)] leading-[1.2] font-bold tracking-[0.01em] text-navy">{label}</span>
+    <div className={cn("@container relative flex flex-col items-center justify-center rounded-full border border-white/80 bg-[radial-gradient(circle_at_35%_28%,rgba(255,255,255,.9),rgba(255,255,255,.45)_62%,rgba(170,210,250,.45))] text-center backdrop-blur-2xl shadow-[inset_0_2px_0_rgba(255,255,255,.95),0_0_0_12px_rgba(255,255,255,.1),0_24px_60px_rgba(6,26,54,.22)]", className)}>
+      <span aria-hidden className="absolute inset-[6%] rounded-full border border-white/70" />
+      <GraduationCap aria-hidden className="relative size-[32%] text-[#1463D6]" strokeWidth={1.5} />
+      <span className="relative mt-[5%] max-w-[88%] text-[clamp(12px,7cqw,20px)] leading-[1.2] font-bold text-navy">{label}</span>
     </div>
   );
 }
 
-/** Position (% of a square stage) of item `i` of `n` on the ring, clockwise from the top. */
-const ringPoint = (i: number, n: number, rx: number, ry: number, offset = 0) => {
-  const a = ((i + offset) / n) * Math.PI * 2 - Math.PI / 2;
-  return { x: 50 + rx * Math.cos(a), y: 50 + ry * Math.sin(a) };
-};
+/*
+ * Network geometry in a 800x700 stage. Every card is centred ON the orbit (angles measured from the design reference: top, then
+ * clockwise), so the dashed line runs behind each card.
+ */
+const NET = { w: 800, h: 700, cx: 400, cy: 350, r: 270 };
+const NETWORK_ANGLES = [-90, -35, 0, 35, 90, 145, 180, 215];
+/** Hub radius and card half-size in stage units (hub 31% of 800 wide; cards 26.25% x 11.14%). Keep in sync with the classes below. */
+const NET_HUB_R = 124;
+const NET_CARD_HALF = { w: 105, h: 39 };
+/** Spoke from just outside the hub to the card's near edge, along the line through the stage centre. */
+const NETWORK_SPOKES = NETWORK_ANGLES.map((deg) => {
+  const a = (deg * Math.PI) / 180;
+  const ux = Math.cos(a);
+  const uy = Math.sin(a);
+  const toEdge = Math.min(NET_CARD_HALF.w / Math.abs(ux || 1e-6), NET_CARD_HALF.h / Math.abs(uy || 1e-6));
+  const from = NET_HUB_R + 6;
+  const to = NET.r - toEdge;
+  return { x1: NET.cx + from * ux, y1: NET.cy + from * uy, x2: NET.cx + to * ux, y2: NET.cy + to * uy };
+});
+const NETWORK_CARDS = NETWORK_ANGLES.map((deg) => {
+  const a = (deg * Math.PI) / 180;
+  const x = NET.cx + NET.r * Math.cos(a);
+  const y = NET.cy + NET.r * Math.sin(a);
+  return { left: (x / NET.w) * 100, top: (y / NET.h) * 100 };
+});
+
+/** Google rating · avatars + "adults helped" in one row. */
+function NetworkTrust() {
+  return (
+    <ul aria-label="Why people trust AXON ADHD" className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4 sm:flex-nowrap lg:mt-7">
+      <li className="flex shrink-0 items-center gap-3">
+        <Image src={trustBar.google.src} alt={trustBar.google.alt} width={40} height={40} className="size-9 lg:size-10" />
+        <span className="flex flex-col gap-0.5">
+          <span className="flex gap-0.5 text-orange-star" aria-hidden>
+            {Array.from({ length: 5 }, (_, i) => (
+              <Star key={i} className="size-4 fill-current" />
+            ))}
+          </span>
+          <span className="text-[15px] font-semibold whitespace-nowrap text-navy">
+            {trustBar.rating} <span className="font-normal text-[#4B5C74]">{trustBar.reviews}</span>
+            <span className="sr-only"> on Google</span>
+          </span>
+        </span>
+      </li>
+      <li aria-hidden className="hidden h-12 w-px shrink-0 bg-navy/15 sm:block" />
+      <li className="flex items-center gap-3">
+        <span className="flex shrink-0 -space-x-2.5">
+          {trustBar.avatars.map((a) => (
+            <Image key={a.src} src={a.src} alt="" width={40} height={40} className="size-10 rounded-full border-2 border-white object-cover shadow-soft" />
+          ))}
+        </span>
+        <span className="max-w-[190px] text-[16px] leading-snug font-bold text-navy">{trustBar.helped}</span>
+      </li>
+    </ul>
+  );
+}
 
 /**
- * Rich-blue rounded canvas: frosted glass copy panel on the left, circular referral network on the right (glass hub, dashed ring,
- * logo cards). Below lg the two stack; below sm the ring becomes a hub over a two-column card grid so nothing overlaps.
+ * Rich-blue rounded canvas: wide frosted glass copy panel on the left, circular referral network on the right (glass hub, dashed ring,
+ * logo cards placed per the design reference). Below lg the two stack; below sm the ring becomes a hub over a two-column card grid.
  */
 function NetworkHero({ data }: { data: PageHeroData }) {
   const logos = data.network?.logos ?? [];
   const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
-  const RX = 37;
-  const RY = 41;
+  const lead = "AXON ADHD catches early signals and";
   return (
     <section className="relative -mt-[var(--header-height)] pt-2 sm:pt-3" aria-labelledby="page-title">
-      <div className="relative isolate overflow-hidden rounded-[20px] bg-[linear-gradient(135deg,#0F5FC4_0%,#1D78DC_42%,#5FB0F2_100%)] pt-[112px] pb-8 sm:rounded-[28px] sm:pt-[124px] sm:pb-12 lg:rounded-[32px] lg:pb-14">
-        {/* Soft light pools and two flowing wave bands. */}
-        <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_55%_60%_at_88%_6%,rgba(190,228,255,.55),transparent_70%),radial-gradient(ellipse_50%_50%_at_8%_100%,rgba(120,190,250,.4),transparent_70%),radial-gradient(ellipse_40%_40%_at_60%_60%,rgba(255,255,255,.14),transparent_70%)]" />
+      <div className="relative isolate overflow-hidden rounded-[20px] bg-[linear-gradient(100deg,#8AB1E4_0%,#93BDED_42%,#AED5F8_100%)] pt-[104px] pb-8 sm:rounded-[28px] sm:pt-[116px] sm:pb-12 lg:flex lg:min-h-[clamp(800px,60vw,940px)] lg:items-center lg:rounded-[32px] lg:pt-[96px] lg:pb-12">
+        {/* Layered blue light and flowing curves. */}
+        <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_50%_65%_at_96%_0%,rgba(205,236,255,.8),transparent_70%),radial-gradient(ellipse_40%_40%_at_100%_100%,rgba(12,86,196,.14),transparent_70%),radial-gradient(ellipse_45%_40%_at_0%_100%,rgba(190,225,255,.5),transparent_70%),radial-gradient(ellipse_35%_45%_at_60%_45%,rgba(255,255,255,.12),transparent_70%)]" />
         <svg aria-hidden viewBox="0 0 1440 800" preserveAspectRatio="none" fill="none" className="absolute inset-0 -z-10 size-full">
-          <path d="M-40 150C260 60 520 40 760 -20L1000 -40C1180 40 1320 80 1480 20V-40H-40Z" fill="rgba(255,255,255,.1)" />
-          <path d="M-40 760C240 700 520 820 840 700S1260 520 1480 600V860H-40Z" fill="rgba(255,255,255,.1)" />
-          <path d="M-40 640C300 560 560 760 900 640S1300 480 1480 540" stroke="rgba(255,255,255,.28)" strokeWidth="1.5" />
-          <path d="M-40 200C260 110 560 260 880 160S1280 60 1480 110" stroke="rgba(255,255,255,.22)" strokeWidth="1.5" />
+          <defs>
+            <filter id="nw-blur" x="-10%" y="-10%" width="120%" height="120%">
+              <feGaussianBlur stdDeviation="14" />
+            </filter>
+            <linearGradient id="nw-a" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stopColor="#fff" stopOpacity=".22" />
+              <stop offset="1" stopColor="#fff" stopOpacity=".02" />
+            </linearGradient>
+            <linearGradient id="nw-b" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0" stopColor="#fff" stopOpacity=".05" />
+              <stop offset="1" stopColor="#bfe3ff" stopOpacity=".3" />
+            </linearGradient>
+          </defs>
+          <path d="M560 -20C700 120 760 300 1020 420S1380 520 1480 470V-20Z" fill="url(#nw-a)" filter="url(#nw-blur)" />
+          <path d="M-40 800V640C260 560 620 700 980 600S1320 480 1480 520V800Z" fill="url(#nw-b)" filter="url(#nw-blur)" />
         </svg>
 
-        <div className="mx-auto grid w-full max-w-[1440px] items-center gap-8 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-6 lg:px-8 xl:grid-cols-[minmax(0,.95fr)_minmax(0,1.05fr)]">
-          {/* Left: frosted glass panel */}
-          <div className="relative overflow-hidden rounded-[28px] border border-white/70 bg-[linear-gradient(140deg,rgba(255,255,255,.78)_0%,rgba(255,255,255,.52)_55%,rgba(255,255,255,.4)_100%)] p-6 backdrop-blur-2xl shadow-[inset_0_1px_0_rgba(255,255,255,.95),0_30px_80px_rgba(6,26,54,.25)] sm:rounded-[36px] sm:p-10 lg:rounded-[44px] lg:p-12">
-            <span aria-hidden className="pointer-events-none absolute -top-24 -left-16 size-72 rounded-full bg-white/50 blur-3xl" />
+        <div className="mx-auto grid w-full max-w-[1440px] items-center gap-8 px-4 sm:px-6 lg:grid-cols-[minmax(0,53fr)_minmax(0,47fr)] lg:gap-0 lg:px-8">
+          {/* Left: wide frosted glass panel */}
+          <div className="relative rounded-[28px] p-6 sm:rounded-[36px] sm:p-10 lg:rounded-[44px] lg:py-10 lg:pr-20 lg:pl-11">
+            {/* Glass layer: fades out toward the right edge on desktop so it melts into the background; the content above is not masked. */}
+            <span aria-hidden className="absolute inset-0 overflow-hidden rounded-[inherit] border border-white/75 bg-[linear-gradient(100deg,rgba(255,255,255,.82)_0%,rgba(255,255,255,.58)_50%,rgba(255,255,255,.3)_100%)] backdrop-blur-2xl shadow-[inset_0_1px_0_rgba(255,255,255,.95),0_30px_80px_rgba(6,26,54,.25)] lg:[-webkit-mask-image:linear-gradient(to_right,#000_0%,#000_66%,transparent_100%)] lg:[mask-image:linear-gradient(to_right,#000_0%,#000_66%,transparent_100%)]">
+              <span className="pointer-events-none absolute -top-24 -left-16 size-72 rounded-full bg-white/50 blur-3xl" />
+            </span>
             <div className="relative">
               {data.eyebrow && (
-                <p className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-white/80 bg-white/60 px-4 py-2 text-[13px] font-bold tracking-[0.02em] text-navy uppercase shadow-[inset_0_1px_0_rgba(255,255,255,.9),0_4px_14px_rgba(37,120,202,.12)] backdrop-blur-md">
-                  <GraduationCap aria-hidden className="size-[18px] text-navy" strokeWidth={2} />
+                <p className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-white/80 bg-[rgba(205,224,247,.7)] px-4 py-2 text-[13px] font-bold tracking-[0.02em] text-navy uppercase shadow-[inset_0_1px_0_rgba(255,255,255,.9)] backdrop-blur-md">
+                  <GraduationCap aria-hidden className="size-5 fill-navy text-navy" strokeWidth={2} />
                   {data.eyebrow}
                 </p>
               )}
-              <h1 id="page-title" className="font-display text-[clamp(34px,7.4vw,48px)] leading-[1.08] font-bold tracking-[-0.03em] text-balance text-navy lg:text-[clamp(40px,4vw,62px)]">
+              <h1 id="page-title" className="font-display text-[clamp(34px,8vw,48px)] leading-[1.1] font-extrabold tracking-[-0.03em] text-navy lg:text-[clamp(40px,4.1vw,64px)]">
                 {after !== undefined ? (
                   <>
-                    {before}
-                    <span className="relative inline-block text-primary">
-                      {data.accent}
-                      <svg aria-hidden viewBox="0 0 240 12" preserveAspectRatio="none" fill="none" className="absolute inset-x-0 -bottom-2 h-2.5 w-full">
-                        <path d="M2 9C60 2 150 2 238 7" stroke="#3C8BD9" strokeWidth="2.5" strokeLinecap="round" />
-                      </svg>
+                    <span className="block">{before.trim()}</span>
+                    <span className="block">
+                      <span className="relative inline-block text-[#1463D6]">
+                        {data.accent}
+                        <svg aria-hidden viewBox="0 0 240 12" preserveAspectRatio="none" fill="none" className="absolute inset-x-0 -bottom-3 h-3 w-[110%]">
+                          <path d="M2 9C60 2 150 2 238 7" stroke="#2E86E8" strokeWidth="2.5" strokeLinecap="round" />
+                        </svg>
+                      </span>
                     </span>
-                    {after}
+                    <span className="block">{after.trim()}</span>
                   </>
                 ) : (
                   data.title
                 )}
               </h1>
-              {data.text.map((t) => (
-                <p key={t} className="mt-7 max-w-[600px] text-[16px] leading-[1.6] text-pretty text-[#1F3350] sm:text-[17px] lg:text-[18px]">
-                  {t}
-                </p>
-              ))}
+              {data.text.map((t) => {
+                const [pre, post] = t.split(lead);
+                return (
+                  <p key={t} className="mt-6 max-w-[700px] text-[16px] leading-[1.6] text-pretty text-[#14284A] sm:text-[17px] lg:text-[clamp(16px,1.2vw,19px)]">
+                    {post !== undefined ? (
+                      <>
+                        {pre}
+                        <strong className="font-bold text-navy">{lead}</strong>
+                        {post}
+                      </>
+                    ) : (
+                      t
+                    )}
+                  </p>
+                );
+              })}
               {data.ctas.length > 0 && (
-                <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-nowrap">
                   {data.ctas.map((cta, i) => (
                     <ButtonLink
                       key={cta.label}
                       href={cta.href}
                       variant={i === 0 ? "primary" : "outline"}
                       size="lg"
-                      className={cn("group whitespace-normal", i === 0 ? "bg-[linear-gradient(135deg,#1F6FD0,#0F5FC4)]" : "border-primary/70 bg-white/40 backdrop-blur-md hover:bg-primary")}
+                      className={cn("group whitespace-normal sm:px-6! sm:whitespace-nowrap lg:min-h-[54px]! lg:text-[17px]!", i === 0 ? "bg-[linear-gradient(135deg,#1F6FD0,#0F5FC4)] font-semibold" : "border-[#1463D6]! bg-white/55 font-semibold text-[#0F57C2]! backdrop-blur-md hover:bg-[#1463D6] hover:text-white!")}
                     >
                       {cta.label}
                       {i === 0 && <ArrowRight aria-hidden className="size-[18px] shrink-0 transition-transform duration-300 ease-brand group-hover:translate-x-1" />}
@@ -312,43 +392,41 @@ function NetworkHero({ data }: { data: PageHeroData }) {
                   ))}
                 </div>
               )}
-              {data.note && <p className="type-small mt-3 text-[#33465E]">{data.note}</p>}
-              {data.trust && <TrustBar className="mt-8" />}
+              {data.trust && <NetworkTrust />}
             </div>
           </div>
 
           {/* Right: referral network */}
-          <div className="@container mx-auto w-full max-w-[640px] lg:max-w-none">
+          <div className="relative z-10 mx-auto w-full max-w-[680px] lg:-mr-4 lg:w-[calc(100%+1rem)] lg:max-w-none min-[1440px]:-ml-20 min-[1440px]:w-[calc(100%+6rem)]">
             {/* Phones: hub over a two-column card grid */}
             <div className="flex flex-col items-center gap-5 sm:hidden">
               <NetworkHub label={data.network?.hubLabel ?? ""} className="size-[180px]" />
               <ul className="grid w-full grid-cols-2 gap-3">
                 {logos.map((logo) => (
                   <li key={logo.src} className="flex">
-                    <NetworkLogoCard logo={logo} className="h-[72px] w-full" />
+                    <NetworkLogoCard logo={logo} className="relative h-[72px] w-full" />
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* sm and up: ring */}
-            <div className="relative mx-auto hidden aspect-square w-full max-w-[680px] sm:block">
-              <svg aria-hidden viewBox="0 0 100 100" fill="none" className="absolute inset-0 size-full">
-                <ellipse cx="50" cy="50" rx={RX} ry={RY} stroke="rgba(255,255,255,.75)" strokeWidth=".3" strokeDasharray="1.4 1.4" />
-                {logos.map((_, i) => {
-                  const p = ringPoint(i, logos.length, RX, RY, 0.5);
-                  return (
-                    <g key={i}>
-                      <circle cx={p.x} cy={p.y} r="1.5" fill="rgba(255,255,255,.55)" />
-                      <circle cx={p.x} cy={p.y} r=".8" fill="#1D6FD6" />
-                    </g>
-                  );
-                })}
+            {/* sm and up: ring (stage 8:7, ring is a true circle in a 800x700 viewBox) */}
+            <div className="relative mx-auto hidden aspect-[8/7] w-full sm:block">
+              <svg aria-hidden viewBox="0 0 800 700" fill="none" className="absolute inset-0 size-full">
+                <circle cx={NET.cx} cy={NET.cy} r={NET.r} stroke="#fff" strokeWidth="1.5" strokeDasharray="8 8" />
+                {NETWORK_SPOKES.slice(0, logos.length).map((l, i) => (
+                  <g key={i}>
+                    <line x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} stroke="#fff" strokeWidth="1.5" strokeDasharray="6 6" />
+                    <circle cx={l.x1} cy={l.y1} r="6" fill="rgba(255,255,255,.35)" stroke="#fff" strokeWidth="1.5" />
+                    <circle cx={l.x2} cy={l.y2} r="6" fill="rgba(255,255,255,.35)" stroke="#fff" strokeWidth="1.5" />
+                  </g>
+                ))}
               </svg>
-              <NetworkHub label={data.network?.hubLabel ?? ""} className="absolute top-1/2 left-1/2 size-[36%] -translate-x-1/2 -translate-y-1/2" />
+              <NetworkHub label={data.network?.hubLabel ?? ""} className="absolute top-1/2 left-1/2 aspect-square w-[31%] -translate-x-1/2 -translate-y-1/2" />
               {logos.map((logo, i) => {
-                const p = ringPoint(i, logos.length, RX, RY);
-                return <NetworkLogoCard key={logo.src} logo={logo} style={{ left: `${p.x}%`, top: `${p.y}%` }} className="absolute h-[12.5%] w-[26%] -translate-x-1/2 -translate-y-1/2" />;
+                const p = NETWORK_CARDS[i];
+                if (!p) return null;
+                return <NetworkLogoCard key={logo.src} logo={logo} style={{ left: `${p.left}%`, top: `${p.top}%` }} className="absolute h-[11.14%] w-[26.25%] -translate-x-1/2 -translate-y-1/2" />;
               })}
             </div>
           </div>
@@ -420,8 +498,145 @@ function MissionFeatures({ data }: { data: FeaturesSection }) {
   );
 }
 
+/** White split card on a pale-blue band: lead + check list + quote on the left, a full-height photo on the right (stacked below md). */
+function PartnerFeatures({ data }: { data: FeaturesSection }) {
+  const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
+  const lead = data.lead?.replace(/^For\s+/, "");
+  return (
+    <section id={data.id} className="bg-[#F5F9FE] py-12 sm:py-16">
+      <Container>
+        <div className="mx-auto max-w-[900px] text-center">
+          <h2 className="type-h2 text-balance text-[#10231B]">
+            {after !== undefined ? (
+              <>
+                {before}
+                <span className="font-bold">{data.accent}</span>
+                {after}
+              </>
+            ) : (
+              data.title
+            )}
+          </h2>
+          {data.subtitle && <p className="type-body mx-auto mt-4 max-w-[860px] text-pretty text-muted">{data.subtitle}</p>}
+        </div>
+
+        <div className="mt-8 grid overflow-hidden rounded-[18px] bg-white shadow-[0_10px_40px_-14px_rgba(16,41,77,.18)] sm:mt-10 md:grid-cols-2">
+          <div className="p-6 sm:p-10 lg:px-10 lg:py-10">
+            {data.lead && (
+              <div className="flex items-center gap-4">
+                <span className="grid size-12 shrink-0 place-items-center rounded-full bg-[#EAF2FD] text-primary">
+                  <GraduationCap aria-hidden className="size-6" strokeWidth={1.8} />
+                </span>
+                <p className="text-[20px] text-ink sm:text-[22px]">
+                  For <span className="font-semibold">{lead}</span>
+                </p>
+              </div>
+            )}
+            <ul className="mt-7 grid gap-[18px]">
+              {data.items.map((item) => (
+                <li key={item.title} className="flex items-start gap-3.5">
+                  <span aria-hidden className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-[#DFF5E7] text-[#2FA866]">
+                    <Check className="size-3.5" strokeWidth={3} />
+                  </span>
+                  <div>
+                    <h3 className="text-[16px] leading-snug font-semibold text-ink">{item.title}</h3>
+                    {item.text && <p className="mt-0.5 text-[13.5px] leading-snug text-muted">{item.text}</p>}
+                  </div>
+                </li>
+              ))}
+            </ul>
+            {data.quote && <blockquote className="mt-7 rounded-xl bg-[#F5F9FE] px-6 py-5 text-[16px] leading-[1.6] text-ink-2">{data.quote}</blockquote>}
+          </div>
+          {data.image && (
+            <div className="relative aspect-[820/667] md:aspect-auto md:min-h-[420px]">
+              <Image src={data.image.src} alt={data.image.alt} fill sizes="(max-width: 767px) 100vw, 50vw" className="object-cover object-[70%_center]" />
+            </div>
+          )}
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+type GapAccent = NonNullable<FeatureItem["accent"]>;
+const gapAccents: Record<GapAccent, { icon: typeof Brain; color: string; pale: string; border: string }> = {
+  blue: { icon: GraduationCap, color: "#0868DC", pale: "#E3EEFD", border: "#D3E4FA" },
+  red: { icon: TrendingUp, color: "#E5243B", pale: "#FDE6EA", border: "#F8D3D9" },
+  green: { icon: Shield, color: "#16852B", pale: "#E0F3E4", border: "#CCE9D3" },
+  orange: { icon: TriangleAlert, color: "#E87518", pale: "#FDEBDA", border: "#F8DCC2" },
+  purple: { icon: Frown, color: "#6516C9", pale: "#EDE3FB", border: "#DDCEF5" },
+  teal: { icon: Coins, color: "#078A9B", pale: "#D9F2F5", border: "#C3E7EB" },
+};
+
+/** Centered header (pill, accented hand-underlined title, subtitle) over a 3x2 grid of colour-coded statistic cards. */
+function GapFeatures({ data }: { data: FeaturesSection }) {
+  const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
+  return (
+    <section id={data.id} className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#FFFFFF_0%,#F5F9FE_45%,#F5F9FE_100%)] py-14 sm:py-20">
+      {/* Pale waves in the upper corners, behind the content. */}
+      <svg aria-hidden viewBox="0 0 1440 320" preserveAspectRatio="none" fill="none" className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-52 w-full [mask-image:linear-gradient(to_bottom,#000_45%,transparent)] sm:h-72">
+        <path d="M0 40C120 20 260 60 360 120S520 250 560 320H0Z" fill="#E8F1FC" fillOpacity=".7" />
+        <path d="M1440 0V140C1330 150 1230 110 1130 60S960 -10 900 0Z" fill="#E8F1FC" fillOpacity=".8" />
+      </svg>
+
+      <Container>
+        <div className="mx-auto max-w-[1100px] text-center">
+          {data.eyebrow && (
+            <p className="inline-flex items-center gap-2.5 rounded-full bg-[#E3EEFD] px-5 py-2.5 text-[15px] font-semibold text-[#0868DC] sm:text-[17px]">
+              <Brain aria-hidden className="size-5" strokeWidth={2} />
+              {data.eyebrow}
+            </p>
+          )}
+          <h2 className={cn("type-h2 relative text-[#10294D]", data.eyebrow && "mt-6")}>
+            {after !== undefined ? (
+              <>
+                {before}
+                <span className="text-[#0868DC]">
+                  {data.accent}
+                </span>
+                {after}
+              </>
+            ) : (
+              data.title
+            )}
+          </h2>
+          {data.subtitle && <p className="type-body mx-auto mt-6 text-pretty text-[#465A78]">{data.subtitle}</p>}
+        </div>
+
+        <ul className="mt-10 grid gap-5 sm:mt-14 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+          {data.items.map((item, i) => {
+            const a = gapAccents[item.accent ?? "blue"];
+            const Icon = a.icon;
+            return (
+              <li key={item.title} className="flex">
+                <Reveal delay={Math.min(i, 6) * 0.05} className="flex w-full">
+                  <div className="@container relative flex w-full flex-col overflow-hidden rounded-[24px] border bg-white p-6 shadow-[0_12px_32px_-14px_rgba(16,41,77,.2)] transition duration-300 ease-brand hover:-translate-y-1 hover:shadow-[0_18px_40px_-14px_rgba(16,41,77,.28)] sm:p-7" style={{ borderColor: a.border }}>
+                    <div className="relative flex items-center gap-3">
+                      <span className="grid size-14 shrink-0 place-items-center rounded-[16px]" style={{ backgroundColor: a.pale, color: a.color }}>
+                        <Icon aria-hidden className="size-7" strokeWidth={1.8} />
+                      </span>
+                      <span aria-hidden className="h-9 w-0.5 shrink-0 rounded-full opacity-60" style={{ backgroundColor: a.color }} />
+                      <p className="min-w-0 text-[clamp(22px,9.4cqw,42px)] leading-[1.1] font-bold tracking-[-0.02em] whitespace-nowrap" style={{ color: a.color }}>
+                        {item.title}
+                      </p>
+                    </div>
+                    <h3 className="relative mt-5 text-[19px] leading-snug font-bold text-[#10294D] sm:text-[20px]">{item.text}</h3>
+                    {item.detail && <p className="relative mt-1.5 text-[15px] leading-snug text-[#465A78]">{item.detail}</p>}
+                  </div>
+                </Reveal>
+              </li>
+            );
+          })}
+        </ul>
+      </Container>
+    </section>
+  );
+}
+
 function Features({ data }: { data: FeaturesSection }) {
   const variant = data.variant ?? "card";
+  if (variant === "gap") return <GapFeatures data={data} />;
+  if (variant === "partner") return <PartnerFeatures data={data} />;
   if (variant === "mission") return <MissionFeatures data={data} />;
   if (variant === "glassFlow") return <HowItWorksGlass data={data} />;
   const dark = data.tone === "navy";
@@ -677,7 +892,118 @@ function Quotes({ data }: { data: QuotesSection }) {
   );
 }
 
+/** Ring node angles (deg) for the compliance orbit. */
+const COMPLIANCE_NODES = [-118, -62, 0, 180, 112, 68];
+
+/** Glass shield with a blue check, centred in the compliance orbit. Decorative. */
+function ComplianceShield({ className }: { className?: string }) {
+  return (
+    <svg aria-hidden viewBox="0 0 120 140" fill="none" className={className}>
+      <defs>
+        <linearGradient id="cs-fill" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#FFFFFF" stopOpacity=".95" />
+          <stop offset="1" stopColor="#B9DDFB" stopOpacity=".75" />
+        </linearGradient>
+        <linearGradient id="cs-edge" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#7CC0FA" />
+          <stop offset="1" stopColor="#3C9CF2" />
+        </linearGradient>
+        <filter id="cs-glow" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="9" />
+        </filter>
+      </defs>
+      <path d="M60 10 108 28V68C108 98 88 120 60 132 32 120 12 98 12 68V28Z" fill="#4DA6F8" fillOpacity=".55" filter="url(#cs-glow)" />
+      <path d="M60 10 108 28V68C108 98 88 120 60 132 32 120 12 98 12 68V28Z" fill="url(#cs-fill)" stroke="url(#cs-edge)" strokeWidth="5" strokeLinejoin="round" />
+      <path d="M38 70 54 86 84 52" stroke="#2F8DEB" strokeWidth="9" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+/** Rounded pale-blue panel: certification orbit on the left, divider, then pill / accented heading / copy / note bar. */
+function ComplianceBadges({ data }: { data: BadgesSection }) {
+  const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
+  const [line1, line2] = before.split(/(?<=& )/);
+  return (
+    <section className="py-10 sm:py-14" aria-labelledby="compliance-title">
+      <Container>
+        <div className="relative isolate overflow-hidden rounded-[24px] border border-[#E5F1FF] bg-[#F7FAFE] px-5 py-10 sm:rounded-[30px] sm:px-8 sm:py-14 lg:px-12 lg:py-16">
+          {/* Pale-blue waves along the bottom edge. */}
+          <svg aria-hidden viewBox="0 0 1440 160" preserveAspectRatio="none" fill="none" className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-24 w-full sm:h-32">
+            <path d="M0 70C220 20 460 30 720 80S1200 130 1440 60V160H0Z" fill="#E5F1FF" fillOpacity=".7" />
+            <path d="M0 115C260 80 520 100 800 125S1240 140 1440 105V160H0Z" fill="#D8EAFD" fillOpacity=".6" />
+          </svg>
+
+          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_1px_minmax(0,1.1fr)] lg:gap-10 xl:gap-14">
+            {/* Left: certification orbit */}
+            <Reveal>
+              <div className="@container relative mx-auto aspect-[35/32] w-full max-w-[680px]">
+                <svg aria-hidden viewBox="0 0 700 640" fill="none" className="absolute inset-0 size-full">
+                  <circle cx="350" cy="320" r="275" stroke="#B9DDFB" strokeWidth="1.5" />
+                  <circle cx="350" cy="320" r="200" stroke="#B9DDFB" strokeOpacity=".45" strokeWidth="1.5" />
+                  {COMPLIANCE_NODES.map((deg) => {
+                    const a = (deg * Math.PI) / 180;
+                    return <circle key={deg} cx={350 + 275 * Math.cos(a)} cy={320 + 275 * Math.sin(a)} r="8" fill="#5AB0F8" />;
+                  })}
+                </svg>
+                <div className="absolute inset-x-[2%] top-1/2 grid -translate-y-1/2 grid-cols-2 gap-x-[12%] gap-y-[10%]">
+                  {data.badges.slice(0, 4).map((b) => (
+                    <div key={b.src} className="relative h-[clamp(76px,25cqw,150px)] rounded-[18px] bg-white shadow-[0_14px_34px_-12px_rgba(8,120,232,.28)] transition duration-300 ease-brand hover:-translate-y-1 hover:shadow-[0_20px_40px_-12px_rgba(8,120,232,.38)] sm:rounded-[24px]">
+                      <Image src={b.src} alt={b.alt} fill sizes="260px" className="object-contain p-[6%_8%]" />
+                    </div>
+                  ))}
+                </div>
+                <ComplianceShield className="absolute top-1/2 left-1/2 w-[14%] -translate-x-1/2 -translate-y-1/2 drop-shadow-[0_10px_24px_rgba(8,120,232,.25)]" />
+              </div>
+            </Reveal>
+
+            <span aria-hidden className="hidden h-[72%] w-px self-center bg-[#B9DDFB]/70 lg:block" />
+
+            {/* Right: copy */}
+            <Reveal delay={0.1}>
+              <div>
+                {data.eyebrow && (
+                  <p className="inline-flex items-center gap-2.5 rounded-full bg-[#E5F1FF] px-5 py-2.5 text-[16px] font-semibold text-[#0878E8]">
+                    <ShieldCheck aria-hidden className="size-5" strokeWidth={2} />
+                    {data.eyebrow}
+                  </p>
+                )}
+                <h2 id="compliance-title" className="mt-6 text-[28px] leading-[1.15] sm:text-[38px] lg:text-[clamp(28px,2.3vw,42px)] font-bold tracking-[-0.02em] text-[#10294D]">
+                  {after !== undefined ? (
+                    <>
+                      <span className="block">{line1.trim()}</span>
+                      <span className="block sm:whitespace-nowrap">
+                        {line2}
+                        <span className="relative inline-block text-[#0878E8]">
+                          {data.accent}
+                          <svg aria-hidden viewBox="0 0 240 12" preserveAspectRatio="none" fill="none" className="absolute inset-x-0 -bottom-2.5 h-3 w-full">
+                            <path d="M2 9C60 3 150 3 238 6" stroke="#0878E8" strokeWidth="2.5" strokeLinecap="round" />
+                          </svg>
+                        </span>
+                        {after}
+                      </span>
+                    </>
+                  ) : (
+                    data.title
+                  )}
+                </h2>
+                <p className="mt-8 max-w-[640px] text-[17px] leading-[1.7] text-pretty text-[#5B6B84] sm:text-[19px]">{data.subtitle}</p>
+                {data.note && (
+                  <p className="mt-8 flex items-center gap-4 rounded-2xl bg-[#E5F1FF] px-5 py-4 text-[16px] leading-snug text-[#10294D] sm:px-6 sm:text-[18px]">
+                    <Lock aria-hidden className="size-6 shrink-0 text-[#0878E8]" strokeWidth={2} />
+                    {data.note}
+                  </p>
+                )}
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
 function Badges({ data }: { data: BadgesSection }) {
+  if (data.variant === "compliance") return <ComplianceBadges data={data} />;
   return (
     <section className="py-14 sm:py-16">
       <Container>
@@ -730,6 +1056,8 @@ export function PageSections({ sections }: { sections: PageSection[] }) {
             return <Cta key={i} data={section} />;
           case "quotes":
             return <Quotes key={i} data={section} />;
+          case "testimonialCarousel":
+            return <TestimonialCarousel key={i} data={section} />;
           case "badges":
             return <Badges key={i} data={section} />;
           case "faq":
