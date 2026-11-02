@@ -1,6 +1,6 @@
 import { ADHDMythBuster } from "@/components/sections/ADHDMythBuster";
 import { CareYouCanTrust } from "@/components/sections/CareYouCanTrust";
-import { ContactSection } from "@/components/sections/ContactSection";
+import { AccommodationContact } from "@/components/sections/AccommodationSections";
 import { CTABand } from "@/components/sections/CTABand";
 import { FAQAccordion } from "@/components/sections/FAQAccordion";
 import { FinalCTA } from "@/components/sections/FinalCTA";
@@ -15,8 +15,8 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { WeSeeYou } from "@/components/sections/WeSeeYou";
 import { WhyAxon } from "@/components/sections/WhyAxon";
 import { homeFaqs } from "@/content/faqs";
-import { faqSection, readyBand, testimonialsSection } from "@/content/home";
-import { reviews } from "@/content/trust";
+import { contactSection, faqSection, readyBand, testimonialsSection } from "@/content/home";
+import { googleRating, reviews } from "@/content/trust";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -41,11 +41,12 @@ export default function HomePage() {
       <WhyAxon />
       <CTABand variant="plain" title={readyBand.title} subtitle={readyBand.subtitle} primary={readyBand.cta} />
       <CareYouCanTrust />
-      <Testimonials title={testimonialsSection.title} subtitle={testimonialsSection.subtitle} reviews={reviews} />
+      <Testimonials {...testimonialsSection} reviews={reviews} rating={googleRating} />
       <LatestBlogs />
-      <FAQAccordion faqs={homeFaqs} title={faqSection.title} subtitle={faqSection.subtitle} />
+      <FAQAccordion variant="home" faqs={homeFaqs} title={faqSection.title} subtitle={faqSection.subtitle} />
       <FinalCTA />
-      <ContactSection />
+      {/* Accommodation-page contact design; its built-in copy is identical to `contactSection`, which supplies the rest. */}
+      <AccommodationContact eyebrow={null} description={contactSection.subtitle} placeholders={false} compact />
     </>
   );
 }

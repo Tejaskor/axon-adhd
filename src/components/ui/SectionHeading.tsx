@@ -21,14 +21,11 @@ export function SectionHeading({ eyebrow, title, subtitle, align = "center", as:
       )}
       <Tag
         id={id}
-        className={cn(
-          "font-display text-[26px] leading-[1.2] font-bold tracking-[-0.5px] sm:text-[32px] md:text-[36px] lg:text-[40px]",
-          light ? "text-white" : "text-navy",
-        )}
+        className={cn(Tag === "h1" ? "type-h1" : "type-h2", light ? "text-white" : "text-navy")}
       >
         {title}
       </Tag>
-      {subtitle && <p className={cn("mt-4 text-[16px] leading-relaxed sm:text-[18px]", light ? "text-white/85" : "text-body")}>{subtitle}</p>}
+      {subtitle && <p className={cn("type-body mt-4", light ? "text-white/85" : "text-body")}>{subtitle}</p>}
     </div>
   );
 }

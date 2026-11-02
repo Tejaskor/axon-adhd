@@ -149,11 +149,11 @@ export function Header() {
         </nav>
 
         <div className="hidden shrink-0 items-center gap-3 lg:flex xl:gap-4">
-          <ButtonLink href={ctas.evaluation.href} variant="white" size="sm" className="cta-trace h-[54px]! rounded-[9999px]! border border-line-3 [--cta-trace-color:#3B82F6] [--cta-trace-offset:1px] text-[clamp(13px,1.02vw,16px)]! leading-[1.25] font-normal! text-navy! shadow-[0_1px_2px_rgba(15,27,46,.06)] hover:border-primary/30 xl:px-5">
+          <ButtonLink href={ctas.evaluation.href} variant="white" size="sm" className="cta-trace h-[54px]! rounded-[9999px]! border border-line-3 [--cta-trace-color:#2578CA] [--cta-trace-offset:1px] text-[clamp(13px,1.02vw,16px)]! leading-[1.25] font-normal! text-navy! shadow-[0_1px_2px_rgba(15,27,46,.06)] hover:border-primary/30 xl:px-5">
             {ctas.evaluation.label}
             <TraceLine />
           </ButtonLink>
-          <ButtonLink href={ctas.screening.href} size="sm" className="cta-trace h-[54px]! rounded-[9999px]! [--cta-trace-color:#BFDBFE] text-[clamp(13px,1.02vw,16px)]! leading-[1.25] font-normal! shadow-[0_6px_18px_rgba(37,106,204,.28)]! hover:shadow-[0_8px_22px_rgba(37,106,204,.34)]! xl:px-5">
+          <ButtonLink href={ctas.screening.href} size="sm" className="cta-trace h-[54px]! rounded-[9999px]! [--cta-trace-color:#C9DEF4] text-[clamp(13px,1.02vw,16px)]! leading-[1.25] font-normal! shadow-[0_6px_18px_rgba(37,120,202,.28)]! hover:shadow-[0_8px_22px_rgba(37,120,202,.34)]! xl:px-5">
             {ctas.screening.label}
             <TraceLine />
           </ButtonLink>

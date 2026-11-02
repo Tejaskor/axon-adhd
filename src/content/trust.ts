@@ -52,53 +52,75 @@ export const complianceBadgesColor = [
   { src: "/images/badges/color/soc2.png", alt: "SOC 2 Type 2 certified badge", width: 251, height: 414 },
 ] satisfies ImageAsset[];
 
-export type Review = { name: string; avatar: string; text: string };
+/** `date` is the Google post date (ISO, from the widget's `data-time`). */
+export type Review = { name: string; avatar: string; date: string; rating: number; text: string };
+
+/** Rating summary shown beside the reviews: label and count from the live Trustindex widget, score from the trust bar. */
+export const googleRating = { label: "EXCELLENT", score: 4.9, outOf: 5, count: 78 };
 
 /** Google reviews as rendered by the Trustindex widget on the live home page. */
 export const reviews: Review[] = [
   {
     name: "Brett Hammer",
     avatar: "/images/trust/reviews/brett-hammer.png",
+    date: "2026-08-21",
+    rating: 5,
     text: "Incredible experience. I did the self test and had thought I no symptoms of ADHD. Then I took the objective test and definitely showed symptoms. I truly had no clue I had adhd and going through this process taught me so much and has helped me learn how to handle some of the things that come with ADHD. 10/10 highly recommend!",
   },
   {
     name: "Sam Johnso",
     avatar: "/images/trust/reviews/sam-johnso.png",
+    date: "2026-07-20",
+    rating: 5,
     text: "Dr Dodini is an incredible psychologist! I went through the website for ADHD evaluation and I really appreciated how in depth it was. Not only was it questionnaires, but also I was able to write out how I was feeling, my struggles, etc. I felt like I was actually able to express everything that I was feeling and struggling with, in addition to taking the ADHD FDA approved exam. This made me feel more sure of my diagnosis. I wasn’t questioning whether or not I had it, I was able to get the real data of how my brain reacts. The whole experience was very smooth and easy. It took me around 1 hour to do all of the questionnaires and exam, and after was able to talk with Dr Dodini specifically about my results, receive clarifications about certain struggles or concerns, and really have a personalized treatment plan, with in depth steps. He explained to me how in my case, medication would help, but that’s not the end all be all. He explained in depth 3 other steps that have been helping me in the past week to function better and feel better. With my report from Dr Dodini, I wasn’t questioning whether able to meet with a doctor, who was able to analyze my report, making my appointment smooth, and he was able to help me out! I did the full evaluation, including the questionnaires, self report questions, and FDA color exam. The exam I think was really good because even though it was frustrating taking the exam, it really highlighted the issues I was struggling with which included not being able to focus, disassociating, etc. As we discussed afterwards, he broke down the analytics of how I did in the game, compared to the general population, explained how my results looked like in real life, and I shared what that was like in my schoolwork, work, and social life. I had struggled getting a proper diagnosis through normal doctors before, so I appreciated how DR Dodini was patient, listened to me, and help give me a accurate and proper diagnosis of someone who got it later in life, at 22. I was also able to get the medication necessary to improve my functions, and have seen results already in my work! Everything felt personalized, and I finally felt like someone listened to me and my struggles!",
   },
   {
     name: "Jayesh Gangurde",
     avatar: "/images/trust/reviews/jayesh-gangurde.png",
+    date: "2026-07-10",
+    rating: 5,
     text: "Great experience with AXON ADHD! The team was professional, supportive, and made the entire process smooth and stress-free. Highly recommend their services to anyone seeking ADHD assessment and care.",
   },
   {
     name: "Su S",
     avatar: "/images/trust/reviews/su-s.png",
+    date: "2026-07-06",
+    rating: 5,
     text: "We are grateful that we found out about Dr. Dodini’s services. He is really amazing and I cannot recommend him enough. It is the most efficient process doing all this online and his assessment is so spot on. We wasted several years getting misdiagnosis or not a complete diagnosis. It was a lot of trial and error on my teenage son’s expense. Let me tell you, it cost us thousands of dollars in the process. I wish we knew that our son had ADHD earlier. It would have redirected our efforts. Dr Dodini’s assessment is based on analytics from what I can tell, but I can tell you qualitatively that it is very accurate. I am amazed how much he knew about Adam in such a short period of time based on his analysis from the online test. His prices are reasonable especially compared to other ADHD assessments which are north of $4k. I would highly recommend his services. He knows what he is doing and is very smart.",
   },
   {
     name: "Nora Fotuhi",
     avatar: "/images/trust/reviews/nora-fotuhi.png",
+    date: "2026-06-21",
+    rating: 5,
     text: "I had an amazing experience working with Dr. Aaron Dodini. He was always very responsive, took the time to answer my questions, and genuinely cared about helping his patients. He is knowledgeable, thoughtful, and goes above and beyond to support the people he works with. I really appreciated how easy he was to communicate with and how invested he was in making sure I had the best experience possible. I would highly recommend Dr. Dodini to anyone looking for a compassionate, dedicated, and knowledgeable provider.",
   },
   {
     name: "Tejas Kor",
     avatar: "/images/trust/reviews/tejas-kor.png",
+    date: "2026-06-18",
+    rating: 5,
     text: "Dr. Aaron Dodini and the team at Axon ADHD provided a professional and supportive experience throughout the evaluation process. The initial assessment was straightforward, and the comprehensive testing process was well organized and easy to understand. What stood out most was the time taken to explain the results, answer questions, and create a clear path forward. The staff was responsive, the onboarding process was smooth, and the overall experience felt welcoming and patient-focused. For anyone who suspects they may have ADHD, seeking an evaluation can be an important step toward better understanding themselves and accessing appropriate support. The team at Axon ADHD offers a structured and thoughtful approach that helps patients feel informed and comfortable throughout the process.",
   },
   {
     name: "John Ashton-Atkinson",
     avatar: "/images/trust/reviews/john-ashton-atkinson.png",
+    date: "2025-10-22",
+    rating: 5,
     text: "Very streamlined and detailed experience",
   },
   {
     name: "Thomas Woo",
     avatar: "/images/trust/reviews/thomas-woo.png",
+    date: "2024-12-10",
+    rating: 5,
     text: "Very professional and helpful with ADHD diagnosis and coaching, would definitely recommend for anyone looking - also a very reasonable price compared to many other options out there!",
   },
   {
     name: "Joseph Letteri",
     avatar: "/images/trust/reviews/joseph-letteri.png",
+    date: "2024-11-25",
+    rating: 5,
     text: "Awesome experience. Aaron and his team guided me to the testing accommodation solution I was looking for.",
   },
 ];

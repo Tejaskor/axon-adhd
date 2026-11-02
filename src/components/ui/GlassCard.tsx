@@ -4,7 +4,7 @@ import { FeatureIcon, type IconName } from "./FeatureIcon";
 /** Brand tints for glass cards — green, blue, orange — cycled by index. */
 const tones = [
   { card: "from-[#22C083]/[0.12] to-white border-[#22C083]/30 hover:border-[#22C083]/60", disc: "from-[#4FE0AE] to-[#16A56E]", glow: "shadow-[0_10px_30px_rgba(34,192,131,.35)]" },
-  { card: "from-[#2578CA]/[0.12] to-white border-[#2578CA]/30 hover:border-[#2578CA]/60", disc: "from-[#4C9BEF] to-[#1D63B8]", glow: "shadow-[0_10px_30px_rgba(37,120,202,.35)]" },
+  { card: "from-primary/[0.12] to-white border-primary/30 hover:border-primary/60", disc: "from-primary-400 to-primary-600", glow: "shadow-[0_10px_30px_rgba(37,120,202,.35)]" },
   { card: "from-[#EB8B01]/[0.12] to-white border-[#EB8B01]/30 hover:border-[#EB8B01]/60", disc: "from-[#FFC15A] to-[#E08200]", glow: "shadow-[0_10px_30px_rgba(235,139,1,.35)]" },
 ];
 
@@ -31,11 +31,11 @@ export function GlassCard({ index, icon, title, text }: GlassCardProps) {
       <div className="min-w-0 flex-1">
         {title ? (
           <>
-            <h3 className="font-inter text-[19px] leading-snug font-semibold text-navy sm:text-[22px] lg:text-[19px] xl:text-[20px]">{title}</h3>
-            {text && <p className="mt-1 text-[14.5px] leading-relaxed text-body sm:text-[16px] lg:text-[14px]">{text}</p>}
+            <h3 className="type-h4 text-navy">{title}</h3>
+            {text && <p className="type-body mt-1 text-body">{text}</p>}
           </>
         ) : (
-          <p className="font-inter text-[17px] leading-snug font-semibold text-navy sm:text-[19px] lg:text-[18px] xl:text-[19px]">{text}</p>
+          <p className="type-lead font-semibold text-navy">{text}</p>
         )}
       </div>
     </div>

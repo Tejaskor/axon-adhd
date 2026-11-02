@@ -25,7 +25,7 @@ function FooterLinks({ title, links }: { title: string; links: Array<{ label: st
       <ul className="mt-6 space-y-4">
         {links.map((l) => (
           <li key={l.href}>
-            <Link href={l.href} className="text-[16px] text-white/95 transition-colors hover:text-[#4FC3F7]">
+            <Link href={l.href} className="type-body text-white/95 transition-colors hover:text-[#4FC3F7]">
               {l.label}
             </Link>
           </li>
@@ -50,7 +50,7 @@ export function Footer() {
           <Link href="/" aria-label={`${site.name} home`} className="flex h-14 items-center sm:h-[68px]">
             <Image src={site.footerLogo.src} alt="AXON ADHD Brand Logo" width={site.footerLogo.width} height={site.footerLogo.height} className="h-14 w-auto sm:h-[68px]" />
           </Link>
-          <p className="mt-6 max-w-[520px] text-[16px] leading-[1.75] text-white/95 sm:text-[17px]">{site.blurb}</p>
+          <p className="type-body mt-6 max-w-[520px] text-white/95">{site.blurb}</p>
         </div>
 
         <div>
@@ -62,7 +62,7 @@ export function Footer() {
 
         <div className="sm:col-span-2 lg:col-span-1">
           <h2 className="flex items-center font-display text-[15px] font-extrabold tracking-[0.08em] text-white uppercase lg:h-[68px]">Contact Us</h2>
-          <address className="mt-6 space-y-4 text-[16px] not-italic">
+          <address className="type-body mt-6 space-y-4 not-italic">
             <a href={`mailto:${site.email}`} className="flex items-center gap-4 text-white/95 transition-colors hover:text-[#4FC3F7]">
               <Mail aria-hidden className="size-6 shrink-0 text-[#29B6F6]" strokeWidth={1.5} /> {site.email}
             </a>
@@ -110,7 +110,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-4 px-4 py-7 text-[15px] sm:px-6 lg:flex-row lg:justify-between lg:px-12">
+        <div className="type-body mx-auto flex w-full max-w-[1440px] flex-col items-center gap-4 px-4 py-7 sm:px-6 lg:flex-row lg:justify-between lg:px-12">
           <p className="text-white/95">{site.copyright}</p>
           <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
             {footerNav.legal.map((l, i) => (

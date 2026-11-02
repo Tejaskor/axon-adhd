@@ -13,7 +13,7 @@ export function BlogCard({ post, headingLevel = "h3" }: { post: BlogPost; headin
         <Image src={post.image.src} alt="" width={post.image.width} height={post.image.height} sizes="(max-width: 1024px) 100vw, 420px" className="aspect-[16/9] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
       </Link>
       <div className="flex flex-1 flex-col p-6">
-        <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[13px] text-muted">
+        <p className="type-small flex flex-wrap items-center gap-x-4 gap-y-1 text-muted">
           <span className="inline-flex items-center gap-1.5">
             <UserRound aria-hidden className="size-3.5" /> {post.author}
           </span>
@@ -22,13 +22,13 @@ export function BlogCard({ post, headingLevel = "h3" }: { post: BlogPost; headin
             <time dateTime={post.date}>{formatDate(post.date)}</time>
           </span>
         </p>
-        <Heading className="mt-3 text-[19px] leading-snug font-bold text-navy">
+        <Heading className="type-h4 mt-3 text-navy">
           <Link href={href} className="hover:text-primary">
             {post.title}
           </Link>
         </Heading>
-        <p className="mt-2 flex-1 text-[15px] leading-relaxed text-body">{post.excerpt}</p>
-        <Link href={href} className="mt-4 text-[15px] font-semibold text-primary hover:text-primary-hover">
+        <p className="type-body mt-2 flex-1 text-body">{post.excerpt}</p>
+        <Link href={href} className="type-body mt-4 font-semibold text-primary hover:text-primary-hover">
           Read More » <span className="sr-only">about {post.title}</span>
         </Link>
       </div>

@@ -53,7 +53,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(function
         autoComplete="tel-national"
         aria-invalid={invalid || undefined}
         aria-describedby={invalid ? `${id}-error` : undefined}
-        className={cn(fieldClasses, "rounded-l-none focus:ring-0")}
+        className={cn(fieldClasses, "min-w-0 rounded-l-none focus:ring-0")}
         {...rest}
       />
     </div>

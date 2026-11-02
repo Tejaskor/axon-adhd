@@ -8,8 +8,8 @@ export default function NotFound() {
     <section className="-mt-[var(--header-height)] bg-gradient-to-b from-primary-soft to-white pt-[160px] pb-24 text-center">
       <Container className="max-w-[720px]">
         <p className="text-[96px] leading-none font-extrabold text-primary/20 sm:text-[140px]">404</p>
-        <h1 className="mt-2 font-display text-[28px] font-bold text-navy sm:text-[40px]">Lost focus? It happens.</h1>
-        <p className="mt-4 text-[17px] text-body">The page you’re looking for doesn’t exist or has moved. Let’s get you back on track.</p>
+        <h1 className="type-h1 mt-2 text-navy">Lost focus? It happens.</h1>
+        <p className="type-body mt-4 text-body">The page you’re looking for doesn’t exist or has moved. Let’s get you back on track.</p>
         <div className="mt-8 flex flex-col justify-center gap-3 xs:flex-row">
           <ButtonLink href="/" size="lg">
             Back to Home
@@ -18,7 +18,7 @@ export default function NotFound() {
             {ctas.screening.label}
           </ButtonLink>
         </div>
-        <p className="mt-8 text-[15px] text-muted">
+        <p className="type-body mt-8 text-muted">
           Looking for something specific? Try the{" "}
           <Link href="/sitemap/" className="font-medium text-primary underline">
             site map

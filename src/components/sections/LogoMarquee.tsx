@@ -26,7 +26,7 @@ export function LogoMarquee() {
 
   return (
     <section aria-labelledby="partners-title" className="border-y border-line-2 bg-white py-10">
-      <p id="partners-title" className="container-content mb-7 text-center text-[13px] font-semibold tracking-[0.14em] text-muted sm:text-[14px]">
+      <p id="partners-title" className="type-small container-content mb-7 text-center font-semibold tracking-[0.14em] text-muted">
         {partnerLogos.title}
       </p>
       <div className="marquee relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">

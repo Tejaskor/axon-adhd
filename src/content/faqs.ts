@@ -1,4 +1,6 @@
-// Content migrated from axonadhd.com. Edit text here; components render it.
+// Content extracted from axonadhd.com (home page FAQ + /adhd-faqs/). Wording and visible emphasis match the live
+// answers exactly: `**bold**` only where the live text renders bold (the many `<b><span style="font-weight:400">`
+// wrappers render normal and are left plain). Edit text here; components render it.
 import type { Faq, FaqTab } from "./types";
 
 export const homeFaqs: Faq[] = [
@@ -141,7 +143,7 @@ export const homeFaqs: Faq[] = [
       },
       {
         "type": "p",
-        "text": "Visit [www.axonadhd.com](/)."
+        "text": "Visit [: www.axonadhd.com](https://www.axonadhd.com)."
       },
       {
         "type": "p",
@@ -171,7 +173,7 @@ export const homeFaqs: Faq[] = [
       },
       {
         "type": "p",
-        "text": "Our goal isn’t just to diagnose—it’s to empower you with understanding, direction, and tools for meaningful change. At AXON, we help you turn potential into performance."
+        "text": "Our goal isn’t just to diagnose—it’s to **empower** you with understanding, direction, and tools for meaningful change. At AXON, we help you turn potential into performance."
       }
     ]
   }
@@ -187,7 +189,7 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "AXON ADHD provides proactive, complex ADHD evaluations and collaborative care. We help primary care physicians identify, refer, and manage ADHD cases efficiently—using objective data and integrated technology—so you can focus on higher-level medical needs while maintaining oversight and continuity of care."
+            "text": "AXON ADHD provides **proactive, complex ADHD evaluations and collaborative care**. We help primary care physicians identify, refer, and manage ADHD cases efficiently—using objective data and integrated technology—so you can focus on higher-level medical needs while maintaining oversight and continuity of care."
           }
         ]
       },
@@ -196,7 +198,7 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "ADHD often overlaps with mood, anxiety, trauma, and substance-use disorders, making accurate diagnosis difficult within a short primary care visit. Nearly 12% of the population meets ADHD criteria, yet only 1 in 9 adults are properly diagnosed and treated. Untreated ADHD increases risks for depression, anxiety, obesity, hypertension, and substance abuse, and reduces life expectancy by 8–13 years. AXON ADHD helps PCPs manage these complex cases without adding burden or liability ."
+            "text": "ADHD often overlaps with mood, anxiety, trauma, and substance-use disorders, making accurate diagnosis difficult within a short primary care visit. Nearly **12% of the population** meets ADHD criteria, yet **only 1 in 9 adults** are properly diagnosed and treated. Untreated ADHD increases risks for **depression, anxiety, obesity, hypertension**, and **substance abuse**, and reduces life expectancy by **8–13 years**. AXON ADHD helps PCPs manage these complex cases without adding burden or liability ."
           }
         ]
       },
@@ -205,15 +207,15 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "Our integrated, automated workflow identifies and refers patients through your existing EHR system:"
+            "text": "Our **integrated, automated workflow** identifies and refers patients through your existing EHR system:"
           },
           {
-            "type": "ul",
+            "type": "ol",
             "items": [
-              "Free Pre-visit screening (PHQ-9, GAD-7, ASRS, DAST etc.) — auto-administered annually or pre-visit.",
-              "Automated referral — patients meeting validated thresholds are referred to AXON ADHD for full evaluation.",
-              "Comprehensive testing & reporting — we conduct objective testing (QbCheck), structured interviews, and produce a full report and treatment plan.",
-              "Collaborative treatment — results are sent back to the PCP for review, documentation, and follow-up prescribing as desired. We can even retest on medication to help with medication titration and document efficacy of treatments."
+              "**Free Pre-visit screening** (PHQ-9, GAD-7, ASRS, DAST etc.) — auto-administered annually or pre-visit.",
+              "**Automated referral** — patients meeting validated thresholds are referred to AXON ADHD for full evaluation.",
+              "**Comprehensive testing & reporting** — we conduct objective testing (QbCheck), structured interviews, and produce a full report and treatment plan.",
+              "**Collaborative treatment** — results are sent back to the PCP for review, documentation, and follow-up prescribing as desired. We can even retest on medication to help with medication titration and document efficacy of treatments."
             ]
           }
         ]
@@ -223,7 +225,7 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "Not at all. Our process is low-touch and fully automated—requiring no additional PCP time. Once implemented, the system screens patients, generates referrals, and delivers reports seamlessly through your EHR. We manage the testing, interpretation, and patient communication; you simply review the results and determine next steps."
+            "text": "Not at all. Our process is **low-touch** and **fully automated**—requiring **no additional PCP time**. Once implemented, the system screens patients, generates referrals, and delivers reports seamlessly through your EHR. We manage the testing, interpretation, and patient communication; you simply review the results and determine next steps."
           }
         ]
       },
@@ -232,7 +234,7 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "Yes. AXON ADHD’s workflow allows you to bill for proactive screening and collaborative consultation while we handle the heavy lifting."
+            "text": "Yes. AXON ADHD’s workflow allows you to **bill for proactive screening and collaborative consultation** while we handle the heavy lifting."
           },
           {
             "type": "p",
@@ -241,13 +243,13 @@ export const faqTabs: FaqTab[] = [
           {
             "type": "ul",
             "items": [
-              "96127 (brief emotional/behavioral screening)",
-              "99452 (interprofessional consultation)"
+              "**96127** (brief emotional/behavioral screening)",
+              "**99452** (interprofessional consultation)"
             ]
           },
           {
             "type": "p",
-            "text": "These can generate +$50 per patient for screenings you already perform, and increase hourly reimbursement by up to $70/hour for 16% of visits involving behavioral health ."
+            "text": "These can generate **+$50 per patient** for screenings you already perform, and increase hourly reimbursement by **up to $70/hour** for 16% of visits involving behavioral health ."
           }
         ]
       },
@@ -257,10 +259,10 @@ export const faqTabs: FaqTab[] = [
           {
             "type": "ul",
             "items": [
-              "Clinical Confidence: Objective data and standardized assessments improve diagnostic accuracy and treatment decisions.",
-              "Operational Efficiency: Automated referrals and integrated workflows eliminate bottlenecks.",
-              "Economic Benefit: Shifts time from behavioral health cases to higher-level medical care, increasing billable value.",
-              "Patient Impact: Early identification reduces medical complications, accidents, and comorbidities while improving adherence and quality of life ."
+              "**Clinical Confidence:** Objective data and standardized assessments improve diagnostic accuracy and treatment decisions.",
+              "**Operational Efficiency:** Automated referrals and integrated workflows eliminate bottlenecks.",
+              "**Economic Benefit:** Shifts time from behavioral health cases to higher-level medical care, increasing billable value.",
+              "**Patient Impact:** Early identification reduces medical complications, accidents, and comorbidities while improving adherence and quality of life ."
             ]
           }
         ]
@@ -273,12 +275,12 @@ export const faqTabs: FaqTab[] = [
             "text": "Implementation is simple and turnkey:"
           },
           {
-            "type": "ul",
+            "type": "ol",
             "items": [
-              "Pathway Mapping: We review your current workflow to identify integration points.",
-              "Configuration & Dry Run: We test the referral process for accuracy and robustness.",
-              "Clinician Education: We hold brief training sessions to onboard your staff.",
-              "Go-Live: We launch and monitor for continuous optimization and reimbursement accuracy ."
+              "**Pathway Mapping:** We review your current workflow to identify integration points.",
+              "**Configuration & Dry Run:** We test the referral process for accuracy and robustness.",
+              "**Clinician Education:** We hold brief training sessions to onboard your staff.",
+              "**Go-Live:** We launch and monitor for continuous optimization and reimbursement accuracy ."
             ]
           }
         ]
@@ -288,7 +290,7 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "There is no cost to your practice. Patients pay directly for evaluations, and we provide superbills for reimbursement. The integration and technology setup are free for partner clinics."
+            "text": "There is **no cost** to your practice. Patients pay directly for evaluations, and we provide superbills for reimbursement. The integration and technology setup are free for partner clinics."
           }
         ]
       },
@@ -297,7 +299,7 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "Our systems are HIPAA-compliant, evidence-based, and designed around collaborative care best practices. Every evaluation includes objective testing, validated scales, and clinician interpretation to meet medical and legal standards for diagnosis and accommodations."
+            "text": "Our systems are **HIPAA-compliant**, **evidence-based**, and designed around **collaborative care best practices**. Every evaluation includes objective testing, validated scales, and clinician interpretation to meet medical and legal standards for diagnosis and accommodations."
           }
         ]
       },
@@ -306,7 +308,7 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "Dr. Aaron Dodini, Ph.D."
+            "text": "**Dr. Aaron Dodini, Ph.D.**"
           },
           {
             "type": "p",
@@ -333,7 +335,7 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "AXON ADHD partners with universities to reduce student attrition as a result of undiagnosed ADHD and accompanying issues like depression, anxiety, and substance abuse. We partner to improve wellness outcomes and improve academic performance through free mental health screenings and affordable ADHD evaluations to proactively identify students at risk for academic struggle or dropout—while easing the burden on campus counseling and health centers."
+            "text": "AXON ADHD partners with universities to **reduce student attrition** as a result of undiagnosed ADHD and accompanying issues like depression, anxiety, and substance abuse. We partner to improve wellness outcomes and improve academic performance through **free mental health screenings** and **affordable ADHD evaluations** to proactively identify students at risk for academic struggle or dropout—while easing the burden on campus counseling and health centers."
           }
         ]
       },
@@ -342,11 +344,11 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "AXON ADHD provides accurate, data-driven ADULT ADHD evaluations and ongoing support. We combine clinical expertise, standardized psychological tools, and cutting-edge FDA cleared technology to deliver a precise ADHD diagnosis and actionable treatment plans with access to ADHD medications and ADHD accommodations."
+            "text": "AXON ADHD provides accurate, data-driven **ADULT** **ADHD evaluations** and ongoing support. We combine clinical expertise, standardized psychological tools, and cutting-edge **FDA cleared** technology to deliver a precise **ADHD diagnosis** and actionable treatment plans with access to **ADHD medications** and **ADHD accommodations**."
           },
           {
             "type": "p",
-            "text": "We believe proactive ADHD screening is an essential part of making ADHD assessment more accessible to all people. It helps identify ADULT ADHD symptoms for men and women. ADHD has been called one of the most over diagnosed and underdiagnosed conditions within behavioral health. AXON ADHD can change this. We can give people the most accurate ADULT ADHD diagnosis information available and help the millions of people who struggle without a clear diagnosis. 8 of 9 adults who have ADHD have never been accurately diagnosed. We want to change this."
+            "text": "We believe **proactive ADHD screening** is an essential part of making ADHD assessment more accessible to all people. It helps identify **ADULT** **ADHD symptoms** **for men and women**. ADHD has been called one of the most over diagnosed *and* underdiagnosed conditions within behavioral health. AXON ADHD can change this. We can give people the most accurate **ADULT** **ADHD diagnosis** information available and help the millions of people who struggle without a clear diagnosis. 8 of 9 adults who have ADHD have never been accurately diagnosed. We want to change this."
           }
         ]
       },
@@ -359,15 +361,15 @@ export const faqTabs: FaqTab[] = [
           },
           {
             "type": "p",
-            "text": "Case Study: A midsize public university (35,000 students)"
+            "text": "**Case Study: A midsize public university (35,000 students)**"
           },
           {
             "type": "ul",
             "items": [
               "Estimated 3,734 students have undiagnosed ADHD.",
               "2,240 of those students are at risk for drop out.",
-              "Annual lost tuition: $24.5 million.",
-              "Four-year cumulative loss: ~$100 million Beyond tuition, attrition lowers alumni engagement, affects institutional rankings, and risks Title IV eligibility."
+              "Annual lost tuition: **$24.5 million**.",
+              "Four-year cumulative loss: **~$100 million**\nBeyond tuition, attrition lowers alumni engagement, affects institutional rankings, and risks Title IV eligibility."
             ]
           }
         ]
@@ -377,20 +379,20 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "We provide a turnkey, data-driven behavioral health solution that scales across campuses:"
+            "text": "We provide a **turnkey, data-driven behavioral health solution** that scales across campuses:"
           },
           {
             "type": "ul",
             "items": [
-              "Free annual screenings (for ADHD, depression, anxiety, and substance use).",
-              "Affordable comprehensive ADHD evaluations for students who screen positive — at 90% less cost than typical testing.",
-              "Immediate access to same-day testing and results.",
-              "Collaborative treatment plans shared with students, families, primary care providers, and academic support staff."
+              "**Free annual screenings** (for ADHD, depression, anxiety, and substance use).",
+              "**Affordable comprehensive ADHD evaluations** for students who screen positive — at **90% less cost** than typical testing.",
+              "**Immediate access** to same-day testing and results.",
+              "**Collaborative treatment plans** shared with students, families, primary care providers, and academic support staff."
             ]
           },
           {
             "type": "p",
-            "text": "Training and consultation for faculty, advisors, and student affairs professionals ."
+            "text": "**Training and consultation** for faculty, advisors, and student affairs professionals ."
           }
         ]
       },
@@ -399,15 +401,15 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "Our technology integrates directly with your Learning Management System (LMS) or student health platform:"
+            "text": "Our technology integrates directly with your **Learning Management System (LMS)** or student health platform:"
           },
           {
-            "type": "ul",
+            "type": "ol",
             "items": [
-              "Pathway Mapping: We review existing systems and workflows.",
-              "Configuration & Dry Run: We customize the communication and referral flow.",
-              "Staff Information Sessions: We train campus teams on the pathway and ADHD care.",
-              "Go-Live: We launch a seamless, automated system that continuously monitors outcomes and improves over time ."
+              "**Pathway Mapping:** We review existing systems and workflows.",
+              "**Configuration & Dry Run:** We customize the communication and referral flow.",
+              "**Staff Information Sessions:** We train campus teams on the pathway and ADHD care.",
+              "**Go-Live:** We launch a seamless, automated system that continuously monitors outcomes and improves over time ."
             ]
           }
         ]
@@ -417,14 +419,14 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "There is no direct cost to the university."
+            "text": "There is **no direct cost** to the university."
           },
           {
             "type": "ul",
             "items": [
-              "Screenings are free for all students and staff.",
-              "Full evaluations are paid by students or families, with superbills to seek reimbursement from health insurance plans.",
-              "A non-profit arm seeks grant funding to ensure access for low-income and underserved students ."
+              "Screenings are **free for all students and staff**.",
+              "Full evaluations are paid by students or families, with **superbills to seek reimbursement** from health insurance plans.",
+              "A non-profit arm seeks **grant funding** to ensure access for low-income and underserved students ."
             ]
           }
         ]
@@ -434,13 +436,13 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "AXON ADHD reduces strain on counseling and health centers by:"
+            "text": "AXON ADHD **reduces strain** on counseling and health centers by:"
           },
           {
             "type": "ul",
             "items": [
               "Identifying and triaging complex ADHD cases before crises emerge.",
-              "Offering objective, fast, and accurate assessments that counselors can use to inform care.",
+              "Offering **objective, fast, and accurate assessments** that counselors can use to inform care.",
               "Freeing clinical staff to focus on therapy and crisis intervention rather than lengthy diagnostics.",
               "Access to our network of trusted clinicians to augment or fully manage treatment."
             ]
@@ -464,12 +466,12 @@ export const faqTabs: FaqTab[] = [
         "q": "What measurable outcomes can universities expect?",
         "a": [
           {
-            "type": "ul",
+            "type": "ol",
             "items": [
-              "Higher retention and graduation rates. A modest 10% improvement of retention can yield a savings of $Millions for a typical university.",
-              "Reduced student loan defaults and improved alumni outcomes.",
-              "Improved rankings through lower attrition and stronger completion metrics.",
-              "Enhanced student satisfaction and wellbeing."
+              "**Higher retention and graduation rates.** A modest 10% improvement of retention can yield a savings of $Millions for a typical university.",
+              "**Reduced student loan defaults** and improved alumni outcomes.",
+              "**Improved rankings** through lower attrition and stronger completion metrics.",
+              "**Enhanced student satisfaction and wellbeing.**"
             ]
           },
           {
@@ -483,7 +485,7 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "Implementation begins with a brief strategy session to assess needs, integration options, and pilot opportunities."
+            "text": "Implementation begins with a **brief strategy session** to assess needs, integration options, and pilot opportunities."
           },
           {
             "type": "p",
@@ -491,11 +493,11 @@ export const faqTabs: FaqTab[] = [
           },
           {
             "type": "p",
-            "text": "Contact:"
+            "text": "**Contact:**"
           },
           {
             "type": "p",
-            "text": "Dr. Aaron Dodini, M.S., M.A., Ph.D."
+            "text": "**Dr. Aaron Dodini, M.S., M.A., Ph.D.**"
           },
           {
             "type": "p",
@@ -511,7 +513,7 @@ export const faqTabs: FaqTab[] = [
           },
           {
             "type": "p",
-            "text": "🌐 [www.AXONADHD.com](/)"
+            "text": "🌐 [www.AXONADHD.com](https://www.axonadhd.com)"
           }
         ]
       }
@@ -526,11 +528,11 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "AXON ADHD provides accurate, data-driven ADULT ADHD evaluations and ongoing support. We combine clinical expertise, standardized psychological tools, and cutting-edge FDA cleared technology to deliver a precise ADHD diagnosis and actionable treatment plans with access to ADHD medications and ADHD accommodations."
+            "text": "AXON ADHD provides accurate, data-driven **ADULT** **ADHD evaluations** and ongoing support. We combine clinical expertise, standardized psychological tools, and cutting-edge **FDA cleared** technology to deliver a precise **ADHD diagnosis** and actionable treatment plans with access to **ADHD medications** and **ADHD accommodations**."
           },
           {
             "type": "p",
-            "text": "We believe proactive ADHD screening is an essential part of making ADHD assessment more accessible to all people. It helps identify ADULT ADHD symptoms for men and women. ADHD has been called one of the most over diagnosed and underdiagnosed conditions within behavioral health. AXON ADHD can change this. We can give people the most accurate ADULT ADHD diagnosis information available and help the millions of people who struggle without a clear diagnosis. 8 of 9 adults who have ADHD have never been accurately diagnosed. We want to change this."
+            "text": "We believe **proactive ADHD screening** is an essential part of making ADHD assessment more accessible to all people. It helps identify **ADULT** **ADHD symptoms** **for men and women**. ADHD has been called one of the most over diagnosed *and* underdiagnosed conditions within behavioral health. AXON ADHD can change this. We can give people the most accurate **ADULT** **ADHD diagnosis** information available and help the millions of people who struggle without a clear diagnosis. 8 of 9 adults who have ADHD have never been accurately diagnosed. We want to change this."
           }
         ]
       },
@@ -539,11 +541,11 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "Anyone struggling with focus, organization, motivation, emotional regulation, or performance inconsistencies may benefit from an evaluation. Many adults and students discover that long-standing frustrations—like procrastination, burnout, or anxiety—are rooted in untreated ADHD."
+            "text": "Anyone struggling with **focus, organization, motivation, emotional regulation, or performance inconsistencies** may benefit from an evaluation. Many adults and students discover that long-standing frustrations—like procrastination, burnout, or anxiety—are rooted in untreated ADHD."
           },
           {
             "type": "p",
-            "text": "Only 1 in 9 ADHDers have actually been diagnosed! The other 8 in 9 may have been told they are lazy, don’t work hard, are neurotic or overly sensitive. People without treatment for ADHD are at significant risk for higher rates of depression, anxiety, substance abuse, and accidents. They have lower lifetime earnings, higher drop out rates, higher divorce rates, and even lower life expectancy. By proactively screening for ADHD, depression, anxiety, and substance use issues we can identify those at risk, get them accurate diagnoses and provide treatments that will significantly reduce these risks. With clarity and real answers, we help ADHDers thrive."
+            "text": "Only 1 in 9 ADHDers have actually been diagnosed! The other 8 in 9 may have been told they are lazy, don’t work hard, are neurotic or overly sensitive. People without **treatment for ADHD** are at significant risk for higher rates of **depression, anxiety, substance abuse**, and accidents. They have lower lifetime earnings, higher drop out rates, higher divorce rates, and even lower life expectancy. By proactively screening for ADHD, depression, anxiety, and substance use issues we can identify those at risk, get them accurate diagnoses and provide treatments that will significantly reduce these risks. With clarity and real answers, we help ADHDers thrive."
           }
         ]
       },
@@ -552,11 +554,11 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "Our proactive process starts with a FREE behavioral health screening to identify individuals at risk for ADHD, depression, anxiety, and substance use issues. We then incorporate the gold standard comprehensive ADHD evaluation by blending objective data, clinical interviews, and research validated ADHD screening tools into one streamlined experience."
+            "text": "Our proactive process starts with a **FREE behavioral health screening** to identify individuals at risk for ADHD, depression, anxiety, and substance use issues. We then incorporate the gold standard **comprehensive ADHD evaluation** by blending **objective data**, **clinical interviews**, and **research** **validated ADHD screening tools** into one streamlined experience."
           },
           {
             "type": "p",
-            "text": "We use the world’s only FDA cleared online ADHD assessment tool that simultaneously measures hyperactivity, inattention, and impulse control. This tool provides clear, objective data about the core symptoms of ADHD. We also use validated rating scales like the ASRS, PHQ-9, and GAD-7, and structured diagnostic interviews. The result: a comprehensive, personalized report that’s fast, clear, and clinically rigorous."
+            "text": "We use the world’s only **FDA cleared online ADHD assessment** tool that simultaneously measures hyperactivity, inattention, and impulse control. This tool provides clear, objective data about the core symptoms of ADHD. We also use validated rating scales like the ASRS, PHQ-9, and GAD-7, and structured diagnostic interviews. The result: a comprehensive, personalized report that’s fast, clear, and clinically rigorous."
           },
           {
             "type": "p",
@@ -569,7 +571,7 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "QbCheck is an FDA-cleared, computer-based test that objectively measures attention, impulsivity, and movement patterns. It provides clinicians with quantifiable data that complement self-report and interview information—helping ensure your diagnosis is accurate and defensible for workplace, school, or medical accommodations. Subjective measures just aren’t valid indicators of ADHD symptoms. A person’s experience and history of struggles are important aspects of any ADHD evaluation, but the foundation of good diagnostic data is clear–objective, valid measures."
+            "text": "**QbCheck is an FDA-cleared,** computer-based test that objectively measures attention, impulsivity, and movement patterns. It provides clinicians with quantifiable data that complement self-report and interview information—helping ensure your diagnosis is accurate and defensible for workplace, school, or medical **accommodations**. Subjective measures just aren’t valid indicators of ADHD symptoms. A person’s experience and history of struggles are important aspects of any ADHD evaluation, but the foundation of good diagnostic data is clear–objective, valid measures."
           }
         ]
       },
@@ -578,11 +580,11 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "No. You can schedule directly with AXON ADHD for a self-referred adult ADHD evaluation."
+            "text": "No. You can schedule directly with AXON ADHD for a self-referred **adult ADHD evaluation**."
           },
           {
             "type": "p",
-            "text": "We also collaborate with primary care providers and mental health professionals who refer patients to ensure continuity of care. We work seamlessly with them to ensure no one slips through the cracks. Once you’re in our system, we work with you to get you where you need to go to get the best ADHD treatments, medications, and accommodations."
+            "text": "We also collaborate with primary care providers and mental health professionals who refer patients to ensure continuity of care. We work seamlessly with them to ensure no one slips through the cracks. Once you’re in our system, we work with you to get you where you need to go to get the **best ADHD treatments, medications, and accommodations**."
           }
         ]
       },
@@ -591,7 +593,7 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "Yes. Our reports are written to meet the standards of the ADA, Section 504, and higher-education disability offices. We provide the objective documentation often required to support requests for extended testing time, distraction-reduced environments, or other accommodations. We assist folks obtain accommodations for exams like the GRE, LSAT, MCAT, SAT, ACT, BAR exam, etc."
+            "text": "Yes. Our reports are written to meet the standards of the ADA, Section 504, and higher-education disability offices. We provide the objective documentation often required to support requests for extended testing time, distraction-reduced environments, or other accommodations. We assist folks obtain **accommodations for exams like the GRE, LSAT, MCAT, SAT, ACT,** **BAR exam**, etc."
           }
         ]
       },
@@ -605,8 +607,8 @@ export const faqTabs: FaqTab[] = [
           {
             "type": "ul",
             "items": [
-              "A Full Clinical ADHD Report with an official ADHD diagnosis based on your unique ADHD symptoms and testing results.",
-              "A consultation with an ADHD expert to review the results and discuss next steps (including treatment, coaching, or academic/work supports)."
+              "A **Full Clinical ADHD Report** with an **official ADHD diagnosis** based on your unique ADHD symptoms and testing results.",
+              "A **consultation** with an ADHD expert to review the results and discuss next steps (including treatment, coaching, or academic/work supports)."
             ]
           }
         ]
@@ -616,7 +618,7 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "Most clients complete their entire evaluation—including testing, questionnaires, and review—within days. The intake forms and self report measures may take 5-10 minutes total time and the full ADHD test (QbCheck) will require about 40 minutes total time to review the instructions, validate your computer meets minimum requirements, and complete the 20 minute actual test."
+            "text": "Most clients complete their entire evaluation—including testing, questionnaires, and review—within **days**. The intake forms and self report measures may take 5-10 minutes total time and the full ADHD test (QbCheck) will require about 40 minutes total time to review the instructions, validate your computer meets minimum requirements, and complete the 20 minute actual test."
           }
         ]
       },
@@ -625,7 +627,7 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "We primarily specialize in young adult and adult ADHD, including college students and professionals. However, we do work with adolescent referrals in circumstances where we are comfortable testing only for ADHD. For children under the age of 16, if there is a concern that there may be other conditions like a learning disability, dyslexia, etc., we will often recommend a full cognitive educational neuropsych evaluation to rule out other potential diagnoses. We are happy to make referrals to other trusted colleagues in these cases."
+            "text": "We primarily specialize in **young adult and adult ADHD**, including college students and professionals. However, we do work with adolescent referrals in circumstances where we are comfortable testing only for ADHD. For children under the age of 16, if there is a concern that there may be other conditions like a learning disability, dyslexia, etc., we will often recommend a full cognitive educational neuropsych evaluation to rule out other potential diagnoses. We are happy to make referrals to other trusted colleagues in these cases."
           }
         ]
       },
@@ -647,7 +649,7 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "Our services are out-of-network to maintain flexibility and confidentiality."
+            "text": "Our services are **out-of-network** to maintain flexibility and confidentiality."
           },
           {
             "type": "p",
@@ -660,7 +662,7 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "Absolutely. We follow HIPAA-compliant protocols and use secure, encrypted systems for all digital communications and records."
+            "text": "Absolutely. We follow **HIPAA-compliant** protocols and use secure, encrypted systems for all digital communications and records."
           }
         ]
       },
@@ -672,19 +674,10 @@ export const faqTabs: FaqTab[] = [
             "text": "You can begin the process in just a few minutes:"
           },
           {
-            "type": "ul",
+            "type": "ol",
             "items": [
-              "Visit"
-            ]
-          },
-          {
-            "type": "p",
-            "text": "[www.AXONADHD.com](/)."
-          },
-          {
-            "type": "ul",
-            "items": [
-              "Click “Start Your Free Evaluation.”",
+              "Visit **[www.AXONADHD.com](https://www.axonadhd.com)**.",
+              "Click **“Start Your Free Evaluation.”**",
               "Complete a brief intake form, and you’ll then have access to our Comprehensive ADHD Evaluation and the ability to schedule your consultation."
             ]
           }
@@ -708,11 +701,7 @@ export const faqTabs: FaqTab[] = [
           },
           {
             "type": "p",
-            "text": "Our goal isn’t just to diagnose—it’s to empower you with understanding, direction, and tools for meaningful change. At AXON, we help you turn potential into performance."
-          },
-          {
-            "type": "p",
-            "text": "AXON ADHD has been helping adults overcome the struggles of ADHD through our signature, state-of-the-art approach of proactive screening, objective data driven diagnosis, and collaborative treatment with primary care. With AXON ADHD you can thrive with ADHD."
+            "text": "Our goal isn’t just to diagnose—it’s to **empower** you with understanding, direction, and tools for meaningful change. At AXON, we help you turn potential into performance."
           }
         ]
       }

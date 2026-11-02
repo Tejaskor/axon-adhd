@@ -1,6 +1,6 @@
 /**
  * Shared content types. Long-form text uses a tiny inline syntax:
- * `**bold**` and `[label](href)`; see `components/ui/RichText.tsx`.
+ * `**bold**`, `*italic*`, `[label](href)` and `\n` line breaks; see `components/ui/RichText.tsx`.
  */
 
 export type Block =
