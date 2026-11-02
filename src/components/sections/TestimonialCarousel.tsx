@@ -34,32 +34,30 @@ function NavButton({ dir, onClick, className }: { dir: "prev" | "next"; onClick:
 
 const COLLAPSE_MS = 400;
 
-/** Expands in place: the quote area animates from six lines to its full height, then Read less reverses it. */
-function TestimonialCard({ item, index }: { item: Item; index: number }) {
-  const [expanded, setExpanded] = useState(false);
+/** Expands in place: the quote area animates from six lines to its full height, then Read less reverses it. Open state is owned by the carousel so only one card is open at a time. */
+function TestimonialCard({ item, index, expanded, onToggle }: { item: Item; index: number; expanded: boolean; onToggle: () => void }) {
   // Line clamp (ellipsis) is only on while collapsed; it is lifted before expanding and restored after collapsing.
   const [clamped, setClamped] = useState(true);
   const [fullHeight, setFullHeight] = useState<number | null>(null);
   const textRef = useRef<HTMLParagraphElement>(null);
-  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const quoteId = useId();
 
+  // Reacting to the prop during render (not in an effect): lift the clamp as soon as it opens, drop the measured height as soon as it closes.
+  const [wasExpanded, setWasExpanded] = useState(expanded);
+  if (wasExpanded !== expanded) {
+    setWasExpanded(expanded);
+    if (expanded) setClamped(false);
+    else setFullHeight(null);
+  }
   useLayoutEffect(() => {
-    if (expanded && textRef.current) setFullHeight(textRef.current.scrollHeight);
+    if (expanded && !clamped && textRef.current) setFullHeight(textRef.current.scrollHeight);
+  }, [expanded, clamped]);
+  // Restore the ellipsis only after the collapse animation has finished.
+  useEffect(() => {
+    if (expanded) return;
+    const t = setTimeout(() => setClamped(true), COLLAPSE_MS);
+    return () => clearTimeout(t);
   }, [expanded]);
-  useEffect(() => () => clearTimeout(timer.current), []);
-
-  const toggle = () => {
-    clearTimeout(timer.current);
-    if (expanded) {
-      setExpanded(false);
-      setFullHeight(null);
-      timer.current = setTimeout(() => setClamped(true), COLLAPSE_MS);
-    } else {
-      setClamped(false);
-      setExpanded(true);
-    }
-  };
 
   return (
     <figure className="flex w-full flex-col rounded-[18px] border border-[#D5EDE0] bg-[#F1F8F4] p-5 shadow-[0_8px_22px_-12px_rgba(23,79,56,.28)] sm:p-6">
@@ -78,7 +76,7 @@ function TestimonialCard({ item, index }: { item: Item; index: number }) {
           “{item.quote}”
         </p>
       </blockquote>
-      <button type="button" onClick={toggle} aria-expanded={expanded} aria-controls={quoteId} className="group mt-5 inline-flex items-center gap-2 self-start text-[16px] font-semibold text-[#E99B19] hover:underline">
+      <button type="button" onClick={onToggle} aria-expanded={expanded} aria-controls={quoteId} className="group mt-5 inline-flex items-center gap-2 self-start text-[16px] font-semibold text-[#E99B19] hover:underline">
         {expanded ? "Read less" : "Read more"}
         {expanded ? <ArrowUp aria-hidden className="size-[18px]" /> : <ArrowRight aria-hidden className="size-[18px] transition-transform duration-300 ease-brand group-hover:translate-x-1" />}
         <span className="sr-only"> {expanded ? "of" : "from"} {item.name}</span>
@@ -90,15 +88,16 @@ function TestimonialCard({ item, index }: { item: Item; index: number }) {
 /** Centered heading, then a paged carousel: 3 cards on desktop, 2 on tablet, 1 on phones, with arrows and pagination dots. */
 export function TestimonialCarousel({ data }: { data: TestimonialCarouselSection }) {
   const perView = useSyncExternalStore(subscribe, cardsPerView, () => 3);
-  const [page, setPage] = useState(0);
+  const [index, setIndex] = useState(0);
+  // At most one card is open; opening another closes it.
+  const [open, setOpen] = useState<number | null>(null);
 
   const n = data.items.length;
-  const pages = Math.ceil(n / perView);
-  const current = Math.min(page, pages - 1);
-  // The last page is anchored to the end so it is always full.
-  const start = Math.min(current * perView, Math.max(n - perView, 0));
-  const prev = () => setPage((current - 1 + pages) % pages);
-  const next = () => setPage((current + 1) % pages);
+  // The arrows move one card at a time; `start` is the first visible card, `positions` how many places the row can rest in.
+  const positions = Math.max(n - perView, 0) + 1;
+  const start = Math.min(index, positions - 1);
+  const prev = () => setIndex((start - 1 + positions) % positions);
+  const next = () => setIndex((start + 1) % positions);
 
   const [before, after] = data.title.split(data.accent);
 
@@ -134,12 +133,12 @@ export function TestimonialCarousel({ data }: { data: TestimonialCarouselSection
           <div className="flex items-center gap-3 lg:gap-5">
             <NavButton dir="prev" onClick={prev} className="hidden sm:grid" />
             <div className="min-w-0 flex-1 overflow-hidden">
-              <ul className="-mx-2 flex items-start py-3 transition-transform duration-500 ease-brand motion-reduce:transition-none" style={{ transform: `translateX(-${(start * 100) / perView}%)` }}>
+              <ul className="-mx-2 flex py-3 transition-transform duration-500 ease-brand motion-reduce:transition-none" style={{ transform: `translateX(-${(start * 100) / perView}%)` }}>
                 {data.items.map((item, i) => {
                   const visible = i >= start && i < start + perView;
                   return (
                     <li key={item.name} aria-hidden={!visible} inert={!visible} className="flex shrink-0 px-2" style={{ width: `${100 / perView}%` }}>
-                      <TestimonialCard item={item} index={i} />
+                      <TestimonialCard item={item} index={i} expanded={open === i} onToggle={() => setOpen(open === i ? null : i)} />
                     </li>
                   );
                 })}
@@ -150,15 +149,15 @@ export function TestimonialCarousel({ data }: { data: TestimonialCarouselSection
 
           <div className="mt-4 flex items-center justify-center gap-3 sm:mt-6">
             <NavButton dir="prev" onClick={prev} className="sm:hidden" />
-            <div className="flex items-center gap-2.5" role="group" aria-label="Choose testimonial page">
-              {Array.from({ length: pages }, (_, i) => (
+            <div className="flex items-center gap-2.5" role="group" aria-label="Choose testimonial position">
+              {Array.from({ length: positions }, (_, i) => (
                 <button
                   key={i}
                   type="button"
-                  onClick={() => setPage(i)}
-                  aria-label={`Show testimonials page ${i + 1} of ${pages}`}
-                  aria-current={i === current}
-                  className={cn("size-2.5 rounded-full transition-colors", i === current ? "bg-[#E99B19]" : "bg-[#CBE6D8] hover:bg-[#36A875]/60")}
+                  onClick={() => setIndex(i)}
+                  aria-label={`Show testimonials starting at ${i + 1} of ${positions}`}
+                  aria-current={i === start}
+                  className={cn("size-2.5 rounded-full transition-colors", i === start ? "bg-[#E99B19]" : "bg-[#CBE6D8] hover:bg-[#36A875]/60")}
                 />
               ))}
             </div>
