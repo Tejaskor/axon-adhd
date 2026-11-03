@@ -1,30 +1,9 @@
-import { ArrowRight } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import type { Cta } from "@/content/types";
 
-/**
- * Call-to-action band ("Ready to feel more in control?", "Haven't Started Yet?", …).
- * `plain` is the understated centered variant used on the home page.
- */
-export function CTABand({ title, subtitle, primary, secondary, variant = "band" }: { title: string; subtitle?: string; primary: Cta; secondary?: Cta; variant?: "band" | "plain" }) {
-  if (variant === "plain") {
-    return (
-      <section className="text-center" aria-label={title}>
-        {/* Full-bleed pale-blue band with soft concentric rings deepening toward the centre (CSS only). */}
-        <div className="bg-[radial-gradient(circle_at_50%_50%,#C9DEF4_0_175px,#DCE8FC_176px_300px,#E4EDFD_301px_425px,#EBF2FE_426px_550px,transparent_551px),linear-gradient(90deg,#EEF4FE,#F6F9FF_50%,#EEF4FE)] py-20 sm:py-24">
-          <Container>
-            <h2 className="type-h2 font-bold text-navy">{title}</h2>
-            {subtitle && <p className="type-lead mt-3 text-muted">{subtitle}</p>}
-            <ButtonLink href={primary.href} size="lg" className="mt-7 shadow-[0_12px_28px_rgba(37,120,202,.35)] hover:shadow-[0_16px_34px_rgba(37,120,202,.42)]">
-              {primary.label}
-              <ArrowRight aria-hidden className="size-5" />
-            </ButtonLink>
-          </Container>
-        </div>
-      </section>
-    );
-  }
+/** Call-to-action band ("Haven't Started Yet?", …). */
+export function CTABand({ title, subtitle, primary, secondary }: { title: string; subtitle?: string; primary: Cta; secondary?: Cta }) {
   return (
     <section className="py-12 sm:py-16" aria-label={title}>
       <Container>

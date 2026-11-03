@@ -601,16 +601,15 @@ const contactPoints = [
   { title: "Get treatment and support to help you thrive.", icon: HandHeart, tile: "bg-[#E1EEFC] text-primary" },
 ];
 
-const dotPattern = "bg-[radial-gradient(#86B6E5_2px,transparent_2.5px)] bg-[length:22px_22px]";
 
 /** Form styling is scoped here (via the wrapper) so the shared form and input components stay untouched. */
+/** Form card styling (matches the Contact Us reference): light grey card, grey labels, 8px fields, full-width pill submit. */
 const contactFormSkin = [
-  "[&_label]:text-[14.5px] [&_label]:font-medium [&_label]:text-[#1F3048]",
-  "[&_input:not([type=tel])]:rounded-xl [&_textarea]:rounded-xl [&_input]:border-[#DCE5F0] [&_textarea]:border-[#DCE5F0] [&_select]:border-[#DCE5F0]",
-  "[&_select]:rounded-l-xl [&_input[type=tel]]:rounded-r-xl [&_select]:bg-white",
-  "[&_input:focus]:border-primary [&_textarea:focus]:border-primary",
-  "[&_button[type=submit]]:w-full [&_button[type=submit]]:bg-primary [&_button[type=submit]]:font-semibold [&_button[type=submit]]:shadow-[0_10px_24px_rgba(37,120,202,.30)] [&_button[type=submit]:hover]:bg-primary-600",
-  "[&_form>p:last-child]:text-center [&_form>p:last-child]:text-[#5B6B84]",
+  "rounded-[16px] border border-[#E2E5EA] bg-[#FBFBFB] p-6 shadow-[0_12px_36px_rgba(18,61,106,.08)] sm:p-7",
+  "[&_form]:gap-4 [&_label]:text-[13px] [&_label]:font-medium [&_label]:text-[#4B5563]",
+  "[&_input:not([type=tel])]:rounded-lg [&_textarea]:rounded-lg [&_input:not([type=tel])]:border-[#D1D5DB] [&_textarea]:border-[#D1D5DB] [&_input]:py-2.5 [&_textarea]:min-h-[108px]",
+  "[&_button[type=submit]]:h-12 [&_button[type=submit]]:w-full [&_button[type=submit]]:rounded-[50px] [&_button[type=submit]]:bg-[#1A56A8] [&_button[type=submit]]:text-[16px] [&_button[type=submit]]:shadow-none [&_button[type=submit]:hover]:bg-[#164A91]",
+  "[&_form>p:last-child]:text-center [&_form>p:last-child]:text-[13px] [&_form>p:last-child]:text-[#6B7280] [&_form>p:last-child_a]:font-normal [&_form>p:last-child_a]:text-primary [&_form>p:last-child_a]:no-underline [&_form>p:last-child_a:hover]:underline",
 ].join(" ");
 
 /**
@@ -631,10 +630,6 @@ const contactSizes = {
     mail: "size-14 sm:size-16",
     mailIcon: "size-7 sm:size-8",
     email: "type-lead",
-    card: "p-6 sm:p-9 lg:p-10",
-    formTitle: "type-h2",
-    formIntro: "mt-3 mb-7",
-    form: "[&_input]:py-3 [&_button[type=submit]]:h-14 [&_button[type=submit]]:text-[17px]",
   },
   compact: {
     section: "py-12 sm:py-16 lg:py-20",
@@ -649,30 +644,18 @@ const contactSizes = {
     mail: "size-12 sm:size-14",
     mailIcon: "size-6 sm:size-7",
     email: "type-body",
-    card: "p-6 sm:p-8",
-    formTitle: "type-h3",
-    formIntro: "mt-2 mb-5",
-    form: "[&_input]:py-2.5 [&_button[type=submit]]:h-12 [&_button[type=submit]]:text-[16px]",
   },
 };
 
 export function AccommodationContact({
   eyebrow = "LET'S TALK",
   description = "We provide comprehensive ADHD assessments for adults across Arlington, including Rosslyn, Clarendon, Ballston, and the 22209 area.",
-  placeholders = true,
   compact = false,
-}: { eyebrow?: string | null; description?: string; placeholders?: boolean; compact?: boolean } = {}) {
+}: { eyebrow?: string | null; description?: string; compact?: boolean } = {}) {
   const s = contactSizes[compact ? "compact" : "regular"];
   return (
-    <section id="contact" className={cn("relative isolate scroll-mt-[var(--header-offset)] overflow-hidden bg-[linear-gradient(135deg,#F3F8FE_0%,#E8F2FC_55%,#F7FAFF_100%)]", s.section)} aria-labelledby="contact-title">
-      {/* Decorative background: curved shapes (upper-right, lower-left) and dot patterns (upper-left, lower-right) */}
-      <div aria-hidden className="pointer-events-none absolute -top-28 -right-24 -z-10 size-[300px] rounded-full bg-primary-150/70 sm:size-[420px]" />
-      <div aria-hidden className="pointer-events-none absolute -top-12 -right-10 -z-10 size-[170px] rounded-full bg-primary-200/60 sm:size-[240px]" />
-      <div aria-hidden className="pointer-events-none absolute -bottom-40 -left-32 -z-10 size-[360px] rounded-full bg-primary-150/70 sm:size-[520px]" />
-      <div aria-hidden className="pointer-events-none absolute -bottom-24 -left-16 -z-10 size-[240px] rounded-full bg-primary-200/60 sm:size-[340px]" />
-      <div aria-hidden className={cn("pointer-events-none absolute top-8 left-4 -z-10 h-24 w-28 sm:left-8 sm:h-32 sm:w-40", dotPattern)} />
-      <div aria-hidden className={cn("pointer-events-none absolute right-4 bottom-10 -z-10 hidden h-32 w-40 sm:block lg:right-10", dotPattern)} />
-
+    // Same background as "Latest Blogs".
+    <section id="contact" className={cn("scroll-mt-[var(--header-offset)] bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]!", s.section)} aria-labelledby="contact-title">
       <div className={cn(wrap, "grid items-center md:grid-cols-[1fr_1fr]", s.grid)}>
         <Reveal>
           {eyebrow && (
@@ -707,12 +690,12 @@ export function AccommodationContact({
           </div>
         </Reveal>
         <Reveal delay={0.1}>
-          <div className={cn("rounded-[28px] bg-white shadow-[0_18px_50px_rgba(18,61,106,.10)]", s.card, contactFormSkin, s.form)}>
-            <h2 id="contact-title" className={cn("text-[#0F2F5E]", s.formTitle)}>
+          <div className={contactFormSkin}>
+            <h2 id="contact-title" className="text-[clamp(24px,2.2vw,28px)] leading-tight font-medium text-[#111827]">
               Contact Us
             </h2>
-            <p className={cn("type-body text-[#5B6B84]", s.formIntro)}>{"We'd love to hear from you. Please fill out the form and we'll get back to you as soon as possible."}</p>
-            <ContactForm placeholders={placeholders} />
+            <p className="mt-2 mb-6 text-[14.5px] leading-relaxed text-[#4B5563]">{"We'd love to hear from you. Please fill out the form and we'll get back to you as soon as possible."}</p>
+            <ContactForm placeholders />
           </div>
         </Reveal>
       </div>

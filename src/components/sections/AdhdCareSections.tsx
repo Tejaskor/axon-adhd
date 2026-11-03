@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import Image from "next/image";
 import { Brain, Check, HeartHandshake, Lightbulb, UserCheck } from "lucide-react";
 import type { CtaSection, FeaturesSection, PageHero, SplitSection } from "@/content/pages/types";
@@ -444,31 +444,38 @@ export function AdhdCareClosingCta({ data }: { data: CtaSection }) {
 
 /* ------------------------------------------------ "Your Path to Long-Term Success" */
 
-/** Per-card accents (blue, green, purple, orange): icon badge, icon colour and the pastel curve at the bottom-right. */
-const pathTones = [
-  { badge: "bg-[#E3EFFC] text-primary", curve: "#D6E7FA" },
-  { badge: "bg-[#DDF6EC] text-[#16A34A]", curve: "#D9F4E8" },
-  { badge: "bg-[#F0E8FD] text-[#9333EA]", curve: "#EDE3FC" },
-  { badge: "bg-[#FDEEE0] text-[#EA6A12]", curve: "#FCE6D3" },
-];
+/** Per-card accents: icon badge, icon colour and the pastel curve at the bottom-right. */
+export const pathTones = {
+  blue: { badge: "bg-[#E3EFFC] text-primary", curve: "#D6E7FA" },
+  green: { badge: "bg-[#DDF6EC] text-[#16A34A]", curve: "#D9F4E8" },
+  purple: { badge: "bg-[#F0E8FD] text-[#9333EA]", curve: "#EDE3FC" },
+  orange: { badge: "bg-[#FDEEE0] text-[#EA6A12]", curve: "#FCE6D3" },
+} as const;
+const pathToneOrder = ["blue", "green", "purple", "orange"] as const;
 
-/** Centred heading (accent words in a blue gradient) over four translucent cards with pastel icon badges and corner curves. */
+/** Translucent card with a pastel icon badge and a corner curve. Also used by the home page's WhyAxon. */
+export function PathCard({ tone, icon, title, text }: { tone: keyof typeof pathTones; icon: ReactNode; title: string; text?: string }) {
+  const t = pathTones[tone];
+  return (
+    <div className="group relative isolate flex w-full flex-col overflow-hidden rounded-[24px] border border-primary-100 bg-white/70 p-7 shadow-[0_18px_40px_-24px_rgba(18,61,106,.3)] backdrop-blur-md transition-[translate,box-shadow,border-color] duration-300 ease-brand hover:-translate-y-1 hover:border-primary-200 hover:shadow-[0_28px_52px_-24px_rgba(37,120,202,.42)] sm:p-8">
+      <svg aria-hidden viewBox="0 0 200 140" preserveAspectRatio="none" className="absolute right-0 bottom-0 -z-10 h-[46%] w-[62%] transition-transform duration-500 ease-brand group-hover:scale-105" style={{ transformOrigin: "100% 100%" }}>
+        <path d="M200 0C150 20 150 80 95 105S20 130 0 140H200Z" fill={t.curve} fillOpacity=".75" />
+      </svg>
+      <span aria-hidden className={cn("grid size-16 shrink-0 place-items-center rounded-full", t.badge)}>
+        {icon}
+      </span>
+      <h3 className="mt-6 font-display text-[20px] leading-snug font-bold text-[#0F2F55]">{title}</h3>
+      {text && <p className="mt-3 text-[16px] leading-[1.65] text-pretty text-[#5B6B80]">{text}</p>}
+    </div>
+  );
+}
+
+/** Centred heading (accent words in a blue gradient) over four PathCards, on the "Your Journey to Clarity" background. */
 export function AdhdCarePath({ data }: { data: FeaturesSection }) {
   const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#F6FAFE_0%,#EDF4FC_55%,#F6FAFE_100%)] py-16 sm:py-20 lg:py-24" aria-labelledby="path-title">
-      {/* Soft circles and dotted arcs near the outer edges */}
-      <div aria-hidden className="absolute -top-24 -left-40 size-[420px] rounded-full bg-[radial-gradient(circle,rgba(182,211,240,.5),rgba(182,211,240,.12)_55%,transparent_72%)]" />
-      <div aria-hidden className="absolute -top-16 -right-32 size-[340px] rounded-full bg-[radial-gradient(circle,rgba(134,182,229,.35),rgba(182,211,240,.12)_55%,transparent_72%)]" />
-      <div aria-hidden className="absolute -right-40 -bottom-32 size-[420px] rounded-full bg-[radial-gradient(circle,rgba(182,211,240,.45),transparent_70%)]" />
-      <svg aria-hidden viewBox="0 0 260 120" fill="none" className="absolute top-24 -left-6 hidden w-[240px] lg:block">
-        <path d="M4 60C60 10 150 4 230 70" stroke="#2578CA" strokeOpacity=".35" strokeWidth="2.5" strokeDasharray="0.1 9" strokeLinecap="round" />
-      </svg>
-      <svg aria-hidden viewBox="0 0 260 120" fill="none" className="absolute top-16 -right-4 hidden w-[200px] -scale-x-100 lg:block">
-        <path d="M4 100C40 40 120 10 250 30" stroke="#2578CA" strokeOpacity=".35" strokeWidth="2.5" strokeDasharray="0.1 9" strokeLinecap="round" />
-      </svg>
-
-      <div className={cn(wrap, "relative")}>
+    <section className="bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)] py-16 sm:py-20 lg:py-24" aria-labelledby="path-title">
+      <div className={wrap}>
         <Reveal className="mx-auto max-w-[880px] text-center">
           <h2 id="path-title" className={cn(h2, "text-[#0F2F55]")}>
             {after !== undefined ? (
@@ -485,25 +492,18 @@ export function AdhdCarePath({ data }: { data: FeaturesSection }) {
         </Reveal>
 
         <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4 lg:gap-6">
-          {data.items.map((item, i) => {
-            const tone = pathTones[i % pathTones.length];
-            return (
-              <li key={item.title} className="flex">
-                <Reveal delay={i * 0.06} className="flex w-full">
-                  <div className="group relative isolate flex w-full flex-col overflow-hidden rounded-[24px] border border-primary-100 bg-white/70 p-7 shadow-[0_18px_40px_-24px_rgba(18,61,106,.3)] backdrop-blur-md transition-[translate,box-shadow,border-color] duration-300 ease-brand hover:-translate-y-1 hover:border-primary-200 hover:shadow-[0_28px_52px_-24px_rgba(37,120,202,.42)] sm:p-8">
-                    <svg aria-hidden viewBox="0 0 200 140" preserveAspectRatio="none" className="absolute right-0 bottom-0 -z-10 h-[46%] w-[62%] transition-transform duration-500 ease-brand group-hover:scale-105" style={{ transformOrigin: "100% 100%" }}>
-                      <path d="M200 0C150 20 150 80 95 105S20 130 0 140H200Z" fill={tone.curve} fillOpacity=".75" />
-                    </svg>
-                    <span aria-hidden className={cn("grid size-16 shrink-0 place-items-center rounded-full", tone.badge)}>
-                      {item.icon && <FeatureIcon name={item.icon} className="size-7" />}
-                    </span>
-                    <h3 className="mt-6 font-display text-[20px] leading-snug font-bold text-[#0F2F55]">{item.title}</h3>
-                    {item.text && <p className="mt-3 text-[16px] leading-[1.65] text-pretty text-[#5B6B80]">{item.text}</p>}
-                  </div>
-                </Reveal>
-              </li>
-            );
-          })}
+          {data.items.map((item, i) => (
+            <li key={item.title} className="flex">
+              <Reveal delay={i * 0.06} className="flex w-full">
+                <PathCard
+                  tone={pathToneOrder[i % pathToneOrder.length]}
+                  icon={item.icon && <FeatureIcon name={item.icon} className="size-7" />}
+                  title={item.title}
+                  text={item.text}
+                />
+              </Reveal>
+            </li>
+          ))}
         </ul>
       </div>
     </section>

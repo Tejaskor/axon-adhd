@@ -1,7 +1,6 @@
 import { ADHDMythBuster } from "@/components/sections/ADHDMythBuster";
 import { CareYouCanTrust } from "@/components/sections/CareYouCanTrust";
 import { AccommodationContact } from "@/components/sections/AccommodationSections";
-import { CTABand } from "@/components/sections/CTABand";
 import { FAQAccordion } from "@/components/sections/FAQAccordion";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { GettingHelpSimple } from "@/components/sections/GettingHelpSimple";
@@ -15,7 +14,7 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { WeSeeYou } from "@/components/sections/WeSeeYou";
 import { WhyAxon } from "@/components/sections/WhyAxon";
 import { homeFaqs } from "@/content/faqs";
-import { contactSection, faqSection, readyBand, testimonialsSection } from "@/content/home";
+import { contactSection, faqSection, testimonialsSection } from "@/content/home";
 import { googleRating, reviews } from "@/content/trust";
 import { pageMetadata } from "@/lib/seo";
 
@@ -34,19 +33,18 @@ export default function HomePage() {
       <LogoMarquee />
       <SymptomChecklist />
       <ServicesOverview />
-      <PricingCards />
       <GettingHelpSimple />
+      <PricingCards />
       <ADHDMythBuster />
       <WeSeeYou />
       <WhyAxon />
-      <CTABand variant="plain" title={readyBand.title} subtitle={readyBand.subtitle} primary={readyBand.cta} />
       <CareYouCanTrust />
       <Testimonials {...testimonialsSection} reviews={reviews} rating={googleRating} />
       <LatestBlogs />
-      <FAQAccordion variant="home" faqs={homeFaqs} title={faqSection.title} subtitle={faqSection.subtitle} />
       <FinalCTA />
       {/* Accommodation-page contact design; its built-in copy is identical to `contactSection`, which supplies the rest. */}
-      <AccommodationContact eyebrow={null} description={contactSection.subtitle} placeholders={false} compact />
+      <AccommodationContact eyebrow={null} description={contactSection.subtitle} compact />
+      <FAQAccordion variant="home" faqs={homeFaqs} title={faqSection.title} subtitle={faqSection.subtitle} />
     </>
   );
 }

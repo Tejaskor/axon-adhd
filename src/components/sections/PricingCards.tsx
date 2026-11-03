@@ -1,4 +1,4 @@
-import { ArrowRight, ChartNoAxesColumnIncreasing, Check, Clock3, CreditCard, FileText, Star } from "lucide-react";
+import { ArrowRight, Check, Clock3, Star } from "lucide-react";
 import { Fragment, type ReactNode } from "react";
 import { EARLY_DISCOUNT, pricing, type Plan } from "@/content/pricing";
 import { ButtonLink } from "@/components/ui/Button";
@@ -151,28 +151,13 @@ function PlanCard({ plan }: { plan: Plan }) {
   );
 }
 
-/** Step accents: blue for the first two, violet for the third (matching the reference). */
-const steps = [
-  { icon: FileText, tone: "text-primary" },
-  { icon: CreditCard, tone: "text-primary" },
-  { icon: ChartNoAxesColumnIncreasing, tone: "text-[#7C3AED]" },
-];
+/** Step number colours: blue for the first two, violet for the third (matching the reference). */
+const stepTones = ["text-primary", "text-primary", "text-[#7C3AED]"];
 
 /** "Choose Your Next Step": two-tone heading, three glass plan cards (middle highlighted), then the 3-step strip. */
 export function PricingCards() {
   return (
-    <section id="pricing" className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#EEF5FC_0%,#E1ECF8_50%,#ECF3FB_100%)] py-16 sm:py-20 lg:py-24" aria-labelledby="pricing-title">
-      {/*
-        Layered lighting: large white reflective shapes (top corners, lower left), blurred blue light pools, and an
-        ambient glow centred behind the cards so the glass has colour to frost.
-      */}
-      <div aria-hidden className="pointer-events-none absolute -top-48 -left-56 -z-10 h-[560px] w-[760px] rotate-[-18deg] rounded-[50%] bg-[linear-gradient(160deg,rgba(255,255,255,.85),rgba(255,255,255,.15))] blur-[2px]" />
-      <div aria-hidden className="pointer-events-none absolute -top-40 -right-48 -z-10 h-[520px] w-[700px] rotate-[22deg] rounded-[50%] border border-white/70 bg-[linear-gradient(200deg,rgba(255,255,255,.8),rgba(220,234,248,.2))]" />
-      <div aria-hidden className="pointer-events-none absolute -bottom-56 -left-40 -z-10 h-[520px] w-[720px] rotate-[12deg] rounded-[50%] bg-[linear-gradient(20deg,rgba(255,255,255,.7),rgba(220,234,248,.1))]" />
-      <div aria-hidden className="pointer-events-none absolute top-[10%] left-[8%] -z-10 size-[520px] rounded-full bg-[radial-gradient(circle,rgba(134,182,229,.55),transparent_68%)] blur-2xl" />
-      <div aria-hidden className="pointer-events-none absolute top-[30%] right-[4%] -z-10 size-[520px] rounded-full bg-[radial-gradient(circle,rgba(167,139,250,.28),transparent_70%)] blur-2xl" />
-      <div aria-hidden className="pointer-events-none absolute top-[28%] left-1/2 -z-10 h-[620px] w-[min(1200px,100%)] -translate-x-1/2 rounded-[50%] bg-[radial-gradient(ellipse_at_center,rgba(84,152,219,.32),transparent_65%)] blur-3xl" />
-
+    <section id="pricing" className="relative isolate overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-16 sm:py-20 lg:py-24" aria-labelledby="pricing-title">
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-[820px] text-center">
           <h2 id="pricing-title" className="font-display text-[clamp(32px,4vw,52px)] leading-[1.1] font-extrabold tracking-[-0.02em] text-navy">
@@ -192,16 +177,13 @@ export function PricingCards() {
 
         <ol className={cn("mt-10 flex flex-col gap-4 rounded-[28px] p-6 md:flex-row md:items-center md:gap-3 md:px-8 lg:mt-12", glass)}>
           {pricing.steps.map((step, i) => {
-            const { icon: Icon, tone } = steps[i];
+            const tone = stepTones[i];
             return (
               <Fragment key={step.title}>
                 {i > 0 && <ArrowRight aria-hidden className="mx-auto size-5 shrink-0 rotate-90 text-[#6B7A90] md:mx-1 md:rotate-0" />}
                 <li className="flex flex-1 items-center gap-3 lg:gap-4">
                   <span aria-hidden className={cn("grid size-11 shrink-0 place-items-center rounded-full border border-white/80 bg-primary-100/80 text-[20px] shadow-[inset_0_1px_0_rgba(255,255,255,.9),0_6px_16px_rgba(37,120,202,.12)] font-bold lg:size-12", tone)}>
                     {i + 1}
-                  </span>
-                  <span aria-hidden className={cn("grid size-14 shrink-0 place-items-center rounded-full border border-white/80 bg-white/80 shadow-[0_8px_20px_rgba(37,120,202,.12)]", tone)}>
-                    <Icon className="size-7" strokeWidth={1.75} />
                   </span>
                   <div className="min-w-0">
                     <h3 className="text-[16px] font-bold text-navy">{step.title}</h3>
