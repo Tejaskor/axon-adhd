@@ -34,8 +34,8 @@ export default function HomePage() {
       <LogoMarquee />
       <SymptomChecklist />
       <ServicesOverview />
-      <PricingCards />
       <GettingHelpSimple />
+      <PricingCards />
       <ADHDMythBuster />
       <WeSeeYou />
       <WhyAxon />

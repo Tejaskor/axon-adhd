@@ -8,7 +8,7 @@ import { Reveal } from "@/components/ui/Reveal";
 export function GettingHelpSimple() {
   const { steps } = journeyToClarity;
   return (
-    <section className="bg-[#F6F7F9] py-16 sm:py-20" aria-labelledby="journey-title">
+    <section className="bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)] py-16 sm:py-20" aria-labelledby="journey-title">
       <div className="mx-auto w-full max-w-[1180px] px-4 sm:px-6 lg:px-8">
         <Reveal className="text-center">
           <h2 id="journey-title" className="type-h2 text-navy">
