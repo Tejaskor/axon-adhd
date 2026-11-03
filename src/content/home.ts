@@ -99,7 +99,9 @@ export const services = {
 const journeyImage = (name: string, alt: string) => ({ src: `/images/homepage/journey-to-clarity/journey-${name}.webp`, alt, width: 1672, height: 941 });
 
 export const journeyToClarity = {
-  title: "Your Journey to Clarity",
+  /** Rendered as `title` + " " + `titleAccent`, with the accent in the same gradient as "support you". */
+  title: "Your Journey to",
+  titleAccent: "Clarity",
   subtitle: "Six simple steps. Answers and support, from wherever you are.",
   steps: [
     {

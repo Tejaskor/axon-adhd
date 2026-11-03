@@ -4,20 +4,23 @@ import { journeyToClarity } from "@/content/home";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 
-/** "Your Journey to Clarity": light-gray band with six numbered photo cards (3 × 2 on desktop) and two CTAs. */
+/**
+ * "Your Journey to Clarity": six numbered photo cards (3 × 2 from md) and two CTAs. Container and card-grid widths match
+ * "How we support you" (`ServicesOverview`): 1440px container, grid capped at 560px below md and 1250px from md.
+ */
 export function GettingHelpSimple() {
   const { steps } = journeyToClarity;
   return (
     <section className="bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)] py-16 sm:py-20" aria-labelledby="journey-title">
-      <div className="mx-auto w-full max-w-[1180px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
         <Reveal className="text-center">
           <h2 id="journey-title" className="type-h2 text-navy">
-            {journeyToClarity.title}
+            {journeyToClarity.title} <span className="bg-[linear-gradient(90deg,#2578CA,#22B5D8)] bg-clip-text text-transparent">{journeyToClarity.titleAccent}</span>
           </h2>
           <p className="type-body mt-2 text-muted">{journeyToClarity.subtitle}</p>
         </Reveal>
 
-        <ol className="mx-auto mt-10 grid max-w-[520px] gap-4 sm:max-w-none sm:grid-cols-2 md:grid-cols-3 lg:gap-5">
+        <ol className="mx-auto mt-10 grid max-w-[560px] gap-4 sm:mt-12 md:max-w-[1250px] md:grid-cols-3 lg:gap-5">
           {steps.map((step, i) => (
             <li key={step.title} className="flex">
               <Reveal delay={(i % 3) * 0.06} className="flex w-full">
@@ -28,7 +31,7 @@ export function GettingHelpSimple() {
                       alt={step.image.alt}
                       width={step.image.width}
                       height={step.image.height}
-                      sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 380px"
+                      sizes="(max-width: 767px) 560px, (max-width: 1440px) 33vw, 420px"
                       className="aspect-[1672/941] h-auto w-full object-cover transition-transform duration-700 ease-brand group-hover:scale-[1.03]"
                     />
                     {/* Soft light-blue curves framing the photo, as in the reference. */}
