@@ -20,7 +20,7 @@ const tones: Record<string, { card: string; disc: string }> = {
 /** "Does this sound like you?": six wide sign cards (icon + heading left, photo fading in from the right) and a reassurance CTA. */
 export function SymptomChecklist() {
   return (
-    <section className="relative isolate overflow-hidden bg-white pt-10 pb-16 sm:pt-12 sm:pb-20 lg:pt-14" aria-labelledby="symptoms-title">
+    <section className="relative isolate overflow-hidden bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)] pt-10 pb-16 sm:pt-12 sm:pb-20 lg:pt-14" aria-labelledby="symptoms-title">
       {/* Soft light-blue curves along the bottom corners (CSS only). */}
       <div aria-hidden className="pointer-events-none absolute -bottom-40 -left-32 -z-10 size-[460px] rounded-[45%_55%_60%_40%] bg-[radial-gradient(circle_at_60%_40%,#EAF4FF,#F4F9FF_60%,transparent_72%)]" />
       <div aria-hidden className="pointer-events-none absolute -right-40 -bottom-48 -z-10 size-[520px] rounded-[55%_45%_40%_60%] bg-[radial-gradient(circle_at_40%_40%,#EAF4FF,#F4F9FF_60%,transparent_72%)]" />
