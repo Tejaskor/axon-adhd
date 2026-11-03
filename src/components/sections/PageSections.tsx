@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import type { ImageAsset } from "@/content/types";
-import { ArrowRight, BriefcaseMedical, Brain, Check, CheckCircle2, Clock, Coins, Frown, GraduationCap, HeartPulse, Lock, Quote, Shield, ShieldCheck, ShieldPlus, Star, Target, TrendingDown, TrendingUp, TriangleAlert, Users } from "lucide-react";
+import { ArrowDown, ArrowRight, BriefcaseMedical, Brain, Check, CheckCircle2, Clock, Coins, Frown, DollarSign, GraduationCap, HeartPlus, HeartPulse, Lock, Quote, Shield, ShieldCheck, ShieldPlus, Star, Target, TrendingDown, TrendingUp, TriangleAlert, Users } from "lucide-react";
 import type { BadgesSection, CtaSection, FeatureItem, FeaturesSection, PageHero as PageHeroData, PageSection, QuotesSection, SplitSection, StepsSection, Tone } from "@/content/pages/types";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -19,6 +19,8 @@ import { ContactSection } from "./ContactSection";
 import { CTABand } from "./CTABand";
 import { FAQAccordion } from "./FAQAccordion";
 import { FreeAssessmentGlass } from "./FreeAssessmentGlass";
+import { GlassQuotesCarousel } from "./GlassQuotesCarousel";
+import { TealBanner } from "./TealBanner";
 import { HowItWorksGlass } from "./HowItWorksGlass";
 import { HeroVideoCard } from "./HeroVideoCard";
 import { LatestBlogs } from "./LatestBlogs";
@@ -785,6 +787,94 @@ const earlyAccents = {
   cyan: { icon: HeartPulse, color: "#17AFC7", pale: "#D8F2F7", bg: "#F1FAFC", border: "#D3EEF3" },
 } as const;
 
+const universityBenefitIcons = [
+  { icon: ArrowDown, color: "#1677ED", chip: "linear-gradient(145deg,#E3F0FF,#CFE3FC)" },
+  { icon: Shield, color: "#6C4FE0", chip: "linear-gradient(145deg,#EFE9FF,#DED3FB)" },
+  { icon: TrendingUp, color: "#18A874", chip: "linear-gradient(145deg,#E1F7EC,#C9EEDC)" },
+  { icon: HeartPlus, color: "#F08A24", chip: "linear-gradient(145deg,#FFEDD9,#FFDDBA)" },
+  { icon: DollarSign, color: "#6C4FE0", chip: "linear-gradient(145deg,#EFE9FF,#DED3FB)" },
+] as const;
+
+/** Centered heading (accent word with a curved underline), the supplied photo in a layered blue frame beside five frosted-glass benefit cards (2 · 2 · 1). Waves are inline SVG. */
+function UniversityBenefitsFeatures({ data }: { data: FeaturesSection }) {
+  const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
+  return (
+    <section id={data.id} className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#F4F9FF_0%,#EAF3FE_55%,#F5F9FF_100%)] py-10 sm:py-12 lg:py-14">
+      <svg aria-hidden viewBox="0 0 400 160" fill="none" preserveAspectRatio="none" className="pointer-events-none absolute top-0 left-0 -z-10 h-28 w-56 sm:h-40 sm:w-80">
+        <path d="M0 0H400C300 30 200 40 120 80S30 140 0 160Z" fill="#5DA2F0" fillOpacity=".32" />
+      </svg>
+      <svg aria-hidden viewBox="0 0 800 200" fill="none" preserveAspectRatio="none" className="pointer-events-none absolute right-0 bottom-0 -z-10 h-28 w-[75%] sm:h-40">
+        <defs>
+          <linearGradient id="uni-wave-a" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#D6E8FC" stopOpacity=".9" />
+            <stop offset="1" stopColor="#7DB4F4" stopOpacity=".85" />
+          </linearGradient>
+          <linearGradient id="uni-wave-b" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#8DBFF5" stopOpacity=".7" />
+            <stop offset="1" stopColor="#3F8EEB" stopOpacity=".95" />
+          </linearGradient>
+        </defs>
+        <path d="M200 200C270 120 340 62 440 62S590 108 690 124S780 112 800 98V200Z" fill="url(#uni-wave-a)" />
+        <path d="M470 200C580 150 690 150 800 52V200Z" fill="url(#uni-wave-b)" />
+      </svg>
+      <Container>
+        <div className="mx-auto text-center">
+          {data.eyebrow && <p className="mx-auto mb-4 inline-block rounded-full border border-white/80 bg-[#DCEAFB]/80 px-6 py-2 text-[15px] font-bold text-[#0B3B8C] shadow-[0_6px_16px_-10px_rgba(37,120,202,.45)] sm:text-[16px]">{data.eyebrow}</p>}
+          <h2 className="text-[clamp(32px,3.6vw,52px)] leading-[1.1] font-extrabold tracking-[-0.02em] text-[#0B1F4D]">
+            {after !== undefined ? (
+              <>
+                {before}
+                <span className="relative inline-block text-[#1677ED]">
+                  {data.accent}
+                  <svg aria-hidden viewBox="0 0 260 14" fill="none" preserveAspectRatio="none" className="absolute inset-x-0 -bottom-1.5 h-2.5 w-full">
+                    <path d="M3 10C60 3 190 2 257 9" stroke="#1677ED" strokeWidth="3" strokeLinecap="round" />
+                  </svg>
+                </span>
+                {after}
+              </>
+            ) : (
+              data.title
+            )}
+          </h2>
+          {data.subtitle && <p className="mx-auto mt-4 max-w-[900px] text-[16px] leading-snug text-pretty text-[#4B5C75] lg:max-w-none lg:text-[17px] lg:whitespace-nowrap">{data.subtitle}</p>}
+        </div>
+
+        <div className="mt-8 grid gap-8 lg:mt-9 lg:grid-cols-[58fr_42fr] lg:gap-8">
+          {data.image && (
+            <div className="relative mx-auto w-full max-w-[640px] lg:max-w-none lg:self-center">
+              <div className="relative aspect-[2916/1488] overflow-hidden lg:aspect-[16/10] rounded-[44px_30px_52px_36px] border-[5px] border-white shadow-[0_22px_50px_-22px_rgba(18,61,106,.5)]">
+                <Image src={data.image.src} alt={data.image.alt} fill sizes="(max-width: 1023px) 100vw, 58vw" className="object-cover object-center" />
+              </div>
+            </div>
+          )}
+          <ul className="grid gap-4">
+            {data.items.map((item, i) => {
+              const a = universityBenefitIcons[i % universityBenefitIcons.length];
+              const Icon = a.icon;
+              return (
+                <li key={item.title} className="flex">
+                  <div className="flex w-full">
+                    <div className="flex w-full items-center gap-3 rounded-[24px] border border-white/80 bg-white/55 px-3.5 py-3 shadow-[0_14px_34px_-18px_rgba(37,120,202,.35),inset_0_1px_0_rgba(255,255,255,.9)] backdrop-blur-md sm:px-4 sm:py-3.5">
+                      <span className="grid size-12 shrink-0 place-items-center rounded-[16px] shadow-[0_8px_16px_-8px_rgba(18,61,106,.3)] sm:size-12" style={{ background: a.chip, color: a.color }}>
+                        <Icon aria-hidden className="size-5 sm:size-6" strokeWidth={2} />
+                      </span>
+                      <span aria-hidden className="h-12 w-px shrink-0 bg-[#1677ED]/20" />
+                      <div className="min-w-0">
+                        <h3 className="text-[16px] leading-snug font-bold text-[#0B1F4D] sm:text-[17px]">{item.title}</h3>
+                        {item.text && <p className="mt-1 text-[13px] leading-snug text-[#4B5C75] sm:text-[14px]">{item.text}</p>}
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
 /** Centered heading (accented title with hand underline), then the supplied clinician image beside five pastel benefit cards. */
 function EarlyReferralFeatures({ data }: { data: FeaturesSection }) {
   const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
@@ -843,6 +933,7 @@ function EarlyReferralFeatures({ data }: { data: FeaturesSection }) {
 
 function Features({ data }: { data: FeaturesSection }) {
   const variant = data.variant ?? "card";
+  if (variant === "universityBenefits") return <UniversityBenefitsFeatures data={data} />;
   if (variant === "earlyReferral") return <EarlyReferralFeatures data={data} />;
   if (variant === "campusBanner") return <CampusBannerFeatures data={data} />;
   if (variant === "ribbon") return <RibbonFeatures data={data} />;
@@ -1076,6 +1167,7 @@ function Split({ data }: { data: SplitSection }) {
 }
 
 function Quotes({ data }: { data: QuotesSection }) {
+  if (data.variant === "glass") return <GlassQuotesCarousel data={data} />;
   return (
     <section className="bg-surface py-16 sm:py-20">
       <Container>
@@ -1424,6 +1516,7 @@ function ArcsBanner({ data }: { data: CtaSection }) {
 
 function Cta({ data }: { data: CtaSection }) {
   if (data.variant === "arcs") return <ArcsBanner data={data} />;
+  if (data.variant === "teal") return <TealBanner data={data} />;
   if (data.variant === "screening") return <ScreeningBanner data={data} />;
   return (
     <>
@@ -1458,7 +1551,7 @@ export function PageSections({ sections }: { sections: PageSection[] }) {
           case "badges":
             return <Badges key={i} data={section} />;
           case "faq":
-            return <FAQAccordion key={i} faqs={section.faqs} title={section.title} subtitle={section.subtitle} />;
+            return <FAQAccordion key={i} faqs={section.faqs} title={section.title} subtitle={section.subtitle} variant={section.variant} accent={section.accent} aside={section.aside} />;
           case "blogs":
             return <LatestBlogs key={i} />;
           case "contact":

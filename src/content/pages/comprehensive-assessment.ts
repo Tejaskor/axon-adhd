@@ -124,7 +124,7 @@ export const comprehensiveAssessmentPage: PageContent = {
       type: "steps",
       title: "Step-by-Step Comprehensive ADHD Assessment in Arlington, VA",
       subtitle:
-        "Our process guides you from scheduling your assessment to completing your clinician consultation,receiving your detailed report, and beginning your personalized care plan.",
+        "Our process guides you from scheduling your assessment to completing your clinician consultation, receiving your detailed report, and beginning your personalized care plan.",
       tone: "white",
       items: [
         { title: "Complete QbCheck & Schedule Review", text: "Take the QbCheck any time you like, and then schedule a time to meet virtually with a psychologist to discuss the results.", image: { src: "/images/services/Book-Your-Assessment-scaled.webp", alt: "", width: 2560, height: 1315 } },

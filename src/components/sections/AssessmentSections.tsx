@@ -6,6 +6,8 @@ import { FeatureIcon } from "@/components/ui/FeatureIcon";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
 import { Arrow, IconChip, h2, lead, lightBtn, wrap } from "./AccommodationSections";
+import { AssessmentTimeline } from "./AssessmentTimeline";
+import { TealBanner } from "./TealBanner";
 
 /**
  * Free-assessment page sections from "What You'll Learn from the Free Assessment" downward.
@@ -259,36 +261,63 @@ export function AssessmentBannerCta({ data }: { data: CtaSection }) {
 
 /* ------------------------------------------------ Understanding ADHD with Confidence */
 
+/** Same look as the "Key Benefits for University" section: pale blue gradient, centred heading, the image on the left and the benefits as glass cards on the right. */
 export function AssessmentConfidence({ data }: { data: FeaturesSection }) {
   return (
-    <section className="bg-white py-16 sm:py-20 lg:py-24" aria-labelledby="confidence-title">
+    <section className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#F4F9FF_0%,#EAF3FE_55%,#F5F9FF_100%)] py-12 sm:py-14 lg:py-16" aria-labelledby="confidence-title">
+      <svg aria-hidden viewBox="0 0 400 160" fill="none" preserveAspectRatio="none" className="pointer-events-none absolute top-0 left-0 -z-10 h-28 w-56 sm:h-40 sm:w-80">
+        <path d="M0 0H400C300 30 200 40 120 80S30 140 0 160Z" fill="#5DA2F0" fillOpacity=".32" />
+      </svg>
+      <svg aria-hidden viewBox="0 0 800 200" fill="none" preserveAspectRatio="none" className="pointer-events-none absolute right-0 bottom-0 -z-10 h-28 w-[75%] sm:h-40">
+        <defs>
+          <linearGradient id="conf-wave-a" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#D6E8FC" stopOpacity=".9" />
+            <stop offset="1" stopColor="#7DB4F4" stopOpacity=".85" />
+          </linearGradient>
+          <linearGradient id="conf-wave-b" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#8DBFF5" stopOpacity=".7" />
+            <stop offset="1" stopColor="#3F8EEB" stopOpacity=".95" />
+          </linearGradient>
+        </defs>
+        <path d="M200 200C270 120 340 62 440 62S590 108 690 124S780 112 800 98V200Z" fill="url(#conf-wave-a)" />
+        <path d="M470 200C580 150 690 150 800 52V200Z" fill="url(#conf-wave-b)" />
+      </svg>
       <div className={wrap}>
-        <Reveal className="grid items-end gap-4 md:grid-cols-[1.1fr_1fr] md:gap-14">
-          <h2 id="confidence-title" className={h2}>
+        <div className="mx-auto text-center">
+          <h2 id="confidence-title" className="text-[clamp(32px,3.6vw,52px)] leading-[1.1] font-extrabold tracking-[-0.02em] text-[#0B1F4D]">
             {data.title}
           </h2>
-          {data.subtitle && <p className={lead}>{data.subtitle}</p>}
-        </Reveal>
-        {data.image && (
-          <Reveal delay={0.05}>
-            <Image src={data.image.src} alt={data.image.alt} width={data.image.width} height={data.image.height} sizes="(max-width: 1320px) 100vw, 1256px" className="mt-10 h-auto w-full rounded-[28px] shadow-[0_24px_56px_rgba(18,61,106,.16)]" />
-          </Reveal>
-        )}
-        <ul className="mt-12 grid gap-9 md:grid-cols-3 md:gap-0">
-          {data.items.map((item, i) => (
-            <li key={item.title} className="md:px-8 md:first:pl-0 md:last:pr-0 md:[&:not(:first-child)]:border-l md:[&:not(:first-child)]:border-[#E3EAF2]">
-              <Reveal delay={i * 0.07}>
-                <div className="group flex items-start gap-5">
-                  <IconChip className="size-14 rounded-2xl">{item.icon && <FeatureIcon name={item.icon} className="size-7" />}</IconChip>
-                  <div>
-                    <h3 className="type-h4 text-[#123D6A]">{item.title}</h3>
-                    <p className="type-body mt-2 text-[#536985]">{item.text}</p>
+          {data.subtitle && <p className="mx-auto mt-4 max-w-[900px] text-[16px] leading-snug text-pretty text-[#4B5C75] lg:max-w-none lg:text-[17px] lg:whitespace-nowrap">{data.subtitle}</p>}
+        </div>
+
+        <div className="mt-8 grid items-center gap-8 lg:mt-10 lg:grid-cols-[58fr_42fr] lg:gap-10">
+          {data.image && (
+            <div className="relative mx-auto w-full max-w-[720px] lg:max-w-none">
+              <Image
+                src={data.image.src}
+                alt={data.image.alt}
+                width={data.image.width}
+                height={data.image.height}
+                sizes="(max-width: 1023px) 100vw, 58vw"
+                className="h-auto w-full rounded-[32px] border-[5px] border-white shadow-[0_22px_50px_-22px_rgba(18,61,106,.5)]"
+              />
+            </div>
+          )}
+          <ul className="grid gap-4">
+            {data.items.map((item) => (
+              <li key={item.title} className="flex">
+                <div className="group flex w-full items-center gap-4 rounded-[24px] border border-white/80 bg-white/55 px-4 py-4 shadow-[0_14px_34px_-18px_rgba(37,120,202,.35),inset_0_1px_0_rgba(255,255,255,.9)] backdrop-blur-[12px] sm:px-6 sm:py-5">
+                  <IconChip className="size-12 rounded-2xl sm:size-14">{item.icon && <FeatureIcon name={item.icon} className="size-6 sm:size-7" />}</IconChip>
+                  <span aria-hidden className="h-12 w-px shrink-0 bg-[#1677ED]/20" />
+                  <div className="min-w-0">
+                    <h3 className="text-[17px] leading-snug font-bold text-[#0B1F4D] sm:text-[18px]">{item.title}</h3>
+                    <p className="mt-1 text-[14px] leading-snug text-[#4B5C75] sm:text-[15px]">{item.text}</p>
                   </div>
                 </div>
-              </Reveal>
-            </li>
-          ))}
-        </ul>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );
@@ -338,27 +367,7 @@ export function AssessmentProcess({ data }: { data: StepsSection }) {
           </h2>
           {data.subtitle && <p className={cn(lead, "mt-5")}>{data.subtitle}</p>}
         </Reveal>
-        <ol className="mt-14 space-y-12 lg:space-y-16">
-          {data.items.map((step, i) => (
-            <li key={step.title}>
-              <div className="grid items-center gap-8 md:grid-cols-2 lg:gap-16">
-                <Reveal className={cn(i % 2 === 1 && "md:order-2")}>
-                  {step.image && <Image src={step.image.src} alt={step.image.alt} width={step.image.width} height={step.image.height} sizes="(max-width: 1023px) 100vw, 620px" className="aspect-[16/10] w-full rounded-[26px] object-cover shadow-[0_22px_50px_rgba(18,61,106,.16)]" />}
-                </Reveal>
-                <Reveal delay={0.08}>
-                  <span aria-hidden className="grid size-14 place-items-center rounded-full bg-primary font-display text-[22px] font-bold text-white shadow-[0_8px_20px_rgba(37,120,202,.30)]">
-                    {i + 1}
-                  </span>
-                  <h3 className="type-h3 mt-5 text-[#123D6A]">
-                    <span className="sr-only">Step {i + 1}: </span>
-                    {step.title}
-                  </h3>
-                  <p className={cn(lead, "mt-4 max-w-[520px]")}>{step.text}</p>
-                </Reveal>
-              </div>
-            </li>
-          ))}
-        </ol>
+        <AssessmentTimeline items={data.items} />
       </div>
     </section>
   );
@@ -367,26 +376,5 @@ export function AssessmentProcess({ data }: { data: StepsSection }) {
 /* ------------------------------------------------ Closing CTA (dark, centred) */
 
 export function AssessmentClosingCta({ data }: { data: CtaSection }) {
-  return (
-    <section className="relative isolate overflow-hidden bg-[linear-gradient(115deg,#123D6A_0%,#1E64AA_60%,#2578CA_100%)] py-20 text-center text-white sm:py-24 lg:py-28" aria-labelledby="closing-title">
-      <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_0%,rgba(134,182,229,.25),transparent_55%)]" />
-      <Reveal className={cn(wrap, "max-w-[900px]")}>
-        <h2 id="closing-title" className="type-h2 text-balance">
-          {data.title}
-        </h2>
-        {data.subtitle && <p className="type-lead mx-auto mt-6 max-w-[720px] text-white/90">{data.subtitle}</p>}
-        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <ButtonLink href={data.primary.href} size="lg" className={cn("group whitespace-normal", lightBtn)}>
-            {data.primary.label}
-            <Arrow />
-          </ButtonLink>
-          {data.secondary && (
-            <ButtonLink href={data.secondary.href} variant="outline" size="lg" className="border-white/70! bg-transparent! whitespace-normal text-white! hover:bg-white! hover:text-primary-600!">
-              {data.secondary.label}
-            </ButtonLink>
-          )}
-        </div>
-      </Reveal>
-    </section>
-  );
+  return <TealBanner data={data} />;
 }

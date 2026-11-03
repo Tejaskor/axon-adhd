@@ -124,7 +124,7 @@ function ReportPreview() {
                 <span className="font-display text-[34px] leading-none font-extrabold text-[#123D6A]">$250</span>
                 <span className="type-small text-[#5B6B80]">Price includes taxes.</span>
               </p>
-              <ButtonLink href={checkout} size="md" className={cn("group mt-2.5 w-full px-4", primaryBtn)}>
+              <ButtonLink href={checkout} size="md" className={cn("group mt-2.5 w-full gap-1.5 px-3 whitespace-nowrap! text-[13px]! md:text-[13px]!", primaryBtn)}>
                 Add Package &amp; Continue
                 <Arrow />
               </ButtonLink>
@@ -170,7 +170,7 @@ export function AccommodationHero() {
               <Arrow />
             </ButtonLink>
           </div>
-          <TrustBar className="mt-11 items-center gap-x-5 gap-y-4 lg:flex-nowrap [&>li]:shrink-0 max-lg:[&>li[aria-hidden]]:hidden [&_a]:-my-2 [&_a]:-ml-1.5 [&_a_img]:h-[64px] lg:[&_a_img]:h-[68px]" />
+          <TrustBar className="mt-11 items-center gap-x-5 gap-y-4 lg:flex-nowrap [&>li]:shrink-0 [&>li:nth-child(n+4)]:hidden! [&>li:nth-child(3)]:flex-row [&>li:nth-child(3)]:gap-3.5 [&>li:nth-child(3)>span:last-child]:max-w-[190px] [&>li:nth-child(3)>span:last-child]:text-left max-lg:[&>li[aria-hidden]]:hidden [&_a]:-my-2 [&_a]:-ml-1.5 [&_a_img]:h-[64px] lg:[&_a_img]:h-[68px]" />
         </div>
         <ReportPreview />
       </div>

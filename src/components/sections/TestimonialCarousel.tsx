@@ -36,26 +36,19 @@ const COLLAPSE_MS = 400;
 
 /** Expands in place: the quote area animates from six lines to its full height, then Read less reverses it. Open state is owned by the carousel so only one card is open at a time. */
 function TestimonialCard({ item, index, expanded, onToggle }: { item: Item; index: number; expanded: boolean; onToggle: () => void }) {
-  // Line clamp (ellipsis) is only on while collapsed; it is lifted before expanding and restored after collapsing.
-  const [clamped, setClamped] = useState(true);
+  // The line clamp (ellipsis) is derived, not stored: it is off while open and for the length of the close animation, so it never needs a state flip in render.
+  // `settledFor` is the `expanded` value the animation last finished for; it only changes from the timer below.
+  const [settledFor, setSettledFor] = useState(false);
   const [fullHeight, setFullHeight] = useState<number | null>(null);
   const textRef = useRef<HTMLParagraphElement>(null);
   const quoteId = useId();
+  const clamped = !expanded && !settledFor;
 
-  // Reacting to the prop during render (not in an effect): lift the clamp as soon as it opens, drop the measured height as soon as it closes.
-  const [wasExpanded, setWasExpanded] = useState(expanded);
-  if (wasExpanded !== expanded) {
-    setWasExpanded(expanded);
-    if (expanded) setClamped(false);
-    else setFullHeight(null);
-  }
   useLayoutEffect(() => {
-    if (expanded && !clamped && textRef.current) setFullHeight(textRef.current.scrollHeight);
-  }, [expanded, clamped]);
-  // Restore the ellipsis only after the collapse animation has finished.
+    if (expanded && textRef.current) setFullHeight(textRef.current.scrollHeight);
+  }, [expanded]);
   useEffect(() => {
-    if (expanded) return;
-    const t = setTimeout(() => setClamped(true), COLLAPSE_MS);
+    const t = setTimeout(() => setSettledFor(expanded), COLLAPSE_MS);
     return () => clearTimeout(t);
   }, [expanded]);
 
@@ -71,7 +64,7 @@ function TestimonialCard({ item, index, expanded, onToggle }: { item: Item; inde
         </span>
       </figcaption>
       {/* Collapsed height is exactly six lines so every collapsed card is the same size; expanded uses the measured text height. */}
-      <blockquote id={quoteId} className="mt-3 overflow-hidden text-[16px] leading-[1.65] transition-[height] ease-brand motion-reduce:transition-none" style={{ height: fullHeight !== null ? fullHeight : "9.9em", transitionDuration: `${COLLAPSE_MS}ms` }}>
+      <blockquote id={quoteId} className="mt-3 overflow-hidden text-[16px] leading-[1.65] transition-[height] ease-brand motion-reduce:transition-none" style={{ height: expanded && fullHeight !== null ? fullHeight : "9.9em", transitionDuration: `${COLLAPSE_MS}ms` }}>
         <p ref={textRef} className={cn("text-ink-2", clamped && "line-clamp-6")}>
           “{item.quote}”
         </p>

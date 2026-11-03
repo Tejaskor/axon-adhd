@@ -39,6 +39,14 @@ const earlyReferral = [
   { title: "Better Long-Term Health", text: "Treatment improves life expectancy, mental health, and overall quality of life.", icon: "heart" as const },
 ];
 
+/** Reviews shown in the university "What Universities Say" carousel: the eight endorsements above plus the three patient reviews, worded as on the live university referral page. */
+const universityReviews = [
+  ...universityTestimonials,
+  { name: "Carlos R", role: "IT Professional", quote: "Dr. Dodini helped me interpret my QB Check results with empathy and transparency. He carefully explained the diagnosis, what the test measures, and provided resources to guide my next steps. I appreciate his prompt responses and commitment to comprehensive mental health care." },
+  { name: "Hannah B", role: "Small Business Owner", quote: "I had a wonderful experience working with Dr. Dodini! My testing was in May 2020 so I was unsure of how it would work because of the pandemic, but everything was super easy and I received my results very quickly! Thank you!!!!" },
+  { name: "Kristy G.", role: "Business Professional", quote: "Scheduling the test and follow-up appointment was really easy, and everything was handled online (due to Covid). During the follow-up, Dr. Dodini carefully went over my results and explained everything thoroughly, then communicated with my primary care to share the results and analysis, and his recommendations. I wish I'd found his office sooner, it was a great experience." },
+];
+
 const contact = (label: string) => ({ label, href: "#contact" });
 const howItWorks = { label: "Learn How Referral Works", href: "#How-Referral-works" };
 
@@ -177,6 +185,9 @@ export const universityReferralPage: PageContent = {
       type: "features",
       title: "Key Benefits for University",
       subtitle: "AXON ADHD streamlines student intake, improves campus communication, and supports better student success decisions.",
+      variant: "universityBenefits",
+      accent: "University",
+      image: { src: "/images/referral-for-universities/key-benefits-for-university.webp", alt: "Clinician smiling while speaking with a patient", width: 2916, height: 1488 },
       columns: 5,
       items: [
         { title: "Fast Student Import", text: "Import existing students into AXON ADHD in a few clicks.", icon: "users" },
@@ -186,9 +197,9 @@ export const universityReferralPage: PageContent = {
         { title: "Zero Setup Cost", text: "Free, fast onboarding with no technical integration required.", icon: "sparkles" },
       ],
     },
-    { type: "cta", title: "Expand Your Referral Network Effortlessly", subtitle: "A single, secure process for onboarding referred students from universities and partnered institutions.", primary: contact("Contact Us") },
-    { type: "quotes", title: "What Universities Say About AXON ADHD", subtitle: "Academic institutions, primary care providers, and families trust AXON ADHD for clear evaluations and streamlined student referral support.", items: endorsements },
-    { type: "faq", title: "Frequently Asked Questions", subtitle: "We have the answers for you!", faqs: faqTabs[1].items },
+    { type: "cta", variant: "teal", accent: "Effortlessly", title: "Expand Your Referral Network Effortlessly", subtitle: "A single, secure process for onboarding referred students from universities and partnered institutions.", primary: contact("Contact Us") },
+    { type: "quotes", variant: "glass", accent: "AXON ADHD", title: "What Universities Say About AXON ADHD", subtitle: "Academic institutions, primary care providers, and families trust AXON ADHD for clear evaluations and streamlined student referral support.", items: universityReviews },
+    { type: "faq", variant: "split", accent: "Questions", aside: { title: "Have Questions?", text: "Find quick answers to the most common questions about AXON ADHD's university partnerships." }, title: "Frequently Asked Questions", subtitle: "We have the answers for you!", faqs: faqTabs[1].items },
     { type: "contact" },
   ],
 };

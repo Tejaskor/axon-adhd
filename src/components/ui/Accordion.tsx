@@ -15,9 +15,10 @@ export type AccordionItem = {
 /**
  * - `default`: one bordered panel with dividers (content pages, blog, trust center).
  * - `minimal`: single-column cards, Privacy-page type, "+" that turns into "×" (the /adhd-faqs page).
+ * - `glassList`: compact rows in the minimal variant's card colours, with a small chevron and the blue answer bar (university FAQ split layout).
  * - `cards`: separate rounded cards with a rotating chevron and a blue bar beside the answer (home page FAQ and /adhd-faqs).
  */
-type Variant = "default" | "cards" | "minimal";
+type Variant = "default" | "cards" | "minimal" | "glassList";
 
 const styles: Record<
   Variant,
@@ -62,6 +63,25 @@ const styles: Record<
       "[&_a]:text-primary [&_a]:underline [&_a]:underline-offset-2 [&_strong]:font-semibold [&_strong]:text-[#111827]",
     ),
   },
+  glassList: {
+    list: "flex flex-col gap-4",
+    // Same card colours as the minimal (/adhd-faqs) accordion: white with a hairline border, light-blue hover, soft grey-blue fill when open.
+    item: (open) =>
+      cn(
+        "overflow-hidden rounded-[16px] border transition-[background-color,border-color] duration-300 ease-brand",
+        open ? "border-transparent bg-[#F1F5F9]" : "border-[#E4E9F0] bg-white hover:border-[#BCD4EF] hover:bg-[#EEF5FD]",
+      ),
+    button: () => "flex w-full items-center gap-3 px-5 py-4 text-left sm:gap-4 sm:px-7 sm:py-[22px]",
+    title: "min-w-0 flex-1 text-[16px] leading-snug font-medium text-pretty text-[#0B1F4D] sm:text-[18px]",
+    body: cn(
+      "px-5 pb-6 text-left text-[15px] break-words text-[#4B5C75] sm:px-7 sm:text-[16px]",
+      "[&>*]:relative [&>*]:m-0 [&>*]:pl-4",
+      "[&>*]:before:absolute [&>*]:before:inset-y-0 [&>*]:before:left-0 [&>*]:before:w-[3px] [&>*]:before:rounded-full [&>*]:before:bg-primary [&>*]:before:content-['']",
+      "[&_p]:leading-[1.75] [&_strong]:font-bold [&_strong]:text-[#0B1F4D]",
+      "[&_ol]:list-decimal [&_ol]:pl-[calc(16px+1.25em)] [&_ul]:list-disc [&_ul]:pl-[calc(16px+1.25em)] [&_li]:leading-[1.75]",
+      "[&_a]:text-primary [&_a]:no-underline [&_a:hover]:underline",
+    ),
+  },
   cards: {
     list: "flex flex-col gap-4",
     // Frosted glass, identical open or closed (the answer area has no fill of its own, so it shares the card's glass):
@@ -96,6 +116,9 @@ const styles: Record<
 function Icon({ variant, open }: { variant: Variant; open: boolean }) {
   if (variant === "minimal") {
     return <Plus aria-hidden strokeWidth={1.5} className={cn("size-5 shrink-0 transition-transform duration-300 ease-brand", open ? "rotate-45 text-[#374151]" : "text-current")} />;
+  }
+  if (variant === "glassList") {
+    return <Plus aria-hidden strokeWidth={1.5} className={cn("size-5 shrink-0 transition-transform duration-300 ease-brand", open ? "rotate-45 text-[#374151]" : "text-[#0B1F4D]")} />;
   }
   if (variant === "cards") {
     return (
