@@ -30,10 +30,12 @@ const ctaButton =
  * description and a small brand-blue "Learn More" pill (panels keep blue / teal / violet glows).
  *
  * Video behaviour: every card shows its thumbnail until someone interacts; nothing autoplays or loops.
- * - Hovering a video panel with a mouse previews that video; leaving pauses it, rewinds it and shows the thumbnail again.
- * - "See Video" pins playback (with native controls) so it keeps playing after the pointer leaves; the same button closes it.
- *   Touch devices have no reliable hover, so tapping it is how they play a video.
+ * - Hovering a video panel with a mouse plays that video with sound; leaving pauses it, rewinds it and shows the thumbnail again.
+ * - "See Video" pins playback with sound (and native controls) so it keeps playing after the pointer leaves; the same button
+ *   closes it. Touch devices have no reliable hover, so tapping it is how they play a video.
  * - Only one video plays at a time: a hover preview of another card pauses a pinned one, which resumes when the preview ends.
+ * - Browsers block sound until the visitor has clicked, tapped or pressed a key on the page. A hover before that plays muted,
+ *   and sound switches on at that first interaction.
  */
 export function ServicesOverview() {
   const [hovered, setHovered] = useState<number | null>(null);
@@ -42,6 +44,8 @@ export function ServicesOverview() {
   const [started, setStarted] = useState<number | null>(null);
   const [failed, setFailed] = useState<number[]>([]);
   const videos = useRef<Array<HTMLVideoElement | null>>([]);
+  /** Videos the browser forced to play muted; they are unmuted on the visitor's first click, tap or key press. */
+  const autoMuted = useRef(new Set<number>());
   const current = hovered ?? pinned;
 
   // A video that can't load or play keeps its thumbnail and its button is disabled.
@@ -51,25 +55,61 @@ export function ServicesOverview() {
     setFailed((cur) => (cur.includes(i) ? cur : [...cur, i]));
   }, []);
 
+  /** Plays a video with sound, falling back to muted playback when the browser blocks audio (no user interaction yet). */
+  const playWithSound = useCallback(
+    (i: number) => {
+      const v = videos.current[i];
+      if (!v) return;
+      autoMuted.current.delete(i);
+      v.muted = false;
+      // AbortError only means a pause() interrupted this play() (the pointer left quickly), not a broken video.
+      const aborted = (err: unknown) => err instanceof DOMException && err.name === "AbortError";
+      v.play().catch((err: unknown) => {
+        if (aborted(err)) return;
+        if (err instanceof DOMException && err.name === "NotAllowedError") {
+          v.muted = true;
+          autoMuted.current.add(i);
+          v.play().catch((e: unknown) => !aborted(e) && fail(i));
+          return;
+        }
+        fail(i);
+      });
+    },
+    [fail],
+  );
+
+  // The first click, tap or key press anywhere lets the page play sound, so unmute whatever was forced muted.
+  useEffect(() => {
+    const unmute = () => {
+      autoMuted.current.forEach((i) => {
+        const v = videos.current[i];
+        if (v) v.muted = false;
+      });
+      autoMuted.current.clear();
+    };
+    window.addEventListener("pointerdown", unmute, true);
+    window.addEventListener("keydown", unmute, true);
+    return () => {
+      window.removeEventListener("pointerdown", unmute, true);
+      window.removeEventListener("keydown", unmute, true);
+    };
+  }, []);
+
   useEffect(() => {
     videos.current.forEach((v, i) => {
       if (!v) return;
       if (i === current) {
-        v.play().catch((err: unknown) => {
-          // AbortError only means a pause() interrupted this play() (the pointer left quickly), not a broken video.
-          if (err instanceof DOMException && err.name === "AbortError") return;
-          fail(i);
-        });
+        playWithSound(i);
       } else if (!v.paused || (i !== pinned && v.currentTime > 0.1)) {
         v.pause();
         // A pinned video keeps its place while another card previews; a finished preview starts over next time.
         if (i !== pinned) v.currentTime = 0.1;
       }
     });
-  }, [current, pinned, fail]);
+  }, [current, pinned, playWithSound]);
 
   return (
-    <section className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#EEF5FC_0%,#E4EEF9_55%,#EEF5FC_100%)] py-16 sm:py-20 lg:py-24" aria-labelledby="services-title">
+    <section className="relative isolate overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-16 sm:py-20 lg:py-24" aria-labelledby="services-title">
       {/* Large soft shapes and lighting behind the glass. */}
       <div aria-hidden className="pointer-events-none absolute -top-40 -left-56 -z-10 h-[620px] w-[640px] rotate-[-20deg] rounded-[50%] bg-[linear-gradient(160deg,rgba(201,222,244,.9),rgba(255,255,255,.2))]" />
       <div aria-hidden className="pointer-events-none absolute -top-32 -right-40 -z-10 h-[560px] w-[520px] rotate-[25deg] rounded-[50%] border border-white/70 bg-[linear-gradient(200deg,rgba(255,255,255,.85),rgba(201,222,244,.35))]" />
@@ -108,7 +148,6 @@ export function ServicesOverview() {
                         className="aspect-[413/360] h-auto w-full object-cover transition-transform duration-700 ease-brand group-hover:scale-[1.03]"
                         // #t=0.1 makes a paused or closed card hold a real frame instead of a blank box.
                         src={`${item.video}#t=0.1`}
-                        muted
                         playsInline
                         preload="metadata"
                         controls={open}
@@ -134,9 +173,15 @@ export function ServicesOverview() {
                       <button
                         type="button"
                         onClick={() => {
-                          // Closing also ends any hover preview, so the video stops even with the pointer still over it.
-                          if (open) setHovered(null);
-                          setPinned(open ? null : i);
+                          if (open) {
+                            // Closing also ends any hover preview, so the video stops even with the pointer still over it.
+                            setHovered(null);
+                            setPinned(null);
+                            return;
+                          }
+                          // Start playback inside the click itself: the click is what lets the browser play sound.
+                          playWithSound(i);
+                          setPinned(i);
                         }}
                         disabled={broken}
                         aria-pressed={open}
