@@ -10,9 +10,9 @@ const AREA = 4600;
 const MAX_H = 56;
 const MAX_W = 210;
 
-function logoBox(width: number, height: number) {
+function logoBox(width: number, height: number, scale = 1) {
   const ratio = width / height;
-  let h = Math.min(MAX_H, Math.sqrt(AREA / ratio));
+  let h = Math.min(MAX_H, Math.sqrt(AREA / ratio)) * scale;
   if (h * ratio > MAX_W) h = MAX_W / ratio;
   return { width: Math.round(h * ratio), height: Math.round(h) };
 }
@@ -26,7 +26,7 @@ export function LogoMarquee() {
   const row = (hidden: boolean) => (
     <ul className="marquee-row flex shrink-0 items-center gap-10 pr-10 sm:gap-14 sm:pr-14 lg:gap-16 lg:pr-16" aria-hidden={hidden || undefined}>
       {partnerLogos.logos.map((logo) => {
-        const box = logoBox(logo.width, logo.height);
+        const box = logoBox(logo.width, logo.height, logo.scale);
         return (
           <li
             key={logo.src}
@@ -38,7 +38,7 @@ export function LogoMarquee() {
               alt={hidden ? "" : logo.alt}
               width={logo.width}
               height={logo.height}
-              sizes="200px"
+              sizes="240px"
               className="size-full object-contain transition-opacity hover:opacity-80"
             />
           </li>

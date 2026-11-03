@@ -14,14 +14,17 @@ export const trustBar = {
   psychologyToday: { src: "/images/trust/psychology-Photoroom.webp", alt: "Verified by Psychology Today", width: 1808, height: 870 },
 };
 
-/** Logos are cropped to their artwork (no baked-in padding) so `LogoMarquee` can size them by visual weight. */
+/**
+ * Logos are cropped to their artwork (no baked-in padding) so `LogoMarquee` can size them by visual weight.
+ * `scale` enlarges text-heavy logos whose fine lettering is unreadable at the shared visual weight.
+ */
 export const partnerLogos = {
   title: "TRUSTED BY LEADING PRIMARY CARE GROUPS & UNIVERSITIES",
   logos: [
     { src: "/images/trust/partners/logo15.webp", alt: "Inova Logo", width: 1151, height: 192 },
     { src: "/images/trust/partners/logo13.webp", alt: "University Logo", width: 192, height: 192 },
-    { src: "/images/trust/partners/logo12.webp", alt: "George Mason University Disability Services logo", width: 531, height: 144 },
-    { src: "/images/trust/partners/logo11.webp", alt: "Partner logo", width: 390, height: 192 },
+    { src: "/images/trust/partners/logo12.webp", alt: "George Mason University Disability Services logo", width: 531, height: 144, scale: 1.5 },
+    { src: "/images/trust/partners/logo11.webp", alt: "Julia Stanford, MD Concierge Medicine logo", width: 390, height: 192, scale: 1.4 },
     { src: "/images/trust/partners/logo14.webp", alt: "Western Governors University logo", width: 820, height: 192 },
     { src: "/images/trust/partners/logo10.webp", alt: "Partner logo", width: 399, height: 192 },
     { src: "/images/trust/partners/logo8.webp", alt: "PAPA Health Logo", width: 641, height: 190 },
@@ -35,7 +38,7 @@ export const partnerLogos = {
     { src: "/images/trust/partners/logo1.webp", alt: "American University Logo", width: 1563, height: 192 },
     { src: "/images/trust/partners/gw.webp", alt: "George Washington University Logo", width: 748, height: 549 },
     { src: "/images/trust/partners/vhc.webp", alt: "VHC Medical Faculty Associates Logo", width: 778, height: 254 },
-  ] satisfies ImageAsset[],
+  ] satisfies Array<ImageAsset & { scale?: number }>,
 };
 
 export const complianceBadges = [
