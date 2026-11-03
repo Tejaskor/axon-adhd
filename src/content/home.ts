@@ -140,7 +140,8 @@ export const journeyToClarity = {
 };
 
 export const mythBuster = {
-  question: { lead: "Why can’t I ", highlight: "figure this out?!" },
+  // `highlight` and `nextLine` render in brand blue; `nextLine` always starts a new line.
+  question: { lead: "Why can’t I ", highlight: "figure this", nextLine: "out?!" },
   feelings: ["Confusion", "Guessing", "Frustration"],
   confused: {
     src: "/images/homepage/adhd-understanding/adhd-confusion-woman.webp",
@@ -193,18 +194,21 @@ export const mythBuster = {
       height: 2588,
     },
   },
-  title: "Attention Deficit Hyperactivity Disorder",
+  title: { lead: "Attention Deficit Hyperactivity", nextLine: "Disorder" },
   subtitle: "It’s not what most people think",
-  brain: { src: "/images/homepage/adhd-understanding/adhd-brain-illustration.webp", alt: "Illustration of a human brain", width: 1536, height: 1024 },
-  concepts: [
-    { label: "Attention", icon: "target", tone: "blue" },
-    { label: "Effort", icon: "gear", tone: "teal" },
-    { label: "Intelligence", icon: "bulb", tone: "orange" },
-  ],
+  infographic: {
+    src: "/images/homepage/adhd-understanding/adhd-attention-effort-intelligence.webp",
+    alt: "A brain surrounded by distractions such as notifications, alarms, messages, games and music, labelled Attention, Effort and Intelligence",
+    width: 544,
+    height: 458,
+  },
+  // Each card reads "ADHD ≠ / Lack of / <text>" (the last two share a line on mobile).
+  mythLead: "ADHD ≠",
+  mythPrefix: "Lack of",
   myths: [
-    { text: "ADHD ≠ Lack of attention", tone: "blue" },
-    { text: "ADHD ≠ Lack of effort", tone: "teal" },
-    { text: "ADHD ≠ Lack of intelligence", tone: "orange" },
+    { text: "attention", tone: "blue" },
+    { text: "effort", tone: "teal" },
+    { text: "intelligence", tone: "orange" },
   ],
   definition: "ADHD is a different way of regulating attention, motivation, and emotions—not a lack of ability.",
 } as const;
@@ -220,7 +224,7 @@ export const weSeeYou = {
     { title: "There’s a reason it feels hard", icon: "bulb", tone: "purple" },
   ],
   image: { src: "/images/services/ImageWithFallback-1.webp", alt: "A smiling woman talking with an ADHD clinician who is taking notes", width: 592, height: 444 },
-  ctas: [ctas.screening, ctas.evaluation],
+  cta: ctas.evaluation,
 } as const;
 
 export const whyAxon = {
@@ -233,12 +237,6 @@ export const whyAxon = {
     { title: "Fast results in days", text: "No months-long wait. Answers when you need them.", icon: "clock", tone: "orange" },
     { title: "Personalized treatment plan", text: "Tailored next steps built for your life.", icon: "checklist", tone: "purple" },
   ] as const,
-};
-
-export const readyBand = {
-  title: "Ready to feel more in control?",
-  subtitle: "Clarity starts with one simple step.",
-  cta: { label: "Start Comprehensive ADHD Assessment", href: links.comprehensive },
 };
 
 export const careYouCanTrust = {
@@ -269,20 +267,15 @@ export const testimonialsSection = {
 export const latestBlogs = {
   title: "Latest Blogs",
   subtitle: "Access our growing list of free case study’s to simplify your everyday.",
+  cta: { label: "Explore All Blogs", href: "/blog/" },
 };
 
 export const faqSection = { title: "Frequently Asked Questions", subtitle: "We have the answers for you!" };
 
 export const finalCta = {
-  /** Rendered as `title` + " " + `titleAccent` (the accent in light blue): "You're not broken-and we'll prove it." */
+  /** Rendered as `title`, then `titleAccent` on its own line: "You're not broken-and / we'll prove it." */
   title: "You're not broken-and",
   titleAccent: "we'll prove it.",
-  /** `icon`/`tone` are picked up by FinalCTA. */
-  benefits: [
-    { text: "Reduce anxiety and overwhelm", icon: "brain", tone: "purple" },
-    { text: "Feel more in control", icon: "user", tone: "blue" },
-    { text: "Build a healthier, happier future", icon: "growth", tone: "green" },
-  ],
   text: "Many high-achieving adults are told they can’t have ADHD because they’re successful, so it often goes misdiagnosed. But untreated ADHD can lead to anxiety, depression, binge eating, substance use, and loneliness. If you feel unheard, the right diagnosis can help you find the treatment that works.",
   lead: "Take the next step with our comprehensive diagnostic evaluation.",
   primary: { label: "Start Comprehensive Assessment", href: links.comprehensive },

@@ -385,22 +385,9 @@ export function Testimonials({
   return (
     <section
       id="Testimonials"
-      className="relative isolate scroll-mt-[var(--header-offset)] overflow-hidden bg-[linear-gradient(180deg,#F5F9FF_0%,#EEF4FD_100%)] py-16 sm:py-20"
+      className="relative isolate scroll-mt-[var(--header-offset)] overflow-hidden bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)] py-16 sm:py-20"
       aria-labelledby="testimonials-title"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute top-[38%] -left-40 -z-10 h-[420px] w-[560px] rotate-[-12deg] rounded-[45%_55%_60%_40%] bg-[linear-gradient(160deg,rgba(219,234,254,.9),rgba(232,241,253,.5))]"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -bottom-40 -left-24 -z-10 size-[420px] rounded-full border border-white/80 bg-white/30"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-48 -right-40 -z-10 size-[640px] rounded-full bg-[radial-gradient(circle,rgba(219,234,254,.85),transparent_68%)]"
-      />
-
       <Container>
         <div className="mx-auto max-w-[820px] text-center">
           <h2

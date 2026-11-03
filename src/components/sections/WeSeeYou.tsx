@@ -15,32 +15,23 @@ const tones = {
   purple: { card: "from-[#8B5CF6]/[0.09] border-[#8B5CF6]/20", disc: "from-[#A78BFA] to-[#7C3AED] shadow-[0_8px_20px_rgba(124,58,237,.32)]" },
 } as const;
 
-/** "We see you.": photo on the left; headline, four affirmation headings and CTAs on the right. */
+/** "We see you.": photo on the left; headline, four affirmation headings and one CTA on the right. */
 export function WeSeeYou() {
   return (
-    <section className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#F7FAFF,#FFFFFF)] py-16 sm:py-20" aria-labelledby="see-you-title">
-      <div aria-hidden className="pointer-events-none absolute -top-24 -right-24 -z-10 size-[320px] rounded-full bg-[#EAF4FF]/70" />
+    // Same background as "Choose Your Next Step" (PricingCards).
+    <section className="relative isolate overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-16 sm:py-20" aria-labelledby="see-you-title">
       <Container>
         <div className="grid items-center gap-12 md:grid-cols-[1.05fr_1fr] md:gap-10 lg:gap-16">
           {/* Left: photo */}
-          <Reveal className="relative mx-auto w-full max-w-[640px] sm:px-6">
-            {/* Soft blob behind the photo, dotted grid and a green squiggle, as in the reference (CSS/SVG only). */}
-            <div aria-hidden className="pointer-events-none absolute -inset-x-2 -inset-y-8 -z-10 rounded-[42%_58%_46%_54%/55%_42%_58%_45%] bg-[#E3EFFC]" />
-            <div aria-hidden className="pointer-events-none absolute bottom-[18%] -left-4 -z-10 hidden h-28 w-16 bg-[radial-gradient(#B6D3F0_1.5px,transparent_1.6px)] [background-size:12px_12px] sm:block" />
-            <svg aria-hidden viewBox="0 0 200 120" fill="none" className="pointer-events-none absolute -bottom-10 -left-6 -z-10 hidden w-44 sm:block">
-              <path d="M2 30c30-10 46 10 58 40s36 46 70 38c20-5 30-14 46-10" stroke="#7FD3AE" strokeWidth="2.5" strokeLinecap="round" />
-            </svg>
-
-            <div className="relative">
-              <Image
-                src={weSeeYou.image.src}
-                alt={weSeeYou.image.alt}
-                width={weSeeYou.image.width}
-                height={weSeeYou.image.height}
-                sizes="(max-width: 767px) 100vw, 600px"
-                className="aspect-[4/3] h-auto w-full rounded-[28px] object-cover shadow-[0_24px_60px_rgba(15,27,46,.14)]"
-              />
-            </div>
+          <Reveal className="mx-auto w-full max-w-[640px]">
+            <Image
+              src={weSeeYou.image.src}
+              alt={weSeeYou.image.alt}
+              width={weSeeYou.image.width}
+              height={weSeeYou.image.height}
+              sizes="(max-width: 767px) 100vw, 640px"
+              className="aspect-[4/3] h-auto w-full rounded-[28px] object-cover"
+            />
           </Reveal>
 
           {/* Right: copy, affirmation cards, CTAs */}
@@ -76,13 +67,16 @@ export function WeSeeYou() {
               })}
             </ul>
 
-            <Reveal delay={0.1} className="mt-8 flex flex-col gap-3 xs:flex-row xs:flex-wrap lg:grid lg:grid-cols-2">
-              {weSeeYou.ctas.map((cta, i) => (
-                <ButtonLink key={cta.href} href={cta.href} size="lg" variant={i === 0 ? "primary" : "outline"} className={cn("whitespace-normal lg:px-5", i === 0 && "shadow-cta")}>
-                  {cta.label}
-                  <ArrowRight aria-hidden className="size-4" />
-                </ButtonLink>
-              ))}
+            {/* Same treatment as the Comprehensive plan's button in PricingCards. */}
+            <Reveal delay={0.1} className="mt-8">
+              <ButtonLink
+                href={weSeeYou.cta.href}
+                size="lg"
+                className="group h-14 w-full gap-2 bg-[linear-gradient(180deg,#5498DB_0%,#2578CA_55%,#1E64AA_100%)] px-5 whitespace-normal sm:px-8 shadow-[0_14px_30px_rgba(37,120,202,.38),inset_0_1px_0_rgba(255,255,255,.35)]! transition-[filter,box-shadow,background-color] duration-300 hover:shadow-[0_18px_38px_rgba(37,120,202,.48),inset_0_1px_0_rgba(255,255,255,.35)]! hover:brightness-110 xs:w-auto"
+              >
+                {weSeeYou.cta.label}
+                <ArrowRight aria-hidden className="size-5 transition-transform group-hover:translate-x-1" />
+              </ButtonLink>
             </Reveal>
           </div>
         </div>

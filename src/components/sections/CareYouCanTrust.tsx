@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { CalendarDays, Coins, CreditCard, FileSearch, HandHeart, Laptop, LockKeyhole, ShieldCheck, Users, type LucideIcon } from "lucide-react";
 import { careYouCanTrust } from "@/content/home";
 import { Container } from "@/components/ui/Container";
@@ -49,26 +48,11 @@ const featureTones = {
   purple: "bg-[radial-gradient(circle_at_30%_25%,#FFFFFF,#EBE2FE)] text-[#7C3AED] shadow-[0_8px_20px_rgba(124,58,237,.14)]",
 } as const;
 
-/** Thin connector between two circles, with a dot at each end and one midway. */
-function Connector({ from, to }: { from: string; to: string }) {
-  return (
-    <div aria-hidden className="relative hidden h-px min-w-4 flex-1 md:block" style={{ background: `linear-gradient(90deg, ${from}, ${to})` }}>
-      <span className="absolute top-1/2 left-0 size-2 -translate-y-1/2 rounded-full" style={{ background: from }} />
-      <span className="absolute top-1/2 left-1/2 size-2 -translate-1/2 rounded-full bg-primary-300" />
-      <span className="absolute top-1/2 right-0 size-2 -translate-y-1/2 rounded-full" style={{ background: to }} />
-    </div>
-  );
-}
-
-/** "Care you can trust": headline, three glass stat circles joined by connectors, and a glass panel of six features. */
+/** "Care you can trust": headline, three glass stat circles, and a glass panel of six features. */
 export function CareYouCanTrust() {
   return (
-    <section className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#F6FAFF_0%,#EDF4FE_55%,#F5F9FF_100%)] py-14 sm:py-20" aria-labelledby="trust-title">
-      {/* Soft glass sheens behind the content. */}
-      <div aria-hidden className="pointer-events-none absolute -top-56 -left-64 -z-10 size-[620px] rounded-full bg-[radial-gradient(circle,rgba(201,222,244,.75),transparent_68%)]" />
-      <div aria-hidden className="pointer-events-none absolute -top-72 -right-56 -z-10 size-[720px] rounded-full border border-white/80 bg-[linear-gradient(200deg,rgba(255,255,255,.7),rgba(219,234,254,.35))]" />
-      <div aria-hidden className="pointer-events-none absolute -bottom-64 left-1/3 -z-10 size-[560px] rounded-full bg-[radial-gradient(circle,rgba(219,234,254,.8),transparent_70%)]" />
-
+    // Same background as "We see you." (WeSeeYou) and "Choose Your Next Step".
+    <section className="relative isolate overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-14 sm:py-20" aria-labelledby="trust-title">
       <Container>
         <Reveal className="mx-auto max-w-[820px] text-center">
           <h2 id="trust-title" className="type-h1 font-extrabold text-navy">
@@ -77,42 +61,27 @@ export function CareYouCanTrust() {
           <p className="type-body mt-3 text-pretty text-body">{careYouCanTrust.subtitle}</p>
         </Reveal>
 
-        <div className="relative mx-auto mt-10 flex max-w-[1060px] flex-col items-center gap-6 md:mt-12 md:flex-row md:gap-0">
+        <div className="relative mx-auto mt-10 flex max-w-[1060px] flex-col items-center gap-6 md:mt-12 md:flex-row md:justify-center md:gap-[clamp(40px,8vw,120px)]">
           {careYouCanTrust.stats.map((s, i) => {
             const Icon = icons[s.icon];
             const tone = statTones[s.tone];
             return (
-              <Fragment key={s.label}>
-                {i === 1 && <Connector from="#86B6E5" to="#5EEAD4" />}
-                {i === 2 && <Connector from="#5EEAD4" to="#FDBA74" />}
-                <Reveal delay={i * 0.08} className="relative w-full max-w-[250px] shrink-0 md:w-[27%] md:max-w-[285px]">
-                  {/* Outer arcs sweep from the side circles down to the section edges. */}
-                  {i === 0 && (
-                    <span aria-hidden className="pointer-events-none absolute top-1/2 right-full hidden h-[420px] w-[min(38vw,560px)] rounded-tl-[100%] border-t border-l border-primary-200/80 md:block">
-                      <span className="absolute -top-1 -right-1 size-2 rounded-full bg-primary-300" />
-                    </span>
-                  )}
-                  {i === careYouCanTrust.stats.length - 1 && (
-                    <span aria-hidden className="pointer-events-none absolute top-1/2 left-full hidden h-[420px] w-[min(38vw,560px)] rounded-tr-[100%] border-t border-r border-primary-200/80 md:block">
-                      <span className="absolute -top-1 -left-1 size-2 rounded-full bg-[#F9B48A]" />
-                    </span>
-                  )}
-                  <div className={cn("aspect-square rounded-full p-[1.5px]", tone.ring, tone.glow)}>
-                    <div className={cn("relative grid size-full place-items-center overflow-hidden rounded-full px-6 text-center backdrop-blur-xl lg:px-8", tone.fill)}>
-                      <span aria-hidden className="pointer-events-none absolute inset-x-[18%] top-[4%] h-[34%] rounded-full bg-gradient-to-b from-white/90 to-transparent blur-md" />
-                      <div className="relative">
-                        <Icon aria-hidden className={cn("mx-auto size-9 lg:size-10", tone.color)} strokeWidth={1.75} />
-                        <p className={cn("mt-2 font-display text-[clamp(34px,3.8vw,50px)] leading-none font-extrabold tracking-[-0.02em]", tone.color)}>
-                          <CountUp value={s.value.count} />
-                          {s.value.suffix}
-                        </p>
-                        <p className="mt-2 text-[clamp(18px,1.7vw,23px)] leading-tight font-bold text-navy">{s.label}</p>
-                        <p className="type-small mx-auto mt-1.5 max-w-[190px] text-pretty text-body">{s.text}</p>
-                      </div>
+              <Reveal key={s.label} delay={i * 0.08} className="relative w-full max-w-[190px] shrink-0 md:w-[20%] md:max-w-[215px]">
+                <div className={cn("aspect-square rounded-full p-[1.5px]", tone.ring, tone.glow)}>
+                  <div className={cn("relative grid size-full place-items-center overflow-hidden rounded-full px-4 text-center backdrop-blur-xl lg:px-6", tone.fill)}>
+                    <span aria-hidden className="pointer-events-none absolute inset-x-[18%] top-[4%] h-[34%] rounded-full bg-gradient-to-b from-white/90 to-transparent blur-md" />
+                    <div className="relative">
+                      <Icon aria-hidden className={cn("mx-auto size-7 lg:size-8", tone.color)} strokeWidth={1.75} />
+                      <p className={cn("mt-2 font-display text-[clamp(26px,2.7vw,38px)] leading-none font-extrabold tracking-[-0.02em]", tone.color)}>
+                        <CountUp value={s.value.count} />
+                        {s.value.suffix}
+                      </p>
+                      <p className="mt-2 text-[clamp(15px,1.3vw,18px)] leading-tight font-bold text-navy">{s.label}</p>
+                      <p className="type-small mx-auto mt-1.5 max-w-[150px] text-pretty text-body">{s.text}</p>
                     </div>
                   </div>
-                </Reveal>
-              </Fragment>
+                </div>
+              </Reveal>
             );
           })}
         </div>

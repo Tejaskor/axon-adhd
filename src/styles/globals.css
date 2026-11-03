@@ -474,16 +474,6 @@ body {
     transform: translateY(-4px);
   }
 }
-@keyframes myth-breathe {
-  50% {
-    opacity: 0.55;
-  }
-}
-@keyframes myth-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
 @keyframes myth-emph {
   0%,
   10%,
@@ -554,14 +544,6 @@ body {
   .myth-float-late {
     animation-duration: 8s;
     animation-delay: -3s;
-  }
-  .myth-breathe {
-    animation: myth-breathe 6s ease-in-out infinite;
-  }
-  .myth-ring {
-    transform-box: fill-box;
-    transform-origin: center;
-    animation: myth-spin 120s linear infinite;
   }
 }
 

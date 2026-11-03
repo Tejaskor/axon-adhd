@@ -1,57 +1,39 @@
 import { ClipboardCheck, Clock, ListChecks, Settings, type LucideIcon } from "lucide-react";
 import { whyAxon } from "@/content/home";
-import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
+import { h2, lead } from "./AccommodationSections";
+import { PathCard } from "./AdhdCareSections";
 
 const icons: Record<string, LucideIcon> = { gear: Settings, clipboard: ClipboardCheck, clock: Clock, checklist: ListChecks };
 
-/** Pale halo + solid gradient disc per accent. */
-const tones = {
-  blue: { halo: "bg-primary/[0.10]", disc: "from-primary-400 to-primary shadow-[0_12px_28px_rgba(37,120,202,.35)]" },
-  green: { halo: "bg-[#22C083]/[0.12]", disc: "from-[#3FD49B] to-[#14A86C] shadow-[0_12px_28px_rgba(20,168,108,.33)]" },
-  orange: { halo: "bg-[#F59E0B]/[0.12]", disc: "from-[#FFC15A] to-[#F29A12] shadow-[0_12px_28px_rgba(242,154,18,.33)]" },
-  purple: { halo: "bg-[#8B5CF6]/[0.11]", disc: "from-[#B28CFA] to-[#8B5CF6] shadow-[0_12px_28px_rgba(139,92,246,.32)]" },
-} as const;
-
-/** "You deserve clarity not guesswork": four icon-led points. */
+/** "You deserve clarity not guesswork": same design as the ADHD Care page's "Your Path to Long-Term Success". */
 export function WhyAxon() {
   return (
-    <section className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#F5F9FF,#FFFFFF_70%)] py-16 sm:py-20" aria-labelledby="why-title">
-      {/* Soft concentric light-blue arcs behind the content (CSS only). */}
-      <div aria-hidden className="pointer-events-none absolute top-[-30%] left-1/2 -z-10 aspect-square w-[1500px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(234,244,255,0)_52%,rgba(226,238,252,.7)_53%,rgba(234,244,255,0)_70%)]" />
-      <div aria-hidden className="pointer-events-none absolute -right-40 -bottom-48 -z-10 size-[420px] rounded-full bg-[#EAF4FF]/70" />
-
-      <Container>
-        <Reveal className="mx-auto max-w-[860px] text-center">
-          <h2 id="why-title" className="type-h2 font-extrabold text-balance text-navy">
+    <section className="bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)] py-16 sm:py-20 lg:py-24" aria-labelledby="why-title">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
+        <Reveal className="mx-auto max-w-[880px] text-center">
+          <h2 id="why-title" className={cn(h2, "text-[#0F2F55]")}>
             {whyAxon.title.lead}
-            <span className="text-brand">{whyAxon.title.highlight}</span>
+            <span className="bg-[linear-gradient(90deg,#2578CA_0%,#3C8BD9_100%)] bg-clip-text text-transparent">{whyAxon.title.highlight}</span>
             {whyAxon.title.tail}
           </h2>
-          <p className="type-lead mt-2 text-body">{whyAxon.subtitle}</p>
+          <p className={cn(lead, "mx-auto mt-4 text-[#5B6B80]")}>{whyAxon.subtitle}</p>
         </Reveal>
 
-        <ul className="mt-12 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4">
+        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4 lg:gap-6">
           {whyAxon.points.map((p, i) => {
             const Icon = icons[p.icon];
-            const tone = tones[p.tone];
             return (
-              <li key={p.title}>
-                <Reveal delay={i * 0.08} className="group flex flex-col items-center text-center">
-                  <span className={cn("grid size-[76px] place-items-center rounded-full transition-transform duration-300 ease-brand group-hover:scale-[1.04]", tone.halo)}>
-                    <span className={cn("grid size-12 place-items-center rounded-full bg-gradient-to-br text-white", tone.disc)}>
-                      <Icon aria-hidden className="size-[22px]" strokeWidth={1.9} />
-                    </span>
-                  </span>
-                  <h3 className="type-h3 mt-4 max-w-[260px] font-bold text-balance text-navy">{p.title}</h3>
-                  <p className="type-body mt-3 max-w-[270px] text-pretty text-body">{p.text}</p>
+              <li key={p.title} className="flex">
+                <Reveal delay={i * 0.06} className="flex w-full">
+                  <PathCard tone={p.tone} icon={<Icon className="size-7" strokeWidth={1.9} />} title={p.title} text={p.text} />
                 </Reveal>
               </li>
             );
           })}
         </ul>
-      </Container>
+      </div>
     </section>
   );
 }

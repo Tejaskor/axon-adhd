@@ -1,19 +1,25 @@
 import type { CSSProperties, ReactNode } from "react";
 import Image from "next/image";
-import { ArrowDown, ArrowRight, ClipboardX, Cog, Lightbulb, Pill, PillBottle, Target, type LucideIcon } from "lucide-react";
+import { ArrowDown, ArrowRight } from "lucide-react";
 import { mythBuster } from "@/content/home";
 import { ArmOnView } from "@/components/ui/ArmOnView";
-import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
 
-const conceptIcons: Record<string, LucideIcon> = { target: Target, gear: Cog, bulb: Lightbulb };
+/*
+ * Both column headings share one size, smaller than type-h2 and keyed to the column width, so each heading line
+ * ("Why can’t I figure this" / "Attention Deficit Hyperactivity") stays on one line; only the deliberate <br> wraps.
+ */
+const headingClass =
+  "text-center text-[clamp(20px,5.6vw,30px)] leading-[1.3] font-semibold tracking-[-0.5px] md:text-[clamp(18px,2.3vw,34px)] md:tracking-[-1px]";
 
-const tones = {
-  blue: { dot: "bg-brand", icon: "text-brand", ring: "ring-primary-soft", pill: "bg-primary-soft text-primary-deep" },
-  teal: { dot: "bg-teal", icon: "text-teal", ring: "ring-teal-soft", pill: "bg-teal-soft text-teal" },
-  orange: { dot: "bg-orange", icon: "text-orange", ring: "ring-orange-soft", pill: "bg-orange-soft text-amber-700" },
-} as const;
+const tones = { blue: "bg-brand", teal: "bg-teal", orange: "bg-orange" } as const;
+
+/* Shared by the three myth cards and the definition card so all four read as one set. */
+const glassCard =
+  "relative isolate flex gap-3 rounded-[18px] border border-white/70 bg-white/45 px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,.85),0_12px_32px_-14px_rgba(11,37,75,.22)] ring-1 ring-primary-100/60 backdrop-blur-xl backdrop-saturate-150 lg:px-5";
+const cardDot = "size-3 shrink-0 rounded-full";
+const cardText = "type-body leading-snug font-medium text-navy";
 
 /*
  * Left journey geometry (≥768px). The diagram is a 100 × 76 grid where 1 unit = 1cqw of the diagram's width, so every
@@ -59,15 +65,6 @@ const arrival = (k: number) => ({ "--k": k }) as CSSProperties;
 // Stage reached by arrow i.
 const reachedBy = { treatments: 0, clarity: 1, exhaustion: 2, frustration: 3, symptoms: 4 } as const;
 
-/* Concept badges around the brain, in % of the 8:5 diagram (viewBox 0 0 100 62.5, rings centred on 50,36). */
-const conceptPos = [
-  { x: 50, y: 18 },
-  { x: 21, y: 70 },
-  { x: 79, y: 70 },
-];
-
-const pos = (p: { x: number; y: number }) => ({ "--x": `${p.x}%`, "--y": `${p.y}%` }) as CSSProperties;
-
 /** Places a journey element on the diagram grid from 768px up; below that it stays in the stacked mobile flow. */
 function Spot({ at, className, children }: { at: At; className?: string; children: ReactNode }) {
   return (
@@ -100,6 +97,86 @@ function StageLabel({ children, soft, wrap, className }: { children: ReactNode; 
   );
 }
 
+/** Two medicine bottles and a rejected clipboard, drawn in soft 3D: gradient bodies, a highlight stripe and a drop shadow. */
+function FailedTreatmentsArt({ className }: { className?: string }) {
+  return (
+    <svg aria-hidden viewBox="0 0 200 120" className={className}>
+      <defs>
+        <linearGradient id="ft-cap" x1="0" x2="1">
+          <stop offset="0" stopColor="#E6ECF3" />
+          <stop offset="0.35" stopColor="#FFFFFF" />
+          <stop offset="1" stopColor="#C9D3DF" />
+        </linearGradient>
+        <linearGradient id="ft-blue" x1="0" x2="1">
+          <stop offset="0" stopColor="#6CB8F2" />
+          <stop offset="0.45" stopColor="#3A8BDD" />
+          <stop offset="1" stopColor="#1E5FB0" />
+        </linearGradient>
+        <linearGradient id="ft-teal" x1="0" x2="1">
+          <stop offset="0" stopColor="#8BE6E4" />
+          <stop offset="0.45" stopColor="#35BCC6" />
+          <stop offset="1" stopColor="#178A99" />
+        </linearGradient>
+        <linearGradient id="ft-label" x1="0" x2="1">
+          <stop offset="0" stopColor="#FFF8E8" />
+          <stop offset="1" stopColor="#EADCBE" />
+        </linearGradient>
+        <linearGradient id="ft-board" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#F4F7FB" />
+          <stop offset="1" stopColor="#D3DDE8" />
+        </linearGradient>
+        <linearGradient id="ft-clip" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#D79A68" />
+          <stop offset="1" stopColor="#8E5A33" />
+        </linearGradient>
+        <linearGradient id="ft-x" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#FF7A7A" />
+          <stop offset="1" stopColor="#E03131" />
+        </linearGradient>
+        <radialGradient id="ft-shadow">
+          <stop offset="0" stopColor="#0B254B" stopOpacity="0.22" />
+          <stop offset="1" stopColor="#0B254B" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+
+      <ellipse cx="100" cy="111" rx="88" ry="7" fill="url(#ft-shadow)" />
+
+      {/* Clipboard, tilted back behind the bottles */}
+      <g transform="rotate(9 148 66)">
+        <rect x="118" y="24" width="64" height="88" rx="8" fill="#AEBBCB" />
+        <rect x="116" y="22" width="64" height="88" rx="8" fill="url(#ft-board)" />
+        <rect x="122" y="32" width="52" height="72" rx="3" fill="#FFFFFF" />
+        <rect x="130" y="42" width="24" height="3" rx="1.5" fill="#D5DEE8" />
+        <rect x="130" y="49" width="34" height="3" rx="1.5" fill="#E3E9F0" />
+        <rect x="136" y="15" width="24" height="14" rx="4" fill="url(#ft-clip)" />
+        <rect x="142" y="12" width="12" height="7" rx="3.5" fill="none" stroke="#8E5A33" strokeWidth="2.5" />
+        <g strokeLinecap="round" strokeWidth="7">
+          <path d="M137 66 L161 90 M161 66 L137 90" stroke="#B42323" transform="translate(1.5 2)" />
+          <path d="M137 66 L161 90 M161 66 L137 90" stroke="url(#ft-x)" />
+        </g>
+      </g>
+
+      {/* Tall blue bottle */}
+      <rect x="62" y="12" width="36" height="22" rx="4" fill="url(#ft-cap)" />
+      <path d="M68 15 V31 M74 15 V31 M80 15 V31 M86 15 V31 M92 15 V31" stroke="#C3CDD9" strokeWidth="1.2" />
+      <rect x="58" y="32" width="44" height="76" rx="9" fill="url(#ft-blue)" />
+      <rect x="58" y="54" width="44" height="32" fill="url(#ft-label)" />
+      <rect x="66" y="64" width="20" height="3" rx="1.5" fill="#D9C79F" />
+      <rect x="66" y="71" width="28" height="3" rx="1.5" fill="#E4D5B3" />
+      <rect x="63" y="37" width="5" height="66" rx="2.5" fill="#FFFFFF" opacity="0.35" />
+
+      {/* Short teal bottle in front */}
+      <rect x="22" y="48" width="44" height="18" rx="4" fill="url(#ft-cap)" />
+      <path d="M29 51 V63 M36 51 V63 M44 51 V63 M51 51 V63 M58 51 V63" stroke="#C3CDD9" strokeWidth="1.2" />
+      <rect x="18" y="64" width="52" height="46" rx="9" fill="url(#ft-teal)" />
+      <rect x="18" y="74" width="52" height="24" fill="url(#ft-label)" />
+      <rect x="26" y="81" width="22" height="3" rx="1.5" fill="#D9C79F" />
+      <rect x="26" y="88" width="30" height="3" rx="1.5" fill="#E4D5B3" />
+      <rect x="23" y="68" width="5" height="38" rx="2.5" fill="#FFFFFF" opacity="0.4" />
+    </svg>
+  );
+}
+
 const MobileArrow = () => <ArrowDown aria-hidden className="mx-auto my-3 size-5 text-brand-2 sm:hidden" />;
 
 /** Two light columns divided by a vertical rule — the confusion-to-clarity loop vs. what ADHD actually is. */
@@ -109,19 +186,21 @@ export function ADHDMythBuster() {
 
   return (
     <section
-      className="relative overflow-hidden bg-[linear-gradient(180deg,#F7FAFF_0%,#FFFFFF_100%)] py-16 sm:py-20"
+      className="relative overflow-hidden bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)] py-16 sm:py-20"
       aria-labelledby="myth-title"
     >
-      <div aria-hidden className="pointer-events-none absolute -top-48 -left-48 size-[520px] rounded-full border border-primary-100 bg-primary-soft/60" />
-      <div aria-hidden className="pointer-events-none absolute -right-56 -bottom-56 size-[560px] rounded-full border border-primary-100 bg-primary-soft/50" />
-      <Container className="relative">
+      <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-[54fr_46fr] md:gap-0 md:divide-x md:divide-primary-100">
           {/* Left: the cycle before a diagnosis */}
-          <div className="flex flex-col border-b border-primary-100 pb-12 md:border-b-0 md:pr-8 md:pb-0 lg:pr-12">
+          <div className="flex flex-col border-b border-primary-100 pb-12 md:border-b-0 md:pr-6 md:pb-0 lg:pr-10">
             <Reveal>
-              <h2 className="type-h2 text-center text-navy">
+              <h2 className={cn(headingClass, "text-navy")}>
                 {mythBuster.question.lead}
-                <span className="text-brand">{mythBuster.question.highlight}</span>
+                <span className="text-brand">
+                  {mythBuster.question.highlight}
+                  <br />
+                  {mythBuster.question.nextLine}
+                </span>
               </h2>
             </Reveal>
             <Reveal delay={0.05} className="mt-4 flex justify-center">
@@ -214,12 +293,10 @@ export function ADHDMythBuster() {
                     <Reveal delay={0.1}>
                       <span
                         aria-hidden
-                        className="myth-emph flex items-center justify-center gap-[9%] rounded-full bg-[radial-gradient(closest-side,#EAF4FF,rgba(234,244,255,0))] py-[8%]"
+                        className="myth-emph block rounded-full bg-[radial-gradient(closest-side,#EAF4FF,rgba(234,244,255,0))] px-[6%] py-[4%]"
                         style={arrival(reachedBy.treatments)}
                       >
-                        <Pill className="size-[24%] -rotate-45 text-danger" strokeWidth={1.75} />
-                        <PillBottle className="size-[30%] text-brand" strokeWidth={1.75} />
-                        <ClipboardX className="size-[28%] rotate-6 text-danger" strokeWidth={1.75} />
+                        <FailedTreatmentsArt className="h-auto w-full" />
                       </span>
                     </Reveal>
                   </Spot>
@@ -324,70 +401,60 @@ export function ADHDMythBuster() {
           </div>
 
           {/* Right: what ADHD actually is */}
-          <div className="md:pl-8 lg:pl-12">
+          <div className="md:pl-6 lg:pl-10">
             <Reveal>
-              <h2 id="myth-title" className="type-h2 text-center text-navy">
-                {mythBuster.title}
+              <h2 id="myth-title" className={cn(headingClass, "text-brand")}>
+                {mythBuster.title.lead}
+                <br />
+                {mythBuster.title.nextLine}
               </h2>
               <p className="type-lead mt-2 text-center text-muted">{mythBuster.subtitle}</p>
             </Reveal>
 
-            <div className="myth-diagram relative mx-auto mt-6 aspect-[8/5] w-full max-w-[520px]">
-              <svg aria-hidden viewBox="0 0 100 62.5" className="absolute inset-0 size-full overflow-visible" fill="none">
-                <circle className="myth-breathe" cx="50" cy="36" r="21" fill="#F2F8FF" stroke="#DCEAF8" strokeWidth="0.35" />
-                <circle cx="50" cy="36" r="15.5" fill="#EAF4FF" opacity="0.7" />
-                <circle className="myth-ring" cx="50" cy="36" r="27" stroke="#86B6E5" strokeWidth="0.4" strokeDasharray="0.9 1.8" strokeLinecap="round" />
-              </svg>
-              <div className="absolute top-[57.6%] left-1/2 w-[30%] -translate-x-1/2 -translate-y-1/2">
-                <div className="myth-pop">
-                  <div className="myth-float relative aspect-square">
-                    <Image src={mythBuster.brain.src} alt={mythBuster.brain.alt} fill sizes="(max-width: 1023px) 40vw, 190px" className="object-cover" />
-                  </div>
-                </div>
+            <div className="mx-auto w-full max-w-[500px]">
+              <div className="myth-pop mx-auto mt-6 max-w-[420px]">
+                <Image
+                  src={mythBuster.infographic.src}
+                  alt={mythBuster.infographic.alt}
+                  width={mythBuster.infographic.width}
+                  height={mythBuster.infographic.height}
+                  sizes="(max-width: 767px) 80vw, 420px"
+                  className="myth-float h-auto w-full"
+                />
               </div>
-              <ul aria-label="What ADHD is often mistaken for">
-                {mythBuster.concepts.map((concept, i) => {
-                  const Icon = conceptIcons[concept.icon];
-                  const tone = tones[concept.tone];
-                  return (
-                    <li key={concept.label} style={pos(conceptPos[i])} className="absolute top-(--y) left-(--x) -translate-x-1/2 -translate-y-1/2">
-                      <Reveal delay={0.1 + 0.05 * i} className={cn("flex items-center gap-[1.6cqw]", i === 0 ? "flex-col" : "flex-col-reverse")}>
-                        <span className={cn("rounded-pill px-3 py-1 font-display text-[clamp(12px,3cqw,16px)] font-bold whitespace-nowrap", tone.pill)}>{concept.label}</span>
-                        <span
-                          className={cn(
-                            "grid size-[clamp(40px,12cqw,64px)] place-items-center rounded-full bg-white shadow-[0_8px_24px_rgba(11,37,75,.1)] ring-[6px] transition duration-300 ease-brand hover:scale-105 hover:shadow-[0_12px_28px_rgba(11,37,75,.16)]",
-                            tone.ring,
-                            tone.icon,
-                          )}
-                        >
-                          <Icon aria-hidden className="size-[48%]" strokeWidth={2.2} />
-                        </span>
-                      </Reveal>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
 
-            <ul className="mt-8 grid gap-3 sm:grid-cols-3">
-              {mythBuster.myths.map((myth, i) => (
-                <li key={myth.text} className="reveal" style={{ "--reveal-delay": `${10 + 5 * i}%` } as CSSProperties}>
-                  <div className="flex h-full items-center gap-3 rounded-[18px] border border-primary-100 bg-white px-4 py-5 shadow-[0_6px_20px_rgba(11,37,75,.05)] transition duration-300 ease-brand hover:-translate-y-1 hover:border-brand-2/50 hover:shadow-[0_14px_30px_rgba(37,120,202,.12)] lg:px-5">
-                    <span aria-hidden className={cn("size-3.5 shrink-0 rounded-full", tones[myth.tone].dot)} />
-                    <h3 className="type-h4 text-navy">{myth.text}</h3>
-                  </div>
-                </li>
-              ))}
-            </ul>
-            <Reveal delay={0.15} className="mt-4">
-              <p className="type-body flex gap-3 rounded-panel border border-primary-100 bg-primary-soft px-5 py-4 text-ink sm:px-6 sm:py-5">
-                <span aria-hidden className="mt-2 size-3 shrink-0 rounded-full bg-orange" />
-                <span>{mythBuster.definition}</span>
-              </p>
-            </Reveal>
+              {/* Soft colour wash behind the glass cards so the backdrop blur has something to frost. */}
+              <div className="relative mt-8">
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute -inset-x-6 -inset-y-4 -z-10 bg-[radial-gradient(40%_60%_at_20%_30%,rgba(84,152,219,.22),transparent),radial-gradient(40%_60%_at_80%_70%,rgba(255,159,67,.16),transparent),radial-gradient(35%_50%_at_55%_20%,rgba(25,179,148,.14),transparent)] blur-2xl"
+                />
+                <ul className="grid gap-3 sm:grid-cols-3">
+                  {mythBuster.myths.map((myth, i) => (
+                    <li key={myth.text} className="reveal" style={{ "--reveal-delay": `${10 + 5 * i}%` } as CSSProperties}>
+                      <div className={cn(glassCard, "h-full items-center transition duration-300 ease-brand hover:-translate-y-1 hover:bg-white/65 hover:shadow-[inset_0_1px_0_rgba(255,255,255,.9),0_18px_40px_-16px_rgba(37,120,202,.35)]")}>
+                        <span aria-hidden className={cn(cardDot, tones[myth.tone])} />
+                        <h3 className={cardText}>
+                          {mythBuster.mythLead}
+                          <br />
+                          {mythBuster.mythPrefix} <br className="max-sm:hidden" />
+                          {myth.text}
+                        </h3>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+                <Reveal delay={0.15} className="mt-3">
+                  <p className={cn(glassCard, "items-start")}>
+                    <span aria-hidden className={cn(cardDot, "mt-[0.3em]", tones.orange)} />
+                    <span className={cardText}>{mythBuster.definition}</span>
+                  </p>
+                </Reveal>
+              </div>
+            </div>
           </div>
         </div>
-      </Container>
+      </div>
     </section>
   );
 }
