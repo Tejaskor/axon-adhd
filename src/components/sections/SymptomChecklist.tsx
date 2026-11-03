@@ -21,12 +21,6 @@ const tones: Record<string, { card: string; disc: string }> = {
 export function SymptomChecklist() {
   return (
     <section className="relative isolate overflow-hidden bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)] pt-10 pb-16 sm:pt-12 sm:pb-20 lg:pt-14" aria-labelledby="symptoms-title">
-      {/* Soft light-blue curves along the bottom corners (CSS only). */}
-      <div aria-hidden className="pointer-events-none absolute -bottom-40 -left-32 -z-10 size-[460px] rounded-[45%_55%_60%_40%] bg-[radial-gradient(circle_at_60%_40%,#EAF4FF,#F4F9FF_60%,transparent_72%)]" />
-      <div aria-hidden className="pointer-events-none absolute -right-40 -bottom-48 -z-10 size-[520px] rounded-[55%_45%_40%_60%] bg-[radial-gradient(circle_at_40%_40%,#EAF4FF,#F4F9FF_60%,transparent_72%)]" />
-      <div aria-hidden className="pointer-events-none absolute -bottom-24 -left-20 -z-10 size-[300px] rounded-full border border-primary-150/70" />
-      <div aria-hidden className="pointer-events-none absolute -right-24 -bottom-32 -z-10 size-[380px] rounded-full border border-primary-150/70" />
-
       {/* One content box for heading, grid and CTA: the header's 1340px container, with gutters only below that width. */}
       <div className="px-4 sm:px-6">
       <div className="mx-auto w-full max-w-content">
