@@ -110,13 +110,6 @@ export function ServicesOverview() {
 
   return (
     <section className="relative isolate overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-16 sm:py-20 lg:py-24" aria-labelledby="services-title">
-      {/* Large soft shapes and lighting behind the glass. */}
-      <div aria-hidden className="pointer-events-none absolute -top-40 -left-56 -z-10 h-[620px] w-[640px] rotate-[-20deg] rounded-[50%] bg-[linear-gradient(160deg,rgba(201,222,244,.9),rgba(255,255,255,.2))]" />
-      <div aria-hidden className="pointer-events-none absolute -top-32 -right-40 -z-10 h-[560px] w-[520px] rotate-[25deg] rounded-[50%] border border-white/70 bg-[linear-gradient(200deg,rgba(255,255,255,.85),rgba(201,222,244,.35))]" />
-      <div aria-hidden className="pointer-events-none absolute -bottom-48 -left-32 -z-10 size-[520px] rounded-full bg-[radial-gradient(circle,rgba(134,182,229,.45),transparent_68%)] blur-2xl" />
-      <div aria-hidden className="pointer-events-none absolute -right-24 bottom-[-10%] -z-10 size-[560px] rounded-full bg-[radial-gradient(circle,rgba(167,139,250,.22),transparent_70%)] blur-2xl" />
-      <div aria-hidden className="pointer-events-none absolute top-[35%] left-1/2 -z-10 h-[520px] w-[min(1100px,100%)] -translate-x-1/2 rounded-[50%] bg-[radial-gradient(ellipse_at_center,rgba(84,152,219,.22),transparent_65%)] blur-3xl" />
-
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-[980px] text-center">
           <h2 id="services-title" className="font-display text-[clamp(28px,3.6vw,48px)] leading-[1.1] font-extrabold tracking-[-0.02em] text-balance text-navy">
