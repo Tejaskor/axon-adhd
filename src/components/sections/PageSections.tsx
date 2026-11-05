@@ -20,6 +20,7 @@ import { CTABand } from "./CTABand";
 import { FAQAccordion } from "./FAQAccordion";
 import { FreeAssessmentGlass } from "./FreeAssessmentGlass";
 import { GlassQuotesCarousel } from "./GlassQuotesCarousel";
+import { StackedQuotesCarousel } from "./StackedQuotesCarousel";
 import { TealBanner } from "./TealBanner";
 import { HowItWorksGlass } from "./HowItWorksGlass";
 import { HeroVideoCard } from "./HeroVideoCard";
@@ -500,7 +501,7 @@ function PartnerFeatures({ data }: { data: FeaturesSection }) {
           {data.headline ? (
             <>
               <p className="inline-flex items-center gap-2.5 rounded-full bg-[#D9E8FB] px-5 py-2 text-[15px] font-semibold text-[#0A4FF0] sm:text-[17px]">
-                <Handshake aria-hidden className="size-5" strokeWidth={1.8} />
+                {data.leadIcon ? <FeatureIcon name={data.leadIcon} className="size-5" /> : <Handshake aria-hidden className="size-5" strokeWidth={1.8} />}
                 {data.title}
               </p>
               <h2 className="type-section mt-4 leading-[1.15] tracking-[-0.02em] text-balance text-[#0B1F4D]">
@@ -535,7 +536,7 @@ function PartnerFeatures({ data }: { data: FeaturesSection }) {
             {data.lead && (
               <div className="flex items-center gap-4">
                 <span className="grid size-14 shrink-0 place-items-center rounded-2xl bg-[linear-gradient(160deg,#6FB0F8,#2A7BEA)] text-white shadow-[0_10px_22px_-10px_rgba(42,123,234,.7)]">
-                  <GraduationCap aria-hidden className="size-7" strokeWidth={1.8} />
+                  {data.leadIcon ? <FeatureIcon name={data.leadIcon} className="size-7" /> : <GraduationCap aria-hidden className="size-7" strokeWidth={1.8} />}
                 </span>
                 <p className="text-[22px] leading-tight font-bold tracking-[-0.01em] text-[#0B1F4D] sm:text-[26px]">For {lead}</p>
               </div>
@@ -568,12 +569,12 @@ function PartnerFeatures({ data }: { data: FeaturesSection }) {
           )}
           {data.image && data.image.width / data.image.height >= 1.15 && (
             <div className="relative aspect-[820/667] md:aspect-auto md:min-h-[440px] md:p-4 md:pl-0">
-              <div className="relative size-full overflow-hidden md:rounded-r-[22px] md:[clip-path:ellipse(64%_78%_at_72%_50%)]">
-                <Image src={data.image.src} alt={data.image.alt} fill sizes="(max-width: 767px) 100vw, 50vw" className="object-cover object-[60%_center]" />
+              <div className={cn("relative size-full overflow-hidden md:rounded-r-[22px] md:[clip-path:ellipse(64%_78%_at_72%_50%)]", data.imageLabels && "md:[clip-path:ellipse(100%_75%_at_100%_50%)]!")}>
+                <Image src={data.image.src} alt={data.image.alt} fill sizes="(max-width: 767px) 100vw, 50vw" className={cn("object-cover object-[60%_center]", data.imageLabels && "object-[100%_0%]")} />
               </div>
               {/* Blue arc just outside the image's bowed left edge (desktop). */}
               <svg aria-hidden viewBox="0 0 100 100" preserveAspectRatio="none" fill="none" className="pointer-events-none absolute inset-y-4 left-0 hidden h-[calc(100%-2rem)] w-[calc(100%-1rem)] md:block">
-                <path d="M23.5 0A64 78 0 0 0 23.5 100" stroke="#6FB0F8" strokeWidth="4" strokeLinecap="round" vectorEffect="non-scaling-stroke" transform="translate(-1.6 0)" />
+                <path d={data.imageLabels ? "M25.5 0A100 75 0 0 0 25.5 100" : "M23.5 0A64 78 0 0 0 23.5 100"} stroke="#6FB0F8" strokeWidth="4" strokeLinecap="round" vectorEffect="non-scaling-stroke" transform="translate(-1.6 0)" />
               </svg>
             </div>
           )}
@@ -1183,6 +1184,7 @@ function Split({ data }: { data: SplitSection }) {
 
 function Quotes({ data }: { data: QuotesSection }) {
   if (data.variant === "glass") return <GlassQuotesCarousel data={data} />;
+  if (data.variant === "stacked") return <StackedQuotesCarousel data={data} />;
   return (
     <section className="bg-surface py-16 sm:py-20">
       <Container>
@@ -1480,7 +1482,7 @@ export function PageSections({ sections }: { sections: PageSection[] }) {
           case "badges":
             return <Badges key={i} data={section} />;
           case "faq":
-            return <FAQAccordion key={i} faqs={section.faqs} title={section.title} subtitle={section.subtitle} variant={section.variant} accent={section.accent} aside={section.aside} />;
+            return <FAQAccordion key={i} faqs={section.faqs} title={section.title} subtitle={section.subtitle} variant={section.variant} accent={section.accent} aside={section.aside} anchors={section.homeStyle} background={section.homeStyle ? "bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)]" : undefined} />;
           case "blogs":
             return <LatestBlogs key={i} />;
           case "contact":

@@ -52,6 +52,10 @@ export type FeaturesSection = {
   title: string;
   subtitle?: string;
   lead?: string;
+  /** partner variant: icon for the pill and the audience header (defaults to a handshake / graduation cap). */
+  leadIcon?: IconName;
+  /** partner variant: the photo has labels baked into its top-right corner, so only its left edge is bowed and it is anchored right. */
+  imageLabels?: boolean;
   items: FeatureItem[];
   columns?: 2 | 3 | 4 | 5 | 6;
   /** card: icon card · stat: big number title · check: compact checklist · flow: arrowed chain · mission: glass cards on the green/blue/orange brand gradient */
@@ -109,7 +113,7 @@ export type SplitSection = {
 /** `arcs`: full-width blue banner, left-aligned copy and both buttons over concentric arcs. `screening`: gradient banner with pill, accented title, copy and CTA beside three floating glass stat cards (see ScreeningBanner). */
 export type CtaSection = { type: "cta"; title: string; subtitle?: string; primary: Cta; secondary?: Cta; note?: string; variant?: "screening" | "teal" | "blue"; eyebrow?: string; accent?: string; stats?: Array<{ value: string; label: string; accent: "cyan" | "green" | "orange" }> };
 
-export type QuotesSection = { type: "quotes"; title: string; subtitle?: string; variant?: "glass"; accent?: string; items: Array<{ quote: string; name: string; role: string }> };
+export type QuotesSection = { type: "quotes"; title: string; subtitle?: string; variant?: "glass" | "stacked"; accent?: string; items: Array<{ quote: string; name: string; role: string }> };
 
 /** Centered heading (pill, title with an accented lead, subtitle) over a paged testimonial carousel (see TestimonialCarousel). */
 export type TestimonialCarouselSection = { type: "testimonialCarousel"; eyebrow: string; title: string; accent: string; subtitle: string; items: Array<{ quote: string; name: string; role: string }> };
@@ -118,7 +122,7 @@ export type TestimonialCarouselSection = { type: "testimonialCarousel"; eyebrow:
 export type BadgesSection = { type: "badges"; title: string; subtitle: string; badges: ImageAsset[]; image?: ImageAsset; variant?: "compliance"; eyebrow?: string; accent?: string; note?: string; /** compliance: a shorter card (smaller badge orbit, tighter padding) for pages where it sits right under a strip. */ compact?: boolean };
 
 /** `split`: centred heading (with `accent` underlined), an `aside` card on the left and a compact accordion on the right. */
-export type FaqSectionData = { type: "faq"; title: string; subtitle?: string; faqs: Faq[]; variant?: "split"; accent?: string; aside?: { title: string; text: string } };
+export type FaqSectionData = { type: "faq"; title: string; subtitle?: string; faqs: Faq[]; variant?: "split"; accent?: string; aside?: { title: string; text: string; link?: { label: string; href: string } }; /** Home-page styling: the 108deg pale-blue gradient background and `#question` anchors on each row. */ homeStyle?: boolean };
 
 export type SharedSection = { type: "blogs" } | { type: "contact" } | { type: "logos" } | { type: "reviewStrip"; stat: { value: string; label: string } };
 
