@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from "react";
 import Image from "next/image";
-import { Brain, Check, HeartHandshake, Lightbulb, UserCheck } from "lucide-react";
+import { Brain, ClipboardList, Clock, Layers } from "lucide-react";
 import type { CtaSection, FeaturesSection, PageHero, SplitSection } from "@/content/pages/types";
 import { ButtonLink } from "@/components/ui/Button";
 import { FeatureIcon } from "@/components/ui/FeatureIcon";
@@ -8,6 +8,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
 import { Arrow, h2, lead, wrap } from "./AccommodationSections";
 import { VideoCardPlayer } from "./AssessmentVideo";
+import { GradientCtaBanner } from "./GradientCtaBanner";
 import { TrustBar } from "./TrustBar";
 
 /**
@@ -57,9 +58,7 @@ export function AdhdCareHero({ data }: { data: PageHero }) {
   const titleLead = colon > 0 ? data.title.slice(0, colon + 1) : null;
   const titleKey = data.title.slice(colon + 2);
   return (
-    <section aria-labelledby="page-title" className="relative -mt-[var(--header-height)] overflow-hidden bg-[linear-gradient(140deg,#F4F9FE_0%,#E6F0FB_52%,#F8FBFF_100%)] pt-[calc(var(--header-height)+36px)] pb-16 sm:pb-20 lg:pt-[calc(var(--header-height)+56px)] lg:pb-24">
-      <div aria-hidden className="absolute -top-24 right-[-10%] size-[560px] rounded-full bg-[radial-gradient(circle,rgba(84,152,219,.26),transparent_68%)] blur-2xl" />
-      <div aria-hidden className="absolute bottom-[-180px] left-[-120px] size-[420px] rounded-full bg-[radial-gradient(circle,rgba(182,211,240,.45),transparent_70%)] blur-2xl" />
+    <section aria-labelledby="page-title" className="relative -mt-[var(--header-height)] overflow-hidden bg-[radial-gradient(ellipse_42%_55%_at_0%_0%,#D2D8FD,transparent_70%),radial-gradient(ellipse_48%_55%_at_100%_8%,#D4F8F8,transparent_72%),radial-gradient(ellipse_60%_45%_at_100%_100%,#CBE7FE,transparent_72%),linear-gradient(180deg,#D6F1FD_0%,#E6F1FE_30%,#EEF7FE_65%,#DCECFE_100%)] pt-[calc(var(--header-height)+36px)] pb-16 sm:pb-20 lg:pt-[calc(var(--header-height)+56px)] lg:pb-24">
       <div className={cn(wrap, "relative grid items-center gap-12 sm:gap-14 lg:grid-cols-[minmax(0,44fr)_minmax(0,56fr)] lg:gap-10 xl:gap-0")}>
         <div className="relative z-10 max-w-[620px]">
           {data.eyebrow && <p className="mb-4 text-[13px] font-semibold tracking-[0.14em] text-primary uppercase">{data.eyebrow}</p>}
@@ -151,107 +150,53 @@ export function AdhdCareHero({ data }: { data: PageHero }) {
  * video's box at 66% width (x 17–83, its padding included), so each card's curved connector can end on the video's
  * edge. Connectors start under their card (cards sit above the lines).
  */
-const videoCards = [
-  { label: "Expert Guidance", Icon: UserCheck, pos: "left-0 top-[4cqw]", d: "M7.5 8C7.5 15 12 18 17 18", node: [17, 18] },
-  { label: "Personalized Support", Icon: HeartHandshake, pos: "left-[1.5cqw] top-[24cqw]", d: "M9 28C9 34 13 37.4 20 37.8", node: [20, 37.8] },
-  { label: "Real Strategies", Icon: Lightbulb, pos: "right-0 top-[14cqw]", d: "M92.5 18C92.5 25 88 27 83 27", node: [83, 27] },
-];
+/** Item accents in reading order: blue, green, orange, purple (the PathCard tones). */
+const careTones = ["blue", "green", "orange", "purple"] as const;
 
-/** Centred heading, the explainer video with floating glass cards, then a single soft panel that holds all the items as columns. */
+/** Centred heading and intro (two lines on desktop), the framed explainer video, then four centred icon cards. */
 export function AdhdCareServices({ data }: { data: FeaturesSection }) {
   const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#F6FAFE_0%,#EAF3FC_55%,#F7FAFE_100%)] py-16 sm:py-20 lg:py-24" aria-labelledby="services-title">
-      {/* Dotted patches and soft abstract curves */}
-      <div aria-hidden className="absolute top-10 left-0 h-56 w-64 bg-[radial-gradient(rgba(37,120,202,.18)_1.2px,transparent_1.4px)] [background-size:18px_18px] [mask-image:radial-gradient(ellipse_at_top_left,#000,transparent_70%)]" />
-      <div aria-hidden className="absolute right-0 bottom-24 h-64 w-72 bg-[radial-gradient(rgba(37,120,202,.18)_1.2px,transparent_1.4px)] [background-size:18px_18px] [mask-image:radial-gradient(ellipse_at_bottom_right,#000,transparent_70%)]" />
-      <svg aria-hidden viewBox="0 0 1440 900" preserveAspectRatio="none" fill="none" className="absolute inset-0 size-full">
-        <path d="M-40 260C220 120 420 380 700 250S1180 60 1480 190" stroke="rgba(37,120,202,.10)" strokeWidth="1.5" />
-        <path d="M-40 720C260 580 520 820 820 700S1240 520 1480 640" stroke="rgba(37,120,202,.08)" strokeWidth="1.5" />
-      </svg>
-
+    <section className="relative overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-16 sm:py-20 lg:py-24" aria-labelledby="services-title">
       <div className={cn(wrap, "relative")}>
-        <Reveal className="mx-auto max-w-[880px] text-center">
-          <h2 id="services-title" className={cn(h2, "text-[#0F2F55]")}>
+        <Reveal className="mx-auto max-w-[1300px] text-center">
+          <h2 id="services-title" className={cn(h2, "mx-auto max-w-[880px] text-[#0F2F55]")}>
             {after !== undefined ? (
               <>
                 {before}
-                <span className="text-primary">{data.accent}</span>
+                <span className="text-[#0A4FF0]">{data.accent}</span>
                 {after}
               </>
             ) : (
               data.title
             )}
           </h2>
-          {data.subtitle && <p className={cn(lead, "mx-auto mt-5 max-w-[820px]")}>{data.subtitle}</p>}
+          {data.subtitle && <p className={cn(lead, "mx-auto mt-5 max-w-[820px] text-[#1F3350] lg:max-w-[1280px] lg:text-[clamp(13px,1.15vw,15px)] lg:text-balance")}>{data.subtitle}</p>}
         </Reveal>
 
         {data.video && (
           <Reveal delay={0.05}>
-            <div className="relative mx-auto mt-12 max-w-[1200px] lg:mt-14 lg:[container-type:inline-size]">
-              <div className="relative z-10 mx-auto rounded-[28px] border border-white bg-white/60 p-2 shadow-[0_30px_70px_-24px_rgba(37,120,202,.45)] backdrop-blur-sm sm:p-2.5 lg:w-[66%]">
-                <VideoCardPlayer id={data.video.id} title={data.video.title} poster="maxres" />
-              </div>
-
-              <svg aria-hidden viewBox="0 0 100 37.85" fill="none" className="pointer-events-none absolute inset-0 z-20 hidden size-full overflow-visible lg:block">
-                {videoCards.map((c) => (
-                  <g key={c.label}>
-                    <path d={c.d} stroke="#2578CA" strokeOpacity=".45" strokeWidth=".14" strokeLinecap="round" />
-                    <circle cx={c.node[0]} cy={c.node[1]} r=".45" fill="#2578CA" stroke="#fff" strokeWidth=".18" />
-                  </g>
-                ))}
-              </svg>
-
-              <ul className="mt-6 grid gap-3 sm:grid-cols-3 lg:mt-0">
-                {videoCards.map(({ label, Icon, pos }) => (
-                  <li
-                    key={label}
-                    className={cn(
-                      "flex items-center gap-3 rounded-[18px] border border-white/80 bg-white/70 p-3 shadow-[0_14px_34px_-12px_rgba(18,61,106,.22)] backdrop-blur-md",
-                      "lg:absolute lg:z-30 lg:w-[15cqw] lg:gap-[1cqw] lg:rounded-[1.6cqw] lg:p-[1cqw]",
-                      pos,
-                    )}
-                  >
-                    <span aria-hidden className="grid size-10 shrink-0 place-items-center rounded-xl bg-[#E8F2FC] text-primary lg:size-[3.2cqw] lg:rounded-[1cqw]">
-                      <Icon className="size-5 lg:size-[1.6cqw]" strokeWidth={1.75} />
-                    </span>
-                    <span className="text-[15px] leading-snug font-semibold text-[#0F2F55] lg:text-[clamp(13px,1.3cqw,16px)]">{label}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="mx-auto mt-10 max-w-[980px] rounded-[30px] border border-white bg-white/70 p-2 shadow-[0_30px_70px_-24px_rgba(37,120,202,.45)] sm:p-2.5 lg:mt-12">
+              <VideoCardPlayer id={data.video.id} title={data.video.title} poster="maxres" />
             </div>
           </Reveal>
         )}
 
-        <Reveal delay={0.05}>
-          <div className="relative mt-14 lg:mt-16">
-            {/* Soft blue blobs at both edges and two dotted grids behind the cards */}
-            <div aria-hidden className="absolute top-1/2 -left-56 size-[460px] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(182,211,240,.6),rgba(182,211,240,.18)_55%,transparent_72%)]" />
-            <div aria-hidden className="absolute -top-24 -right-56 size-[480px] rounded-full bg-[radial-gradient(circle,rgba(182,211,240,.55),rgba(182,211,240,.16)_55%,transparent_72%)]" />
-            <div aria-hidden className="absolute top-[42%] -left-10 hidden h-36 w-28 bg-[radial-gradient(rgba(37,120,202,.22)_1.6px,transparent_1.8px)] [background-size:22px_22px] sm:block" />
-            <div aria-hidden className="absolute -top-10 -right-8 hidden h-28 w-36 bg-[radial-gradient(rgba(37,120,202,.22)_1.6px,transparent_1.8px)] [background-size:22px_22px] sm:block" />
-
-            <ul className="relative grid gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
-              {data.items.map((item) => (
-                <li
-                  key={item.title}
-                  className="group flex h-full flex-col items-center rounded-[22px] border border-white bg-[linear-gradient(180deg,rgba(255,255,255,.94),rgba(255,255,255,.72))] px-7 pt-10 pb-8 text-center shadow-[0_26px_50px_-30px_rgba(37,120,202,.5),0_2px_6px_rgba(18,61,106,.04)] backdrop-blur-md transition-[translate,box-shadow] duration-300 ease-brand hover:-translate-y-1.5 hover:shadow-[0_34px_60px_-30px_rgba(37,120,202,.6),0_2px_6px_rgba(18,61,106,.05)]"
-                >
-                  <span aria-hidden className="relative grid size-[88px] shrink-0 place-items-center rounded-full bg-[linear-gradient(160deg,#EFF6FD,#DCE9F8)] text-primary shadow-[0_16px_28px_-14px_rgba(37,120,202,.45)]">
-                    {/* Accent arc around the badge's upper right, ending in a dot */}
-                    <svg viewBox="0 0 120 120" fill="none" className="absolute -inset-4 size-[120px] transition-transform duration-500 ease-brand group-hover:rotate-[18deg]">
-                      <path d="M63.9 4.1A56 56 0 0 1 111.7 81.4" stroke="#2578CA" strokeWidth="2" strokeLinecap="round" />
-                      <circle cx="111.7" cy="81.4" r="3.2" fill="#2578CA" />
-                    </svg>
-                    {item.icon && <FeatureIcon name={item.icon} className="size-9 transition-transform duration-500 ease-brand group-hover:scale-110" />}
-                  </span>
-                  <h3 className="mt-7 font-display text-[21px] leading-tight font-bold tracking-[-0.01em] text-[#2A4A70]">{item.title}</h3>
-                  {item.text && <p className="mt-3 max-w-[260px] text-[16px] leading-[1.65] text-pretty text-[#5B6B80]">{item.text}</p>}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Reveal>
+        <ul className="mx-auto mt-6 grid max-w-[1200px] gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+          {data.items.map((item, i) => (
+            <li key={item.title} className="flex">
+              <Reveal delay={0.05 + i * 0.06} className="flex w-full">
+                <PathCard
+                  center
+                  tone={careTones[i % careTones.length]}
+                  icon={item.icon && <FeatureIcon name={item.icon} className="size-7" />}
+                  title={item.title}
+                  text={item.text}
+                />
+              </Reveal>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
@@ -259,76 +204,72 @@ export function AdhdCareServices({ data }: { data: FeaturesSection }) {
 
 /* ------------------------------------------------ "The ADHD brain is specialized" */
 
-const tileTones = ["bg-[#E3EFFC] text-primary", "bg-[#DDF7EF] text-[#12998A]", "bg-[#FFE8EC] text-[#E5484D]", "bg-[#EEE9FF] text-[#6D4AE0]"];
+/** Card tints in item order: blue, lavender, mint, orange. */
+const specializedTones = [
+  { tile: "bg-[#E3EFFC] text-[#1766D6]", card: "border-[#D3E3F8] bg-[linear-gradient(120deg,rgba(231,241,254,.9),rgba(255,255,255,.7))]" },
+  { tile: "bg-[#EEE9FF] text-[#6D4AE0]", card: "border-[#E0D8F8] bg-[linear-gradient(120deg,rgba(240,235,255,.9),rgba(255,255,255,.7))]" },
+  { tile: "bg-[#DDF7EF] text-[#12998A]", card: "border-[#CDEFE3] bg-[linear-gradient(120deg,rgba(228,247,240,.9),rgba(255,255,255,.7))]" },
+  { tile: "bg-[#FFEBCB] text-[#EB8B01]", card: "border-[#F7E1BE] bg-[linear-gradient(120deg,rgba(255,243,224,.9),rgba(255,255,255,.7))]" },
+] as const;
 
-const dots = "bg-[radial-gradient(rgba(37,120,202,.22)_1.6px,transparent_1.8px)] [background-size:20px_20px]";
+/** Where each card sits from lg: two either side of the photo (reading order stays 1-4 below lg). */
+const specializedPlace = ["lg:col-start-1 lg:row-start-1", "lg:col-start-3 lg:row-start-1", "lg:col-start-1 lg:row-start-2", "lg:col-start-3 lg:row-start-2"] as const;
 
-/** Centred heading over a framed photo (with blue backing shapes and a brain badge) beside four horizontal service cards. */
+/** Centred heading and intro, then the framed photo (shown whole, centred between the cards) flanked by four centred, tinted service cards. */
 export function AdhdCareSpecialized({ data }: { data: FeaturesSection }) {
   const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#F5F9FE_0%,#EBF3FC_60%,#F4F8FD_100%)] py-14 sm:py-16 lg:py-20" aria-labelledby="specialized-title">
-      <div aria-hidden className="absolute top-40 -left-48 size-[520px] rounded-full bg-[radial-gradient(circle,rgba(182,211,240,.55),rgba(182,211,240,.15)_55%,transparent_72%)]" />
-      <div aria-hidden className="absolute -top-20 -right-56 size-[560px] rounded-full bg-[radial-gradient(circle,rgba(134,182,229,.4),rgba(182,211,240,.14)_55%,transparent_72%)]" />
-      <div aria-hidden className={cn("absolute top-1/2 right-4 hidden h-40 w-24 lg:block", dots)} />
-
-      <div className={cn(wrap, "relative")}>
+    <section className="bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)] py-14 sm:py-16 lg:py-20" aria-labelledby="specialized-title">
+      <div className={wrap}>
         <Reveal className="mx-auto max-w-[1000px] text-center">
-          <h2 id="specialized-title" className={cn(h2, "text-[#0F2F55]")}>
+          <h2 id="specialized-title" className={cn(h2, "text-[#0B1F4D]")}>
             {after !== undefined ? (
               <>
-                {before.trim()}{" "}
-                <span className="block text-primary">{data.accent}</span>
+                <span className="block">{before.trim()}</span>
+                <span className="relative inline-block text-[#3B2DC7]">
+                  {data.accent}
+                  <svg aria-hidden viewBox="0 0 300 14" preserveAspectRatio="none" className="absolute inset-x-[16%] -bottom-[0.18em] h-[0.18em] w-[68%]" fill="none">
+                    <path d="M2 10 C 70 3, 190 3, 298 8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                  </svg>
+                </span>
                 {after}
               </>
             ) : (
               data.title
             )}
           </h2>
-          {data.subtitle && <p className={cn(lead, "mx-auto mt-5 max-w-[940px] text-[#5B6B80]")}>{data.subtitle}</p>}
+          {data.subtitle && <p className={cn(lead, "mx-auto mt-6 max-w-[940px] text-[#33465E]")}>{data.subtitle}</p>}
         </Reveal>
 
-        {/* Image column slightly wider than the cards (as in the design); the image is centred on the card stack's height (no scroll offset on it, so it never sits low) */}
-        <div className="mt-10 grid items-center gap-10 lg:mt-12 xl:grid-cols-[minmax(0,52fr)_minmax(0,48fr)] xl:gap-10">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-12 lg:grid-cols-[0.85fr_1.75fr_0.85fr] lg:grid-rows-2 lg:gap-6">
           {data.image && (
-            <div className="w-full xl:self-center">
-              <div className="relative mx-auto max-w-[640px] p-4 sm:p-6 xl:max-w-none">
-                {/* Blue backing shapes, dotted grid and a dashed orbit with a node */}
-                <div aria-hidden className="absolute top-0 right-0 h-[62%] w-[42%] rounded-[36px] bg-[linear-gradient(160deg,#5498DB,#2578CA)] opacity-90" />
-                <div aria-hidden className="absolute bottom-[10%] left-0 h-[58%] w-[18%] rounded-[32px] bg-[linear-gradient(180deg,#5498DB,#86B6E5)] opacity-80" />
-                <div aria-hidden className={cn("absolute -top-4 -left-4 hidden h-28 w-40 sm:block", dots)} />
-                <svg aria-hidden viewBox="0 0 60 220" fill="none" className="absolute bottom-0 -left-3 hidden h-[45%] sm:block">
-                  <path d="M40 4C10 50 6 140 44 206" stroke="#2578CA" strokeWidth="2" strokeDasharray="6 7" strokeLinecap="round" />
-                  <circle cx="34" cy="186" r="6" fill="#fff" stroke="#2578CA" strokeWidth="3" />
-                </svg>
-
-                <div className="relative rounded-[28px] border border-white bg-white/80 p-2 shadow-[0_30px_60px_-24px_rgba(37,120,202,.5)] backdrop-blur-sm sm:p-2.5">
-                  <Image src={data.image.src} alt={data.image.alt} width={data.image.width} height={data.image.height} sizes="(max-width: 1279px) 640px, 680px" className="aspect-[4/3] h-auto w-full rounded-[22px] object-cover object-[50%_35%]" />
-                </div>
-                <span aria-hidden className="absolute top-0 left-0 grid size-20 place-items-center rounded-full bg-white text-primary shadow-[0_14px_30px_-10px_rgba(37,120,202,.5),0_0_0_8px_rgba(255,255,255,.55)] sm:size-24">
-                  <Brain className="size-9 sm:size-11" strokeWidth={1.6} />
-                </span>
+            <Reveal delay={0.05} className="sm:col-span-2 lg:col-span-1 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-center">
+              <div className="rounded-[34px] border border-white/90 bg-white/70 p-2.5 shadow-[0_28px_64px_-24px_rgba(37,60,160,.35)] sm:p-3">
+                <Image
+                  src={data.image.src}
+                  alt={data.image.alt}
+                  width={data.image.width}
+                  height={data.image.height}
+                  sizes="(max-width: 1023px) 100vw, 680px"
+                  className="h-auto w-full rounded-[26px]"
+                />
               </div>
-            </div>
+            </Reveal>
           )}
-
-          <ul className="grid gap-3.5">
-            {data.items.map((item, i) => (
-              <li key={item.title} className="flex">
-                <Reveal delay={i * 0.06} className="flex w-full">
-                  <div className="group flex w-full items-center gap-4 rounded-[18px] border border-primary-100 bg-white/70 px-4 py-3.5 shadow-[0_14px_34px_-20px_rgba(18,61,106,.28)] backdrop-blur-md transition-[translate,box-shadow,border-color] duration-300 ease-brand hover:-translate-y-1 hover:border-primary-200 hover:shadow-[0_24px_46px_-22px_rgba(37,120,202,.42)] sm:px-5">
-                    <span aria-hidden className={cn("grid size-11 shrink-0 place-items-center self-start rounded-full transition-transform duration-300 ease-brand group-hover:scale-105 sm:size-12 sm:self-center", tileTones[i % tileTones.length])}>
-                      {item.icon && <FeatureIcon name={item.icon} className="size-5" />}
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <h3 className="font-display text-[16px] leading-tight font-bold text-[#0F2F55]">{item.title}</h3>
-                      {item.text && <p className="mt-1 text-[13px] leading-[1.5] text-[#5B6B80]">{item.text}</p>}
-                    </div>
-                  </div>
-                </Reveal>
-              </li>
-            ))}
-          </ul>
+          {data.items.map((item, i) => {
+            const t = specializedTones[i % specializedTones.length];
+            return (
+              <Reveal key={item.title} delay={0.1 + i * 0.06} className={cn("flex", specializedPlace[i])}>
+                <div className={cn("flex w-full flex-col items-center justify-center rounded-[26px] border px-5 py-6 text-center shadow-[0_14px_34px_-20px_rgba(37,120,202,.4)] backdrop-blur-sm sm:px-6", t.card)}>
+                  <span aria-hidden className={cn("grid size-14 place-items-center rounded-2xl shadow-[0_8px_18px_-8px_rgba(37,120,202,.3)] lg:size-12", t.tile)}>
+                    {item.icon && <FeatureIcon name={item.icon} className="size-7 lg:size-6" />}
+                  </span>
+                  <h3 className="mt-3 max-w-[300px] text-[17px] leading-snug font-bold text-balance text-[#0B1F4D] sm:text-[18px]">{item.title}</h3>
+                  {item.text && <p className="mt-1.5 max-w-[320px] text-[14px] leading-snug text-pretty text-[#44566E] sm:text-[15px]">{item.text}</p>}
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -337,59 +278,9 @@ export function AdhdCareSpecialized({ data }: { data: FeaturesSection }) {
 
 /* ------------------------------------------------ "Haven't Started Yet?" banner */
 
-const startAccent = "Started Yet?";
-const whiteDots = "bg-[radial-gradient(rgba(255,255,255,.28)_1.4px,transparent_1.6px)] [background-size:18px_18px]";
-
-/** Full-width blue gradient banner: left-aligned heading, description and the screening button (CSS-only decoration). */
+/** Full-bleed blue banner shared with the assessment page's "Ready for an Official Diagnosis?" (same layout, colours and buttons). */
 export function AdhdCareStartCta({ data }: { data: CtaSection }) {
-  const [before, after] = data.title.includes(startAccent) ? data.title.split(startAccent) : [data.title];
-  return (
-    <section className="relative isolate overflow-hidden bg-[linear-gradient(120deg,#256ACC_0%,#133566_100%)] py-16 text-white sm:py-20 lg:py-24" aria-labelledby="start-title">
-      {/* Rings, soft glows, curved lines and dotted patches */}
-      <div aria-hidden className="absolute -top-40 -left-32 -z-10 size-[460px] rounded-full border border-white/10 bg-white/[0.04]" />
-      <div aria-hidden className="absolute -top-24 -left-16 -z-10 size-[300px] rounded-full border border-white/10" />
-      <div aria-hidden className="absolute -right-32 -bottom-48 -z-10 size-[520px] rounded-full border border-white/10 bg-[#86B6E5]/10" />
-      <div aria-hidden className="absolute top-1/2 left-1/2 -z-10 size-[720px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(134,182,229,.22),transparent_65%)]" />
-      <svg aria-hidden viewBox="0 0 1440 420" preserveAspectRatio="none" fill="none" className="absolute inset-0 -z-10 size-full">
-        <path d="M-20 330C240 230 460 400 760 300S1200 150 1460 240" stroke="rgba(255,255,255,.12)" strokeWidth="1.5" />
-        <path d="M-20 120C260 40 520 200 820 110S1240 20 1460 90" stroke="rgba(255,255,255,.08)" strokeWidth="1.5" strokeDasharray="3 8" strokeLinecap="round" />
-      </svg>
-      <div aria-hidden className={cn("absolute top-10 right-[8%] -z-10 hidden h-24 w-36 sm:block", whiteDots)} />
-      <div aria-hidden className={cn("absolute bottom-10 left-[6%] -z-10 hidden h-24 w-36 sm:block", whiteDots)} />
-
-      <Reveal className={cn(wrap, "relative flex flex-col items-start text-left")}>
-        <h2 id="start-title" className="font-display text-[34px] leading-[1.1] font-extrabold tracking-[-0.03em] text-balance sm:text-[44px] lg:text-[54px]">
-          {after !== undefined ? (
-            <>
-              {before}
-              <span className="text-[#8CC0F2]">{startAccent}</span>
-              {after}
-            </>
-          ) : (
-            data.title
-          )}
-        </h2>
-        {data.subtitle && <p className="mt-5 max-w-[760px] text-[17px] leading-[1.7] text-pretty text-white/88 sm:text-[19px]">{data.subtitle}</p>}
-
-        <div className="mt-9 flex flex-col items-start gap-3 sm:flex-row">
-          <ButtonLink
-            href={data.primary.href}
-            size="lg"
-            className="group min-h-14! gap-3! rounded-full! bg-white! px-8! text-[17px]! font-semibold! whitespace-normal text-primary-600! shadow-[0_18px_36px_-14px_rgba(6,26,54,.55)]! transition-[translate,box-shadow,background-color]! duration-300! hover:-translate-y-0.5 hover:bg-[#F3F8FE]! hover:shadow-[0_24px_44px_-14px_rgba(6,26,54,.6)]!"
-          >
-            {data.primary.label}
-            <Arrow />
-          </ButtonLink>
-          {data.secondary && (
-            <ButtonLink href={data.secondary.href} variant="outline" size="lg" className="min-h-14! rounded-full! border-white/70! bg-transparent! px-8! whitespace-normal text-white! hover:bg-white! hover:text-primary-600!">
-              {data.secondary.label}
-            </ButtonLink>
-          )}
-        </div>
-        {data.note && <p className="type-small mt-4 text-white/75">{data.note}</p>}
-      </Reveal>
-    </section>
-  );
+  return <GradientCtaBanner data={data} accent="Started Yet?" titleId="start-title" />;
 }
 
 /* ------------------------------------------------ Closing CTA ("You don't have to manage ADHD alone.") */
@@ -420,7 +311,7 @@ export function AdhdCareClosingCta({ data }: { data: CtaSection }) {
       </svg>
 
       <Reveal className={cn(wrap, "max-w-[960px]")}>
-        <h2 id="closing-title" className="font-display text-[32px] leading-[1.15] font-bold tracking-[-0.02em] text-balance sm:text-[40px] lg:text-[46px]">
+        <h2 id="closing-title" className="type-section font-display leading-[1.15] tracking-[-0.02em] text-balance">
           {data.title}
         </h2>
         {data.subtitle && <p className="mx-auto mt-5 max-w-[760px] text-[17px] leading-[1.7] text-pretty text-white/90 sm:text-[19px]">{data.subtitle}</p>}
@@ -454,18 +345,18 @@ export const pathTones = {
 const pathToneOrder = ["blue", "green", "purple", "orange"] as const;
 
 /** Translucent card with a pastel icon badge and a corner curve. Also used by the home page's WhyAxon. */
-export function PathCard({ tone, icon, title, text }: { tone: keyof typeof pathTones; icon: ReactNode; title: string; text?: string }) {
+export function PathCard({ tone, icon, title, text, center }: { tone: keyof typeof pathTones; icon: ReactNode; title: string; text?: string; center?: boolean }) {
   const t = pathTones[tone];
   return (
-    <div className="group relative isolate flex w-full flex-col overflow-hidden rounded-[24px] border border-primary-100 bg-white/70 p-7 shadow-[0_18px_40px_-24px_rgba(18,61,106,.3)] backdrop-blur-md transition-[translate,box-shadow,border-color] duration-300 ease-brand hover:-translate-y-1 hover:border-primary-200 hover:shadow-[0_28px_52px_-24px_rgba(37,120,202,.42)] sm:p-8">
+    <div className={cn("group relative isolate flex w-full flex-col overflow-hidden rounded-[24px] border border-primary-100 bg-white/70 p-7 shadow-[0_18px_40px_-24px_rgba(18,61,106,.3)] backdrop-blur-md transition-[translate,box-shadow,border-color] duration-300 ease-brand hover:-translate-y-1 hover:border-primary-200 hover:shadow-[0_28px_52px_-24px_rgba(37,120,202,.42)] sm:p-8", center && "items-center p-6 text-center sm:p-6")}>
       <svg aria-hidden viewBox="0 0 200 140" preserveAspectRatio="none" className="absolute right-0 bottom-0 -z-10 h-[46%] w-[62%] transition-transform duration-500 ease-brand group-hover:scale-105" style={{ transformOrigin: "100% 100%" }}>
         <path d="M200 0C150 20 150 80 95 105S20 130 0 140H200Z" fill={t.curve} fillOpacity=".75" />
       </svg>
-      <span aria-hidden className={cn("grid size-16 shrink-0 place-items-center rounded-full", t.badge)}>
+      <span aria-hidden className={cn("grid size-16 shrink-0 place-items-center rounded-full", center && "size-[72px]", t.badge)}>
         {icon}
       </span>
-      <h3 className="mt-6 font-display text-[20px] leading-snug font-bold text-[#0F2F55]">{title}</h3>
-      {text && <p className="mt-3 text-[16px] leading-[1.65] text-pretty text-[#5B6B80]">{text}</p>}
+      <h3 className={cn("mt-6 font-display text-[20px] leading-snug font-bold text-[#0F2F55]", center && "mt-4 text-[19px]")}>{title}</h3>
+      {text && <p className={cn("mt-3 text-[16px] leading-[1.65] text-pretty text-[#5B6B80]", center && "mt-2 max-w-[260px] text-[15px] leading-[1.55]")}>{text}</p>}
     </div>
   );
 }
@@ -515,26 +406,35 @@ export function AdhdCarePath({ data }: { data: FeaturesSection }) {
 /** AXON ADHD dashboard card overlaid on the lower-left of the coaching photo (the artwork carries its own card and shadow). */
 const toolsOverlay = { src: "/images/adhdcare/axon-adhd-dashboard-ui.webp", width: 1890, height: 832 };
 
-/** Text, accent heading and check list on the left; the coaching photo with the dashboard overlay on the right. */
+/** Icon tile and tint for each of the four tools, in list order. */
+const toolCards = [
+  { Icon: ClipboardList, tile: "bg-[#E3EFFC] text-[#1766D6]" },
+  { Icon: Clock, tile: "bg-[#DDF7EF] text-[#12998A]" },
+  { Icon: Brain, tile: "bg-[#EEE9FF] text-[#6D4AE0]" },
+  { Icon: Layers, tile: "bg-[#FFEBCB] text-[#EB8B01]" },
+] as const;
+
+/** Pill, accent heading, intro and a 2 × 2 grid of tool cards on the left; the coaching photo in a white frame with the dashboard overlay on the right. */
 export function AdhdCareTools({ data }: { data: SplitSection }) {
   const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#F5F9FE_0%,#EDF4FC_60%,#F5F9FE_100%)] py-16 sm:py-20 lg:py-24" aria-labelledby="tools-title">
-      {/* Soft circles, dotted patches and faint curves */}
-      <div aria-hidden className="absolute -bottom-40 -left-40 size-[440px] rounded-full bg-[radial-gradient(circle,rgba(182,211,240,.5),rgba(182,211,240,.12)_55%,transparent_72%)]" />
-      <div aria-hidden className="absolute top-1/2 right-[18%] hidden size-[620px] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(182,211,240,.45),rgba(182,211,240,.12)_55%,transparent_72%)] lg:block" />
-      <div aria-hidden className={cn("absolute top-8 right-6 hidden h-32 w-48 sm:block", dots)} />
-      <svg aria-hidden viewBox="0 0 400 600" preserveAspectRatio="none" fill="none" className="absolute top-0 right-0 hidden h-full w-[22%] lg:block">
-        <path d="M400 40C300 140 330 300 250 420S300 560 360 620" stroke="#2578CA" strokeOpacity=".14" strokeWidth="1.5" strokeDasharray="0.1 7" strokeLinecap="round" />
-      </svg>
-
-      <div className={cn(wrap, "relative grid items-center gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-14")}>
+    <section className="bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-16 sm:py-20 lg:py-24" aria-labelledby="tools-title">
+      <div className={cn(wrap, "grid items-center gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-14")}>
         <Reveal>
-          <h2 id="tools-title" className={cn(h2, "text-[#0F2F55]")}>
+          <p className="inline-flex items-center gap-2.5 rounded-full border border-[#B9D0F3] bg-white/55 px-5 py-2 text-[14px] font-semibold text-[#0A4FF0] sm:text-[16px]">
+            <Layers aria-hidden className="size-5" strokeWidth={1.75} />
+            Evidence-Based Strategies
+          </p>
+          <h2 id="tools-title" className={cn(h2, "mt-5 text-[#0B1F4D]")}>
             {after !== undefined ? (
               <>
-                {before.trim()}{" "}
-                <span className="block text-primary">{data.accent}</span>
+                <span className="block">{before.trim()}</span>
+                <span className="relative inline-block text-[#0A4FF0]">
+                  {data.accent}
+                  <svg aria-hidden viewBox="0 0 300 14" preserveAspectRatio="none" className="absolute inset-x-[2%] -bottom-[0.18em] h-[0.18em] w-[96%]" fill="none">
+                    <path d="M2 10 C 70 3, 190 3, 298 8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                  </svg>
+                </span>
                 {after}
               </>
             ) : (
@@ -542,30 +442,32 @@ export function AdhdCareTools({ data }: { data: SplitSection }) {
             )}
           </h2>
           {data.paragraphs?.map((p) => (
-            <p key={p} className={cn(lead, "mt-6 max-w-[580px] text-[#5B6B80]")}>
+            <p key={p} className={cn(lead, "mt-6 max-w-[600px] text-[#33465E]")}>
               {p}
             </p>
           ))}
           {data.list && (
-            <ul className="mt-8 space-y-4">
-              {data.list.map((li) => (
-                <li key={li} className="flex items-center gap-4 text-[17px] font-medium text-[#0F2F55] sm:text-[18px]">
-                  <span aria-hidden className="grid size-11 shrink-0 place-items-center rounded-full bg-[#E3EFFC] text-primary shadow-[0_6px_14px_-6px_rgba(37,120,202,.35)] sm:size-12">
-                    <Check className="size-5" strokeWidth={3} />
-                  </span>
-                  {li}
-                </li>
-              ))}
+            <ul className="mt-8 grid gap-3.5 sm:grid-cols-2">
+              {data.list.map((li, i) => {
+                const { Icon, tile } = toolCards[i % toolCards.length];
+                return (
+                  <li key={li} className="flex items-center gap-4 rounded-[20px] border border-white/90 bg-white/80 p-4 shadow-[0_14px_34px_-20px_rgba(37,120,202,.4)] backdrop-blur-sm">
+                    <span aria-hidden className={cn("grid size-14 shrink-0 place-items-center rounded-2xl", tile)}>
+                      <Icon className="size-7" strokeWidth={1.75} />
+                    </span>
+                    <span className="text-[16px] leading-snug font-bold text-balance text-[#0B1F4D] sm:text-[17px]">{li}</span>
+                  </li>
+                );
+              })}
             </ul>
           )}
         </Reveal>
 
         {data.image && (
           <Reveal delay={0.1}>
-            <div className="relative mx-auto max-w-[680px] pb-6 sm:pb-8 lg:max-w-none">
-              <div aria-hidden className={cn("absolute top-[12%] -left-6 hidden h-28 w-20 sm:block", dots)} />
-              <Image src={data.image.src} alt={data.image.alt} width={data.image.width} height={data.image.height} unoptimized className="relative h-auto w-full rounded-[28px] shadow-[0_28px_60px_-24px_rgba(18,61,106,.35)]" />
-              <div className="absolute bottom-0 left-0 w-[74%] rounded-[18px] bg-white shadow-[0_24px_50px_-18px_rgba(18,61,106,.35)] sm:-left-[3%] sm:rounded-[22px]">
+            <div className="relative mx-auto max-w-[680px] rounded-[34px] border border-white/90 bg-white/70 p-2.5 shadow-[0_28px_64px_-24px_rgba(37,60,160,.35)] sm:p-3 lg:max-w-none">
+              <Image src={data.image.src} alt={data.image.alt} width={data.image.width} height={data.image.height} unoptimized className="aspect-[5/4] w-full rounded-[26px] object-cover" />
+              <div className="absolute right-[7%] bottom-[7%] left-[7%] rounded-[16px] bg-white shadow-[0_24px_50px_-18px_rgba(18,61,106,.35)] sm:rounded-[20px]">
                 <Image src={toolsOverlay.src} alt="AXON ADHD coaching dashboard" width={toolsOverlay.width} height={toolsOverlay.height} unoptimized className="h-auto w-full rounded-[inherit]" />
               </div>
             </div>

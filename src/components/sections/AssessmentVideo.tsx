@@ -1,63 +1,13 @@
 "use client";
 
 import { Play } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 const embedSrc = (id: string) => `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
 const iframeProps = { allow: "autoplay; encrypted-media; picture-in-picture; fullscreen", allowFullScreen: true, referrerPolicy: "strict-origin-when-cross-origin" } as const;
 
 /**
- * Homography mapping a 1600×1060 rectangle onto the laptop screen of adhd-evaluation-workspace-bg.webp
- * (corners measured in the image's 1774×887 space: TL 966,298 · TR 1526,276 · BR 1510,668 · BL 942,653).
- * The 3×3 matrix is pre-scaled by stage width / 1774 at runtime, so the player tracks the photo at any size.
- */
-const SCREEN = { w: 1600, h: 1060, imageW: 1774, h11: 0.26058808, h12: -0.03750493, h13: 966, h21: -0.02992149, h22: 0.32460225, h23: 298, h31: -5.8592e-5, h32: -1.5779e-5 };
-
-/**
- * Puts the real YouTube player on the laptop screen already in the background photograph (no second laptop).
- * The iframe only loads after a click, so nothing autoplays. Must sit inside a positioned parent that matches
- * the photo's bounds (`absolute inset-0` here).
- */
-export function LaptopScreenVideo({ id, title }: { id: string; title: string }) {
-  const stage = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(0);
-  const [playing, setPlaying] = useState(false);
-
-  useEffect(() => {
-    const el = stage.current;
-    if (!el) return;
-    const update = () => setScale(el.clientWidth / SCREEN.imageW);
-    update();
-    const ro = new ResizeObserver(update);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
-
-  const s = scale;
-  const transform = `matrix3d(${SCREEN.h11 * s},${SCREEN.h21 * s},0,${SCREEN.h31},${SCREEN.h12 * s},${SCREEN.h22 * s},0,${SCREEN.h32},0,0,1,0,${SCREEN.h13 * s},${SCREEN.h23 * s},0,1)`;
-
-  return (
-    <div ref={stage} className="absolute inset-0">
-      <div className="absolute top-0 left-0 origin-top-left" style={{ width: SCREEN.w, height: SCREEN.h, transform, visibility: scale ? "visible" : "hidden" }}>
-        {playing ? (
-          <div className="flex size-full items-center bg-black">
-            <iframe src={embedSrc(id)} title={title} {...iframeProps} className="aspect-video w-full border-0" />
-          </div>
-        ) : (
-          <button
-            type="button"
-            onClick={() => setPlaying(true)}
-            aria-label={`Play video: ${title}`}
-            className="size-full cursor-pointer bg-white/0 transition-colors duration-300 hover:bg-white/10 focus-visible:outline-[24px] focus-visible:outline-offset-[-24px] focus-visible:outline-primary"
-          />
-        )}
-      </div>
-    </div>
-  );
-}
-
-/**
- * Stand-alone 16:9 player card for viewports too narrow for the laptop photograph. Click-to-load, like the laptop.
+ * 16:9 player card (also the screen of the CSS laptop in AssessmentOverview). Click-to-load, so nothing autoplays.
  * `poster="maxres"` uses YouTube's 1280×720 thumbnail for large players (only exists for HD uploads).
  */
 export function VideoCardPlayer({ id, title, className, poster = "hq" }: { id: string; title: string; className?: string; poster?: "hq" | "maxres" }) {

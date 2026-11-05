@@ -22,6 +22,7 @@ export type Plan = {
   cta: { label: string; href: string };
   footnote: string;
   highlight?: boolean;
+  
 };
 
 export const pricing = {

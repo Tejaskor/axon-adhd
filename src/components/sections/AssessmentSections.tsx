@@ -1,12 +1,13 @@
 import Image from "next/image";
-import { Brain, CalendarCheck, ChartColumn, Check, ClipboardList } from "lucide-react";
+import { ArrowLeft, ArrowRight, Brain, Check, ClipboardList, Heart } from "lucide-react";
 import type { CtaSection, FeaturesSection, SplitSection, StepsSection } from "@/content/pages/types";
-import { ButtonLink } from "@/components/ui/Button";
 import { FeatureIcon } from "@/components/ui/FeatureIcon";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
-import { Arrow, IconChip, h2, lead, lightBtn, wrap } from "./AccommodationSections";
+import { IconChip, h2, lead, wrap } from "./AccommodationSections";
+import { PathCard } from "./AdhdCareSections";
 import { AssessmentTimeline } from "./AssessmentTimeline";
+import { GradientCtaBanner } from "./GradientCtaBanner";
 import { TealBanner } from "./TealBanner";
 
 /**
@@ -29,29 +30,115 @@ function AccentTitle({ title, accent }: { title: string; accent?: string }) {
 
 /* ------------------------------------------------ What You'll Learn */
 
-const learnDots = "bg-[radial-gradient(rgba(37,120,202,.28)_1.6px,transparent_1.8px)] [background-size:18px_18px]";
+const gauges = [
+  { label: "Anxiety", level: "Low", pct: 0.28, track: "#BFEFC9", arc: "#1C9B3F", chip: "bg-[#DDF6E6] text-[#1C9B3F]" },
+  { label: "Depression", level: "High", pct: 0.82, track: "#F6D2D6", arc: "#B8202D", chip: "bg-[#FDE3E6] text-[#B8202D]" },
+  { label: "ADHD", level: "Moderate", pct: 0.55, track: "#FBE7CC", arc: "#E07B0C", chip: "bg-[#FEEBD2] text-[#C26A06]" },
+] as const;
+
+const screeners = [
+  { name: "PHQ-9 Depression Screening", note: "Patient Health Questionnaire for depression symptoms" },
+  { name: "GAD-7 Anxiety Screening", note: "Generalized Anxiety Disorder questionnaire" },
+  { name: "ASRS Adult ADHD Screening", note: "Adult ADHD Self-Report Scale" },
+] as const;
+
+/** One donut gauge: a full track ring plus an arc for `pct`, starting at 12 o'clock, with the level chip in the middle. */
+function Gauge({ label, level, pct, track, arc, chip }: (typeof gauges)[number]) {
+  const r = 42;
+  const c = 2 * Math.PI * r;
+  return (
+    <li className="flex flex-col items-center gap-2 rounded-lg bg-[#F5F6F8] px-2 py-3 sm:gap-3 sm:py-4">
+      <span className="text-[11px] font-semibold text-[#1F2A3C] sm:text-[12px]">{label}</span>
+      <span className="relative block aspect-square w-full max-w-[104px]">
+        <svg aria-hidden viewBox="0 0 100 100" className="size-full -rotate-90">
+          <circle cx="50" cy="50" r={r} fill="none" stroke={track} strokeWidth="9" />
+          <circle cx="50" cy="50" r={r} fill="none" stroke={arc} strokeWidth="9" strokeLinecap="round" strokeDasharray={`${c * pct} ${c}`} />
+        </svg>
+        <span className={cn("absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full px-1 py-0.5 text-[8px] font-semibold sm:px-2 sm:text-[10px]", chip)}>{level}</span>
+      </span>
+    </li>
+  );
+}
+
+/** The free-assessment dashboard drawn in code: a screening card with a score card overlapping its lower right. */
+function AssessmentPreview() {
+  return (
+    <div aria-hidden className="relative mx-auto w-full max-w-[640px] pb-14 sm:pb-16 lg:max-w-none">
+      <div className="w-[88%] rounded-xl border border-[#E3E8F0] bg-white shadow-[0_18px_44px_-18px_rgba(11,37,75,.28)]">
+        <div className="border-b border-[#EDF0F5] p-4 sm:p-5">
+          <span className="grid size-8 place-items-center rounded-full bg-[#DDF6F1] text-[#12A58C]">
+            <Heart className="size-4" strokeWidth={2} />
+          </span>
+          <p className="mt-2.5 text-[13px] font-bold text-[#0F1B2E] sm:text-[14px]">Free ADHD Assessment</p>
+          <p className="mt-1 text-[10px] leading-snug text-[#6B7788] sm:text-[11px]">This short assessment consists of 20 easy questions and takes just 5–10 minutes to complete. It helps us learn more about your symptoms and experiences.</p>
+        </div>
+        <ul className="space-y-2 p-4 sm:p-5">
+          {screeners.map((q) => (
+            <li key={q.name} className="flex items-center gap-3 rounded-lg bg-[#F5F6F8] px-3 py-2.5">
+              <span className="grid size-7 shrink-0 place-items-center rounded-full bg-[#DDF6F1] text-[#12A58C]">
+                <Brain className="size-3.5" strokeWidth={2} />
+              </span>
+              <span className="min-w-0">
+                <span className="block truncate text-[11px] font-semibold text-[#1F2A3C]">{q.name}</span>
+                <span className="block truncate text-[9px] text-[#6B7788]">{q.note}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
+        <p className="px-4 pt-1 pb-8 text-[10px] text-[#6B7788] sm:px-5 sm:pb-10">Ready when you are.</p>
+      </div>
+
+      <div className="absolute right-0 bottom-0 w-[80%] rounded-xl sm:w-[64%] border border-[#E3E8F0] bg-white shadow-[0_22px_50px_-16px_rgba(11,37,75,.35)]">
+        <div className="flex items-start justify-between gap-3 border-b border-[#EDF0F5] p-3 sm:p-4">
+          <div className="flex min-w-0 items-start gap-2.5">
+            <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-[#E6EEFB] text-primary">
+              <ClipboardList className="size-3.5" strokeWidth={2} />
+            </span>
+            <span className="min-w-0">
+              <span className="block text-[11px] font-bold text-[#0F1B2E] sm:text-[12px]">Detailed Performance Score</span>
+              <span className="mt-0.5 hidden text-[9px] text-[#6B7788] sm:block">Based on your responses, here is your specified evaluation</span>
+            </span>
+          </div>
+          <span className="shrink-0 text-right text-[8px] leading-tight text-[#6B7788]">
+            Overall Severity
+            <span className="mt-0.5 block rounded-full bg-[#FEEBD2] px-1.5 py-0.5 text-[8px] font-semibold text-[#C26A06]">Moderate</span>
+          </span>
+        </div>
+        <ul className="grid grid-cols-3 gap-2 p-3 sm:gap-3 sm:p-4">
+          {gauges.map((g) => (
+            <Gauge key={g.label} {...g} />
+          ))}
+        </ul>
+        <div className="flex items-center justify-between gap-2 border-t border-[#EDF0F5] px-3 py-2.5 sm:px-4">
+          <span className="inline-flex items-center gap-1 rounded border border-[#D5DBE6] px-2 py-1 text-[9px] font-medium text-[#1F2A3C]">
+            <ArrowLeft className="size-2.5" /> Back
+          </span>
+          <span className="inline-flex items-center gap-1 rounded bg-primary px-2.5 py-1 text-[9px] font-semibold text-white">
+            <span className="sm:hidden">Proceed</span>
+            <span className="max-sm:hidden">Please Proceed with Comprehensive ADHD Assessment</span> <ArrowRight className="size-2.5" />
+          </span>
+        </div>
+      </div>
+
+      <span className="absolute bottom-[26%] left-0 z-10 grid size-14 place-items-center rounded-[18px] bg-white text-primary shadow-[0_14px_30px_-10px_rgba(37,120,202,.4)] sm:size-[68px] sm:rounded-[22px]">
+        <Brain className="size-7 sm:size-8" strokeWidth={1.6} />
+      </span>
+    </div>
+  );
+}
 
 /**
- * Centred heading and subtitle over two columns: the explanation and three benefit points on the left, the
- * free-assessment preview artwork (which already carries both overlapping dashboard cards) on the right with
- * CSS/SVG decoration around it. The content's `features` and `details` are intentionally not shown here.
+ * Centred heading and subtitle over two columns, centred on each other: the explanation and three benefit points on
+ * the left, the free-assessment dashboard (drawn in code, not an image) on the right. The content's `features`,
+ * `details` and `image` are intentionally not used here.
  */
 export function AssessmentLearn({ data }: { data: SplitSection }) {
   const [subtitle, ...body] = data.paragraphs ?? [];
   return (
-    <section id={data.id} className="relative scroll-mt-[var(--header-offset)] overflow-hidden bg-[linear-gradient(180deg,#F7FAFE_0%,#EAF3FC_100%)] py-14 sm:py-16 lg:py-20" aria-labelledby="learn-title">
-      {/* Soft circles, light-blue curves and dotted patches */}
-      <div aria-hidden className="absolute top-1/3 -left-48 size-[520px] rounded-full bg-[radial-gradient(circle,rgba(182,211,240,.5),rgba(182,211,240,.12)_55%,transparent_72%)]" />
-      <div aria-hidden className="absolute -right-40 -bottom-40 size-[480px] rounded-full bg-[radial-gradient(circle,rgba(134,182,229,.35),transparent_70%)]" />
-      <svg aria-hidden viewBox="0 0 1440 700" preserveAspectRatio="none" fill="none" className="absolute inset-0 hidden size-full md:block">
-        <path d="M-20 520C260 430 520 600 820 520S1240 380 1460 460" stroke="rgba(37,120,202,.12)" strokeWidth="1.5" />
-        <path d="M-20 600C300 530 560 660 860 590S1260 490 1460 550" stroke="rgba(255,255,255,.8)" strokeWidth="2" />
-      </svg>
-      <div aria-hidden className={cn("absolute bottom-10 left-6 hidden h-28 w-44 sm:block", learnDots)} />
-
-      <div className={cn(wrap, "relative")}>
+    <section id={data.id} className="relative scroll-mt-[var(--header-offset)] overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-14 sm:py-16 lg:py-20" aria-labelledby="learn-title">
+      <div className={wrap}>
         <Reveal className="mx-auto max-w-[900px] text-center lg:max-w-none">
-          <h2 id="learn-title" className={cn(h2, "text-[clamp(28px,3.4vw,40px)]! lg:whitespace-nowrap")}>
+          <h2 id="learn-title" className={cn(h2, "lg:whitespace-nowrap")}>
             <AccentTitle title={data.title} accent={data.accent} />
           </h2>
           {subtitle && <p className={cn(lead, "mx-auto mt-4 max-w-[760px] text-[#5B6B80] lg:max-w-none lg:whitespace-nowrap")}>{subtitle}</p>}
@@ -84,119 +171,10 @@ export function AssessmentLearn({ data }: { data: SplitSection }) {
             </ul>
           </div>
 
-          {data.image && (
-            <Reveal delay={0.1}>
-              <div className="relative mx-auto w-full max-w-[680px] px-2 pt-6 pb-8 sm:px-4 lg:max-w-none">
-                {/* Ring and glow behind the artwork, dotted grid, sparkle marks, dashed arc and dots */}
-                <div aria-hidden className="absolute top-[2%] left-[6%] aspect-square w-[84%] rounded-full border border-primary/15 bg-[radial-gradient(circle,rgba(220,235,251,.9),rgba(238,245,253,.3)_65%,transparent_75%)]" />
-                <div aria-hidden className={cn("absolute top-0 right-0 hidden h-32 w-44 [mask-image:radial-gradient(ellipse_at_top_right,#000,transparent_75%)] sm:block", learnDots)} />
-                <svg aria-hidden viewBox="0 0 40 40" fill="none" className="absolute top-[3%] right-[10%] z-20 hidden size-10 sm:block">
-                  <path d="M10 4L7 14M22 8L30 3M26 20H38" stroke="#2578CA" strokeWidth="3" strokeLinecap="round" />
-                </svg>
-                <svg aria-hidden viewBox="0 0 180 70" fill="none" className="absolute bottom-0 left-[9%] z-20 hidden w-[24%] sm:block">
-                  <path d="M170 8C150 52 70 64 16 30" stroke="#2578CA" strokeWidth="2" strokeDasharray="6 6" strokeLinecap="round" />
-                  <path d="M16 30L30 30M16 30L19 44" stroke="#2578CA" strokeWidth="2.2" strokeLinecap="round" />
-                </svg>
-                <span aria-hidden className="absolute right-[34%] bottom-[2%] z-20 hidden size-4 rounded-full bg-[#4FA3F0] sm:block" />
-                <span aria-hidden className="absolute right-[31%] -bottom-1 z-20 hidden size-2.5 rounded-full bg-[#B6D3F0] sm:block" />
-
-                {/* The artwork is transparent and carries its own shadows, so it is left unframed. */}
-                <Image src={data.image.src} alt={data.image.alt} width={data.image.width} height={data.image.height} sizes="(max-width: 1023px) 92vw, 720px" className="relative z-10 h-auto w-full object-contain" />
-                <span aria-hidden className="absolute bottom-[12%] left-0 z-20 grid size-14 place-items-center rounded-[18px] bg-white text-primary shadow-[0_14px_30px_-10px_rgba(37,120,202,.4)] sm:size-[72px] sm:rounded-[22px]">
-                  <Brain className="size-7 sm:size-9" strokeWidth={1.6} />
-                </span>
-              </div>
-            </Reveal>
-          )}
+          <Reveal delay={0.1}>
+            <AssessmentPreview />
+          </Reveal>
         </div>
-      </div>
-    </section>
-  );
-}
-
-/* ------------------------------------------------ How It Works */
-
-/** Step styling, in item order: blue · mint · purple. Class strings are written out so Tailwind can see them. */
-const journey = [
-  {
-    Icon: ClipboardList,
-    ring: "border-[#2F86FF] bg-[#DCEBFF] shadow-[0_0_0_8px_rgba(10,108,255,.07),0_22px_44px_-12px_rgba(10,108,255,.45)]",
-    disc: "text-[#0A6CFF] shadow-[inset_0_2px_10px_rgba(10,108,255,.12)]",
-    badge: "bg-[#0A6CFF] shadow-[0_10px_22px_-6px_rgba(10,108,255,.6)] left-1/2 -top-[7%] -translate-x-1/2",
-    offset: "",
-  },
-  {
-    Icon: ChartColumn,
-    ring: "border-[#B9F1E0] bg-[#D4F7EC] shadow-[0_0_0_8px_rgba(20,200,160,.08),0_22px_44px_-12px_rgba(20,200,160,.5)]",
-    disc: "text-[#14C8A0] shadow-[inset_0_2px_10px_rgba(20,200,160,.14)]",
-    badge: "bg-[#14C8A0] shadow-[0_10px_22px_-6px_rgba(20,200,160,.6)] left-1/2 -top-[7%] -translate-x-1/2",
-    offset: "",
-  },
-  {
-    Icon: CalendarCheck,
-    ring: "border-[#E3D6FB] bg-[#EFE6FF] shadow-[0_0_0_8px_rgba(124,58,237,.07),0_22px_44px_-12px_rgba(124,58,237,.45)]",
-    disc: "text-[#7A2FE8] shadow-[inset_0_2px_10px_rgba(124,58,237,.12)]",
-    badge: "bg-[#7A2FE8] shadow-[0_10px_22px_-6px_rgba(124,58,237,.6)] left-1/2 -top-[7%] -translate-x-1/2",
-    offset: "",
-  },
-] as const;
-
-export function AssessmentHowItWorks({ data }: { data: FeaturesSection }) {
-  const [before, after] = data.accent && data.title.includes(data.accent) ? data.title.split(data.accent) : [data.title, ""];
-  return (
-    <section id={data.id} className="relative scroll-mt-[var(--header-offset)] overflow-hidden bg-[linear-gradient(180deg,#F5FAFF_0%,#E4F0FE_100%)] py-14 sm:py-16 lg:py-20" aria-labelledby="how-title">
-      {/* Flowing waves and a dotted patch */}
-      <svg aria-hidden viewBox="0 0 1440 800" preserveAspectRatio="none" fill="none" className="absolute inset-0 size-full">
-        <path d="M-40 90C260 40 520 210 860 250S1260 170 1500 60V0H-40Z" fill="rgba(255,255,255,.55)" />
-        <path d="M-40 640C240 560 520 720 860 660S1280 520 1500 600V820H-40Z" fill="rgba(255,255,255,.5)" />
-        <path d="M-40 460C300 380 560 560 900 500S1300 380 1500 440" stroke="rgba(37,120,202,.1)" strokeWidth="1.5" />
-        <path d="M900 0C1100 120 1300 150 1500 120V0Z" fill="rgba(160,205,250,.22)" />
-      </svg>
-      <div aria-hidden className={cn("absolute top-6 left-0 hidden h-44 w-52 sm:block", learnDots)} />
-
-      <div className={cn(wrap, "relative")}>
-        <Reveal className="mx-auto max-w-[900px] text-center">
-          <h2 id="how-title" className="font-display text-[44px] leading-[1.05] font-extrabold tracking-[-0.03em] text-[#0B1F4D] sm:text-[56px] lg:text-[68px]">
-            {before}
-            {data.accent && <span className="text-[#0A6CFF]">{data.accent}</span>}
-            {after}
-          </h2>
-          {data.subtitle && <p className="mx-auto mt-4 max-w-[760px] text-[16px] leading-[1.6] text-pretty text-[#3F4E6B] sm:text-[18px]">{data.subtitle}</p>}
-        </Reveal>
-
-        <ol className="relative mt-9 flex flex-col items-center gap-0 lg:mt-3 lg:grid lg:grid-cols-3 lg:items-start lg:gap-6 lg:pt-5">
-          {/* Dashed journey path behind the circles (desktop only) */}
-          <svg aria-hidden viewBox="0 0 1000 220" preserveAspectRatio="none" fill="none" className="pointer-events-none absolute top-5 left-0 hidden h-[220px] w-full lg:block">
-            <path d="M200 95C290 95 330 170 430 168S480 130 500 118" stroke="#0A6CFF" strokeWidth="2.5" strokeDasharray="7 8" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
-            <path d="M500 100C560 40 650 30 720 80S800 130 833 115" stroke="#0A6CFF" strokeWidth="2.5" strokeDasharray="7 8" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
-          </svg>
-
-          {data.items.map((item, i) => {
-            const { Icon, ring, disc, badge, offset } = journey[i];
-            const last = i === data.items.length - 1;
-            return (
-              <li key={item.title} className="relative z-10 flex w-full max-w-[420px] flex-col items-center text-center lg:max-w-none">
-                <Reveal delay={i * 0.1} className="flex w-full flex-col items-center">
-                  <div className={cn("relative size-[190px] sm:size-[210px] lg:size-[220px]", offset)}>
-                    <span aria-hidden className={cn("absolute inset-0 rounded-full border-[3px]", ring)} />
-                    <span aria-hidden className={cn("absolute inset-[9%] grid place-items-center rounded-full bg-white", disc)}>
-                      <Icon className="size-[34%]" strokeWidth={2.2} />
-                    </span>
-                    <span aria-hidden className={cn("absolute grid size-[38px] place-items-center rounded-full font-display text-[18px] leading-none font-bold text-white sm:size-[42px] sm:text-[20px]", badge)}>
-                      0{i + 1}
-                    </span>
-                  </div>
-                  <h3 className="mt-7 max-w-[340px] font-display text-[22px] leading-[1.25] font-bold text-[#0B1F4D] sm:text-[26px]">
-                    <span className="sr-only">Step {i + 1}: </span>
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 max-w-[340px] text-[17px] leading-[1.65] text-pretty text-[#41516B] sm:text-[19px]">{item.text}</p>
-                </Reveal>
-                {!last && <span aria-hidden className="my-8 block h-14 border-l-2 border-dashed border-[#0A6CFF] lg:hidden" />}
-              </li>
-            );
-          })}
-        </ol>
       </div>
     </section>
   );
@@ -205,58 +183,7 @@ export function AssessmentHowItWorks({ data }: { data: FeaturesSection }) {
 /* ------------------------------------------------ Mid-page CTA (blue banner) */
 
 export function AssessmentBannerCta({ data }: { data: CtaSection }) {
-  const accent = "Official Diagnosis?";
-  const [before, after] = data.title.includes(accent) ? data.title.split(accent) : [data.title, ""];
-  const pill = "group rounded-full! px-7! whitespace-normal transition duration-300 hover:-translate-y-0.5";
-  return (
-    <section className="relative isolate overflow-hidden bg-[linear-gradient(115deg,#256ACC_0%,#133566_100%)] py-14 text-white sm:py-16 lg:py-20" aria-labelledby="official-title">
-      {/* Layered waves, fine curved lines, soft glows, dots: low opacity and edge-to-edge so the surface reads evenly */}
-      <svg aria-hidden viewBox="0 0 1440 480" preserveAspectRatio="none" fill="none" className="absolute inset-0 -z-10 size-full">
-        <defs>
-          <linearGradient id="cta-wave-fade" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#7DB4FF" stopOpacity=".16" />
-            <stop offset="1" stopColor="#7DB4FF" stopOpacity="0" />
-          </linearGradient>
-          <linearGradient id="cta-wave-fade-up" x1="0" y1="1" x2="0" y2="0">
-            <stop offset="0" stopColor="#8EC1FF" stopOpacity=".2" />
-            <stop offset="1" stopColor="#8EC1FF" stopOpacity="0" />
-          </linearGradient>
-        </defs>
-        <path d="M0 0H1440V60C1260 90 1100 40 900 50C700 60 520 110 340 80C200 56 100 70 0 90Z" fill="url(#cta-wave-fade)" />
-        <path d="M0 480V360C160 330 300 380 480 400C680 422 800 380 980 390C1160 400 1300 350 1440 330V480Z" fill="url(#cta-wave-fade-up)" />
-        <path d="M0 480V420C200 400 380 440 600 440C840 440 1040 400 1200 380C1300 368 1380 372 1440 380V480Z" fill="url(#cta-wave-fade-up)" />
-        <path d="M1000 400C1000 220 1130 70 1320 70C1380 70 1420 85 1450 100" stroke="rgba(255,255,255,.2)" strokeWidth="1.2" strokeDasharray="5 6" vectorEffect="non-scaling-stroke" />
-        <path d="M1060 480C1070 300 1180 150 1340 140C1390 138 1420 148 1450 160" stroke="rgba(255,255,255,.1)" strokeWidth="1.2" vectorEffect="non-scaling-stroke" />
-      </svg>
-      <div aria-hidden className="absolute top-8 -right-24 -z-10 size-[420px] rounded-full bg-[radial-gradient(circle,rgba(120,180,255,.18),transparent_70%)]" />
-      <div aria-hidden className="absolute top-10 right-[17%] -z-10 hidden size-12 rounded-full bg-[radial-gradient(circle_at_30%_30%,#5CB0FF,#1E70F0)] opacity-60 lg:block" />
-      <div aria-hidden className="absolute top-1/2 left-0 -z-10 hidden h-36 w-48 -translate-y-1/2 bg-[radial-gradient(rgba(150,205,255,.4)_1.5px,transparent_1.8px)] [background-size:24px_24px] sm:block" />
-      <div aria-hidden className="absolute right-8 bottom-10 -z-10 hidden h-32 w-52 bg-[radial-gradient(rgba(190,225,255,.35)_1.5px,transparent_1.8px)] [background-size:24px_24px] lg:block" />
-
-      <div className={wrap}>
-        <Reveal className="max-w-[1100px]">
-          <h2 id="official-title" className="font-display text-[26px] leading-[1.2] font-extrabold tracking-[-0.02em] text-balance sm:text-[32px] lg:text-[40px] lg:whitespace-nowrap">
-            {before}
-            {before !== data.title && <span className="text-[#8FE3FF]">{accent}</span>}
-            {after}
-          </h2>
-          {data.subtitle && <p className="mt-5 max-w-[1040px] text-[16px] leading-[1.7] text-pretty text-white/90 sm:text-[18px]">{data.subtitle}</p>}
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <ButtonLink href={data.primary.href} size="lg" className={cn(pill, lightBtn)}>
-              {data.primary.label}
-              <Arrow />
-            </ButtonLink>
-            {data.secondary && (
-              <ButtonLink href={data.secondary.href} size="lg" className={cn(pill, "border border-white/25 bg-primary! text-white! shadow-[0_10px_26px_-8px_rgba(0,20,80,.6)]! hover:bg-primary-hover!")}>
-                {data.secondary.label}
-                <Arrow />
-              </ButtonLink>
-            )}
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
+  return <GradientCtaBanner data={data} accent="Official Diagnosis?" titleId="official-title" />;
 }
 
 /* ------------------------------------------------ Understanding ADHD with Confidence */
@@ -264,27 +191,10 @@ export function AssessmentBannerCta({ data }: { data: CtaSection }) {
 /** Same look as the "Key Benefits for University" section: pale blue gradient, centred heading, the image on the left and the benefits as glass cards on the right. */
 export function AssessmentConfidence({ data }: { data: FeaturesSection }) {
   return (
-    <section className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#F4F9FF_0%,#EAF3FE_55%,#F5F9FF_100%)] py-12 sm:py-14 lg:py-16" aria-labelledby="confidence-title">
-      <svg aria-hidden viewBox="0 0 400 160" fill="none" preserveAspectRatio="none" className="pointer-events-none absolute top-0 left-0 -z-10 h-28 w-56 sm:h-40 sm:w-80">
-        <path d="M0 0H400C300 30 200 40 120 80S30 140 0 160Z" fill="#5DA2F0" fillOpacity=".32" />
-      </svg>
-      <svg aria-hidden viewBox="0 0 800 200" fill="none" preserveAspectRatio="none" className="pointer-events-none absolute right-0 bottom-0 -z-10 h-28 w-[75%] sm:h-40">
-        <defs>
-          <linearGradient id="conf-wave-a" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#D6E8FC" stopOpacity=".9" />
-            <stop offset="1" stopColor="#7DB4F4" stopOpacity=".85" />
-          </linearGradient>
-          <linearGradient id="conf-wave-b" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#8DBFF5" stopOpacity=".7" />
-            <stop offset="1" stopColor="#3F8EEB" stopOpacity=".95" />
-          </linearGradient>
-        </defs>
-        <path d="M200 200C270 120 340 62 440 62S590 108 690 124S780 112 800 98V200Z" fill="url(#conf-wave-a)" />
-        <path d="M470 200C580 150 690 150 800 52V200Z" fill="url(#conf-wave-b)" />
-      </svg>
+    <section className="bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)] py-12 sm:py-14 lg:py-16" aria-labelledby="confidence-title">
       <div className={wrap}>
         <div className="mx-auto text-center">
-          <h2 id="confidence-title" className="text-[clamp(32px,3.6vw,52px)] leading-[1.1] font-extrabold tracking-[-0.02em] text-[#0B1F4D]">
+          <h2 id="confidence-title" className="type-section leading-[1.1] tracking-[-0.02em] text-[#0B1F4D]">
             {data.title}
           </h2>
           {data.subtitle && <p className="mx-auto mt-4 max-w-[900px] text-[16px] leading-snug text-pretty text-[#4B5C75] lg:max-w-none lg:text-[17px] lg:whitespace-nowrap">{data.subtitle}</p>}
@@ -326,26 +236,27 @@ export function AssessmentConfidence({ data }: { data: FeaturesSection }) {
 /* ------------------------------------------------ A Diagnosis That Opens Doors */
 
 export function AssessmentOpensDoors({ data }: { data: FeaturesSection }) {
+  const tones = ["blue", "green", "orange"] as const;
   return (
-    <section className="bg-[#E8F2FC] py-16 sm:py-20 lg:py-24" aria-labelledby="doors-title">
-      <div className={cn(wrap, "grid items-start gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16")}>
-        <Reveal className="lg:sticky lg:top-[var(--header-offset)]">
+    <section className="bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)] py-16 sm:py-20 lg:py-24" aria-labelledby="doors-title">
+      <div className={wrap}>
+        <Reveal className="mx-auto max-w-[900px] text-center">
           <h2 id="doors-title" className={h2}>
             {data.title}
           </h2>
           {data.subtitle && <p className={cn(lead, "mt-5")}>{data.subtitle}</p>}
         </Reveal>
-        <ul className="space-y-4">
+        {/* Same cards as "You deserve clarity not guesswork": icon on top, title and text at the bottom. */}
+        <ul className="mx-auto mt-10 grid max-w-[560px] gap-5 sm:mt-12 md:max-w-none md:grid-cols-3 lg:gap-6">
           {data.items.map((item, i) => (
-            <li key={item.title}>
-              <Reveal delay={i * 0.07}>
-                <div className="group flex items-center gap-5 rounded-[22px] bg-white p-6 shadow-[0_8px_24px_rgba(18,61,106,.08)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(37,120,202,.16)] sm:p-7">
-                  <IconChip className="size-16 rounded-2xl">{item.icon && <FeatureIcon name={item.icon} className="size-8" />}</IconChip>
-                  <div>
-                    <h3 className="type-h4 text-[#123D6A]">{item.title}</h3>
-                    <p className="type-body mt-1.5 text-[#536985]">{item.text}</p>
-                  </div>
-                </div>
+            <li key={item.title} className="flex">
+              <Reveal delay={i * 0.07} className="flex w-full">
+                <PathCard
+                  tone={tones[i % tones.length]}
+                  icon={item.icon && <FeatureIcon name={item.icon} className="size-7" />}
+                  title={item.title}
+                  text={item.text}
+                />
               </Reveal>
             </li>
           ))}
@@ -359,8 +270,9 @@ export function AssessmentOpensDoors({ data }: { data: FeaturesSection }) {
 
 export function AssessmentProcess({ data }: { data: StepsSection }) {
   return (
-    <section className="bg-white py-16 sm:py-20 lg:py-24" aria-labelledby="process-title">
-      <div className={wrap}>
+    <section className="bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)] py-16 sm:py-20 lg:py-24" aria-labelledby="process-title">
+      {/* 1440px wide; the side padding keeps the timeline line and its dots (and their glow) well inside the container. */}
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-10">
         <Reveal className="mx-auto max-w-[900px] text-center">
           <h2 id="process-title" className={h2}>
             {data.title}

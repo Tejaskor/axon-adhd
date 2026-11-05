@@ -1,111 +1,32 @@
-import { Check, ChevronLeft, ChevronRight, ChevronsRight, FileCheck, MessagesSquare, Pill, Target } from "lucide-react";
+import Image from "next/image";
+import { CalendarDays, Clock } from "lucide-react";
 import type { StepsSection } from "@/content/pages/types";
-import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
 
-const stageLabels = ["Screening", "Evaluation", "Report & Plan"];
-
-function Bar({ pct }: { pct: number }) {
-  return (
-    <span className="block h-1.5 overflow-hidden rounded-full bg-primary-soft">
-      <span className="block h-full rounded-full bg-primary" style={{ width: `${pct}%` }} />
-    </span>
-  );
-}
-
-const head = "flex items-center justify-between text-[12px] font-semibold text-muted";
-
-/** Illustrative interface previews, one per step (aria-hidden; the real copy is the step title + text below each). */
-function Preview({ index }: { index: number }) {
-  if (index === 0) {
-    return (
-      <div className="space-y-3">
-        <div className={head}>
-          <span className="text-navy">Free screening</span>
-          <span className="text-primary">Step 1 of 3</span>
-        </div>
-        <Bar pct={34} />
-        {["Your name", "Email address"].map((l) => (
-          <div key={l} className="space-y-1">
-            <span className="type-small block font-semibold text-muted">{l}</span>
-            <span className="block h-8 rounded-lg border border-line-3 bg-white" />
-          </div>
-        ))}
-        <div className="space-y-1">
-          <span className="type-small block font-semibold text-muted">Age range</span>
-          <span className="type-small flex h-8 items-center justify-between rounded-lg border border-line-3 bg-white px-2.5 text-muted">
-            Select <ChevronRight className="size-3.5 rotate-90" aria-hidden />
-          </span>
-        </div>
-      </div>
-    );
-  }
-  if (index === 1) {
-    return (
-      <div className="space-y-3">
-        <div className={head}>
-          <span className="text-navy">Comprehensive evaluation</span>
-          <span className="text-primary">Question 4 of 12</span>
-        </div>
-        <Bar pct={33} />
-        <p className="type-small font-semibold text-navy">How often do you lose track of what you were doing?</p>
-        <ul className="space-y-1.5">
-          {["Rarely", "Sometimes", "Often"].map((o, i) => (
-            <li key={o} className={cn("type-small flex items-center gap-2.5 rounded-lg border px-2.5 py-1.5 font-semibold", i === 1 ? "border-primary bg-primary text-white shadow-[0_4px_12px_rgba(37,120,202,.3)]" : "border-line-3 bg-white text-body")}>
-              <span className={cn("flex size-3.5 shrink-0 items-center justify-center rounded-full border-2", i === 1 ? "border-white" : "border-line-3")}>{i === 1 && <span className="size-1.5 rounded-full bg-white" />}</span>
-              {o}
-            </li>
-          ))}
-        </ul>
-        <div className="type-small flex items-center justify-between font-semibold">
-          <span className="inline-flex items-center gap-0.5 text-muted">
-            <ChevronLeft className="size-3.5" aria-hidden /> Back
-          </span>
-          <span className="inline-flex items-center gap-0.5 text-primary">
-            Next <ChevronRight className="size-3.5" aria-hidden />
-          </span>
-        </div>
-      </div>
-    );
-  }
-  const items = [
-    { t: "Medication", Icon: Pill },
-    { t: "Therapy", Icon: MessagesSquare },
-    { t: "Coaching", Icon: Target },
-    { t: "Accommodations", Icon: FileCheck },
-  ];
-  return (
-    <div className="space-y-3">
-      <div className={head}>
-        <span className="text-navy">Your report &amp; plan</span>
-        <span className="type-small inline-flex items-center gap-1 rounded-full bg-[#E1F5E8] px-2 py-0.5 font-semibold text-[#1E9A55]">
-          <Check className="size-3" strokeWidth={3} aria-hidden /> Report ready
-        </span>
-      </div>
-      <div className="flex gap-1.5">
-        {["Screening", "Evaluation"].map((s) => (
-          <span key={s} className="type-small inline-flex items-center gap-1 rounded-full border border-line-3 bg-white px-2 py-0.5 font-semibold text-body">
-            <Check className="size-3 text-[#1E9A55]" strokeWidth={3} aria-hidden /> {s}
-          </span>
-        ))}
-      </div>
-      <div className="space-y-1.5 rounded-lg bg-primary-soft/70 p-2.5">
-        <span className="block h-1.5 w-3/4 rounded-full bg-primary/25" />
-        <span className="block h-1.5 w-full rounded-full bg-primary/15" />
-        <span className="block h-1.5 w-2/3 rounded-full bg-primary/15" />
-      </div>
-      <ul className="grid grid-cols-2 gap-1.5">
-        {items.map(({ t, Icon }) => (
-          <li key={t} className="type-small flex items-center gap-1.5 rounded-lg border border-line-3 bg-white px-2 py-1.5 font-semibold text-ink">
-            <Icon className="size-3.5 shrink-0 text-primary" aria-hidden />
-            {t}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+/** Per-step colours, in order: blue, purple, green, orange — number disc, card tint and duration pill. */
+const tones = [
+  {
+    disc: "bg-[linear-gradient(135deg,#307EFC,#0048F0)] shadow-[0_10px_24px_rgba(0,72,240,.35)]",
+    card: "bg-[linear-gradient(180deg,#E6F0FE_0%,#DAE8FD_100%)] shadow-[0_24px_50px_-18px_rgba(0,72,240,.28)]",
+    pill: "bg-[#EAF3FE] text-[#0A2BC8]",
+  },
+  {
+    disc: "bg-[linear-gradient(135deg,#9648E4,#7230C0)] shadow-[0_10px_24px_rgba(114,48,192,.35)]",
+    card: "bg-[linear-gradient(180deg,#F1E8FC_0%,#E9DDFA_100%)] shadow-[0_24px_50px_-18px_rgba(114,48,192,.26)]",
+    pill: "bg-[#F8F4FE] text-[#6C42A2]",
+  },
+  {
+    disc: "bg-[linear-gradient(135deg,#19B861,#009042)] shadow-[0_10px_24px_rgba(0,144,66,.35)]",
+    card: "bg-[linear-gradient(180deg,#E7F8EE_0%,#DCF3E4_100%)] shadow-[0_24px_50px_-18px_rgba(0,144,66,.26)]",
+    pill: "bg-[#F2FEF5] text-[#067E3C]",
+  },
+  {
+    disc: "bg-[linear-gradient(135deg,#FF9A2E,#FC7E06)] shadow-[0_10px_24px_rgba(252,126,6,.35)]",
+    card: "bg-[linear-gradient(180deg,#FFEEE2_0%,#FFE5D3_100%)] shadow-[0_24px_50px_-18px_rgba(252,126,6,.26)]",
+    pill: "bg-[#FEF6F0] text-[#CC4E06]",
+  },
+] as const;
 
 function highlight(title: string, accent?: string) {
   if (!accent || !title.includes(accent)) return title;
@@ -113,72 +34,89 @@ function highlight(title: string, accent?: string) {
   return (
     <>
       {a}
-      <span className="text-primary">{accent}</span>
+      <span className="relative inline-block text-[#0A4FF0]">
+        {accent}
+        <svg aria-hidden viewBox="0 0 300 14" preserveAspectRatio="none" className="absolute inset-x-[4%] -bottom-[0.2em] h-[0.2em] w-[92%]" fill="none">
+          <path d="M2 10 C 70 3, 190 3, 298 8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+        </svg>
+      </span>
       {b}
     </>
   );
 }
 
 /**
- * "From Diagnosis to Thriving" journey on a frosted-glass layout. ≥1024px (and ≥740px tall): a sticky stage on a tall track where
- * the three glass panels rise into focus in turn while the progress line above them fills (pure CSS scroll-driven animation, see
- * `.journey*` in globals.css — no JS). Otherwise, without scroll-timeline support, or with reduced motion, it renders the finished
- * composition / a plain vertical sequence.
+ * "Your ADHD Assessment Journey": centred pill + heading + intro, then numbered steps joined by a thin gradient line
+ * (≥1024px), each a tinted card with a title, description, picture and a duration pill. Stacks to one column on phones.
  */
 export function StepsJourney({ data }: { data: StepsSection }) {
+  const titleId = `${data.id ?? "journey"}-title`;
   return (
-    <section id={data.id} className="scroll-mt-[var(--header-offset)] bg-[radial-gradient(60%_50%_at_16%_66%,rgba(37,120,202,.16),transparent),radial-gradient(55%_45%_at_86%_72%,rgba(84,152,219,.18),transparent),linear-gradient(180deg,#F6FAFF_0%,#EDF3FC_100%)] py-16 sm:py-20">
-      <Container>
-        <div className="journey">
-          <div className="journey-stage">
-            <SectionHeading eyebrow={data.eyebrow} title={highlight(data.title, data.accent)} subtitle={data.subtitle} className="mb-8 lg:mb-6 lg:max-w-[880px]" />
-
-            {/* Progress: same 3-column grid as the panels so each circle sits on its panel's centre line. */}
-            <div aria-hidden className="relative mb-5 hidden lg:block">
-              <span className="absolute top-[17px] right-[calc((100%-2.5rem)/6)] left-[calc((100%-2.5rem)/6)] h-0.5 rounded-full bg-primary/20" />
-              <span className="journey-fill absolute top-[17px] right-[calc((100%-2.5rem)/6)] left-[calc((100%-2.5rem)/6)] h-0.5 origin-left rounded-full bg-primary" />
-              {[33.33, 66.66].map((x) => (
-                <span key={x} className="absolute top-[7px] flex size-5 -translate-x-1/2 items-center justify-center rounded-full bg-[#F2F7FD] text-primary" style={{ left: `${x}%` }}>
-                  <ChevronsRight className="size-4" />
-                </span>
-              ))}
-              <div className="relative grid grid-cols-3 gap-5">
-                {stageLabels.map((l, i) => (
-                  <span key={l} className="type-small flex flex-col items-center gap-2 font-semibold text-navy">
-                    <span className={cn("journey-node flex size-9 items-center justify-center rounded-full border-2 border-primary/25 bg-white text-[14px] font-bold text-primary/70", `journey-node-${i + 1}`)}>{i + 1}</span>
-                    {l}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <ol className="grid gap-5 md:mx-auto md:max-w-[560px] lg:max-w-none lg:grid-cols-3">
-              {data.items.map((step, i) => (
-                <li key={step.title} className="journey-slot reveal">
-                  <article className="journey-panel flex h-full flex-col rounded-[28px] border border-white/80 bg-white/65 p-4 shadow-[0_20px_50px_rgba(37,120,202,.12)] backdrop-blur-sm sm:p-5 lg:backdrop-blur-xl">
-                    <div aria-hidden className="rounded-2xl border border-white bg-white/90 p-3.5 shadow-[0_6px_18px_rgba(11,37,75,.06)]">
-                      <Preview index={i} />
-                    </div>
-                    <div className="mt-4 flex flex-1 flex-col px-1">
-                      <span className="inline-flex w-fit items-center gap-2 text-[12px] font-bold tracking-[0.12em] text-primary uppercase">
-                        <span className="inline-grid size-6 place-items-center rounded-full bg-primary text-[12px] tracking-normal text-white" aria-hidden>
-                          {i + 1}
-                        </span>
-                        Step 0{i + 1}
-                      </span>
-                      <h3 className="type-h4 mt-2 text-navy">
-                        <span className="sr-only">Step {i + 1}: </span>
-                        {step.title}
-                      </h3>
-                      <p className="type-small mt-1.5 text-body">{step.text}</p>
-                    </div>
-                  </article>
-                </li>
-              ))}
-            </ol>
-          </div>
+    <section
+      id={data.id}
+      className="relative isolate scroll-mt-[var(--header-offset)] overflow-hidden bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)]! py-16 sm:py-20 lg:py-24"
+      aria-labelledby={titleId}
+    >
+      <div className="mx-auto w-full max-w-[1372px] px-4">
+        <div className="mx-auto max-w-[1100px] text-center">
+          {data.eyebrow && (
+            <p className="inline-flex items-center gap-2.5 rounded-full bg-[#E9F1FE] px-5 py-2 text-[15px] font-semibold text-navy sm:text-[17px]">
+              <CalendarDays aria-hidden className="size-5 text-primary" strokeWidth={1.75} />
+              {data.eyebrow}
+            </p>
+          )}
+          <h2 id={titleId} className={cn("type-section font-display leading-[1.15] tracking-[-0.02em] text-balance text-navy", data.eyebrow && "mt-4")}>
+            {highlight(data.title, data.accent)}
+          </h2>
+          {data.subtitle && <p className="type-body mx-auto mt-4 max-w-[900px] text-pretty text-[#2B3A4F]">{data.subtitle}</p>}
         </div>
-      </Container>
+
+        <div className="relative mt-12 sm:mt-14">
+          {/* Thin line through the number discs' centres (the four columns' centres sit at 12.5% and 87.5%). */}
+          <span aria-hidden className="absolute top-6 right-[12.5%] left-[12.5%] hidden h-0.5 rounded-full bg-[linear-gradient(90deg,#307EFC,#9648E4_36%,#19B861_66%,#FC8406)] opacity-45 lg:block" />
+          <ol className="grid mx-auto max-w-[560px] gap-x-4 gap-y-12 sm:max-w-none sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-1.5">
+            {data.items.map((step, i) => {
+              const t = tones[i % tones.length];
+              return (
+                <li key={step.title} className="flex">
+                  <Reveal delay={i * 0.08} className="flex w-full flex-col items-center">
+                    <span aria-hidden className={cn("relative z-10 -mb-6 grid size-12 shrink-0 place-items-center rounded-full text-[22px] font-bold text-white ring-4 ring-white/70", t.disc)}>
+                      {i + 1}
+                    </span>
+                    <article className={cn("flex w-full flex-1 flex-col items-center rounded-[28px] border border-white/70 px-5 pt-11 pb-6 text-center sm:px-6", t.card)}>
+                      <div className="flex-1">
+                        <h3 className="text-[clamp(20px,1.7vw,26px)] leading-tight font-bold text-balance text-navy">
+                          <span className="sr-only">Step {i + 1}: </span>
+                          {step.title}
+                        </h3>
+                        <p className="mt-3 text-[15px] leading-relaxed text-pretty text-[#2B3A4F] sm:text-[16px]">{step.text}</p>
+                      </div>
+                      {step.image && (
+                        <div className="mt-5 w-full overflow-hidden rounded-[18px] shadow-[0_10px_26px_-12px_rgba(11,37,75,.35)]">
+                          <Image
+                            src={step.image.src}
+                            alt={step.image.alt}
+                            width={step.image.width}
+                            height={step.image.height}
+                            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 45vw, 92vw"
+                            className="h-auto w-full"
+                          />
+                        </div>
+                      )}
+                      {step.duration && (
+                        <p className={cn("mt-5 inline-flex items-center gap-2 rounded-full px-5 py-2 text-[16px] font-bold sm:text-[17px]", t.pill)}>
+                          <Clock aria-hidden className="size-5" strokeWidth={2} />
+                          {step.duration}
+                        </p>
+                      )}
+                    </article>
+                  </Reveal>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+      </div>
     </section>
   );
 }

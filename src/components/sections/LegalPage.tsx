@@ -9,9 +9,9 @@ import { slugify } from "@/lib/utils";
 export const legalBg = "bg-[#E7F1FD]";
 
 /** Centered page header: title, optional intro lines, then a divider (legal pages and the site map). */
-export function PageIntro({ title, path, width = "max-w-[1376px]", children }: { title: string; path: string; width?: string; children?: ReactNode }) {
+export function PageIntro({ title, path, width = "max-w-[1340px]", children }: { title: string; path: string; width?: string; children?: ReactNode }) {
   return (
-    <section className={`-mt-[var(--header-height)] ${legalBg} px-4 pt-[124px] sm:px-6 sm:pt-[132px] lg:px-8`}>
+    <section className={`-mt-[var(--header-height)] ${legalBg} px-4 pt-[124px] sm:pt-[132px]`}>
       <div className={`mx-auto w-full ${width} border-b border-[#CFDDEE] pb-8 text-center sm:pb-10`}>
         <h1 className="font-display text-[28px] leading-tight font-bold tracking-[-0.02em] text-balance text-[#111827] sm:text-[34px] lg:text-[38px]">{title}</h1>
         {children}
@@ -67,8 +67,8 @@ export function LegalPage({ title, path, blocks }: { title: string; path: string
         )}
       </PageIntro>
 
-      <div className={`${legalBg} px-4 pt-8 pb-16 sm:px-6 sm:pt-10 sm:pb-20 lg:px-8`}>
-        <div className="mx-auto w-full max-w-[1376px] space-y-3.5 sm:space-y-4">
+      <div className={`${legalBg} px-4 pt-8 pb-16 sm:pt-10 sm:pb-20`}>
+        <div className="mx-auto w-full max-w-[1340px] space-y-3.5 sm:space-y-4">
           {sections.map((s) => (
             <section key={s.id} id={s.id} aria-labelledby={`${s.id}-title`} className="rounded-[14px] bg-white px-5 py-6 shadow-[0_2px_10px_rgba(15,27,46,.05)] sm:px-7 sm:py-7">
               <h2 id={`${s.id}-title`} className="flex items-start gap-2.5 font-sans text-[17px] leading-snug font-bold text-[#163E78] sm:text-[18px]">

@@ -55,7 +55,7 @@ export function CareYouCanTrust() {
     <section className="relative isolate overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-14 sm:py-20" aria-labelledby="trust-title">
       <Container>
         <Reveal className="mx-auto max-w-[820px] text-center">
-          <h2 id="trust-title" className="type-h1 font-extrabold text-navy">
+          <h2 id="trust-title" className="type-h2 text-navy">
             {careYouCanTrust.title}
           </h2>
           <p className="type-body mt-3 text-pretty text-body">{careYouCanTrust.subtitle}</p>

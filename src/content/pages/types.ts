@@ -21,7 +21,8 @@ export type PageHero = {
   /** split (default): copy beside a framed image · banner: rounded blue gradient card with a cut-out image · photo: rounded full-bleed photo panel, `image` floats in a glass card */
   variant?: "split" | "banner" | "photo" | "network";
   /** network variant: glass hub label and the partner logos placed around it (clockwise from the top). `image` is not rendered. */
-  network?: { hubLabel: string; logos: ImageAsset[] };
+  /** `hub: "glow"` gives the centre a glowing disc with a people icon (and a stethoscope pill, bottom wave); the default is the open outlined circle. */
+  network?: { hubLabel: string; logos: ImageAsset[]; hub?: "glow" };
   /** Background photograph for the `photo` variant (decorative). */
   background?: ImageAsset;
   /** YouTube video shown as a floating card in the `photo` variant (replaces `image` there). */
@@ -57,6 +58,8 @@ export type FeaturesSection = {
   variant?: "card" | "stat" | "check" | "flow" | "mission" | "glassFlow" | "partner" | "gap" | "ribbon" | "campusBanner" | "earlyReferral" | "universityBenefits";
   /** partner: white split card (lead + check list + quote beside `image`); glassFlow: substring of `title` shown in the brand blue / bold. */
   accent?: string;
+  /** partner: replaces the heading; `title` then becomes the pill above it and `accent` (a substring of `text`) is shown in blue. */
+  headline?: { text: string; accent: string };
   /** YouTube video shown with the section (ADHD Care services). */
   video?: { id: string; title: string };
   tone?: Tone;
@@ -71,9 +74,9 @@ export type StepsSection = {
   id?: string;
   title: string;
   subtitle?: string;
-  items: Array<{ title: string; text: string; image?: ImageAsset; /** stack: extra sub-points shown under the text. */ details?: Array<{ title: string; text: string }>; /** stack: optional smaller second screenshot overlapping the main one. */ inset?: ImageAsset }>;
+  items: Array<{ title: string; text: string; image?: ImageAsset; /** journey: time estimate shown in the pill at the bottom of the card. */ duration?: string; /** stack: extra sub-points shown under the text. */ details?: Array<{ title: string; text: string }>; /** stack: optional smaller second screenshot overlapping the main one. */ inset?: ImageAsset }>;
   tone?: Tone;
-  /** journey: frosted-glass, scroll-driven three-step layout (StepsJourney); step images are not used. stack: sticky, overlapping pastel cards with browser-framed screenshots (WorkflowStack). */
+  /** journey: numbered steps joined by a line, over tinted cards with a picture and duration pill (StepsJourney). stack: sticky, overlapping pastel cards with browser-framed screenshots (WorkflowStack). */
   variant?: "journey" | "stack";
   eyebrow?: string;
   /** Substring of `title` rendered in the brand blue. */
@@ -104,7 +107,7 @@ export type SplitSection = {
 };
 
 /** `arcs`: full-width blue banner, left-aligned copy and both buttons over concentric arcs. `screening`: gradient banner with pill, accented title, copy and CTA beside three floating glass stat cards (see ScreeningBanner). */
-export type CtaSection = { type: "cta"; title: string; subtitle?: string; primary: Cta; secondary?: Cta; note?: string; variant?: "screening" | "arcs" | "teal"; eyebrow?: string; accent?: string; stats?: Array<{ value: string; label: string; accent: "cyan" | "green" | "orange" }> };
+export type CtaSection = { type: "cta"; title: string; subtitle?: string; primary: Cta; secondary?: Cta; note?: string; variant?: "screening" | "teal" | "blue"; eyebrow?: string; accent?: string; stats?: Array<{ value: string; label: string; accent: "cyan" | "green" | "orange" }> };
 
 export type QuotesSection = { type: "quotes"; title: string; subtitle?: string; variant?: "glass"; accent?: string; items: Array<{ quote: string; name: string; role: string }> };
 
@@ -112,12 +115,12 @@ export type QuotesSection = { type: "quotes"; title: string; subtitle?: string; 
 export type TestimonialCarouselSection = { type: "testimonialCarousel"; eyebrow: string; title: string; accent: string; subtitle: string; items: Array<{ quote: string; name: string; role: string }> };
 
 /** `compliance`: pill + accented title + subtitle + note bar beside a certification orbit built from `badges` (HIPAA, GDPR, CCPA, SOC 2 order). */
-export type BadgesSection = { type: "badges"; title: string; subtitle: string; badges: ImageAsset[]; image?: ImageAsset; variant?: "compliance"; eyebrow?: string; accent?: string; note?: string };
+export type BadgesSection = { type: "badges"; title: string; subtitle: string; badges: ImageAsset[]; image?: ImageAsset; variant?: "compliance"; eyebrow?: string; accent?: string; note?: string; /** compliance: a shorter card (smaller badge orbit, tighter padding) for pages where it sits right under a strip. */ compact?: boolean };
 
 /** `split`: centred heading (with `accent` underlined), an `aside` card on the left and a compact accordion on the right. */
 export type FaqSectionData = { type: "faq"; title: string; subtitle?: string; faqs: Faq[]; variant?: "split"; accent?: string; aside?: { title: string; text: string } };
 
-export type SharedSection = { type: "blogs" } | { type: "contact" } | { type: "logos" };
+export type SharedSection = { type: "blogs" } | { type: "contact" } | { type: "logos" } | { type: "reviewStrip"; stat: { value: string; label: string } };
 
 export type PageSection = PageHero | AssessmentOverviewSection | FeaturesSection | StepsSection | SplitSection | CtaSection | QuotesSection | TestimonialCarouselSection | BadgesSection | FaqSectionData | SharedSection;
 

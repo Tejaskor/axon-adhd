@@ -1,17 +1,17 @@
-import { AccommodationBlogs, AccommodationContact } from "@/components/sections/AccommodationSections";
+import { AccommodationContact } from "@/components/sections/AccommodationSections";
 import {
   AssessmentBannerCta,
   AssessmentClosingCta,
   AssessmentConfidence,
-  AssessmentHowItWorks,
   AssessmentLearn,
   AssessmentOpensDoors,
   AssessmentProcess,
 } from "@/components/sections/AssessmentSections";
 import { innerPageMetadata } from "@/components/sections/InnerPage";
+import { LatestBlogs } from "@/components/sections/LatestBlogs";
 import { PageSections } from "@/components/sections/PageSections";
 import { JsonLd } from "@/components/ui/JsonLd";
-import { latestBlogs, contactSection } from "@/content/home";
+import { contactSection } from "@/content/home";
 import { comprehensiveAssessmentPage } from "@/content/pages/comprehensive-assessment";
 import type { PageSection } from "@/content/pages/types";
 import { breadcrumbJsonLd } from "@/lib/seo";
@@ -34,13 +34,12 @@ export default function Page() {
       <PageSections sections={sections.slice(0, 3)} />
 
       <AssessmentLearn data={at(3, "split")} />
-      <AssessmentHowItWorks data={at(4, "features")} />
-      <AssessmentBannerCta data={at(5, "cta")} />
-      <AssessmentConfidence data={at(6, "features")} />
-      <AssessmentOpensDoors data={at(7, "features")} />
-      <AssessmentProcess data={at(8, "steps")} />
-      <AssessmentClosingCta data={at(9, "cta")} />
-      <AccommodationBlogs title={latestBlogs.title} subtitle={latestBlogs.subtitle} />
+      <AssessmentBannerCta data={at(4, "cta")} />
+      <AssessmentConfidence data={at(5, "features")} />
+      <AssessmentOpensDoors data={at(6, "features")} />
+      <AssessmentProcess data={at(7, "steps")} />
+      <AssessmentClosingCta data={at(8, "cta")} />
+      <LatestBlogs />
       <AccommodationContact eyebrow={null} description={contactSection.subtitle} compact />
 
       <JsonLd

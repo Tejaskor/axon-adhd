@@ -15,7 +15,7 @@ export const comprehensiveAssessmentPage: PageContent = {
       type: "hero",
       variant: "photo",
       title: "Comprehensive ADHD Assessment & Evaluation in Arlington, VA",
-      accent: "ADHD Assessment &",
+      accent: "ADHD Assessment & Evaluation",
       text: [
         "Start with a free behavioral health check, then move to a full, clinically validated ADHD assessment and evaluation in Arlington, VA, designed to provide accurate diagnoses and personalized treatment recommendations.",
       ],
@@ -45,12 +45,15 @@ export const comprehensiveAssessmentPage: PageContent = {
     {
       type: "steps",
       variant: "journey",
-      accent: "Three Easy Steps",
-      title: "From Diagnosis to Thriving in Three Easy Steps with AXON ADHD.",
+      eyebrow: "Your ADHD Assessment Journey",
+      accent: "All in One Day.",
+      title: "From Screening to a Personalized Care Plan — All in One Day.",
+      subtitle: "A simple, clinician-guided process to assess, understand, and plan your ADHD care with Aaron.",
       items: [
-        { title: "Complete Free Screening", text: "Quick, guided questions to identify symptoms.", image: { src: "/images/services/Complete-Free-Screening.webp", alt: "Complete Free Screening", width: 2652, height: 2079 } },
-        { title: "Complete Comprehensive ADHD Eval", text: "Providers confirm your diagnosis and provide a personalized treatment plan.", image: { src: "/images/services/Complete-Comprehensive-ADHD-Eval.webp", alt: "Complete Comprehensive ADHD Eval", width: 3719, height: 2856 } },
-        { title: "Get Detailed Report & Plan", text: "Your report unlocks medication, therapy, coaching, and accommodations.", image: { src: "/images/services/Get-Detailed-Report-Plan.webp", alt: "Get Detailed Report & Plan", width: 3825, height: 2797 } },
+        { title: "Free ADHD Screening", text: "A quick, confidential multiple-choice questionnaire (MCQ) to check for possible ADHD symptoms.", duration: "~ 5–10 Minutes", image: { src: "/images/assessment/journey/screening.webp", alt: "Laptop showing a free ADHD screening question", width: 409, height: 215 } },
+        { title: "Comprehensive ADHD Assessment", text: "A detailed, clinically validated evaluation using the QB Check Test that measures attention, impulsivity, and activity levels.", duration: "~ 20–30 Minutes", image: { src: "/images/assessment/journey/qbcheck.webp", alt: "Person wearing headphones taking the QbCheck test on a monitor", width: 391, height: 211 } },
+        { title: "Receive Your Personalized Report", text: "Get a clear, easy-to-understand report with your results, clinical insights, and recommendations.", duration: "~ Same Day", image: { src: "/images/assessment/journey/report.webp", alt: "Hand holding an AXON ADHD assessment report", width: 388, height: 211 } },
+        { title: "30-Minute Zoom Consultation with Aaron", text: "Meet with Aaron on Zoom for 30 minutes to review your report, discuss the results, and plan your personalized next steps.", duration: "~ 30 Minutes", image: { src: "/images/assessment/journey/consultation.webp", alt: "Patient on a Zoom video consultation with a clinician", width: 406, height: 211 } },
       ],
     },
     {
@@ -78,20 +81,8 @@ export const comprehensiveAssessmentPage: PageContent = {
       image: { src: "/images/free-assessment-preview.webp", alt: "Preview of the free ADHD assessment and screening results", width: 2473, height: 1707 },
     },
     {
-      type: "features",
-      id: "how-it-works",
-      variant: "glassFlow",
-      accent: "Works",
-      title: "How It Works",
-      subtitle: "A simple, three-step process to understand your ADHD symptoms and access professional support.",
-      items: [
-        { title: "Complete Online Screening", text: "Answer research-backed questions in just 5–10 minutes." },
-        { title: "Get Instant Results", text: "Receive your preliminary score and personalized insights." },
-        { title: "Proceed to Comprehensive ADHD Evaluation", text: "Take the full eval from the comfort of your own home and have an official diagnosis you can trust." },
-      ],
-    },
-    {
       type: "cta",
+      eyebrow: "Get an Official ADHD Diagnosis",
       title: "Ready for an Official Diagnosis?",
       subtitle:
         "Your free screening results inform whether a full evaluation is necessary, but isn’t sufficient for an official diagnosis. That requires our state of the art, FDA cleared assessment. Luckily, you can take that immediately and then meet with our licensed psychologists to discuss the results and get an official diagnosis within days.",

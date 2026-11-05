@@ -7,11 +7,10 @@ import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
 
 /*
- * Both column headings share one size, smaller than type-h2 and keyed to the column width, so each heading line
- * ("Why can’t I figure this" / "Attention Deficit Hyperactivity") stays on one line; only the deliberate <br> wraps.
+ * Both column headings use the shared section-heading size; the deliberate <br> splits each into two lines.
  */
 const headingClass =
-  "text-center text-[clamp(20px,5.6vw,30px)] leading-[1.3] font-semibold tracking-[-0.5px] md:text-[clamp(18px,2.3vw,34px)] md:tracking-[-1px]";
+  "type-section text-center leading-[1.3] tracking-[-0.5px] md:tracking-[-1px]";
 
 const tones = { blue: "bg-brand", teal: "bg-teal", orange: "bg-orange" } as const;
 
@@ -189,7 +188,7 @@ export function ADHDMythBuster() {
       className="relative overflow-hidden bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)] py-16 sm:py-20"
       aria-labelledby="myth-title"
     >
-      <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto w-full max-w-[1372px] px-4">
         <div className="grid gap-12 md:grid-cols-[54fr_46fr] md:gap-0 md:divide-x md:divide-primary-100">
           {/* Left: the cycle before a diagnosis */}
           <div className="flex flex-col border-b border-primary-100 pb-12 md:border-b-0 md:pr-6 md:pb-0 lg:pr-10">

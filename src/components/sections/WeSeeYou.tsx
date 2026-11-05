@@ -37,7 +37,7 @@ export function WeSeeYou() {
           {/* Right: copy, affirmation cards, CTAs */}
           <div>
             <Reveal>
-              <h2 id="see-you-title" className="type-h1 font-extrabold text-navy">
+              <h2 id="see-you-title" className="type-h2 text-navy">
                 {weSeeYou.title}
                 <span className="block text-brand">{weSeeYou.subtitle}</span>
               </h2>

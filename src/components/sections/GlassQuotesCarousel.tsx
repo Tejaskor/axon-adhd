@@ -167,54 +167,9 @@ export function GlassQuotesCarousel({ data }: { data: QuotesSection }) {
 
   return (
     <section
-      className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#F6FAFF_0%,#E9F2FE_100%)] py-12 sm:py-16"
+      className="relative isolate overflow-hidden bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)] py-12 sm:py-16"
       aria-labelledby="glass-quotes-title"
     >
-      <svg
-        aria-hidden
-        viewBox="0 0 400 160"
-        fill="none"
-        preserveAspectRatio="none"
-        className="pointer-events-none absolute top-0 left-0 -z-10 h-24 w-56 sm:h-32 sm:w-72"
-      >
-        <path
-          d="M0 0H400C300 30 200 40 120 80S30 140 0 160Z"
-          fill="#5DA2F0"
-          fillOpacity=".2"
-        />
-      </svg>
-      <svg
-        aria-hidden
-        viewBox="0 0 800 200"
-        fill="none"
-        preserveAspectRatio="none"
-        className="pointer-events-none absolute right-0 bottom-0 -z-10 h-24 w-[70%] sm:h-32"
-      >
-        <path
-          d="M0 200C160 110 420 90 800 50V200Z"
-          fill="#7DB4F4"
-          fillOpacity=".2"
-        />
-        <path
-          d="M200 200C380 130 620 120 800 80V200Z"
-          fill="#3F8EEB"
-          fillOpacity=".2"
-        />
-      </svg>
-      <svg
-        aria-hidden
-        viewBox="0 0 600 160"
-        fill="none"
-        preserveAspectRatio="none"
-        className="pointer-events-none absolute bottom-0 left-0 -z-10 h-20 w-[45%] sm:h-28"
-      >
-        <path
-          d="M0 60C140 50 280 120 420 140S560 150 600 160H0Z"
-          fill="#A9CDF8"
-          fillOpacity=".3"
-        />
-      </svg>
-
       <Container>
         <div className="mx-auto text-center">
           <h2 id="glass-quotes-title" className="type-h2 text-[#0B1F4D]">
@@ -232,7 +187,7 @@ export function GlassQuotesCarousel({ data }: { data: QuotesSection }) {
         </div>
       </Container>
 
-      {/* The row is full-bleed: it runs to both screen edges and slides one card per step under them. */}
+      {/* The row spans the screen; the cards slide one per step inside the gap between the arrow buttons. */}
       <div
         role="region"
         aria-roledescription="carousel"
@@ -250,8 +205,10 @@ export function GlassQuotesCarousel({ data }: { data: QuotesSection }) {
             onClick={() => go(current + 1)}
             className="absolute top-1/2 right-2 z-10 hidden -translate-y-1/2 sm:grid"
           />
+          {/* Clipped to the space between the two arrow buttons, so only the visible cards show: no neighbours peek out at the sides. */}
           <div
-            className="overflow-hidden"
+            className="-my-10 overflow-hidden py-10 [--gutter:1rem] sm:[--gutter:4.5rem]"
+            style={{ marginInline: "calc(var(--gutter) - 0.5rem)" }}
             onTouchStart={(e) => {
               touchX.current = e.touches[0].clientX;
             }}
@@ -263,11 +220,8 @@ export function GlassQuotesCarousel({ data }: { data: QuotesSection }) {
             }}
           >
             <ul
-              className="flex items-stretch py-3 transition-transform duration-500 ease-brand [--gutter:1rem] motion-reduce:transition-none sm:[--gutter:4.5rem] lg:[--gutter:4.5rem]"
-              style={{
-                paddingInline: "calc(var(--gutter) - 0.5rem)",
-                transform: `translateX(calc(${-start} * (100% - 2 * var(--gutter) + 1rem) / ${perView}))`,
-              }}
+              className="flex items-stretch py-3 transition-transform duration-500 ease-brand motion-reduce:transition-none"
+              style={{ transform: `translateX(calc(${-start} * 100% / ${perView}))` }}
             >
               {data.items.map((item, i) => {
                 const visible = i >= start && i < start + perView;
