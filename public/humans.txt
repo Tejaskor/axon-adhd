@@ -1,0 +1,14 @@
+/* TEAM */
+Organization: AXON ADHD (operated by AXON Digital Health & Diagnosis)
+Founder: Dr. Aaron Dodini, Ph.D., Licensed Clinical Psychologist
+Site: https://www.axonadhd.com
+Contact: info@axonadhd.com
+Location: Arlington, VA, USA
+
+/* SITE */
+Last update: 2026/11/05
+Language: English
+Standards: HTML5, CSS3, TypeScript
+Components: Next.js 16 (App Router), React 19, Tailwind CSS 4, React Hook Form, Zod, Lucide icons
+Fonts: Manrope (Google Fonts, self-hosted through next/font)
+Email delivery: Resend / Nodemailer

@@ -1,0 +1,6 @@
+# Security contact for axonadhd.com (RFC 9116).
+# NOTE: info@axonadhd.com is the site's public contact address. Replace it with a dedicated security mailbox if one is set up.
+Contact: mailto:info@axonadhd.com
+Expires: 2027-11-05T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://www.axonadhd.com/.well-known/security.txt

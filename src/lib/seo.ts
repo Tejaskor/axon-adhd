@@ -41,7 +41,7 @@ export function plainText(text: string) {
     .replace(/\s*\n\s*/g, " ");
 }
 
-function blocksToText(blocks: Block[]) {
+export function blocksToText(blocks: Block[]) {
   return blocks.map((b) => ("items" in b ? b.items.map(plainText).join(" ") : plainText(b.text))).join(" ");
 }
 
