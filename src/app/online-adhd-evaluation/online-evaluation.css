@@ -1,0 +1,2324 @@
+/* =========================================================
+   AXON ADHD evaluation landing page | Elementor Pro
+   Headings + text: Manrope (thinkitive.com type system) · Buttons: homepage pill style (50px)
+   Everything is scoped to .axn so theme/Elementor styles don't clash.
+   Breakpoints match Elementor: tablet <=1024px, mobile <=767px
+   (plus a small-laptop band 1025–1200px and a small-phone band <=400px)
+   Section backgrounds run edge to edge; content is capped at 1340px and centred.
+   Colours: hero #E8F2FF, alternating sections #F8FBFF / white.
+   Motion: scroll-reveal + eased wheel scrolling (see end of file + HTML script).
+   Lines marked "RESP" are the responsiveness fixes.
+   ========================================================= */
+
+
+.axn{
+  --axn-ink:#0B254B;
+  --axn-body:rgba(11,37,75,.72);
+  --axn-muted:#5B6B84;
+  --axn-line:#DCE4EE;
+  --axn-tint:#F4F7FB;
+  --axn-blue:#256ACC;
+  --axn-blue-600:#1D57AB;
+  --axn-navy:#10458D;
+  --axn-green:#0D7C66;
+  --axn-green-700:#0B6654;
+  --axn-mint:#EEFBF7;
+  --axn-sky:#EFF6FF;
+  --axn-hero-bg:#E8F2FF;
+  --axn-soft:#F8FBFF;
+  --axn-soft-line:#E3EBF5;
+  --axn-check:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230D7C66' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+  --axn-h:var(--font-manrope),'Manrope','Raleway',Arial,sans-serif;
+  --axn-b:var(--font-manrope),'Manrope','Raleway',Arial,sans-serif;
+  font-family:var(--axn-b);
+  font-size:16px;
+  line-height:1.5;
+  color:var(--axn-ink);
+  background:var(--axn-tint);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:clip;
+  overflow-wrap:break-word; /* RESP: long words/emails/URLs never push the layout wider than the screen */
+  /* Full-width breakout: section backgrounds span the whole screen even inside a boxed Elementor container.
+     RESP: --axn-vw (set by the optional script) = viewport minus the desktop scrollbar, so the page
+     stays perfectly centred. Without the script it falls back to 100vw exactly as before. */
+  position:relative;
+}
+.axn *,.axn *::before,.axn *::after{box-sizing:border-box}
+.axn h1,.axn h2,.axn h3,.axn p,.axn ul,.axn ol{margin:0;padding:0}
+.axn ul,.axn ol{list-style:none}
+.axn img{max-width:100%;height:auto;border:0}
+.axn svg{flex-shrink:0}
+.axn strong{font-weight:700}
+.axn button{font:inherit}
+
+/* ---------- Layout ---------- */
+.axn .axn-wrap{width:100%;max-width:1388px;margin:0 auto;padding:0 24px} /* 1340px content + 24px side padding */
+.axn .axn-wrap--faq{max-width:928px}
+.axn .axn-sec--white{background:#fff}
+.axn .axn-sec--tint{background:#f7fafd}
+.axn .axn-sec--soft{background:linear-gradient(249deg,#dfeaf4 24.89%,rgba(255,255,255,.2) 64.07%),#fff}
+.axn .axn-sec--navy{background:var(--axn-navy);color:#fff}
+.axn .axn-sec--64{padding:64px 0}
+.axn .axn-sec--72{padding:72px 0}
+.axn .axn-sec--80{padding:80px 0}
+.axn .axn-sec--88{padding:88px 0}
+.axn .axn-stack{display:flex;flex-direction:column;gap:40px}
+.axn .axn-stack--32{gap:32px}
+.axn .axn-stack--44{gap:44px}
+.axn .axn-stack--36{gap:36px}
+.axn .axn-center{text-align:center}
+.axn .axn-grow{flex-grow:1}
+
+/* RESP: grid/flex children may shrink below their content width instead of overflowing */
+.axn .axn-hero__grid>*,.axn .axn-familiar>*,.axn .axn-spec__grid>*,.axn .axn-duo>*,.axn .axn-plans>*,
+.axn .axn-steps>*,.axn .axn-why>*,.axn .axn-faq>*,.axn .axn-quotes>*,.axn .axn-spec__stats>*,
+.axn .axn-screener__copy,.axn .axn-panel{min-width:0}
+
+/* ---------- Type ---------- */
+.axn .axn-h1,.axn .axn-h2,.axn .axn-h3,.axn .axn-plan__name,.axn .axn-step__t,.axn .axn-why__t,.axn .axn-price__amt,.axn .axn-plan__amt,.axn .axn-mprice__amt,.axn .axn-sticky__amt,.axn .axn-step__n,.axn .axn-faq summary{font-family:var(--axn-h)}
+.axn .axn-h1{font-size:50px;line-height:1.2;font-weight:700;letter-spacing:-1px;color:var(--axn-ink)}
+.axn .axn-h2{font-size:32px;line-height:1.4;font-weight:600;letter-spacing:-.01em;color:var(--axn-ink)}
+.axn .axn-h2--40{font-size:32px}
+.axn .axn-h2--48{font-size:40px;line-height:1.25}
+.axn .axn-h2--white{color:#fff}
+.axn .axn-h3{font-size:24px;line-height:1.3;font-weight:600;letter-spacing:-.01em;color:var(--axn-ink)}
+.axn .axn-h3--28{font-size:24px}
+.axn .axn-lead{font-size:18px;line-height:1.6;color:var(--axn-body)}
+.axn .axn-body{font-size:17px;line-height:1.65;color:var(--axn-body)}
+.axn .axn-body--17{font-size:16px}
+.axn .axn-eyebrow{font-size:14px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--axn-green-700)}
+.axn .axn-eyebrow--blue{color:var(--axn-blue-600);letter-spacing:.06em}
+.axn .axn-eyebrow--mint{color:#9FE3D2}
+.axn .axn-eyebrow--amber{color:#8A5200}
+.axn .axn-head{display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center}
+.axn .axn-head--left{align-items:flex-start;text-align:left;max-width:760px}
+.axn .axn-head__p{max-width:680px;line-height:1.55}
+
+/* ---------- Buttons (same as axonadhd.com homepage) ---------- */
+.axn .axn-btn,.axn .axn-btn-o,.axn .axn-btn-w{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--axn-b);font-size:16px;font-weight:400;line-height:1.2;padding:12px 20px;min-height:44px;border-radius:50px;border:1px solid var(--axn-blue);text-decoration:none;text-align:center;transition:background-color .2s ease,color .2s ease,border-color .2s ease;max-width:100%}
+.axn .axn-btn{background:var(--axn-blue);color:#fff;box-shadow:0 1px 2px rgba(16,24,40,.05)}
+.axn .axn-btn:hover,.axn .axn-btn:focus-visible{background:var(--axn-navy);border-color:var(--axn-navy);color:#fff}
+.axn .axn-btn-o{background:#fff;color:var(--axn-blue)}
+.axn .axn-btn-o:hover,.axn .axn-btn-o:focus-visible{background:var(--axn-blue);color:#fff}
+.axn .axn-btn-o--green{border-color:var(--axn-green);color:var(--axn-green-700);flex-shrink:0}
+.axn .axn-btn-o--green:hover,.axn .axn-btn-o--green:focus-visible{background:var(--axn-green);border-color:var(--axn-green);color:#fff}
+.axn .axn-btn-w{background:#fff;border-color:#fff;color:var(--axn-navy);font-size:18px}
+.axn .axn-btn-w:hover,.axn .axn-btn-w:focus-visible{background:var(--axn-sky);border-color:var(--axn-sky);color:var(--axn-navy)}
+.axn .axn-btn--lg{font-size:18px}
+.axn .axn-btn--block{display:flex;width:100%}
+.axn .axn-tl{color:var(--axn-blue-600);font-size:16px;font-weight:500;text-decoration:underline;text-underline-offset:4px}
+.axn .axn-tl:hover{color:var(--axn-navy)}
+.axn a:focus-visible,.axn button:focus-visible,.axn summary:focus-visible,.axn [tabindex]:focus-visible{outline:3px solid #9FC3F5;outline-offset:3px}
+
+/* ---------- Check lists ---------- */
+.axn .axn-checks{display:flex;flex-direction:column;gap:12px;font-size:16px}
+.axn .axn-checks li,.axn .axn-ck{position:relative;padding-left:32px;line-height:1.45}
+.axn .axn-checks li::before,.axn .axn-ck::before{content:"";position:absolute;left:0;top:1px;width:20px;height:20px;background:var(--axn-check) center/contain no-repeat}
+
+/* ---------- Hero ---------- */
+.axn .axn-hero{background:var(--axn-hero-bg);padding:200px 0 80px}
+.axn .axn-hero__grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:64px;align-items:center} /* RESP: minmax(0,…) */
+.axn .axn-hero__copy{display:flex;flex-direction:column;gap:24px;min-width:0}
+.axn .axn-pill{align-self:flex-start;background:var(--axn-mint);color:var(--axn-green-700);font-weight:500;font-size:14px;line-height:1.4;padding:8px 14px;border-radius:999px;max-width:100%}
+.axn .axn-hero__ctas{display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px;margin-top:8px}
+.axn .axn-trust{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:8px;font-size:15px;color:var(--axn-body)}
+.axn .axn-trust__rating{display:flex;align-items:center;gap:8px}
+.axn .axn-trust strong{color:var(--axn-ink)}
+.axn .axn-stars{fill:#EB8B01}
+.axn .axn-ck{padding-left:26px}
+.axn .axn-ck::before{width:18px;height:18px}
+.axn .axn-mprice{display:none}
+
+.axn .axn-card-price{background:#fff;border:1px solid var(--axn-line);border-radius:24px;box-shadow:0 24px 48px -24px rgba(16,69,141,.25);overflow:hidden}
+.axn .axn-card-price__top{background:var(--axn-sky);padding:24px 28px;border-bottom:1px solid var(--axn-line)}
+.axn .axn-price{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;margin-top:8px}
+.axn .axn-price__amt{font-size:48px;font-weight:700;line-height:1.1;color:var(--axn-ink)}
+.axn .axn-price__note{font-size:16px;color:var(--axn-body)}
+.axn .axn-card-price__body{padding:24px 28px;display:flex;flex-direction:column;gap:14px}
+.axn .axn-card-price__body .axn-checks{gap:14px}
+.axn .axn-card-price__body .axn-btn{margin-top:8px;font-size:17px;min-height:52px}
+.axn .axn-fine{font-size:13px;line-height:1.5;color:var(--axn-muted);text-align:center}
+
+/* ---------- Trusted by (real logos from axonadhd.com) ---------- */
+.axn .axn-logos{background:var(--axn-soft);padding:40px 0;border-top:1px solid var(--axn-soft-line);border-bottom:1px solid var(--axn-soft-line);display:flex;flex-direction:column;gap:22px}
+.axn .axn-logos__label{font-family:var(--axn-b);font-size:13px;font-weight:700;line-height:1.5;letter-spacing:.1em;text-transform:uppercase;color:var(--axn-muted);text-align:center;padding:0 24px}
+.axn .axn-marquee{overflow:hidden;display:flex;align-items:center;height:60px;background:var(--axn-soft);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%);
+          mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%)}
+.axn .axn-marquee__track{display:flex;width:max-content;animation:axn-marquee 52s linear infinite}
+.axn .axn-marquee:hover .axn-marquee__track{animation-play-state:paused}
+.axn .axn-marquee__set{display:flex;align-items:center;gap:40px;padding-right:40px}
+.axn .axn-marquee__set img{height:46px;width:auto;max-width:none;display:block;mix-blend-mode:multiply}
+@keyframes axn-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- Sound familiar ---------- */
+.axn .axn-familiar{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:64px;align-items:center} /* RESP: minmax(0,…) */
+.axn .axn-familiar__copy{display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+.axn .axn-quotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;font-size:17px}
+.axn .axn-quotes>div{background:var(--axn-soft);border:1px solid var(--axn-soft-line);border-radius:14px;padding:18px 20px}
+
+/* ---------- How it works ---------- */
+.axn .axn-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.axn .axn-step{background:#fff;border:1px solid var(--axn-line);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:12px}
+.axn .axn-step>*{min-width:0} /* RESP */
+.axn .axn-step__n{width:44px;height:44px;border-radius:12px;background:var(--axn-blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;flex-shrink:0}
+.axn .axn-step__n--green{background:var(--axn-green)}
+.axn .axn-step__t{font-size:20px;font-weight:600;line-height:1.3;color:var(--axn-ink)}
+.axn .axn-step__p{font-size:16px;line-height:1.55;color:var(--axn-body);margin-top:12px}
+.axn .axn-row-cta{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:16px 24px;font-size:15px;color:var(--axn-body);text-align:center}
+.axn .axn-row-cta .axn-btn{font-size:17px}
+
+/* ---------- Pricing ---------- */
+.axn .axn-plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;width:100%;max-width:1000px;margin:0 auto}
+.axn .axn-plan{position:relative;border-radius:24px;padding:36px;display:flex;flex-direction:column;gap:20px}
+.axn .axn-plan--main{border:2px solid var(--axn-blue);background:#fff}
+.axn .axn-plan--alt{border:1px solid var(--axn-line);background:#FBFCFE}
+.axn .axn-plan .axn-btn,.axn .axn-plan .axn-btn-o{margin-top:8px;min-height:54px;font-size:17px}
+.axn .axn-badge{position:absolute;top:-15px;left:36px;background:var(--axn-blue);color:#fff;font-size:13px;font-weight:500;line-height:1.3;padding:6px 12px;border-radius:999px;max-width:calc(100% - 72px)}
+.axn .axn-badge--green{background:var(--axn-green)}
+.axn .axn-plan__name{font-size:22px;font-weight:600;line-height:1.25;letter-spacing:-.01em;color:var(--axn-ink)}
+.axn .axn-plan .axn-price{margin-top:0}
+.axn .axn-plan__amt{font-size:52px;font-weight:700;line-height:1.1;color:var(--axn-ink)}
+.axn .axn-plan-notes{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 36px;font-size:15px;color:var(--axn-body);text-align:center}
+.axn .axn-plan-notes strong{color:var(--axn-ink)}
+
+/* ---------- Why AXON ---------- */
+.axn .axn-why{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.axn .axn-why__c{background:#fff;border:1px solid var(--axn-soft-line);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:12px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+.axn .axn-why__ic{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;flex-shrink:0}
+.axn .axn-why__ic--blue{background:#EAF2FF;color:#256ACC}
+.axn .axn-why__ic--green{background:#E7F7F1;color:#0D7C66}
+.axn .axn-why__ic--amber{background:#FFF3E3;color:#E8890C}
+.axn .axn-why__t{font-size:20px;font-weight:600;color:var(--axn-ink)}
+.axn .axn-why__p{font-size:16px;line-height:1.55;color:var(--axn-body)}
+
+/* ---------- Accommodations + kids ---------- */
+.axn .axn-duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.axn .axn-panel{background:#fff;border:1px solid var(--axn-line);border-radius:24px;padding:40px;display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+.axn .axn-panel--warm{background:#FFF7EB;border-color:#F3DDB8}
+.axn .axn-panel__ctas{display:flex;flex-wrap:wrap;gap:16px 20px;align-items:center}
+
+/* ---------- Meet your ADHD specialist ---------- */
+.axn .axn-spec{padding:96px 0}
+.axn .axn-spec__grid{display:grid;grid-template-columns:480px minmax(0,1fr);gap:72px;align-items:center}
+/* RESP: the photo stack now scales with its column (same 480×590 geometry as before, in %),
+   so it can't spill out when the column gets narrower on laptops/tablets */
+.axn .axn-spec__media{position:relative;width:100%;max-width:480px;aspect-ratio:480/590}
+.axn .axn-spec__back{position:absolute;left:8.333%;top:0;width:91.667%;height:91.525%;border-radius:32px;background:var(--axn-mint);border:1px solid #BFE8DC}
+.axn .axn-spec__photo{position:absolute;left:0;top:6.102%;width:91.667%;height:91.525%;border-radius:32px;overflow:hidden;background:#DCE6F2;box-shadow:0 24px 48px -24px rgba(16,69,141,.25)}
+.axn .axn-spec__photo img{position:absolute;left:50%;top:50%;width:192%;max-width:none;height:auto;transform:translate(-50%,-46%)}
+.axn .axn-spec__years{position:absolute;right:-24px;top:84px;display:flex;align-items:center;gap:14px;padding:16px 20px;background:#fff;border:1px solid var(--axn-line);border-radius:18px;box-shadow:0 18px 40px -18px rgba(16,69,141,.35);font-size:14px;line-height:1.35;color:var(--axn-body)}
+.axn .axn-spec__num{font-family:var(--axn-h);font-size:40px;font-weight:700;line-height:1;color:var(--axn-blue)}
+.axn .axn-spec__speaker{position:absolute;left:28px;bottom:0;max-width:min(360px,calc(100% - 40px));display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--axn-navy);color:#fff;border-radius:18px;box-shadow:0 18px 40px -18px rgba(16,69,141,.5);font-size:14px;line-height:1.4}
+.axn .axn-spec__speaker strong{color:#fff}
+.axn .axn-spec__body{display:flex;flex-direction:column;align-items:flex-start;gap:22px;min-width:0}
+.axn .axn-spec__id{display:flex;flex-direction:column;gap:6px}
+.axn .axn-spec__name{font-family:var(--axn-h);font-size:44px;font-weight:700;line-height:1.15;letter-spacing:-1px;color:var(--axn-ink)}
+.axn .axn-spec__creds{font-size:17px;font-weight:500;letter-spacing:.04em;color:var(--axn-blue)}
+.axn .axn-spec__lic{font-size:16px;color:var(--axn-body)}
+.axn .axn-spec__quote{margin:0;display:flex;gap:16px;align-items:flex-start;width:100%;background:#fff;border:1px solid var(--axn-soft-line);border-radius:20px;padding:24px 28px}
+.axn .axn-spec__quote>*{min-width:0}
+.axn .axn-spec__quote svg{flex-shrink:0;margin-top:4px}
+.axn .axn-spec__quote blockquote{margin:0;padding:0;border:0;font-size:18px;line-height:1.55;font-style:italic;color:var(--axn-ink)}
+.axn .axn-spec__quote figcaption{margin-top:10px;font-size:14px;font-weight:500;color:var(--axn-muted)}
+.axn .axn-spec__stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;width:100%}
+.axn .axn-spec__stats>div{border:1px solid var(--axn-line);border-radius:16px;padding:18px;background:#fff}
+.axn .axn-spec__stat{font-family:var(--axn-h);font-size:22px;font-weight:700;line-height:1.2;color:var(--axn-ink)}
+.axn .axn-spec__statl{font-size:14px;line-height:1.4;color:var(--axn-body);margin-top:4px}
+.axn .axn-spec__chips{display:flex;flex-wrap:wrap;gap:10px}
+.axn .axn-chip{display:inline-block;padding:8px 14px;border-radius:999px;background:#fff;border:1px solid var(--axn-soft-line);color:var(--axn-body);font-size:14px;font-weight:500;line-height:1.3}
+.axn .axn-chip--mint{background:var(--axn-mint);border-color:#CDEFE4;color:var(--axn-green-700)}
+.axn .axn-chip--sky{background:var(--axn-sky);border-color:#D6E6FB;color:var(--axn-blue-600)}
+.axn .axn-spec__cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:6px;font-size:15px;color:var(--axn-body)}
+
+/* ---------- Final CTA (same design as "Ready for Clear Answers?" on axonadhd.com) ---------- */
+.axn .axn-ready{background:#fff;padding:88px 0}
+.axn .axn-ready__card{width:calc(100% - 48px);max-width:1340px;margin:0 auto;border-radius:20px;padding:100px 40px;display:flex;flex-direction:column;align-items:flex-start;gap:20px;background:#1B4F9C url("https://www.axonadhd.com/wp-content/uploads/2026/09/landingpage-scaled.webp") center center/cover no-repeat}
+.axn .axn-ready__h{font-family:var(--axn-h);font-size:32px;font-weight:600;line-height:1.25;color:#EEF0F2}
+.axn .axn-ready__p{font-family:var(--axn-b);font-size:18px;line-height:1.5;color:#EEF0F2;max-width:666px}
+.axn .axn-ready__ctas{display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px;margin-top:4px}
+.axn .axn-ready__tel{color:#fff;font-size:17px;font-weight:500;text-decoration:underline;text-underline-offset:4px}
+.axn .axn-ready__tel:hover{color:#E4EEFC}
+
+/* ---------- Google reviews (matches axonadhd.com homepage) ---------- */
+.axn .axn-reviews{background:#fff;padding:80px 0}
+.axn .axn-rv-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;margin-bottom:28px}
+.axn .axn-rv-head__h{font-family:var(--axn-h);font-size:32px;font-weight:600;line-height:1.5;color:#0B254B}
+.axn .axn-rv-head__p{font-size:18px;line-height:1.5;color:rgba(11,37,75,.7)}
+.axn .axn-rv{display:grid;grid-template-columns:230px minmax(0,1fr);gap:24px;align-items:center}
+.axn .axn-rv__sum{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px}
+.axn .axn-rv__ex{font-family:var(--axn-h);font-size:22px;font-weight:700;letter-spacing:.02em;color:#000}
+.axn .axn-rv__stars{fill:#F6BB06;width:150px;height:30px}
+.axn .axn-rv__based{font-size:15px;color:#000}
+.axn .axn-rv__glogo{width:110px;height:auto;margin-top:4px}
+.axn .axn-rv__slider{position:relative;min-width:0}
+.axn .axn-rv__track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:16px 4px 24px;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+.axn .axn-rv__track::-webkit-scrollbar{display:none}
+.axn .axn-rc{flex:0 0 calc((100% - 32px)/3);scroll-snap-align:start;background:#fff;border-radius:10px;box-shadow:0 5px 20px rgba(0,0,0,.08);padding:20px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.axn .axn-rc__head{display:flex;align-items:center;gap:12px;position:relative;padding-right:26px}
+.axn .axn-rc__head>div{min-width:0}
+.axn .axn-rc__av{position:relative;width:40px;height:40px;border-radius:50%;background:#0F8A9D;color:#fff;font-size:18px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.axn .axn-rc__av img{position:absolute;inset:0;width:40px;height:40px;object-fit:cover}
+.axn .axn-rc__name{font-size:15px;font-weight:700;color:#000;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.axn .axn-rc__date{font-size:13px;color:#8C8C8C;line-height:1.3;min-height:17px}
+.axn .axn-rc__g{position:absolute;top:0;right:0;width:20px;height:20px}
+.axn .axn-rc__stars{display:flex;align-items:center;gap:6px}
+.axn .axn-rc__stars svg{fill:#F6BB06;display:block}
+.axn .axn-rc__ver{width:15px;height:15px;border-radius:50%;background:#1A73E8 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/9px no-repeat}
+.axn .axn-rc__text{font-size:15px;line-height:1.6;color:#000;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.axn .axn-rc.is-open .axn-rc__text{display:block;-webkit-line-clamp:unset;overflow:visible}
+.axn .axn-rc__more{align-self:flex-start;background:none;border:0;padding:0;font-size:14px;color:#8C8C8C;cursor:pointer}
+.axn .axn-rc__more:hover{color:#555}
+.axn .axn-rv__nav{position:absolute;top:50%;z-index:2;width:34px;height:34px;margin-top:-24px;border-radius:50%;border:1px solid #E5E7EB;background:#fff;color:#333;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.12);padding:0}
+.axn .axn-rv__nav:hover{background:#F3F4F6}
+.axn .axn-rv__nav--prev{left:-14px}
+.axn .axn-rv__nav--next{right:-14px}
+.axn .axn-rv__bar{display:none;width:150px;height:3px;margin:4px auto 0;background:#D8DDE3;border-radius:3px;overflow:hidden}
+.axn .axn-rv__bar span{display:block;height:100%;width:25%;background:#555;border-radius:3px}
+
+/* ---------- Screener band ---------- */
+.axn .axn-screener{background:var(--axn-mint);border:1px solid #BFE8DC;border-radius:24px;padding:40px 48px;display:flex;justify-content:space-between;align-items:center;gap:40px}
+.axn .axn-screener__copy{display:flex;flex-direction:column;gap:10px;max-width:720px}
+
+/* ---------- FAQ (2-column grid, as in the reference) ---------- */
+.axn .axn-faq-sec{padding:24px 0 96px}
+.axn .axn-faq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.axn .axn-faq__item{background:var(--axn-soft);border:1px solid var(--axn-soft-line);border-radius:18px;padding:26px 28px;display:flex;flex-direction:column;gap:10px}
+.axn .axn-faq__q{font-family:var(--axn-h);font-size:18px;font-weight:600;line-height:1.4;color:var(--axn-ink)}
+.axn .axn-faq__a{font-size:15.5px;line-height:1.65;color:var(--axn-body)}
+.axn .axn-flag{color:#8A5200;font-weight:500}
+.axn .axn-faq-cta{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px 20px;font-size:16px;color:var(--axn-body)}
+
+/* ---------- Sticky mobile bar ---------- */
+.axn .axn-sticky{display:none}
+
+
+/* =========================================================
+   SMALL LAPTOP (1025–1200px)  — RESP: new band
+   Same desktop layout, just a little tighter so nothing crowds or overflows.
+   ========================================================= */
+@media (min-width:1025px) and (max-width:1200px){
+  .axn .axn-h1{font-size:44px}
+  .axn .axn-hero__grid,.axn .axn-familiar{gap:48px}
+  .axn .axn-steps,.axn .axn-why{gap:16px}
+  .axn .axn-step,.axn .axn-why__c{padding:22px}
+  .axn .axn-spec__grid{grid-template-columns:400px minmax(0,1fr);gap:56px}
+  .axn .axn-spec__years{right:-16px;top:64px}
+  .axn .axn-spec__name{font-size:38px}
+  .axn .axn-spec__stat{font-size:20px}
+  .axn .axn-ready__card{padding:80px 40px}
+  .axn .axn-rv{grid-template-columns:200px minmax(0,1fr)}
+}
+
+/* =========================================================
+   TABLET (<=1024px)
+   ========================================================= */
+@media (max-width:1024px){
+  .axn .axn-sec--72,.axn .axn-sec--80,.axn .axn-sec--88{padding:64px 0}
+  .axn .axn-hero{padding:180px 0 64px}
+  .axn .axn-hero__grid{grid-template-columns:minmax(0,1fr);gap:40px}
+  .axn .axn-card-price{max-width:560px;width:100%}
+  .axn .axn-h1{font-size:42px}
+  .axn .axn-h2,.axn .axn-h2--40{font-size:30px}
+  .axn .axn-h2--48{font-size:34px}
+  .axn .axn-h3{font-size:22px}
+  .axn .axn-familiar{grid-template-columns:minmax(0,1fr);gap:32px}
+  .axn .axn-steps,.axn .axn-why{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .axn .axn-reviews{padding:64px 0}
+  .axn .axn-rv{grid-template-columns:minmax(0,1fr);gap:8px}
+  .axn .axn-rv__sum{margin-bottom:8px}
+  .axn .axn-rc{flex-basis:calc((100% - 16px)/2)}
+  .axn .axn-rv__nav--prev{left:-18px}
+  .axn .axn-rv__nav--next{right:-18px}
+  .axn .axn-marquee__track{animation-duration:44s}
+  .axn .axn-spec{padding:72px 0}
+  .axn .axn-spec__grid{grid-template-columns:minmax(0,1fr);gap:48px}
+  .axn .axn-spec__media{width:480px;max-width:100%;margin:0 auto} /* RESP: 480 = full photo stack incl. the mint back panel (was 440, which clipped it) */
+  .axn .axn-spec__years{right:-12px}
+  .axn .axn-spec__name{font-size:38px}
+  .axn .axn-screener{padding:36px 40px;gap:32px}
+  .axn .axn-panel{padding:32px}
+  .axn .axn-ready{padding:64px 0}
+  .axn .axn-ready__card{padding:64px 32px;background-position:right center}
+  .axn .axn-ready__h{font-size:30px;max-width:52%}
+  .axn .axn-ready__p{font-size:17px;max-width:48%}
+  .axn .axn-ready__ctas{flex-direction:column;align-items:flex-start;gap:14px}
+}
+@media (max-width:900px){
+  .axn .axn-faq{grid-template-columns:minmax(0,1fr)}
+  .axn .axn-plans{grid-template-columns:minmax(0,1fr);max-width:560px;gap:36px}
+  .axn .axn-duo{grid-template-columns:minmax(0,1fr)}
+  /* RESP: screener text + button stop squeezing each other on small tablets */
+  .axn .axn-screener{flex-direction:column;align-items:flex-start;gap:20px}
+  /* RESP: on narrow tablets the CTA copy needs a bit more width than 52/48% */
+  .axn .axn-ready__h{max-width:60%}
+  .axn .axn-ready__p{max-width:56%}
+}
+
+/* =========================================================
+   MOBILE (<=767px) — follows the mobile reference
+   ========================================================= */
+@media (max-width:767px){
+  .axn .axn-wrap{padding:0 20px}
+  .axn .axn-sec--64,.axn .axn-sec--72,.axn .axn-sec--80,.axn .axn-sec--88{padding:48px 0}
+  .axn .axn-stack{gap:24px}
+  .axn .axn-stack--44{gap:20px}
+  .axn .axn-hide-m{display:none}
+
+  .axn .axn-h1{font-size:34px;line-height:1.2;letter-spacing:-.5px}
+  .axn .axn-h2,.axn .axn-h2--40{font-size:26px;line-height:1.3}
+  .axn .axn-h2--48{font-size:28px}
+  .axn .axn-h3,.axn .axn-h3--28{font-size:20px;line-height:1.3}
+  .axn .axn-lead{font-size:17px}
+  .axn .axn-body{font-size:16px;line-height:1.55}
+  .axn .axn-body--17{font-size:15px}
+  .axn .axn-eyebrow{font-size:13px}
+  .axn .axn-tl{font-size:15px}
+  .axn .axn-head{align-items:flex-start;text-align:left;gap:8px}
+
+  /* Hero */
+  .axn .axn-hero{padding:170px 0 40px}
+  .axn .axn-hero__copy{gap:18px}
+  .axn .axn-pill{font-size:13px;padding:7px 12px}
+  .axn .axn-card-price{display:none}
+  .axn .axn-mprice{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#fff;border:1px solid #D6E6FB;border-radius:14px;padding:14px 16px}
+  .axn .axn-mprice>*{min-width:0}
+  .axn .axn-mprice__amt{font-size:28px;font-weight:700;line-height:1.2}
+  .axn .axn-mprice__sub{font-size:13px;color:var(--axn-body)}
+  .axn .axn-hero__ctas{flex-direction:column;align-items:stretch;gap:16px;margin-top:0}
+  .axn .axn-hero__ctas .axn-btn{font-size:17px;min-height:52px}
+  .axn .axn-hero__ctas .axn-tl{text-align:center}
+  .axn .axn-trust{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:0;font-size:14px}
+  .axn .axn-trust>*{min-width:0}
+  .axn .axn-trust__rating{flex-wrap:wrap;gap:4px 8px}
+  .axn .axn-trust__rating .axn-stars{width:70px;height:13px}
+
+  /* Logos */
+  .axn .axn-logos{padding:28px 0;gap:14px}
+  .axn .axn-logos__label{font-size:12px}
+  .axn .axn-marquee{height:48px}
+  .axn .axn-marquee__set{gap:28px;padding-right:28px}
+  .axn .axn-marquee__set img{height:36px}
+  .axn .axn-marquee__track{animation-duration:40s}
+
+  /* Familiar */
+  .axn .axn-familiar{gap:16px}
+  .axn .axn-familiar__copy{display:contents}
+  .axn .axn-familiar__copy .axn-h2{order:1}
+  .axn .axn-quotes{order:2;grid-template-columns:minmax(0,1fr);gap:10px;font-size:16px}
+  .axn .axn-familiar__copy .axn-body{order:3}
+  .axn .axn-familiar__copy .axn-tl{order:4;justify-self:start}
+  .axn .axn-quotes>div{border-radius:12px;padding:14px 16px}
+
+  /* Steps */
+  .axn .axn-steps{grid-template-columns:minmax(0,1fr);gap:12px}
+  .axn .axn-step{flex-direction:row;align-items:flex-start;gap:14px;padding:18px;border-radius:16px}
+  .axn .axn-step>*:not(.axn-step__n){flex:1 1 auto}
+  .axn .axn-step__n{width:36px;height:36px;border-radius:10px;font-size:16px}
+  .axn .axn-step__t{font-size:18px}
+  .axn .axn-step__p{font-size:15px;line-height:1.5;margin-top:4px}
+  .axn .axn-row-cta{flex-direction:column;align-items:stretch}
+  .axn .axn-row-cta .axn-btn{width:100%}
+
+  /* Pricing */
+  .axn .axn-plans{gap:32px;margin-top:8px}
+  .axn .axn-plan{padding:28px 22px 24px;border-radius:20px;gap:16px}
+  .axn .axn-badge{top:-13px;left:22px;font-size:12px;padding:5px 10px;max-width:calc(100% - 44px)}
+  .axn .axn-plan__name{font-size:20px}
+  .axn .axn-plan__amt{font-size:42px}
+  .axn .axn-price__note{font-size:15px}
+  .axn .axn-checks{gap:10px;font-size:15px}
+  .axn .axn-checks li{padding-left:28px}
+  .axn .axn-checks li::before{width:18px;height:18px}
+  .axn .axn-plan .axn-btn,.axn .axn-plan .axn-btn-o{min-height:52px;font-size:16px}
+  .axn .axn-plan-notes{flex-direction:column;align-items:flex-start;gap:6px;font-size:14px;text-align:left}
+
+  /* Why */
+  .axn .axn-why{grid-template-columns:minmax(0,1fr);gap:12px}
+  .axn .axn-why__c{padding:20px;border-radius:16px;gap:6px}
+  .axn .axn-why__ic{width:44px;height:44px;margin-bottom:6px}
+  .axn .axn-why__ic svg{width:22px;height:22px}
+  .axn .axn-why__t{font-size:18px}
+  .axn .axn-why__p{font-size:15px;line-height:1.5}
+
+  /* Panels */
+  .axn .axn-duo{gap:16px}
+  .axn .axn-panel{padding:24px;border-radius:20px;gap:12px}
+  .axn .axn-panel__ctas{flex-direction:column;align-items:stretch;width:100%;gap:12px}
+  .axn .axn-panel__ctas .axn-tl{text-align:center}
+
+
+  /* Reviews */
+  .axn .axn-reviews{padding:48px 0}
+  .axn .axn-rv-head__h{font-size:26px;line-height:1.35}
+  .axn .axn-rv-head__p{font-size:16px}
+  .axn .axn-rv__track{padding:12px 4px 16px}
+  .axn .axn-rc{flex-basis:88%}
+  .axn .axn-rv__nav{display:none}
+  .axn .axn-rv__bar{display:block}
+
+  /* Screener */
+  .axn .axn-screener{flex-direction:column;align-items:stretch;padding:24px;gap:16px;border-radius:20px}
+  .axn .axn-btn-o--green{width:100%}
+
+  /* FAQ */
+  .axn .axn-faq-sec{padding:12px 0 52px}
+  .axn .axn-center{text-align:left}
+  .axn .axn-faq{grid-template-columns:minmax(0,1fr);gap:12px}
+  .axn .axn-faq__item{padding:20px;border-radius:14px;gap:8px}
+  .axn .axn-faq__q{font-size:17px}
+  .axn .axn-faq__a{font-size:15px;line-height:1.6}
+  .axn .axn-faq-cta{flex-direction:column;align-items:stretch;text-align:center}
+
+
+  /* Specialist */
+  .axn .axn-spec{padding:52px 0}
+  .axn .axn-spec__grid{gap:32px}
+  .axn .axn-spec__media{width:100%;height:auto;aspect-ratio:350/450;max-width:350px}
+  .axn .axn-spec__back{left:22px;width:calc(100% - 22px);height:calc(100% - 44px);border-radius:24px}
+  .axn .axn-spec__photo{top:22px;width:calc(100% - 22px);height:calc(100% - 44px);border-radius:24px}
+  .axn .axn-spec__years{right:0;top:52px;padding:10px 14px;gap:10px;font-size:12px;border-radius:14px}
+  .axn .axn-spec__num{font-size:30px}
+  .axn .axn-spec__speaker{left:12px;right:12px;bottom:0;max-width:none;padding:12px 14px;font-size:13px;border-radius:14px}
+  .axn .axn-spec__body{gap:18px}
+  .axn .axn-spec__name{font-size:30px;letter-spacing:-.5px}
+  .axn .axn-spec__creds{font-size:15px}
+  .axn .axn-spec__lic{font-size:14px}
+  .axn .axn-spec__quote{padding:18px;gap:12px;border-radius:16px}
+  .axn .axn-spec__quote blockquote{font-size:16px}
+  .axn .axn-spec__stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .axn .axn-spec__stats>div{padding:12px;border-radius:12px}
+  .axn .axn-spec__stat{font-size:17px}
+  .axn .axn-spec__statl{font-size:12px}
+  .axn .axn-chip{font-size:13px;padding:7px 12px}
+  .axn .axn-spec__cta{flex-direction:column;align-items:stretch;width:100%;text-align:center}
+
+  /* Final CTA */
+  .axn .axn-ready{padding:48px 0}
+  .axn .axn-ready__card{width:calc(100% - 40px);padding:48px 22px;align-items:center;text-align:center;gap:16px;background-position:0% center}
+  .axn .axn-ready__h{font-size:24px;max-width:none}
+  .axn .axn-ready__p{font-size:16px;max-width:none}
+  .axn .axn-ready__ctas{flex-direction:column;align-items:stretch;width:100%;text-align:center}
+  .axn .axn-ready__ctas .axn-btn{font-size:17px;min-height:52px}
+
+
+  /* Sticky bottom bar */
+  .axn .axn-sticky{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:999;align-items:center;gap:12px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--axn-line);box-shadow:0 -8px 24px rgba(16,69,141,.12)}
+  .axn .axn-sticky>*:first-child{flex-shrink:0}
+  .axn .axn-sticky__amt{font-size:20px;font-weight:700;line-height:1.2}
+  .axn .axn-sticky__sub{font-size:12px;color:var(--axn-body);white-space:nowrap}
+  .axn .axn-sticky .axn-btn{flex-grow:1;min-width:0;font-size:16px;min-height:50px}
+  body:has(.axn-sticky){padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+}
+
+/* =========================================================
+   SMALL PHONES (<=400px, e.g. iPhone SE / Galaxy S8) — RESP: new band
+   Same mobile design, trimmed so nothing is cramped at 320–400px.
+   ========================================================= */
+@media (max-width:400px){
+  .axn .axn-wrap{padding:0 16px}
+  .axn .axn-hero{padding-bottom:36px}
+  .axn .axn-h1{font-size:30px}
+  .axn .axn-h2,.axn .axn-h2--40{font-size:24px}
+  .axn .axn-h2--48{font-size:26px}
+  .axn .axn-h3,.axn .axn-h3--28{font-size:19px}
+  .axn .axn-lead{font-size:16px}
+  .axn .axn-mprice{padding:12px 14px}
+  .axn .axn-mprice__amt{font-size:24px}
+  .axn .axn-trust{font-size:13px;gap:8px}
+  .axn .axn-plan{padding:26px 18px 22px}
+  .axn .axn-badge{left:18px;max-width:calc(100% - 36px)}
+  .axn .axn-plan__amt{font-size:38px}
+  .axn .axn-panel,.axn .axn-screener{padding:20px}
+  .axn .axn-faq__item{padding:18px}
+  .axn .axn-step{padding:16px;gap:12px}
+  .axn .axn-rv-head__h{font-size:24px}
+  .axn .axn-rc{flex-basis:92%}
+  .axn .axn-spec__name{font-size:26px}
+  .axn .axn-spec__num{font-size:26px}
+  .axn .axn-spec__years{top:40px;padding:8px 12px}
+  .axn .axn-spec__stats{gap:6px}
+  .axn .axn-spec__stats>div{padding:10px 8px}
+  .axn .axn-spec__stat{font-size:15px}
+  .axn .axn-spec__statl{font-size:11px}
+  .axn .axn-ready__card{width:calc(100% - 32px);padding:40px 18px}
+  .axn .axn-ready__h{font-size:22px}
+  .axn .axn-sticky{padding-left:12px;padding-right:12px;gap:10px}
+  .axn .axn-sticky__amt{font-size:18px}
+  .axn .axn-sticky .axn-btn{font-size:15px;padding:12px 14px}
+}
+
+/* =========================================================
+   MOTION — scroll reveal + eased wheel scrolling
+   Content only starts hidden once the page script has added .axn-js
+   (and never for items already on screen), so nothing flickers.
+   Only opacity/transform animate: smooth 60fps, no layout shifts.
+   ========================================================= */
+.axn.axn-js .axn-up{opacity:0;transform:translate3d(0,32px,0);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);transition-delay:var(--axn-d,0ms)}
+.axn.axn-js .axn-up--left{transform:translate3d(-40px,0,0)}
+.axn.axn-js .axn-up.is-in{opacity:1;transform:none}
+/* RESP: on phones, slide-in-from-left becomes a gentle slide-up so it can't poke past the screen edge */
+@media (max-width:767px){
+  .axn.axn-js .axn-up--left{transform:translate3d(0,24px,0)}
+}
+
+/* Hero price card glides in on load (desktop/tablet only; hidden on mobile) */
+@keyframes axn-in-right{from{opacity:0;transform:translate3d(32px,0,0)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:no-preference){
+  .axn .axn-card-price{animation:axn-in-right .9s cubic-bezier(.22,1,.36,1) .15s both}
+}
+
+
+@media print{
+  .axn.axn-js .axn-up{opacity:1!important;transform:none!important}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .axn .axn-marquee{-webkit-mask-image:none;mask-image:none;height:auto}
+  .axn .axn-marquee__track{animation:none;width:100%}
+  .axn .axn-marquee__set{flex-wrap:wrap;justify-content:center;row-gap:20px;padding:0 24px;width:100%}
+  .axn .axn-marquee__set[aria-hidden="true"]{display:none}
+  .axn .axn-rv__track{scroll-behavior:auto}
+  .axn .axn-btn,.axn .axn-btn-o,.axn .axn-btn-w{transition:none}
+  .axn.axn-js .axn-up{opacity:1;transform:none;transition:none}
+}
+
+/* =========================================================
+   NEW / REDESIGNED SECTIONS
+   (1) Free assessment + 10% off  (.axn-bha…)   — replaces the old .axn-screener design
+   (2) Psychiatric care vs AXON comparison (.axn-cmp…)
+   The old ".axn-screener" and ".axn-btn-o--green" rules above are no longer
+   used by the page; they can be deleted.
+   ========================================================= */
+
+/* ---------- 1) FREE ASSESSMENT + 10% OFF ---------- */
+.axn .axn-btn--green{background:var(--axn-green);border-color:var(--axn-green);color:#fff;padding:14px 28px;min-height:52px;font-size:16px;font-weight:500}
+.axn .axn-btn--green:hover,.axn .axn-btn--green:focus-visible{background:var(--axn-green-700);border-color:var(--axn-green-700);color:#fff}
+.axn .axn-bha__link{font-size:14px}
+
+.axn .axn-bha{background:var(--axn-mint);border:1px solid #BFE8DC;border-radius:24px;padding:40px 48px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px 40px;align-items:start}
+.axn .axn-bha>*{min-width:0}
+.axn .axn-bha__copy{display:flex;flex-direction:column;gap:14px;align-items:flex-start;max-width:640px}
+.axn .axn-bha__pill{display:inline-flex;align-items:center;gap:8px;background:var(--axn-green);color:#fff;font-size:13px;font-weight:500;line-height:1.3;padding:7px 14px;border-radius:999px;max-width:100%}
+.axn .axn-bha__h{font-size:32px;font-weight:700;line-height:1.25;letter-spacing:-.02em}
+
+.axn .axn-bha__price{background:#fff;border:1px solid #BFE8DC;border-radius:16px;padding:16px 28px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px}
+.axn .axn-bha__price-l{font-size:12px;line-height:1.4;color:var(--axn-muted)}
+.axn .axn-bha__price-row{display:flex;align-items:baseline;gap:10px}
+.axn .axn-bha__was{font-size:16px;color:var(--axn-muted);text-decoration:line-through}
+.axn .axn-bha__now{font-family:var(--axn-h);font-size:38px;font-weight:700;line-height:1.15;color:var(--axn-green-700)}
+.axn .axn-bha__save{font-size:12px;font-weight:500;color:var(--axn-green-700)}
+
+.axn .axn-bha__steps{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);gap:14px;align-items:stretch}
+.axn .axn-bha__steps>*{min-width:0}
+.axn .axn-bha__step{background:#fff;border:1px solid var(--axn-line);border-radius:14px;padding:18px 20px;display:flex;align-items:flex-start;gap:14px}
+.axn .axn-bha__step--hi{border:2px solid var(--axn-green);padding:17px 19px}
+.axn .axn-bha__n{width:32px;height:32px;border-radius:8px;background:var(--axn-mint);color:var(--axn-green-700);display:flex;align-items:center;justify-content:center;font-family:var(--axn-h);font-size:15px;font-weight:700;flex-shrink:0}
+.axn .axn-bha__n--hi{background:var(--axn-green);color:#fff}
+.axn .axn-bha__st{font-family:var(--axn-h);font-size:16px;font-weight:700;line-height:1.3;color:var(--axn-ink)}
+.axn .axn-bha__sp{font-size:14px;line-height:1.5;color:var(--axn-body);margin-top:2px}
+.axn .axn-bha__arr{display:flex;align-items:center;justify-content:center;color:var(--axn-green)}
+
+.axn .axn-bha__foot{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:24px 40px}
+.axn .axn-bha__fine{font-size:12.5px;line-height:1.55;color:var(--axn-muted);max-width:620px}
+.axn .axn-bha__cta{display:flex;flex-direction:column;align-items:center;gap:10px;flex-shrink:0}
+
+/* ---------- 2) COMPARISON ---------- */
+.axn .axn-cmp-sec{padding:88px 0 48px}
+.axn .axn-cmp__chip{display:inline-block;padding:7px 14px;border-radius:999px;background:var(--axn-sky);border:1px solid #D6E6FB;color:var(--axn-blue-600);font-size:13px;font-weight:500;line-height:1.3}
+.axn .axn-cmp__h{font-size:40px;font-weight:700;line-height:1.2;letter-spacing:-.02em;max-width:760px}
+
+.axn .axn-cmp{display:grid;grid-template-columns:200px minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto repeat(6,auto);column-gap:20px;width:100%;max-width:1100px;margin:0 auto}
+.axn .axn-cmp>*{min-width:0}
+.axn .axn-cmp__labels,.axn .axn-cmp__col{grid-row:1/span 7;display:grid;grid-template-rows:subgrid}
+.axn .axn-cmp__labels{grid-column:1}
+.axn .axn-cmp__col--tx{grid-column:2}
+.axn .axn-cmp__col--axn{grid-column:3}
+
+.axn .axn-cmp__lab{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--axn-line);font-size:14px;font-weight:600;line-height:1.35;color:var(--axn-ink)}
+.axn .axn-cmp__lab:last-child{border-bottom:0}
+.axn .axn-cmp__lic{width:32px;height:32px;border-radius:9px;background:var(--axn-sky);color:var(--axn-blue);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+.axn .axn-cmp__col{position:relative;border-radius:20px}
+.axn .axn-cmp__col--tx{background:#F1F5FA;border:1px solid var(--axn-soft-line)}
+.axn .axn-cmp__col--axn{background:var(--axn-sky);border:2px solid var(--axn-blue)}
+.axn .axn-cmp__head{padding:24px 24px 22px;display:flex;flex-direction:column;gap:6px}
+.axn .axn-cmp__col--axn .axn-cmp__head{background:var(--axn-blue);border-radius:17px 17px 0 0;color:#fff}
+.axn .axn-cmp__eb{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--axn-muted)}
+.axn .axn-cmp__col--axn .axn-cmp__eb{color:rgba(255,255,255,.82)}
+.axn .axn-cmp__title{font-family:var(--axn-h);font-size:22px;font-weight:700;line-height:1.25;letter-spacing:-.01em;color:var(--axn-ink)}
+.axn .axn-cmp__col--axn .axn-cmp__title{color:#fff}
+.axn .axn-cmp__sub{font-size:14px;line-height:1.5;color:var(--axn-body)}
+.axn .axn-cmp__sub strong{color:var(--axn-ink)}
+.axn .axn-cmp__col--axn .axn-cmp__sub,.axn .axn-cmp__col--axn .axn-cmp__sub strong{color:#fff}
+.axn .axn-cmp__badge{position:absolute;top:-14px;right:22px;z-index:1;background:var(--axn-green);color:#fff;font-size:12px;font-weight:500;line-height:1.3;padding:5px 12px;border-radius:999px}
+
+.axn .axn-cmp__cell{display:grid;grid-template-columns:auto minmax(0,1fr) auto;column-gap:14px;align-items:center;padding:14px 22px;border-top:1px solid var(--axn-line);font-size:14.5px;line-height:1.45;color:var(--axn-body)}
+.axn .axn-cmp__cell::before{content:attr(data-label);display:none;grid-column:1/-1;margin-bottom:6px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--axn-muted)}
+.axn .axn-cmp__col--axn .axn-cmp__cell{border-top-color:#D6E6FB;font-weight:600;color:var(--axn-ink)}
+.axn .axn-cmp__col--axn .axn-cmp__cell::before{color:var(--axn-blue-600)}
+.axn .axn-cmp__varies{font-style:italic;color:var(--axn-muted)}
+.axn .axn-cmp__ic{display:block;width:20px;height:20px;flex-shrink:0;background-repeat:no-repeat;background-position:center;background-size:contain}
+.axn .axn-cmp__ic--dot{width:8px;height:8px;margin:0 6px;border-radius:50%;background:#B4BFCE}
+.axn .axn-cmp__ic--chk{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%230D7C66'/%3E%3Cpath d='M7 12.5l3.2 3.2L17 9' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+.axn .axn-cmp__ic--chk-g{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%239AA5B4'/%3E%3Cpath d='M7 12.5l3.2 3.2L17 9' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+.axn .axn-cmp__info{width:20px;height:20px;border-radius:50%;border:1.5px solid #9AA5B4;color:#6B7A90;font-family:var(--axn-b);font-size:12px;font-weight:500;font-style:normal;line-height:1;display:flex;align-items:center;justify-content:center;cursor:help;background:#fff}
+
+/* info icon → click-to-open popover */
+.axn .axn-cmp__tip{position:relative;display:flex;align-items:center}
+.axn .axn-cmp__info{padding:0;appearance:none;-webkit-appearance:none}
+.axn .axn-cmp__info:hover,.axn .axn-cmp__info[aria-expanded="true"]{border-color:var(--axn-blue);color:var(--axn-blue)}
+.axn .axn-cmp__pop{position:absolute;right:-6px;bottom:calc(100% + 12px);z-index:20;width:260px;max-width:calc(100vw - 72px);padding:12px 14px;border-radius:12px;background:var(--axn-ink);color:#fff;font-family:var(--axn-b);font-size:13.5px;font-weight:400;font-style:normal;letter-spacing:0;line-height:1.5;text-align:left;box-shadow:0 12px 32px -8px rgba(11,37,75,.4)}
+.axn .axn-cmp__pop[hidden]{display:none}
+.axn .axn-cmp__pop::after{content:"";position:absolute;right:12px;bottom:-5px;width:10px;height:10px;background:var(--axn-ink);transform:rotate(45deg);border-radius:2px}
+
+/* no-subgrid fallback: keep rows roughly aligned */
+@supports not (grid-template-rows:subgrid){
+  .axn .axn-cmp__labels,.axn .axn-cmp__col{display:flex;flex-direction:column}
+  .axn .axn-cmp__sp,.axn .axn-cmp__head{min-height:170px}
+  .axn .axn-cmp__lab,.axn .axn-cmp__cell{min-height:76px}
+}
+
+.axn .axn-cmp-note{width:100%;max-width:1100px;margin:0 auto;background:var(--axn-mint);border:1px solid #BFE8DC;border-radius:20px;padding:28px 32px;display:flex;justify-content:space-between;align-items:center;gap:24px 40px}
+.axn .axn-cmp-note__copy{display:flex;flex-direction:column;gap:6px;min-width:0;max-width:640px}
+.axn .axn-cmp-note__t{font-family:var(--axn-h);font-size:18px;font-weight:700;line-height:1.3;color:var(--axn-ink)}
+.axn .axn-cmp-note__p{font-size:15px;line-height:1.55;color:var(--axn-body)}
+.axn .axn-cmp-note__cta{display:flex;flex-direction:column;align-items:center;gap:10px;flex-shrink:0}
+.axn .axn-cmp__disc{max-width:640px;margin:0 auto;text-align:center;font-size:12.5px;line-height:1.55;color:var(--axn-muted)}
+
+/* ---------- Responsive (new sections) ---------- */
+@media (min-width:1025px) and (max-width:1200px){
+  .axn .axn-cmp{grid-template-columns:180px minmax(0,1fr) minmax(0,1fr);column-gap:16px}
+}
+@media (max-width:1024px){
+  .axn .axn-bha{padding:36px 40px}
+  .axn .axn-cmp-sec{padding:64px 0 40px}
+  .axn .axn-cmp__h{font-size:34px}
+  .axn .axn-cmp{grid-template-columns:150px minmax(0,1fr) minmax(0,1fr);column-gap:14px}
+  .axn .axn-cmp__lab{font-size:13px;gap:10px}
+  .axn .axn-cmp__head{padding:20px 18px}
+  .axn .axn-cmp__cell{padding:14px 16px;font-size:14px;column-gap:10px}
+}
+@media (max-width:900px){
+  .axn .axn-bha{grid-template-columns:minmax(0,1fr)}
+  .axn .axn-bha__price{align-self:flex-start}
+  .axn .axn-bha__steps{grid-template-columns:minmax(0,1fr);gap:10px}
+  .axn .axn-bha__arr{transform:rotate(90deg);height:18px}
+  .axn .axn-bha__foot{flex-direction:column;align-items:flex-start}
+  .axn .axn-cmp-note{flex-direction:column;align-items:flex-start}
+}
+@media (max-width:767px){
+  .axn .axn-bha{padding:24px;border-radius:20px;gap:20px}
+  .axn .axn-bha__h{font-size:26px;line-height:1.3}
+  .axn .axn-bha__now{font-size:32px}
+  .axn .axn-bha__price{align-self:stretch;padding:14px 18px}
+  .axn .axn-bha__step{padding:16px}
+  .axn .axn-bha__step--hi{padding:15px}
+  .axn .axn-bha__foot{align-items:stretch}
+  .axn .axn-bha__cta{align-items:stretch;width:100%}
+  .axn .axn-bha__cta .axn-btn{width:100%}
+
+  .axn .axn-cmp-sec{padding:48px 0 32px}
+  .axn .axn-cmp__h{font-size:28px;line-height:1.25}
+  .axn .axn-cmp{display:flex;flex-direction:column;gap:28px}
+  .axn .axn-cmp__labels{display:none}
+  .axn .axn-cmp__col{display:flex;flex-direction:column}
+  .axn .axn-cmp__col--axn{order:-1;margin-top:6px}
+  .axn .axn-cmp__title{font-size:20px}
+  .axn .axn-cmp__cell{padding:14px 18px;grid-template-columns:auto minmax(0,1fr) auto}
+  .axn .axn-cmp__cell::before{display:block}
+  .axn .axn-cmp-note{padding:22px;border-radius:16px}
+  .axn .axn-cmp-note__cta{align-items:stretch;width:100%}
+  .axn .axn-cmp-note__cta .axn-btn{width:100%}
+  .axn .axn-cmp__disc{text-align:left}
+}
+@media (max-width:400px){
+  .axn .axn-bha{padding:20px}
+  .axn .axn-bha__h{font-size:24px}
+  .axn .axn-cmp__h{font-size:26px}
+  .axn .axn-cmp__cell{padding:12px 14px}
+}/* =========================================================
+   AXON ADHD online-evaluation landing page | ADDITIONS
+   Append this to the END of your existing axon-landing.css.
+   Nothing above is changed. It reuses your variables
+   (--axn-ink, --axn-blue, --axn-green, --axn-h, --axn-b ...) and your
+   breakpoints (<=1024 tablet, <=767 mobile, <=400 small phone).
+   Every rule is scoped under .axn, same as the rest of the file.
+
+   New blocks in this file:
+   .axn-dhero     light hero + .axn-mapcard (state map + checker)
+   .axn-statband  4-up stat strip that overlaps the hero
+   .axn-flow      "Four steps" cards
+   .axn-vs        quiz vs evaluation comparison
+   .axn-pricing   scoped tweaks on top of your existing .axn-plan cards
+   .axn-rvg       Google review cards (masonry)
+   .axn-states    coverage list
+      ========================================================= */
+
+/* ---------- Shared helpers ---------- */
+.axn [hidden]{display:none!important}
+.axn .axn-wrap--d{max-width:1388px} /* 1340px content + 24px side padding, same as .axn-wrap */
+.axn .axn-sec--ref{padding:120px 0}
+.axn .axn-sec--bd{border-block:1px solid var(--axn-soft-line)}
+.axn .axn-sec--ref.axn-sec--nt{padding-top:0}
+.axn .axn-h2--ref{font-size:46px;line-height:1.1;letter-spacing:-.03em;font-weight:600;text-wrap:balance}
+.axn .axn-eyebrow--ref{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.14em}
+.axn .axn-btn svg{transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.axn .axn-btn:hover svg{transform:translateX(4px)}
+.axn .axn-btn-o:hover{transform:translateY(-2px)}
+.axn .axn-lift{transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s cubic-bezier(.16,1,.3,1)}
+.axn .axn-lift:hover{transform:translateY(-6px);box-shadow:0 30px 60px -32px rgba(16,69,141,.35)}
+.axn .axn-head--between{flex-direction:row;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;text-align:left;gap:24px}
+.axn .axn-head--between>div{display:flex;flex-direction:column;gap:16px;max-width:640px}
+.axn .axn-head--wide{max-width:760px;margin-inline:auto}
+.axn .axn-head--wide .axn-body{color:var(--axn-muted);font-size:18px}
+
+/* ---------- Floating nav ---------- */
+
+/* ---------- Dark hero ---------- */
+.axn .axn-dhero__grid{position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:56px;padding-block:96px 160px}
+.axn .axn-dhero__copy{flex:1 1 480px;min-width:0;display:flex;flex-direction:column;gap:28px}
+.axn .axn-dhero__ctas{display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px}
+.axn .axn-dhero__proof>span{display:flex;align-items:center;gap:8px}
+.axn .axn-dhero__stars{color:#F6BB06;letter-spacing:2px;font-size:16px}
+.axn .axn-dhero__side{flex:1 1 520px;min-width:0;position:relative}
+
+/* load-in: one orchestrated rise, transform only */
+.axn .axn-rise{animation:axn-rise 1s cubic-bezier(.16,1,.3,1) both}
+.axn .axn-d1{animation-delay:.08s}.axn .axn-d2{animation-delay:.16s}.axn .axn-d3{animation-delay:.24s}.axn .axn-d4{animation-delay:.32s}
+@keyframes axn-rise{from{transform:translateY(22px)}to{transform:none}}
+
+/* ---------- Map card ---------- */
+.axn .axn-mapcard__top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px 12px;padding:0 4px 10px}
+.axn .axn-mapcard__key span{display:flex;align-items:center;gap:6px}
+.axn .axn-mapcard__key i{width:10px;height:10px;border-radius:3px;display:block}
+.axn .axn-map{display:block;width:100%;height:auto}
+.axn .axn-st.is-yes{fill:#256ACC}
+.axn .axn-st.is-sel{fill:#0D7C66}
+@keyframes axn-st-in{from{opacity:.15;transform:scale(.92)}to{opacity:1;transform:none}}
+.axn .axn-pin{display:none;pointer-events:none}
+.axn .axn-pin.is-on{display:block}
+.axn .axn-pin__pulse{transform-box:fill-box;transform-origin:center;animation:axn-pulse 2.2s cubic-bezier(.16,1,.3,1) infinite}
+@keyframes axn-pulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.6);opacity:0}}
+
+.axn .axn-checker__row{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
+.axn .axn-checker__field{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:6px}
+.axn .axn-checker__field label{font-size:14px;font-weight:500;color:var(--axn-muted)}
+.axn .axn-checker select{width:100%;min-height:52px;padding:0 14px;border:1.5px solid var(--axn-line);border-radius:14px;background:var(--axn-soft);color:var(--axn-ink);font:inherit;font-size:17px}
+.axn .axn-checker .axn-btn{flex:0 0 auto;min-height:52px}
+.axn .axn-checker__msg{display:flex;align-items:flex-start;gap:10px;font-size:15px;line-height:1.5}
+.axn .axn-checker__msg--yes{color:var(--axn-green-700);align-items:center}
+.axn .axn-checker__msg--no{color:#8A5200}
+.axn .axn-checker__msg--none{color:var(--axn-muted)}
+.axn .axn-checker__ic{display:grid;place-items:center;flex:none;width:24px;height:24px;border-radius:50%;font-weight:700}
+.axn .axn-checker__msg--yes .axn-checker__ic{background:#E7F7F1}
+.axn .axn-checker__msg--no .axn-checker__ic{background:#FFF3E3}
+.axn .axn-checker__msg.is-pop{animation:axn-pop .45s cubic-bezier(.16,1,.3,1) both}
+@keyframes axn-pop{from{opacity:.3;transform:translateY(6px)}to{opacity:1;transform:none}}
+.axn .axn-dhero__float-ic{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--axn-mint)}
+.axn .axn-dhero__float span.t{display:flex;flex-direction:column;line-height:1.3}
+.axn .axn-dhero__float strong{font-size:15px;font-weight:600}
+.axn .axn-dhero__float small{font-size:13px;color:var(--axn-muted)}
+@keyframes axn-drift{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-10px,0)}}
+
+/* ---------- Stat band ---------- */
+/* top 84px stays see-through so the hero shows behind the overlap; the rest is white like the sections around it */
+.axn .axn-statband{position:relative;z-index:5;margin-top:-84px;background:linear-gradient(108deg,#dfeaf4 19.84%,rgba(255,255,255,.2) 62.33%) 0 100%/100% calc(100% - 84px) no-repeat,linear-gradient(180deg,transparent 84px,#fff 84px)}
+.axn .axn-statband__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-radius:28px;background:#fff;border:1px solid var(--axn-soft-line);box-shadow:0 40px 80px -48px rgba(11,37,75,.45);overflow:hidden}
+.axn .axn-statband__c{display:flex;flex-direction:column;gap:4px;padding:28px 30px;border-right:1px solid var(--axn-soft-line);border-bottom:1px solid var(--axn-soft-line);margin-bottom:-1px}
+.axn .axn-statband__c:last-child{border-right:0}
+.axn .axn-statband__n{font-family:var(--axn-h);font-size:40px;font-weight:600;letter-spacing:-.03em;line-height:1.1;color:var(--axn-navy);font-variant-numeric:tabular-nums}
+.axn .axn-statband__l{font-size:15px;color:var(--axn-muted)}
+
+/* ---------- How it works (icon tiles + connector) ---------- */
+
+/* ---------- Quiz vs evaluation ---------- */
+
+/* ---------- Pricing: tweaks on your existing .axn-plan cards ---------- */
+.axn .axn-pricing .axn-plan{padding:40px;border-radius:28px;gap:24px}
+.axn .axn-pricing .axn-plan--main{box-shadow:0 40px 80px -50px rgba(37,106,204,.7)}
+.axn .axn-pricing .axn-plan--alt{background:#fff}
+.axn .axn-pricing .axn-plan__amt{font-size:64px;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.axn .axn-pricing .axn-checks{border-top:1px solid var(--axn-soft-line);padding-top:22px;gap:14px}
+.axn .axn-pricing .axn-plan .axn-btn,.axn .axn-pricing .axn-plan .axn-btn-o{margin-top:auto}
+.axn .axn-tags{display:flex;flex-wrap:wrap;gap:8px}
+.axn .axn-tag{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:var(--axn-sky);color:var(--axn-blue-600);font-size:13px;line-height:1.3}
+.axn .axn-plan-notes span{display:flex;align-items:center;gap:8px}
+
+/* ---------- Doctor section additions (uses your existing .axn-spec) ---------- */
+.axn .axn-spec--grad{background:linear-gradient(249deg,#dfeaf4 24.89%,rgba(255,255,255,.2) 64.07%),#fff}
+.axn .axn-spec--grad .axn-spec__back{background:linear-gradient(160deg,var(--axn-blue),var(--axn-green));border:0;opacity:.16}
+.axn .axn-spec__ic{display:grid;place-items:center;flex:none;width:40px;height:40px;border-radius:12px;background:rgba(159,227,210,.16);color:#9FE3D2}
+.axn .axn-spec__licrow{display:flex;gap:12px;font-size:15px;line-height:1.6;color:var(--axn-muted)}
+.axn .axn-spec__licrow svg{margin-top:3px}
+.axn .axn-spec__stats .axn-spec__statl{margin-top:2px}
+
+/* ---------- Review cards ---------- */
+
+/* ---------- States we cover ---------- */
+.axn .axn-states{display:flex;flex-direction:column;gap:28px;padding:44px;border-radius:32px;background:var(--axn-soft);border:1px solid var(--axn-soft-line)}
+.axn .axn-states__head{display:flex;flex-direction:column;gap:12px;max-width:640px}
+.axn .axn-states__h{font-family:var(--axn-h);font-size:32px;font-weight:600;letter-spacing:-.02em;line-height:1.2;color:var(--axn-ink)}
+.axn .axn-states__sub{font-size:16px;color:var(--axn-muted)}
+.axn .axn-states__list{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px 16px;font-size:15px}
+.axn .axn-states__list li{display:flex;align-items:center;gap:8px}
+.axn .axn-states__list svg{width:14px;height:14px}
+.axn .axn-states__note{padding:16px 20px;border-radius:16px;background:#FFF7EB;border:1px solid #F3DDB8;font-size:15px;line-height:1.55;color:#8A5200}
+
+/* ---------- Accordion FAQ ---------- */
+
+/* ---------- Closing CTA ---------- */
+
+/* ---------- Footer ---------- */
+
+/* ---------- Scroll reveal (CSS only, where supported) ---------- */
+@supports (animation-timeline:view()){
+  .axn .axn-reveal{animation:axn-reveal linear both;animation-timeline:view();animation-range:entry 0% entry 30%}
+  .axn .axn-draw{animation:axn-draw linear both;animation-timeline:view();animation-range:entry 20% cover 45%}
+}
+@keyframes axn-reveal{from{transform:translateY(32px)}to{opacity:1;transform:none}}
+@keyframes axn-draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (min-width:1025px) and (max-width:1200px){
+  .axn .axn-dhero__h1{font-size:56px}
+}
+@media (max-width:1024px){
+  .axn .axn-sec--ref{padding:96px 0}
+  .axn .axn-dhero__h1{font-size:50px}
+  .axn .axn-h2--ref{font-size:38px}
+  .axn .axn-pricing .axn-plan{padding:36px}
+}
+@media (max-width:767px){
+  .axn .axn-sec--ref{padding:72px 0}
+  .axn .axn-hide-sm{display:none!important}
+  .axn .axn-dhero__grid{gap:40px;padding-block:60px 132px}
+  .axn .axn-dhero__h1{font-size:38px}
+  .axn .axn-dhero__lead{font-size:18px}
+  .axn .axn-dhero__ctas .axn-btn{width:100%}
+  .axn .axn-dhero__ctas{flex-direction:column;align-items:stretch;text-align:center}
+  .axn .axn-mapcard{padding:18px;border-radius:26px}
+  .axn .axn-checker{padding:16px}
+  .axn .axn-checker .axn-btn{width:100%}
+  .axn .axn-statband__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .axn .axn-statband__c{padding:22px 20px}
+  .axn .axn-statband__c:nth-child(2n){border-right:0}
+  .axn .axn-statband__n{font-size:32px}
+  .axn .axn-h2--ref{font-size:30px}
+  .axn .axn-head--between{flex-direction:column;align-items:flex-start}
+  .axn .axn-head--wide .axn-body{font-size:16px}
+  .axn .axn-pricing .axn-plan{padding:28px 22px 24px;border-radius:22px}
+  .axn .axn-pricing .axn-plan__amt{font-size:48px}
+  .axn .axn-states{padding:28px 20px;border-radius:24px}
+  .axn .axn-states__h{font-size:26px}
+  .axn .axn-states__list{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:400px){
+  .axn .axn-dhero__h1{font-size:34px}
+  .axn .axn-states__list{grid-template-columns:minmax(0,1fr)}
+  .axn .axn-statband__n{font-size:28px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .axn .axn-st,.axn .axn-pin__pulse,.axn .axn-rise,.axn .axn-checker__msg.is-pop,.axn .axn-dhero__float,.axn .axn-reveal,.axn .axn-draw{animation:none}
+  .axn .axn-btn,.axn .axn-btn-o,.axn .axn-btn svg,.axn .axn .axn-lift{transition:none}
+}
+
+/* =========================================================
+   v2 BLOCKS: light hero, 4-step cards, quiz-vs-evaluation, Google review cards, FAQ
+   ========================================================= */
+
+/* ---------- Typography safety net: Manrope headings and body ---------- */
+.axn :is(h1,h2,h3,h4,h5,h6){font-family:var(--axn-h)!important}
+.axn :is(h1,h2,h3,h4,h5,h6) :where(span,strong,em,a,small){font-family:inherit}
+.axn :where(p,li,a,span,small,strong,em,label,select,input,button,blockquote,figcaption,summary,div){font-family:var(--axn-b)}
+.axn :where(.axn-statband__n,.axn-vs__big,.axn-flow__num,.axn-plan__amt,.axn-sticky__amt,.axn-spec__num,.axn-spec__stat,.axn-spec__name){font-family:var(--axn-h)}
+
+/* ---------- Light hero ---------- */
+.axn .axn-dhero{position:relative;z-index:auto;color:var(--axn-ink);background:
+  radial-gradient(900px 520px at 90% -10%,rgba(37,106,204,.16) 0%,rgba(37,106,204,0) 62%),
+  radial-gradient(700px 460px at -8% 105%,rgba(13,124,102,.12) 0%,rgba(13,124,102,0) 62%),
+  linear-gradient(180deg,var(--axn-hero-bg) 0%,#F4F8FE 100%)}
+.axn .axn-dhero::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(16,69,141,.12) 1px,transparent 1.3px);background-size:26px 26px;-webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 80%);mask-image:linear-gradient(180deg,#000 0%,transparent 80%)}
+.axn .axn-dhero__badge{display:inline-flex;align-self:flex-start;align-items:center;gap:10px;padding:8px 16px 8px 8px;border-radius:999px;background:#fff;border:1px solid #CFE0F7;box-shadow:0 8px 24px -16px rgba(16,69,141,.45);font-size:14px;color:var(--axn-ink)}
+.axn .axn-dhero__badge-ic{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--axn-green)}
+.axn .axn-dhero__h1{font-family:var(--axn-h);font-size:64px;line-height:1.04;font-weight:700;letter-spacing:-.035em;color:var(--axn-ink);text-wrap:balance}
+.axn .axn-dhero__h1 span{color:var(--axn-blue)}
+.axn .axn-dhero__lead{font-size:20px;line-height:1.65;font-weight:400;color:var(--axn-body);max-width:32em}
+.axn .axn-dhero__link{color:var(--axn-blue-600);font-size:16px;font-weight:500;text-decoration:underline;text-underline-offset:6px}
+.axn .axn-dhero__link:hover{color:var(--axn-ink)}
+.axn .axn-dhero__proof{display:flex;flex-wrap:wrap;gap:10px 22px;padding-top:22px;border-top:1px solid rgba(16,69,141,.16);font-size:15px;color:var(--axn-body)}
+.axn .axn-dhero__proof strong{color:var(--axn-ink);font-weight:700}
+.axn .axn-mapcard{padding:26px;border-radius:32px;background:#fff;border:1px solid #D3E2F5;box-shadow:0 40px 80px -44px rgba(16,69,141,.55)}
+.axn .axn-mapcard__title{font-size:15px;font-weight:500;color:var(--axn-ink)}
+.axn .axn-mapcard__key{display:flex;gap:14px;font-size:13px;color:var(--axn-muted)}
+.axn .axn-mapcard__key .is-on{background:var(--axn-blue)}
+.axn .axn-mapcard__key .is-off{background:#D5DEEB}
+.axn .axn-map g.axn-map__states{stroke:#fff;stroke-width:1.2;stroke-linejoin:round}
+.axn .axn-st{transform-box:fill-box;transform-origin:center;cursor:pointer;fill:#D5DEEB;transition:fill .3s ease;animation:axn-st-in .9s cubic-bezier(.16,1,.3,1) both}
+.axn .axn-st:hover{fill:#7FA9E8}
+.axn .axn-st.is-yes:hover{fill:#4B87E0}
+.axn .axn-st.is-sel,.axn .axn-st.is-sel:hover{fill:#0D7C66}
+.axn .axn-checker{margin-top:14px;padding:20px;border-radius:22px;background:var(--axn-soft);border:1px solid var(--axn-soft-line);color:var(--axn-ink);display:flex;flex-direction:column;gap:14px}
+.axn .axn-checker select{background:#fff}
+.axn .axn-dhero__float{position:absolute;left:-38px;top:34%;display:flex;align-items:center;gap:12px;padding:12px 18px 12px 12px;border-radius:18px;background:#fff;color:var(--axn-ink);border:1px solid #D3E2F5;box-shadow:0 24px 50px -24px rgba(16,69,141,.5);animation:axn-drift 9s ease-in-out infinite;pointer-events:none}
+
+
+/* ---------- Quiz vs evaluation (left box clearly visible) ---------- */
+.axn .axn-vs__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;align-items:stretch;max-width:1000px;width:100%;margin-inline:auto}
+.axn .axn-vs__card{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:22px;min-width:0;padding:38px;border-radius:28px;background:#fff;border:2px solid #C3D2E6;box-shadow:0 28px 56px -36px rgba(11,37,75,.4)}
+.axn .axn-vs__card::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:#C3D2E6}
+.axn .axn-vs__card--hi{background:linear-gradient(160deg,var(--axn-navy) 0%,var(--axn-ink) 100%);color:#fff;border-color:var(--axn-navy);box-shadow:0 36px 70px -34px rgba(11,37,75,.7)}
+.axn .axn-vs__card--hi::before{content:"";position:absolute;left:auto;right:-80px;top:-80px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(37,106,204,.6),rgba(37,106,204,0) 70%);pointer-events:none}
+.axn .axn-vs__card>*{position:relative}
+.axn .axn-vs__k{font-size:14px;font-weight:700;letter-spacing:.02em;color:var(--axn-muted)}
+.axn .axn-vs__card--hi .axn-vs__k{color:#9FE3D2}
+.axn .axn-vs__big{font-family:var(--axn-h);font-size:34px;font-weight:700;letter-spacing:-.02em;line-height:1.2;color:#5B6B84}
+.axn .axn-vs__card--hi .axn-vs__big{color:#fff}
+.axn .axn-vs__list{display:flex;flex-direction:column;gap:14px;font-size:16px;color:var(--axn-body)}
+.axn .axn-vs__card--hi .axn-vs__list{color:#E4EEFC}
+.axn .axn-vs__list li{display:flex;gap:12px;line-height:1.5}
+.axn .axn-vs__list svg{flex:none;margin-top:3px}
+
+
+/* ---------- FAQ: "Before you book" (same look as your original landing page) ---------- */
+.axn .axn-faq-sec{padding:24px 0 96px}
+.axn .axn-faq-sec .axn-stack{display:flex;flex-direction:column;gap:36px}
+
+/* ---------- v2 responsive ---------- */
+@media (max-width:1024px){
+  .axn .axn-dhero__grid{padding-block:72px 128px}
+}
+@media (max-width:767px){
+  .axn .axn-dhero__grid{padding-block:44px 120px}
+  .axn .axn-dhero__h1{font-size:38px}
+  .axn .axn-vs__grid{grid-template-columns:minmax(0,1fr);gap:20px}
+  .axn .axn-vs__card{padding:30px 22px}
+}
+@media (prefers-reduced-motion:reduce){
+}
+
+/* ---------- How it works: numbered process cards (reference layout) ---------- */
+.axn #axn-how{background:linear-gradient(108deg,#dfeaf4 19.84%,rgba(255,255,255,.2) 62.33%),#fff}
+.axn .axn-flow__wrap{position:relative}
+.axn .axn-flow__list{list-style:none;margin:0;padding:30px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px;position:relative}
+.axn .axn-flow__list::before{content:"";position:absolute;z-index:0;left:2%;right:2%;top:122px;height:3px;border-radius:3px;background:linear-gradient(90deg,rgba(22,167,136,0),rgba(22,167,136,.55) 12%,rgba(22,167,136,.55) 88%,rgba(22,167,136,0));box-shadow:0 0 18px rgba(22,167,136,.5)}
+.axn .axn-flow__item{--il:#0B254B;--ilf:#fff;--ils:#CFF3EA;--ila:#16A788;position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;min-width:0;padding:46px 20px 30px;border-radius:20px;background:rgba(255,255,255,.94);border:2px solid #C9EBE2;box-shadow:0 22px 46px -30px rgba(11,37,75,.45);transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s cubic-bezier(.16,1,.3,1)}
+.axn .axn-flow__item:hover{transform:translateY(-6px);box-shadow:0 30px 56px -30px rgba(22,167,136,.55)}
+.axn .axn-flow__num{position:absolute;left:50%;top:-23px;transform:translateX(-50%);display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:#fff;border:2px solid #7FD3BF;color:#0D7C66;font-family:var(--axn-h);font-size:20px;font-weight:700;line-height:1;box-shadow:0 10px 20px -10px rgba(22,167,136,.7)}
+.axn .axn-flow__ill{display:block;line-height:0}
+.axn .axn-flow__ill>svg{width:112px;height:90px;overflow:visible}
+.axn .axn-flow__cam svg{width:14px;height:14px;display:block}
+.axn .axn-flow__n{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.axn .axn-flow__t{font-family:var(--axn-h);font-size:16px;font-weight:800;line-height:1.3;letter-spacing:.02em;text-transform:uppercase;color:var(--axn-ink)}
+.axn .axn-flow__p{font-size:15px;line-height:1.55;color:var(--axn-muted);max-width:24ch}
+.axn .axn-flow__item:last-child{--il:#fff;--ilf:#12405A;--ils:#1B6B70;--ila:#2FE0B0;background:linear-gradient(165deg,#0E3B52 0%,#0A2240 100%);border-color:#2FE0B0;box-shadow:0 0 0 5px rgba(47,224,176,.16),0 26px 60px -18px rgba(47,224,176,.6)}
+.axn .axn-flow__item:last-child .axn-flow__num{background:#19B38F;border-color:#8CF5D7;color:#fff}
+.axn .axn-flow__item:last-child .axn-flow__t{color:#fff}
+.axn .axn-flow__item:last-child .axn-flow__p{color:#D3E8EE}
+
+/* ---------- Google reviews: "What patients say" slider (reference layout) ---------- */
+
+/* ---------- v3 responsive ---------- */
+@media (max-width:1024px){
+  .axn .axn-flow__list{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 24px}
+  .axn .axn-flow__list::before{display:none}
+}
+@media (max-width:767px){
+  .axn .axn-flow__list{grid-template-columns:minmax(0,1fr);gap:42px}
+  .axn .axn-flow__p{max-width:34ch}
+}
+@media (prefers-reduced-motion:reduce){
+  .axn .axn-flow__item{transition:none}
+}
+.axn .axn-faq-sec .axn-h2{text-align:center}
+.axn #axn-how .axn-head,.axn #axn-how .axn-head *{text-align:center;align-items:center}
+@media (max-width:767px){
+}
+
+/* ---------- State dropdown: opens downward, shows about 6 rows ---------- */
+.axn .axn-dd{position:relative}
+.axn .axn-dd__btn{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-height:52px;padding:0 14px;border:1.5px solid var(--axn-line);border-radius:14px;background:#fff;color:var(--axn-ink);font-family:var(--axn-b);font-size:17px;text-align:left;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.axn .axn-dd__btn:hover{border-color:#B9CBE4}
+.axn .axn-dd__btn:focus-visible,.axn .axn-dd__btn[aria-expanded="true"]{outline:0;border-color:var(--axn-blue);box-shadow:0 0 0 3px rgba(37,106,204,.18)}
+.axn .axn-dd__btn svg{flex:none;color:var(--axn-muted);transition:transform .2s}
+.axn .axn-dd__btn[aria-expanded="true"] svg{transform:rotate(180deg)}
+.axn .axn-dd__list{position:absolute;z-index:30;top:calc(100% + 6px);left:0;right:0;margin:0;padding:6px;list-style:none;max-height:240px;overflow-y:auto;overscroll-behavior:contain;border:1px solid var(--axn-line);border-radius:14px;background:#fff;box-shadow:0 24px 48px -16px rgba(11,37,75,.35);outline:0;scrollbar-width:thin}
+.axn .axn-dd__list li{padding:10px 12px;border-radius:9px;font-size:16px;line-height:1.3;color:var(--axn-ink);cursor:pointer}
+.axn .axn-dd__list li.is-active{background:var(--axn-sky)}
+.axn .axn-dd__list li[aria-selected="true"]{color:var(--axn-green-700);font-weight:500;background:var(--axn-mint)}
+.axn .axn-dd__list li[aria-selected="true"].is-active{background:#DDF6EE}
+
+/* ---------- Step 3 photo ---------- */
+.axn .axn-flow__ill--photo{position:relative;width:92px;height:92px;margin-block:-2px}
+.axn .axn-flow__ill--photo img{display:block;width:92px;height:92px;border-radius:50%;object-fit:cover;object-position:50% 18%;border:3px solid var(--ila);box-shadow:0 14px 26px -12px rgba(11,37,75,.55);background:var(--ils)}
+.axn .axn-flow__cam{position:absolute;right:-6px;bottom:2px;display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--ila);border:3px solid #fff;box-shadow:0 6px 14px -6px rgba(11,37,75,.6)}
+
+/* ---------- Reviews: button under the slider ---------- */
+.axn .axn-rv__cta{display:flex;justify-content:center;margin-top:12px}
+
+
+/* =====================================================================
+   v5 — hero spacing, state field, heading type, pricing arrows, closing CTA
+   ===================================================================== */
+
+/* 1. Hero: 200px top padding (steps down on smaller screens, same as your landing page's hero) */
+.axn .axn-dhero__grid{padding-block:200px 160px}
+@media (max-width:1024px){.axn .axn-dhero__grid{padding-block:180px 128px}}
+@media (max-width:767px){.axn .axn-dhero__grid{padding-block:170px 120px}}
+
+/* 2. State field: placeholder look + no theme (pink/purple) colours on press, hover or focus */
+.axn .axn-dd__btn,
+.axn .axn-dd__btn:hover,
+.axn .axn-dd__btn:focus,
+.axn .axn-dd__btn:active,
+.axn .axn-dd__btn[aria-expanded="true"]{background:#fff;background-image:none;color:var(--axn-ink);text-decoration:none;-webkit-tap-highlight-color:transparent}
+.axn .axn-dd__btn:focus,.axn .axn-dd__btn:active{outline:0;box-shadow:none;border-color:var(--axn-line)}
+.axn .axn-dd__btn:hover{border-color:#B9CBE4}
+.axn .axn-dd__btn:focus-visible,.axn .axn-dd__btn[aria-expanded="true"]{outline:0;border-color:var(--axn-blue);box-shadow:0 0 0 3px rgba(37,106,204,.16)}
+.axn .axn-dd__val.is-placeholder{color:var(--axn-muted)}
+.axn .axn-dd__list li:hover{background:var(--axn-sky);color:var(--axn-ink)}
+/* other buttons inside the page: keep theme button colours out */
+.axn .axn-rc__more,.axn .axn-rc__more:hover,.axn .axn-rc__more:focus,.axn .axn-rc__more:active{background:none;box-shadow:none}
+.axn .axn-rv__nav,.axn .axn-rv__nav:focus,.axn .axn-rv__nav:active{background:#fff;color:#333;border-color:#E5E7EB}
+.axn .axn-rv__nav:hover{background:#F3F4F6;color:#333}
+
+/* 3. Headings: same Manrope setup as your landing page (600 weight, light negative tracking) */
+.axn .axn-h2--ref{font-size:40px;line-height:1.15;letter-spacing:-.01em;font-weight:600}
+.axn .axn-dhero__h1{font-size:56px;line-height:1.08;letter-spacing:-.02em;font-weight:700}
+.axn .axn-plan__name{font-weight:600;letter-spacing:-.01em}
+.axn .axn-spec__name{font-size:40px;font-weight:600;letter-spacing:-.01em}
+.axn .axn-states__h{letter-spacing:-.01em}
+.axn .axn-flow__t{font-weight:700}
+.axn .axn-vs__big{font-weight:600;letter-spacing:-.01em}
+.axn .axn-statband__n{font-weight:600;letter-spacing:-.02em}
+.axn .axn-plan__amt{font-weight:700;letter-spacing:-.03em}
+@media (max-width:1024px){.axn .axn-h2--ref{font-size:34px}.axn .axn-dhero__h1{font-size:46px}.axn .axn-spec__name{font-size:34px}}
+@media (max-width:767px){.axn .axn-h2--ref{font-size:28px}.axn .axn-dhero__h1{font-size:36px}.axn .axn-spec__name{font-size:30px}}
+
+/* 4. Pricing buttons: arrow icon, same as the hero buttons */
+.axn .axn-pricing .axn-plan .axn-btn svg,.axn .axn-pricing .axn-plan .axn-btn-o svg{flex:none;width:18px;height:18px}
+
+/* 5. Closing CTA — narrower card (1120px), navy gradient */
+.axn .axn-fin{background:linear-gradient(249deg,#dfeaf4 24.89%,rgba(255,255,255,.2) 64.07%),#fff;padding:72px 24px}
+.axn .axn-fin__card{position:relative;isolation:isolate;overflow:hidden;width:100%;max-width:1120px;margin:0 auto;padding:92px 40px 76px;border-radius:32px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px;background:linear-gradient(91.82deg,#256ACC 23.38%,#133566 101.8%);color:#fff;box-shadow:0 40px 80px -48px rgba(6,26,54,.7)}
+.axn .axn-fin__card::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,.2) 1px,transparent 1.4px);background-size:28px 28px;-webkit-mask-image:radial-gradient(ellipse at 50% 0%,#000 0%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 0%,#000 0%,transparent 75%)}
+.axn .axn-fin__card::after{content:"";position:absolute;left:50%;top:-40%;width:70%;height:90%;z-index:-1;pointer-events:none;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(66,125,214,.38),transparent);filter:blur(10px)}
+.axn .axn-fin__h{margin:0;max-width:620px;font-family:var(--axn-h);font-size:48px;font-weight:700;line-height:1.14;letter-spacing:-.02em;color:#fff;text-wrap:balance}
+.axn .axn-fin__p{margin:0;font-family:var(--axn-b);font-size:17px;line-height:1.5;color:rgba(255,255,255,.82)}
+.axn .axn-fin__ctas{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px 28px;margin-top:10px}
+.axn .axn-fin__ring{display:inline-flex;padding:6px;border-radius:999px;background:rgba(88,140,224,.22)}
+.axn .axn-fin__tel,.axn .axn-fin__tel:hover,.axn .axn-fin__tel:focus{color:#fff;font-size:16px;font-weight:500;text-decoration:underline;text-underline-offset:5px}
+.axn .axn-fin__sub{margin:6px 0 0;font-size:14px;color:rgba(255,255,255,.78)}
+.axn .axn-fin__sub a,.axn .axn-fin__sub a:hover,.axn .axn-fin__sub a:focus{color:#fff;text-decoration:underline;text-underline-offset:3px}
+@media (max-width:1024px){.axn .axn-fin__h{font-size:40px}.axn .axn-fin__card{padding:76px 32px 64px}}
+@media (max-width:767px){
+  .axn .axn-fin{padding:48px 16px}
+  .axn .axn-fin__card{padding:56px 20px 44px;border-radius:24px;gap:14px}
+  .axn .axn-fin__h{font-size:30px}
+  .axn .axn-fin__p{font-size:16px}
+  .axn .axn-fin__ctas{flex-direction:column;width:100%;gap:14px}
+  .axn .axn-fin__ring{display:flex;width:100%}
+  .axn .axn-fin__ring .axn-btn{width:100%}
+}
+
+/* 6. State list must open ABOVE the stat band (the side column's entrance animation creates its own layer) */
+.axn .axn-dhero__side{z-index:6}
+
+/* =====================================================================
+   v7 — Patient reviews: sideways-scrolling row, arrows above the cards
+   (plain elements + explicit colours so theme figure/blockquote/strong styles can't change the text)
+   ===================================================================== */
+.axn .axn-rvw{background:linear-gradient(108deg,#dfeaf4 19.84%,rgba(255,255,255,.2) 62.33%),#fff;padding:96px 0 88px}
+.axn .axn-rvw__head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 32px;margin-bottom:36px}
+.axn .axn-rvw__head .axn-eyebrow{display:block;margin-bottom:14px}
+.axn .axn-rvw__h{margin:0;font-family:var(--axn-h);font-size:44px;font-weight:600;line-height:1.12;letter-spacing:-.01em;color:var(--axn-ink)}
+.axn .axn-rvw__tools{display:flex;align-items:center;gap:20px 24px;flex-wrap:wrap}
+.axn .axn-rvw__g,.axn .axn-rvw__g:hover,.axn .axn-rvw__g:focus{font-size:16px;font-weight:500;color:var(--axn-blue);text-decoration:underline;text-underline-offset:4px;font-style:normal}
+.axn .axn-rvw__nav{display:flex;gap:10px}
+.axn .axn-rvw__arrow,.axn .axn-rvw__arrow:focus,.axn .axn-rvw__arrow:active{display:grid;place-items:center;width:46px;height:46px;padding:0;border-radius:50%;border:1px solid var(--axn-blue);background:#fff;color:var(--axn-blue);box-shadow:none;cursor:pointer;transition:background-color .2s ease,color .2s ease,opacity .2s ease;-webkit-tap-highlight-color:transparent}
+.axn .axn-rvw__arrow:hover{background:var(--axn-blue);color:#fff;border-color:var(--axn-blue)}
+.axn .axn-rvw__arrow:focus-visible{outline:2px solid var(--axn-blue);outline-offset:3px}
+.axn .axn-rvw__arrow:disabled,.axn .axn-rvw__arrow:disabled:hover{opacity:.35;cursor:default;background:#fff;color:var(--axn-blue)}
+.axn .axn-rvw__arrow svg{display:block;width:18px;height:18px}
+
+.axn .axn-rvw__track{display:flex;align-items:stretch;gap:20px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:4px 0 24px;margin:-4px 0 -24px}
+.axn .axn-rvw__track::-webkit-scrollbar{display:none}
+.axn .axn-rvw__track:focus-visible{outline:2px solid var(--axn-blue);outline-offset:6px;border-radius:12px}
+.axn .axn-rvw__card{flex:0 0 calc((100% - 40px) / 3);min-width:0;scroll-snap-align:start;display:flex;flex-direction:column;gap:20px;margin:0;padding:34px;border-radius:28px;background:#fff;border:1px solid #E1EAF5;color:#0B254B;font-style:normal;box-sizing:border-box}
+.axn .axn-rvw__card *{font-style:normal}
+.axn .axn-rvw__card--dark{background:linear-gradient(160deg,#10478F 0%,#0A2850 100%);border-color:#10478F;color:#fff}
+.axn .axn-rvw__q{color:#6F93C4;flex:none}
+.axn .axn-rvw__stars{display:flex;gap:3px;line-height:0}
+.axn .axn-rvw__t{margin:0;flex:1 1 auto;padding:0;border:0;font-family:var(--axn-b);font-size:18px;font-weight:400;line-height:1.55;color:#0B254B;quotes:none}
+.axn .axn-rvw__card--dark .axn-rvw__t{color:rgba(255,255,255,.94)}
+.axn .axn-rvw__by{display:flex;align-items:center;gap:12px;margin-top:auto}
+.axn .axn-rvw__who{display:flex;flex-direction:column;gap:2px;min-width:0}
+.axn .axn-rvw__name{display:block;font-family:var(--axn-h);font-size:16px;font-weight:700;line-height:1.25;color:#0B254B}
+.axn .axn-rvw__role{display:block;font-family:var(--axn-b);font-size:14px;font-weight:400;line-height:1.4;color:#5B6B82}
+.axn .axn-rvw__card--dark .axn-rvw__name{color:#FFFFFF}
+.axn .axn-rvw__card--dark .axn-rvw__role{color:rgba(255,255,255,.8)}
+.axn .axn-rvw__av{flex:none;display:grid;place-items:center;width:42px;height:42px;border-radius:50%;font-family:var(--axn-h);font-size:14px;font-weight:700;letter-spacing:.02em}
+.axn .axn-rvw__av--mint{background:#A8EBD2;color:#0B3B33}
+.axn .axn-rvw__av--sky{background:#E3EEFC;color:#154A92}
+.axn .axn-rvw__av--green{background:#E3F7F0;color:#0D7C66}
+/* long reviews: first lines + Read more, so every card stays the same size */
+.axn .axn-rvw__card.is-long .axn-rvw__t{flex:none;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:6;line-clamp:6;overflow:hidden}
+.axn .axn-rvw__card.is-long.is-open .axn-rvw__t{display:block;-webkit-line-clamp:unset;line-clamp:unset;overflow:visible}
+.axn .axn-rvw__rm,.axn .axn-rvw__rm:hover,.axn .axn-rvw__rm:focus,.axn .axn-rvw__rm:active{align-self:flex-start;margin:-6px 0 0;padding:0;border:0;background:none;box-shadow:none;font-family:var(--axn-b);font-size:15px;font-weight:500;color:var(--axn-blue);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.axn .axn-rvw__rm:focus-visible{outline:2px solid var(--axn-blue);outline-offset:3px;border-radius:4px}
+@media (max-width:1024px){
+  .axn .axn-rvw{padding:80px 0 72px}
+  .axn .axn-rvw__h{font-size:36px}
+  .axn .axn-rvw__card{flex-basis:calc((100% - 20px) / 2)}
+}
+@media (max-width:767px){
+  .axn .axn-rvw{padding:56px 0 56px}
+  .axn .axn-rvw__head{margin-bottom:24px}
+  .axn .axn-rvw__h{font-size:28px}
+  .axn .axn-rvw__tools{width:100%;justify-content:space-between}
+  .axn .axn-rvw__arrow{width:42px;height:42px}
+  .axn .axn-rvw__track{gap:14px}
+  .axn .axn-rvw__card{flex-basis:86%;padding:26px 22px;border-radius:22px;gap:16px}
+  .axn .axn-rvw__t{font-size:17px}
+}
+@media (prefers-reduced-motion:reduce){.axn .axn-rvw__track{scroll-behavior:auto}}
+
+
+/* review cards: compact like the reference (about 4 lines, then Read more) */
+.axn .axn-rvw__card{gap:18px;padding:32px 34px}
+.axn .axn-rvw__t{font-size:17px;line-height:1.6}
+.axn .axn-rvw__card.is-long .axn-rvw__t{-webkit-line-clamp:4;line-clamp:4}
+.axn .axn-rvw__card--dark .axn-rvw__t{margin-top:-4px}
+@media (max-width:767px){.axn .axn-rvw__card{padding:26px 22px}.axn .axn-rvw__t{font-size:16.5px}}
+
+/* =====================================================================
+   AXON ADHD online-evaluation landing page | RESPONSIVE LAYER (v8)
+   -------------------------------------------------------------------
+   HOW TO USE
+   Paste this at the very END of axon-landing.css (after the v7 reviews
+   block). The HTML does not need any change.
+
+   DESKTOP IS UNTOUCHED
+   Every rule below sits inside a media query for screens 1200px wide or
+   less (or touch-only devices). Nothing applies above 1200px.
+
+   BREAKPOINTS
+   1025–1200  small laptop
+   <=1024     tablet
+   <=900      small tablet (stat band 2x2, single-column pricing)
+   <=767      mobile
+   <=560      large phone (doctor stats stack)
+   <=400      small phone
+   <=360      very small phone (iPhone SE, Galaxy S8)
+
+   HERO TOP PADDING
+   Desktop stays 200px. It is raised on smaller screens so the fixed site
+   header never covers the badge/heading:
+     tablet 230px · mobile 210px · small phone 200px
+   Change the --axn-hero-top values below to tune it.
+   ===================================================================== */
+
+
+/* =====================================================================
+   SMALL LAPTOP (1025–1200px)
+   Two-column hero stays side by side instead of wrapping early.
+   ===================================================================== */
+@media (min-width:1025px) and (max-width:1200px){
+  .axn .axn-dhero__grid{gap:40px}
+  .axn .axn-dhero__copy{flex:1 1 420px}
+  .axn .axn-dhero__side{flex:1 1 460px}
+  .axn .axn-dhero__h1{font-size:50px}
+  .axn .axn-dhero__lead{font-size:19px}
+  .axn .axn-dhero__float{left:-20px}
+  .axn .axn-statband__c{padding:26px 22px}
+  .axn .axn-statband__n{font-size:36px}
+  .axn .axn-sec--ref{padding:104px 0}
+  .axn .axn-flow__list{gap:18px}
+  .axn .axn-flow__item{padding:44px 16px 26px}
+  .axn .axn-pricing .axn-plan{padding:36px}
+  .axn .axn-pricing .axn-plan__amt{font-size:58px}
+  .axn .axn-rvw__card{padding:28px}
+  .axn .axn-fin__h{font-size:44px}
+}
+
+
+/* =====================================================================
+   TABLET (<=1024px)
+   ===================================================================== */
+@media (max-width:1024px){
+  .axn{--axn-hero-top:230px}
+
+  /* hero: more room at the top, single column, centred map card */
+  .axn .axn-dhero__grid{gap:40px;padding-top:var(--axn-hero-top);padding-bottom:140px}
+  .axn .axn-dhero__copy,.axn .axn-dhero__side{flex:1 1 100%}
+  .axn .axn-dhero__copy{max-width:760px}
+  .axn .axn-dhero__lead{font-size:19px;max-width:36em}
+  .axn .axn-dhero__side{max-width:680px;margin-inline:auto;width:100%}
+  .axn .axn-dhero__float{display:none} /* floating badge would sit off-screen when stacked */
+
+  /* stat band */
+  .axn .axn-statband__c{padding:22px 20px}
+  .axn .axn-statband__n{font-size:34px}
+  .axn .axn-statband__l{font-size:14px}
+
+  /* section rhythm */
+  .axn .axn-sec--ref{padding:88px 0}
+  .axn .axn-head--wide{max-width:680px}
+
+  /* how it works */
+  .axn .axn-flow__list{padding-top:34px;gap:44px 24px}
+  .axn .axn-flow__p{max-width:30ch}
+
+  /* quiz vs evaluation */
+  .axn .axn-vs__grid{gap:20px}
+  .axn .axn-vs__card{padding:32px}
+  .axn .axn-vs__big{font-size:30px}
+
+  /* pricing */
+  .axn .axn-pricing .axn-plan{padding:34px}
+  .axn .axn-pricing .axn-plan__amt{font-size:56px}
+
+  /* doctor */
+  .axn .axn-spec__grid{gap:44px}
+  .axn .axn-spec__body{width:100%}
+  .axn .axn-spec__stat{font-size:20px}
+
+  /* reviews */
+  .axn .axn-rvw__head{align-items:flex-end}
+  .axn .axn-rvw__track{scroll-padding-inline:0}
+
+  /* states */
+  .axn .axn-states{padding:36px}
+
+  /* closing CTA */
+  .axn .axn-fin{padding:64px 24px}
+}
+
+
+/* =====================================================================
+   SMALL TABLET (<=900px)
+   ===================================================================== */
+@media (max-width:900px){
+  .axn .axn-statband__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .axn .axn-statband__c{padding:22px 24px}
+  .axn .axn-statband__c:nth-child(2n){border-right:0}
+  .axn .axn-statband__n{font-size:34px}
+
+  .axn .axn-plans{grid-template-columns:minmax(0,1fr);max-width:560px;gap:28px}
+  .axn .axn-faq{grid-template-columns:minmax(0,1fr)}
+  .axn .axn-faq__item{padding:24px}
+  .axn .axn-faq-cta{gap:14px 16px}
+}
+
+
+/* =====================================================================
+   MOBILE (<=767px)
+   ===================================================================== */
+@media (max-width:767px){
+  .axn{--axn-hero-top:210px}
+
+  .axn .axn-wrap{padding:0 20px}
+  .axn .axn-wrap--d{padding:0 20px}
+
+  /* ---- hero ---- */
+  .axn .axn-dhero__grid{gap:36px;padding-top:var(--axn-hero-top);padding-bottom:140px}
+  .axn .axn-dhero__copy{gap:22px}
+  .axn .axn-dhero__badge{font-size:13px;padding:7px 14px 7px 7px;max-width:100%}
+  .axn .axn-dhero__h1{font-size:36px;line-height:1.1;letter-spacing:-.02em}
+  .axn .axn-dhero__lead{font-size:17.5px;line-height:1.6}
+  .axn .axn-dhero__ctas{flex-direction:column;align-items:stretch;gap:16px;text-align:center}
+  .axn .axn-dhero__ctas .axn-btn{width:100%;min-height:52px}
+  .axn .axn-dhero__proof{gap:8px 18px;padding-top:18px;font-size:14px}
+  .axn .axn-dhero__side{max-width:none}
+
+  /* ---- map card + state checker ---- */
+  .axn .axn-mapcard{padding:16px;border-radius:24px}
+  .axn .axn-mapcard__top{padding:0 2px 8px}
+  .axn .axn-mapcard__title{font-size:14px}
+  .axn .axn-checker{padding:14px;border-radius:18px;gap:12px;margin-top:12px}
+  .axn .axn-checker__row{gap:10px}
+  .axn .axn-checker__field{flex:1 1 100%}
+  .axn .axn-checker .axn-btn{width:100%;min-height:52px}
+  .axn .axn-checker__msg{font-size:14px}
+  .axn .axn-dd__btn{min-height:50px;font-size:16px}
+  .axn .axn-dd__list{max-height:220px}
+  .axn .axn-dd__list li{padding:12px 14px;font-size:16px}
+
+  /* ---- stat band ---- */
+  .axn .axn-statband{margin-top:-84px}
+  .axn .axn-statband__grid{border-radius:22px}
+  .axn .axn-statband__c{padding:20px 18px}
+  .axn .axn-statband__n{font-size:30px}
+  .axn .axn-statband__l{font-size:13.5px;line-height:1.35}
+
+  /* ---- section rhythm + centred headings ---- */
+  .axn .axn-sec--ref{padding:64px 0}
+  .axn .axn-sec--ref.axn-sec--nt{padding-top:0}
+  .axn .axn-head--wide{align-items:center;text-align:center;gap:12px}
+  .axn .axn-head--wide .axn-body{font-size:16px;line-height:1.55}
+  .axn .axn-stack[style*="gap:64px"]{gap:44px!important}
+  .axn .axn-stack[style*="gap:56px"]{gap:36px!important}
+  .axn .axn-eyebrow--ref{font-size:12px;letter-spacing:.12em}
+
+  /* ---- how it works ---- */
+  .axn .axn-flow__list{grid-template-columns:minmax(0,1fr);gap:44px;padding-top:30px}
+  .axn .axn-flow__item{padding:42px 18px 26px;border-radius:18px}
+  .axn .axn-flow__t{font-size:15px}
+  .axn .axn-flow__p{font-size:15px;max-width:34ch}
+
+  /* ---- quiz vs evaluation ---- */
+  .axn .axn-vs__grid{grid-template-columns:minmax(0,1fr);gap:18px}
+  .axn .axn-vs__card{padding:28px 20px;border-radius:22px;gap:18px}
+  .axn .axn-vs__big{font-size:28px}
+  .axn .axn-vs__list{font-size:15px;gap:12px}
+
+  /* ---- pricing ---- */
+  .axn .axn-plans{gap:22px}
+  .axn .axn-pricing .axn-plan{padding:28px 20px 22px;border-radius:22px;gap:20px}
+  .axn .axn-pricing .axn-plan__amt{font-size:48px}
+  .axn .axn-plan__name{font-size:20px}
+  .axn .axn-pricing .axn-checks{padding-top:18px;gap:12px}
+  .axn .axn-plan-notes{flex-direction:column;align-items:flex-start;gap:10px;text-align:left}
+
+  /* ---- doctor ---- */
+  .axn .axn-spec{padding:56px 0}
+  .axn .axn-spec__grid{gap:36px}
+  .axn .axn-spec__media{width:100%;max-width:350px;margin-inline:auto}
+  .axn .axn-spec__body{gap:18px}
+  .axn .axn-spec__name{font-size:30px}
+  .axn .axn-spec__quote{padding:18px;gap:12px}
+  .axn .axn-spec__quote blockquote{font-size:16px;line-height:1.5}
+  .axn .axn-spec__licrow{font-size:14px}
+
+  /* ---- reviews ---- */
+  .axn .axn-rvw{padding:56px 0}
+  .axn .axn-rvw__head{flex-direction:column;align-items:flex-start;gap:16px;margin-bottom:22px}
+  .axn .axn-rvw__tools{width:100%;justify-content:space-between}
+  .axn .axn-rvw__track{gap:14px;scroll-padding-inline:0}
+  .axn .axn-rvw__card{flex-basis:86%;padding:24px 20px;border-radius:22px;gap:14px}
+  .axn .axn-rvw__t{font-size:16px;line-height:1.55}
+  .axn .axn-rvw__q{width:30px;height:24px}
+
+  /* ---- states ---- */
+  .axn .axn-states{padding:26px 18px;border-radius:24px;gap:22px}
+  .axn .axn-states__h{font-size:26px}
+  .axn .axn-states__sub{font-size:15px}
+  .axn .axn-states__list{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 12px;font-size:14.5px}
+  .axn .axn-states__list li{align-items:flex-start;line-height:1.3}
+  .axn .axn-states__list svg{margin-top:2px}
+  .axn .axn-states__note{padding:14px 16px;font-size:14px}
+
+  /* ---- FAQ ---- */
+  .axn .axn-faq-sec{padding:8px 0 56px}
+  .axn .axn-faq{gap:12px}
+  .axn .axn-faq__item{padding:20px;border-radius:14px}
+  .axn .axn-faq__q{font-size:17px}
+  .axn .axn-faq__a{font-size:15px}
+  .axn .axn-faq-cta{flex-direction:column;align-items:stretch;text-align:center}
+  .axn .axn-faq-cta .axn-btn,.axn .axn-faq-cta .axn-btn-o{width:100%;min-height:50px}
+
+  /* ---- closing CTA ---- */
+  .axn .axn-fin{padding:40px 16px 56px}
+  .axn .axn-fin__card{padding:52px 20px 40px;border-radius:24px}
+  .axn .axn-fin__h{font-size:30px}
+  .axn .axn-fin__tel{padding:6px 0}
+
+  /* ---- sticky bar ---- */
+  .axn .axn-sticky{padding:10px 16px calc(10px + env(safe-area-inset-bottom))}
+  .axn .axn-sticky .axn-btn{min-height:48px}
+}
+
+
+/* =====================================================================
+   LARGE PHONE (<=560px) — doctor stats become stacked rows
+   ===================================================================== */
+@media (max-width:560px){
+  .axn .axn-spec__stats{grid-template-columns:minmax(0,1fr);gap:10px}
+  .axn .axn-spec__stats>div{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:14px 16px}
+  .axn .axn-spec__stat{font-size:18px;flex:none}
+  .axn .axn-spec__statl{font-size:13px;margin-top:0;text-align:right}
+}
+
+
+/* =====================================================================
+   SMALL PHONE (<=400px)
+   ===================================================================== */
+@media (max-width:400px){
+  .axn{--axn-hero-top:200px}
+
+  .axn .axn-wrap,.axn .axn-wrap--d{padding:0 16px}
+  .axn .axn-dhero__grid{padding-top:var(--axn-hero-top);padding-bottom:132px;gap:32px}
+  .axn .axn-dhero__badge{font-size:12.5px}
+  .axn .axn-dhero__h1{font-size:32px}
+  .axn .axn-dhero__lead{font-size:16.5px}
+  .axn .axn-mapcard{padding:14px;border-radius:22px}
+  .axn .axn-checker{padding:12px}
+  .axn .axn-statband__c{padding:18px 14px}
+  .axn .axn-statband__n{font-size:26px}
+  .axn .axn-statband__l{font-size:12.5px}
+  .axn .axn-sec--ref{padding:56px 0}
+  .axn .axn-h2--ref{font-size:26px}
+  .axn .axn-flow__item{padding:40px 16px 24px}
+  .axn .axn-vs__card{padding:26px 18px}
+  .axn .axn-pricing .axn-plan{padding:26px 16px 20px}
+  .axn .axn-pricing .axn-plan__amt{font-size:42px}
+  .axn .axn-spec__name{font-size:26px}
+  .axn .axn-rvw__card{flex-basis:92%;padding:22px 18px}
+  .axn .axn-rvw__h{font-size:26px}
+  .axn .axn-states{padding:22px 16px}
+  .axn .axn-states__h{font-size:24px}
+  .axn .axn-faq__item{padding:18px 16px}
+  .axn .axn-fin__card{padding:44px 16px 36px}
+  .axn .axn-fin__h{font-size:26px}
+}
+
+
+/* =====================================================================
+   VERY SMALL PHONE (<=360px)
+   ===================================================================== */
+@media (max-width:360px){
+  .axn .axn-wrap,.axn .axn-wrap--d{padding:0 14px}
+  .axn .axn-dhero__h1{font-size:30px}
+  .axn .axn-btn--lg{font-size:16px;padding:12px 16px}
+  .axn .axn-states__list{grid-template-columns:minmax(0,1fr)}
+  .axn .axn-sticky .axn-btn{font-size:14px;padding:12px 12px}
+  .axn .axn-sticky__amt{font-size:17px}
+}
+
+
+/* =====================================================================
+   TOUCH DEVICES — no "stuck" hover lift after a tap
+   ===================================================================== */
+@media (hover:none){
+  .axn .axn-lift:hover,.axn .axn-flow__item:hover{transform:none}
+  .axn .axn-btn-o:hover{transform:none}
+  .axn .axn-btn:hover svg{transform:none}
+}
+
+/* =====================================================================
+   v9 — Reviews: every card shows 4 lines + "Read more" below the text;
+   only one review can be open at a time (logic in the reviews script)
+   ===================================================================== */
+.axn .axn-rvw__card .axn-rvw__t{flex:none;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;line-clamp:4;overflow:hidden}
+.axn .axn-rvw__card.is-open .axn-rvw__t{display:block;-webkit-line-clamp:unset;line-clamp:unset;overflow:visible}
+/* Read more on the dark (navy) card: mint so it stays readable */
+.axn .axn-rvw__card--dark .axn-rvw__rm,
+.axn .axn-rvw__card--dark .axn-rvw__rm:hover,
+.axn .axn-rvw__card--dark .axn-rvw__rm:focus,
+.axn .axn-rvw__card--dark .axn-rvw__rm:active{color:#9FE3D2}
+.axn .axn-rvw__card--dark .axn-rvw__rm:focus-visible{outline-color:#9FE3D2}
+
+
+/* =====================================================================
+   v10 | Fonts · glassmorphism system · responsive
+   spacing · sticky bar · phone underline
+   ---------------------------------------------------------------------
+   This block sits at the END of the file and only overrides. No wording,
+   markup order or script hooks are touched.
+   Specificity note: glass rules use `.axn.axn` / `.axn.axn.axn` so they
+   reliably beat the older single-purpose rules above without !important.
+   ===================================================================== */
+
+
+/* ---------------------------------------------------------------------
+   1. FONTS  (Manrope for headings and body; sizes set in v13 at the end)
+   --------------------------------------------------------------------- */
+.axn{
+  --axn-h:var(--font-manrope),'Manrope','Raleway',Arial,sans-serif;
+  --axn-b:var(--font-manrope),'Manrope','Raleway',Arial,sans-serif;
+  font-family:var(--axn-b);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+  overflow-x:clip;              /* no sideways scroll from decorative overflow */
+}
+.axn :is(h1,h2,h3,h4,h5,h6){font-family:var(--axn-h)!important;font-optical-sizing:auto;text-wrap:balance;overflow-wrap:break-word}
+.axn :is(h1,h2,h3,h4,h5,h6) :where(span,strong,em,a,small){font-family:inherit}
+.axn :is(.axn-statband__n,.axn-flow__num,.axn-flow__t,.axn-vs__big,.axn-plan__name,.axn-plan__amt,
+         .axn-spec__name,.axn-spec__num,.axn-spec__stat,.axn-faq__q,.axn-states__h,.axn-rvw__h,
+         .axn-rvw__name,.axn-fin__h,.axn-rvw__av,.axn-sticky__amt){font-family:var(--axn-h)}
+.axn :is(p,li,label,select,input,button,blockquote,figcaption,summary){font-family:var(--axn-b)}
+.axn :is(.axn-faq__q,.axn-flow__t,.axn-vs__big,.axn-states__h){text-wrap:balance}
+
+
+/* ---------------------------------------------------------------------
+   2. GLASS TOKENS
+   --------------------------------------------------------------------- */
+.axn{
+  --g-bg:linear-gradient(145deg,rgba(255,255,255,.78) 0%,rgba(255,255,255,.5) 100%);
+  --g-bg-dark:linear-gradient(160deg,rgba(16,69,141,.9) 0%,rgba(8,32,66,.93) 100%);
+  --g-edge:rgba(255,255,255,.9);
+  --g-edge-dark:rgba(255,255,255,.2);
+  --g-blur:blur(16px) saturate(165%);
+  --g-ring:0 0 0 1px rgba(16,69,141,.07);
+  --g-hi:inset 0 1px 0 rgba(255,255,255,.95);
+  --g-shadow:var(--g-ring),var(--g-hi),0 24px 48px -30px rgba(16,69,141,.38);
+  --g-shadow-hover:var(--g-ring),var(--g-hi),0 34px 60px -30px rgba(16,69,141,.5);
+  --g-shadow-dark:inset 0 1px 0 rgba(255,255,255,.18),0 28px 56px -30px rgba(6,26,54,.65);
+  --axn-sticky-h:72px;
+}
+
+
+/* ---------------------------------------------------------------------
+   3. HERO SIDE GLOW + SECTION BACKGROUND SEQUENCE
+   Every section after the hero uses Thinkitive's #DFEAF4 wash, alternating left / right, edge to edge:
+   how, pricing, reviews, FAQ (and the stat strip above How it works) from the left; compare, doctor and states from the right (and States we cover, same as the doctor section).
+   --------------------------------------------------------------------- */
+.axn .axn-dhero__side::before{
+  content:"";position:absolute;inset:-6% -8%;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(closest-side at 18% 22%,rgba(37,106,204,.30),transparent 72%),
+    radial-gradient(closest-side at 86% 82%,rgba(13,124,102,.24),transparent 72%);
+  filter:blur(10px);
+}
+.axn #axn-states{background:linear-gradient(249deg,#dfeaf4 24.89%,rgba(255,255,255,.2) 64.07%),#fff}
+.axn #axn-pricing,.axn #axn-faq{background:linear-gradient(108deg,#dfeaf4 19.84%,rgba(255,255,255,.2) 62.33%),#fff}
+
+/* ---------------------------------------------------------------------
+   4. GLASS SURFACES  (one recipe for every card)
+   --------------------------------------------------------------------- */
+.axn.axn :is(
+  .axn-mapcard,
+  .axn-statband__grid,
+  .axn-flow__item:not(:last-child),
+  .axn-vs__card:not(.axn-vs__card--hi),
+  .axn-plan,
+  .axn-spec__quote,
+  .axn-spec__stats>div,
+  .axn-spec__years,
+  .axn-rvw__card:not(.axn-rvw__card--dark),
+  .axn-states,
+  .axn-faq__item,
+  .axn-dhero__badge,
+  .axn-dhero__float
+){
+  background:var(--g-bg);
+  border:1px solid var(--g-edge);
+  box-shadow:var(--g-shadow);
+  -webkit-backdrop-filter:var(--g-blur);
+  backdrop-filter:var(--g-blur);
+}
+
+/* dark glass: highlighted cards */
+.axn.axn :is(
+  .axn-flow__item:last-child,
+  .axn-vs__card--hi,
+  .axn-rvw__card--dark,
+  .axn-spec__speaker
+){
+  background:var(--g-bg-dark);
+  border:1px solid var(--g-edge-dark);
+  box-shadow:var(--g-shadow-dark);
+  -webkit-backdrop-filter:var(--g-blur);
+  backdrop-filter:var(--g-blur);
+}
+
+/* ---- per-component refinements ---- */
+.axn.axn.axn .axn-mapcard{background:linear-gradient(150deg,rgba(255,255,255,.8),rgba(255,255,255,.55))}
+.axn.axn.axn .axn-checker{background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.92);box-shadow:var(--g-hi)}
+.axn.axn.axn .axn-dhero__badge{background:linear-gradient(145deg,rgba(255,255,255,.85),rgba(255,255,255,.6))}
+
+.axn.axn.axn .axn-statband__grid{background:linear-gradient(145deg,rgba(255,255,255,.86),rgba(255,255,255,.64))}
+.axn.axn.axn .axn-statband__c{border-color:rgba(16,69,141,.1)}
+
+.axn.axn.axn .axn-flow__item:last-child{
+  background:linear-gradient(165deg,rgba(14,59,82,.9),rgba(10,34,64,.94));
+  border-color:rgba(47,224,176,.6);
+  box-shadow:0 0 0 4px rgba(47,224,176,.14),inset 0 1px 0 rgba(255,255,255,.18),0 26px 60px -24px rgba(47,224,176,.5);
+}
+.axn.axn.axn .axn-flow__item:not(:last-child){border-color:rgba(255,255,255,.92)}
+.axn.axn.axn .axn-flow__item:not(:last-child)::after{ /* faint mint wash so the glass has a tint */
+  content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(180deg,rgba(22,167,136,.07),transparent 55%);
+}
+
+.axn.axn.axn .axn-vs__card:not(.axn-vs__card--hi){border-color:rgba(16,69,141,.16)}
+.axn.axn.axn .axn-vs__card:not(.axn-vs__card--hi)::before{height:4px;background:linear-gradient(90deg,#B7C7DD,#DCE5F1)}
+.axn.axn.axn .axn-vs__card--hi{background:linear-gradient(160deg,rgba(16,69,141,.94),rgba(8,32,66,.95))}
+
+.axn.axn.axn .axn-plan--main{
+  background:linear-gradient(150deg,rgba(255,255,255,.86),rgba(232,242,255,.62));
+  border:1px solid rgba(37,106,204,.55);
+  box-shadow:0 0 0 3px rgba(37,106,204,.13),var(--g-hi),0 40px 80px -46px rgba(37,106,204,.7);
+}
+.axn.axn.axn .axn-plan--alt{background:var(--g-bg)}
+.axn.axn.axn .axn-plan .axn-checks{border-top-color:rgba(16,69,141,.12)}
+
+.axn.axn.axn .axn-spec__speaker{background:linear-gradient(160deg,rgba(16,69,141,.86),rgba(8,32,66,.9))}
+.axn.axn.axn .axn-spec__quote{background:linear-gradient(145deg,rgba(255,255,255,.82),rgba(255,255,255,.58))}
+
+.axn.axn.axn .axn-rvw__card--dark{background:linear-gradient(160deg,rgba(16,71,143,.94),rgba(10,40,80,.95))}
+
+.axn.axn.axn .axn-states{background:linear-gradient(145deg,rgba(255,255,255,.8),rgba(248,251,255,.55))}
+.axn.axn.axn .axn-states__note{background:rgba(255,247,235,.82)}
+
+.axn.axn.axn .axn-faq__item{background:linear-gradient(145deg,rgba(255,255,255,.8),rgba(255,255,255,.55))}
+
+/* hover (keeps the glass ring, only deepens the shadow) */
+.axn.axn.axn .axn-lift:hover,
+.axn.axn.axn .axn-flow__item:not(:last-child):hover{box-shadow:var(--g-shadow-hover)}
+.axn.axn.axn .axn-plan--main:hover{box-shadow:0 0 0 3px rgba(37,106,204,.2),var(--g-hi),0 44px 80px -42px rgba(37,106,204,.75)}
+.axn.axn.axn .axn-flow__item:last-child:hover{box-shadow:0 0 0 4px rgba(47,224,176,.2),inset 0 1px 0 rgba(255,255,255,.18),0 32px 64px -22px rgba(47,224,176,.6)}
+
+
+/* ---------------------------------------------------------------------
+   5. BUTTONS  (glass secondary button, soft gloss on primary)
+   --------------------------------------------------------------------- */
+.axn.axn.axn .axn-btn:not(:hover):not(:focus-visible){
+  box-shadow:0 12px 24px -14px rgba(37,106,204,.75),inset 0 1px 0 rgba(255,255,255,.28);
+}
+.axn.axn.axn .axn-btn-o:not(:hover):not(:focus-visible){
+  background:rgba(255,255,255,.74);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 8px 20px -14px rgba(16,69,141,.4);
+}
+
+/* underline under the phone number inside the Call button */
+.axn .axn-tel{
+  text-decoration:underline;
+  text-decoration-thickness:1.5px;
+  text-decoration-skip-ink:none;
+  text-underline-offset:4px;
+  font-weight:500;
+  white-space:nowrap;
+}
+
+/* focus rings (keyboard users) */
+.axn :is(a,button,[tabindex]):focus-visible{outline:2px solid var(--axn-blue);outline-offset:3px}
+.axn .axn-fin :is(a,button):focus-visible{outline-color:#fff}
+
+
+/* ---------------------------------------------------------------------
+   6. CLOSING CTA  (glass ring + soft edge on the navy card)
+   --------------------------------------------------------------------- */
+.axn.axn .axn-fin__card{border:1px solid rgba(255,255,255,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 40px 80px -48px rgba(6,26,54,.7)}
+.axn.axn .axn-fin__ring{
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.24);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+}
+
+
+/* ---------------------------------------------------------------------
+   7. SMALL LAPTOP / TABLET HEADER ZONE (1025-1180px)
+   The site header turns into the compact bar here and the green
+   announcement is hidden, so the hero needs less top room.
+   --------------------------------------------------------------------- */
+@media (min-width:1025px) and (max-width:1180px){
+  .axn{--axn-hero-top:144px}
+  .axn .axn-dhero__grid{padding-top:var(--axn-hero-top)}
+}
+
+
+/* ---------------------------------------------------------------------
+   8. TABLET (<=1024px)
+   HERO TOP PADDING: change --axn-hero-top to tune (header bar ~74px + gap)
+   --------------------------------------------------------------------- */
+@media (max-width:1024px){
+  .axn{--axn-hero-top:132px}
+  .axn .axn-dhero__grid{padding-top:var(--axn-hero-top);padding-bottom:128px;gap:36px}
+  .axn .axn-sec--ref{padding:72px 0}
+  .axn .axn-rvw{padding:68px 0 64px}
+  .axn .axn-spec{padding:72px 0}
+  .axn .axn-fin{padding:56px 24px}
+  .axn .axn-flow__list{gap:40px 22px}
+}
+
+
+/* ---------------------------------------------------------------------
+   9. SMALL TABLET (<=900px)
+   --------------------------------------------------------------------- */
+@media (max-width:900px){
+  .axn .axn-plans{margin-inline:auto;width:100%}
+}
+
+
+/* ---------------------------------------------------------------------
+   10. MOBILE (<=767px)
+   --------------------------------------------------------------------- */
+@media (max-width:767px){
+  .axn{--axn-hero-top:116px;--g-blur:blur(12px) saturate(150%)}
+
+  .axn .axn-dhero__grid{padding-top:var(--axn-hero-top);padding-bottom:120px;gap:32px}
+  .axn .axn-dhero__copy{gap:20px}
+  .axn .axn-sec--ref{padding:52px 0}
+  .axn .axn-sec--ref.axn-sec--nt{padding-top:0}
+  .axn .axn-spec{padding:48px 0}
+  .axn .axn-rvw{padding:48px 0 52px}
+  .axn .axn-faq-sec{padding:8px 0 48px}
+  .axn .axn-fin{padding:32px 16px 48px}
+  .axn .axn-stack[style*="gap:64px"]{gap:36px!important}
+  .axn .axn-stack[style*="gap:56px"]{gap:32px!important}
+
+  .axn .axn-rvw__arrow{width:44px;height:44px}
+  .axn .axn-flow__list{gap:40px}
+
+  /* ---- sticky bar: button only, glass bar -------------------------- */
+  .axn.axn .axn-sticky{
+    justify-content:center;
+    gap:0;
+    padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+    background:rgba(255,255,255,.78);
+    border-top:1px solid rgba(255,255,255,.92);
+    box-shadow:0 -10px 30px -12px rgba(16,69,141,.3),inset 0 1px 0 rgba(255,255,255,.9);
+    -webkit-backdrop-filter:blur(18px) saturate(170%);
+    backdrop-filter:blur(18px) saturate(170%);
+  }
+  /* hide "$577 flat / 100% online" (markup stays in the HTML) */
+  .axn.axn .axn-sticky>div{display:none!important}
+  .axn.axn .axn-sticky .axn-btn{
+    flex:1 1 auto;width:100%;max-width:560px;
+    min-height:52px;padding:12px 18px;
+    font-size:16px;font-weight:500;letter-spacing:.005em;white-space:nowrap;
+  }
+  body:has(.axn-sticky){padding-bottom:calc(var(--axn-sticky-h,72px) + env(safe-area-inset-bottom))}
+}
+
+@media (max-width:400px){
+  .axn{--axn-hero-top:108px}
+  .axn .axn-dhero__grid{padding-bottom:116px;gap:28px}
+  .axn .axn-sec--ref{padding:48px 0}
+  .axn.axn .axn-sticky{padding-left:12px;padding-right:12px}
+  .axn.axn .axn-sticky .axn-btn{font-size:15.5px;padding:12px 14px}
+}
+@media (max-width:360px){
+  .axn.axn .axn-sticky .axn-btn{font-size:14.5px;padding:12px 10px}
+}
+
+/* ---------------------------------------------------------------------
+   11. LIFT THIRD-PARTY CHAT LAUNCHERS ABOVE THE STICKY BAR (mobile)
+   The round chat bubble sat on top of the button. These selectors cover
+   the common chat tools; if yours is different, add its selector here.
+   (Alternative that works for ANY widget: give the bar a right gutter by
+   uncommenting the padding-right line below instead.)
+   --------------------------------------------------------------------- */
+@media (max-width:767px){
+  body:has(.axn-sticky) :is(
+    #hubspot-messages-iframe-container,
+    #tidio-chat,#tidio-chat-iframe,#tidio-chat-code,
+    #launcher,#webWidget,
+    #chat-widget-container,#livechat-compact-container,
+    #drift-widget-container,#drift-frame-controller,
+    .intercom-lightweight-app-launcher,.intercom-launcher,#intercom-container .intercom-launcher-frame,
+    .crisp-client .cc-kv6t,#crisp-chatbox>div>a,
+    .zsiq_floatmain,.tawk-min-container,
+    .joinchat,.wa__btn_popup,#ht-ctc-chat,.chaty-widget
+  ){
+    bottom:calc(var(--axn-sticky-h,72px) + 14px + env(safe-area-inset-bottom))!important;
+  }
+  /* .axn .axn-sticky{padding-right:84px} */
+}
+
+
+/* ---------------------------------------------------------------------
+   12. TOUCH + ACCESSIBILITY
+   --------------------------------------------------------------------- */
+@media (hover:none){
+  .axn.axn.axn .axn-lift:hover,
+  .axn.axn.axn .axn-flow__item:hover{transform:none}
+}
+
+/* browsers without backdrop-filter, or users who asked for less
+   transparency: same cards, solid fills */
+@supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+  .axn{
+    --g-bg:linear-gradient(145deg,#FFFFFF,#F4F8FE);
+    --g-bg-dark:linear-gradient(160deg,#10458D,#0A2850);
+  }
+  .axn.axn.axn .axn-sticky{background:#fff}
+  .axn.axn.axn .axn-mapcard,.axn.axn.axn .axn-statband__grid,.axn.axn.axn .axn-plan--main,
+  .axn.axn.axn .axn-plan--alt,.axn.axn.axn .axn-spec__quote,.axn.axn.axn .axn-states,
+  .axn.axn.axn .axn-faq__item,.axn.axn.axn .axn-dhero__badge{background:#fff}
+  .axn.axn.axn .axn-checker{background:#F8FBFF}
+}
+@media (prefers-reduced-transparency:reduce){
+  .axn{
+    --g-bg:linear-gradient(145deg,#FFFFFF,#F4F8FE);
+    --g-bg-dark:linear-gradient(160deg,#10458D,#0A2850);
+    --g-blur:none;
+  }
+  .axn.axn.axn :is(.axn-mapcard,.axn-statband__grid,.axn-plan,.axn-states,.axn-faq__item,.axn-spec__quote,
+    .axn-dhero__badge,.axn-vs__card,.axn-rvw__card,.axn-flow__item,.axn-sticky,.axn-fin__ring,.axn-btn-o){
+    -webkit-backdrop-filter:none;backdrop-filter:none;
+  }
+  .axn.axn.axn .axn-sticky{background:#fff}
+}
+
+
+
+/* =====================================================================
+   v12 | PRICING: "Choose Your Next Step" (3 cards + 3-step strip)
+   ---------------------------------------------------------------------
+   Paste at the very END of axon-landing.css.
+   Only styles the new .axn-pc… classes, so nothing else on the page changes.
+   The old .axn-plan / .axn-plans / .axn-plan-notes / .axn-tags rules above
+   are no longer used by the page and can be deleted later (optional).
+   Breakpoints match the rest of the file: 1025–1200 · <=1024 · <=900 · <=767 · <=400
+   ===================================================================== */
+
+/* screen-reader-only text ("Regular price", "With 10% off") */
+.axn .axn-vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* ---------- Section + heading ---------- */
+.axn .axn-pc-wrap{display:flex;flex-direction:column;gap:52px}
+.axn .axn-pc-head{max-width:760px}
+.axn .axn-pc-head .axn-body{max-width:640px;margin-inline:auto}
+.axn .axn-pc-head strong{color:var(--axn-blue);font-weight:700}
+.axn .axn-pc-eyebrow{gap:14px;color:var(--axn-blue-600)}
+.axn .axn-pc-eyebrow::before,
+.axn .axn-pc-eyebrow::after{content:"";display:block;width:36px;height:1px;background:currentColor;opacity:.5}
+
+/* ---------- Cards grid ---------- */
+.axn .axn-pc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;align-items:stretch;width:100%;max-width:940px;margin:0 auto;padding-top:14px}
+.axn .axn-pc__card{position:relative;min-width:0;display:flex;flex-direction:column;gap:18px;padding:30px 28px 26px;border-radius:24px;background:#fff;border:1px solid #DCE6F2;color:var(--axn-ink);box-shadow:0 1px 2px rgba(16,24,40,.04),0 24px 48px -36px rgba(16,69,141,.4);transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s cubic-bezier(.16,1,.3,1)}
+.axn .axn-pc__card:hover{transform:translateY(-4px);box-shadow:0 1px 2px rgba(16,24,40,.04),0 34px 60px -34px rgba(16,69,141,.5)}
+.axn .axn-pc__card--hi{border:2px solid var(--axn-blue);padding:29px 27px 25px;box-shadow:0 0 0 4px rgba(37,106,204,.08),0 36px 70px -40px rgba(37,106,204,.6)}
+.axn .axn-pc__card--hi:hover{box-shadow:0 0 0 4px rgba(37,106,204,.12),0 44px 80px -40px rgba(37,106,204,.7)}
+
+.axn .axn-pc__badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;background:var(--axn-blue);color:#fff;font-size:11.5px;font-weight:700;line-height:1.3;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;box-shadow:0 8px 18px -10px rgba(37,106,204,.9)}
+
+/* title row */
+.axn .axn-pc__top{display:flex;align-items:flex-start;gap:14px}
+.axn .axn-pc__ic{flex:none;display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:#EAF2FF;color:var(--axn-blue)}
+.axn .axn-pc__titles{display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-width:0;padding-top:2px}
+.axn .axn-pc__card--hi .axn-pc__titles{padding-top:0;min-height:46px;justify-content:center}
+.axn .axn-pc__tag{display:inline-block;padding:4px 10px;border-radius:999px;background:#EAF2FF;color:var(--axn-blue-600);font-size:11px;font-weight:700;line-height:1.3;letter-spacing:.02em}
+.axn .axn-pc__tag--up{text-transform:uppercase;letter-spacing:.08em}
+.axn .axn-pc__name{margin:0;font-size:22px;font-weight:600;line-height:1.22;letter-spacing:-.01em;color:var(--axn-ink)}
+
+/* price */
+.axn .axn-pc__price{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px}
+.axn .axn-pc__was{font-family:var(--axn-h);font-size:20px;font-weight:500;color:var(--axn-muted);text-decoration:line-through;text-decoration-thickness:1.5px}
+.axn .axn-pc__now{font-family:var(--axn-h);font-size:37px;font-weight:700;line-height:1.05;letter-spacing:-.03em;color:var(--axn-blue);font-variant-numeric:tabular-nums}
+.axn .axn-pc__save{display:inline-flex;flex-direction:column;align-items:center;padding:4px 7px;border-radius:8px;background:#EAF2FF;border:1px solid #D6E6FB;color:var(--axn-blue-600);line-height:1.25}
+.axn .axn-pc__save strong{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:inherit}
+.axn .axn-pc__save small{font-size:11px;color:inherit}
+.axn .axn-pc__note{margin-top:-10px;font-size:14.5px;line-height:1.5;color:var(--axn-muted)}
+.axn .axn-pc__break{margin-top:-10px;font-size:13px;line-height:1.5;color:var(--axn-muted)}
+
+/* 24-hour offer box */
+.axn .axn-pc__offer{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border-radius:14px;background:#EEF5FF;border:1px solid #DCE9FB;font-size:14px;line-height:1.5;color:var(--axn-body)}
+.axn .axn-pc__offer strong{color:var(--axn-blue);font-weight:700}
+.axn .axn-pc__clock{flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#fff;border:1px solid #D6E6FB;color:var(--axn-blue)}
+
+/* feature list */
+.axn .axn-pc__body{display:flex;flex-direction:column;gap:12px;padding-top:18px;border-top:1px solid #E3EBF5}
+.axn .axn-pc__plus{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;line-height:1.4;color:var(--axn-ink)}
+.axn .axn-pc__plus svg{color:var(--axn-blue)}
+.axn .axn-pc__list{display:flex;flex-direction:column;gap:11px;font-size:15px;line-height:1.45;color:var(--axn-body)}
+.axn .axn-pc__list li{position:relative;padding-left:30px}
+.axn .axn-pc__list li::before{content:"";position:absolute;left:0;top:1px;width:20px;height:20px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%23E3EEFC'/%3E%3Cpath d='M7.5 12.4l3 3 6-6.4' fill='none' stroke='%23256ACC' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+
+/* buttons */
+.axn .axn-pc__foot{margin-top:auto;display:flex;flex-direction:column;gap:10px;padding-top:6px}
+.axn .axn-pc__foot .axn-btn,
+.axn .axn-pc__foot .axn-btn-o{min-height:54px;font-size:16px;font-weight:500}
+.axn .axn-pc__foot .axn-btn-o svg{transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.axn .axn-pc__foot .axn-btn-o:hover svg{transform:translateX(4px)}
+.axn .axn-pc__fine{text-align:center;font-size:12px;line-height:1.5;color:var(--axn-muted)}
+
+.axn .axn-pc__foot .axn-btn-o{padding-inline:14px;font-size:15px;white-space:nowrap}
+
+
+/* ---------- Responsive ---------- */
+@media (min-width:1025px) and (max-width:1200px){
+  .axn .axn-pc{gap:22px}
+  .axn .axn-pc__card{padding:28px 22px 24px}
+  .axn .axn-pc__card--hi{padding:27px 21px 23px}
+  .axn .axn-pc__name{font-size:20px}
+  .axn .axn-pc__now{font-size:32px}
+}
+@media (max-width:1024px){
+  .axn .axn-pc-wrap{gap:44px}
+  .axn .axn-pc{grid-template-columns:minmax(0,1fr);max-width:600px;gap:36px}
+}
+@media (max-width:767px){
+  .axn .axn-pc-wrap{gap:32px}
+  .axn .axn-pc-head .axn-body{font-size:16px}
+  .axn .axn-pc{gap:32px}
+  .axn .axn-pc__card{padding:26px 20px 22px;border-radius:22px;gap:16px}
+  .axn .axn-pc__card--hi{padding:25px 19px 21px}
+  .axn .axn-pc__name{font-size:20px}
+  .axn .axn-pc__now{font-size:36px}
+  .axn .axn-pc__list{font-size:14.5px}
+  .axn .axn-pc__foot .axn-btn,.axn .axn-pc__foot .axn-btn-o{min-height:52px;font-size:15.5px}
+}
+@media (max-width:400px){
+  .axn .axn-pc__card{padding:24px 16px 20px}
+  .axn .axn-pc__card--hi{padding:23px 15px 19px}
+  .axn .axn-pc__ic{width:40px;height:40px}
+  .axn .axn-pc__now{font-size:32px}
+  .axn .axn-pc__was{font-size:18px}
+  .axn .axn-pc__offer{padding:12px 14px;font-size:13.5px}
+  .axn .axn-pc__foot .axn-btn,.axn .axn-pc__foot .axn-btn-o{font-size:15px;padding:12px 14px}
+}
+@media (hover:none){
+  .axn .axn-pc__card:hover{transform:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .axn .axn-pc__card,.axn .axn-pc__foot .axn-btn-o svg{transition:none}
+}
+
+/* =====================================================================
+   v13 | TYPOGRAPHY: thinkitive.com type system across the whole page
+   ---------------------------------------------------------------------
+   Font: Manrope for headings and body (fallback Raleway, Arial).
+   Sizes are the same fluid calc() values thinkitive.com uses, so they
+   scale with the screen on their own (no breakpoint overrides needed):
+     H1 hero ........ calc(16.8px + 1.625vw)  600 · line-height 130%
+     H2 section ..... calc(18px + 1.25vw)     600 · 130% · letter-spacing -1px
+     H3 card title .. calc(13.2px + .25vw)    700 · 150%
+     Body text ...... calc(13.2px + .25vw)    400 · 170%
+     Hero paragraph . 1.1rem                  400 · 160%
+     Quote .......... calc(13.6px + .125vw)   400 · 160%
+     Small text ..... calc(11.6px + .125vw)   400 · 140%
+     Labels / meta .. calc(11.2px + .25vw)    600 · 150%
+     Buttons ........ calc(10.8px + .375vw)   700 · 150%
+   AXON brand colours are kept. Placed last + extra-specific so it wins
+   over every earlier size rule and media query.
+   ===================================================================== */
+.axn{font-family:var(--font-manrope),'Manrope','Raleway',Arial,sans-serif;font-size:calc(13.2px + .25vw);line-height:1.7}
+.axn.axn.axn.axn .axn-dhero__h1,
+.axn.axn.axn.axn .axn-h1{font-size:clamp(32px,calc(22px + 2.6vw),68px);font-weight:700;line-height:1.15;letter-spacing:-1px}
+.axn.axn.axn.axn .axn-h2,
+.axn.axn.axn.axn .axn-h2--ref,
+.axn.axn.axn.axn .axn-rvw__h,
+.axn.axn.axn.axn .axn-states__h,
+.axn.axn.axn.axn .axn-fin__h,
+.axn.axn.axn.axn .axn-spec__name{font-size:calc(18px + 1.25vw);font-weight:600;line-height:1.3;letter-spacing:-1px}
+.axn.axn.axn.axn .axn-flow__t,
+.axn.axn.axn.axn .axn-pc__name,
+.axn.axn.axn.axn .axn-faq__q,
+.axn.axn.axn.axn .axn-plan__name{font-size:calc(14.4px + .4vw);font-weight:700;line-height:1.4;letter-spacing:normal}
+.axn.axn.axn.axn .axn-vs__big{font-size:calc(16.8px + .9vw);font-weight:600;line-height:1.3;letter-spacing:-.5px}
+.axn.axn.axn.axn .axn-body,
+.axn.axn.axn.axn .axn-head--wide .axn-body,
+.axn.axn.axn.axn .axn-pc-head .axn-body,
+.axn.axn.axn.axn .axn-vs__list,
+.axn.axn.axn.axn .axn-pc__list,
+.axn.axn.axn.axn .axn-faq__a,
+.axn.axn.axn.axn .axn-rvw__t,
+.axn.axn.axn.axn .axn-states__sub,
+.axn.axn.axn.axn .axn-states__list,
+.axn.axn.axn.axn .axn-spec__licrow,
+.axn.axn.axn.axn .axn-fin__p,
+.axn.axn.axn.axn .axn-faq-cta,
+.axn.axn.axn.axn .axn-dhero__proof,
+.axn.axn.axn.axn .axn-plan-notes{font-size:calc(13.2px + .25vw);font-weight:400;line-height:1.7}
+.axn.axn.axn.axn .axn-spec__quote blockquote{font-size:calc(13.6px + .125vw);line-height:1.6}
+.axn.axn.axn.axn .axn-dhero__lead{font-size:1.1rem;line-height:1.6} /* same as thinkitive.com hero paragraph */
+.axn.axn.axn.axn .axn-flow__p,
+.axn.axn.axn.axn .axn-pc__offer,
+.axn.axn.axn.axn .axn-pc__note,
+.axn.axn.axn.axn .axn-pc__break,
+.axn.axn.axn.axn .axn-pc__plus,
+.axn.axn.axn.axn .axn-statband__l,
+.axn.axn.axn.axn .axn-spec__statl,
+.axn.axn.axn.axn .axn-spec__years,
+.axn.axn.axn.axn .axn-spec__speaker,
+.axn.axn.axn.axn .axn-spec__creds,
+.axn.axn.axn.axn .axn-states__note,
+.axn.axn.axn.axn .axn-rvw__role,
+.axn.axn.axn.axn .axn-mapcard__key,
+.axn.axn.axn.axn .axn-dd__list li,
+.axn.axn.axn.axn .axn-checker__msg,
+.axn.axn.axn.axn .axn-fin__sub,
+.axn.axn.axn.axn .axn-dhero__float small{font-size:calc(12.4px + .15vw);line-height:1.45}
+.axn.axn.axn.axn .axn-pc__plus{font-weight:700}
+.axn.axn.axn.axn .axn-eyebrow,
+.axn.axn.axn.axn .axn-eyebrow--ref,
+.axn.axn.axn.axn .axn-dhero__badge,
+.axn.axn.axn.axn .axn-mapcard__title,
+.axn.axn.axn.axn .axn-checker__field label,
+.axn.axn.axn.axn .axn-vs__k,
+.axn.axn.axn.axn .axn-rvw__name,
+.axn.axn.axn.axn .axn-rvw__g,
+.axn.axn.axn.axn .axn-rvw__rm,
+.axn.axn.axn.axn .axn-dhero__link,
+.axn.axn.axn.axn .axn-fin__tel,
+.axn.axn.axn.axn .axn-dhero__float strong{font-size:calc(11.2px + .25vw);font-weight:600;line-height:1.5}
+.axn.axn.axn.axn .axn-pc__tag,
+.axn.axn.axn.axn .axn-pc__badge,
+.axn.axn.axn.axn .axn-pc__save strong,
+.axn.axn.axn.axn .axn-pc__save small,
+.axn.axn.axn.axn .axn-pc__fine,
+.axn.axn.axn.axn .axn-tag{font-size:calc(10.4px + .1875vw);line-height:1.4}
+.axn.axn.axn.axn .axn-btn,
+.axn.axn.axn.axn .axn-btn-o,
+.axn.axn.axn.axn .axn-btn-w,
+.axn.axn.axn.axn .axn-btn--lg,
+.axn.axn.axn.axn .axn-pc__foot .axn-btn,
+.axn.axn.axn.axn .axn-pc__foot .axn-btn-o,
+.axn.axn.axn.axn .axn-sticky .axn-btn,
+.axn.axn.axn.axn .axn-dd__btn{font-size:calc(10.8px + .375vw);font-weight:700;line-height:1.5}
+.axn.axn.axn.axn .axn-dd__btn{font-weight:400}
+.axn.axn.axn.axn .axn-statband__n,
+.axn.axn.axn.axn .axn-spec__stat,
+.axn.axn.axn.axn .axn-spec__num{font-weight:700;letter-spacing:-1px}
+.axn.axn.axn.axn .axn-statband__n{font-size:calc(19.6px + 1.375vw);line-height:1.2}
+.axn.axn.axn.axn .axn-pc__now,
+.axn.axn.axn.axn .axn-plan__amt{font-weight:700;letter-spacing:-1px}
+
+/* =====================================================================
+   Next.js integration
+   The site header is sticky in normal flow (not overlaying the page), so the hero slides under it with the
+   same negative margin the other page heroes use, and keeps the original top spacing.
+   ===================================================================== */
+.axn .axn-dhero{margin-top:calc(-1 * var(--header-height));}
+@media (max-width:1180px){
+  .axn .axn-dhero__grid{padding-top:calc(var(--header-height) + 40px)}
+}
+
+/* =====================================================================
+   HERO CTA REFINEMENT (height, padding, type, radius, shadow, hover). Colours unchanged.
+   ===================================================================== */
+.axn.axn.axn.axn .axn-dhero__ctas{gap:14px 28px;margin-top:6px}
+.axn.axn.axn.axn .axn-dhero__ctas .axn-btn{min-height:56px;padding:0 30px;gap:10px;border-radius:999px;box-shadow:0 1px 2px rgba(16,69,141,.12),0 12px 26px -14px rgba(37,106,204,.65),inset 0 1px 0 rgba(255,255,255,.2);transition:background-color .25s ease,border-color .25s ease,box-shadow .3s cubic-bezier(.16,1,.3,1),transform .3s cubic-bezier(.16,1,.3,1)}
+.axn.axn.axn.axn .axn-dhero__ctas .axn-btn:hover,
+.axn.axn.axn.axn .axn-dhero__ctas .axn-btn:focus-visible{transform:translateY(-2px);box-shadow:0 1px 2px rgba(16,69,141,.14),0 18px 32px -14px rgba(16,69,141,.6),inset 0 1px 0 rgba(255,255,255,.2)}
+.axn.axn.axn.axn .axn-dhero__ctas .axn-btn:active{transform:translateY(0);box-shadow:0 1px 2px rgba(16,69,141,.14),0 8px 16px -10px rgba(16,69,141,.55)}
+.axn.axn.axn.axn .axn-dhero__link{display:inline-flex;align-items:center;min-height:56px;text-underline-offset:7px;text-decoration-thickness:1.5px;transition:color .25s ease,text-underline-offset .25s ease}
+.axn.axn.axn.axn .axn-dhero__link:hover,
+.axn.axn.axn.axn .axn-dhero__link:focus-visible{text-underline-offset:9px}
+@media (max-width:767px){
+  .axn.axn.axn.axn .axn-dhero__ctas .axn-btn{width:100%;min-height:54px}
+  .axn.axn.axn.axn .axn-dhero__link{justify-content:center;min-height:48px}
+}
+
+/* "See How it Works": outlined pill instead of an underlined link */
+.axn.axn.axn.axn .axn-dhero__link{justify-content:center;padding:0 28px;border:1.5px solid var(--axn-blue);border-radius:999px;background:#fff;color:var(--axn-blue-600);text-decoration:none;transition:background-color .25s ease,color .25s ease,border-color .25s ease,box-shadow .3s cubic-bezier(.16,1,.3,1),transform .3s cubic-bezier(.16,1,.3,1)}
+.axn.axn.axn.axn .axn-dhero__link:hover,
+.axn.axn.axn.axn .axn-dhero__link:focus-visible{background:var(--axn-sky);border-color:var(--axn-blue-600);color:var(--axn-navy);text-decoration:none;transform:translateY(-2px);box-shadow:0 14px 26px -16px rgba(16,69,141,.45)}
+.axn.axn.axn.axn .axn-dhero__link:active{transform:translateY(0);box-shadow:none}
+@media (max-width:767px){
+  .axn.axn.axn.axn .axn-dhero__link{width:100%;min-height:54px}
+}
+
+/* Trust indicators: one line on larger screens */
+@media (min-width:768px){
+  .axn.axn.axn.axn .axn-dhero__proof{flex-wrap:nowrap;align-items:center;gap:0 clamp(14px,1.6vw,26px)}
+  .axn.axn.axn.axn .axn-dhero__proof>span{flex:0 0 auto;white-space:nowrap;gap:8px}
+}
+@media (min-width:1025px) and (max-width:1280px){
+  .axn.axn.axn.axn .axn-dhero__proof{font-size:14px;gap:0 14px}
+}
+
+/* State selector + Book button: soft, diffused drop shadows (reference) */
+.axn.axn.axn.axn .axn-dd__btn:not(:focus-visible):not([aria-expanded="true"]){box-shadow:0 1px 2px rgba(16,69,141,.06),0 8px 20px -6px rgba(16,69,141,.22),0 14px 28px -14px rgba(16,69,141,.18)}
+.axn.axn.axn.axn .axn-checker .axn-btn:not(:hover):not(:focus-visible){box-shadow:0 2px 4px rgba(16,69,141,.14),0 10px 22px -6px rgba(37,106,204,.5),0 16px 30px -14px rgba(16,69,141,.45),inset 0 1px 0 rgba(255,255,255,.22)}
+.axn.axn.axn.axn .axn-checker .axn-btn:hover,
+.axn.axn.axn.axn .axn-checker .axn-btn:focus-visible{box-shadow:0 2px 4px rgba(16,69,141,.16),0 14px 26px -6px rgba(16,69,141,.5),0 20px 34px -14px rgba(16,69,141,.45),inset 0 1px 0 rgba(255,255,255,.22)}
+
+/* Trust indicators: slightly smaller text, faint dividers between items */
+@media (min-width:768px){
+  .axn.axn.axn.axn .axn-dhero__proof{font-size:15.5px;gap:0;align-items:center}
+  .axn.axn.axn.axn .axn-dhero__proof>span{padding:0 clamp(14px,1.5vw,22px);line-height:1.2}
+  .axn.axn.axn.axn .axn-dhero__proof>span:first-child{padding-left:0}
+  .axn.axn.axn.axn .axn-dhero__proof>span+span{border-left:1px solid rgba(16,69,141,.14)}
+  .axn.axn.axn.axn .axn-dhero__proof svg{width:17px;height:17px}
+  .axn.axn.axn.axn .axn-dhero__stars{font-size:15px;letter-spacing:1px;line-height:1}
+}
+@media (min-width:1025px) and (max-width:1280px){
+  .axn.axn.axn.axn .axn-dhero__proof{font-size:14.5px}
+  .axn.axn.axn.axn .axn-dhero__proof>span{padding:0 14px}
+  .axn.axn.axn.axn .axn-dhero__proof>span:first-child{padding-left:0}
+}
+
+/* How it works: the connector line only shows in the gaps between cards, never through them */
+.axn .axn-flow__list{--flow-gap:26px}
+@media (min-width:1025px) and (max-width:1200px){.axn .axn-flow__list{--flow-gap:18px}}
+.axn.axn .axn-flow__list::before{
+  left:0;right:0;
+  --flow-col:calc((100% - 3 * var(--flow-gap)) / 4);
+  -webkit-mask-image:repeating-linear-gradient(90deg,transparent 0,transparent var(--flow-col),#000 var(--flow-col),#000 calc(var(--flow-col) + var(--flow-gap)));
+          mask-image:repeating-linear-gradient(90deg,transparent 0,transparent var(--flow-col),#000 var(--flow-col),#000 calc(var(--flow-col) + var(--flow-gap)));
+}
+
+/* Section eyebrow labels: bordered glass pill */
+.axn.axn.axn.axn .axn-eyebrow--ref{display:inline-flex;align-items:center;align-self:auto;width:fit-content;max-width:100%;padding:8px 18px;border:1px solid rgba(37,106,204,.24);border-radius:999px;background:linear-gradient(145deg,rgba(255,255,255,.78),rgba(255,255,255,.45));box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 8px 18px -12px rgba(16,69,141,.3);-webkit-backdrop-filter:blur(14px) saturate(165%);backdrop-filter:blur(14px) saturate(165%);line-height:1.3}
+.axn.axn.axn.axn .axn-pc-eyebrow{gap:12px}
+.axn.axn.axn.axn .axn-pc-eyebrow::before,
+.axn.axn.axn.axn .axn-pc-eyebrow::after{width:22px}
+.axn.axn.axn.axn .axn-rvw__head .axn-eyebrow--ref{margin-bottom:16px}
+.axn.axn.axn.axn .axn-head--wide .axn-eyebrow--ref{align-self:center}
+.axn.axn.axn.axn .axn-spec__body .axn-eyebrow--ref,
+.axn.axn.axn.axn .axn-states__head .axn-eyebrow--ref{align-self:flex-start}
+
+/* Eyebrow pill: mint glass with a soft green border and dark-green spaced caps (reference) */
+.axn.axn.axn.axn .axn-eyebrow--ref{padding:12px 34px;border:1.5px solid #BFE8DC;border-radius:999px;background:linear-gradient(145deg,rgba(238,251,247,.9),rgba(255,255,255,.55));color:#0B3B33;font-weight:700;letter-spacing:.16em;text-transform:uppercase;box-shadow:inset 0 0 0 1px rgba(255,255,255,.75),inset 0 1px 0 rgba(255,255,255,.95),0 10px 22px -14px rgba(13,124,102,.45)}
+@media (max-width:767px){
+  .axn.axn.axn.axn .axn-eyebrow--ref{padding:10px 24px;letter-spacing:.13em}
+}
+
+/* Step 4 card: deep green gradient with a soft diagonal sheen (reference) */
+.axn.axn.axn.axn .axn-flow__item:last-child{--ilf:#0B6654;--ils:#0F8F78;--ila:#2FE0B0;background:radial-gradient(120% 70% at 85% 0%,rgba(47,224,176,.38),transparent 60%),linear-gradient(155deg,#12907A 0%,#0B6654 52%,#094A3F 100%);border-color:rgba(47,224,176,.7);box-shadow:0 0 0 4px rgba(47,224,176,.14),inset 0 1px 0 rgba(255,255,255,.25),0 26px 60px -24px rgba(13,124,102,.65)}
+.axn.axn.axn.axn .axn-flow__item:last-child::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,transparent 38%,rgba(255,255,255,.1) 48%,rgba(255,255,255,.03) 62%,transparent 72%),radial-gradient(90% 50% at 10% 100%,rgba(255,255,255,.1),transparent 70%)}
+.axn.axn.axn.axn .axn-flow__item:last-child .axn-flow__p{color:rgba(255,255,255,.92)}
+
+/* =====================================================================
+   COMPARISON SECTION REFINEMENT ("Online quizzes can't diagnose ADHD. This can.")
+   Spacing, type, alignment and shadows only; existing colours and content unchanged.
+   ===================================================================== */
+.axn.axn.axn.axn .axn-vs__grid{max-width:1040px;gap:28px}
+.axn.axn.axn.axn .axn-vs__card{gap:0;padding:44px 40px 42px;border-radius:24px}
+.axn.axn.axn.axn .axn-vs__card:not(.axn-vs__card--hi){box-shadow:0 1px 2px rgba(16,69,141,.05),0 16px 32px -24px rgba(16,69,141,.28)}
+.axn.axn.axn.axn .axn-vs__card--hi:not(:hover){box-shadow:0 2px 4px rgba(11,37,75,.14),0 30px 60px -28px rgba(11,37,75,.65),inset 0 1px 0 rgba(255,255,255,.18)}
+
+/* kicker + heading */
+.axn.axn.axn.axn .axn-vs__k{font-weight:600;letter-spacing:.12em;text-transform:uppercase;line-height:1.3}
+.axn.axn.axn.axn .axn-vs__big{margin-top:14px}
+.axn.axn.axn.axn .axn-vs__card:not(.axn-vs__card--hi) .axn-vs__big{color:var(--axn-ink)}
+
+/* lists: divider under the heading, even rhythm, icons aligned to the first text line */
+.axn.axn.axn.axn .axn-vs__list{margin-top:26px;padding-top:26px;gap:16px}
+.axn.axn.axn.axn .axn-vs__card:not(.axn-vs__card--hi) .axn-vs__list{border-top:1px solid rgba(16,69,141,.12)}
+.axn.axn.axn.axn .axn-vs__card--hi .axn-vs__list{border-top:1px solid rgba(255,255,255,.16);color:#fff}
+.axn.axn.axn.axn .axn-vs__list li{align-items:flex-start;gap:14px;line-height:1.5}
+.axn.axn.axn.axn .axn-vs__list svg{width:20px;height:20px;margin-top:2px!important}
+
+@media (max-width:1024px){
+  .axn.axn.axn.axn .axn-vs__card{padding:36px 30px 34px}
+}
+@media (max-width:820px){
+  .axn.axn.axn.axn .axn-vs__grid{grid-template-columns:minmax(0,1fr);max-width:560px;gap:20px}
+}
+@media (max-width:767px){
+  .axn.axn.axn.axn .axn-vs__card{padding:30px 22px 28px;border-radius:20px}
+  .axn.axn.axn.axn .axn-vs__big{margin-top:12px}
+  .axn.axn.axn.axn .axn-vs__list{margin-top:22px;padding-top:22px;gap:14px}
+}
+
+/* Comparison cards: no top strip / top glow */
+.axn.axn.axn.axn .axn-vs__card::before,
+.axn.axn.axn.axn .axn-vs__card--hi::before,
+.axn.axn.axn.axn .axn-vs__card:not(.axn-vs__card--hi)::before{display:none}
+
+/* Hero rating: Google logo + stars over "4.9/5 (100+ reviews)" */
+.axn.axn.axn.axn .axn-dhero__rating{gap:12px;align-items:center}
+.axn.axn.axn.axn .axn-dhero__proof .axn-dhero__glogo{width:40px;height:40px;flex:none}
+.axn.axn.axn.axn .axn-dhero__rating-body{display:flex;flex-direction:column;align-items:flex-start;gap:2px;line-height:1.2}
+.axn.axn.axn.axn .axn-dhero__rating .axn-dhero__stars{font-size:18px;letter-spacing:3px;line-height:1}
+.axn.axn.axn.axn .axn-dhero__rating-n{color:var(--axn-muted)}
+@media (min-width:768px){
+  .axn.axn.axn.axn .axn-dhero__proof>span{align-self:stretch}
+}
+
+/* =====================================================================
+   PRICING CARDS (reference look): glass cards, icon in a white circle, white pills, solid check circles.
+   Left card = brand blue, right card = lavender purple (#7C4DDB, sampled by eye from the design reference). Content and prices unchanged.
+   ===================================================================== */
+.axn.axn.axn.axn .axn-pc{gap:32px;max-width:960px}
+.axn.axn.axn.axn .axn-pc__card{--pc:var(--axn-blue);--pc-d:var(--axn-blue-600);--pc-tint:#EAF2FF;padding:34px 32px 30px;border-radius:28px;gap:20px;background:linear-gradient(145deg,rgba(255,255,255,.88),rgba(255,255,255,.58));border:1px solid rgba(255,255,255,.95);box-shadow:0 0 0 1px rgba(16,69,141,.07),inset 0 1px 0 rgba(255,255,255,.95),0 24px 50px -30px rgba(16,69,141,.4);-webkit-backdrop-filter:blur(16px) saturate(165%);backdrop-filter:blur(16px) saturate(165%)}
+.axn.axn.axn.axn .axn-pc__card--hi{border:1.5px solid rgba(37,106,204,.55);padding:33px 31px 29px;box-shadow:0 0 0 4px rgba(37,106,204,.08),inset 0 1px 0 rgba(255,255,255,.95),0 30px 60px -30px rgba(37,106,204,.55)}
+.axn.axn.axn.axn .axn-pc__card:not(.axn-pc__card--hi){--pc:#7c4ddb;--pc-d:#6d3fd9;--pc-tint:#f1ebff;background:linear-gradient(115deg,rgba(255,255,255,.6) 0%,rgba(255,255,255,0) 42%),linear-gradient(145deg,rgba(237,228,255,.62),rgba(255,255,255,.28));border:1px solid rgba(124,77,219,.42);box-shadow:0 0 0 1px rgba(124,77,219,.14),inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(124,77,219,.08),0 28px 56px -28px rgba(124,77,219,.4);-webkit-backdrop-filter:blur(22px) saturate(180%);backdrop-filter:blur(22px) saturate(180%)}
+
+/* badge, icon, title row */
+.axn.axn.axn.axn .axn-pc__badge{background:linear-gradient(180deg,var(--axn-blue),var(--axn-blue-600));padding:8px 18px;box-shadow:0 10px 22px -10px rgba(37,106,204,.7),inset 0 1px 0 rgba(255,255,255,.25)}
+.axn.axn.axn.axn .axn-pc__top{align-items:center;gap:16px}
+.axn.axn.axn.axn .axn-pc__ic{width:58px;height:58px;background:#fff;color:var(--pc);box-shadow:0 1px 2px rgba(16,69,141,.08),0 12px 24px -12px rgba(16,69,141,.35)}
+.axn.axn.axn.axn .axn-pc__ic svg{width:24px;height:24px}
+.axn.axn.axn.axn .axn-pc__tag{background:var(--pc-tint);color:var(--pc-d)}
+.axn.axn.axn.axn .axn-pc__titles{padding-top:0;min-height:0;gap:6px}
+
+/* price row */
+.axn.axn.axn.axn .axn-pc__price{gap:8px 14px;align-items:center}
+.axn.axn.axn.axn .axn-pc__now{color:var(--pc);font-weight:800}
+.axn.axn.axn.axn .axn-pc__card:not(.axn-pc__card--hi) .axn-pc__now{color:var(--pc-d)}
+.axn.axn.axn.axn .axn-pc__save{flex-direction:row;gap:6px;align-items:baseline;padding:8px 16px;border:0;border-radius:999px;background:#fff;color:var(--pc-d);box-shadow:0 1px 2px rgba(16,69,141,.06),0 8px 18px -10px rgba(16,69,141,.3)}
+
+/* 24-hour offer box */
+.axn.axn.axn.axn .axn-pc__offer{padding:16px 18px;border:0;border-radius:18px;background:#fff;box-shadow:0 1px 2px rgba(16,69,141,.05),0 12px 28px -18px rgba(16,69,141,.3)}
+.axn.axn.axn.axn .axn-pc__offer strong{color:var(--pc-d)}
+.axn.axn.axn.axn .axn-pc__clock{background:#fff;border:1.5px solid var(--pc);color:var(--pc)}
+
+/* list */
+.axn.axn.axn.axn .axn-pc__body{border-top:1px solid rgba(16,69,141,.1);padding-top:20px}
+.axn.axn.axn.axn .axn-pc__plus svg{color:var(--pc)}
+.axn.axn.axn.axn .axn-pc__list{gap:12px}
+.axn.axn.axn.axn .axn-pc__list li::before{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%23256ACC'/%3E%3Cpath d='M7.5 12.4l3 3 6-6.4' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+.axn.axn.axn.axn .axn-pc__card:not(.axn-pc__card--hi) .axn-pc__list li::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%239b7ae8'/%3E%3Cpath d='M7.5 12.4l3 3 6-6.4' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+
+/* buttons */
+.axn.axn.axn.axn .axn-pc__foot .axn-btn{border:0;background:linear-gradient(180deg,var(--axn-blue),var(--axn-blue-600));box-shadow:0 14px 28px -12px rgba(37,106,204,.65),inset 0 1px 0 rgba(255,255,255,.25)}
+.axn.axn.axn.axn .axn-pc__foot .axn-btn-o{border:1.5px solid #7c4ddb;background:rgba(255,255,255,.7);color:#6d3fd9;box-shadow:inset 0 1px 0 rgba(255,255,255,.9)}
+.axn.axn.axn.axn .axn-pc__foot .axn-btn-o:hover,
+.axn.axn.axn.axn .axn-pc__foot .axn-btn-o:focus-visible{background:#7c4ddb;border-color:#7c4ddb;color:#fff}
+
+@media (max-width:767px){
+  .axn.axn.axn.axn .axn-pc__card{padding:28px 20px 24px;border-radius:24px}
+  .axn.axn.axn.axn .axn-pc__card--hi{padding:27px 19px 23px}
+  .axn.axn.axn.axn .axn-pc__ic{width:50px;height:50px}
+}
+
+/* Pricing eyebrow: all blue (text, border, side lines, tinted glass) */
+.axn.axn.axn.axn #axn-pricing .axn-pc-eyebrow{color:var(--axn-blue-600);border-color:rgba(37,106,204,.4);background:linear-gradient(145deg,rgba(239,246,255,.92),rgba(255,255,255,.55));box-shadow:inset 0 0 0 1px rgba(255,255,255,.75),inset 0 1px 0 rgba(255,255,255,.95),0 10px 22px -14px rgba(37,106,204,.5)}
+
+/* =====================================================================
+   STATES WE COVER (visual refinement only; no type, text or data changes)
+   ===================================================================== */
+.axn.axn.axn.axn .axn-states{background:linear-gradient(180deg,#fff,#f7fafd);border:1px solid var(--axn-soft-line);border-radius:28px;box-shadow:0 1px 2px rgba(16,69,141,.05),0 24px 48px -32px rgba(16,69,141,.25);-webkit-backdrop-filter:none;backdrop-filter:none}
+
+/* blue accent line under the heading */
+.axn.axn.axn.axn .axn-states__h::after{content:"";display:block;width:56px;height:3px;margin-top:14px;border-radius:3px;background:var(--axn-blue)}
+
+/* six balanced columns: entries flow down each column at natural height, so spacing is uniform and a wrapped name never
+   stretches a whole row; the separators are native column rules (same height in every column) */
+.axn.axn.axn.axn .axn-states__list{display:block;column-count:6;column-gap:32px;column-rule:1px solid rgba(16,69,141,.12)}
+.axn.axn.axn.axn .axn-states__list li{display:flex;align-items:flex-start;min-width:0;padding:7px 0;border:0;line-height:1.35;overflow-wrap:break-word;break-inside:avoid}
+.axn.axn.axn.axn .axn-states__list svg{margin-top:.2em}
+@media (max-width:1024px){
+  .axn.axn.axn.axn .axn-states__list{column-count:4}
+}
+@media (max-width:767px){
+  .axn.axn.axn.axn .axn-states{border-radius:24px}
+  .axn.axn.axn.axn .axn-states__list{column-count:2;column-gap:24px}
+}
+@media (max-width:400px){
+  .axn.axn.axn.axn .axn-states__list{column-count:1}
+}
+
+/* unavailable-states notice: soft cream panel with an orange border */
+.axn.axn.axn.axn .axn-states__note{background:#fff7eb;border:1px solid rgba(235,139,1,.4);border-radius:18px;padding:22px 26px;text-align:left;line-height:1.7;overflow-wrap:break-word}
+@media (max-width:767px){.axn.axn.axn.axn .axn-states__note{padding:18px 18px}}
+.axn.axn.axn.axn .axn-states__note strong{color:#b86e00}
+
+/* States we cover: top padding (the section had none), matching its bottom padding at each breakpoint */
+.axn.axn.axn #axn-states{padding-top:120px}
+@media (max-width:1024px){.axn.axn.axn #axn-states{padding-top:72px}}
+@media (max-width:767px){.axn.axn.axn #axn-states{padding-top:52px}}
+@media (max-width:400px){.axn.axn.axn #axn-states{padding-top:48px}}
+
+/* "Before you book" FAQ (shared FAQ component, outside .axn): same left blue wash as the reviews section; scoped to this page's wrapper */
+#axn-faq>section{background:linear-gradient(108deg,#dfeaf4 19.84%,rgba(255,255,255,.2) 62.33%),#fff}
+
+/* Final CTA button: white so it stands out on the blue card */
+.axn.axn.axn.axn .axn-fin__ring .axn-btn{background:#fff;border-color:#fff;color:var(--axn-blue-600)}
+.axn.axn.axn.axn .axn-fin__ring .axn-btn:not(:hover):not(:focus-visible){box-shadow:0 10px 24px -10px rgba(6,26,54,.5),inset 0 1px 0 rgba(255,255,255,.9)}
+.axn.axn.axn.axn .axn-fin__ring .axn-btn:hover,
+.axn.axn.axn.axn .axn-fin__ring .axn-btn:focus-visible{background:var(--axn-sky);border-color:var(--axn-sky);color:var(--axn-navy)}
+
+/* Final CTA: phone number as a glass outline button with a phone icon */
+.axn.axn.axn.axn .axn-fin__call,
+.axn.axn.axn.axn .axn-fin__call:hover,
+.axn.axn.axn.axn .axn-fin__call:focus{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:12px 26px;border:1.5px solid rgba(255,255,255,.7);border-radius:999px;background:rgba(255,255,255,.12);color:#fff;text-decoration:none;white-space:nowrap;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:inset 0 1px 0 rgba(255,255,255,.25);transition:background-color .25s ease,border-color .25s ease}
+.axn.axn.axn.axn .axn-fin__call:hover,
+.axn.axn.axn.axn .axn-fin__call:focus-visible{background:rgba(255,255,255,.22);border-color:#fff}
+@media (max-width:767px){.axn.axn.axn.axn .axn-fin__call{width:100%}}
+
+/* Final CTA booking button: no outer ring */
+.axn.axn.axn .axn-fin__ring{background:transparent;border-color:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}
+/* attention pulse: gentle breathing scale plus a soft ring that expands and fades; arrow nudges forward */
+@keyframes axn-btn-pulse{0%,100%{transform:scale(1);box-shadow:0 10px 24px -10px rgba(6,26,54,.5),0 0 0 0 rgba(255,255,255,.55)}50%{transform:scale(1.035);box-shadow:0 14px 28px -10px rgba(6,26,54,.55),0 0 0 14px rgba(255,255,255,0)}}
+@keyframes axn-arrow-nudge{0%,100%{translate:0 0}50%{translate:4px 0}}
+@media (prefers-reduced-motion:no-preference){
+  .axn.axn.axn.axn .axn-fin__ring .axn-btn{animation:axn-btn-pulse 2.6s ease-in-out infinite}
+  .axn.axn.axn.axn .axn-fin__ring .axn-btn:hover,
+  .axn.axn.axn.axn .axn-fin__ring .axn-btn:focus-visible{animation:none;transform:scale(1.04)}
+  .axn.axn.axn.axn .axn-fin__ring .axn-btn svg{animation:axn-arrow-nudge 1.3s ease-in-out infinite}
+}
+
+/* Landing-page header replaces the site header on this route only (the selector needs the new header to be mounted) */
+body:has(.axn-lp-header) [data-site-header]{display:none}

@@ -1,0 +1,2336 @@
+/* =========================================================
+   AXON ADHD evaluation landing page | Elementor Pro
+   Headings + text: Manrope (thinkitive.com type system) · Buttons: homepage pill style (50px)
+   Everything is scoped to .alp so theme/Elementor styles don't clash.
+   Breakpoints match Elementor: tablet <=1024px, mobile <=767px
+   (plus a small-laptop band 1025–1200px and a small-phone band <=400px)
+   Section backgrounds run edge to edge; content is capped at 1340px and centred.
+   Colours: hero #E8F2FF, alternating sections #F8FBFF / white.
+   Motion: scroll-reveal + eased wheel scrolling (see end of file + HTML script).
+   Lines marked "RESP" are the responsiveness fixes.
+   ========================================================= */
+
+
+.alp{
+  --alp-ink:#0B254B;
+  --alp-body:rgba(11,37,75,.72);
+  --alp-muted:#5B6B84;
+  --alp-line:#DCE4EE;
+  --alp-tint:#F4F7FB;
+  --alp-blue:#256ACC;
+  --alp-blue-600:#1D57AB;
+  --alp-navy:#10458D;
+  --alp-green:#0D7C66;
+  --alp-green-700:#0B6654;
+  --alp-mint:#EEFBF7;
+  --alp-sky:#EFF6FF;
+  --alp-hero-bg:#E8F2FF;
+  --alp-soft:#F8FBFF;
+  --alp-soft-line:#E3EBF5;
+  --alp-check:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230D7C66' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+  --alp-h:var(--font-manrope),'Manrope','Raleway',Arial,sans-serif;
+  --alp-b:var(--font-manrope),'Manrope','Raleway',Arial,sans-serif;
+  font-family:var(--alp-b);
+  font-size:16px;
+  line-height:1.5;
+  color:var(--alp-ink);
+  background:var(--alp-tint);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:clip;
+  overflow-wrap:break-word; /* RESP: long words/emails/URLs never push the layout wider than the screen */
+  /* Full-width breakout: section backgrounds span the whole screen even inside a boxed Elementor container.
+     RESP: --alp-vw (set by the optional script) = viewport minus the desktop scrollbar, so the page
+     stays perfectly centred. Without the script it falls back to 100vw exactly as before. */
+  position:relative;
+}
+.alp *,.alp *::before,.alp *::after{box-sizing:border-box}
+.alp h1,.alp h2,.alp h3,.alp p,.alp ul,.alp ol{margin:0;padding:0}
+.alp ul,.alp ol{list-style:none}
+.alp img{max-width:100%;height:auto;border:0}
+.alp svg{flex-shrink:0}
+.alp strong{font-weight:700}
+.alp button{font:inherit}
+
+/* ---------- Layout ---------- */
+.alp .alp-wrap{width:100%;max-width:1388px;margin:0 auto;padding:0 24px} /* 1340px content + 24px side padding */
+.alp .alp-wrap--faq{max-width:928px}
+.alp .alp-sec--white{background:#fff}
+.alp .alp-sec--tint{background:#f7fafd}
+.alp .alp-sec--soft{background:linear-gradient(249deg,#dfeaf4 24.89%,rgba(255,255,255,.2) 64.07%),#fff}
+.alp .alp-sec--navy{background:var(--alp-navy);color:#fff}
+.alp .alp-sec--64{padding:64px 0}
+.alp .alp-sec--72{padding:72px 0}
+.alp .alp-sec--80{padding:80px 0}
+.alp .alp-sec--88{padding:88px 0}
+.alp .alp-stack{display:flex;flex-direction:column;gap:40px}
+.alp .alp-stack--32{gap:32px}
+.alp .alp-stack--44{gap:44px}
+.alp .alp-stack--36{gap:36px}
+.alp .alp-center{text-align:center}
+.alp .alp-grow{flex-grow:1}
+
+/* RESP: grid/flex children may shrink below their content width instead of overflowing */
+.alp .alp-hero__grid>*,.alp .alp-familiar>*,.alp .alp-spec__grid>*,.alp .alp-duo>*,.alp .alp-plans>*,
+.alp .alp-steps>*,.alp .alp-why>*,.alp .alp-faq>*,.alp .alp-quotes>*,.alp .alp-spec__stats>*,
+.alp .alp-screener__copy,.alp .alp-panel{min-width:0}
+
+/* ---------- Type ---------- */
+.alp .alp-h1,.alp .alp-h2,.alp .alp-h3,.alp .alp-plan__name,.alp .alp-step__t,.alp .alp-why__t,.alp .alp-price__amt,.alp .alp-plan__amt,.alp .alp-mprice__amt,.alp .alp-sticky__amt,.alp .alp-step__n,.alp .alp-faq summary{font-family:var(--alp-h)}
+.alp .alp-h1{font-size:50px;line-height:1.2;font-weight:700;letter-spacing:-1px;color:var(--alp-ink)}
+.alp .alp-h2{font-size:32px;line-height:1.4;font-weight:600;letter-spacing:-.01em;color:var(--alp-ink)}
+.alp .alp-h2--40{font-size:32px}
+.alp .alp-h2--48{font-size:40px;line-height:1.25}
+.alp .alp-h2--white{color:#fff}
+.alp .alp-h3{font-size:24px;line-height:1.3;font-weight:600;letter-spacing:-.01em;color:var(--alp-ink)}
+.alp .alp-h3--28{font-size:24px}
+.alp .alp-lead{font-size:18px;line-height:1.6;color:var(--alp-body)}
+.alp .alp-body{font-size:17px;line-height:1.65;color:var(--alp-body)}
+.alp .alp-body--17{font-size:16px}
+.alp .alp-eyebrow{font-size:14px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--alp-green-700)}
+.alp .alp-eyebrow--blue{color:var(--alp-blue-600);letter-spacing:.06em}
+.alp .alp-eyebrow--mint{color:#9FE3D2}
+.alp .alp-eyebrow--amber{color:#8A5200}
+.alp .alp-head{display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center}
+.alp .alp-head--left{align-items:flex-start;text-align:left;max-width:760px}
+.alp .alp-head__p{max-width:680px;line-height:1.55}
+
+/* ---------- Buttons (same as axonadhd.com homepage) ---------- */
+.alp .alp-btn,.alp .alp-btn-o,.alp .alp-btn-w{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--alp-b);font-size:16px;font-weight:400;line-height:1.2;padding:12px 20px;min-height:44px;border-radius:50px;border:1px solid var(--alp-blue);text-decoration:none;text-align:center;transition:background-color .2s ease,color .2s ease,border-color .2s ease;max-width:100%}
+.alp .alp-btn{background:var(--alp-blue);color:#fff;box-shadow:0 1px 2px rgba(16,24,40,.05)}
+.alp .alp-btn:hover,.alp .alp-btn:focus-visible{background:var(--alp-navy);border-color:var(--alp-navy);color:#fff}
+.alp .alp-btn-o{background:#fff;color:var(--alp-blue)}
+.alp .alp-btn-o:hover,.alp .alp-btn-o:focus-visible{background:var(--alp-blue);color:#fff}
+.alp .alp-btn-o--green{border-color:var(--alp-green);color:var(--alp-green-700);flex-shrink:0}
+.alp .alp-btn-o--green:hover,.alp .alp-btn-o--green:focus-visible{background:var(--alp-green);border-color:var(--alp-green);color:#fff}
+.alp .alp-btn-w{background:#fff;border-color:#fff;color:var(--alp-navy);font-size:18px}
+.alp .alp-btn-w:hover,.alp .alp-btn-w:focus-visible{background:var(--alp-sky);border-color:var(--alp-sky);color:var(--alp-navy)}
+.alp .alp-btn--lg{font-size:18px}
+.alp .alp-btn--block{display:flex;width:100%}
+.alp .alp-tl{color:var(--alp-blue-600);font-size:16px;font-weight:500;text-decoration:underline;text-underline-offset:4px}
+.alp .alp-tl:hover{color:var(--alp-navy)}
+.alp a:focus-visible,.alp button:focus-visible,.alp summary:focus-visible,.alp [tabindex]:focus-visible{outline:3px solid #9FC3F5;outline-offset:3px}
+
+/* ---------- Check lists ---------- */
+.alp .alp-checks{display:flex;flex-direction:column;gap:12px;font-size:16px}
+.alp .alp-checks li,.alp .alp-ck{position:relative;padding-left:32px;line-height:1.45}
+.alp .alp-checks li::before,.alp .alp-ck::before{content:"";position:absolute;left:0;top:1px;width:20px;height:20px;background:var(--alp-check) center/contain no-repeat}
+
+/* ---------- Hero ---------- */
+.alp .alp-hero{background:var(--alp-hero-bg);padding:200px 0 80px}
+.alp .alp-hero__grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:64px;align-items:center} /* RESP: minmax(0,…) */
+.alp .alp-hero__copy{display:flex;flex-direction:column;gap:24px;min-width:0}
+.alp .alp-pill{align-self:flex-start;background:var(--alp-mint);color:var(--alp-green-700);font-weight:500;font-size:14px;line-height:1.4;padding:8px 14px;border-radius:999px;max-width:100%}
+.alp .alp-hero__ctas{display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px;margin-top:8px}
+.alp .alp-trust{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:8px;font-size:15px;color:var(--alp-body)}
+.alp .alp-trust__rating{display:flex;align-items:center;gap:8px}
+.alp .alp-trust strong{color:var(--alp-ink)}
+.alp .alp-stars{fill:#EB8B01}
+.alp .alp-ck{padding-left:26px}
+.alp .alp-ck::before{width:18px;height:18px}
+.alp .alp-mprice{display:none}
+
+.alp .alp-card-price{background:#fff;border:1px solid var(--alp-line);border-radius:24px;box-shadow:0 24px 48px -24px rgba(16,69,141,.25);overflow:hidden}
+.alp .alp-card-price__top{background:var(--alp-sky);padding:24px 28px;border-bottom:1px solid var(--alp-line)}
+.alp .alp-price{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;margin-top:8px}
+.alp .alp-price__amt{font-size:48px;font-weight:700;line-height:1.1;color:var(--alp-ink)}
+.alp .alp-price__note{font-size:16px;color:var(--alp-body)}
+.alp .alp-card-price__body{padding:24px 28px;display:flex;flex-direction:column;gap:14px}
+.alp .alp-card-price__body .alp-checks{gap:14px}
+.alp .alp-card-price__body .alp-btn{margin-top:8px;font-size:17px;min-height:52px}
+.alp .alp-fine{font-size:13px;line-height:1.5;color:var(--alp-muted);text-align:center}
+
+/* ---------- Trusted by (real logos from axonadhd.com) ---------- */
+.alp .alp-logos{background:var(--alp-soft);padding:40px 0;border-top:1px solid var(--alp-soft-line);border-bottom:1px solid var(--alp-soft-line);display:flex;flex-direction:column;gap:22px}
+.alp .alp-logos__label{font-family:var(--alp-b);font-size:13px;font-weight:700;line-height:1.5;letter-spacing:.1em;text-transform:uppercase;color:var(--alp-muted);text-align:center;padding:0 24px}
+.alp .alp-marquee{overflow:hidden;display:flex;align-items:center;height:60px;background:var(--alp-soft);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%);
+          mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%)}
+.alp .alp-marquee__track{display:flex;width:max-content;animation:alp-marquee 52s linear infinite}
+.alp .alp-marquee:hover .alp-marquee__track{animation-play-state:paused}
+.alp .alp-marquee__set{display:flex;align-items:center;gap:40px;padding-right:40px}
+.alp .alp-marquee__set img{height:46px;width:auto;max-width:none;display:block;mix-blend-mode:multiply}
+@keyframes alp-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- Sound familiar ---------- */
+.alp .alp-familiar{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:64px;align-items:center} /* RESP: minmax(0,…) */
+.alp .alp-familiar__copy{display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+.alp .alp-quotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;font-size:17px}
+.alp .alp-quotes>div{background:var(--alp-soft);border:1px solid var(--alp-soft-line);border-radius:14px;padding:18px 20px}
+
+/* ---------- How it works ---------- */
+.alp .alp-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.alp .alp-step{background:#fff;border:1px solid var(--alp-line);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:12px}
+.alp .alp-step>*{min-width:0} /* RESP */
+.alp .alp-step__n{width:44px;height:44px;border-radius:12px;background:var(--alp-blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;flex-shrink:0}
+.alp .alp-step__n--green{background:var(--alp-green)}
+.alp .alp-step__t{font-size:20px;font-weight:600;line-height:1.3;color:var(--alp-ink)}
+.alp .alp-step__p{font-size:16px;line-height:1.55;color:var(--alp-body);margin-top:12px}
+.alp .alp-row-cta{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:16px 24px;font-size:15px;color:var(--alp-body);text-align:center}
+.alp .alp-row-cta .alp-btn{font-size:17px}
+
+/* ---------- Pricing ---------- */
+.alp .alp-plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;width:100%;max-width:1000px;margin:0 auto}
+.alp .alp-plan{position:relative;border-radius:24px;padding:36px;display:flex;flex-direction:column;gap:20px}
+.alp .alp-plan--main{border:2px solid var(--alp-blue);background:#fff}
+.alp .alp-plan--alt{border:1px solid var(--alp-line);background:#FBFCFE}
+.alp .alp-plan .alp-btn,.alp .alp-plan .alp-btn-o{margin-top:8px;min-height:54px;font-size:17px}
+.alp .alp-badge{position:absolute;top:-15px;left:36px;background:var(--alp-blue);color:#fff;font-size:13px;font-weight:500;line-height:1.3;padding:6px 12px;border-radius:999px;max-width:calc(100% - 72px)}
+.alp .alp-badge--green{background:var(--alp-green)}
+.alp .alp-plan__name{font-size:22px;font-weight:600;line-height:1.25;letter-spacing:-.01em;color:var(--alp-ink)}
+.alp .alp-plan .alp-price{margin-top:0}
+.alp .alp-plan__amt{font-size:52px;font-weight:700;line-height:1.1;color:var(--alp-ink)}
+.alp .alp-plan-notes{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 36px;font-size:15px;color:var(--alp-body);text-align:center}
+.alp .alp-plan-notes strong{color:var(--alp-ink)}
+
+/* ---------- Why AXON ---------- */
+.alp .alp-why{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.alp .alp-why__c{background:#fff;border:1px solid var(--alp-soft-line);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:12px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+.alp .alp-why__ic{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;flex-shrink:0}
+.alp .alp-why__ic--blue{background:#EAF2FF;color:#256ACC}
+.alp .alp-why__ic--green{background:#E7F7F1;color:#0D7C66}
+.alp .alp-why__ic--amber{background:#FFF3E3;color:#E8890C}
+.alp .alp-why__t{font-size:20px;font-weight:600;color:var(--alp-ink)}
+.alp .alp-why__p{font-size:16px;line-height:1.55;color:var(--alp-body)}
+
+/* ---------- Accommodations + kids ---------- */
+.alp .alp-duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.alp .alp-panel{background:#fff;border:1px solid var(--alp-line);border-radius:24px;padding:40px;display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+.alp .alp-panel--warm{background:#FFF7EB;border-color:#F3DDB8}
+.alp .alp-panel__ctas{display:flex;flex-wrap:wrap;gap:16px 20px;align-items:center}
+
+/* ---------- Meet your ADHD specialist ---------- */
+.alp .alp-spec{padding:96px 0}
+.alp .alp-spec__grid{display:grid;grid-template-columns:480px minmax(0,1fr);gap:72px;align-items:center}
+/* RESP: the photo stack now scales with its column (same 480×590 geometry as before, in %),
+   so it can't spill out when the column gets narrower on laptops/tablets */
+.alp .alp-spec__media{position:relative;width:100%;max-width:480px;aspect-ratio:480/590}
+.alp .alp-spec__back{position:absolute;left:8.333%;top:0;width:91.667%;height:91.525%;border-radius:32px;background:var(--alp-mint);border:1px solid #BFE8DC}
+.alp .alp-spec__photo{position:absolute;left:0;top:6.102%;width:91.667%;height:91.525%;border-radius:32px;overflow:hidden;background:#DCE6F2;box-shadow:0 24px 48px -24px rgba(16,69,141,.25)}
+.alp .alp-spec__photo img{position:absolute;left:50%;top:50%;width:192%;max-width:none;height:auto;transform:translate(-50%,-46%)}
+.alp .alp-spec__years{position:absolute;right:-24px;top:84px;display:flex;align-items:center;gap:14px;padding:16px 20px;background:#fff;border:1px solid var(--alp-line);border-radius:18px;box-shadow:0 18px 40px -18px rgba(16,69,141,.35);font-size:14px;line-height:1.35;color:var(--alp-body)}
+.alp .alp-spec__num{font-family:var(--alp-h);font-size:40px;font-weight:700;line-height:1;color:var(--alp-blue)}
+.alp .alp-spec__speaker{position:absolute;left:28px;bottom:0;max-width:min(360px,calc(100% - 40px));display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--alp-navy);color:#fff;border-radius:18px;box-shadow:0 18px 40px -18px rgba(16,69,141,.5);font-size:14px;line-height:1.4}
+.alp .alp-spec__speaker strong{color:#fff}
+.alp .alp-spec__body{display:flex;flex-direction:column;align-items:flex-start;gap:22px;min-width:0}
+.alp .alp-spec__id{display:flex;flex-direction:column;gap:6px}
+.alp .alp-spec__name{font-family:var(--alp-h);font-size:44px;font-weight:700;line-height:1.15;letter-spacing:-1px;color:var(--alp-ink)}
+.alp .alp-spec__creds{font-size:17px;font-weight:500;letter-spacing:.04em;color:var(--alp-blue)}
+.alp .alp-spec__lic{font-size:16px;color:var(--alp-body)}
+.alp .alp-spec__quote{margin:0;display:flex;gap:16px;align-items:flex-start;width:100%;background:#fff;border:1px solid var(--alp-soft-line);border-radius:20px;padding:24px 28px}
+.alp .alp-spec__quote>*{min-width:0}
+.alp .alp-spec__quote svg{flex-shrink:0;margin-top:4px}
+.alp .alp-spec__quote blockquote{margin:0;padding:0;border:0;font-size:18px;line-height:1.55;font-style:italic;color:var(--alp-ink)}
+.alp .alp-spec__quote figcaption{margin-top:10px;font-size:14px;font-weight:500;color:var(--alp-muted)}
+.alp .alp-spec__stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;width:100%}
+.alp .alp-spec__stats>div{border:1px solid var(--alp-line);border-radius:16px;padding:18px;background:#fff}
+.alp .alp-spec__stat{font-family:var(--alp-h);font-size:22px;font-weight:700;line-height:1.2;color:var(--alp-ink)}
+.alp .alp-spec__statl{font-size:14px;line-height:1.4;color:var(--alp-body);margin-top:4px}
+.alp .alp-spec__chips{display:flex;flex-wrap:wrap;gap:10px}
+.alp .alp-chip{display:inline-block;padding:8px 14px;border-radius:999px;background:#fff;border:1px solid var(--alp-soft-line);color:var(--alp-body);font-size:14px;font-weight:500;line-height:1.3}
+.alp .alp-chip--mint{background:var(--alp-mint);border-color:#CDEFE4;color:var(--alp-green-700)}
+.alp .alp-chip--sky{background:var(--alp-sky);border-color:#D6E6FB;color:var(--alp-blue-600)}
+.alp .alp-spec__cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:6px;font-size:15px;color:var(--alp-body)}
+
+/* ---------- Final CTA (same design as "Ready for Clear Answers?" on axonadhd.com) ---------- */
+.alp .alp-ready{background:#fff;padding:88px 0}
+.alp .alp-ready__card{width:calc(100% - 48px);max-width:1340px;margin:0 auto;border-radius:20px;padding:100px 40px;display:flex;flex-direction:column;align-items:flex-start;gap:20px;background:#1B4F9C url("https://www.axonadhd.com/wp-content/uploads/2026/09/landingpage-scaled.webp") center center/cover no-repeat}
+.alp .alp-ready__h{font-family:var(--alp-h);font-size:32px;font-weight:600;line-height:1.25;color:#EEF0F2}
+.alp .alp-ready__p{font-family:var(--alp-b);font-size:18px;line-height:1.5;color:#EEF0F2;max-width:666px}
+.alp .alp-ready__ctas{display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px;margin-top:4px}
+.alp .alp-ready__tel{color:#fff;font-size:17px;font-weight:500;text-decoration:underline;text-underline-offset:4px}
+.alp .alp-ready__tel:hover{color:#E4EEFC}
+
+/* ---------- Google reviews (matches axonadhd.com homepage) ---------- */
+.alp .alp-reviews{background:#fff;padding:80px 0}
+.alp .alp-rv-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;margin-bottom:28px}
+.alp .alp-rv-head__h{font-family:var(--alp-h);font-size:32px;font-weight:600;line-height:1.5;color:#0B254B}
+.alp .alp-rv-head__p{font-size:18px;line-height:1.5;color:rgba(11,37,75,.7)}
+.alp .alp-rv{display:grid;grid-template-columns:230px minmax(0,1fr);gap:24px;align-items:center}
+.alp .alp-rv__sum{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px}
+.alp .alp-rv__ex{font-family:var(--alp-h);font-size:22px;font-weight:700;letter-spacing:.02em;color:#000}
+.alp .alp-rv__stars{fill:#F6BB06;width:150px;height:30px}
+.alp .alp-rv__based{font-size:15px;color:#000}
+.alp .alp-rv__glogo{width:110px;height:auto;margin-top:4px}
+.alp .alp-rv__slider{position:relative;min-width:0}
+.alp .alp-rv__track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:16px 4px 24px;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+.alp .alp-rv__track::-webkit-scrollbar{display:none}
+.alp .alp-rc{flex:0 0 calc((100% - 32px)/3);scroll-snap-align:start;background:#fff;border-radius:10px;box-shadow:0 5px 20px rgba(0,0,0,.08);padding:20px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.alp .alp-rc__head{display:flex;align-items:center;gap:12px;position:relative;padding-right:26px}
+.alp .alp-rc__head>div{min-width:0}
+.alp .alp-rc__av{position:relative;width:40px;height:40px;border-radius:50%;background:#0F8A9D;color:#fff;font-size:18px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.alp .alp-rc__av img{position:absolute;inset:0;width:40px;height:40px;object-fit:cover}
+.alp .alp-rc__name{font-size:15px;font-weight:700;color:#000;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.alp .alp-rc__date{font-size:13px;color:#8C8C8C;line-height:1.3;min-height:17px}
+.alp .alp-rc__g{position:absolute;top:0;right:0;width:20px;height:20px}
+.alp .alp-rc__stars{display:flex;align-items:center;gap:6px}
+.alp .alp-rc__stars svg{fill:#F6BB06;display:block}
+.alp .alp-rc__ver{width:15px;height:15px;border-radius:50%;background:#1A73E8 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/9px no-repeat}
+.alp .alp-rc__text{font-size:15px;line-height:1.6;color:#000;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.alp .alp-rc.is-open .alp-rc__text{display:block;-webkit-line-clamp:unset;overflow:visible}
+.alp .alp-rc__more{align-self:flex-start;background:none;border:0;padding:0;font-size:14px;color:#8C8C8C;cursor:pointer}
+.alp .alp-rc__more:hover{color:#555}
+.alp .alp-rv__nav{position:absolute;top:50%;z-index:2;width:34px;height:34px;margin-top:-24px;border-radius:50%;border:1px solid #E5E7EB;background:#fff;color:#333;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.12);padding:0}
+.alp .alp-rv__nav:hover{background:#F3F4F6}
+.alp .alp-rv__nav--prev{left:-14px}
+.alp .alp-rv__nav--next{right:-14px}
+.alp .alp-rv__bar{display:none;width:150px;height:3px;margin:4px auto 0;background:#D8DDE3;border-radius:3px;overflow:hidden}
+.alp .alp-rv__bar span{display:block;height:100%;width:25%;background:#555;border-radius:3px}
+
+/* ---------- Screener band ---------- */
+.alp .alp-screener{background:var(--alp-mint);border:1px solid #BFE8DC;border-radius:24px;padding:40px 48px;display:flex;justify-content:space-between;align-items:center;gap:40px}
+.alp .alp-screener__copy{display:flex;flex-direction:column;gap:10px;max-width:720px}
+
+/* ---------- FAQ (2-column grid, as in the reference) ---------- */
+.alp .alp-faq-sec{padding:24px 0 96px}
+.alp .alp-faq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.alp .alp-faq__item{background:var(--alp-soft);border:1px solid var(--alp-soft-line);border-radius:18px;padding:26px 28px;display:flex;flex-direction:column;gap:10px}
+.alp .alp-faq__q{font-family:var(--alp-h);font-size:18px;font-weight:600;line-height:1.4;color:var(--alp-ink)}
+.alp .alp-faq__a{font-size:15.5px;line-height:1.65;color:var(--alp-body)}
+.alp .alp-flag{color:#8A5200;font-weight:500}
+.alp .alp-faq-cta{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px 20px;font-size:16px;color:var(--alp-body)}
+
+/* ---------- Sticky mobile bar ---------- */
+.alp .alp-sticky{display:none}
+
+
+/* =========================================================
+   SMALL LAPTOP (1025–1200px)  — RESP: new band
+   Same desktop layout, just a little tighter so nothing crowds or overflows.
+   ========================================================= */
+@media (min-width:1025px) and (max-width:1200px){
+  .alp .alp-h1{font-size:44px}
+  .alp .alp-hero__grid,.alp .alp-familiar{gap:48px}
+  .alp .alp-steps,.alp .alp-why{gap:16px}
+  .alp .alp-step,.alp .alp-why__c{padding:22px}
+  .alp .alp-spec__grid{grid-template-columns:400px minmax(0,1fr);gap:56px}
+  .alp .alp-spec__years{right:-16px;top:64px}
+  .alp .alp-spec__name{font-size:38px}
+  .alp .alp-spec__stat{font-size:20px}
+  .alp .alp-ready__card{padding:80px 40px}
+  .alp .alp-rv{grid-template-columns:200px minmax(0,1fr)}
+}
+
+/* =========================================================
+   TABLET (<=1024px)
+   ========================================================= */
+@media (max-width:1024px){
+  .alp .alp-sec--72,.alp .alp-sec--80,.alp .alp-sec--88{padding:64px 0}
+  .alp .alp-hero{padding:180px 0 64px}
+  .alp .alp-hero__grid{grid-template-columns:minmax(0,1fr);gap:40px}
+  .alp .alp-card-price{max-width:560px;width:100%}
+  .alp .alp-h1{font-size:42px}
+  .alp .alp-h2,.alp .alp-h2--40{font-size:30px}
+  .alp .alp-h2--48{font-size:34px}
+  .alp .alp-h3{font-size:22px}
+  .alp .alp-familiar{grid-template-columns:minmax(0,1fr);gap:32px}
+  .alp .alp-steps,.alp .alp-why{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .alp .alp-reviews{padding:64px 0}
+  .alp .alp-rv{grid-template-columns:minmax(0,1fr);gap:8px}
+  .alp .alp-rv__sum{margin-bottom:8px}
+  .alp .alp-rc{flex-basis:calc((100% - 16px)/2)}
+  .alp .alp-rv__nav--prev{left:-18px}
+  .alp .alp-rv__nav--next{right:-18px}
+  .alp .alp-marquee__track{animation-duration:44s}
+  .alp .alp-spec{padding:72px 0}
+  .alp .alp-spec__grid{grid-template-columns:minmax(0,1fr);gap:48px}
+  .alp .alp-spec__media{width:480px;max-width:100%;margin:0 auto} /* RESP: 480 = full photo stack incl. the mint back panel (was 440, which clipped it) */
+  .alp .alp-spec__years{right:-12px}
+  .alp .alp-spec__name{font-size:38px}
+  .alp .alp-screener{padding:36px 40px;gap:32px}
+  .alp .alp-panel{padding:32px}
+  .alp .alp-ready{padding:64px 0}
+  .alp .alp-ready__card{padding:64px 32px;background-position:right center}
+  .alp .alp-ready__h{font-size:30px;max-width:52%}
+  .alp .alp-ready__p{font-size:17px;max-width:48%}
+  .alp .alp-ready__ctas{flex-direction:column;align-items:flex-start;gap:14px}
+}
+@media (max-width:900px){
+  .alp .alp-faq{grid-template-columns:minmax(0,1fr)}
+  .alp .alp-plans{grid-template-columns:minmax(0,1fr);max-width:560px;gap:36px}
+  .alp .alp-duo{grid-template-columns:minmax(0,1fr)}
+  /* RESP: screener text + button stop squeezing each other on small tablets */
+  .alp .alp-screener{flex-direction:column;align-items:flex-start;gap:20px}
+  /* RESP: on narrow tablets the CTA copy needs a bit more width than 52/48% */
+  .alp .alp-ready__h{max-width:60%}
+  .alp .alp-ready__p{max-width:56%}
+}
+
+/* =========================================================
+   MOBILE (<=767px) — follows the mobile reference
+   ========================================================= */
+@media (max-width:767px){
+  .alp .alp-wrap{padding:0 20px}
+  .alp .alp-sec--64,.alp .alp-sec--72,.alp .alp-sec--80,.alp .alp-sec--88{padding:48px 0}
+  .alp .alp-stack{gap:24px}
+  .alp .alp-stack--44{gap:20px}
+  .alp .alp-hide-m{display:none}
+
+  .alp .alp-h1{font-size:34px;line-height:1.2;letter-spacing:-.5px}
+  .alp .alp-h2,.alp .alp-h2--40{font-size:26px;line-height:1.3}
+  .alp .alp-h2--48{font-size:28px}
+  .alp .alp-h3,.alp .alp-h3--28{font-size:20px;line-height:1.3}
+  .alp .alp-lead{font-size:17px}
+  .alp .alp-body{font-size:16px;line-height:1.55}
+  .alp .alp-body--17{font-size:15px}
+  .alp .alp-eyebrow{font-size:13px}
+  .alp .alp-tl{font-size:15px}
+  .alp .alp-head{align-items:flex-start;text-align:left;gap:8px}
+
+  /* Hero */
+  .alp .alp-hero{padding:170px 0 40px}
+  .alp .alp-hero__copy{gap:18px}
+  .alp .alp-pill{font-size:13px;padding:7px 12px}
+  .alp .alp-card-price{display:none}
+  .alp .alp-mprice{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#fff;border:1px solid #D6E6FB;border-radius:14px;padding:14px 16px}
+  .alp .alp-mprice>*{min-width:0}
+  .alp .alp-mprice__amt{font-size:28px;font-weight:700;line-height:1.2}
+  .alp .alp-mprice__sub{font-size:13px;color:var(--alp-body)}
+  .alp .alp-hero__ctas{flex-direction:column;align-items:stretch;gap:16px;margin-top:0}
+  .alp .alp-hero__ctas .alp-btn{font-size:17px;min-height:52px}
+  .alp .alp-hero__ctas .alp-tl{text-align:center}
+  .alp .alp-trust{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:0;font-size:14px}
+  .alp .alp-trust>*{min-width:0}
+  .alp .alp-trust__rating{flex-wrap:wrap;gap:4px 8px}
+  .alp .alp-trust__rating .alp-stars{width:70px;height:13px}
+
+  /* Logos */
+  .alp .alp-logos{padding:28px 0;gap:14px}
+  .alp .alp-logos__label{font-size:12px}
+  .alp .alp-marquee{height:48px}
+  .alp .alp-marquee__set{gap:28px;padding-right:28px}
+  .alp .alp-marquee__set img{height:36px}
+  .alp .alp-marquee__track{animation-duration:40s}
+
+  /* Familiar */
+  .alp .alp-familiar{gap:16px}
+  .alp .alp-familiar__copy{display:contents}
+  .alp .alp-familiar__copy .alp-h2{order:1}
+  .alp .alp-quotes{order:2;grid-template-columns:minmax(0,1fr);gap:10px;font-size:16px}
+  .alp .alp-familiar__copy .alp-body{order:3}
+  .alp .alp-familiar__copy .alp-tl{order:4;justify-self:start}
+  .alp .alp-quotes>div{border-radius:12px;padding:14px 16px}
+
+  /* Steps */
+  .alp .alp-steps{grid-template-columns:minmax(0,1fr);gap:12px}
+  .alp .alp-step{flex-direction:row;align-items:flex-start;gap:14px;padding:18px;border-radius:16px}
+  .alp .alp-step>*:not(.alp-step__n){flex:1 1 auto}
+  .alp .alp-step__n{width:36px;height:36px;border-radius:10px;font-size:16px}
+  .alp .alp-step__t{font-size:18px}
+  .alp .alp-step__p{font-size:15px;line-height:1.5;margin-top:4px}
+  .alp .alp-row-cta{flex-direction:column;align-items:stretch}
+  .alp .alp-row-cta .alp-btn{width:100%}
+
+  /* Pricing */
+  .alp .alp-plans{gap:32px;margin-top:8px}
+  .alp .alp-plan{padding:28px 22px 24px;border-radius:20px;gap:16px}
+  .alp .alp-badge{top:-13px;left:22px;font-size:12px;padding:5px 10px;max-width:calc(100% - 44px)}
+  .alp .alp-plan__name{font-size:20px}
+  .alp .alp-plan__amt{font-size:42px}
+  .alp .alp-price__note{font-size:15px}
+  .alp .alp-checks{gap:10px;font-size:15px}
+  .alp .alp-checks li{padding-left:28px}
+  .alp .alp-checks li::before{width:18px;height:18px}
+  .alp .alp-plan .alp-btn,.alp .alp-plan .alp-btn-o{min-height:52px;font-size:16px}
+  .alp .alp-plan-notes{flex-direction:column;align-items:flex-start;gap:6px;font-size:14px;text-align:left}
+
+  /* Why */
+  .alp .alp-why{grid-template-columns:minmax(0,1fr);gap:12px}
+  .alp .alp-why__c{padding:20px;border-radius:16px;gap:6px}
+  .alp .alp-why__ic{width:44px;height:44px;margin-bottom:6px}
+  .alp .alp-why__ic svg{width:22px;height:22px}
+  .alp .alp-why__t{font-size:18px}
+  .alp .alp-why__p{font-size:15px;line-height:1.5}
+
+  /* Panels */
+  .alp .alp-duo{gap:16px}
+  .alp .alp-panel{padding:24px;border-radius:20px;gap:12px}
+  .alp .alp-panel__ctas{flex-direction:column;align-items:stretch;width:100%;gap:12px}
+  .alp .alp-panel__ctas .alp-tl{text-align:center}
+
+
+  /* Reviews */
+  .alp .alp-reviews{padding:48px 0}
+  .alp .alp-rv-head__h{font-size:26px;line-height:1.35}
+  .alp .alp-rv-head__p{font-size:16px}
+  .alp .alp-rv__track{padding:12px 4px 16px}
+  .alp .alp-rc{flex-basis:88%}
+  .alp .alp-rv__nav{display:none}
+  .alp .alp-rv__bar{display:block}
+
+  /* Screener */
+  .alp .alp-screener{flex-direction:column;align-items:stretch;padding:24px;gap:16px;border-radius:20px}
+  .alp .alp-btn-o--green{width:100%}
+
+  /* FAQ */
+  .alp .alp-faq-sec{padding:12px 0 52px}
+  .alp .alp-center{text-align:left}
+  .alp .alp-faq{grid-template-columns:minmax(0,1fr);gap:12px}
+  .alp .alp-faq__item{padding:20px;border-radius:14px;gap:8px}
+  .alp .alp-faq__q{font-size:17px}
+  .alp .alp-faq__a{font-size:15px;line-height:1.6}
+  .alp .alp-faq-cta{flex-direction:column;align-items:stretch;text-align:center}
+
+
+  /* Specialist */
+  .alp .alp-spec{padding:52px 0}
+  .alp .alp-spec__grid{gap:32px}
+  .alp .alp-spec__media{width:100%;height:auto;aspect-ratio:350/450;max-width:350px}
+  .alp .alp-spec__back{left:22px;width:calc(100% - 22px);height:calc(100% - 44px);border-radius:24px}
+  .alp .alp-spec__photo{top:22px;width:calc(100% - 22px);height:calc(100% - 44px);border-radius:24px}
+  .alp .alp-spec__years{right:0;top:52px;padding:10px 14px;gap:10px;font-size:12px;border-radius:14px}
+  .alp .alp-spec__num{font-size:30px}
+  .alp .alp-spec__speaker{left:12px;right:12px;bottom:0;max-width:none;padding:12px 14px;font-size:13px;border-radius:14px}
+  .alp .alp-spec__body{gap:18px}
+  .alp .alp-spec__name{font-size:30px;letter-spacing:-.5px}
+  .alp .alp-spec__creds{font-size:15px}
+  .alp .alp-spec__lic{font-size:14px}
+  .alp .alp-spec__quote{padding:18px;gap:12px;border-radius:16px}
+  .alp .alp-spec__quote blockquote{font-size:16px}
+  .alp .alp-spec__stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .alp .alp-spec__stats>div{padding:12px;border-radius:12px}
+  .alp .alp-spec__stat{font-size:17px}
+  .alp .alp-spec__statl{font-size:12px}
+  .alp .alp-chip{font-size:13px;padding:7px 12px}
+  .alp .alp-spec__cta{flex-direction:column;align-items:stretch;width:100%;text-align:center}
+
+  /* Final CTA */
+  .alp .alp-ready{padding:48px 0}
+  .alp .alp-ready__card{width:calc(100% - 40px);padding:48px 22px;align-items:center;text-align:center;gap:16px;background-position:0% center}
+  .alp .alp-ready__h{font-size:24px;max-width:none}
+  .alp .alp-ready__p{font-size:16px;max-width:none}
+  .alp .alp-ready__ctas{flex-direction:column;align-items:stretch;width:100%;text-align:center}
+  .alp .alp-ready__ctas .alp-btn{font-size:17px;min-height:52px}
+
+
+  /* Sticky bottom bar */
+  .alp .alp-sticky{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:999;align-items:center;gap:12px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--alp-line);box-shadow:0 -8px 24px rgba(16,69,141,.12)}
+  .alp .alp-sticky>*:first-child{flex-shrink:0}
+  .alp .alp-sticky__amt{font-size:20px;font-weight:700;line-height:1.2}
+  .alp .alp-sticky__sub{font-size:12px;color:var(--alp-body);white-space:nowrap}
+  .alp .alp-sticky .alp-btn{flex-grow:1;min-width:0;font-size:16px;min-height:50px}
+  body:has(.alp-sticky){padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+}
+
+/* =========================================================
+   SMALL PHONES (<=400px, e.g. iPhone SE / Galaxy S8) — RESP: new band
+   Same mobile design, trimmed so nothing is cramped at 320–400px.
+   ========================================================= */
+@media (max-width:400px){
+  .alp .alp-wrap{padding:0 16px}
+  .alp .alp-hero{padding-bottom:36px}
+  .alp .alp-h1{font-size:30px}
+  .alp .alp-h2,.alp .alp-h2--40{font-size:24px}
+  .alp .alp-h2--48{font-size:26px}
+  .alp .alp-h3,.alp .alp-h3--28{font-size:19px}
+  .alp .alp-lead{font-size:16px}
+  .alp .alp-mprice{padding:12px 14px}
+  .alp .alp-mprice__amt{font-size:24px}
+  .alp .alp-trust{font-size:13px;gap:8px}
+  .alp .alp-plan{padding:26px 18px 22px}
+  .alp .alp-badge{left:18px;max-width:calc(100% - 36px)}
+  .alp .alp-plan__amt{font-size:38px}
+  .alp .alp-panel,.alp .alp-screener{padding:20px}
+  .alp .alp-faq__item{padding:18px}
+  .alp .alp-step{padding:16px;gap:12px}
+  .alp .alp-rv-head__h{font-size:24px}
+  .alp .alp-rc{flex-basis:92%}
+  .alp .alp-spec__name{font-size:26px}
+  .alp .alp-spec__num{font-size:26px}
+  .alp .alp-spec__years{top:40px;padding:8px 12px}
+  .alp .alp-spec__stats{gap:6px}
+  .alp .alp-spec__stats>div{padding:10px 8px}
+  .alp .alp-spec__stat{font-size:15px}
+  .alp .alp-spec__statl{font-size:11px}
+  .alp .alp-ready__card{width:calc(100% - 32px);padding:40px 18px}
+  .alp .alp-ready__h{font-size:22px}
+  .alp .alp-sticky{padding-left:12px;padding-right:12px;gap:10px}
+  .alp .alp-sticky__amt{font-size:18px}
+  .alp .alp-sticky .alp-btn{font-size:15px;padding:12px 14px}
+}
+
+/* =========================================================
+   MOTION — scroll reveal + eased wheel scrolling
+   Content only starts hidden once the page script has added .alp-js
+   (and never for items already on screen), so nothing flickers.
+   Only opacity/transform animate: smooth 60fps, no layout shifts.
+   ========================================================= */
+.alp.alp-js .alp-up{opacity:0;transform:translate3d(0,32px,0);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);transition-delay:var(--alp-d,0ms)}
+.alp.alp-js .alp-up--left{transform:translate3d(-40px,0,0)}
+.alp.alp-js .alp-up.is-in{opacity:1;transform:none}
+/* RESP: on phones, slide-in-from-left becomes a gentle slide-up so it can't poke past the screen edge */
+@media (max-width:767px){
+  .alp.alp-js .alp-up--left{transform:translate3d(0,24px,0)}
+}
+
+/* Hero price card glides in on load (desktop/tablet only; hidden on mobile) */
+@keyframes alp-in-right{from{opacity:0;transform:translate3d(32px,0,0)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:no-preference){
+  .alp .alp-card-price{animation:alp-in-right .9s cubic-bezier(.22,1,.36,1) .15s both}
+}
+
+
+@media print{
+  .alp.alp-js .alp-up{opacity:1!important;transform:none!important}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .alp .alp-marquee{-webkit-mask-image:none;mask-image:none;height:auto}
+  .alp .alp-marquee__track{animation:none;width:100%}
+  .alp .alp-marquee__set{flex-wrap:wrap;justify-content:center;row-gap:20px;padding:0 24px;width:100%}
+  .alp .alp-marquee__set[aria-hidden="true"]{display:none}
+  .alp .alp-rv__track{scroll-behavior:auto}
+  .alp .alp-btn,.alp .alp-btn-o,.alp .alp-btn-w{transition:none}
+  .alp.alp-js .alp-up{opacity:1;transform:none;transition:none}
+}
+
+/* =========================================================
+   NEW / REDESIGNED SECTIONS
+   (1) Free assessment + 10% off  (.alp-bha…)   — replaces the old .alp-screener design
+   (2) Psychiatric care vs AXON comparison (.alp-cmp…)
+   The old ".alp-screener" and ".alp-btn-o--green" rules above are no longer
+   used by the page; they can be deleted.
+   ========================================================= */
+
+/* ---------- 1) FREE ASSESSMENT + 10% OFF ---------- */
+.alp .alp-btn--green{background:var(--alp-green);border-color:var(--alp-green);color:#fff;padding:14px 28px;min-height:52px;font-size:16px;font-weight:500}
+.alp .alp-btn--green:hover,.alp .alp-btn--green:focus-visible{background:var(--alp-green-700);border-color:var(--alp-green-700);color:#fff}
+.alp .alp-bha__link{font-size:14px}
+
+.alp .alp-bha{background:var(--alp-mint);border:1px solid #BFE8DC;border-radius:24px;padding:40px 48px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px 40px;align-items:start}
+.alp .alp-bha>*{min-width:0}
+.alp .alp-bha__copy{display:flex;flex-direction:column;gap:14px;align-items:flex-start;max-width:640px}
+.alp .alp-bha__pill{display:inline-flex;align-items:center;gap:8px;background:var(--alp-green);color:#fff;font-size:13px;font-weight:500;line-height:1.3;padding:7px 14px;border-radius:999px;max-width:100%}
+.alp .alp-bha__h{font-size:32px;font-weight:700;line-height:1.25;letter-spacing:-.02em}
+
+.alp .alp-bha__price{background:#fff;border:1px solid #BFE8DC;border-radius:16px;padding:16px 28px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px}
+.alp .alp-bha__price-l{font-size:12px;line-height:1.4;color:var(--alp-muted)}
+.alp .alp-bha__price-row{display:flex;align-items:baseline;gap:10px}
+.alp .alp-bha__was{font-size:16px;color:var(--alp-muted);text-decoration:line-through}
+.alp .alp-bha__now{font-family:var(--alp-h);font-size:38px;font-weight:700;line-height:1.15;color:var(--alp-green-700)}
+.alp .alp-bha__save{font-size:12px;font-weight:500;color:var(--alp-green-700)}
+
+.alp .alp-bha__steps{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);gap:14px;align-items:stretch}
+.alp .alp-bha__steps>*{min-width:0}
+.alp .alp-bha__step{background:#fff;border:1px solid var(--alp-line);border-radius:14px;padding:18px 20px;display:flex;align-items:flex-start;gap:14px}
+.alp .alp-bha__step--hi{border:2px solid var(--alp-green);padding:17px 19px}
+.alp .alp-bha__n{width:32px;height:32px;border-radius:8px;background:var(--alp-mint);color:var(--alp-green-700);display:flex;align-items:center;justify-content:center;font-family:var(--alp-h);font-size:15px;font-weight:700;flex-shrink:0}
+.alp .alp-bha__n--hi{background:var(--alp-green);color:#fff}
+.alp .alp-bha__st{font-family:var(--alp-h);font-size:16px;font-weight:700;line-height:1.3;color:var(--alp-ink)}
+.alp .alp-bha__sp{font-size:14px;line-height:1.5;color:var(--alp-body);margin-top:2px}
+.alp .alp-bha__arr{display:flex;align-items:center;justify-content:center;color:var(--alp-green)}
+
+.alp .alp-bha__foot{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:24px 40px}
+.alp .alp-bha__fine{font-size:12.5px;line-height:1.55;color:var(--alp-muted);max-width:620px}
+.alp .alp-bha__cta{display:flex;flex-direction:column;align-items:center;gap:10px;flex-shrink:0}
+
+/* ---------- 2) COMPARISON ---------- */
+.alp .alp-cmp-sec{padding:88px 0 48px}
+.alp .alp-cmp__chip{display:inline-block;padding:7px 14px;border-radius:999px;background:var(--alp-sky);border:1px solid #D6E6FB;color:var(--alp-blue-600);font-size:13px;font-weight:500;line-height:1.3}
+.alp .alp-cmp__h{font-size:40px;font-weight:700;line-height:1.2;letter-spacing:-.02em;max-width:760px}
+
+.alp .alp-cmp{display:grid;grid-template-columns:200px minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto repeat(6,auto);column-gap:20px;width:100%;max-width:1100px;margin:0 auto}
+.alp .alp-cmp>*{min-width:0}
+.alp .alp-cmp__labels,.alp .alp-cmp__col{grid-row:1/span 7;display:grid;grid-template-rows:subgrid}
+.alp .alp-cmp__labels{grid-column:1}
+.alp .alp-cmp__col--tx{grid-column:2}
+.alp .alp-cmp__col--alp{grid-column:3}
+
+.alp .alp-cmp__lab{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--alp-line);font-size:14px;font-weight:600;line-height:1.35;color:var(--alp-ink)}
+.alp .alp-cmp__lab:last-child{border-bottom:0}
+.alp .alp-cmp__lic{width:32px;height:32px;border-radius:9px;background:var(--alp-sky);color:var(--alp-blue);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+.alp .alp-cmp__col{position:relative;border-radius:20px}
+.alp .alp-cmp__col--tx{background:#F1F5FA;border:1px solid var(--alp-soft-line)}
+.alp .alp-cmp__col--alp{background:var(--alp-sky);border:2px solid var(--alp-blue)}
+.alp .alp-cmp__head{padding:24px 24px 22px;display:flex;flex-direction:column;gap:6px}
+.alp .alp-cmp__col--alp .alp-cmp__head{background:var(--alp-blue);border-radius:17px 17px 0 0;color:#fff}
+.alp .alp-cmp__eb{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--alp-muted)}
+.alp .alp-cmp__col--alp .alp-cmp__eb{color:rgba(255,255,255,.82)}
+.alp .alp-cmp__title{font-family:var(--alp-h);font-size:22px;font-weight:700;line-height:1.25;letter-spacing:-.01em;color:var(--alp-ink)}
+.alp .alp-cmp__col--alp .alp-cmp__title{color:#fff}
+.alp .alp-cmp__sub{font-size:14px;line-height:1.5;color:var(--alp-body)}
+.alp .alp-cmp__sub strong{color:var(--alp-ink)}
+.alp .alp-cmp__col--alp .alp-cmp__sub,.alp .alp-cmp__col--alp .alp-cmp__sub strong{color:#fff}
+.alp .alp-cmp__badge{position:absolute;top:-14px;right:22px;z-index:1;background:var(--alp-green);color:#fff;font-size:12px;font-weight:500;line-height:1.3;padding:5px 12px;border-radius:999px}
+
+.alp .alp-cmp__cell{display:grid;grid-template-columns:auto minmax(0,1fr) auto;column-gap:14px;align-items:center;padding:14px 22px;border-top:1px solid var(--alp-line);font-size:14.5px;line-height:1.45;color:var(--alp-body)}
+.alp .alp-cmp__cell::before{content:attr(data-label);display:none;grid-column:1/-1;margin-bottom:6px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--alp-muted)}
+.alp .alp-cmp__col--alp .alp-cmp__cell{border-top-color:#D6E6FB;font-weight:600;color:var(--alp-ink)}
+.alp .alp-cmp__col--alp .alp-cmp__cell::before{color:var(--alp-blue-600)}
+.alp .alp-cmp__varies{font-style:italic;color:var(--alp-muted)}
+.alp .alp-cmp__ic{display:block;width:20px;height:20px;flex-shrink:0;background-repeat:no-repeat;background-position:center;background-size:contain}
+.alp .alp-cmp__ic--dot{width:8px;height:8px;margin:0 6px;border-radius:50%;background:#B4BFCE}
+.alp .alp-cmp__ic--chk{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%230D7C66'/%3E%3Cpath d='M7 12.5l3.2 3.2L17 9' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+.alp .alp-cmp__ic--chk-g{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%239AA5B4'/%3E%3Cpath d='M7 12.5l3.2 3.2L17 9' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+.alp .alp-cmp__info{width:20px;height:20px;border-radius:50%;border:1.5px solid #9AA5B4;color:#6B7A90;font-family:var(--alp-b);font-size:12px;font-weight:500;font-style:normal;line-height:1;display:flex;align-items:center;justify-content:center;cursor:help;background:#fff}
+
+/* info icon → click-to-open popover */
+.alp .alp-cmp__tip{position:relative;display:flex;align-items:center}
+.alp .alp-cmp__info{padding:0;appearance:none;-webkit-appearance:none}
+.alp .alp-cmp__info:hover,.alp .alp-cmp__info[aria-expanded="true"]{border-color:var(--alp-blue);color:var(--alp-blue)}
+.alp .alp-cmp__pop{position:absolute;right:-6px;bottom:calc(100% + 12px);z-index:20;width:260px;max-width:calc(100vw - 72px);padding:12px 14px;border-radius:12px;background:var(--alp-ink);color:#fff;font-family:var(--alp-b);font-size:13.5px;font-weight:400;font-style:normal;letter-spacing:0;line-height:1.5;text-align:left;box-shadow:0 12px 32px -8px rgba(11,37,75,.4)}
+.alp .alp-cmp__pop[hidden]{display:none}
+.alp .alp-cmp__pop::after{content:"";position:absolute;right:12px;bottom:-5px;width:10px;height:10px;background:var(--alp-ink);transform:rotate(45deg);border-radius:2px}
+
+/* no-subgrid fallback: keep rows roughly aligned */
+@supports not (grid-template-rows:subgrid){
+  .alp .alp-cmp__labels,.alp .alp-cmp__col{display:flex;flex-direction:column}
+  .alp .alp-cmp__sp,.alp .alp-cmp__head{min-height:170px}
+  .alp .alp-cmp__lab,.alp .alp-cmp__cell{min-height:76px}
+}
+
+.alp .alp-cmp-note{width:100%;max-width:1100px;margin:0 auto;background:var(--alp-mint);border:1px solid #BFE8DC;border-radius:20px;padding:28px 32px;display:flex;justify-content:space-between;align-items:center;gap:24px 40px}
+.alp .alp-cmp-note__copy{display:flex;flex-direction:column;gap:6px;min-width:0;max-width:640px}
+.alp .alp-cmp-note__t{font-family:var(--alp-h);font-size:18px;font-weight:700;line-height:1.3;color:var(--alp-ink)}
+.alp .alp-cmp-note__p{font-size:15px;line-height:1.55;color:var(--alp-body)}
+.alp .alp-cmp-note__cta{display:flex;flex-direction:column;align-items:center;gap:10px;flex-shrink:0}
+.alp .alp-cmp__disc{max-width:640px;margin:0 auto;text-align:center;font-size:12.5px;line-height:1.55;color:var(--alp-muted)}
+
+/* ---------- Responsive (new sections) ---------- */
+@media (min-width:1025px) and (max-width:1200px){
+  .alp .alp-cmp{grid-template-columns:180px minmax(0,1fr) minmax(0,1fr);column-gap:16px}
+}
+@media (max-width:1024px){
+  .alp .alp-bha{padding:36px 40px}
+  .alp .alp-cmp-sec{padding:64px 0 40px}
+  .alp .alp-cmp__h{font-size:34px}
+  .alp .alp-cmp{grid-template-columns:150px minmax(0,1fr) minmax(0,1fr);column-gap:14px}
+  .alp .alp-cmp__lab{font-size:13px;gap:10px}
+  .alp .alp-cmp__head{padding:20px 18px}
+  .alp .alp-cmp__cell{padding:14px 16px;font-size:14px;column-gap:10px}
+}
+@media (max-width:900px){
+  .alp .alp-bha{grid-template-columns:minmax(0,1fr)}
+  .alp .alp-bha__price{align-self:flex-start}
+  .alp .alp-bha__steps{grid-template-columns:minmax(0,1fr);gap:10px}
+  .alp .alp-bha__arr{transform:rotate(90deg);height:18px}
+  .alp .alp-bha__foot{flex-direction:column;align-items:flex-start}
+  .alp .alp-cmp-note{flex-direction:column;align-items:flex-start}
+}
+@media (max-width:767px){
+  .alp .alp-bha{padding:24px;border-radius:20px;gap:20px}
+  .alp .alp-bha__h{font-size:26px;line-height:1.3}
+  .alp .alp-bha__now{font-size:32px}
+  .alp .alp-bha__price{align-self:stretch;padding:14px 18px}
+  .alp .alp-bha__step{padding:16px}
+  .alp .alp-bha__step--hi{padding:15px}
+  .alp .alp-bha__foot{align-items:stretch}
+  .alp .alp-bha__cta{align-items:stretch;width:100%}
+  .alp .alp-bha__cta .alp-btn{width:100%}
+
+  .alp .alp-cmp-sec{padding:48px 0 32px}
+  .alp .alp-cmp__h{font-size:28px;line-height:1.25}
+  .alp .alp-cmp{display:flex;flex-direction:column;gap:28px}
+  .alp .alp-cmp__labels{display:none}
+  .alp .alp-cmp__col{display:flex;flex-direction:column}
+  .alp .alp-cmp__col--alp{order:-1;margin-top:6px}
+  .alp .alp-cmp__title{font-size:20px}
+  .alp .alp-cmp__cell{padding:14px 18px;grid-template-columns:auto minmax(0,1fr) auto}
+  .alp .alp-cmp__cell::before{display:block}
+  .alp .alp-cmp-note{padding:22px;border-radius:16px}
+  .alp .alp-cmp-note__cta{align-items:stretch;width:100%}
+  .alp .alp-cmp-note__cta .alp-btn{width:100%}
+  .alp .alp-cmp__disc{text-align:left}
+}
+@media (max-width:400px){
+  .alp .alp-bha{padding:20px}
+  .alp .alp-bha__h{font-size:24px}
+  .alp .alp-cmp__h{font-size:26px}
+  .alp .alp-cmp__cell{padding:12px 14px}
+}/* =========================================================
+   AXON ADHD online-evaluation landing page | ADDITIONS
+   Append this to the END of your existing axon-landing.css.
+   Nothing above is changed. It reuses your variables
+   (--alp-ink, --alp-blue, --alp-green, --alp-h, --alp-b ...) and your
+   breakpoints (<=1024 tablet, <=767 mobile, <=400 small phone).
+   Every rule is scoped under .alp, same as the rest of the file.
+
+   New blocks in this file:
+   .alp-dhero     light hero + .alp-mapcard (state map + checker)
+   .alp-statband  4-up stat strip that overlaps the hero
+   .alp-flow      "Four steps" cards
+   .alp-vs        quiz vs evaluation comparison
+   .alp-pricing   scoped tweaks on top of your existing .alp-plan cards
+   .alp-rvg       Google review cards (masonry)
+   .alp-states    coverage list
+      ========================================================= */
+
+/* ---------- Shared helpers ---------- */
+.alp [hidden]{display:none!important}
+.alp .alp-wrap--d{max-width:1388px} /* 1340px content + 24px side padding, same as .alp-wrap */
+.alp .alp-sec--ref{padding:120px 0}
+.alp .alp-sec--bd{border-block:1px solid var(--alp-soft-line)}
+.alp .alp-sec--ref.alp-sec--nt{padding-top:0}
+.alp .alp-h2--ref{font-size:46px;line-height:1.1;letter-spacing:-.03em;font-weight:600;text-wrap:balance}
+.alp .alp-eyebrow--ref{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.14em}
+.alp .alp-btn svg{transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.alp .alp-btn:hover svg{transform:translateX(4px)}
+.alp .alp-btn-o:hover{transform:translateY(-2px)}
+.alp .alp-lift{transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s cubic-bezier(.16,1,.3,1)}
+.alp .alp-lift:hover{transform:translateY(-6px);box-shadow:0 30px 60px -32px rgba(16,69,141,.35)}
+.alp .alp-head--between{flex-direction:row;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;text-align:left;gap:24px}
+.alp .alp-head--between>div{display:flex;flex-direction:column;gap:16px;max-width:640px}
+.alp .alp-head--wide{max-width:760px;margin-inline:auto}
+.alp .alp-head--wide .alp-body{color:var(--alp-muted);font-size:18px}
+
+/* ---------- Floating nav ---------- */
+
+/* ---------- Dark hero ---------- */
+.alp .alp-dhero__grid{position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:56px;padding-block:96px 160px}
+.alp .alp-dhero__copy{flex:1 1 480px;min-width:0;display:flex;flex-direction:column;gap:28px}
+.alp .alp-dhero__ctas{display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px}
+.alp .alp-dhero__proof>span{display:flex;align-items:center;gap:8px}
+.alp .alp-dhero__stars{color:#F6BB06;letter-spacing:2px;font-size:16px}
+.alp .alp-dhero__side{flex:1 1 520px;min-width:0;position:relative}
+
+/* load-in: one orchestrated rise, transform only */
+.alp .alp-rise{animation:alp-rise 1s cubic-bezier(.16,1,.3,1) both}
+.alp .alp-d1{animation-delay:.08s}.alp .alp-d2{animation-delay:.16s}.alp .alp-d3{animation-delay:.24s}.alp .alp-d4{animation-delay:.32s}
+@keyframes alp-rise{from{transform:translateY(22px)}to{transform:none}}
+
+/* ---------- Map card ---------- */
+.alp .alp-mapcard__top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px 12px;padding:0 4px 10px}
+.alp .alp-mapcard__key span{display:flex;align-items:center;gap:6px}
+.alp .alp-mapcard__key i{width:10px;height:10px;border-radius:3px;display:block}
+.alp .alp-map{display:block;width:100%;height:auto}
+.alp .alp-st.is-yes{fill:#256ACC}
+.alp .alp-st.is-sel{fill:#0D7C66}
+@keyframes alp-st-in{from{opacity:.15;transform:scale(.92)}to{opacity:1;transform:none}}
+.alp .alp-pin{display:none;pointer-events:none}
+.alp .alp-pin.is-on{display:block}
+.alp .alp-pin__pulse{transform-box:fill-box;transform-origin:center;animation:alp-pulse 2.2s cubic-bezier(.16,1,.3,1) infinite}
+@keyframes alp-pulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.6);opacity:0}}
+
+.alp .alp-checker__row{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
+.alp .alp-checker__field{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:6px}
+.alp .alp-checker__field label{font-size:14px;font-weight:500;color:var(--alp-muted)}
+.alp .alp-checker select{width:100%;min-height:52px;padding:0 14px;border:1.5px solid var(--alp-line);border-radius:14px;background:var(--alp-soft);color:var(--alp-ink);font:inherit;font-size:17px}
+.alp .alp-checker .alp-btn{flex:0 0 auto;min-height:52px}
+.alp .alp-checker__msg{display:flex;align-items:flex-start;gap:10px;font-size:15px;line-height:1.5}
+.alp .alp-checker__msg--yes{color:var(--alp-green-700);align-items:center}
+.alp .alp-checker__msg--no{color:#8A5200}
+.alp .alp-checker__msg--none{color:var(--alp-muted)}
+.alp .alp-checker__ic{display:grid;place-items:center;flex:none;width:24px;height:24px;border-radius:50%;font-weight:700}
+.alp .alp-checker__msg--yes .alp-checker__ic{background:#E7F7F1}
+.alp .alp-checker__msg--no .alp-checker__ic{background:#FFF3E3}
+.alp .alp-checker__msg.is-pop{animation:alp-pop .45s cubic-bezier(.16,1,.3,1) both}
+@keyframes alp-pop{from{opacity:.3;transform:translateY(6px)}to{opacity:1;transform:none}}
+.alp .alp-dhero__float-ic{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--alp-mint)}
+.alp .alp-dhero__float span.t{display:flex;flex-direction:column;line-height:1.3}
+.alp .alp-dhero__float strong{font-size:15px;font-weight:600}
+.alp .alp-dhero__float small{font-size:13px;color:var(--alp-muted)}
+@keyframes alp-drift{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-10px,0)}}
+
+/* ---------- Stat band ---------- */
+/* top 84px stays see-through so the hero shows behind the overlap; the rest is white like the sections around it */
+.alp .alp-statband{position:relative;z-index:5;margin-top:-84px;background:linear-gradient(108deg,#dfeaf4 19.84%,rgba(255,255,255,.2) 62.33%) 0 100%/100% calc(100% - 84px) no-repeat,linear-gradient(180deg,transparent 84px,#fff 84px)}
+.alp .alp-statband__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-radius:28px;background:#fff;border:1px solid var(--alp-soft-line);box-shadow:0 40px 80px -48px rgba(11,37,75,.45);overflow:hidden}
+.alp .alp-statband__c{display:flex;flex-direction:column;gap:4px;padding:28px 30px;border-right:1px solid var(--alp-soft-line);border-bottom:1px solid var(--alp-soft-line);margin-bottom:-1px}
+.alp .alp-statband__c:last-child{border-right:0}
+.alp .alp-statband__n{font-family:var(--alp-h);font-size:40px;font-weight:600;letter-spacing:-.03em;line-height:1.1;color:var(--alp-navy);font-variant-numeric:tabular-nums}
+.alp .alp-statband__l{font-size:15px;color:var(--alp-muted)}
+
+/* ---------- How it works (icon tiles + connector) ---------- */
+
+/* ---------- Quiz vs evaluation ---------- */
+
+/* ---------- Pricing: tweaks on your existing .alp-plan cards ---------- */
+.alp .alp-pricing .alp-plan{padding:40px;border-radius:28px;gap:24px}
+.alp .alp-pricing .alp-plan--main{box-shadow:0 40px 80px -50px rgba(37,106,204,.7)}
+.alp .alp-pricing .alp-plan--alt{background:#fff}
+.alp .alp-pricing .alp-plan__amt{font-size:64px;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.alp .alp-pricing .alp-checks{border-top:1px solid var(--alp-soft-line);padding-top:22px;gap:14px}
+.alp .alp-pricing .alp-plan .alp-btn,.alp .alp-pricing .alp-plan .alp-btn-o{margin-top:auto}
+.alp .alp-tags{display:flex;flex-wrap:wrap;gap:8px}
+.alp .alp-tag{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:var(--alp-sky);color:var(--alp-blue-600);font-size:13px;line-height:1.3}
+.alp .alp-plan-notes span{display:flex;align-items:center;gap:8px}
+
+/* ---------- Doctor section additions (uses your existing .alp-spec) ---------- */
+.alp .alp-spec--grad{background:linear-gradient(249deg,#dfeaf4 24.89%,rgba(255,255,255,.2) 64.07%),#fff}
+.alp .alp-spec--grad .alp-spec__back{background:linear-gradient(160deg,var(--alp-blue),var(--alp-green));border:0;opacity:.16}
+.alp .alp-spec__ic{display:grid;place-items:center;flex:none;width:40px;height:40px;border-radius:12px;background:rgba(159,227,210,.16);color:#9FE3D2}
+.alp .alp-spec__licrow{display:flex;gap:12px;font-size:15px;line-height:1.6;color:var(--alp-muted)}
+.alp .alp-spec__licrow svg{margin-top:3px}
+.alp .alp-spec__stats .alp-spec__statl{margin-top:2px}
+
+/* ---------- Review cards ---------- */
+
+/* ---------- States we cover ---------- */
+.alp .alp-states{display:flex;flex-direction:column;gap:28px;padding:44px;border-radius:32px;background:var(--alp-soft);border:1px solid var(--alp-soft-line)}
+.alp .alp-states__head{display:flex;flex-direction:column;gap:12px;max-width:640px}
+.alp .alp-states__h{font-family:var(--alp-h);font-size:32px;font-weight:600;letter-spacing:-.02em;line-height:1.2;color:var(--alp-ink)}
+.alp .alp-states__sub{font-size:16px;color:var(--alp-muted)}
+.alp .alp-states__list{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px 16px;font-size:15px}
+.alp .alp-states__list li{display:flex;align-items:center;gap:8px}
+.alp .alp-states__list svg{width:14px;height:14px}
+.alp .alp-states__note{padding:16px 20px;border-radius:16px;background:#FFF7EB;border:1px solid #F3DDB8;font-size:15px;line-height:1.55;color:#8A5200}
+
+/* ---------- Accordion FAQ ---------- */
+
+/* ---------- Closing CTA ---------- */
+
+/* ---------- Footer ---------- */
+
+/* ---------- Scroll reveal (CSS only, where supported) ---------- */
+@supports (animation-timeline:view()){
+  .alp .alp-reveal{animation:alp-reveal linear both;animation-timeline:view();animation-range:entry 0% entry 30%}
+  .alp .alp-draw{animation:alp-draw linear both;animation-timeline:view();animation-range:entry 20% cover 45%}
+}
+@keyframes alp-reveal{from{transform:translateY(32px)}to{opacity:1;transform:none}}
+@keyframes alp-draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (min-width:1025px) and (max-width:1200px){
+  .alp .alp-dhero__h1{font-size:56px}
+}
+@media (max-width:1024px){
+  .alp .alp-sec--ref{padding:96px 0}
+  .alp .alp-dhero__h1{font-size:50px}
+  .alp .alp-h2--ref{font-size:38px}
+  .alp .alp-pricing .alp-plan{padding:36px}
+}
+@media (max-width:767px){
+  .alp .alp-sec--ref{padding:72px 0}
+  .alp .alp-hide-sm{display:none!important}
+  .alp .alp-dhero__grid{gap:40px;padding-block:60px 132px}
+  .alp .alp-dhero__h1{font-size:38px}
+  .alp .alp-dhero__lead{font-size:18px}
+  .alp .alp-dhero__ctas .alp-btn{width:100%}
+  .alp .alp-dhero__ctas{flex-direction:column;align-items:stretch;text-align:center}
+  .alp .alp-mapcard{padding:18px;border-radius:26px}
+  .alp .alp-checker{padding:16px}
+  .alp .alp-checker .alp-btn{width:100%}
+  .alp .alp-statband__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .alp .alp-statband__c{padding:22px 20px}
+  .alp .alp-statband__c:nth-child(2n){border-right:0}
+  .alp .alp-statband__n{font-size:32px}
+  .alp .alp-h2--ref{font-size:30px}
+  .alp .alp-head--between{flex-direction:column;align-items:flex-start}
+  .alp .alp-head--wide .alp-body{font-size:16px}
+  .alp .alp-pricing .alp-plan{padding:28px 22px 24px;border-radius:22px}
+  .alp .alp-pricing .alp-plan__amt{font-size:48px}
+  .alp .alp-states{padding:28px 20px;border-radius:24px}
+  .alp .alp-states__h{font-size:26px}
+  .alp .alp-states__list{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:400px){
+  .alp .alp-dhero__h1{font-size:34px}
+  .alp .alp-states__list{grid-template-columns:minmax(0,1fr)}
+  .alp .alp-statband__n{font-size:28px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .alp .alp-st,.alp .alp-pin__pulse,.alp .alp-rise,.alp .alp-checker__msg.is-pop,.alp .alp-dhero__float,.alp .alp-reveal,.alp .alp-draw{animation:none}
+  .alp .alp-btn,.alp .alp-btn-o,.alp .alp-btn svg,.alp .alp .alp-lift{transition:none}
+}
+
+/* =========================================================
+   v2 BLOCKS: light hero, 4-step cards, quiz-vs-evaluation, Google review cards, FAQ
+   ========================================================= */
+
+/* ---------- Typography safety net: Manrope headings and body ---------- */
+.alp :is(h1,h2,h3,h4,h5,h6){font-family:var(--alp-h)!important}
+.alp :is(h1,h2,h3,h4,h5,h6) :where(span,strong,em,a,small){font-family:inherit}
+.alp :where(p,li,a,span,small,strong,em,label,select,input,button,blockquote,figcaption,summary,div){font-family:var(--alp-b)}
+.alp :where(.alp-statband__n,.alp-vs__big,.alp-flow__num,.alp-plan__amt,.alp-sticky__amt,.alp-spec__num,.alp-spec__stat,.alp-spec__name){font-family:var(--alp-h)}
+
+/* ---------- Light hero ---------- */
+.alp .alp-dhero{position:relative;z-index:auto;color:var(--alp-ink);background:
+  radial-gradient(900px 520px at 90% -10%,rgba(37,106,204,.16) 0%,rgba(37,106,204,0) 62%),
+  radial-gradient(700px 460px at -8% 105%,rgba(13,124,102,.12) 0%,rgba(13,124,102,0) 62%),
+  linear-gradient(180deg,var(--alp-hero-bg) 0%,#F4F8FE 100%)}
+.alp .alp-dhero::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(16,69,141,.12) 1px,transparent 1.3px);background-size:26px 26px;-webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 80%);mask-image:linear-gradient(180deg,#000 0%,transparent 80%)}
+.alp .alp-dhero__badge{display:inline-flex;align-self:flex-start;align-items:center;gap:10px;padding:8px 16px 8px 8px;border-radius:999px;background:#fff;border:1px solid #CFE0F7;box-shadow:0 8px 24px -16px rgba(16,69,141,.45);font-size:14px;color:var(--alp-ink)}
+.alp .alp-dhero__badge-ic{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--alp-green)}
+.alp .alp-dhero__h1{font-family:var(--alp-h);font-size:64px;line-height:1.04;font-weight:700;letter-spacing:-.035em;color:var(--alp-ink);text-wrap:balance}
+.alp .alp-dhero__h1 span{color:var(--alp-blue)}
+.alp .alp-dhero__lead{font-size:20px;line-height:1.65;font-weight:400;color:var(--alp-body);max-width:32em}
+.alp .alp-dhero__link{color:var(--alp-blue-600);font-size:16px;font-weight:500;text-decoration:underline;text-underline-offset:6px}
+.alp .alp-dhero__link:hover{color:var(--alp-ink)}
+.alp .alp-dhero__proof{display:flex;flex-wrap:wrap;gap:10px 22px;padding-top:22px;border-top:1px solid rgba(16,69,141,.16);font-size:15px;color:var(--alp-body)}
+.alp .alp-dhero__proof strong{color:var(--alp-ink);font-weight:700}
+.alp .alp-mapcard{padding:26px;border-radius:32px;background:#fff;border:1px solid #D3E2F5;box-shadow:0 40px 80px -44px rgba(16,69,141,.55)}
+.alp .alp-mapcard__title{font-size:15px;font-weight:500;color:var(--alp-ink)}
+.alp .alp-mapcard__key{display:flex;gap:14px;font-size:13px;color:var(--alp-muted)}
+.alp .alp-mapcard__key .is-on{background:var(--alp-blue)}
+.alp .alp-mapcard__key .is-off{background:#D5DEEB}
+.alp .alp-map g.alp-map__states{stroke:#fff;stroke-width:1.2;stroke-linejoin:round}
+.alp .alp-st{transform-box:fill-box;transform-origin:center;cursor:pointer;fill:#D5DEEB;transition:fill .3s ease;animation:alp-st-in .9s cubic-bezier(.16,1,.3,1) both}
+.alp .alp-st:hover{fill:#7FA9E8}
+.alp .alp-st.is-yes:hover{fill:#4B87E0}
+.alp .alp-st.is-sel,.alp .alp-st.is-sel:hover{fill:#0D7C66}
+.alp .alp-checker{margin-top:14px;padding:20px;border-radius:22px;background:var(--alp-soft);border:1px solid var(--alp-soft-line);color:var(--alp-ink);display:flex;flex-direction:column;gap:14px}
+.alp .alp-checker select{background:#fff}
+.alp .alp-dhero__float{position:absolute;left:-38px;top:34%;display:flex;align-items:center;gap:12px;padding:12px 18px 12px 12px;border-radius:18px;background:#fff;color:var(--alp-ink);border:1px solid #D3E2F5;box-shadow:0 24px 50px -24px rgba(16,69,141,.5);animation:alp-drift 9s ease-in-out infinite;pointer-events:none}
+
+
+/* ---------- Quiz vs evaluation (left box clearly visible) ---------- */
+.alp .alp-vs__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;align-items:stretch;max-width:1000px;width:100%;margin-inline:auto}
+.alp .alp-vs__card{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:22px;min-width:0;padding:38px;border-radius:28px;background:#fff;border:2px solid #C3D2E6;box-shadow:0 28px 56px -36px rgba(11,37,75,.4)}
+.alp .alp-vs__card::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:#C3D2E6}
+.alp .alp-vs__card--hi{background:linear-gradient(160deg,var(--alp-navy) 0%,var(--alp-ink) 100%);color:#fff;border-color:var(--alp-navy);box-shadow:0 36px 70px -34px rgba(11,37,75,.7)}
+.alp .alp-vs__card--hi::before{content:"";position:absolute;left:auto;right:-80px;top:-80px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(37,106,204,.6),rgba(37,106,204,0) 70%);pointer-events:none}
+.alp .alp-vs__card>*{position:relative}
+.alp .alp-vs__k{font-size:14px;font-weight:700;letter-spacing:.02em;color:var(--alp-muted)}
+.alp .alp-vs__card--hi .alp-vs__k{color:#9FE3D2}
+.alp .alp-vs__big{font-family:var(--alp-h);font-size:34px;font-weight:700;letter-spacing:-.02em;line-height:1.2;color:#5B6B84}
+.alp .alp-vs__card--hi .alp-vs__big{color:#fff}
+.alp .alp-vs__list{display:flex;flex-direction:column;gap:14px;font-size:16px;color:var(--alp-body)}
+.alp .alp-vs__card--hi .alp-vs__list{color:#E4EEFC}
+.alp .alp-vs__list li{display:flex;gap:12px;line-height:1.5}
+.alp .alp-vs__list svg{flex:none;margin-top:3px}
+
+
+/* ---------- FAQ: "Before you book" (same look as your original landing page) ---------- */
+.alp .alp-faq-sec{padding:24px 0 96px}
+.alp .alp-faq-sec .alp-stack{display:flex;flex-direction:column;gap:36px}
+
+/* ---------- v2 responsive ---------- */
+@media (max-width:1024px){
+  .alp .alp-dhero__grid{padding-block:72px 128px}
+}
+@media (max-width:767px){
+  .alp .alp-dhero__grid{padding-block:44px 120px}
+  .alp .alp-dhero__h1{font-size:38px}
+  .alp .alp-vs__grid{grid-template-columns:minmax(0,1fr);gap:20px}
+  .alp .alp-vs__card{padding:30px 22px}
+}
+@media (prefers-reduced-motion:reduce){
+}
+
+/* ---------- How it works: numbered process cards (reference layout) ---------- */
+.alp #alp-how{background:linear-gradient(108deg,#dfeaf4 19.84%,rgba(255,255,255,.2) 62.33%),#fff}
+.alp .alp-flow__wrap{position:relative}
+.alp .alp-flow__list{list-style:none;margin:0;padding:30px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px;position:relative}
+.alp .alp-flow__list::before{content:"";position:absolute;z-index:0;left:2%;right:2%;top:122px;height:3px;border-radius:3px;background:linear-gradient(90deg,rgba(22,167,136,0),rgba(22,167,136,.55) 12%,rgba(22,167,136,.55) 88%,rgba(22,167,136,0));box-shadow:0 0 18px rgba(22,167,136,.5)}
+.alp .alp-flow__item{--il:#0B254B;--ilf:#fff;--ils:#CFF3EA;--ila:#16A788;position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;min-width:0;padding:46px 20px 30px;border-radius:20px;background:rgba(255,255,255,.94);border:2px solid #C9EBE2;box-shadow:0 22px 46px -30px rgba(11,37,75,.45);transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s cubic-bezier(.16,1,.3,1)}
+.alp .alp-flow__item:hover{transform:translateY(-6px);box-shadow:0 30px 56px -30px rgba(22,167,136,.55)}
+.alp .alp-flow__num{position:absolute;left:50%;top:-23px;transform:translateX(-50%);display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:#fff;border:2px solid #7FD3BF;color:#0D7C66;font-family:var(--alp-h);font-size:20px;font-weight:700;line-height:1;box-shadow:0 10px 20px -10px rgba(22,167,136,.7)}
+.alp .alp-flow__ill{display:block;line-height:0}
+.alp .alp-flow__ill>svg{width:112px;height:90px;overflow:visible}
+.alp .alp-flow__cam svg{width:14px;height:14px;display:block}
+.alp .alp-flow__n{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.alp .alp-flow__t{font-family:var(--alp-h);font-size:16px;font-weight:800;line-height:1.3;letter-spacing:.02em;text-transform:uppercase;color:var(--alp-ink)}
+.alp .alp-flow__p{font-size:15px;line-height:1.55;color:var(--alp-muted);max-width:24ch}
+.alp .alp-flow__item:last-child{--il:#fff;--ilf:#12405A;--ils:#1B6B70;--ila:#2FE0B0;background:linear-gradient(165deg,#0E3B52 0%,#0A2240 100%);border-color:#2FE0B0;box-shadow:0 0 0 5px rgba(47,224,176,.16),0 26px 60px -18px rgba(47,224,176,.6)}
+.alp .alp-flow__item:last-child .alp-flow__num{background:#19B38F;border-color:#8CF5D7;color:#fff}
+.alp .alp-flow__item:last-child .alp-flow__t{color:#fff}
+.alp .alp-flow__item:last-child .alp-flow__p{color:#D3E8EE}
+
+/* ---------- Google reviews: "What patients say" slider (reference layout) ---------- */
+
+/* ---------- v3 responsive ---------- */
+@media (max-width:1024px){
+  .alp .alp-flow__list{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 24px}
+  .alp .alp-flow__list::before{display:none}
+}
+@media (max-width:767px){
+  .alp .alp-flow__list{grid-template-columns:minmax(0,1fr);gap:42px}
+  .alp .alp-flow__p{max-width:34ch}
+}
+@media (prefers-reduced-motion:reduce){
+  .alp .alp-flow__item{transition:none}
+}
+.alp .alp-faq-sec .alp-h2{text-align:center}
+.alp #alp-how .alp-head,.alp #alp-how .alp-head *{text-align:center;align-items:center}
+@media (max-width:767px){
+}
+
+/* ---------- State dropdown: opens downward, shows about 6 rows ---------- */
+.alp .alp-dd{position:relative}
+.alp .alp-dd__btn{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-height:52px;padding:0 14px;border:1.5px solid var(--alp-line);border-radius:14px;background:#fff;color:var(--alp-ink);font-family:var(--alp-b);font-size:17px;text-align:left;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.alp .alp-dd__btn:hover{border-color:#B9CBE4}
+.alp .alp-dd__btn:focus-visible,.alp .alp-dd__btn[aria-expanded="true"]{outline:0;border-color:var(--alp-blue);box-shadow:0 0 0 3px rgba(37,106,204,.18)}
+.alp .alp-dd__btn svg{flex:none;color:var(--alp-muted);transition:transform .2s}
+.alp .alp-dd__btn[aria-expanded="true"] svg{transform:rotate(180deg)}
+.alp .alp-dd__list{position:absolute;z-index:30;top:calc(100% + 6px);left:0;right:0;margin:0;padding:6px;list-style:none;max-height:240px;overflow-y:auto;overscroll-behavior:contain;border:1px solid var(--alp-line);border-radius:14px;background:#fff;box-shadow:0 24px 48px -16px rgba(11,37,75,.35);outline:0;scrollbar-width:thin}
+.alp .alp-dd__list li{padding:10px 12px;border-radius:9px;font-size:16px;line-height:1.3;color:var(--alp-ink);cursor:pointer}
+.alp .alp-dd__list li.is-active{background:var(--alp-sky)}
+.alp .alp-dd__list li[aria-selected="true"]{color:var(--alp-green-700);font-weight:500;background:var(--alp-mint)}
+.alp .alp-dd__list li[aria-selected="true"].is-active{background:#DDF6EE}
+
+/* ---------- Step 3 photo ---------- */
+.alp .alp-flow__ill--photo{position:relative;width:92px;height:92px;margin-block:-2px}
+.alp .alp-flow__ill--photo img{display:block;width:92px;height:92px;border-radius:50%;object-fit:cover;object-position:50% 18%;border:3px solid var(--ila);box-shadow:0 14px 26px -12px rgba(11,37,75,.55);background:var(--ils)}
+.alp .alp-flow__cam{position:absolute;right:-6px;bottom:2px;display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--ila);border:3px solid #fff;box-shadow:0 6px 14px -6px rgba(11,37,75,.6)}
+
+/* ---------- Reviews: button under the slider ---------- */
+.alp .alp-rv__cta{display:flex;justify-content:center;margin-top:12px}
+
+
+/* =====================================================================
+   v5 — hero spacing, state field, heading type, pricing arrows, closing CTA
+   ===================================================================== */
+
+/* 1. Hero: 200px top padding (steps down on smaller screens, same as your landing page's hero) */
+.alp .alp-dhero__grid{padding-block:200px 160px}
+@media (max-width:1024px){.alp .alp-dhero__grid{padding-block:180px 128px}}
+@media (max-width:767px){.alp .alp-dhero__grid{padding-block:170px 120px}}
+
+/* 2. State field: placeholder look + no theme (pink/purple) colours on press, hover or focus */
+.alp .alp-dd__btn,
+.alp .alp-dd__btn:hover,
+.alp .alp-dd__btn:focus,
+.alp .alp-dd__btn:active,
+.alp .alp-dd__btn[aria-expanded="true"]{background:#fff;background-image:none;color:var(--alp-ink);text-decoration:none;-webkit-tap-highlight-color:transparent}
+.alp .alp-dd__btn:focus,.alp .alp-dd__btn:active{outline:0;box-shadow:none;border-color:var(--alp-line)}
+.alp .alp-dd__btn:hover{border-color:#B9CBE4}
+.alp .alp-dd__btn:focus-visible,.alp .alp-dd__btn[aria-expanded="true"]{outline:0;border-color:var(--alp-blue);box-shadow:0 0 0 3px rgba(37,106,204,.16)}
+.alp .alp-dd__val.is-placeholder{color:var(--alp-muted)}
+.alp .alp-dd__list li:hover{background:var(--alp-sky);color:var(--alp-ink)}
+/* other buttons inside the page: keep theme button colours out */
+.alp .alp-rc__more,.alp .alp-rc__more:hover,.alp .alp-rc__more:focus,.alp .alp-rc__more:active{background:none;box-shadow:none}
+.alp .alp-rv__nav,.alp .alp-rv__nav:focus,.alp .alp-rv__nav:active{background:#fff;color:#333;border-color:#E5E7EB}
+.alp .alp-rv__nav:hover{background:#F3F4F6;color:#333}
+
+/* 3. Headings: same Manrope setup as your landing page (600 weight, light negative tracking) */
+.alp .alp-h2--ref{font-size:40px;line-height:1.15;letter-spacing:-.01em;font-weight:600}
+.alp .alp-dhero__h1{font-size:56px;line-height:1.08;letter-spacing:-.02em;font-weight:700}
+.alp .alp-plan__name{font-weight:600;letter-spacing:-.01em}
+.alp .alp-spec__name{font-size:40px;font-weight:600;letter-spacing:-.01em}
+.alp .alp-states__h{letter-spacing:-.01em}
+.alp .alp-flow__t{font-weight:700}
+.alp .alp-vs__big{font-weight:600;letter-spacing:-.01em}
+.alp .alp-statband__n{font-weight:600;letter-spacing:-.02em}
+.alp .alp-plan__amt{font-weight:700;letter-spacing:-.03em}
+@media (max-width:1024px){.alp .alp-h2--ref{font-size:34px}.alp .alp-dhero__h1{font-size:46px}.alp .alp-spec__name{font-size:34px}}
+@media (max-width:767px){.alp .alp-h2--ref{font-size:28px}.alp .alp-dhero__h1{font-size:36px}.alp .alp-spec__name{font-size:30px}}
+
+/* 4. Pricing buttons: arrow icon, same as the hero buttons */
+.alp .alp-pricing .alp-plan .alp-btn svg,.alp .alp-pricing .alp-plan .alp-btn-o svg{flex:none;width:18px;height:18px}
+
+/* 5. Closing CTA — narrower card (1120px), navy gradient */
+.alp .alp-fin{background:linear-gradient(249deg,#dfeaf4 24.89%,rgba(255,255,255,.2) 64.07%),#fff;padding:72px 24px}
+.alp .alp-fin__card{position:relative;isolation:isolate;overflow:hidden;width:100%;max-width:1120px;margin:0 auto;padding:92px 40px 76px;border-radius:32px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px;background:linear-gradient(91.82deg,#256ACC 23.38%,#133566 101.8%);color:#fff;box-shadow:0 40px 80px -48px rgba(6,26,54,.7)}
+.alp .alp-fin__card::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,.2) 1px,transparent 1.4px);background-size:28px 28px;-webkit-mask-image:radial-gradient(ellipse at 50% 0%,#000 0%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 0%,#000 0%,transparent 75%)}
+.alp .alp-fin__card::after{content:"";position:absolute;left:50%;top:-40%;width:70%;height:90%;z-index:-1;pointer-events:none;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(66,125,214,.38),transparent);filter:blur(10px)}
+.alp .alp-fin__h{margin:0;max-width:620px;font-family:var(--alp-h);font-size:48px;font-weight:700;line-height:1.14;letter-spacing:-.02em;color:#fff;text-wrap:balance}
+.alp .alp-fin__p{margin:0;font-family:var(--alp-b);font-size:17px;line-height:1.5;color:rgba(255,255,255,.82)}
+.alp .alp-fin__ctas{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px 28px;margin-top:10px}
+.alp .alp-fin__ring{display:inline-flex;padding:6px;border-radius:999px;background:rgba(88,140,224,.22)}
+.alp .alp-fin__tel,.alp .alp-fin__tel:hover,.alp .alp-fin__tel:focus{color:#fff;font-size:16px;font-weight:500;text-decoration:underline;text-underline-offset:5px}
+.alp .alp-fin__sub{margin:6px 0 0;font-size:14px;color:rgba(255,255,255,.78)}
+.alp .alp-fin__sub a,.alp .alp-fin__sub a:hover,.alp .alp-fin__sub a:focus{color:#fff;text-decoration:underline;text-underline-offset:3px}
+@media (max-width:1024px){.alp .alp-fin__h{font-size:40px}.alp .alp-fin__card{padding:76px 32px 64px}}
+@media (max-width:767px){
+  .alp .alp-fin{padding:48px 16px}
+  .alp .alp-fin__card{padding:56px 20px 44px;border-radius:24px;gap:14px}
+  .alp .alp-fin__h{font-size:30px}
+  .alp .alp-fin__p{font-size:16px}
+  .alp .alp-fin__ctas{flex-direction:column;width:100%;gap:14px}
+  .alp .alp-fin__ring{display:flex;width:100%}
+  .alp .alp-fin__ring .alp-btn{width:100%}
+}
+
+/* 6. State list must open ABOVE the stat band (the side column's entrance animation creates its own layer) */
+.alp .alp-dhero__side{z-index:6}
+
+/* =====================================================================
+   v7 — Patient reviews: sideways-scrolling row, arrows above the cards
+   (plain elements + explicit colours so theme figure/blockquote/strong styles can't change the text)
+   ===================================================================== */
+.alp .alp-rvw{background:linear-gradient(108deg,#dfeaf4 19.84%,rgba(255,255,255,.2) 62.33%),#fff;padding:96px 0 88px}
+.alp .alp-rvw__head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 32px;margin-bottom:36px}
+.alp .alp-rvw__head .alp-eyebrow{display:block;margin-bottom:14px}
+.alp .alp-rvw__h{margin:0;font-family:var(--alp-h);font-size:44px;font-weight:600;line-height:1.12;letter-spacing:-.01em;color:var(--alp-ink)}
+.alp .alp-rvw__tools{display:flex;align-items:center;gap:20px 24px;flex-wrap:wrap}
+.alp .alp-rvw__g,.alp .alp-rvw__g:hover,.alp .alp-rvw__g:focus{font-size:16px;font-weight:500;color:var(--alp-blue);text-decoration:underline;text-underline-offset:4px;font-style:normal}
+.alp .alp-rvw__nav{display:flex;gap:10px}
+.alp .alp-rvw__arrow,.alp .alp-rvw__arrow:focus,.alp .alp-rvw__arrow:active{display:grid;place-items:center;width:46px;height:46px;padding:0;border-radius:50%;border:1px solid var(--alp-blue);background:#fff;color:var(--alp-blue);box-shadow:none;cursor:pointer;transition:background-color .2s ease,color .2s ease,opacity .2s ease;-webkit-tap-highlight-color:transparent}
+.alp .alp-rvw__arrow:hover{background:var(--alp-blue);color:#fff;border-color:var(--alp-blue)}
+.alp .alp-rvw__arrow:focus-visible{outline:2px solid var(--alp-blue);outline-offset:3px}
+.alp .alp-rvw__arrow:disabled,.alp .alp-rvw__arrow:disabled:hover{opacity:.35;cursor:default;background:#fff;color:var(--alp-blue)}
+.alp .alp-rvw__arrow svg{display:block;width:18px;height:18px}
+
+.alp .alp-rvw__track{display:flex;align-items:stretch;gap:20px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:4px 0 24px;margin:-4px 0 -24px}
+.alp .alp-rvw__track::-webkit-scrollbar{display:none}
+.alp .alp-rvw__track:focus-visible{outline:2px solid var(--alp-blue);outline-offset:6px;border-radius:12px}
+.alp .alp-rvw__card{flex:0 0 calc((100% - 40px) / 3);min-width:0;scroll-snap-align:start;display:flex;flex-direction:column;gap:20px;margin:0;padding:34px;border-radius:28px;background:#fff;border:1px solid #E1EAF5;color:#0B254B;font-style:normal;box-sizing:border-box}
+.alp .alp-rvw__card *{font-style:normal}
+.alp .alp-rvw__card--dark{background:linear-gradient(160deg,#10478F 0%,#0A2850 100%);border-color:#10478F;color:#fff}
+.alp .alp-rvw__q{color:#6F93C4;flex:none}
+.alp .alp-rvw__stars{display:flex;gap:3px;line-height:0}
+.alp .alp-rvw__t{margin:0;flex:1 1 auto;padding:0;border:0;font-family:var(--alp-b);font-size:18px;font-weight:400;line-height:1.55;color:#0B254B;quotes:none}
+.alp .alp-rvw__card--dark .alp-rvw__t{color:rgba(255,255,255,.94)}
+.alp .alp-rvw__by{display:flex;align-items:center;gap:12px;margin-top:auto}
+.alp .alp-rvw__who{display:flex;flex-direction:column;gap:2px;min-width:0}
+.alp .alp-rvw__name{display:block;font-family:var(--alp-h);font-size:16px;font-weight:700;line-height:1.25;color:#0B254B}
+.alp .alp-rvw__role{display:block;font-family:var(--alp-b);font-size:14px;font-weight:400;line-height:1.4;color:#5B6B82}
+.alp .alp-rvw__card--dark .alp-rvw__name{color:#FFFFFF}
+.alp .alp-rvw__card--dark .alp-rvw__role{color:rgba(255,255,255,.8)}
+.alp .alp-rvw__av{flex:none;display:grid;place-items:center;width:42px;height:42px;border-radius:50%;font-family:var(--alp-h);font-size:14px;font-weight:700;letter-spacing:.02em}
+.alp .alp-rvw__av--mint{background:#A8EBD2;color:#0B3B33}
+.alp .alp-rvw__av--sky{background:#E3EEFC;color:#154A92}
+.alp .alp-rvw__av--green{background:#E3F7F0;color:#0D7C66}
+/* long reviews: first lines + Read more, so every card stays the same size */
+.alp .alp-rvw__card.is-long .alp-rvw__t{flex:none;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:6;line-clamp:6;overflow:hidden}
+.alp .alp-rvw__card.is-long.is-open .alp-rvw__t{display:block;-webkit-line-clamp:unset;line-clamp:unset;overflow:visible}
+.alp .alp-rvw__rm,.alp .alp-rvw__rm:hover,.alp .alp-rvw__rm:focus,.alp .alp-rvw__rm:active{align-self:flex-start;margin:-6px 0 0;padding:0;border:0;background:none;box-shadow:none;font-family:var(--alp-b);font-size:15px;font-weight:500;color:var(--alp-blue);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.alp .alp-rvw__rm:focus-visible{outline:2px solid var(--alp-blue);outline-offset:3px;border-radius:4px}
+@media (max-width:1024px){
+  .alp .alp-rvw{padding:80px 0 72px}
+  .alp .alp-rvw__h{font-size:36px}
+  .alp .alp-rvw__card{flex-basis:calc((100% - 20px) / 2)}
+}
+@media (max-width:767px){
+  .alp .alp-rvw{padding:56px 0 56px}
+  .alp .alp-rvw__head{margin-bottom:24px}
+  .alp .alp-rvw__h{font-size:28px}
+  .alp .alp-rvw__tools{width:100%;justify-content:space-between}
+  .alp .alp-rvw__arrow{width:42px;height:42px}
+  .alp .alp-rvw__track{gap:14px}
+  .alp .alp-rvw__card{flex-basis:86%;padding:26px 22px;border-radius:22px;gap:16px}
+  .alp .alp-rvw__t{font-size:17px}
+}
+@media (prefers-reduced-motion:reduce){.alp .alp-rvw__track{scroll-behavior:auto}}
+
+
+/* review cards: compact like the reference (about 4 lines, then Read more) */
+.alp .alp-rvw__card{gap:18px;padding:32px 34px}
+.alp .alp-rvw__t{font-size:17px;line-height:1.6}
+.alp .alp-rvw__card.is-long .alp-rvw__t{-webkit-line-clamp:4;line-clamp:4}
+.alp .alp-rvw__card--dark .alp-rvw__t{margin-top:-4px}
+@media (max-width:767px){.alp .alp-rvw__card{padding:26px 22px}.alp .alp-rvw__t{font-size:16.5px}}
+
+/* =====================================================================
+   AXON ADHD online-evaluation landing page | RESPONSIVE LAYER (v8)
+   -------------------------------------------------------------------
+   HOW TO USE
+   Paste this at the very END of axon-landing.css (after the v7 reviews
+   block). The HTML does not need any change.
+
+   DESKTOP IS UNTOUCHED
+   Every rule below sits inside a media query for screens 1200px wide or
+   less (or touch-only devices). Nothing applies above 1200px.
+
+   BREAKPOINTS
+   1025–1200  small laptop
+   <=1024     tablet
+   <=900      small tablet (stat band 2x2, single-column pricing)
+   <=767      mobile
+   <=560      large phone (doctor stats stack)
+   <=400      small phone
+   <=360      very small phone (iPhone SE, Galaxy S8)
+
+   HERO TOP PADDING
+   Desktop stays 200px. It is raised on smaller screens so the fixed site
+   header never covers the badge/heading:
+     tablet 230px · mobile 210px · small phone 200px
+   Change the --alp-hero-top values below to tune it.
+   ===================================================================== */
+
+
+/* =====================================================================
+   SMALL LAPTOP (1025–1200px)
+   Two-column hero stays side by side instead of wrapping early.
+   ===================================================================== */
+@media (min-width:1025px) and (max-width:1200px){
+  .alp .alp-dhero__grid{gap:40px}
+  .alp .alp-dhero__copy{flex:1 1 420px}
+  .alp .alp-dhero__side{flex:1 1 460px}
+  .alp .alp-dhero__h1{font-size:50px}
+  .alp .alp-dhero__lead{font-size:19px}
+  .alp .alp-dhero__float{left:-20px}
+  .alp .alp-statband__c{padding:26px 22px}
+  .alp .alp-statband__n{font-size:36px}
+  .alp .alp-sec--ref{padding:104px 0}
+  .alp .alp-flow__list{gap:18px}
+  .alp .alp-flow__item{padding:44px 16px 26px}
+  .alp .alp-pricing .alp-plan{padding:36px}
+  .alp .alp-pricing .alp-plan__amt{font-size:58px}
+  .alp .alp-rvw__card{padding:28px}
+  .alp .alp-fin__h{font-size:44px}
+}
+
+
+/* =====================================================================
+   TABLET (<=1024px)
+   ===================================================================== */
+@media (max-width:1024px){
+  .alp{--alp-hero-top:230px}
+
+  /* hero: more room at the top, single column, centred map card */
+  .alp .alp-dhero__grid{gap:40px;padding-top:var(--alp-hero-top);padding-bottom:140px}
+  .alp .alp-dhero__copy,.alp .alp-dhero__side{flex:1 1 100%}
+  .alp .alp-dhero__copy{max-width:760px}
+  .alp .alp-dhero__lead{font-size:19px;max-width:36em}
+  .alp .alp-dhero__side{max-width:680px;margin-inline:auto;width:100%}
+  .alp .alp-dhero__float{display:none} /* floating badge would sit off-screen when stacked */
+
+  /* stat band */
+  .alp .alp-statband__c{padding:22px 20px}
+  .alp .alp-statband__n{font-size:34px}
+  .alp .alp-statband__l{font-size:14px}
+
+  /* section rhythm */
+  .alp .alp-sec--ref{padding:88px 0}
+  .alp .alp-head--wide{max-width:680px}
+
+  /* how it works */
+  .alp .alp-flow__list{padding-top:34px;gap:44px 24px}
+  .alp .alp-flow__p{max-width:30ch}
+
+  /* quiz vs evaluation */
+  .alp .alp-vs__grid{gap:20px}
+  .alp .alp-vs__card{padding:32px}
+  .alp .alp-vs__big{font-size:30px}
+
+  /* pricing */
+  .alp .alp-pricing .alp-plan{padding:34px}
+  .alp .alp-pricing .alp-plan__amt{font-size:56px}
+
+  /* doctor */
+  .alp .alp-spec__grid{gap:44px}
+  .alp .alp-spec__body{width:100%}
+  .alp .alp-spec__stat{font-size:20px}
+
+  /* reviews */
+  .alp .alp-rvw__head{align-items:flex-end}
+  .alp .alp-rvw__track{scroll-padding-inline:0}
+
+  /* states */
+  .alp .alp-states{padding:36px}
+
+  /* closing CTA */
+  .alp .alp-fin{padding:64px 24px}
+}
+
+
+/* =====================================================================
+   SMALL TABLET (<=900px)
+   ===================================================================== */
+@media (max-width:900px){
+  .alp .alp-statband__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .alp .alp-statband__c{padding:22px 24px}
+  .alp .alp-statband__c:nth-child(2n){border-right:0}
+  .alp .alp-statband__n{font-size:34px}
+
+  .alp .alp-plans{grid-template-columns:minmax(0,1fr);max-width:560px;gap:28px}
+  .alp .alp-faq{grid-template-columns:minmax(0,1fr)}
+  .alp .alp-faq__item{padding:24px}
+  .alp .alp-faq-cta{gap:14px 16px}
+}
+
+
+/* =====================================================================
+   MOBILE (<=767px)
+   ===================================================================== */
+@media (max-width:767px){
+  .alp{--alp-hero-top:210px}
+
+  .alp .alp-wrap{padding:0 20px}
+  .alp .alp-wrap--d{padding:0 20px}
+
+  /* ---- hero ---- */
+  .alp .alp-dhero__grid{gap:36px;padding-top:var(--alp-hero-top);padding-bottom:140px}
+  .alp .alp-dhero__copy{gap:22px}
+  .alp .alp-dhero__badge{font-size:13px;padding:7px 14px 7px 7px;max-width:100%}
+  .alp .alp-dhero__h1{font-size:36px;line-height:1.1;letter-spacing:-.02em}
+  .alp .alp-dhero__lead{font-size:17.5px;line-height:1.6}
+  .alp .alp-dhero__ctas{flex-direction:column;align-items:stretch;gap:16px;text-align:center}
+  .alp .alp-dhero__ctas .alp-btn{width:100%;min-height:52px}
+  .alp .alp-dhero__proof{gap:8px 18px;padding-top:18px;font-size:14px}
+  .alp .alp-dhero__side{max-width:none}
+
+  /* ---- map card + state checker ---- */
+  .alp .alp-mapcard{padding:16px;border-radius:24px}
+  .alp .alp-mapcard__top{padding:0 2px 8px}
+  .alp .alp-mapcard__title{font-size:14px}
+  .alp .alp-checker{padding:14px;border-radius:18px;gap:12px;margin-top:12px}
+  .alp .alp-checker__row{gap:10px}
+  .alp .alp-checker__field{flex:1 1 100%}
+  .alp .alp-checker .alp-btn{width:100%;min-height:52px}
+  .alp .alp-checker__msg{font-size:14px}
+  .alp .alp-dd__btn{min-height:50px;font-size:16px}
+  .alp .alp-dd__list{max-height:220px}
+  .alp .alp-dd__list li{padding:12px 14px;font-size:16px}
+
+  /* ---- stat band ---- */
+  .alp .alp-statband{margin-top:-84px}
+  .alp .alp-statband__grid{border-radius:22px}
+  .alp .alp-statband__c{padding:20px 18px}
+  .alp .alp-statband__n{font-size:30px}
+  .alp .alp-statband__l{font-size:13.5px;line-height:1.35}
+
+  /* ---- section rhythm + centred headings ---- */
+  .alp .alp-sec--ref{padding:64px 0}
+  .alp .alp-sec--ref.alp-sec--nt{padding-top:0}
+  .alp .alp-head--wide{align-items:center;text-align:center;gap:12px}
+  .alp .alp-head--wide .alp-body{font-size:16px;line-height:1.55}
+  .alp .alp-stack[style*="gap:64px"]{gap:44px!important}
+  .alp .alp-stack[style*="gap:56px"]{gap:36px!important}
+  .alp .alp-eyebrow--ref{font-size:12px;letter-spacing:.12em}
+
+  /* ---- how it works ---- */
+  .alp .alp-flow__list{grid-template-columns:minmax(0,1fr);gap:44px;padding-top:30px}
+  .alp .alp-flow__item{padding:42px 18px 26px;border-radius:18px}
+  .alp .alp-flow__t{font-size:15px}
+  .alp .alp-flow__p{font-size:15px;max-width:34ch}
+
+  /* ---- quiz vs evaluation ---- */
+  .alp .alp-vs__grid{grid-template-columns:minmax(0,1fr);gap:18px}
+  .alp .alp-vs__card{padding:28px 20px;border-radius:22px;gap:18px}
+  .alp .alp-vs__big{font-size:28px}
+  .alp .alp-vs__list{font-size:15px;gap:12px}
+
+  /* ---- pricing ---- */
+  .alp .alp-plans{gap:22px}
+  .alp .alp-pricing .alp-plan{padding:28px 20px 22px;border-radius:22px;gap:20px}
+  .alp .alp-pricing .alp-plan__amt{font-size:48px}
+  .alp .alp-plan__name{font-size:20px}
+  .alp .alp-pricing .alp-checks{padding-top:18px;gap:12px}
+  .alp .alp-plan-notes{flex-direction:column;align-items:flex-start;gap:10px;text-align:left}
+
+  /* ---- doctor ---- */
+  .alp .alp-spec{padding:56px 0}
+  .alp .alp-spec__grid{gap:36px}
+  .alp .alp-spec__media{width:100%;max-width:350px;margin-inline:auto}
+  .alp .alp-spec__body{gap:18px}
+  .alp .alp-spec__name{font-size:30px}
+  .alp .alp-spec__quote{padding:18px;gap:12px}
+  .alp .alp-spec__quote blockquote{font-size:16px;line-height:1.5}
+  .alp .alp-spec__licrow{font-size:14px}
+
+  /* ---- reviews ---- */
+  .alp .alp-rvw{padding:56px 0}
+  .alp .alp-rvw__head{flex-direction:column;align-items:flex-start;gap:16px;margin-bottom:22px}
+  .alp .alp-rvw__tools{width:100%;justify-content:space-between}
+  .alp .alp-rvw__track{gap:14px;scroll-padding-inline:0}
+  .alp .alp-rvw__card{flex-basis:86%;padding:24px 20px;border-radius:22px;gap:14px}
+  .alp .alp-rvw__t{font-size:16px;line-height:1.55}
+  .alp .alp-rvw__q{width:30px;height:24px}
+
+  /* ---- states ---- */
+  .alp .alp-states{padding:26px 18px;border-radius:24px;gap:22px}
+  .alp .alp-states__h{font-size:26px}
+  .alp .alp-states__sub{font-size:15px}
+  .alp .alp-states__list{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 12px;font-size:14.5px}
+  .alp .alp-states__list li{align-items:flex-start;line-height:1.3}
+  .alp .alp-states__list svg{margin-top:2px}
+  .alp .alp-states__note{padding:14px 16px;font-size:14px}
+
+  /* ---- FAQ ---- */
+  .alp .alp-faq-sec{padding:8px 0 56px}
+  .alp .alp-faq{gap:12px}
+  .alp .alp-faq__item{padding:20px;border-radius:14px}
+  .alp .alp-faq__q{font-size:17px}
+  .alp .alp-faq__a{font-size:15px}
+  .alp .alp-faq-cta{flex-direction:column;align-items:stretch;text-align:center}
+  .alp .alp-faq-cta .alp-btn,.alp .alp-faq-cta .alp-btn-o{width:100%;min-height:50px}
+
+  /* ---- closing CTA ---- */
+  .alp .alp-fin{padding:40px 16px 56px}
+  .alp .alp-fin__card{padding:52px 20px 40px;border-radius:24px}
+  .alp .alp-fin__h{font-size:30px}
+  .alp .alp-fin__tel{padding:6px 0}
+
+  /* ---- sticky bar ---- */
+  .alp .alp-sticky{padding:10px 16px calc(10px + env(safe-area-inset-bottom))}
+  .alp .alp-sticky .alp-btn{min-height:48px}
+}
+
+
+/* =====================================================================
+   LARGE PHONE (<=560px) — doctor stats become stacked rows
+   ===================================================================== */
+@media (max-width:560px){
+  .alp .alp-spec__stats{grid-template-columns:minmax(0,1fr);gap:10px}
+  .alp .alp-spec__stats>div{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:14px 16px}
+  .alp .alp-spec__stat{font-size:18px;flex:none}
+  .alp .alp-spec__statl{font-size:13px;margin-top:0;text-align:right}
+}
+
+
+/* =====================================================================
+   SMALL PHONE (<=400px)
+   ===================================================================== */
+@media (max-width:400px){
+  .alp{--alp-hero-top:200px}
+
+  .alp .alp-wrap,.alp .alp-wrap--d{padding:0 16px}
+  .alp .alp-dhero__grid{padding-top:var(--alp-hero-top);padding-bottom:132px;gap:32px}
+  .alp .alp-dhero__badge{font-size:12.5px}
+  .alp .alp-dhero__h1{font-size:32px}
+  .alp .alp-dhero__lead{font-size:16.5px}
+  .alp .alp-mapcard{padding:14px;border-radius:22px}
+  .alp .alp-checker{padding:12px}
+  .alp .alp-statband__c{padding:18px 14px}
+  .alp .alp-statband__n{font-size:26px}
+  .alp .alp-statband__l{font-size:12.5px}
+  .alp .alp-sec--ref{padding:56px 0}
+  .alp .alp-h2--ref{font-size:26px}
+  .alp .alp-flow__item{padding:40px 16px 24px}
+  .alp .alp-vs__card{padding:26px 18px}
+  .alp .alp-pricing .alp-plan{padding:26px 16px 20px}
+  .alp .alp-pricing .alp-plan__amt{font-size:42px}
+  .alp .alp-spec__name{font-size:26px}
+  .alp .alp-rvw__card{flex-basis:92%;padding:22px 18px}
+  .alp .alp-rvw__h{font-size:26px}
+  .alp .alp-states{padding:22px 16px}
+  .alp .alp-states__h{font-size:24px}
+  .alp .alp-faq__item{padding:18px 16px}
+  .alp .alp-fin__card{padding:44px 16px 36px}
+  .alp .alp-fin__h{font-size:26px}
+}
+
+
+/* =====================================================================
+   VERY SMALL PHONE (<=360px)
+   ===================================================================== */
+@media (max-width:360px){
+  .alp .alp-wrap,.alp .alp-wrap--d{padding:0 14px}
+  .alp .alp-dhero__h1{font-size:30px}
+  .alp .alp-btn--lg{font-size:16px;padding:12px 16px}
+  .alp .alp-states__list{grid-template-columns:minmax(0,1fr)}
+  .alp .alp-sticky .alp-btn{font-size:14px;padding:12px 12px}
+  .alp .alp-sticky__amt{font-size:17px}
+}
+
+
+/* =====================================================================
+   TOUCH DEVICES — no "stuck" hover lift after a tap
+   ===================================================================== */
+@media (hover:none){
+  .alp .alp-lift:hover,.alp .alp-flow__item:hover{transform:none}
+  .alp .alp-btn-o:hover{transform:none}
+  .alp .alp-btn:hover svg{transform:none}
+}
+
+/* =====================================================================
+   v9 — Reviews: every card shows 4 lines + "Read more" below the text;
+   only one review can be open at a time (logic in the reviews script)
+   ===================================================================== */
+.alp .alp-rvw__card .alp-rvw__t{flex:none;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;line-clamp:4;overflow:hidden}
+.alp .alp-rvw__card.is-open .alp-rvw__t{display:block;-webkit-line-clamp:unset;line-clamp:unset;overflow:visible}
+/* Read more on the dark (navy) card: mint so it stays readable */
+.alp .alp-rvw__card--dark .alp-rvw__rm,
+.alp .alp-rvw__card--dark .alp-rvw__rm:hover,
+.alp .alp-rvw__card--dark .alp-rvw__rm:focus,
+.alp .alp-rvw__card--dark .alp-rvw__rm:active{color:#9FE3D2}
+.alp .alp-rvw__card--dark .alp-rvw__rm:focus-visible{outline-color:#9FE3D2}
+
+
+/* =====================================================================
+   v10 | Fonts · glassmorphism system · responsive
+   spacing · sticky bar · phone underline
+   ---------------------------------------------------------------------
+   This block sits at the END of the file and only overrides. No wording,
+   markup order or script hooks are touched.
+   Specificity note: glass rules use `.alp.alp` / `.alp.alp.alp` so they
+   reliably beat the older single-purpose rules above without !important.
+   ===================================================================== */
+
+
+/* ---------------------------------------------------------------------
+   1. FONTS  (Manrope for headings and body; sizes set in v13 at the end)
+   --------------------------------------------------------------------- */
+.alp{
+  --alp-h:var(--font-manrope),'Manrope','Raleway',Arial,sans-serif;
+  --alp-b:var(--font-manrope),'Manrope','Raleway',Arial,sans-serif;
+  font-family:var(--alp-b);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+  overflow-x:clip;              /* no sideways scroll from decorative overflow */
+}
+.alp :is(h1,h2,h3,h4,h5,h6){font-family:var(--alp-h)!important;font-optical-sizing:auto;text-wrap:balance;overflow-wrap:break-word}
+.alp :is(h1,h2,h3,h4,h5,h6) :where(span,strong,em,a,small){font-family:inherit}
+.alp :is(.alp-statband__n,.alp-flow__num,.alp-flow__t,.alp-vs__big,.alp-plan__name,.alp-plan__amt,
+         .alp-spec__name,.alp-spec__num,.alp-spec__stat,.alp-faq__q,.alp-states__h,.alp-rvw__h,
+         .alp-rvw__name,.alp-fin__h,.alp-rvw__av,.alp-sticky__amt){font-family:var(--alp-h)}
+.alp :is(p,li,label,select,input,button,blockquote,figcaption,summary){font-family:var(--alp-b)}
+.alp :is(.alp-faq__q,.alp-flow__t,.alp-vs__big,.alp-states__h){text-wrap:balance}
+
+
+/* ---------------------------------------------------------------------
+   2. GLASS TOKENS
+   --------------------------------------------------------------------- */
+.alp{
+  --g-bg:linear-gradient(145deg,rgba(255,255,255,.78) 0%,rgba(255,255,255,.5) 100%);
+  --g-bg-dark:linear-gradient(160deg,rgba(16,69,141,.9) 0%,rgba(8,32,66,.93) 100%);
+  --g-edge:rgba(255,255,255,.9);
+  --g-edge-dark:rgba(255,255,255,.2);
+  --g-blur:blur(16px) saturate(165%);
+  --g-ring:0 0 0 1px rgba(16,69,141,.07);
+  --g-hi:inset 0 1px 0 rgba(255,255,255,.95);
+  --g-shadow:var(--g-ring),var(--g-hi),0 24px 48px -30px rgba(16,69,141,.38);
+  --g-shadow-hover:var(--g-ring),var(--g-hi),0 34px 60px -30px rgba(16,69,141,.5);
+  --g-shadow-dark:inset 0 1px 0 rgba(255,255,255,.18),0 28px 56px -30px rgba(6,26,54,.65);
+  --alp-sticky-h:72px;
+}
+
+
+/* ---------------------------------------------------------------------
+   3. HERO SIDE GLOW + SECTION BACKGROUND SEQUENCE
+   Every section after the hero uses Thinkitive's #DFEAF4 wash, alternating left / right, edge to edge:
+   how, pricing, reviews, FAQ (and the stat strip above How it works) from the left; compare, doctor and states from the right (and States we cover, same as the doctor section).
+   --------------------------------------------------------------------- */
+.alp .alp-dhero__side::before{
+  content:"";position:absolute;inset:-6% -8%;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(closest-side at 18% 22%,rgba(37,106,204,.30),transparent 72%),
+    radial-gradient(closest-side at 86% 82%,rgba(13,124,102,.24),transparent 72%);
+  filter:blur(10px);
+}
+.alp #alp-states{background:linear-gradient(249deg,#dfeaf4 24.89%,rgba(255,255,255,.2) 64.07%),#fff}
+.alp #alp-pricing,.alp #alp-faq{background:linear-gradient(108deg,#dfeaf4 19.84%,rgba(255,255,255,.2) 62.33%),#fff}
+
+/* ---------------------------------------------------------------------
+   4. GLASS SURFACES  (one recipe for every card)
+   --------------------------------------------------------------------- */
+.alp.alp :is(
+  .alp-mapcard,
+  .alp-statband__grid,
+  .alp-flow__item:not(:last-child),
+  .alp-vs__card:not(.alp-vs__card--hi),
+  .alp-plan,
+  .alp-spec__quote,
+  .alp-spec__stats>div,
+  .alp-spec__years,
+  .alp-rvw__card:not(.alp-rvw__card--dark),
+  .alp-states,
+  .alp-faq__item,
+  .alp-dhero__badge,
+  .alp-dhero__float
+){
+  background:var(--g-bg);
+  border:1px solid var(--g-edge);
+  box-shadow:var(--g-shadow);
+  -webkit-backdrop-filter:var(--g-blur);
+  backdrop-filter:var(--g-blur);
+}
+
+/* dark glass: highlighted cards */
+.alp.alp :is(
+  .alp-flow__item:last-child,
+  .alp-vs__card--hi,
+  .alp-rvw__card--dark,
+  .alp-spec__speaker
+){
+  background:var(--g-bg-dark);
+  border:1px solid var(--g-edge-dark);
+  box-shadow:var(--g-shadow-dark);
+  -webkit-backdrop-filter:var(--g-blur);
+  backdrop-filter:var(--g-blur);
+}
+
+/* ---- per-component refinements ---- */
+.alp.alp.alp .alp-mapcard{background:linear-gradient(150deg,rgba(255,255,255,.8),rgba(255,255,255,.55))}
+.alp.alp.alp .alp-checker{background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.92);box-shadow:var(--g-hi)}
+.alp.alp.alp .alp-dhero__badge{background:linear-gradient(145deg,rgba(255,255,255,.85),rgba(255,255,255,.6))}
+
+.alp.alp.alp .alp-statband__grid{background:linear-gradient(145deg,rgba(255,255,255,.86),rgba(255,255,255,.64))}
+.alp.alp.alp .alp-statband__c{border-color:rgba(16,69,141,.1)}
+
+.alp.alp.alp .alp-flow__item:last-child{
+  background:linear-gradient(165deg,rgba(14,59,82,.9),rgba(10,34,64,.94));
+  border-color:rgba(47,224,176,.6);
+  box-shadow:0 0 0 4px rgba(47,224,176,.14),inset 0 1px 0 rgba(255,255,255,.18),0 26px 60px -24px rgba(47,224,176,.5);
+}
+.alp.alp.alp .alp-flow__item:not(:last-child){border-color:rgba(255,255,255,.92)}
+.alp.alp.alp .alp-flow__item:not(:last-child)::after{ /* faint mint wash so the glass has a tint */
+  content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(180deg,rgba(22,167,136,.07),transparent 55%);
+}
+
+.alp.alp.alp .alp-vs__card:not(.alp-vs__card--hi){border-color:rgba(16,69,141,.16)}
+.alp.alp.alp .alp-vs__card:not(.alp-vs__card--hi)::before{height:4px;background:linear-gradient(90deg,#B7C7DD,#DCE5F1)}
+.alp.alp.alp .alp-vs__card--hi{background:linear-gradient(160deg,rgba(16,69,141,.94),rgba(8,32,66,.95))}
+
+.alp.alp.alp .alp-plan--main{
+  background:linear-gradient(150deg,rgba(255,255,255,.86),rgba(232,242,255,.62));
+  border:1px solid rgba(37,106,204,.55);
+  box-shadow:0 0 0 3px rgba(37,106,204,.13),var(--g-hi),0 40px 80px -46px rgba(37,106,204,.7);
+}
+.alp.alp.alp .alp-plan--alt{background:var(--g-bg)}
+.alp.alp.alp .alp-plan .alp-checks{border-top-color:rgba(16,69,141,.12)}
+
+.alp.alp.alp .alp-spec__speaker{background:linear-gradient(160deg,rgba(16,69,141,.86),rgba(8,32,66,.9))}
+.alp.alp.alp .alp-spec__quote{background:linear-gradient(145deg,rgba(255,255,255,.82),rgba(255,255,255,.58))}
+
+.alp.alp.alp .alp-rvw__card--dark{background:linear-gradient(160deg,rgba(16,71,143,.94),rgba(10,40,80,.95))}
+
+.alp.alp.alp .alp-states{background:linear-gradient(145deg,rgba(255,255,255,.8),rgba(248,251,255,.55))}
+.alp.alp.alp .alp-states__note{background:rgba(255,247,235,.82)}
+
+.alp.alp.alp .alp-faq__item{background:linear-gradient(145deg,rgba(255,255,255,.8),rgba(255,255,255,.55))}
+
+/* hover (keeps the glass ring, only deepens the shadow) */
+.alp.alp.alp .alp-lift:hover,
+.alp.alp.alp .alp-flow__item:not(:last-child):hover{box-shadow:var(--g-shadow-hover)}
+.alp.alp.alp .alp-plan--main:hover{box-shadow:0 0 0 3px rgba(37,106,204,.2),var(--g-hi),0 44px 80px -42px rgba(37,106,204,.75)}
+.alp.alp.alp .alp-flow__item:last-child:hover{box-shadow:0 0 0 4px rgba(47,224,176,.2),inset 0 1px 0 rgba(255,255,255,.18),0 32px 64px -22px rgba(47,224,176,.6)}
+
+
+/* ---------------------------------------------------------------------
+   5. BUTTONS  (glass secondary button, soft gloss on primary)
+   --------------------------------------------------------------------- */
+.alp.alp.alp .alp-btn:not(:hover):not(:focus-visible){
+  box-shadow:0 12px 24px -14px rgba(37,106,204,.75),inset 0 1px 0 rgba(255,255,255,.28);
+}
+.alp.alp.alp .alp-btn-o:not(:hover):not(:focus-visible){
+  background:rgba(255,255,255,.74);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 8px 20px -14px rgba(16,69,141,.4);
+}
+
+/* underline under the phone number inside the Call button */
+.alp .alp-tel{
+  text-decoration:underline;
+  text-decoration-thickness:1.5px;
+  text-decoration-skip-ink:none;
+  text-underline-offset:4px;
+  font-weight:500;
+  white-space:nowrap;
+}
+
+/* focus rings (keyboard users) */
+.alp :is(a,button,[tabindex]):focus-visible{outline:2px solid var(--alp-blue);outline-offset:3px}
+.alp .alp-fin :is(a,button):focus-visible{outline-color:#fff}
+
+
+/* ---------------------------------------------------------------------
+   6. CLOSING CTA  (glass ring + soft edge on the navy card)
+   --------------------------------------------------------------------- */
+.alp.alp .alp-fin__card{border:1px solid rgba(255,255,255,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 40px 80px -48px rgba(6,26,54,.7)}
+.alp.alp .alp-fin__ring{
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.24);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+}
+
+
+/* ---------------------------------------------------------------------
+   7. SMALL LAPTOP / TABLET HEADER ZONE (1025-1180px)
+   The site header turns into the compact bar here and the green
+   announcement is hidden, so the hero needs less top room.
+   --------------------------------------------------------------------- */
+@media (min-width:1025px) and (max-width:1180px){
+  .alp{--alp-hero-top:144px}
+  .alp .alp-dhero__grid{padding-top:var(--alp-hero-top)}
+}
+
+
+/* ---------------------------------------------------------------------
+   8. TABLET (<=1024px)
+   HERO TOP PADDING: change --alp-hero-top to tune (header bar ~74px + gap)
+   --------------------------------------------------------------------- */
+@media (max-width:1024px){
+  .alp{--alp-hero-top:132px}
+  .alp .alp-dhero__grid{padding-top:var(--alp-hero-top);padding-bottom:128px;gap:36px}
+  .alp .alp-sec--ref{padding:72px 0}
+  .alp .alp-rvw{padding:68px 0 64px}
+  .alp .alp-spec{padding:72px 0}
+  .alp .alp-fin{padding:56px 24px}
+  .alp .alp-flow__list{gap:40px 22px}
+}
+
+
+/* ---------------------------------------------------------------------
+   9. SMALL TABLET (<=900px)
+   --------------------------------------------------------------------- */
+@media (max-width:900px){
+  .alp .alp-plans{margin-inline:auto;width:100%}
+}
+
+
+/* ---------------------------------------------------------------------
+   10. MOBILE (<=767px)
+   --------------------------------------------------------------------- */
+@media (max-width:767px){
+  .alp{--alp-hero-top:116px;--g-blur:blur(12px) saturate(150%)}
+
+  .alp .alp-dhero__grid{padding-top:var(--alp-hero-top);padding-bottom:120px;gap:32px}
+  .alp .alp-dhero__copy{gap:20px}
+  .alp .alp-sec--ref{padding:52px 0}
+  .alp .alp-sec--ref.alp-sec--nt{padding-top:0}
+  .alp .alp-spec{padding:48px 0}
+  .alp .alp-rvw{padding:48px 0 52px}
+  .alp .alp-faq-sec{padding:8px 0 48px}
+  .alp .alp-fin{padding:32px 16px 48px}
+  .alp .alp-stack[style*="gap:64px"]{gap:36px!important}
+  .alp .alp-stack[style*="gap:56px"]{gap:32px!important}
+
+  .alp .alp-rvw__arrow{width:44px;height:44px}
+  .alp .alp-flow__list{gap:40px}
+
+  /* ---- sticky bar: button only, glass bar -------------------------- */
+  .alp.alp .alp-sticky{
+    justify-content:center;
+    gap:0;
+    padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+    background:rgba(255,255,255,.78);
+    border-top:1px solid rgba(255,255,255,.92);
+    box-shadow:0 -10px 30px -12px rgba(16,69,141,.3),inset 0 1px 0 rgba(255,255,255,.9);
+    -webkit-backdrop-filter:blur(18px) saturate(170%);
+    backdrop-filter:blur(18px) saturate(170%);
+  }
+  /* hide "$577 flat / 100% online" (markup stays in the HTML) */
+  .alp.alp .alp-sticky>div{display:none!important}
+  .alp.alp .alp-sticky .alp-btn{
+    flex:1 1 auto;width:100%;max-width:560px;
+    min-height:52px;padding:12px 18px;
+    font-size:16px;font-weight:500;letter-spacing:.005em;white-space:nowrap;
+  }
+  body:has(.alp-sticky){padding-bottom:calc(var(--alp-sticky-h,72px) + env(safe-area-inset-bottom))}
+}
+
+@media (max-width:400px){
+  .alp{--alp-hero-top:108px}
+  .alp .alp-dhero__grid{padding-bottom:116px;gap:28px}
+  .alp .alp-sec--ref{padding:48px 0}
+  .alp.alp .alp-sticky{padding-left:12px;padding-right:12px}
+  .alp.alp .alp-sticky .alp-btn{font-size:15.5px;padding:12px 14px}
+}
+@media (max-width:360px){
+  .alp.alp .alp-sticky .alp-btn{font-size:14.5px;padding:12px 10px}
+}
+
+/* ---------------------------------------------------------------------
+   11. LIFT THIRD-PARTY CHAT LAUNCHERS ABOVE THE STICKY BAR (mobile)
+   The round chat bubble sat on top of the button. These selectors cover
+   the common chat tools; if yours is different, add its selector here.
+   (Alternative that works for ANY widget: give the bar a right gutter by
+   uncommenting the padding-right line below instead.)
+   --------------------------------------------------------------------- */
+@media (max-width:767px){
+  body:has(.alp-sticky) :is(
+    #hubspot-messages-iframe-container,
+    #tidio-chat,#tidio-chat-iframe,#tidio-chat-code,
+    #launcher,#webWidget,
+    #chat-widget-container,#livechat-compact-container,
+    #drift-widget-container,#drift-frame-controller,
+    .intercom-lightweight-app-launcher,.intercom-launcher,#intercom-container .intercom-launcher-frame,
+    .crisp-client .cc-kv6t,#crisp-chatbox>div>a,
+    .zsiq_floatmain,.tawk-min-container,
+    .joinchat,.wa__btn_popup,#ht-ctc-chat,.chaty-widget
+  ){
+    bottom:calc(var(--alp-sticky-h,72px) + 14px + env(safe-area-inset-bottom))!important;
+  }
+  /* .alp .alp-sticky{padding-right:84px} */
+}
+
+
+/* ---------------------------------------------------------------------
+   12. TOUCH + ACCESSIBILITY
+   --------------------------------------------------------------------- */
+@media (hover:none){
+  .alp.alp.alp .alp-lift:hover,
+  .alp.alp.alp .alp-flow__item:hover{transform:none}
+}
+
+/* browsers without backdrop-filter, or users who asked for less
+   transparency: same cards, solid fills */
+@supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+  .alp{
+    --g-bg:linear-gradient(145deg,#FFFFFF,#F4F8FE);
+    --g-bg-dark:linear-gradient(160deg,#10458D,#0A2850);
+  }
+  .alp.alp.alp .alp-sticky{background:#fff}
+  .alp.alp.alp .alp-mapcard,.alp.alp.alp .alp-statband__grid,.alp.alp.alp .alp-plan--main,
+  .alp.alp.alp .alp-plan--alt,.alp.alp.alp .alp-spec__quote,.alp.alp.alp .alp-states,
+  .alp.alp.alp .alp-faq__item,.alp.alp.alp .alp-dhero__badge{background:#fff}
+  .alp.alp.alp .alp-checker{background:#F8FBFF}
+}
+@media (prefers-reduced-transparency:reduce){
+  .alp{
+    --g-bg:linear-gradient(145deg,#FFFFFF,#F4F8FE);
+    --g-bg-dark:linear-gradient(160deg,#10458D,#0A2850);
+    --g-blur:none;
+  }
+  .alp.alp.alp :is(.alp-mapcard,.alp-statband__grid,.alp-plan,.alp-states,.alp-faq__item,.alp-spec__quote,
+    .alp-dhero__badge,.alp-vs__card,.alp-rvw__card,.alp-flow__item,.alp-sticky,.alp-fin__ring,.alp-btn-o){
+    -webkit-backdrop-filter:none;backdrop-filter:none;
+  }
+  .alp.alp.alp .alp-sticky{background:#fff}
+}
+
+
+
+/* =====================================================================
+   v12 | PRICING: "Choose Your Next Step" (3 cards + 3-step strip)
+   ---------------------------------------------------------------------
+   Paste at the very END of axon-landing.css.
+   Only styles the new .alp-pc… classes, so nothing else on the page changes.
+   The old .alp-plan / .alp-plans / .alp-plan-notes / .alp-tags rules above
+   are no longer used by the page and can be deleted later (optional).
+   Breakpoints match the rest of the file: 1025–1200 · <=1024 · <=900 · <=767 · <=400
+   ===================================================================== */
+
+/* screen-reader-only text ("Regular price", "With 10% off") */
+.alp .alp-vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* ---------- Section + heading ---------- */
+.alp .alp-pc-wrap{display:flex;flex-direction:column;gap:52px}
+.alp .alp-pc-head{max-width:760px}
+.alp .alp-pc-head .alp-body{max-width:640px;margin-inline:auto}
+.alp .alp-pc-head strong{color:var(--alp-blue);font-weight:700}
+.alp .alp-pc-eyebrow{gap:14px;color:var(--alp-blue-600)}
+.alp .alp-pc-eyebrow::before,
+.alp .alp-pc-eyebrow::after{content:"";display:block;width:36px;height:1px;background:currentColor;opacity:.5}
+
+/* ---------- Cards grid ---------- */
+.alp .alp-pc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;align-items:stretch;width:100%;max-width:940px;margin:0 auto;padding-top:14px}
+.alp .alp-pc__card{position:relative;min-width:0;display:flex;flex-direction:column;gap:18px;padding:30px 28px 26px;border-radius:24px;background:#fff;border:1px solid #DCE6F2;color:var(--alp-ink);box-shadow:0 1px 2px rgba(16,24,40,.04),0 24px 48px -36px rgba(16,69,141,.4);transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s cubic-bezier(.16,1,.3,1)}
+.alp .alp-pc__card:hover{transform:translateY(-4px);box-shadow:0 1px 2px rgba(16,24,40,.04),0 34px 60px -34px rgba(16,69,141,.5)}
+.alp .alp-pc__card--hi{border:2px solid var(--alp-blue);padding:29px 27px 25px;box-shadow:0 0 0 4px rgba(37,106,204,.08),0 36px 70px -40px rgba(37,106,204,.6)}
+.alp .alp-pc__card--hi:hover{box-shadow:0 0 0 4px rgba(37,106,204,.12),0 44px 80px -40px rgba(37,106,204,.7)}
+
+.alp .alp-pc__badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;background:var(--alp-blue);color:#fff;font-size:11.5px;font-weight:700;line-height:1.3;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;box-shadow:0 8px 18px -10px rgba(37,106,204,.9)}
+
+/* title row */
+.alp .alp-pc__top{display:flex;align-items:flex-start;gap:14px}
+.alp .alp-pc__ic{flex:none;display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:#EAF2FF;color:var(--alp-blue)}
+.alp .alp-pc__titles{display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-width:0;padding-top:2px}
+.alp .alp-pc__card--hi .alp-pc__titles{padding-top:0;min-height:46px;justify-content:center}
+.alp .alp-pc__tag{display:inline-block;padding:4px 10px;border-radius:999px;background:#EAF2FF;color:var(--alp-blue-600);font-size:11px;font-weight:700;line-height:1.3;letter-spacing:.02em}
+.alp .alp-pc__tag--up{text-transform:uppercase;letter-spacing:.08em}
+.alp .alp-pc__name{margin:0;font-size:22px;font-weight:600;line-height:1.22;letter-spacing:-.01em;color:var(--alp-ink)}
+
+/* price */
+.alp .alp-pc__price{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px}
+.alp .alp-pc__was{font-family:var(--alp-h);font-size:20px;font-weight:500;color:var(--alp-muted);text-decoration:line-through;text-decoration-thickness:1.5px}
+.alp .alp-pc__now{font-family:var(--alp-h);font-size:37px;font-weight:700;line-height:1.05;letter-spacing:-.03em;color:var(--alp-blue);font-variant-numeric:tabular-nums}
+.alp .alp-pc__save{display:inline-flex;flex-direction:column;align-items:center;padding:4px 7px;border-radius:8px;background:#EAF2FF;border:1px solid #D6E6FB;color:var(--alp-blue-600);line-height:1.25}
+.alp .alp-pc__save strong{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:inherit}
+.alp .alp-pc__save small{font-size:11px;color:inherit}
+.alp .alp-pc__note{margin-top:-10px;font-size:14.5px;line-height:1.5;color:var(--alp-muted)}
+.alp .alp-pc__break{margin-top:-10px;font-size:13px;line-height:1.5;color:var(--alp-muted)}
+
+/* 24-hour offer box */
+.alp .alp-pc__offer{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border-radius:14px;background:#EEF5FF;border:1px solid #DCE9FB;font-size:14px;line-height:1.5;color:var(--alp-body)}
+.alp .alp-pc__offer strong{color:var(--alp-blue);font-weight:700}
+.alp .alp-pc__clock{flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#fff;border:1px solid #D6E6FB;color:var(--alp-blue)}
+
+/* feature list */
+.alp .alp-pc__body{display:flex;flex-direction:column;gap:12px;padding-top:18px;border-top:1px solid #E3EBF5}
+.alp .alp-pc__plus{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;line-height:1.4;color:var(--alp-ink)}
+.alp .alp-pc__plus svg{color:var(--alp-blue)}
+.alp .alp-pc__list{display:flex;flex-direction:column;gap:11px;font-size:15px;line-height:1.45;color:var(--alp-body)}
+.alp .alp-pc__list li{position:relative;padding-left:30px}
+.alp .alp-pc__list li::before{content:"";position:absolute;left:0;top:1px;width:20px;height:20px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%23E3EEFC'/%3E%3Cpath d='M7.5 12.4l3 3 6-6.4' fill='none' stroke='%23256ACC' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+
+/* buttons */
+.alp .alp-pc__foot{margin-top:auto;display:flex;flex-direction:column;gap:10px;padding-top:6px}
+.alp .alp-pc__foot .alp-btn,
+.alp .alp-pc__foot .alp-btn-o{min-height:54px;font-size:16px;font-weight:500}
+.alp .alp-pc__foot .alp-btn-o svg{transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.alp .alp-pc__foot .alp-btn-o:hover svg{transform:translateX(4px)}
+.alp .alp-pc__fine{text-align:center;font-size:12px;line-height:1.5;color:var(--alp-muted)}
+
+.alp .alp-pc__foot .alp-btn-o{padding-inline:14px;font-size:15px;white-space:nowrap}
+
+
+/* ---------- Responsive ---------- */
+@media (min-width:1025px) and (max-width:1200px){
+  .alp .alp-pc{gap:22px}
+  .alp .alp-pc__card{padding:28px 22px 24px}
+  .alp .alp-pc__card--hi{padding:27px 21px 23px}
+  .alp .alp-pc__name{font-size:20px}
+  .alp .alp-pc__now{font-size:32px}
+}
+@media (max-width:1024px){
+  .alp .alp-pc-wrap{gap:44px}
+  .alp .alp-pc{grid-template-columns:minmax(0,1fr);max-width:600px;gap:36px}
+}
+@media (max-width:767px){
+  .alp .alp-pc-wrap{gap:32px}
+  .alp .alp-pc-head .alp-body{font-size:16px}
+  .alp .alp-pc{gap:32px}
+  .alp .alp-pc__card{padding:26px 20px 22px;border-radius:22px;gap:16px}
+  .alp .alp-pc__card--hi{padding:25px 19px 21px}
+  .alp .alp-pc__name{font-size:20px}
+  .alp .alp-pc__now{font-size:36px}
+  .alp .alp-pc__list{font-size:14.5px}
+  .alp .alp-pc__foot .alp-btn,.alp .alp-pc__foot .alp-btn-o{min-height:52px;font-size:15.5px}
+}
+@media (max-width:400px){
+  .alp .alp-pc__card{padding:24px 16px 20px}
+  .alp .alp-pc__card--hi{padding:23px 15px 19px}
+  .alp .alp-pc__ic{width:40px;height:40px}
+  .alp .alp-pc__now{font-size:32px}
+  .alp .alp-pc__was{font-size:18px}
+  .alp .alp-pc__offer{padding:12px 14px;font-size:13.5px}
+  .alp .alp-pc__foot .alp-btn,.alp .alp-pc__foot .alp-btn-o{font-size:15px;padding:12px 14px}
+}
+@media (hover:none){
+  .alp .alp-pc__card:hover{transform:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .alp .alp-pc__card,.alp .alp-pc__foot .alp-btn-o svg{transition:none}
+}
+
+/* =====================================================================
+   v13 | TYPOGRAPHY: thinkitive.com type system across the whole page
+   ---------------------------------------------------------------------
+   Font: Manrope for headings and body (fallback Raleway, Arial).
+   Sizes are the same fluid calc() values thinkitive.com uses, so they
+   scale with the screen on their own (no breakpoint overrides needed):
+     H1 hero ........ calc(16.8px + 1.625vw)  600 · line-height 130%
+     H2 section ..... calc(18px + 1.25vw)     600 · 130% · letter-spacing -1px
+     H3 card title .. calc(13.2px + .25vw)    700 · 150%
+     Body text ...... calc(13.2px + .25vw)    400 · 170%
+     Hero paragraph . 1.1rem                  400 · 160%
+     Quote .......... calc(13.6px + .125vw)   400 · 160%
+     Small text ..... calc(11.6px + .125vw)   400 · 140%
+     Labels / meta .. calc(11.2px + .25vw)    600 · 150%
+     Buttons ........ calc(10.8px + .375vw)   700 · 150%
+   AXON brand colours are kept. Placed last + extra-specific so it wins
+   over every earlier size rule and media query.
+   ===================================================================== */
+.alp{font-family:var(--font-manrope),'Manrope','Raleway',Arial,sans-serif;font-size:calc(13.2px + .25vw);line-height:1.7}
+.alp.alp.alp.alp .alp-dhero__h1,
+.alp.alp.alp.alp .alp-h1{font-size:clamp(32px,calc(22px + 2.6vw),68px);font-weight:700;line-height:1.15;letter-spacing:-1px}
+.alp.alp.alp.alp .alp-h2,
+.alp.alp.alp.alp .alp-h2--ref,
+.alp.alp.alp.alp .alp-rvw__h,
+.alp.alp.alp.alp .alp-states__h,
+.alp.alp.alp.alp .alp-fin__h,
+.alp.alp.alp.alp .alp-spec__name{font-size:calc(18px + 1.25vw);font-weight:600;line-height:1.3;letter-spacing:-1px}
+.alp.alp.alp.alp .alp-flow__t,
+.alp.alp.alp.alp .alp-pc__name,
+.alp.alp.alp.alp .alp-faq__q,
+.alp.alp.alp.alp .alp-plan__name{font-size:calc(14.4px + .4vw);font-weight:700;line-height:1.4;letter-spacing:normal}
+.alp.alp.alp.alp .alp-vs__big{font-size:calc(16.8px + .9vw);font-weight:600;line-height:1.3;letter-spacing:-.5px}
+.alp.alp.alp.alp .alp-body,
+.alp.alp.alp.alp .alp-head--wide .alp-body,
+.alp.alp.alp.alp .alp-pc-head .alp-body,
+.alp.alp.alp.alp .alp-vs__list,
+.alp.alp.alp.alp .alp-pc__list,
+.alp.alp.alp.alp .alp-faq__a,
+.alp.alp.alp.alp .alp-rvw__t,
+.alp.alp.alp.alp .alp-states__sub,
+.alp.alp.alp.alp .alp-states__list,
+.alp.alp.alp.alp .alp-spec__licrow,
+.alp.alp.alp.alp .alp-fin__p,
+.alp.alp.alp.alp .alp-faq-cta,
+.alp.alp.alp.alp .alp-dhero__proof,
+.alp.alp.alp.alp .alp-plan-notes{font-size:calc(13.2px + .25vw);font-weight:400;line-height:1.7}
+.alp.alp.alp.alp .alp-spec__quote blockquote{font-size:calc(13.6px + .125vw);line-height:1.6}
+.alp.alp.alp.alp .alp-dhero__lead{font-size:1.1rem;line-height:1.6} /* same as thinkitive.com hero paragraph */
+.alp.alp.alp.alp .alp-flow__p,
+.alp.alp.alp.alp .alp-pc__offer,
+.alp.alp.alp.alp .alp-pc__note,
+.alp.alp.alp.alp .alp-pc__break,
+.alp.alp.alp.alp .alp-pc__plus,
+.alp.alp.alp.alp .alp-statband__l,
+.alp.alp.alp.alp .alp-spec__statl,
+.alp.alp.alp.alp .alp-spec__years,
+.alp.alp.alp.alp .alp-spec__speaker,
+.alp.alp.alp.alp .alp-spec__creds,
+.alp.alp.alp.alp .alp-states__note,
+.alp.alp.alp.alp .alp-rvw__role,
+.alp.alp.alp.alp .alp-mapcard__key,
+.alp.alp.alp.alp .alp-dd__list li,
+.alp.alp.alp.alp .alp-checker__msg,
+.alp.alp.alp.alp .alp-fin__sub,
+.alp.alp.alp.alp .alp-dhero__float small{font-size:calc(12.4px + .15vw);line-height:1.45}
+.alp.alp.alp.alp .alp-pc__plus{font-weight:700}
+.alp.alp.alp.alp .alp-eyebrow,
+.alp.alp.alp.alp .alp-eyebrow--ref,
+.alp.alp.alp.alp .alp-dhero__badge,
+.alp.alp.alp.alp .alp-mapcard__title,
+.alp.alp.alp.alp .alp-checker__field label,
+.alp.alp.alp.alp .alp-vs__k,
+.alp.alp.alp.alp .alp-rvw__name,
+.alp.alp.alp.alp .alp-rvw__g,
+.alp.alp.alp.alp .alp-rvw__rm,
+.alp.alp.alp.alp .alp-dhero__link,
+.alp.alp.alp.alp .alp-fin__tel,
+.alp.alp.alp.alp .alp-dhero__float strong{font-size:calc(11.2px + .25vw);font-weight:600;line-height:1.5}
+.alp.alp.alp.alp .alp-pc__tag,
+.alp.alp.alp.alp .alp-pc__badge,
+.alp.alp.alp.alp .alp-pc__save strong,
+.alp.alp.alp.alp .alp-pc__save small,
+.alp.alp.alp.alp .alp-pc__fine,
+.alp.alp.alp.alp .alp-tag{font-size:calc(10.4px + .1875vw);line-height:1.4}
+.alp.alp.alp.alp .alp-btn,
+.alp.alp.alp.alp .alp-btn-o,
+.alp.alp.alp.alp .alp-btn-w,
+.alp.alp.alp.alp .alp-btn--lg,
+.alp.alp.alp.alp .alp-pc__foot .alp-btn,
+.alp.alp.alp.alp .alp-pc__foot .alp-btn-o,
+.alp.alp.alp.alp .alp-sticky .alp-btn,
+.alp.alp.alp.alp .alp-dd__btn{font-size:calc(10.8px + .375vw);font-weight:700;line-height:1.5}
+.alp.alp.alp.alp .alp-dd__btn{font-weight:400}
+.alp.alp.alp.alp .alp-statband__n,
+.alp.alp.alp.alp .alp-spec__stat,
+.alp.alp.alp.alp .alp-spec__num{font-weight:700;letter-spacing:-1px}
+.alp.alp.alp.alp .alp-statband__n{font-size:calc(19.6px + 1.375vw);line-height:1.2}
+.alp.alp.alp.alp .alp-pc__now,
+.alp.alp.alp.alp .alp-plan__amt{font-weight:700;letter-spacing:-1px}
+
+/* =====================================================================
+   Next.js integration
+   The site header is sticky in normal flow (not overlaying the page), so the hero slides under it with the
+   same negative margin the other page heroes use, and keeps the original top spacing.
+   ===================================================================== */
+.alp .alp-dhero{margin-top:calc(-1 * var(--header-height));}
+@media (max-width:1180px){
+  .alp .alp-dhero__grid{padding-top:calc(var(--header-height) + 40px)}
+}
+
+/* =====================================================================
+   HERO CTA REFINEMENT (height, padding, type, radius, shadow, hover). Colours unchanged.
+   ===================================================================== */
+.alp.alp.alp.alp .alp-dhero__ctas{gap:14px 28px;margin-top:6px}
+.alp.alp.alp.alp .alp-dhero__ctas .alp-btn{min-height:56px;padding:0 30px;gap:10px;border-radius:999px;box-shadow:0 1px 2px rgba(16,69,141,.12),0 12px 26px -14px rgba(37,106,204,.65),inset 0 1px 0 rgba(255,255,255,.2);transition:background-color .25s ease,border-color .25s ease,box-shadow .3s cubic-bezier(.16,1,.3,1),transform .3s cubic-bezier(.16,1,.3,1)}
+.alp.alp.alp.alp .alp-dhero__ctas .alp-btn:hover,
+.alp.alp.alp.alp .alp-dhero__ctas .alp-btn:focus-visible{transform:translateY(-2px);box-shadow:0 1px 2px rgba(16,69,141,.14),0 18px 32px -14px rgba(16,69,141,.6),inset 0 1px 0 rgba(255,255,255,.2)}
+.alp.alp.alp.alp .alp-dhero__ctas .alp-btn:active{transform:translateY(0);box-shadow:0 1px 2px rgba(16,69,141,.14),0 8px 16px -10px rgba(16,69,141,.55)}
+.alp.alp.alp.alp .alp-dhero__link{display:inline-flex;align-items:center;min-height:56px;text-underline-offset:7px;text-decoration-thickness:1.5px;transition:color .25s ease,text-underline-offset .25s ease}
+.alp.alp.alp.alp .alp-dhero__link:hover,
+.alp.alp.alp.alp .alp-dhero__link:focus-visible{text-underline-offset:9px}
+@media (max-width:767px){
+  .alp.alp.alp.alp .alp-dhero__ctas .alp-btn{width:100%;min-height:54px}
+  .alp.alp.alp.alp .alp-dhero__link{justify-content:center;min-height:48px}
+}
+
+/* "See How it Works": outlined pill instead of an underlined link */
+.alp.alp.alp.alp .alp-dhero__link{justify-content:center;padding:0 28px;border:1.5px solid var(--alp-blue);border-radius:999px;background:#fff;color:var(--alp-blue-600);text-decoration:none;transition:background-color .25s ease,color .25s ease,border-color .25s ease,box-shadow .3s cubic-bezier(.16,1,.3,1),transform .3s cubic-bezier(.16,1,.3,1)}
+.alp.alp.alp.alp .alp-dhero__link:hover,
+.alp.alp.alp.alp .alp-dhero__link:focus-visible{background:var(--alp-sky);border-color:var(--alp-blue-600);color:var(--alp-navy);text-decoration:none;transform:translateY(-2px);box-shadow:0 14px 26px -16px rgba(16,69,141,.45)}
+.alp.alp.alp.alp .alp-dhero__link:active{transform:translateY(0);box-shadow:none}
+@media (max-width:767px){
+  .alp.alp.alp.alp .alp-dhero__link{width:100%;min-height:54px}
+}
+
+/* Trust indicators: one line on larger screens */
+@media (min-width:768px){
+  .alp.alp.alp.alp .alp-dhero__proof{flex-wrap:nowrap;align-items:center;gap:0 clamp(14px,1.6vw,26px)}
+  .alp.alp.alp.alp .alp-dhero__proof>span{flex:0 0 auto;white-space:nowrap;gap:8px}
+}
+@media (min-width:1025px) and (max-width:1280px){
+  .alp.alp.alp.alp .alp-dhero__proof{font-size:14px;gap:0 14px}
+}
+
+/* State selector + Book button: soft, diffused drop shadows (reference) */
+.alp.alp.alp.alp .alp-dd__btn:not(:focus-visible):not([aria-expanded="true"]){box-shadow:0 1px 2px rgba(16,69,141,.06),0 8px 20px -6px rgba(16,69,141,.22),0 14px 28px -14px rgba(16,69,141,.18)}
+.alp.alp.alp.alp .alp-checker .alp-btn:not(:hover):not(:focus-visible){box-shadow:0 2px 4px rgba(16,69,141,.14),0 10px 22px -6px rgba(37,106,204,.5),0 16px 30px -14px rgba(16,69,141,.45),inset 0 1px 0 rgba(255,255,255,.22)}
+.alp.alp.alp.alp .alp-checker .alp-btn:hover,
+.alp.alp.alp.alp .alp-checker .alp-btn:focus-visible{box-shadow:0 2px 4px rgba(16,69,141,.16),0 14px 26px -6px rgba(16,69,141,.5),0 20px 34px -14px rgba(16,69,141,.45),inset 0 1px 0 rgba(255,255,255,.22)}
+
+/* Trust indicators: slightly smaller text, faint dividers between items */
+@media (min-width:768px){
+  .alp.alp.alp.alp .alp-dhero__proof{font-size:15.5px;gap:0;align-items:center}
+  .alp.alp.alp.alp .alp-dhero__proof>span{padding:0 clamp(14px,1.5vw,22px);line-height:1.2}
+  .alp.alp.alp.alp .alp-dhero__proof>span:first-child{padding-left:0}
+  .alp.alp.alp.alp .alp-dhero__proof>span+span{border-left:1px solid rgba(16,69,141,.14)}
+  .alp.alp.alp.alp .alp-dhero__proof svg{width:17px;height:17px}
+  .alp.alp.alp.alp .alp-dhero__stars{font-size:15px;letter-spacing:1px;line-height:1}
+}
+@media (min-width:1025px) and (max-width:1280px){
+  .alp.alp.alp.alp .alp-dhero__proof{font-size:14.5px}
+  .alp.alp.alp.alp .alp-dhero__proof>span{padding:0 14px}
+  .alp.alp.alp.alp .alp-dhero__proof>span:first-child{padding-left:0}
+}
+
+/* How it works: the connector line only shows in the gaps between cards, never through them */
+.alp .alp-flow__list{--flow-gap:26px}
+@media (min-width:1025px) and (max-width:1200px){.alp .alp-flow__list{--flow-gap:18px}}
+.alp.alp .alp-flow__list::before{
+  left:0;right:0;
+  --flow-col:calc((100% - 3 * var(--flow-gap)) / 4);
+  -webkit-mask-image:repeating-linear-gradient(90deg,transparent 0,transparent var(--flow-col),#000 var(--flow-col),#000 calc(var(--flow-col) + var(--flow-gap)));
+          mask-image:repeating-linear-gradient(90deg,transparent 0,transparent var(--flow-col),#000 var(--flow-col),#000 calc(var(--flow-col) + var(--flow-gap)));
+}
+
+/* Section eyebrow labels: bordered glass pill */
+.alp.alp.alp.alp .alp-eyebrow--ref{display:inline-flex;align-items:center;align-self:auto;width:fit-content;max-width:100%;padding:8px 18px;border:1px solid rgba(37,106,204,.24);border-radius:999px;background:linear-gradient(145deg,rgba(255,255,255,.78),rgba(255,255,255,.45));box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 8px 18px -12px rgba(16,69,141,.3);-webkit-backdrop-filter:blur(14px) saturate(165%);backdrop-filter:blur(14px) saturate(165%);line-height:1.3}
+.alp.alp.alp.alp .alp-pc-eyebrow{gap:12px}
+.alp.alp.alp.alp .alp-pc-eyebrow::before,
+.alp.alp.alp.alp .alp-pc-eyebrow::after{width:22px}
+.alp.alp.alp.alp .alp-rvw__head .alp-eyebrow--ref{margin-bottom:16px}
+.alp.alp.alp.alp .alp-head--wide .alp-eyebrow--ref{align-self:center}
+.alp.alp.alp.alp .alp-spec__body .alp-eyebrow--ref,
+.alp.alp.alp.alp .alp-states__head .alp-eyebrow--ref{align-self:flex-start}
+
+/* Eyebrow pill: mint glass with a soft green border and dark-green spaced caps (reference) */
+.alp.alp.alp.alp .alp-eyebrow--ref{padding:12px 34px;border:1.5px solid #BFE8DC;border-radius:999px;background:linear-gradient(145deg,rgba(238,251,247,.9),rgba(255,255,255,.55));color:#0B3B33;font-weight:700;letter-spacing:.16em;text-transform:uppercase;box-shadow:inset 0 0 0 1px rgba(255,255,255,.75),inset 0 1px 0 rgba(255,255,255,.95),0 10px 22px -14px rgba(13,124,102,.45)}
+@media (max-width:767px){
+  .alp.alp.alp.alp .alp-eyebrow--ref{padding:10px 24px;letter-spacing:.13em}
+}
+
+/* Step 4 card: deep green gradient with a soft diagonal sheen (reference) */
+.alp.alp.alp.alp .alp-flow__item:last-child{--ilf:#0B6654;--ils:#0F8F78;--ila:#2FE0B0;background:radial-gradient(120% 70% at 85% 0%,rgba(47,224,176,.38),transparent 60%),linear-gradient(155deg,#12907A 0%,#0B6654 52%,#094A3F 100%);border-color:rgba(47,224,176,.7);box-shadow:0 0 0 4px rgba(47,224,176,.14),inset 0 1px 0 rgba(255,255,255,.25),0 26px 60px -24px rgba(13,124,102,.65)}
+.alp.alp.alp.alp .alp-flow__item:last-child::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,transparent 38%,rgba(255,255,255,.1) 48%,rgba(255,255,255,.03) 62%,transparent 72%),radial-gradient(90% 50% at 10% 100%,rgba(255,255,255,.1),transparent 70%)}
+.alp.alp.alp.alp .alp-flow__item:last-child .alp-flow__p{color:rgba(255,255,255,.92)}
+
+/* =====================================================================
+   COMPARISON SECTION REFINEMENT ("Online quizzes can't diagnose ADHD. This can.")
+   Spacing, type, alignment and shadows only; existing colours and content unchanged.
+   ===================================================================== */
+.alp.alp.alp.alp .alp-vs__grid{max-width:1040px;gap:28px}
+.alp.alp.alp.alp .alp-vs__card{gap:0;padding:44px 40px 42px;border-radius:24px}
+.alp.alp.alp.alp .alp-vs__card:not(.alp-vs__card--hi){box-shadow:0 1px 2px rgba(16,69,141,.05),0 16px 32px -24px rgba(16,69,141,.28)}
+.alp.alp.alp.alp .alp-vs__card--hi:not(:hover){box-shadow:0 2px 4px rgba(11,37,75,.14),0 30px 60px -28px rgba(11,37,75,.65),inset 0 1px 0 rgba(255,255,255,.18)}
+
+/* kicker + heading */
+.alp.alp.alp.alp .alp-vs__k{font-weight:600;letter-spacing:.12em;text-transform:uppercase;line-height:1.3}
+.alp.alp.alp.alp .alp-vs__big{margin-top:14px}
+.alp.alp.alp.alp .alp-vs__card:not(.alp-vs__card--hi) .alp-vs__big{color:var(--alp-ink)}
+
+/* lists: divider under the heading, even rhythm, icons aligned to the first text line */
+.alp.alp.alp.alp .alp-vs__list{margin-top:26px;padding-top:26px;gap:16px}
+.alp.alp.alp.alp .alp-vs__card:not(.alp-vs__card--hi) .alp-vs__list{border-top:1px solid rgba(16,69,141,.12)}
+.alp.alp.alp.alp .alp-vs__card--hi .alp-vs__list{border-top:1px solid rgba(255,255,255,.16);color:#fff}
+.alp.alp.alp.alp .alp-vs__list li{align-items:flex-start;gap:14px;line-height:1.5}
+.alp.alp.alp.alp .alp-vs__list svg{width:20px;height:20px;margin-top:2px!important}
+
+@media (max-width:1024px){
+  .alp.alp.alp.alp .alp-vs__card{padding:36px 30px 34px}
+}
+@media (max-width:820px){
+  .alp.alp.alp.alp .alp-vs__grid{grid-template-columns:minmax(0,1fr);max-width:560px;gap:20px}
+}
+@media (max-width:767px){
+  .alp.alp.alp.alp .alp-vs__card{padding:30px 22px 28px;border-radius:20px}
+  .alp.alp.alp.alp .alp-vs__big{margin-top:12px}
+  .alp.alp.alp.alp .alp-vs__list{margin-top:22px;padding-top:22px;gap:14px}
+}
+
+/* Comparison cards: no top strip / top glow */
+.alp.alp.alp.alp .alp-vs__card::before,
+.alp.alp.alp.alp .alp-vs__card--hi::before,
+.alp.alp.alp.alp .alp-vs__card:not(.alp-vs__card--hi)::before{display:none}
+
+/* Hero rating: Google logo + stars over "4.9/5 (100+ reviews)" */
+.alp.alp.alp.alp .alp-dhero__rating{gap:12px;align-items:center}
+.alp.alp.alp.alp .alp-dhero__proof .alp-dhero__glogo{width:40px;height:40px;flex:none}
+.alp.alp.alp.alp .alp-dhero__rating-body{display:flex;flex-direction:column;align-items:flex-start;gap:2px;line-height:1.2}
+.alp.alp.alp.alp .alp-dhero__rating .alp-dhero__stars{font-size:18px;letter-spacing:3px;line-height:1}
+.alp.alp.alp.alp .alp-dhero__rating-n{color:var(--alp-muted)}
+@media (min-width:768px){
+  .alp.alp.alp.alp .alp-dhero__proof>span{align-self:stretch}
+}
+
+/* =====================================================================
+   PRICING CARDS (reference look): glass cards, icon in a white circle, white pills, solid check circles.
+   Left card = brand blue, right card = lavender purple (#7C4DDB, sampled by eye from the design reference). Content and prices unchanged.
+   ===================================================================== */
+.alp.alp.alp.alp .alp-pc{gap:32px;max-width:960px}
+.alp.alp.alp.alp .alp-pc__card{--pc:var(--alp-blue);--pc-d:var(--alp-blue-600);--pc-tint:#EAF2FF;padding:34px 32px 30px;border-radius:28px;gap:20px;background:linear-gradient(145deg,rgba(255,255,255,.88),rgba(255,255,255,.58));border:1px solid rgba(255,255,255,.95);box-shadow:0 0 0 1px rgba(16,69,141,.07),inset 0 1px 0 rgba(255,255,255,.95),0 24px 50px -30px rgba(16,69,141,.4);-webkit-backdrop-filter:blur(16px) saturate(165%);backdrop-filter:blur(16px) saturate(165%)}
+.alp.alp.alp.alp .alp-pc__card--hi{border:1.5px solid rgba(37,106,204,.55);padding:33px 31px 29px;box-shadow:0 0 0 4px rgba(37,106,204,.08),inset 0 1px 0 rgba(255,255,255,.95),0 30px 60px -30px rgba(37,106,204,.55)}
+.alp.alp.alp.alp .alp-pc__card:not(.alp-pc__card--hi){--pc:#7c4ddb;--pc-d:#6d3fd9;--pc-tint:#f1ebff;background:linear-gradient(115deg,rgba(255,255,255,.6) 0%,rgba(255,255,255,0) 42%),linear-gradient(145deg,rgba(237,228,255,.62),rgba(255,255,255,.28));border:1px solid rgba(124,77,219,.42);box-shadow:0 0 0 1px rgba(124,77,219,.14),inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(124,77,219,.08),0 28px 56px -28px rgba(124,77,219,.4);-webkit-backdrop-filter:blur(22px) saturate(180%);backdrop-filter:blur(22px) saturate(180%)}
+
+/* badge, icon, title row */
+.alp.alp.alp.alp .alp-pc__badge{background:linear-gradient(180deg,var(--alp-blue),var(--alp-blue-600));padding:8px 18px;box-shadow:0 10px 22px -10px rgba(37,106,204,.7),inset 0 1px 0 rgba(255,255,255,.25)}
+.alp.alp.alp.alp .alp-pc__top{align-items:center;gap:16px}
+.alp.alp.alp.alp .alp-pc__ic{width:58px;height:58px;background:#fff;color:var(--pc);box-shadow:0 1px 2px rgba(16,69,141,.08),0 12px 24px -12px rgba(16,69,141,.35)}
+.alp.alp.alp.alp .alp-pc__ic svg{width:24px;height:24px}
+.alp.alp.alp.alp .alp-pc__tag{background:var(--pc-tint);color:var(--pc-d)}
+.alp.alp.alp.alp .alp-pc__titles{padding-top:0;min-height:0;gap:6px}
+
+/* price row */
+.alp.alp.alp.alp .alp-pc__price{gap:8px 14px;align-items:center}
+.alp.alp.alp.alp .alp-pc__now{color:var(--pc);font-weight:800}
+.alp.alp.alp.alp .alp-pc__card:not(.alp-pc__card--hi) .alp-pc__now{color:var(--pc-d)}
+.alp.alp.alp.alp .alp-pc__save{flex-direction:row;gap:6px;align-items:baseline;padding:8px 16px;border:0;border-radius:999px;background:#fff;color:var(--pc-d);box-shadow:0 1px 2px rgba(16,69,141,.06),0 8px 18px -10px rgba(16,69,141,.3)}
+
+/* 24-hour offer box */
+.alp.alp.alp.alp .alp-pc__offer{padding:16px 18px;border:0;border-radius:18px;background:#fff;box-shadow:0 1px 2px rgba(16,69,141,.05),0 12px 28px -18px rgba(16,69,141,.3)}
+.alp.alp.alp.alp .alp-pc__offer strong{color:var(--pc-d)}
+.alp.alp.alp.alp .alp-pc__clock{background:#fff;border:1.5px solid var(--pc);color:var(--pc)}
+
+/* list */
+.alp.alp.alp.alp .alp-pc__body{border-top:1px solid rgba(16,69,141,.1);padding-top:20px}
+.alp.alp.alp.alp .alp-pc__plus svg{color:var(--pc)}
+.alp.alp.alp.alp .alp-pc__list{gap:12px}
+.alp.alp.alp.alp .alp-pc__list li::before{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%23256ACC'/%3E%3Cpath d='M7.5 12.4l3 3 6-6.4' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+.alp.alp.alp.alp .alp-pc__card:not(.alp-pc__card--hi) .alp-pc__list li::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%239b7ae8'/%3E%3Cpath d='M7.5 12.4l3 3 6-6.4' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+
+/* buttons */
+.alp.alp.alp.alp .alp-pc__foot .alp-btn{border:0;background:linear-gradient(180deg,var(--alp-blue),var(--alp-blue-600));box-shadow:0 14px 28px -12px rgba(37,106,204,.65),inset 0 1px 0 rgba(255,255,255,.25)}
+.alp.alp.alp.alp .alp-pc__foot .alp-btn-o{border:1.5px solid #7c4ddb;background:rgba(255,255,255,.7);color:#6d3fd9;box-shadow:inset 0 1px 0 rgba(255,255,255,.9)}
+.alp.alp.alp.alp .alp-pc__foot .alp-btn-o:hover,
+.alp.alp.alp.alp .alp-pc__foot .alp-btn-o:focus-visible{background:#7c4ddb;border-color:#7c4ddb;color:#fff}
+
+@media (max-width:767px){
+  .alp.alp.alp.alp .alp-pc__card{padding:28px 20px 24px;border-radius:24px}
+  .alp.alp.alp.alp .alp-pc__card--hi{padding:27px 19px 23px}
+  .alp.alp.alp.alp .alp-pc__ic{width:50px;height:50px}
+}
+
+/* Pricing eyebrow: all blue (text, border, side lines, tinted glass) */
+.alp.alp.alp.alp #alp-pricing .alp-pc-eyebrow{color:var(--alp-blue-600);border-color:rgba(37,106,204,.4);background:linear-gradient(145deg,rgba(239,246,255,.92),rgba(255,255,255,.55));box-shadow:inset 0 0 0 1px rgba(255,255,255,.75),inset 0 1px 0 rgba(255,255,255,.95),0 10px 22px -14px rgba(37,106,204,.5)}
+
+/* =====================================================================
+   STATES WE COVER (visual refinement only; no type, text or data changes)
+   ===================================================================== */
+.alp.alp.alp.alp .alp-states{background:linear-gradient(180deg,#fff,#f7fafd);border:1px solid var(--alp-soft-line);border-radius:28px;box-shadow:0 1px 2px rgba(16,69,141,.05),0 24px 48px -32px rgba(16,69,141,.25);-webkit-backdrop-filter:none;backdrop-filter:none}
+
+/* blue accent line under the heading */
+.alp.alp.alp.alp .alp-states__h::after{content:"";display:block;width:56px;height:3px;margin-top:14px;border-radius:3px;background:var(--alp-blue)}
+
+/* six balanced columns: entries flow down each column at natural height, so spacing is uniform and a wrapped name never
+   stretches a whole row; the separators are native column rules (same height in every column) */
+.alp.alp.alp.alp .alp-states__list{display:block;column-count:6;column-gap:32px;column-rule:1px solid rgba(16,69,141,.12)}
+.alp.alp.alp.alp .alp-states__list li{display:flex;align-items:flex-start;min-width:0;padding:7px 0;border:0;line-height:1.35;overflow-wrap:break-word;break-inside:avoid}
+.alp.alp.alp.alp .alp-states__list svg{margin-top:.2em}
+@media (max-width:1024px){
+  .alp.alp.alp.alp .alp-states__list{column-count:4}
+}
+@media (max-width:767px){
+  .alp.alp.alp.alp .alp-states{border-radius:24px}
+  .alp.alp.alp.alp .alp-states__list{column-count:2;column-gap:24px}
+}
+@media (max-width:400px){
+  .alp.alp.alp.alp .alp-states__list{column-count:1}
+}
+
+/* unavailable-states notice: soft cream panel with an orange border */
+.alp.alp.alp.alp .alp-states__note{background:#fff7eb;border:1px solid rgba(235,139,1,.4);border-radius:18px;padding:22px 26px;text-align:left;line-height:1.7;overflow-wrap:break-word}
+@media (max-width:767px){.alp.alp.alp.alp .alp-states__note{padding:18px 18px}}
+.alp.alp.alp.alp .alp-states__note strong{color:#b86e00}
+
+/* States we cover: top padding (the section had none), matching its bottom padding at each breakpoint */
+.alp.alp.alp #alp-states{padding-top:120px}
+@media (max-width:1024px){.alp.alp.alp #alp-states{padding-top:72px}}
+@media (max-width:767px){.alp.alp.alp #alp-states{padding-top:52px}}
+@media (max-width:400px){.alp.alp.alp #alp-states{padding-top:48px}}
+
+/* "Before you book" FAQ (shared FAQ component, outside .alp): same left blue wash as the reviews section; scoped to this page's wrapper */
+#alp-faq>section{background:linear-gradient(108deg,#dfeaf4 19.84%,rgba(255,255,255,.2) 62.33%),#fff}
+
+/* Final CTA button: white so it stands out on the blue card */
+.alp.alp.alp.alp .alp-fin__ring .alp-btn{background:#fff;border-color:#fff;color:var(--alp-blue-600)}
+.alp.alp.alp.alp .alp-fin__ring .alp-btn:not(:hover):not(:focus-visible){box-shadow:0 10px 24px -10px rgba(6,26,54,.5),inset 0 1px 0 rgba(255,255,255,.9)}
+.alp.alp.alp.alp .alp-fin__ring .alp-btn:hover,
+.alp.alp.alp.alp .alp-fin__ring .alp-btn:focus-visible{background:var(--alp-sky);border-color:var(--alp-sky);color:var(--alp-navy)}
+
+/* Final CTA: phone number as a glass outline button with a phone icon */
+.alp.alp.alp.alp .alp-fin__call,
+.alp.alp.alp.alp .alp-fin__call:hover,
+.alp.alp.alp.alp .alp-fin__call:focus{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:12px 26px;border:1.5px solid rgba(255,255,255,.7);border-radius:999px;background:rgba(255,255,255,.12);color:#fff;text-decoration:none;white-space:nowrap;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:inset 0 1px 0 rgba(255,255,255,.25);transition:background-color .25s ease,border-color .25s ease}
+.alp.alp.alp.alp .alp-fin__call:hover,
+.alp.alp.alp.alp .alp-fin__call:focus-visible{background:rgba(255,255,255,.22);border-color:#fff}
+@media (max-width:767px){.alp.alp.alp.alp .alp-fin__call{width:100%}}
+
+/* Final CTA booking button: no outer ring */
+.alp.alp.alp .alp-fin__ring{background:transparent;border-color:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}
+/* attention pulse: gentle breathing scale plus a soft ring that expands and fades; arrow nudges forward */
+@keyframes alp-btn-pulse{0%,100%{transform:scale(1);box-shadow:0 10px 24px -10px rgba(6,26,54,.5),0 0 0 0 rgba(255,255,255,.55)}50%{transform:scale(1.035);box-shadow:0 14px 28px -10px rgba(6,26,54,.55),0 0 0 14px rgba(255,255,255,0)}}
+@keyframes alp-arrow-nudge{0%,100%{translate:0 0}50%{translate:4px 0}}
+@media (prefers-reduced-motion:no-preference){
+  .alp.alp.alp.alp .alp-fin__ring .alp-btn{animation:alp-btn-pulse 2.6s ease-in-out infinite}
+  .alp.alp.alp.alp .alp-fin__ring .alp-btn:hover,
+  .alp.alp.alp.alp .alp-fin__ring .alp-btn:focus-visible{animation:none;transform:scale(1.04)}
+  .alp.alp.alp.alp .alp-fin__ring .alp-btn svg{animation:alp-arrow-nudge 1.3s ease-in-out infinite}
+}
+
+/* Landing-page header replaces the site header on this route only (the selector needs the new header to be mounted) */
+body:has(.alp-lp-header) [data-site-header]{display:none}
+
+/* ---------- Hero pricing card (replaces the state map in the hero side column) ---------- */
+.alp .alp-hero-pc{width:100%;max-width:560px;margin-inline:auto}
+.alp .alp-hero-pc:hover{transform:none}
+
+/* Hero: slightly less space above the content */
+@media (min-width:1181px){
+  .alp .alp-dhero__grid{padding-top:168px}
+}
+@media (max-width:1180px){
+  .alp .alp-dhero__grid{padding-top:calc(var(--header-height) + 24px)}
+}

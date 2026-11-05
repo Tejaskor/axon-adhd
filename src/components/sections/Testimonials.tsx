@@ -15,7 +15,7 @@ import {
   useSyncExternalStore,
   type TouchEvent,
 } from "react";
-import type { Review } from "@/content/trust";
+import type { Review as GoogleReview } from "@/content/trust";
 import { Container } from "@/components/ui/Container";
 import { cn, formatDate } from "@/lib/utils";
 
@@ -24,6 +24,11 @@ const CLONES = 3;
 const DURATION = 600;
 const INTERVAL = 5000;
 const SWIPE = 50;
+
+/** Home-page Google reviews satisfy this as-is; other pages may omit avatar/date/rating and pass a `role` line instead. */
+export type Review = Pick<GoogleReview, "name" | "text"> & Partial<Pick<GoogleReview, "avatar" | "date" | "rating">> & { role?: string };
+
+type Rating = { label?: string; score: number; outOf: number; count: number | string };
 
 const mod = (n: number, m: number) => ((n % m) + m) % m;
 
@@ -140,9 +145,13 @@ function ReviewCard({ review, tone }: { review: Review; tone: string }) {
           <span className="block text-[16px] leading-snug font-bold break-words text-navy xl:text-[17px]">
             {review.name}
           </span>
-          <ReviewDate iso={review.date} />
+          {review.date ? (
+            <ReviewDate iso={review.date} />
+          ) : review.role ? (
+            <span className="block text-[14px] text-muted lg:text-[15px]">{review.role}</span>
+          ) : null}
           <span className="mt-1.5 flex items-center gap-1">
-            <Stars rating={review.rating} className="size-4" />
+            <Stars rating={review.rating ?? 5} className="size-4" />
             <BadgeCheck
               aria-label="Verified Google review"
               className="ml-0.5 size-4 shrink-0 fill-primary text-white"
@@ -200,16 +209,14 @@ function ReviewCard({ review, tone }: { review: Review; tone: string }) {
   );
 }
 
-function RatingSummary({
-  rating,
-}: {
-  rating: { label: string; score: number; outOf: number; count: number };
-}) {
+function RatingSummary({ rating }: { rating: Rating }) {
   return (
     <div className="relative flex flex-col items-center text-center">
-      <p className="text-[20px] font-extrabold tracking-[0.04em] text-navy xl:text-[22px]">
-        {rating.label}
-      </p>
+      {rating.label && (
+        <p className="text-[20px] font-extrabold tracking-[0.04em] text-navy xl:text-[22px]">
+          {rating.label}
+        </p>
+      )}
       <p className="mt-2 flex items-baseline gap-2 text-navy">
         <span className="font-display text-[52px] leading-none font-extrabold tracking-[-0.02em] xl:text-[64px]">
           {rating.score}
@@ -263,9 +270,11 @@ function RatingSummary({
 type Props = {
   title: string;
   titleAccent: string;
-  subtitle: string;
+  subtitle?: string;
+  /** Optional "Read all reviews" link shown where the subtitle would be. */
+  link?: { label: string; href: string };
   reviews: Review[];
-  rating: { label: string; score: number; outOf: number; count: number };
+  rating: Rating;
 };
 
 /**
@@ -277,6 +286,7 @@ export function Testimonials({
   title,
   titleAccent,
   subtitle,
+  link,
   reviews,
   rating,
 }: Props) {
@@ -396,7 +406,17 @@ export function Testimonials({
           >
             {title} <span className="text-primary">{titleAccent}</span>
           </h2>
-          <p className="type-body mt-3 text-body">{subtitle}</p>
+          {subtitle && <p className="type-body mt-3 text-body">{subtitle}</p>}
+          {link && (
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener"
+              className="type-body mt-3 inline-block font-semibold text-primary underline underline-offset-4"
+            >
+              {link.label}
+            </a>
+          )}
         </div>
 
         {/*

@@ -40,7 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
-        <div className="sticky top-0 z-40">
+        <div data-site-header className="sticky top-0 z-40">
           <Header />
         </div>
         <main id="content" tabIndex={-1} className="flex-1 focus:outline-none">

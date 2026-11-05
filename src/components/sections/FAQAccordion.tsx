@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import type { Faq } from "@/content/types";
 import { Accordion } from "@/components/ui/Accordion";
 import { Container } from "@/components/ui/Container";
@@ -5,7 +6,7 @@ import { JsonLd } from "@/components/ui/JsonLd";
 import { Blocks } from "@/components/ui/RichText";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { faqJsonLd } from "@/lib/seo";
-import { slugify } from "@/lib/utils";
+import { cn, slugify } from "@/lib/utils";
 
 /** `anchors` gives each item the live site's `#question-slug` id (only where it can't clash with heading ids). */
 export function faqItems(
@@ -69,8 +70,8 @@ export function FaqSplitHeading({
   );
 }
 
-/** Frosted "Have Questions?" card with the glossy blue question-mark speech bubbles; sticks below the header while the questions scroll (desktop). */
-export function FaqAside({ title, text }: { title: string; text: string }) {
+/** `titleClassName` replaces the default title size/width. Frosted "Have Questions?" card with the glossy blue question-mark speech bubbles; sticks below the header while the questions scroll (desktop). */
+export function FaqAside({ title, text, children, titleClassName }: { title: string; text?: string; children?: ReactNode; titleClassName?: string }) {
   return (
     <div className="rounded-[32px] border-2 border-white/90 bg-[linear-gradient(160deg,rgba(255,255,255,.75)_0%,rgba(226,238,253,.5)_100%)] p-7 shadow-[0_24px_56px_-24px_rgba(37,120,202,.5),inset_0_1px_0_rgba(255,255,255,.95)] backdrop-blur-xl sm:p-9 lg:sticky lg:top-[calc(var(--header-offset)+16px)] lg:min-h-[460px] lg:px-8 lg:py-10">
       <svg aria-hidden viewBox="0 0 230 150" fill="none" className="h-28 w-auto sm:h-32">
@@ -105,8 +106,9 @@ export function FaqAside({ title, text }: { title: string; text: string }) {
           ?
         </text>
       </svg>
-      <h3 className="mt-6 max-w-[9ch] text-[clamp(32px,3.2vw,46px)] leading-[1.05] font-extrabold tracking-[-0.02em] text-[#0B1F4D]">{title}</h3>
-      <p className="mt-4 text-[16px] leading-[1.55] font-medium text-[#56667F] sm:text-[17px]">{text}</p>
+      <h3 className={cn("mt-6 font-extrabold tracking-[-0.02em] text-[#0B1F4D]", titleClassName ?? "max-w-[9ch] text-[clamp(32px,3.2vw,46px)] leading-[1.05]")}>{title}</h3>
+      {text && <p className="mt-4 text-[16px] leading-[1.55] font-medium text-[#56667F] sm:text-[17px]">{text}</p>}
+      {children}
     </div>
   );
 }
@@ -127,7 +129,7 @@ export function FAQAccordion({
   withSchema?: boolean;
   variant?: "default" | "home" | "split";
   accent?: string;
-  aside?: { title: string; text: string };
+  aside?: { title: string; text?: string; children?: ReactNode; titleClassName?: string };
 }) {
   if (variant === "split") {
     return (
@@ -138,7 +140,11 @@ export function FAQAccordion({
         <Container>
           <FaqSplitHeading title={title} subtitle={subtitle} accent={accent} />
           <div className="mt-8 grid gap-6 sm:mt-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,16fr)] lg:items-start lg:gap-6">
-            {aside && <FaqAside title={aside.title} text={aside.text} />}
+            {aside && (
+              <FaqAside title={aside.title} text={aside.text} titleClassName={aside.titleClassName}>
+                {aside.children}
+              </FaqAside>
+            )}
             <Accordion variant="glassList" items={faqItems(faqs)} />
           </div>
         </Container>

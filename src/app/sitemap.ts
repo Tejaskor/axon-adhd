@@ -5,6 +5,7 @@ import { site } from "@/content/site";
 const staticPaths = [
   "/",
   "/comprehensive-adhd-assessment/",
+  "/online-adhd-evaluation/",
   "/adhd-care/",
   "/accommodation-documentation-advocacy/",
   "/adhd-referral-for-universities/",

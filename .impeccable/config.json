@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/app/online-adhd-evaluation/online-evaluation.css"
+        ],
+        "createdAt": "2026-11-04T09:42:17.182Z",
+        "reason": "false positive: L972 is a full-width 5px top accent strip on the comparison card (left:0;right:0;top:0), not a side tab; ported verbatim from the user's source design"
+      }
+    ]
+  }
+}
