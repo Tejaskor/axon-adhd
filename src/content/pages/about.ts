@@ -19,6 +19,7 @@ export const aboutPage: PageContent = {
   sections: [
     {
       type: "hero",
+      eyebrow: "About AXON ADHD",
       title: "Clarity, Connection, Care, and ADHD Evaluation That’s AXON ADHD.",
       text: ["At AXON ADHD, our ADHD evaluation process is inspired by the brain’s natural communication pathways, bringing clarity and precision to ADHD understanding."],
       ctas: [
@@ -62,7 +63,7 @@ export const aboutPage: PageContent = {
       paragraphs: [
         "Our companion platform, AXON Digital Health & Diagnosis, advances this mission by building HIPAA-compliant connections across patients, clinicians, universities, and primary care providers ensuring critical data flows securely to the right people at the right time.",
       ],
-      video: "/videos/Aboutgif.mp4",
+      image: { src: "/images/referral-for-universities/why-early-refferal-matters.webp", alt: "Clinicians with Patient, Clinic and University connected to the AXON ADHD brain mark", width: 1024, height: 609 },
       reverse: true,
     },
     {
