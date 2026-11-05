@@ -22,7 +22,7 @@ export function SymptomChecklist() {
   return (
     <section className="relative isolate overflow-hidden bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)] pt-10 pb-16 sm:pt-12 sm:pb-20 lg:pt-14" aria-labelledby="symptoms-title">
       {/* One content box for heading, grid and CTA: the header's 1340px container, with gutters only below that width. */}
-      <div className="px-4 sm:px-6">
+      <div className="px-4">
       <div className="mx-auto w-full max-w-content">
         <Reveal className="mx-auto max-w-[900px] text-center">
           <h2 id="symptoms-title" className="type-h2 text-balance text-navy">

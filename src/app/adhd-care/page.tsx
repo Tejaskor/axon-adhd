@@ -1,8 +1,9 @@
-import { AccommodationBlogs, AccommodationContact } from "@/components/sections/AccommodationSections";
+import { AccommodationContact } from "@/components/sections/AccommodationSections";
 import { AdhdCareClosingCta, AdhdCareHero, AdhdCarePath, AdhdCareServices, AdhdCareSpecialized, AdhdCareStartCta, AdhdCareTools } from "@/components/sections/AdhdCareSections";
 import { innerPageMetadata } from "@/components/sections/InnerPage";
+import { LatestBlogs } from "@/components/sections/LatestBlogs";
 import { JsonLd } from "@/components/ui/JsonLd";
-import { contactSection, latestBlogs } from "@/content/home";
+import { contactSection } from "@/content/home";
 import { adhdCarePage } from "@/content/pages/adhd-care";
 import type { PageSection } from "@/content/pages/types";
 import { breadcrumbJsonLd } from "@/lib/seo";
@@ -28,7 +29,7 @@ export default function Page() {
       <AdhdCarePath data={at(4, "features")} />
       <AdhdCareTools data={at(5, "split")} />
       <AdhdCareClosingCta data={at(6, "cta")} />
-      <AccommodationBlogs title={latestBlogs.title} subtitle={latestBlogs.subtitle} />
+      <LatestBlogs />
       <AccommodationContact eyebrow={null} description={contactSection.subtitle} compact />
 
       <JsonLd

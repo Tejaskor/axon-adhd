@@ -110,15 +110,15 @@ export function ServicesOverview() {
 
   return (
     <section className="relative isolate overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-16 sm:py-20 lg:py-24" aria-labelledby="services-title">
-      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-[1372px] px-4">
         <div className="mx-auto max-w-[980px] text-center">
-          <h2 id="services-title" className="font-display text-[clamp(28px,3.6vw,48px)] leading-[1.1] font-extrabold tracking-[-0.02em] text-balance text-navy">
+          <h2 id="services-title" className="type-section font-display leading-[1.1] tracking-[-0.02em] text-balance text-navy">
             {services.title} <span className="bg-[linear-gradient(90deg,#2578CA,#22B5D8)] bg-clip-text text-transparent">{services.titleAccent}</span>
           </h2>
           <p className="type-body mx-auto mt-3 max-w-[900px] text-pretty text-[#4B5B73]">{services.subtitle}</p>
         </div>
 
-        <ul className="mx-auto mt-10 grid max-w-[560px] gap-6 sm:mt-12 md:max-w-[1250px] md:grid-cols-3 md:gap-1">
+        <ul className="mx-auto mt-10 grid max-w-[560px] gap-6 sm:mt-12 md:max-w-none md:grid-cols-3 md:gap-1">
           {services.items.map((item, i) => {
             const open = pinned === i;
             const broken = failed.includes(i);

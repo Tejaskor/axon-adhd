@@ -95,20 +95,14 @@ export function TestimonialCarousel({ data }: { data: TestimonialCarouselSection
   const [before, after] = data.title.split(data.accent);
 
   return (
-    <section className="relative overflow-hidden bg-white pt-12 pb-24 sm:pt-16 sm:pb-28" aria-labelledby="testimonials-title">
-      {/* Pale mint waves along the bottom edge. */}
-      <svg aria-hidden viewBox="0 0 1440 160" preserveAspectRatio="none" fill="none" className="pointer-events-none absolute inset-x-0 bottom-0 h-24 w-full sm:h-32">
-        <path d="M0 70C220 20 420 20 700 70S1180 130 1440 60V160H0Z" fill="#F1F8F4" />
-        <path d="M0 110C260 70 520 90 800 120S1220 140 1440 100V160H0Z" fill="#E8F4ED" fillOpacity=".7" />
-      </svg>
-
+    <section className="relative overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! pt-12 pb-24 sm:pt-16 sm:pb-28" aria-labelledby="testimonials-title">
       <Container className="relative">
         <div className="mx-auto max-w-[960px] text-center">
           <p className="inline-flex items-center gap-2 rounded-full border border-[#D5EDE0] bg-[#F1F8F4] px-5 py-2 text-[15px] font-semibold text-[#174F38] shadow-[0_2px_8px_-4px_rgba(23,79,56,.2)]">
             <Users aria-hidden className="size-[18px]" />
             {data.eyebrow}
           </p>
-          <h2 id="testimonials-title" className="mt-5 text-[clamp(28px,4vw,48px)] leading-[1.15] font-medium tracking-[-0.01em] text-[#174F38]">
+          <h2 id="testimonials-title" className="type-section mt-5 leading-[1.15] tracking-[-0.01em] text-[#174F38]">
             {after !== undefined ? (
               <>
                 {before}

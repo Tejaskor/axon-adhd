@@ -12,11 +12,11 @@ export function FinalCTA() {
   return (
     // Same background as "Real People. Real Relief." (Testimonials).
     <section className="bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)] py-16 sm:py-20" aria-labelledby="final-cta-title">
-      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-[1372px] px-4">
         <Reveal className="grid overflow-hidden rounded-[20px] shadow-[0_30px_70px_-30px_rgba(10,37,86,.45)] md:grid-cols-[55fr_45fr]">
           <div className="flex flex-col bg-[linear-gradient(135deg,#043943_0%,#0A4589_45%,#0D4AA1_80%)] px-6 py-10 text-white sm:px-10 sm:py-12 lg:px-12 lg:py-14 xl:px-16">
             {/* The hyphenated word never splits at its hyphen; the accent always starts its own line. */}
-            <h2 id="final-cta-title" className="text-[clamp(28px,3vw,42px)] leading-[1.3] font-semibold tracking-[-0.01em]">
+            <h2 id="final-cta-title" className="type-section leading-[1.3] tracking-[-0.01em]">
               {finalCta.title.split(/(\S+-\S+)/).map((part, i) =>
                 part.includes("-") ? (
                   <span key={i} className="whitespace-nowrap">

@@ -48,7 +48,7 @@ export function LogoMarquee() {
   );
 
   return (
-    <section aria-labelledby="partners-title" className="border-y border-line-2 bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,.2)_62.33%)] py-10 [--logo-s:0.8] sm:py-12 sm:[--logo-s:0.9] lg:[--logo-s:1]">
+    <section aria-labelledby="partners-title" className="border-y border-line-2 bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-10 [--logo-s:0.8] sm:py-12 sm:[--logo-s:0.9] lg:[--logo-s:1]">
       <p id="partners-title" className="type-small container-content mb-7 text-center font-semibold tracking-[0.14em] text-balance text-muted sm:mb-9">
         {partnerLogos.title}
       </p>

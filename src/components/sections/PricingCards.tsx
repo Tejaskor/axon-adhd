@@ -158,9 +158,9 @@ const stepTones = ["text-primary", "text-primary", "text-[#7C3AED]"];
 export function PricingCards() {
   return (
     <section id="pricing" className="relative isolate overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-16 sm:py-20 lg:py-24" aria-labelledby="pricing-title">
-      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-[1372px] px-4">
         <div className="mx-auto max-w-[820px] text-center">
-          <h2 id="pricing-title" className="font-display text-[clamp(32px,4vw,52px)] leading-[1.1] font-extrabold tracking-[-0.02em] text-navy">
+          <h2 id="pricing-title" className="type-section font-display leading-[1.1] tracking-[-0.02em] text-navy">
             Choose Your <span className="bg-[linear-gradient(90deg,#2578CA,#5498DB)] bg-clip-text text-transparent">Next Step</span>
           </h2>
           <p className="type-lead mx-auto mt-4 max-w-[760px] text-pretty text-[#4B5B73]">{emphasise(pricing.intro, "text-primary")}</p>

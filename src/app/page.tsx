@@ -44,7 +44,17 @@ export default function HomePage() {
       <FinalCTA />
       {/* Accommodation-page contact design; its built-in copy is identical to `contactSection`, which supplies the rest. */}
       <AccommodationContact eyebrow={null} description={contactSection.subtitle} compact />
-      <FAQAccordion variant="home" faqs={homeFaqs} title={faqSection.title} subtitle={faqSection.subtitle} />
+      {/* Background matches "You're not broken-and we'll prove it." (FinalCTA). */}
+      <FAQAccordion
+        variant="split"
+        faqs={homeFaqs}
+        title={faqSection.title}
+        subtitle={faqSection.subtitle}
+        accent={faqSection.accent}
+        aside={faqSection.aside}
+        anchors
+        background="bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)]"
+      />
     </>
   );
 }

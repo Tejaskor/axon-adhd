@@ -11,7 +11,7 @@ const icons: Record<string, LucideIcon> = { gear: Settings, clipboard: Clipboard
 export function WhyAxon() {
   return (
     <section className="bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)] py-16 sm:py-20 lg:py-24" aria-labelledby="why-title">
-      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-[1372px] px-4">
         <Reveal className="mx-auto max-w-[880px] text-center">
           <h2 id="why-title" className={cn(h2, "text-[#0F2F55]")}>
             {whyAxon.title.lead}

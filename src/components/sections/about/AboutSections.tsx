@@ -16,8 +16,8 @@ import { cn } from "@/lib/utils";
  *   --ab-blue #1769D2 · --ab-green #16B65B · --ab-orange #F59E0B · --ab-navy #102B50 · --ab-soft #F5F9FF
  */
 const vars = "[--ab-blue:#1769D2] [--ab-green:#16B65B] [--ab-orange:#F59E0B] [--ab-navy:#102B50] [--ab-soft:#F5F9FF]";
-const wrap = "mx-auto w-full max-w-[1340px] px-4 sm:px-6 lg:px-8";
-const h2 = "text-[28px] leading-[1.18] font-bold tracking-[-0.02em] text-balance text-[var(--ab-navy)] sm:text-[36px] lg:text-[42px]";
+const wrap = "mx-auto w-full max-w-[1372px] px-4";
+const h2 = "type-section leading-[1.18] tracking-[-0.02em] text-balance text-[var(--ab-navy)]";
 const body = "text-[16px] leading-[1.75] text-[#4A5A70] sm:text-[17px]";
 const glass = "border border-white/70 bg-white/60 shadow-[0_14px_44px_rgba(16,43,80,.09),inset_0_1px_0_rgba(255,255,255,.9)] backdrop-blur-xl";
 
@@ -261,7 +261,7 @@ function Banner({ data, image }: { data: CtaSection; image: { src: string; alt: 
             <Glow className="-bottom-24 left-1/4 size-[360px] bg-[#16B65B]/35" />
             <Glow className="-top-24 right-10 size-[300px] bg-[#F59E0B]/25" />
             <div className="relative">
-              <h2 id="banner-title" className="text-[28px] leading-tight font-bold tracking-[-0.02em] sm:text-[38px]">
+              <h2 id="banner-title" className="type-section leading-tight tracking-[-0.02em]">
                 {data.title}
               </h2>
               {data.subtitle && <p className="mt-4 max-w-[620px] text-[16px] leading-[1.7] text-white/90 sm:text-[17px]">{data.subtitle}</p>}

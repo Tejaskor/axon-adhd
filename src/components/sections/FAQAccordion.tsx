@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
+import { ArrowRight } from "lucide-react";
 import type { Faq } from "@/content/types";
 import { Accordion } from "@/components/ui/Accordion";
+import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { Blocks } from "@/components/ui/RichText";
@@ -37,7 +39,7 @@ export function FaqSplitHeading({
     <div className="text-center">
       <h2
         id="faq-title"
-        className="text-[clamp(28px,3.2vw,42px)] leading-[1.15] font-extrabold tracking-[-0.01em] text-[#0B1F4D]"
+        className="type-section leading-[1.15] tracking-[-0.01em] text-[#0B1F4D]"
       >
         {before}
         {after !== undefined && (
@@ -70,8 +72,17 @@ export function FaqSplitHeading({
   );
 }
 
-/** `titleClassName` replaces the default title size/width. Frosted "Have Questions?" card with the glossy blue question-mark speech bubbles; sticks below the header while the questions scroll (desktop). */
-export function FaqAside({ title, text, children, titleClassName }: { title: string; text?: string; children?: ReactNode; titleClassName?: string }) {
+type FaqAsideData = {
+  title: string;
+  text?: string;
+  link?: { label: string; href: string };
+  children?: ReactNode;
+  /** Replaces the default title size/width. */
+  titleClassName?: string;
+};
+
+/** Frosted "Have Questions?" card with the glossy blue question-mark speech bubbles; sticks below the header while the questions scroll (desktop). */
+export function FaqAside({ title, text, link, children, titleClassName }: FaqAsideData) {
   return (
     <div className="rounded-[32px] border-2 border-white/90 bg-[linear-gradient(160deg,rgba(255,255,255,.75)_0%,rgba(226,238,253,.5)_100%)] p-7 shadow-[0_24px_56px_-24px_rgba(37,120,202,.5),inset_0_1px_0_rgba(255,255,255,.95)] backdrop-blur-xl sm:p-9 lg:sticky lg:top-[calc(var(--header-offset)+16px)] lg:min-h-[460px] lg:px-8 lg:py-10">
       <svg aria-hidden viewBox="0 0 230 150" fill="none" className="h-28 w-auto sm:h-32">
@@ -109,11 +120,23 @@ export function FaqAside({ title, text, children, titleClassName }: { title: str
       <h3 className={cn("mt-6 font-extrabold tracking-[-0.02em] text-[#0B1F4D]", titleClassName ?? "max-w-[9ch] text-[clamp(32px,3.2vw,46px)] leading-[1.05]")}>{title}</h3>
       {text && <p className="mt-4 text-[16px] leading-[1.55] font-medium text-[#56667F] sm:text-[17px]">{text}</p>}
       {children}
+      {link && (
+        <ButtonLink
+          href={link.href}
+          className="group mt-7 gap-2 bg-[linear-gradient(180deg,#5498DB_0%,#2578CA_55%,#1E64AA_100%)] shadow-[0_12px_26px_rgba(37,120,202,.35),inset_0_1px_0_rgba(255,255,255,.35)]! transition-[filter,box-shadow] duration-300 hover:brightness-110"
+        >
+          {link.label}
+          <ArrowRight aria-hidden className="size-[18px] transition-transform group-hover:translate-x-1" />
+        </ButtonLink>
+      )}
     </div>
   );
 }
 
-/** FAQ section + FAQPage JSON-LD. `variant="home"` is the home page design: centred heading over full-width cards. */
+/**
+ * FAQ section + FAQPage JSON-LD. `variant="split"` (university referral page and home page): accent-underlined heading,
+ * a "Have Questions?" aside and frosted question rows. `anchors` gives each question a `#question-slug` link target.
+ */
 export function FAQAccordion({
   faqs,
   title,
@@ -122,75 +145,33 @@ export function FAQAccordion({
   variant = "default",
   accent,
   aside,
+  anchors = false,
+  background = "bg-[linear-gradient(180deg,#F5F9FF_0%,#E8F1FD_100%)]",
 }: {
   faqs: Faq[];
   title: string;
   subtitle?: string;
   withSchema?: boolean;
-  variant?: "default" | "home" | "split";
+  variant?: "default" | "split";
   accent?: string;
-  aside?: { title: string; text?: string; children?: ReactNode; titleClassName?: string };
+  aside?: FaqAsideData;
+  anchors?: boolean;
+  /** Background classes for the split layout (replaces its default pale blue gradient). */
+  background?: string;
 }) {
   if (variant === "split") {
     return (
       <section
-        className="relative isolate overflow-clip bg-[linear-gradient(180deg,#F5F9FF_0%,#E8F1FD_100%)] py-12 sm:py-16 lg:py-20"
+        className={cn("relative isolate overflow-clip py-12 sm:py-16 lg:py-20", background)}
         aria-labelledby="faq-title"
       >
         <Container>
           <FaqSplitHeading title={title} subtitle={subtitle} accent={accent} />
-          <div className="mt-8 grid gap-6 sm:mt-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,16fr)] lg:items-start lg:gap-6">
-            {aside && (
-              <FaqAside title={aside.title} text={aside.text} titleClassName={aside.titleClassName}>
-                {aside.children}
-              </FaqAside>
-            )}
-            <Accordion variant="glassList" items={faqItems(faqs)} />
+          <div className={cn("mt-8 grid gap-6 sm:mt-10 lg:items-start lg:gap-6", aside && "lg:grid-cols-[minmax(0,5fr)_minmax(0,16fr)]")}>
+            {aside && <FaqAside {...aside} />}
+            {/* The first question starts open. */}
+            <Accordion variant="glassList" defaultOpen={0} items={faqItems(faqs, { anchors })} />
           </div>
-        </Container>
-        {withSchema && <JsonLd data={faqJsonLd(faqs)} />}
-      </section>
-    );
-  }
-  if (variant === "home") {
-    return (
-      <section
-        className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#F5F9FF_0%,#EAF2FD_55%,#F3F7FE_100%)] py-8 sm:py-10 md:py-5 lg:py-[100px] xl:py-28"
-        aria-labelledby="faq-title"
-      >
-        {/* Soft colour washes behind the cards so the glass blur has something to frost. */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute top-[18%] -left-40 -z-10 size-[560px] rounded-full bg-[radial-gradient(circle,rgba(134,182,229,.55),transparent_68%)]"
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute top-[45%] left-[38%] -z-10 size-[460px] rounded-full bg-[radial-gradient(circle,rgba(196,181,253,.35),transparent_70%)]"
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-32 bottom-[-10%] -z-10 size-[620px] rounded-full bg-[radial-gradient(circle,rgba(94,234,212,.30),transparent_68%)]"
-        />
-        <Container>
-          <div className="flex flex-col items-center gap-2.5 text-center">
-            <h2
-              id="faq-title"
-              className="text-[24px] leading-[1.2] font-semibold text-[#1E242A] sm:text-[26px] md:text-[32px]"
-            >
-              {title}
-            </h2>
-            {subtitle && (
-              <p className="text-[15px] font-medium text-[#0B254B]/70 md:text-[18px]">
-                {subtitle}
-              </p>
-            )}
-          </div>
-          <Accordion
-            variant="cards"
-            columns={2}
-            className="mt-5"
-            items={faqItems(faqs, { anchors: true })}
-          />
         </Container>
         {withSchema && <JsonLd data={faqJsonLd(faqs)} />}
       </section>

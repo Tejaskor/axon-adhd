@@ -12,7 +12,7 @@ export function GettingHelpSimple() {
   const { steps } = journeyToClarity;
   return (
     <section className="bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)] py-16 sm:py-20" aria-labelledby="journey-title">
-      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-[1372px] px-4">
         <Reveal className="text-center">
           <h2 id="journey-title" className="type-h2 text-navy">
             {journeyToClarity.title} <span className="bg-[linear-gradient(90deg,#2578CA,#22B5D8)] bg-clip-text text-transparent">{journeyToClarity.titleAccent}</span>
@@ -20,7 +20,7 @@ export function GettingHelpSimple() {
           <p className="type-body mt-2 text-muted">{journeyToClarity.subtitle}</p>
         </Reveal>
 
-        <ol className="mx-auto mt-10 grid max-w-[560px] gap-4 sm:mt-12 md:max-w-[1250px] md:grid-cols-3 lg:gap-5">
+        <ol className="mx-auto mt-10 grid max-w-[560px] gap-4 sm:mt-12 md:max-w-none md:grid-cols-3 lg:gap-5">
           {steps.map((step, i) => (
             <li key={step.title} className="flex">
               <Reveal delay={(i % 3) * 0.06} className="flex w-full">

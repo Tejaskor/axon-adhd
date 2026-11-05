@@ -112,7 +112,7 @@ function Tree({ group, n }: { group: Group; n: number }) {
 export default function SitemapPage() {
   return (
     <section className="-mt-[var(--header-height)] bg-white pt-[128px] pb-20 sm:pt-[136px] sm:pb-24">
-      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-[1372px] px-4">
         <h1 className="text-[34px] leading-tight font-bold tracking-[-0.02em] text-navy sm:text-[40px]">
           Site<span className="text-primary">Map</span>
         </h1>

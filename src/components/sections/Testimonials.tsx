@@ -50,7 +50,7 @@ let clientNow: number | undefined;
 const noSubscribe = () => () => {};
 
 /** Shows the exact date on the server, then "4 months ago" after hydration (relative time can't be prerendered). */
-function ReviewDate({ iso }: { iso: string }) {
+export function ReviewDate({ iso }: { iso: string }) {
   const now = useSyncExternalStore(
     noSubscribe,
     () => (clientNow ??= Date.now()),
@@ -68,7 +68,7 @@ function ReviewDate({ iso }: { iso: string }) {
   );
 }
 
-function GoogleIcon({ className }: { className?: string }) {
+export function GoogleIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 48 48" aria-hidden className={className}>
       <path
@@ -402,7 +402,7 @@ export function Testimonials({
         <div className="mx-auto max-w-[820px] text-center">
           <h2
             id="testimonials-title"
-            className="type-h1 font-extrabold text-navy"
+            className="type-h2 text-navy"
           >
             {title} <span className="text-primary">{titleAccent}</span>
           </h2>

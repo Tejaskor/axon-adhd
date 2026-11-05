@@ -5,15 +5,15 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 /**
- * Compact YouTube card for photo heroes. Shows the poster with a play button; the iframe (and any audio)
+ * YouTube card for photo heroes (white frame around a 16:9 player). Shows the poster with a play button; the iframe (and any audio)
  * only loads after an explicit click, so nothing autoplays on page load.
  */
 export function HeroVideoCard({ id, title, className }: { id: string; title: string; className?: string }) {
   const [playing, setPlaying] = useState(false);
 
   return (
-    <div className={cn("min-w-0 rounded-[20px] border border-white/80 bg-white/55 p-3 shadow-[inset_0_1px_0_rgba(255,255,255,.7),0_16px_36px_-18px_rgba(15,27,46,.3)] backdrop-blur-xl", className)}>
-      <div className="relative aspect-video overflow-hidden rounded-[16px] bg-navy ring-1 ring-primary/10">
+    <div className={cn("min-w-0 rounded-[28px] border border-white bg-white/80 p-3 shadow-[0_24px_60px_-24px_rgba(37,120,202,.45)] sm:p-3.5", className)}>
+      <div className="relative aspect-video overflow-hidden rounded-[20px] bg-navy">
         {playing ? (
           <iframe
             src={`https://www.youtube.com/embed/${id}?autoplay=1&rel=0`}
@@ -34,7 +34,6 @@ export function HeroVideoCard({ id, title, className }: { id: string; title: str
           </button>
         )}
       </div>
-      <p className="pt-3.5 pb-0.5 text-[16px] leading-snug font-semibold text-[#0F2F55]">{title}</p>
     </div>
   );
 }

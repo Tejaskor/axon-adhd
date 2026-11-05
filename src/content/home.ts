@@ -3,8 +3,11 @@ import { ctas, links } from "./site";
 
 export const hero = {
   titleLines: ["ADHD Is More Than", "A Focus Problem—"],
-  titleAccent: "It's an Identity Problem.",
-  subtitle: "You’re exhausted but you’re not broken. We can prove it.",
+  /** Rendered in light blue; `underline` gets the hand-drawn curve beneath it. */
+  titleAccent: { lead: "It’s an ", underline: "Identity Problem." },
+  /** Each entry is its own line from sm up. */
+  subtitleLines: ["You’re exhausted but you’re not broken.", "We can prove it."],
+  trust: { label: "Google Reviews", rating: "4.9", reviews: "(100+ reviews)" },
   video: "/videos/hero-section-new-2.webm",
   poster: { src: "/images/hero/herofollback.webp", alt: "", width: 1710, height: 926 },
 };
@@ -270,7 +273,17 @@ export const latestBlogs = {
   cta: { label: "Explore All Blogs", href: "/blog/" },
 };
 
-export const faqSection = { title: "Frequently Asked Questions", subtitle: "We have the answers for you!" };
+/** Same split design as the university referral page's FAQ; the aside links to the full FAQ page. */
+export const faqSection = {
+  title: "Frequently Asked Questions",
+  subtitle: "We have the answers for you!",
+  accent: "Questions",
+  aside: {
+    title: "Have Questions?",
+    text: "Find quick answers to the most common questions about ADHD testing, diagnosis, and care with AXON ADHD.",
+    link: { label: "View all FAQs", href: "/adhd-faqs/" },
+  },
+};
 
 export const finalCta = {
   /** Rendered as `title`, then `titleAccent` on its own line: "You're not broken-and / we'll prove it." */

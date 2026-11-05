@@ -1,12 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { Check } from "lucide-react";
+import { CalendarCheck, HeartPulse, FileText, Video } from "lucide-react";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import type { StepsSection } from "@/content/pages/types";
 import { cn } from "@/lib/utils";
 
 type Step = StepsSection["items"][number];
+
+/** Small icon beside each step's big number, in step order: schedule, consultation, report, treatment. */
+const stepIcons = [CalendarCheck, Video, FileText, HeartPulse] as const;
 
 const REDUCED = "(prefers-reduced-motion: reduce)";
 function subscribeReduced(onChange: () => void) {
@@ -17,7 +20,7 @@ function subscribeReduced(onChange: () => void) {
 
 /**
  * Vertical four-step timeline. The blue line fills as the visitor scrolls (its tip follows a trigger line at 55% of the viewport),
- * markers turn blue as the tip passes them, and each step fades up as it enters. Plain scroll listeners drive it, so the page scrolls
+ * the dots turn blue as the tip passes them, and each step fades up as it enters. Plain scroll listeners drive it, so the page scrolls
  * normally in both directions; with reduced motion the transitions are off and everything is simply visible.
  */
 export function AssessmentTimeline({ items }: { items: Step[] }) {
@@ -37,12 +40,10 @@ export function AssessmentTimeline({ items }: { items: Step[] }) {
 
     const measure = () => {
       const list = listRef.current;
-      const first = markerRefs.current[0];
-      const last = markerRefs.current[items.length - 1];
-      if (!list || !first || !last) return;
-      const base = list.getBoundingClientRect().top;
-      lineTop = first.getBoundingClientRect().top - base + first.offsetHeight / 2;
-      lineHeight = last.getBoundingClientRect().top - base + last.offsetHeight / 2 - lineTop;
+      if (!list) return;
+      // The line runs the whole height of the list, from the top of the first step to the bottom of the last.
+      lineTop = 0;
+      lineHeight = list.offsetHeight;
       if (trackRef.current) {
         trackRef.current.style.top = `${lineTop}px`;
         trackRef.current.style.height = `${lineHeight}px`;
@@ -90,13 +91,15 @@ export function AssessmentTimeline({ items }: { items: Step[] }) {
   const active = reached - 1;
 
   return (
-    <ol ref={listRef} className="relative mt-12 space-y-8 pl-12 sm:pl-16 lg:mt-14 lg:space-y-10">
-      <span aria-hidden ref={trackRef} className="absolute left-5 w-[3px] -translate-x-1/2 rounded-full bg-[#DCEAF8] sm:left-6" />
-      <span aria-hidden ref={fillRef} className="absolute left-5 w-[3px] -translate-x-1/2 rounded-full bg-[#6AA5DD] sm:left-6" style={{ height: 0 }} />
+    <ol ref={listRef} className="relative mt-12 space-y-6 pl-9 sm:pl-12 lg:mt-14 lg:space-y-8">
+      <span aria-hidden ref={trackRef} className="absolute left-[22px] w-1.5 -translate-x-1/2 rounded-full bg-[#D9E6F6]" />
+      {/* Filled part: fades in from the top and ends in solid brand blue at the scroll tip. */}
+      <span aria-hidden ref={fillRef} className="absolute left-[22px] w-1.5 -translate-x-1/2 rounded-full bg-[linear-gradient(180deg,rgba(37,120,202,.15)_0%,#2578CA_100%)]" style={{ height: 0 }} />
       {items.map((step, i) => {
-        const done = i < active;
+        const reachedNow = i <= active;
         const current = i === active;
         const visible = !motion || shown[i];
+        const Icon = stepIcons[i % stepIcons.length];
         return (
           <li
             key={step.title}
@@ -111,23 +114,13 @@ export function AssessmentTimeline({ items }: { items: Step[] }) {
               }}
               aria-hidden
               className={cn(
-                "absolute top-8 -left-12 grid size-10 -translate-y-1/2 place-items-center rounded-full border-2 font-display text-[17px] font-bold sm:-left-16 sm:size-12 sm:text-[20px] lg:top-10",
-                motion && "transition-[background-color,border-color,color,transform,box-shadow] duration-500 ease-brand",
-                current
-                  ? "scale-110 border-transparent bg-[#2578CA] text-white shadow-[0_8px_20px_-4px_rgba(37,120,202,.4)]"
-                  : done
-                    ? "border-[#6AA5DD] bg-[#6AA5DD] text-white"
-                    : "border-[#BFD7F1] bg-white text-[#6E9CCB]",
+                "absolute top-9 -left-[22px] size-4 -translate-y-1/2 rounded-full border-2 sm:-left-[34px] lg:top-11",
+                motion && "transition-[background-color,border-color,box-shadow] duration-500 ease-brand",
+                reachedNow ? "border-[#2578CA] bg-[#2578CA]" : "border-[#BFD7F1] bg-white",
+                current && "shadow-[0_0_0_5px_rgba(37,120,202,.2)]",
               )}
-            >
-              {done ? <Check className="size-5 sm:size-6" strokeWidth={3} /> : i + 1}
-            </span>
-            <div
-              className={cn(
-                "grid items-center gap-6 rounded-[28px] border p-5 sm:p-7 md:grid-cols-2 lg:gap-14 lg:p-10",
-                i % 2 === 0 ? "border-[#E6EEF8] bg-white shadow-[0_14px_40px_-22px_rgba(18,61,106,.3)]" : "border-transparent bg-[#F1F6FD]",
-              )}
-            >
+            />
+            <div className="grid items-center gap-6 p-5 sm:p-7 md:grid-cols-2 lg:gap-14 lg:p-9">
               <div className={cn(motion && "transition-[opacity,transform] duration-700 ease-brand", visible ? "translate-y-0 scale-100 opacity-100" : "translate-y-6 scale-[0.985] opacity-0")}>
                 {step.image && (
                   <Image
@@ -136,16 +129,22 @@ export function AssessmentTimeline({ items }: { items: Step[] }) {
                     width={step.image.width}
                     height={step.image.height}
                     sizes="(max-width: 767px) 100vw, (max-width: 1320px) 45vw, 560px"
-                    className="aspect-[16/10] w-full rounded-[22px] object-cover shadow-[0_18px_40px_-20px_rgba(18,61,106,.4)]"
+                    className="h-auto w-full rounded-[18px] shadow-[0_18px_40px_-20px_rgba(18,61,106,.4)]"
                   />
                 )}
               </div>
               <div className={cn(motion && "transition-[opacity,transform] duration-700 delay-100 ease-brand", visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")}>
-                <h3 className="type-h3 text-[#123D6A]">
+                <div aria-hidden className="flex items-center gap-3">
+                  <span className="font-display text-[56px] leading-none font-bold text-[#E4DAFA] sm:text-[68px]">{i + 1}</span>
+                  <span className="grid size-9 place-items-center rounded-lg bg-[#EEE7FC] text-[#7C4DDB]">
+                    <Icon className="size-[18px]" strokeWidth={2} />
+                  </span>
+                </div>
+                <h3 className="type-h3 mt-2 text-[#123D6A]">
                   <span className="sr-only">Step {i + 1}: </span>
                   {step.title}
                 </h3>
-                <p className="mt-4 max-w-[520px] text-[17px] leading-[1.75] text-pretty text-[#44566E] sm:text-[19px]">{step.text}</p>
+                <p className="mt-3 max-w-[520px] text-[16px] leading-[1.7] text-pretty text-[#44566E] sm:text-[18px]">{step.text}</p>
               </div>
             </div>
           </li>
