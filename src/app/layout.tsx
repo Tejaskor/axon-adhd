@@ -7,8 +7,8 @@ import { JsonLd } from "@/components/ui/JsonLd";
 import { site } from "@/content/site";
 import { organizationJsonLd } from "@/lib/seo";
 
-// Manrope is the only family (headings, body, nav, buttons, footer) — see the type scale in globals.css.
-const manrope = Manrope({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-manrope", display: "swap" });
+// Manrope is the only family (headings, body, nav, buttons, footer) — variable font includes all weights (200-800).
+const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),

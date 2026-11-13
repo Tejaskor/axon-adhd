@@ -64,12 +64,27 @@ export function Footer() {
       >
         AXON ADHD
       </p>
-      <div className="mx-auto grid w-full max-w-[1440px] gap-10 px-4 pt-12 pb-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.7fr_0.9fr_0.9fr_1.3fr] lg:gap-12 lg:px-12 lg:pt-16 lg:pb-10">
+      <div className="mx-auto grid w-full max-w-[1440px] gap-10 px-4 pt-12 pb-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.7fr_0.9fr_0.9fr_1.3fr] lg:gap-12 lg:px-12 lg:pt-16 lg:pb-16">
         <div className="sm:col-span-2 lg:col-span-1">
           <Link href="/" aria-label={`${site.name} home`} className="flex h-14 items-center sm:h-[68px]">
             <Image src={site.footerLogo.src} alt="AXON ADHD Brand Logo" width={site.footerLogo.width} height={site.footerLogo.height} className="h-14 w-auto sm:h-[68px]" />
           </Link>
           <p className="type-body mt-6 max-w-[520px] text-white/95">{site.blurb}</p>
+          <ul className="mt-6 flex flex-wrap items-center gap-4" aria-label="Social media">
+            {site.social.map((s) => (
+              <li key={s.label}>
+                <a
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  className={cn("grid size-10 place-items-center rounded-full transition-transform duration-200 ease-brand hover:-translate-y-0.5 hover:scale-105", socialStyle[s.label])}
+                >
+                  <SocialIcon name={s.label} className="size-[18px]" />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div>
@@ -82,13 +97,13 @@ export function Footer() {
         <div className="sm:col-span-2 lg:col-span-1">
           <h2 className="flex items-center font-display text-[15px] font-extrabold tracking-[0.08em] text-white uppercase lg:h-[68px]">Contact Us</h2>
           <address className="type-body mt-6 space-y-4 not-italic">
-            <a href={`mailto:${site.email}`} className="flex items-center gap-4 text-white/95 transition-colors hover:text-[#4FC3F7]">
+            <a href={`mailto:${site.email}`} className="flex items-center gap-4 text-white/95 transition-colors hover:text-[#4FC3F7] active:text-white">
               <Mail aria-hidden className="size-6 shrink-0 text-[#29B6F6]" strokeWidth={1.5} /> {site.email}
             </a>
-            <a href={site.phoneHref} className="flex items-center gap-4 text-white/95 transition-colors hover:text-[#4FC3F7]">
+            <a href={site.phoneHref} className="flex items-center gap-4 text-white/95 transition-colors hover:text-[#4FC3F7] active:text-white">
               <Phone aria-hidden className="size-6 shrink-0 text-[#29B6F6]" strokeWidth={1.5} /> {site.phone}
             </a>
-            <a href={site.address.mapUrl} target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 leading-[1.9] text-white/95 transition-colors hover:text-[#4FC3F7]">
+            <a href={site.address.mapUrl} target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 leading-[1.9] text-white/95 transition-colors hover:text-[#4FC3F7] active:text-white">
               <MapPin aria-hidden className="mt-1 size-6 shrink-0 text-[#29B6F6]" strokeWidth={1.5} />
               <span>
                 {site.address.street},
@@ -97,6 +112,21 @@ export function Footer() {
               </span>
             </a>
           </address>
+          <ul className="mt-7 flex items-center gap-3.5 sm:gap-4 lg:gap-3.5 xl:gap-4.5" aria-label="Compliance certifications">
+            {complianceBadgesColor.map((b) => (
+              <li key={b.src} className="shrink-0">
+                <Link href="/trust-center/" className="block transition duration-300 ease-brand hover:-translate-y-0.5 hover:drop-shadow-[0_6px_14px_rgba(0,0,0,.35)]">
+                  <Image
+                    src={b.src}
+                    alt={b.alt}
+                    width={b.width}
+                    height={b.height}
+                    className={b.src.includes("hipaa") ? "h-8 w-auto sm:h-9 lg:h-8.5 xl:h-10" : "h-10 w-auto sm:h-11 lg:h-10.5 xl:h-12"}
+                  />
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 
