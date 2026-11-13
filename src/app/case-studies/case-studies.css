@@ -1,0 +1,537 @@
+/* ===========================
+   AXON — Case Studies Page Styles
+   Recreated to match live https://www.axonadhd.com/case-studies/
+   =========================== */
+
+.cs-wrap * {
+  box-sizing: border-box;
+}
+
+.cs-wrap {
+  --blue: #2c6be8;
+  --blue-dark: #1f57c8;
+  --navy: #122a50;
+  --hero-bg: #edf3ff;
+  --text: #5b6472;
+  --muted: #6b7280;
+  --card-border: #ececec;
+  --tag-bg: #f0f0f1;
+  --tag-text: #5f6470;
+
+  /* Maximum content width — single source of truth */
+  --maxw: 1340px;
+
+  /* Read More button tokens */
+  --btn: #256ACC;
+  --btn-hover: #1A56A8;
+  --btn-ring: rgba(37, 106, 204, 0.28);
+  --btn-off-bg: #f2f4f8;
+  --btn-off-text: #98a1b1;
+
+  /* Fluid spacing tokens */
+  --pad-x: clamp(16px, 3vw, 24px);
+  --gap: clamp(20px, 2.4vw, 30px);
+  --hero-pad-top: clamp(48px, 6vw, 72px);
+  --hero-pad-bottom: clamp(32px, 4.5vw, 48px);
+  --section-pad-top: clamp(32px, 5vw, 56px);
+  --section-pad-bottom: clamp(40px, 6vw, 64px);
+
+  display: block;
+  width: 100%;
+  max-width: 100%;
+
+  font-family: var(--font-manrope), "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  background: #fff;
+}
+
+/* Hard reset: no underline anywhere inside this component by default. */
+.cs-wrap a,
+.cs-wrap a:link,
+.cs-wrap a:visited,
+.cs-wrap a:hover,
+.cs-wrap a:focus,
+.cs-wrap a:active {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+.cs-wrap img,
+.cs-wrap svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.cs-wrap h1,
+.cs-wrap h2,
+.cs-wrap h3 {
+  font-family: var(--font-manrope), "Manrope", sans-serif;
+}
+
+/* Long unbroken strings must not blow out a column. */
+.cs-wrap h1,
+.cs-wrap h2,
+.cs-wrap h3,
+.cs-wrap p,
+.cs-wrap a {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* ===========================
+   Layout
+=========================== */
+.cs-container {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+  width: 100%;
+}
+
+/* Hero band. Reaches both edges; pull up behind sticky header. */
+.cs-hero-section {
+  position: relative;
+  width: 100%;
+  margin-top: calc(-1 * var(--header-height, 96px));
+  background-color: var(--hero-bg);
+  background-image: repeating-radial-gradient(
+    circle at 50% 46%,
+    rgba(46, 104, 222, 0.07) 0 1px,
+    rgba(46, 104, 222, 0) 1px 88px
+  );
+  padding: calc(var(--header-height, 96px) + var(--hero-pad-top)) var(--pad-x) var(--hero-pad-bottom);
+  text-align: center;
+}
+
+.cs-hero-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.cs-grid-section {
+  width: 100%;
+  padding: var(--section-pad-top) 0 var(--section-pad-bottom);
+  background: #fff;
+}
+
+/* ===========================
+   Typography
+=========================== */
+.cs-hero-title {
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  font-size: clamp(1.6rem, 1.25rem + 1.6vw, 2.7rem);
+  text-decoration: none;
+  margin: 0;
+}
+
+.cs-hero-sub {
+  margin-top: 10px;
+  margin-bottom: 0;
+  font-family: var(--font-manrope), "Roboto", sans-serif;
+  font-weight: 400;
+  color: #465066;
+  font-size: clamp(0.95rem, 0.9rem + 0.22vw, 1.05rem);
+  text-decoration: none;
+}
+
+/* ===========================
+   Search Box
+=========================== */
+.cs-search {
+  position: relative;
+  max-width: 560px;
+  width: 100%;
+  margin: clamp(18px, 2.6vw, 26px) auto 0;
+}
+
+.cs-search-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  border: 1px solid #e2e8f4;
+  border-radius: 30px;
+  padding: 0 clamp(14px, 2.4vw, 20px);
+  height: 50px;
+  width: 100%;
+  box-shadow: 0 6px 20px rgba(24, 49, 94, 0.06);
+}
+
+.cs-wrap .cs-search-field,
+.cs-wrap .cs-search-field:hover,
+.cs-wrap .cs-search-field:focus,
+.cs-wrap .cs-search-field:focus-within,
+.cs-wrap .cs-search-field:active {
+  border: 1px solid #e2e8f4 !important;
+  box-shadow: 0 6px 20px rgba(24, 49, 94, 0.06) !important;
+  outline: 0 !important;
+}
+
+.cs-search-field svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: #9aa3b2;
+}
+
+.cs-search-field input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  font-family: var(--font-manrope), "Roboto", sans-serif;
+  font-size: 16px;
+  color: #33405a;
+  border: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  padding: 0;
+}
+
+.cs-search-field input::placeholder {
+  color: #9aa3b2;
+}
+
+@media (min-width: 768px) {
+  .cs-search-field input {
+    font-size: 15px;
+  }
+}
+
+.cs-wrap .cs-search-field input,
+.cs-wrap .cs-search-field input:focus,
+.cs-wrap .cs-search-field input:focus-visible,
+.cs-wrap .cs-search-field input:active,
+.cs-wrap .cs-search-field input:hover,
+.cs-wrap .cs-search-field input:invalid,
+.cs-wrap .cs-search-field input:required,
+.cs-wrap .cs-search-field input:-webkit-autofill {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  background: transparent !important;
+  -webkit-text-fill-color: #33405a !important;
+}
+
+.cs-search-field input::-webkit-search-decoration,
+.cs-search-field input::-webkit-search-cancel-button,
+.cs-search-field input::-webkit-search-results-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Clear (x) button */
+.cs-search-clear {
+  border: 0;
+  background: transparent;
+  font-size: 22px;
+  line-height: 1;
+  color: #33405a !important;
+  cursor: pointer;
+  padding: 0 2px;
+  flex-shrink: 0;
+  outline: 0;
+  border-radius: 50%;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.cs-search-clear:hover {
+  color: var(--blue) !important;
+}
+
+.cs-wrap .cs-search-clear,
+.cs-wrap .cs-search-clear:hover,
+.cs-wrap .cs-search-clear:focus,
+.cs-wrap .cs-search-clear:focus-visible,
+.cs-wrap .cs-search-clear:active {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.cs-wrap .cs-search-clear::-moz-focus-inner {
+  border: 0 !important;
+}
+
+/* No results message */
+.cs-empty {
+  text-align: center;
+  font-family: var(--font-manrope), "Manrope", sans-serif;
+  font-weight: 700;
+  color: var(--muted);
+  font-size: 1.05rem;
+  padding: clamp(40px, 6vw, 60px) var(--pad-x);
+  margin: 0;
+}
+
+/* Matched text inside a card */
+.cs-wrap mark.cs-hl {
+  background: rgba(37, 106, 204, 0.16);
+  color: inherit;
+  font-weight: 600;
+  padding: 0 2px;
+  border-radius: 3px;
+}
+
+/* ===========================
+   Grid
+=========================== */
+.cs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap);
+  width: 100%;
+  align-items: stretch;
+}
+
+/* ===========================
+   Card
+=========================== */
+.cs-card {
+  background: #fff;
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  width: 100%;
+  height: 100%;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.cs-card:hover {
+  box-shadow: 0 14px 34px rgba(24, 49, 94, 0.1);
+  transform: translateY(-3px);
+}
+
+.cs-card-img {
+  display: block;
+  position: relative;
+  aspect-ratio: 16 / 9.4;
+  background: #c9c9c9;
+  overflow: hidden;
+  width: 100%;
+}
+
+.cs-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cs-card-body {
+  padding: clamp(16px, 2vw, 20px) clamp(16px, 2.2vw, 22px) clamp(18px, 2.2vw, 22px);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Card title */
+.cs-card-title {
+  font-size: clamp(16px, 15px + 0.2vw, 17.5px);
+  font-weight: 700;
+  line-height: 1.34;
+  color: var(--navy);
+  margin-top: 0;
+  margin-bottom: 9px;
+}
+
+.cs-wrap .cs-card-title a,
+.cs-wrap .cs-card-title a:link,
+.cs-wrap .cs-card-title a:visited,
+.cs-wrap .cs-card-title a:hover,
+.cs-wrap .cs-card-title a:focus,
+.cs-wrap .cs-card-title a:active {
+  text-decoration: none !important;
+  transition: color 0.15s;
+}
+
+.cs-card-title a:hover {
+  color: var(--blue);
+}
+
+.cs-card-meta {
+  font-family: var(--font-manrope), "Roboto", sans-serif;
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.cs-card-excerpt {
+  font-family: var(--font-manrope), "Roboto", sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.58;
+  margin-top: 0;
+  margin-bottom: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Tags */
+.cs-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.cs-tags span {
+  font-family: var(--font-manrope), "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--tag-text);
+  background: var(--tag-bg);
+  padding: 5px 13px;
+  border-radius: 14px;
+  line-height: 1.4;
+}
+
+/* Read More button */
+.cs-wrap .cs-readmore {
+  margin-top: auto;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: clamp(10px, 0.9vw, 13px) clamp(16px, 1.5vw, 22px);
+  min-height: 44px;
+
+  font-family: var(--font-manrope), "Roboto", sans-serif;
+  font-size: clamp(13.5px, 13px + 0.15vw, 14.5px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+
+  background-color: var(--btn);
+  border: 1px solid var(--btn);
+  border-radius: 6px;
+  cursor: pointer;
+
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.2s ease,
+              border-color 0.2s ease,
+              box-shadow 0.2s ease,
+              transform 0.12s ease;
+}
+
+.cs-wrap a.cs-readmore,
+.cs-wrap a.cs-readmore:link,
+.cs-wrap a.cs-readmore:visited,
+.cs-wrap a.cs-readmore:hover,
+.cs-wrap a.cs-readmore:focus,
+.cs-wrap a.cs-readmore:active {
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+/* Arrow */
+.cs-wrap .cs-readmore span {
+  font-size: 16px;
+  line-height: 1;
+  transform: translateX(0);
+  transition: transform 0.2s ease;
+}
+
+.cs-wrap a.cs-readmore:hover {
+  background-color: var(--btn-hover);
+  border-color: var(--btn-hover);
+  box-shadow: 0 6px 16px rgba(26, 86, 168, 0.24);
+}
+
+.cs-wrap a.cs-readmore:hover span {
+  transform: translateX(3px);
+}
+
+.cs-wrap a.cs-readmore:active {
+  background-color: var(--btn-hover);
+  border-color: var(--btn-hover);
+  box-shadow: 0 2px 6px rgba(26, 86, 168, 0.22);
+  transform: translateY(1px);
+}
+
+.cs-wrap a.cs-readmore:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 3px var(--btn-ring);
+}
+
+@media (hover: none) {
+  .cs-wrap a.cs-readmore:hover {
+    background-color: var(--btn);
+    border-color: var(--btn);
+    box-shadow: none;
+  }
+  .cs-wrap a.cs-readmore:hover span {
+    transform: translateX(0);
+  }
+}
+
+.cs-wrap .cs-readmore-disabled,
+.cs-wrap .cs-readmore-disabled:hover {
+  background-color: var(--btn-off-bg);
+  border-color: #e5e9f0;
+  color: var(--btn-off-text) !important;
+  box-shadow: none;
+  cursor: default;
+  pointer-events: none;
+  transform: none;
+}
+
+@media (max-width: 420px) {
+  .cs-wrap .cs-readmore {
+    align-self: stretch;
+    width: 100%;
+  }
+}
+
+.cs-wrap .cs-card.is-hidden {
+  display: none !important;
+}
+
+/* ===========================
+   Breakpoints
+=========================== */
+@media (min-width: 600px) {
+  .cs-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 992px) {
+  .cs-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-wrap * {
+    transition: none !important;
+  }
+  .cs-card:hover {
+    transform: none;
+  }
+  .cs-wrap .cs-readmore,
+  .cs-wrap .cs-readmore span {
+    transform: none !important;
+  }
+}

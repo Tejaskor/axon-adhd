@@ -1,0 +1,881 @@
+/* =========================================================
+   AXON ADHD PAYMENT PAGE - VIBRANT ELECTRIC ROYAL BLUE THEME
+   - Deep saturated electric-blue & royal-blue gradient
+   - Subtle outer dotted matrix pattern
+   - Clean background with no edge wave curves crossing cards
+   - Brighter, luminous royal blue glassmorphism cards
+   - Neon-cyan glowing border on center popular card
+   - High-visibility cyan prices, icons, arrows, and CTA buttons
+   - Brighter blue glassmorphism process bar with cyan indicators
+   ========================================================= */
+
+.axon-payment-section {
+  --neon-cyan: #00f0ff;
+  --cyan-bright: #38bdf8;
+  --royal-blue: #0d4ec8;
+  --royal-blue-electric: #1a62e8;
+  --royal-blue-deep: #072a78;
+  --royal-blue-dark: #031644;
+
+  position: relative;
+  width: 100%;
+  margin-top: calc(-1 * var(--header-height, 96px));
+  padding: calc(var(--header-height, 96px) + 52px) 20px 88px;
+  
+  /* Rich, saturated royal-blue and electric-blue gradient matching reference */
+  background:
+    radial-gradient(ellipse 110% 80% at 50% -10%, #1a6be0 0%, #0c43ab 35%, #052673 70%, #021442 100%),
+    linear-gradient(180deg, #1355c4 0%, #093388 50%, #021442 100%);
+  font-family: var(--font-manrope, "Manrope"), Arial, sans-serif;
+  color: #ffffff;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.axon-payment-section *,
+.axon-payment-section *::before,
+.axon-payment-section *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   AMBIENT GLOW HIGHLIGHTS (Centered, No Lines Crossing Cards)
+   ========================================================= */
+
+.axon-ambient-glow {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.axon-ambient-glow-top {
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.14) 0%, rgba(26, 105, 240, 0.12) 45%, transparent 72%);
+  filter: blur(80px);
+}
+
+.axon-ambient-glow-center {
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(20, 105, 235, 0.16) 0%, rgba(2, 93, 156, 0.12) 48%, transparent 75%);
+  filter: blur(90px);
+}
+
+.axon-ambient-glow-bottom {
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 850px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(2, 93, 156, 0.18) 0%, rgba(0, 240, 255, 0.08) 50%, transparent 75%);
+  filter: blur(75px);
+}
+
+/* Outer Dotted Pattern (Masked out from the card center) */
+.axon-outer-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(147, 197, 253, 0.35) 1.5px, transparent 1.5px);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(ellipse 70% 65% at 50% 50%, transparent 40%, #000 90%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 65% at 50% 50%, transparent 40%, #000 90%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.axon-payment-container {
+  position: relative;
+  width: 100%;
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0;
+  z-index: 1;
+}
+
+/* =========================================================
+   HEADER SECTION
+   ========================================================= */
+
+.axon-payment-header {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+/* PRICING Label with thin cyan lines */
+.axon-pricing-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  color: var(--neon-cyan);
+  font-family: var(--font-manrope, "Manrope"), Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  line-height: 1;
+  text-shadow: 0 0 6px rgba(0, 240, 255, 0.35);
+}
+
+.axon-pricing-line {
+  display: block;
+  width: 38px;
+  height: 1.5px;
+  background: var(--neon-cyan);
+  box-shadow: 0 0 4px rgba(0, 240, 255, 0.4);
+}
+
+/* Main Heading */
+.axon-payment-header h1 {
+  margin: 0 0 15px;
+  padding: 0;
+  color: #ffffff;
+  font-family: var(--font-manrope, "Manrope"), Arial, sans-serif !important;
+  font-size: clamp(34px, 4vw, 46px) !important;
+  line-height: 1.18;
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  text-shadow: 0 2px 12px rgba(2, 14, 45, 0.5);
+}
+
+.axon-heading-cyan {
+  color: #38f2ff;
+  text-shadow:
+    0 0 8px rgba(0, 240, 255, 0.45),
+    0 2px 8px rgba(2, 14, 45, 0.6);
+  display: inline;
+}
+
+/* Header Text */
+.axon-payment-header p {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0;
+  color: #ffffff;
+  font-family: var(--font-manrope, "Manrope"), Arial, sans-serif !important;
+  font-size: clamp(15.5px, 1.35vw, 17.5px);
+  line-height: 1.65;
+  font-weight: 400;
+  text-shadow: 0 1px 6px rgba(2, 14, 45, 0.4);
+}
+
+.axon-payment-header strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* =========================================================
+   PRICING GRID
+   ========================================================= */
+
+.axon-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+  width: 100%;
+  align-items: stretch;
+}
+
+/* =========================================================
+   BRIGHTER BLUE GLASSMORPHISM PRICE CARDS
+   ========================================================= */
+
+.axon-glass-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  width: 100%;
+  padding: 34px 28px 28px;
+  background: linear-gradient(180deg, rgba(26, 85, 185, 0.74) 0%, rgba(12, 48, 118, 0.86) 100%);
+  border: 1.5px solid rgba(135, 195, 255, 0.65);
+  border-radius: 24px;
+  box-shadow:
+    0 18px 45px rgba(0, 12, 38, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.axon-glass-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 240, 255, 0.65);
+  box-shadow:
+    0 22px 55px rgba(0, 12, 38, 0.55),
+    0 0 16px rgba(0, 240, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+/* =========================================================
+   FEATURED CENTER CARD: Refined Cyan Border
+   ========================================================= */
+
+.axon-glass-card-featured {
+  background: linear-gradient(180deg, rgba(28, 92, 195, 0.84) 0%, rgba(10, 42, 110, 0.92) 100%);
+  border: 1.5px solid var(--neon-cyan);
+  box-shadow:
+    0 20px 50px rgba(0, 12, 38, 0.55),
+    0 0 16px rgba(0, 240, 255, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.axon-glass-card-featured:hover {
+  border-color: #ffffff;
+  box-shadow:
+    0 24px 60px rgba(0, 12, 38, 0.65),
+    0 0 22px rgba(0, 240, 255, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* MOST POPULAR BADGE */
+.axon-popular-badge {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-width: 152px;
+  padding: 8px 22px;
+  border-radius: 9999px;
+  background: var(--neon-cyan);
+  color: #01142f;
+  font-family: var(--font-manrope, "Manrope"), Arial, sans-serif;
+  font-size: 11.5px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35), 0 0 8px rgba(0, 240, 255, 0.35);
+}
+
+/* CARD TOP */
+.axon-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+/* ICON CIRCLE (Solid medium blue with white icon) */
+.axon-icon-circle {
+  flex: 0 0 54px;
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #2578ca;
+  border: 1.5px solid rgba(147, 197, 253, 0.65);
+  color: #ffffff;
+  font-family: var(--font-manrope, "Manrope"), Arial, sans-serif;
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 800;
+  box-shadow: 0 4px 10px rgba(0, 15, 40, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* CARD TITLE AREA */
+.axon-card-title-area {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.axon-card-title-area h3 {
+  margin: 6px 0 0;
+  padding: 0;
+  color: #ffffff;
+  font-family: var(--font-manrope, "Manrope"), Arial, sans-serif !important;
+  font-size: 22px !important;
+  line-height: 1.24;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+  text-shadow: 0 1px 6px rgba(0, 10, 30, 0.45);
+}
+
+/* SMALL BADGES */
+.axon-small-badge,
+.axon-student-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 14px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  font-family: var(--font-manrope, "Manrope"), Arial, sans-serif !important;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  backdrop-filter: blur(8px);
+}
+
+.axon-student-badge {
+  white-space: nowrap;
+}
+
+/* FREE PRICE */
+.axon-price {
+  margin: 0 0 6px;
+  padding: 0;
+}
+
+.axon-price > span {
+  color: #ffffff;
+  font-family: var(--font-manrope, "Manrope"), Arial, sans-serif !important;
+  font-size: 48px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -1px;
+  text-shadow: 0 2px 8px rgba(0, 10, 30, 0.4);
+}
+
+.axon-price-description {
+  margin: 0;
+  color: #e2e8f0;
+  font-family: var(--font-manrope, "Manrope"), Arial, sans-serif !important;
+  font-size: 14.5px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* PAID PRICE ROW */
+.axon-price-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 2px 0 16px;
+}
+
+.axon-old-price {
+  color: #94a3b8;
+  font-family: var(--font-manrope, "Manrope"), Arial, sans-serif;
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 600;
+  text-decoration: line-through;
+}
+
+.axon-new-price {
+  color: var(--neon-cyan);
+  font-family: var(--font-manrope, "Manrope"), Arial, sans-serif !important;
+  font-size: 35px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.3), 0 2px 6px rgba(0, 10, 30, 0.4);
+}
+
+.axon-save-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6px 12px;
+  border-radius: 9px;
+  background: rgba(0, 240, 255, 0.15);
+  border: 1.5px solid rgba(0, 240, 255, 0.6);
+  color: var(--neon-cyan);
+  font-family: var(--font-manrope, "Manrope"), Arial, sans-serif;
+  line-height: 1.2;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.axon-save-box strong {
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+}
+
+.axon-save-box span {
+  font-size: 10px;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* PACKAGE BREAKDOWN */
+.axon-package-breakdown {
+  margin: -4px 0 16px;
+  color: #cbd5e1;
+  font-family: var(--font-manrope, "Manrope"), Arial, sans-serif;
+  font-size: 12.5px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+/* DISCOUNT INFO (24h clock panel) */
+.axon-discount-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 13px 15px;
+  margin-bottom: 16px;
+  border-radius: 14px;
+  background: rgba(10, 45, 115, 0.65);
+  border: 1.5px solid rgba(0, 240, 255, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.axon-clock {
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(0, 240, 255, 0.2);
+  border: 1.5px solid rgba(0, 240, 255, 0.7);
+  color: var(--neon-cyan);
+}
+
+.axon-discount-info p {
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  font-family: var(--font-manrope, "Manrope"), Arial, sans-serif !important;
+  font-size: 12.5px;
+  line-height: 1.48;
+}
+
+.axon-discount-info strong {
+  color: var(--neon-cyan);
+  font-weight: 800;
+}
+
+/* DIVIDER */
+.axon-divider {
+  width: 100%;
+  height: 1px;
+  margin: 0 0 18px;
+  background: linear-gradient(90deg, rgba(0, 240, 255, 0.05) 0%, rgba(0, 240, 255, 0.45) 50%, rgba(0, 240, 255, 0.05) 100%);
+}
+
+/* FEATURE LIST */
+.axon-feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.axon-feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  font-family: var(--font-manrope, "Manrope"), Arial, sans-serif !important;
+  font-size: 13.5px;
+  line-height: 1.45;
+  font-weight: 500;
+  text-shadow: 0 1px 4px rgba(0, 10, 30, 0.4);
+}
+
+.axon-check {
+  flex: 0 0 19px;
+  width: 19px;
+  height: 19px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+  border-radius: 50%;
+  background: rgba(0, 240, 255, 0.22);
+  border: 1.5px solid rgba(0, 240, 255, 0.7);
+  color: var(--neon-cyan);
+}
+
+/* PLUS TITLE */
+.axon-plus-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0 0 12px;
+  color: #ffffff;
+  font-family: var(--font-manrope, "Manrope"), Arial, sans-serif !important;
+  font-size: 13.5px;
+  line-height: 1.4;
+  font-weight: 800;
+  text-shadow: 0 1px 6px rgba(0, 10, 30, 0.5);
+}
+
+/* BUTTON WRAPPER */
+.axon-card-button-wrap {
+  margin-top: auto;
+  padding-top: 26px;
+  text-align: center;
+}
+
+/* BUTTON BASE */
+.axon-btn {
+  width: 100%;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 13px 20px;
+  box-sizing: border-box;
+  border-radius: 9999px;
+  font-family: var(--font-manrope, "Manrope"), Arial, sans-serif !important;
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.axon-btn:hover {
+  transform: translateY(-2px);
+}
+
+.axon-btn .axon-arrow {
+  flex: 0 0 auto;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 18px !important;
+  line-height: 1 !important;
+  transition: transform 0.2s ease;
+}
+
+.axon-btn:hover .axon-arrow {
+  transform: translateX(3px);
+}
+
+/* SECONDARY BUTTONS (Card 1 & Card 3) */
+.axon-btn-secondary,
+.axon-btn-outline {
+  background: linear-gradient(180deg, rgba(18, 68, 155, 0.85) 0%, rgba(10, 42, 110, 0.95) 100%) !important;
+  border: 1.5px solid rgba(135, 210, 255, 0.85) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 14px rgba(0, 15, 50, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+}
+
+.axon-btn-secondary:hover,
+.axon-btn-outline:hover {
+  background: linear-gradient(180deg, rgba(28, 92, 205, 0.95) 0%, rgba(16, 60, 150, 1) 100%) !important;
+  border-color: var(--neon-cyan) !important;
+  color: var(--neon-cyan) !important;
+  box-shadow: 0 6px 18px rgba(0, 20, 60, 0.45), 0 0 10px rgba(0, 240, 255, 0.3) !important;
+}
+
+/* FEATURED CTA BUTTON (Card 2: Vibrant Cyan-to-Blue Gradient with Dark Navy Text) */
+.axon-btn-featured {
+  background: linear-gradient(90deg, #00f0ff 0%, #00d2ff 45%, #0077f5 100%) !important;
+  border: none !important;
+  color: #01142f !important;
+  font-weight: 800 !important;
+  box-shadow: 0 6px 18px rgba(0, 45, 140, 0.45), 0 0 12px rgba(0, 240, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+}
+
+.axon-btn-featured:hover {
+  background: linear-gradient(90deg, #38bdf8 0%, #00f0ff 50%, #0099ff 100%) !important;
+  box-shadow: 0 8px 22px rgba(0, 45, 140, 0.55), 0 0 18px rgba(0, 240, 255, 0.45) !important;
+  filter: brightness(1.04);
+}
+
+/* BUTTON NOTE */
+.axon-button-note {
+  display: block;
+  margin-top: 12px;
+  color: #cbd5e1;
+  font-family: var(--font-manrope, "Manrope"), Arial, sans-serif !important;
+  font-size: 11px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+/* =========================================================
+   PROCESS STEPS: BRIGHTER BLUE GLASSMORPHISM BAR
+   ========================================================= */
+
+.axon-process-bar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  margin-top: 36px;
+  padding: 24px 38px;
+  background: linear-gradient(180deg, rgba(22, 78, 170, 0.76) 0%, rgba(10, 44, 114, 0.86) 100%);
+  border: 1.5px solid rgba(0, 240, 255, 0.45);
+  border-radius: 24px;
+  box-shadow:
+    0 16px 40px rgba(0, 12, 38, 0.45),
+    0 0 10px rgba(0, 240, 255, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+.axon-process-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  min-width: 0;
+}
+
+.axon-number {
+  flex: 0 0 50px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #cffafe 0%, #00f0ff 45%, #38bdf8 100%);
+  border: 2px solid #ffffff;
+  color: #021b3d;
+  font-family: var(--font-manrope, "Manrope"), Arial, sans-serif;
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 800;
+  box-shadow: 0 4px 10px rgba(0, 15, 45, 0.35), 0 0 8px rgba(0, 240, 255, 0.3);
+}
+
+.axon-process-item h4 {
+  margin: 2px 0 5px;
+  padding: 0;
+  color: #ffffff;
+  font-family: var(--font-manrope, "Manrope"), Arial, sans-serif !important;
+  font-size: 15.5px;
+  line-height: 1.3;
+  font-weight: 800;
+  text-shadow: 0 1px 6px rgba(0, 10, 30, 0.5);
+}
+
+.axon-process-item p {
+  margin: 0;
+  padding: 0;
+  color: #e2e8f0;
+  font-family: var(--font-manrope, "Manrope"), Arial, sans-serif !important;
+  font-size: 12.5px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.axon-process-item p strong {
+  color: var(--neon-cyan);
+  font-weight: 800;
+}
+
+/* PROCESS CYAN ARROW */
+.axon-process-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 40px;
+  color: var(--neon-cyan);
+  filter: drop-shadow(0 0 4px rgba(0, 240, 255, 0.35));
+}
+
+/* =========================================================
+   TABLET RESPONSIVENESS (<= 1100px)
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .axon-payment-section {
+    padding: calc(var(--header-height, 96px) + 42px) 18px 64px;
+  }
+
+  .axon-pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .axon-process-bar {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 24px 26px;
+  }
+
+  .axon-process-arrow {
+    display: none !important;
+  }
+}
+
+/* =========================================================
+   MOBILE RESPONSIVENESS (<= 600px)
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .axon-payment-section {
+    padding: calc(var(--header-height, 96px) + 32px) 14px 48px;
+  }
+
+  .axon-payment-header {
+    margin-bottom: 38px;
+  }
+
+  .axon-pricing-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+
+  .axon-pricing-line {
+    width: 26px;
+  }
+
+  .axon-payment-header h1 {
+    font-size: 30px !important;
+  }
+
+  .axon-payment-header p {
+    font-size: 14.5px;
+  }
+
+  .axon-glass-card {
+    padding: 28px 20px 24px;
+    border-radius: 20px;
+  }
+
+  .axon-popular-badge {
+    top: -14px;
+    padding: 6px 16px;
+    font-size: 10.5px;
+  }
+
+  .axon-card-top {
+    gap: 12px;
+  }
+
+  .axon-icon-circle {
+    flex-basis: 48px;
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+
+  .axon-card-title-area h3 {
+    font-size: 19px !important;
+  }
+
+  .axon-student-badge {
+    max-width: 100%;
+    white-space: normal;
+    font-size: 9.5px;
+  }
+
+  .axon-price > span {
+    font-size: 42px;
+  }
+
+  .axon-old-price {
+    font-size: 18px;
+  }
+
+  .axon-new-price {
+    font-size: 30px;
+  }
+
+  .axon-save-box {
+    padding: 5px 8px;
+  }
+
+  .axon-save-box strong {
+    font-size: 10.5px;
+  }
+
+  .axon-save-box span {
+    font-size: 9px;
+  }
+
+  .axon-feature-list li {
+    font-size: 13px;
+  }
+
+  .axon-btn {
+    min-height: 50px;
+    padding: 12px 16px;
+    font-size: 13.5px;
+  }
+
+  .axon-process-bar {
+    padding: 20px 18px;
+    border-radius: 18px;
+  }
+
+  .axon-number {
+    flex-basis: 42px;
+    width: 42px;
+    height: 42px;
+    font-size: 18px;
+  }
+
+  .axon-process-item {
+    gap: 12px;
+  }
+
+  .axon-process-item h4 {
+    font-size: 14.5px;
+  }
+
+  .axon-process-item p {
+    font-size: 12px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE (<= 380px)
+   ========================================================= */
+
+@media (max-width: 380px) {
+  .axon-payment-section {
+    padding-top: calc(var(--header-height, 96px) + 26px);
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .axon-glass-card {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .axon-card-title-area h3 {
+    font-size: 17.5px !important;
+  }
+
+  .axon-new-price {
+    font-size: 27px;
+  }
+
+  .axon-save-box {
+    width: 100%;
+    margin-top: 3px;
+  }
+}
