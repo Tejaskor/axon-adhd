@@ -280,7 +280,7 @@ export function AdhdCareSpecialized({ data }: { data: FeaturesSection }) {
 
 /** Full-bleed blue banner shared with the assessment page's "Ready for an Official Diagnosis?" (same layout, colours and buttons). */
 export function AdhdCareStartCta({ data }: { data: CtaSection }) {
-  return <GradientCtaBanner data={data} accent="Started Yet?" titleId="start-title" />;
+  return <GradientCtaBanner data={data} accent="Started Yet?" titleId="start-title" splitFromSm />;
 }
 
 /* ------------------------------------------------ Closing CTA ("You don't have to manage ADHD alone.") */

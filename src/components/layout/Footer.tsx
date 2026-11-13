@@ -18,6 +18,25 @@ const socialStyle: Record<string, string> = {
   TikTok: "border border-white/25 bg-black text-white",
 };
 
+const complianceBadgesMeta: Record<string, { label: string; alt: string }> = {
+  "/images/badges/color/hipaa.png": {
+    label: "HIPAA Compliant",
+    alt: "HIPAA Compliant certification badge",
+  },
+  "/images/badges/color/gdpr.png": {
+    label: "EU GDPR Compliance",
+    alt: "EU GDPR Compliance certification badge",
+  },
+  "/images/badges/color/ccpa.png": {
+    label: "CCPA Compliant",
+    alt: "CCPA Compliant certification badge",
+  },
+  "/images/badges/color/soc2.png": {
+    label: "SOC 2 Type 2",
+    alt: "SOC 2 Type 2 certification badge",
+  },
+};
+
 function FooterLinks({ title, links }: { title: string; links: Array<{ label: string; href: string }> }) {
   return (
     <div>
@@ -99,13 +118,32 @@ export function Footer() {
           ))}
         </ul>
         <ul className="flex flex-wrap items-center gap-5 sm:gap-7" aria-label="Compliance certifications">
-          {complianceBadgesColor.map((b) => (
-            <li key={b.src}>
-              <Link href="/trust-center/" className="block transition duration-300 ease-brand hover:-translate-y-0.5 hover:drop-shadow-[0_6px_14px_rgba(0,0,0,.35)]">
-                <Image src={b.src} alt={b.alt} width={b.width} height={b.height} className={b.src.includes("hipaa") ? "h-11 w-auto sm:h-12" : "h-14 w-auto sm:h-16"} />
-              </Link>
-            </li>
-          ))}
+          {complianceBadgesColor.map((b) => {
+            const meta = complianceBadgesMeta[b.src] ?? {
+              label: b.alt,
+              alt: b.alt,
+            };
+            return (
+              <li key={b.src}>
+                <Link
+                  href="/adhd-data-privacy-trust-center/"
+                  aria-label={`${meta.label} - View ADHD Data Privacy Trust Center`}
+                  className="group block transition duration-300 ease-brand hover:-translate-y-1 hover:scale-105 hover:drop-shadow-[0_8px_16px_rgba(0,0,0,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#29B6F6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#061A36]"
+                >
+                  <Image
+                    src={b.src}
+                    alt={meta.alt}
+                    width={b.width}
+                    height={b.height}
+                    className={cn(
+                      "transition-opacity duration-300 group-hover:opacity-95",
+                      b.src.includes("hipaa") ? "h-11 w-auto sm:h-12" : "h-14 w-auto sm:h-16",
+                    )}
+                  />
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
 

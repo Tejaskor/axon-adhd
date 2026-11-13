@@ -8,9 +8,11 @@ import { Arrow } from "./AccommodationSections";
 /**
  * Full-bleed blue call-to-action band: optional pill, heading with a cyan accent and curved underline, intro, one or two
  * pill buttons and the clipboard artwork on the right (stacked below the copy before lg). `accent` is the part of the
- * title shown in cyan. Used by the assessment page's "Ready for an Official Diagnosis?" and the ADHD Care "Haven't Started Yet?".
+ * title shown in cyan. `splitFromSm` keeps the copy-left / artwork-right layout from 768px instead of 1181px (the artwork then
+ * fills the band's full height on the right, at most 44% wide, cropped by object-cover rather than stretched) and hides the
+ * artwork below 768px, where the copy takes the full width. Used by the assessment page's "Ready for an Official Diagnosis?" and the ADHD Care "Haven't Started Yet?".
  */
-export function GradientCtaBanner({ data, accent, titleId }: { data: CtaSection; accent: string; titleId: string }) {
+export function GradientCtaBanner({ data, accent, titleId, splitFromSm = false }: { data: CtaSection; accent: string; titleId: string; splitFromSm?: boolean }) {
   const [before, after] = data.title.includes(accent) ? data.title.split(accent) : [data.title, ""];
   const pill = "group rounded-full! px-7! whitespace-normal transition duration-300 hover:-translate-y-0.5 max-sm:px-5! max-sm:text-[14px]!";
   return (
@@ -26,7 +28,7 @@ export function GradientCtaBanner({ data, accent, titleId }: { data: CtaSection;
 
           {/* Copy stays on the site's content width (the header's box) while the band itself runs edge to edge. */}
           <div className="relative z-10 mx-auto w-full max-w-[1372px] px-4 py-10 sm:py-12 lg:py-14">
-            <Reveal className="lg:w-[56%]">
+            <Reveal className={splitFromSm ? "sm:w-[56%]" : "lg:w-[56%]"}>
               {data.eyebrow && <p className="inline-block rounded-full bg-white/18 px-5 py-2 text-[15px] font-medium text-white/95 backdrop-blur-sm sm:text-[17px]">{data.eyebrow}</p>}
               <h2 id={titleId} className={cn("type-section font-display leading-[1.2] tracking-[-0.02em] text-balance", data.eyebrow && "mt-4")}>
                 {before}
@@ -61,8 +63,14 @@ export function GradientCtaBanner({ data, accent, titleId }: { data: CtaSection;
           </div>
 
           {/* Clipboard artwork: fills the right of the card from lg (fading into the blue on its left edge), stacked below the copy before that. */}
-          <div className="relative aspect-[739/728] [mask-image:linear-gradient(to_bottom,transparent_0%,#000_22%)] lg:absolute lg:inset-y-0 lg:right-0 lg:aspect-[739/728] lg:[mask-image:linear-gradient(to_right,transparent_0%,#000_24%)]">
-            <Image src="/images/assessment/journey/official-diagnosis.webp" alt="ADHD Assessment Summary clipboard showing attention, impulsivity and activity level bars with a completed clinical evaluation checklist" fill sizes="(min-width: 1024px) 640px, 100vw" className="object-cover object-[60%_center]" />
+          <div
+            className={
+              splitFromSm
+                ? "hidden [mask-image:linear-gradient(to_right,transparent_0%,#000_24%)] sm:absolute sm:inset-y-0 sm:right-0 sm:block sm:h-full sm:aspect-[739/728] sm:max-w-[44%]"
+                : "relative aspect-[739/728] [mask-image:linear-gradient(to_bottom,transparent_0%,#000_22%)] lg:absolute lg:inset-y-0 lg:right-0 lg:aspect-[739/728] lg:[mask-image:linear-gradient(to_right,transparent_0%,#000_24%)]"
+            }
+          >
+            <Image src="/images/assessment/journey/official-diagnosis.webp" alt="ADHD Assessment Summary clipboard showing attention, impulsivity and activity level bars with a completed clinical evaluation checklist" fill sizes={splitFromSm ? "(min-width: 768px) 640px, 100vw" : "(min-width: 1024px) 640px, 100vw"} className="object-cover object-[60%_center]" />
           </div>
         </div>
       </div>

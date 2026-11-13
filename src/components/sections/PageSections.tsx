@@ -220,7 +220,7 @@ function NetworkHub({ label, className, glow }: { label: string; className?: str
   }
   return (
     <div className={cn("@container relative flex items-center justify-center rounded-full border-[1.5px] border-white bg-white/10 text-center", className)}>
-      <span className="max-w-[78%] font-serif text-[clamp(12px,7.4cqw,22px)] leading-[1.3] font-bold tracking-[0.01em] text-[#1B2B5C]">{label}</span>
+      <span className="max-w-[78%] font-serif text-[clamp(6px,7.4cqw,22px)] leading-[1.3] font-bold tracking-[0.01em] text-[#1B2B5C]">{label}</span>
     </div>
   );
 }
@@ -293,7 +293,7 @@ function NetworkHero({ data }: { data: PageHeroData }) {
   return (
     <section className="relative -mt-[var(--header-height)]" aria-labelledby="page-title">
       {/* Full-bleed pale sky-blue hero that starts behind the floating header. */}
-      <div className="relative isolate overflow-hidden bg-[linear-gradient(115deg,#F0F7FE_0%,#D0E7FD_38%,#C3E2FD_72%,#E8F3FE_100%)] pt-[calc(var(--header-height)+24px)] pb-10 sm:pb-12 lg:flex lg:min-h-[clamp(760px,58vw,900px)] lg:items-center lg:pt-[calc(var(--header-height)+16px)] lg:pb-12">
+      <div className={cn("relative isolate overflow-hidden bg-[linear-gradient(115deg,#F0F7FE_0%,#D0E7FD_38%,#C3E2FD_72%,#E8F3FE_100%)] pb-10 sm:pb-12 lg:flex lg:min-h-[clamp(760px,58vw,900px)] lg:items-center lg:pt-[calc(var(--header-height)+16px)] lg:pb-12", data.network?.hub === "glow" ? "pt-[calc(var(--header-height)+24px)]" : "pt-[calc(var(--header-height)+40px)]")}>
         {/* Soft light sweep across the bottom right. */}
         <svg aria-hidden viewBox="0 0 1440 800" preserveAspectRatio="none" fill="none" className="absolute inset-0 -z-10 size-full">
           <path d="M700 800C900 700 1180 640 1460 560V800Z" fill="rgba(255,255,255,.35)" />
@@ -381,7 +381,8 @@ function NetworkHero({ data }: { data: PageHeroData }) {
             </div>
           ) : (
           <div className="relative z-10 mx-auto w-full max-w-[680px] lg:-mr-4 lg:w-[calc(100%+1rem)] lg:max-w-none min-[1440px]:-ml-20 min-[1440px]:w-[calc(100%+6rem)]">
-            {/* Phones: hub over a two-column card grid */}
+            {/* Phones: hub over a two-column card grid (primary-care variant only; the university ring scales down instead) */}
+            {data.network?.hub === "glow" && (
             <div className="flex flex-col items-center gap-5 sm:hidden">
               <NetworkHub label={data.network?.hubLabel ?? ""} glow={data.network?.hub === "glow"} className="size-[180px]" />
               <ul className="grid w-full grid-cols-2 gap-3">
@@ -392,10 +393,11 @@ function NetworkHero({ data }: { data: PageHeroData }) {
                 ))}
               </ul>
             </div>
+            )}
 
-            {/* sm and up: ring (stage 8:7, ring is a true circle in a 800x700 viewBox) */}
-            <div className="relative mx-auto hidden aspect-[8/7] w-full sm:block">
-              <svg aria-hidden viewBox="0 0 800 700" fill="none" className="absolute inset-0 size-full">
+            {/* Ring (stage 8:7); shown from sm for the primary-care variant, at every width for the university one (stage 8:7, ring is a true circle in a 800x700 viewBox) */}
+            <div className={cn("relative mx-auto aspect-[8/7] w-full", data.network?.hub === "glow" ? "hidden sm:block" : "block")}>
+              <svg aria-hidden viewBox="0 0 800 700" fill="none" className="absolute inset-0 size-full max-sm:[&_circle]:[vector-effect:non-scaling-stroke] max-sm:[&_line]:[vector-effect:non-scaling-stroke]">
                 <circle cx={NET.cx} cy={NET.cy} r={NET.r} stroke="#C3D2E8" strokeWidth="1.2" strokeDasharray="5 6" />
                 {NETWORK_SPOKES.slice(0, logos.length).map((l, i) => (
                   <g key={i}>
@@ -409,7 +411,7 @@ function NetworkHero({ data }: { data: PageHeroData }) {
               {logos.map((logo, i) => {
                 const p = NETWORK_CARDS[i];
                 if (!p) return null;
-                return <NetworkLogoCard key={logo.src} logo={logo} style={{ left: `${p.left}%`, top: `${p.top}%` }} className="absolute h-[11.14%] w-[26.25%] -translate-x-1/2 -translate-y-1/2" />;
+                return <NetworkLogoCard key={logo.src} logo={logo} style={{ left: `${p.left}%`, top: `${p.top}%` }} className="absolute h-[11.14%] w-[26.25%] -translate-x-1/2 -translate-y-1/2 max-sm:rounded-[7px]" />;
               })}
             </div>
           </div>
