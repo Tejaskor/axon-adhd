@@ -8,7 +8,7 @@ import { partnerLogos } from "@/content/trust";
  */
 const AREA = 4600;
 const MAX_H = 56;
-const MAX_W = 210;
+const MAX_W = 320;
 
 function logoBox(width: number, height: number, scale = 1) {
   const ratio = width / height;
@@ -48,8 +48,8 @@ export function LogoMarquee() {
   );
 
   return (
-    <section aria-labelledby="partners-title" className="border-y border-line-2 bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-10 [--logo-s:0.8] sm:py-12 sm:[--logo-s:0.9] lg:[--logo-s:1]">
-      <p id="partners-title" className="type-small container-content mb-7 text-center font-semibold tracking-[0.14em] text-balance text-muted sm:mb-9">
+    <section aria-labelledby="partners-title" className="border-y border-line-2 bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! section-py [--logo-s:0.8] sm:[--logo-s:0.9] lg:[--logo-s:1]">
+      <p id="partners-title" className="container-content mb-7 text-center text-[20px] leading-snug font-semibold tracking-[0.14em] text-balance text-muted sm:mb-9">
         {partnerLogos.title}
       </p>
       {/* Fixed-height lane so logos of different heights share one centre line. */}

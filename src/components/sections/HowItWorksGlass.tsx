@@ -83,7 +83,7 @@ export function Results() {
 export function HowItWorksGlass({ data }: { data: FeaturesSection }) {
   const [lead, tail] = data.accent && data.title.includes(data.accent) ? data.title.split(data.accent) : [data.title, ""];
   return (
-    <section id={data.id} className="scroll-mt-[var(--header-offset)] bg-[radial-gradient(55%_55%_at_10%_35%,rgba(37,120,202,.14),transparent),radial-gradient(45%_50%_at_92%_30%,rgba(134,182,229,.16),transparent),linear-gradient(180deg,#F6FAFF_0%,#EAF2FD_100%)] py-14 sm:py-20">
+    <section id={data.id} className="scroll-mt-[var(--header-offset)] bg-[radial-gradient(55%_55%_at_10%_35%,rgba(37,120,202,.14),transparent),radial-gradient(45%_50%_at_92%_30%,rgba(134,182,229,.16),transparent),linear-gradient(180deg,#F6FAFF_0%,#EAF2FD_100%)] section-py">
       <Container>
         <div className="mx-auto max-w-[760px] text-center">
           {data.eyebrow && (
@@ -92,7 +92,7 @@ export function HowItWorksGlass({ data }: { data: FeaturesSection }) {
               {data.eyebrow}
             </p>
           )}
-          <h2 className="type-h2 mt-4 text-balance text-navy">
+          <h2 className="type-h2 text-navy mt-4 text-balance">
             {lead}
             {data.accent && <span className="text-primary">{data.accent}</span>}
             {tail}

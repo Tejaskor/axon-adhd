@@ -123,11 +123,11 @@ function PhotoHero({ data }: { data: PageHeroData }) {
 
       <div className="mx-auto grid w-full max-w-[1372px] gap-10 px-4 pt-[calc(var(--header-height)+32px)] pb-10 sm:pb-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)] lg:items-center lg:gap-12 lg:pt-[calc(var(--header-height)+24px)] lg:pb-14">
         <div className="min-w-0">
-          <h1 id="page-title" className="max-w-[760px] font-display text-[clamp(32px,5.2vw,50px)] leading-[1.14] font-bold tracking-[-0.025em] text-balance text-[#061836]">
+          <h1 id="page-title" className="type-h1 text-navy max-w-[760px] text-balance">
             {after !== undefined ? (
               <>
                 {before}
-                <span className="text-[#004EAE]">{data.accent}</span>
+                <span className="text-primary">{data.accent}</span>
                 {after}
               </>
             ) : (
@@ -317,7 +317,7 @@ function NetworkHero({ data }: { data: PageHeroData }) {
                   {data.eyebrow}
                 </p>
               )}
-              <h1 id="page-title" className={cn("font-display text-[clamp(36px,8.5vw,52px)] leading-[1.12] font-extrabold tracking-[-0.03em] text-[#022860]", data.network?.hub === "glow" ? "text-[clamp(32px,8vw,48px)] lg:text-[clamp(40px,3.7vw,58px)]" : "lg:text-[clamp(44px,4.6vw,72px)]")}>
+              <h1 id="page-title" className="type-h1 text-navy">
                 {after !== undefined ? (
                   <>
                     <span className="block">{before.trim()}</span>
@@ -432,7 +432,7 @@ export function PageHero({ data }: { data: PageHeroData }) {
         <div className="grid items-center gap-10 md:grid-cols-[1.05fr_1fr] lg:gap-14">
           <div>
             {data.eyebrow && <p className="mb-3 text-[13px] font-semibold tracking-[0.14em] text-primary uppercase">{data.eyebrow}</p>}
-            <h1 id="page-title" className="type-h1 text-ink">
+            <h1 id="page-title" className="type-h1 text-navy">
               {data.title}
             </h1>
             {data.text.map((t) => (
@@ -454,7 +454,7 @@ export function PageHero({ data }: { data: PageHeroData }) {
 /** White band with an eyebrow pill, navy heading and horizontal glass cards tinted green / blue / orange. */
 function MissionFeatures({ data }: { data: FeaturesSection }) {
   return (
-    <section id={data.id} className="relative isolate overflow-hidden bg-[#FFFFFF] py-16 font-inter sm:py-20 lg:py-24">
+    <section id={data.id} className="relative isolate overflow-hidden bg-[#FFFFFF] font-inter section-py">
       <div className="mx-auto w-full max-w-[1372px] px-4">
         <div className="mx-auto max-w-[980px] text-center">
           {data.eyebrow && (
@@ -467,7 +467,7 @@ function MissionFeatures({ data }: { data: FeaturesSection }) {
               <span aria-hidden className="h-px w-10 bg-gradient-to-l from-transparent to-primary/40 sm:w-20" />
             </div>
           )}
-          <h2 className="type-h2 mt-6 text-balance text-navy">{data.title}</h2>
+          <h2 className="type-h2 text-navy mt-6 text-balance">{data.title}</h2>
           {data.subtitle && <p className="type-body mx-auto mt-5 max-w-[900px] text-pretty text-body">{data.subtitle}</p>}
         </div>
         <ul className="mx-auto mt-10 grid max-w-[640px] gap-5 sm:mt-12 lg:max-w-none lg:grid-cols-3 lg:gap-5 xl:gap-6">
@@ -497,7 +497,7 @@ function PartnerFeatures({ data }: { data: FeaturesSection }) {
   const lead = data.lead?.replace(/^For\s+/, "");
   const [hBefore, hAfter] = data.headline ? data.headline.text.split(data.headline.accent) : ["", ""];
   return (
-    <section id={data.id} className="bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-12 sm:py-16">
+    <section id={data.id} className="bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! section-py">
       <Container>
         <div className="mx-auto max-w-[900px] text-center">
           {data.headline ? (
@@ -506,9 +506,9 @@ function PartnerFeatures({ data }: { data: FeaturesSection }) {
                 {data.leadIcon ? <FeatureIcon name={data.leadIcon} className="size-5" /> : <Handshake aria-hidden className="size-5" strokeWidth={1.8} />}
                 {data.title}
               </p>
-              <h2 className="type-section mt-4 leading-[1.15] tracking-[-0.02em] text-balance text-[#0B1F4D]">
+              <h2 className="type-h2 text-navy mt-4 text-balance">
                 {hBefore}
-                <span className="relative inline-block text-[#0A52E0]">
+                <span className="relative inline-block text-primary">
                   {data.headline.accent}
                   <svg aria-hidden viewBox="0 0 240 12" preserveAspectRatio="none" fill="none" className="absolute inset-x-0 -bottom-2 h-2.5 w-full">
                     <path d="M2 9C60 3 150 3 238 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
@@ -518,7 +518,7 @@ function PartnerFeatures({ data }: { data: FeaturesSection }) {
               </h2>
             </>
           ) : (
-            <h2 className="type-section text-balance text-[#10231B]">
+            <h2 className="type-h2 text-navy text-balance">
               {after !== undefined ? (
                 <>
                   {before}
@@ -600,7 +600,7 @@ const gapAccents: Record<GapAccent, { icon: typeof Brain; color: string; pale: s
 function GapFeatures({ data }: { data: FeaturesSection }) {
   const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
   return (
-    <section id={data.id} className="relative isolate overflow-hidden bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)] py-14 sm:py-20">
+    <section id={data.id} className="relative isolate overflow-hidden bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)] section-py">
       <Container>
         <div className="mx-auto max-w-[1100px] text-center">
           {data.eyebrow && (
@@ -609,11 +609,11 @@ function GapFeatures({ data }: { data: FeaturesSection }) {
               {data.eyebrow}
             </p>
           )}
-          <h2 className={cn("type-section relative text-[#0B1F4D]", data.eyebrow && "mt-6")}>
+          <h2 className={cn("type-h2 text-navy relative", data.eyebrow && "mt-6")}>
             {after !== undefined ? (
               <>
                 {before}
-                <span className="relative inline-block text-[#0A52E0]">
+                <span className="relative inline-block text-primary">
                   {data.accent}
                   <svg aria-hidden viewBox="0 0 240 12" preserveAspectRatio="none" fill="none" className="absolute inset-x-0 -bottom-2.5 h-3 w-full">
                     <path d="M2 9C60 3 150 3 238 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
@@ -687,15 +687,15 @@ const ribbonClip = `polygon(0 0, calc(100% - ${RIBBON_NOTCH}px) 0, 100% 50%, cal
 function RibbonFeatures({ data }: { data: FeaturesSection }) {
   const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
   return (
-    <section id={data.id} className="bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-12 sm:py-16">
+    <section id={data.id} className="bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! section-py">
       <Container>
         <div>
           <div className="mx-auto max-w-[960px] text-center">
-            <h2 className="type-h2 text-balance text-[#10294D]">
+            <h2 className="type-h2 text-navy text-balance">
               {after !== undefined ? (
                 <>
                   {before}
-                  <span className="text-[#1673E8]">{data.accent}</span>
+                  <span className="text-primary">{data.accent}</span>
                   {after}
                 </>
               ) : (
@@ -799,7 +799,7 @@ const campusAccents = {
 function CampusBannerFeatures({ data }: { data: FeaturesSection }) {
   const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
   return (
-    <section id={data.id} className="bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)] py-10 sm:py-14">
+    <section id={data.id} className="bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)] section-py">
       <Container>
         <div className="relative isolate overflow-hidden rounded-[28px] border border-white bg-[linear-gradient(135deg,#F2F8FE_0%,#E3F0FD_55%,#D9EBFB_100%)] px-5 pt-10 pb-12 shadow-[0_24px_60px_-34px_rgba(20,90,200,.4)] sm:px-8 sm:pt-12 sm:pb-14 lg:px-10 lg:py-14">
           {/* Light-blue swell along the bottom edge. */}
@@ -811,11 +811,11 @@ function CampusBannerFeatures({ data }: { data: FeaturesSection }) {
           <div className="grid items-center gap-8 lg:grid-cols-[40fr_60fr] lg:gap-8">
             <div className="lg:pb-44">
               <span aria-hidden className="mb-5 block h-1 w-16 rounded-full bg-[#2A7BEA]" />
-              <h2 className="type-section leading-[1.15] tracking-[-0.02em] text-[#0B1F4D]">
+              <h2 className="type-h2 text-navy">
                 {after !== undefined ? (
                   <>
                     <span className="block">{before.trim()}</span>
-                    <span className="relative inline-block text-[#0A52E0]">
+                    <span className="relative inline-block text-primary">
                       {data.accent}
                       <svg aria-hidden viewBox="0 0 240 12" preserveAspectRatio="none" fill="none" className="absolute inset-x-0 -bottom-2.5 h-3 w-full">
                         <path d="M2 9C60 3 150 3 238 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
@@ -882,7 +882,7 @@ const earlyAccents = {
 function EarlyReferralFeatures({ data, stretchImage }: { data: FeaturesSection; stretchImage?: boolean }) {
   const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
   return (
-    <section id={data.id} className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#F3F8FE_0%,#E8F2FD_100%)] py-12 sm:py-16">
+    <section id={data.id} className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#F3F8FE_0%,#E8F2FD_100%)] section-py">
       <Container>
         <div className="mx-auto max-w-[1000px] text-center">
           {data.eyebrow && (
@@ -891,11 +891,11 @@ function EarlyReferralFeatures({ data, stretchImage }: { data: FeaturesSection; 
               {data.eyebrow}
             </p>
           )}
-          <h2 className={cn("type-section leading-[1.15] tracking-[-0.02em] text-[#0B1F4D]", data.eyebrow && "mt-4")}>
+          <h2 className={cn("type-h2 text-navy", data.eyebrow && "mt-4")}>
             {after !== undefined ? (
               <>
                 {before}
-                <span className="relative inline-block text-[#0A52E0]">
+                <span className="relative inline-block text-primary">
                   {data.accent}
                   <svg aria-hidden viewBox="0 0 240 12" preserveAspectRatio="none" fill="none" className="absolute inset-x-0 -bottom-2.5 h-3 w-full">
                     <path d="M2 9C60 3 150 3 238 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
@@ -1083,7 +1083,7 @@ function withHighlight(text: string, word?: string) {
 function AxonSplit({ data }: { data: SplitSection }) {
   const [first, ...rest] = data.title.split(" ");
   return (
-    <section id={data.id} className="relative isolate scroll-mt-[var(--header-offset)] overflow-hidden bg-[linear-gradient(180deg,#F7FAFE_0%,#EEF4FC_100%)] py-16 font-inter sm:py-20 lg:py-24">
+    <section id={data.id} className="relative isolate scroll-mt-[var(--header-offset)] overflow-hidden bg-[linear-gradient(180deg,#F7FAFE_0%,#EEF4FC_100%)] font-inter section-py">
       <div className="mx-auto grid w-full max-w-[1372px] items-center gap-12 px-4 md:grid-cols-[1.25fr_1fr] lg:gap-16">
         <Reveal>
           {data.eyebrow && (
@@ -1092,9 +1092,9 @@ function AxonSplit({ data }: { data: SplitSection }) {
               {data.eyebrow}
             </p>
           )}
-          <h2 className="type-h2 mt-4">
-            <span className="bg-gradient-to-r from-primary-600 to-primary-600 bg-clip-text text-transparent">{first}</span>{" "}
-            <span className="bg-gradient-to-r from-[#1A9FD0] to-[#22C083] bg-clip-text text-transparent">{rest.join(" ")}</span>
+          <h2 className="type-h2 text-navy mt-4">
+            {first}{" "}
+            <span className="text-primary">{rest.join(" ")}</span>
           </h2>
           {data.paragraphs?.map((p) => (
             <p key={p} className="type-lead mt-4 max-w-[640px] text-body">
@@ -1188,7 +1188,7 @@ function Quotes({ data }: { data: QuotesSection }) {
   if (data.variant === "glass") return <GlassQuotesCarousel data={data} />;
   if (data.variant === "stacked") return <StackedQuotesCarousel data={data} />;
   return (
-    <section className="bg-surface py-16 sm:py-20">
+    <section className="bg-surface section-py">
       <Container>
         <SectionHeading title={data.title} subtitle={data.subtitle} />
         <ul className="columns-1 gap-6 sm:columns-2 lg:columns-3">
@@ -1290,13 +1290,13 @@ function ComplianceBadges({ data }: { data: BadgesSection }) {
                     {data.eyebrow}
                   </p>
                 )}
-                <h2 id="compliance-title" className="type-section mt-6 leading-[1.15] tracking-[-0.02em] text-[#0B1F4D]">
+                <h2 id="compliance-title" className="type-h2 text-navy mt-6">
                   {after !== undefined ? (
                     <>
                       <span className="block">{line1.trim()}</span>
                       <span className="block sm:whitespace-nowrap">
                         {line2}
-                        <span className="relative inline-block text-[#0A52E0]">
+                        <span className="relative inline-block text-primary">
                           {data.accent}
                           <svg aria-hidden viewBox="0 0 240 12" preserveAspectRatio="none" fill="none" className="absolute inset-x-0 -bottom-2.5 h-3 w-full">
                             <path d="M2 9C60 3 150 3 238 6" stroke="#0A52E0" strokeWidth="2.5" strokeLinecap="round" />
@@ -1328,7 +1328,7 @@ function ComplianceBadges({ data }: { data: BadgesSection }) {
 function Badges({ data }: { data: BadgesSection }) {
   if (data.variant === "compliance") return <ComplianceBadges data={data} />;
   return (
-    <section className="py-14 sm:py-16">
+    <section className="section-py">
       <Container>
         <div className={cn("grid items-center gap-10", data.image && "md:grid-cols-[1.2fr_1fr]")}>
           <div>
@@ -1358,7 +1358,7 @@ const screeningAccents = {
 function ScreeningBanner({ data }: { data: CtaSection }) {
   const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
   return (
-    <section className="relative isolate overflow-hidden bg-[linear-gradient(120deg,#001A5E_0%,#002A78_45%,#00439C_100%)] py-14 sm:py-16 lg:py-20" aria-label={data.title}>
+    <section className="relative isolate overflow-hidden bg-[linear-gradient(120deg,#001A5E_0%,#002A78_45%,#00439C_100%)] section-py" aria-label={data.title}>
       {/* Deep-blue ground with two large light-blue sweeps: one arcing across the top, one rising along the bottom. */}
       <svg aria-hidden viewBox="0 0 1440 600" preserveAspectRatio="none" fill="none" className="pointer-events-none absolute inset-0 -z-10 size-full">
         <defs>
@@ -1386,7 +1386,7 @@ function ScreeningBanner({ data }: { data: CtaSection }) {
                   {data.eyebrow}
                 </p>
               )}
-              <h2 className={cn(data.eyebrow && "mt-6", "type-section leading-[1.2] tracking-[-0.02em] text-white lg:whitespace-nowrap")}>
+              <h2 className={cn("type-h2", data.eyebrow && "mt-6", "text-white lg:whitespace-nowrap")}>
                 {after !== undefined ? (
                   <>
                     <span className="block">{before.split("First Step")[0].trim()}</span>
@@ -1406,7 +1406,7 @@ function ScreeningBanner({ data }: { data: CtaSection }) {
                 )}
               </h2>
               {data.subtitle && <p className="mt-6 max-w-[560px] text-[16px] leading-[1.7] text-white/95 sm:text-[18px]">{data.subtitle}</p>}
-              <ButtonLink href={data.primary.href} variant="white" size="lg" className="group mt-8 w-full whitespace-normal! px-5! text-center font-semibold text-[#0B58C4] sm:whitespace-nowrap! shadow-[0_12px_30px_-8px_rgba(120,190,255,.8)] transition duration-300 ease-brand hover:-translate-y-0.5 hover:shadow-[0_16px_34px_-8px_rgba(120,190,255,.95)] sm:w-auto">
+              <ButtonLink href={data.primary.href} variant="white" size="lg" className="group mt-8 w-full whitespace-normal! px-4! text-center font-semibold text-[#0B58C4] sm:whitespace-nowrap! shadow-[0_12px_30px_-8px_rgba(120,190,255,.8)] transition duration-300 ease-brand hover:-translate-y-0.5 hover:shadow-[0_16px_34px_-8px_rgba(120,190,255,.95)] sm:w-auto">
                 {data.primary.label}
                 <ArrowRight aria-hidden className="size-5 shrink-0 transition-transform duration-300 ease-brand group-hover:translate-x-1" />
               </ButtonLink>

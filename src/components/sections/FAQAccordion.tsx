@@ -39,7 +39,7 @@ export function FaqSplitHeading({
     <div className="text-center">
       <h2
         id="faq-title"
-        className="type-section leading-[1.15] tracking-[-0.01em] text-[#0B1F4D]"
+        className="type-h2 text-navy"
       >
         {before}
         {after !== undefined && (
@@ -162,7 +162,7 @@ export function FAQAccordion({
   if (variant === "split") {
     return (
       <section
-        className={cn("relative isolate overflow-clip py-12 sm:py-16 lg:py-20", background)}
+        className={cn("relative isolate overflow-clip section-py", background)}
         aria-labelledby="faq-title"
       >
         <Container>
@@ -178,7 +178,7 @@ export function FAQAccordion({
     );
   }
   return (
-    <section className="bg-surface py-16 sm:py-20" aria-labelledby="faq-title">
+    <section className="bg-surface section-py" aria-labelledby="faq-title">
       <Container className="max-w-[960px]">
         <SectionHeading id="faq-title" title={title} subtitle={subtitle} />
         <Accordion items={faqItems(faqs)} />

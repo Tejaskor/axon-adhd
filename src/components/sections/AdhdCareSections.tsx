@@ -62,11 +62,11 @@ export function AdhdCareHero({ data }: { data: PageHero }) {
       <div className={cn(wrap, "relative grid items-center gap-12 sm:gap-14 lg:grid-cols-[minmax(0,44fr)_minmax(0,56fr)] lg:gap-10 xl:gap-0")}>
         <div className="relative z-10 max-w-[620px]">
           {data.eyebrow && <p className="mb-4 text-[13px] font-semibold tracking-[0.14em] text-primary uppercase">{data.eyebrow}</p>}
-          <h1 id="page-title" className="qb-in font-display text-[clamp(32px,3.4vw,48px)] leading-[1.1] font-extrabold tracking-[-0.03em] text-balance text-[#0F2F55] lg:[text-wrap:wrap]">
+          <h1 id="page-title" className="type-h1 text-navy qb-in text-balance lg:[text-wrap:wrap]">
             {titleLead ? (
               <>
                 <span className="block">{titleLead}</span>{" "}
-                <span className="box-decoration-clone bg-[linear-gradient(100deg,#2578CA_10%,#3C8BD9_90%)] bg-clip-text text-transparent">{titleKey}</span>
+                <span className="box-decoration-clone text-primary">{titleKey}</span>
               </>
             ) : (
               data.title
@@ -157,14 +157,14 @@ const careTones = ["blue", "green", "orange", "purple"] as const;
 export function AdhdCareServices({ data }: { data: FeaturesSection }) {
   const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-16 sm:py-20 lg:py-24" aria-labelledby="services-title">
+    <section className="relative overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! section-py" aria-labelledby="services-title">
       <div className={cn(wrap, "relative")}>
         <Reveal className="mx-auto max-w-[1300px] text-center">
-          <h2 id="services-title" className={cn(h2, "mx-auto max-w-[880px] text-[#0F2F55]")}>
+          <h2 id="services-title" className={cn(h2, "mx-auto max-w-[880px]")}>
             {after !== undefined ? (
               <>
                 {before}
-                <span className="text-[#0A4FF0]">{data.accent}</span>
+                <span className="text-primary">{data.accent}</span>
                 {after}
               </>
             ) : (
@@ -219,14 +219,14 @@ const specializedPlace = ["lg:col-start-1 lg:row-start-1", "lg:col-start-3 lg:ro
 export function AdhdCareSpecialized({ data }: { data: FeaturesSection }) {
   const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
   return (
-    <section className="bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)] py-14 sm:py-16 lg:py-20" aria-labelledby="specialized-title">
+    <section className="bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)] section-py" aria-labelledby="specialized-title">
       <div className={wrap}>
         <Reveal className="mx-auto max-w-[1000px] text-center">
-          <h2 id="specialized-title" className={cn(h2, "text-[#0B1F4D]")}>
+          <h2 id="specialized-title" className={cn(h2, "")}>
             {after !== undefined ? (
               <>
                 <span className="block">{before.trim()}</span>
-                <span className="relative inline-block text-[#3B2DC7]">
+                <span className="relative inline-block text-primary">
                   {data.accent}
                   <svg aria-hidden viewBox="0 0 300 14" preserveAspectRatio="none" className="absolute inset-x-[16%] -bottom-[0.18em] h-[0.18em] w-[68%]" fill="none">
                     <path d="M2 10 C 70 3, 190 3, 298 8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
@@ -291,7 +291,7 @@ const closingBtn =
 /** Edge-to-edge teal-to-blue banner with translucent circles and flowing lines (CSS only), centred copy and two white pill buttons. */
 export function AdhdCareClosingCta({ data }: { data: CtaSection }) {
   return (
-    <section className="relative isolate overflow-hidden bg-[linear-gradient(110deg,#0A3253_0%,#0E4569_30%,#13618E_58%,#1A8BBF_84%,#24A9D8_100%)] py-20 text-center text-white sm:py-24 lg:py-32" aria-labelledby="closing-title">
+    <section className="relative isolate overflow-hidden bg-[linear-gradient(110deg,#0A3253_0%,#0E4569_30%,#13618E_58%,#1A8BBF_84%,#24A9D8_100%)] text-center text-white section-py" aria-labelledby="closing-title">
       {/* Haze: lighter towards the top, deeper along the bottom */}
       <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_60%_at_62%_0%,rgba(90,190,235,.2),transparent_70%),linear-gradient(180deg,transparent_55%,rgba(4,24,44,.14)_100%)]" />
 
@@ -311,7 +311,7 @@ export function AdhdCareClosingCta({ data }: { data: CtaSection }) {
       </svg>
 
       <Reveal className={cn(wrap, "max-w-[960px]")}>
-        <h2 id="closing-title" className="type-section font-display leading-[1.15] tracking-[-0.02em] text-balance">
+        <h2 id="closing-title" className="type-h2 text-balance">
           {data.title}
         </h2>
         {data.subtitle && <p className="mx-auto mt-5 max-w-[760px] text-[17px] leading-[1.7] text-pretty text-white/90 sm:text-[19px]">{data.subtitle}</p>}
@@ -365,14 +365,14 @@ export function PathCard({ tone, icon, title, text, center }: { tone: keyof type
 export function AdhdCarePath({ data }: { data: FeaturesSection }) {
   const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
   return (
-    <section className="bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)] py-16 sm:py-20 lg:py-24" aria-labelledby="path-title">
+    <section className="bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)] section-py" aria-labelledby="path-title">
       <div className={wrap}>
         <Reveal className="mx-auto max-w-[880px] text-center">
-          <h2 id="path-title" className={cn(h2, "text-[#0F2F55]")}>
+          <h2 id="path-title" className={cn(h2, "")}>
             {after !== undefined ? (
               <>
                 {before}
-                <span className="bg-[linear-gradient(90deg,#2578CA_0%,#3C8BD9_100%)] bg-clip-text text-transparent">{data.accent}</span>
+                <span className="text-primary">{data.accent}</span>
                 {after}
               </>
             ) : (
@@ -418,18 +418,18 @@ const toolCards = [
 export function AdhdCareTools({ data }: { data: SplitSection }) {
   const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
   return (
-    <section className="bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-16 sm:py-20 lg:py-24" aria-labelledby="tools-title">
+    <section className="bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! section-py" aria-labelledby="tools-title">
       <div className={cn(wrap, "grid items-center gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-14")}>
         <Reveal>
           <p className="inline-flex items-center gap-2.5 rounded-full border border-[#B9D0F3] bg-white/55 px-5 py-2 text-[14px] font-semibold text-[#0A4FF0] sm:text-[16px]">
             <Layers aria-hidden className="size-5" strokeWidth={1.75} />
             Evidence-Based Strategies
           </p>
-          <h2 id="tools-title" className={cn(h2, "mt-5 text-[#0B1F4D]")}>
+          <h2 id="tools-title" className={cn(h2, "mt-5")}>
             {after !== undefined ? (
               <>
                 <span className="block">{before.trim()}</span>
-                <span className="relative inline-block text-[#0A4FF0]">
+                <span className="relative inline-block text-primary">
                   {data.accent}
                   <svg aria-hidden viewBox="0 0 300 14" preserveAspectRatio="none" className="absolute inset-x-[2%] -bottom-[0.18em] h-[0.18em] w-[96%]" fill="none">
                     <path d="M2 10 C 70 3, 190 3, 298 8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />

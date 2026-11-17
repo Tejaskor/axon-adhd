@@ -18,7 +18,7 @@ export default function FaqPage() {
         <Container>
           {/* Only the heading block is centred; the toggle centres itself and answers stay left-aligned. */}
           <div className="flex flex-col items-center gap-5 text-center">
-            <h1 className="font-sans text-[26px] leading-[1.2] font-bold text-[#111827] sm:text-[36px]">Frequently Asked Questions</h1>
+            <h1 className="type-h1 text-navy">Frequently Asked Questions</h1>
             <p className="-mt-2 font-sans text-[15px] text-[#6B7280] sm:text-[16px]">We have the answers for you!</p>
           </div>
           <div className="mt-5">

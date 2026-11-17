@@ -395,7 +395,7 @@ export function Testimonials({
   return (
     <section
       id="Testimonials"
-      className="relative isolate scroll-mt-[var(--header-offset)] overflow-hidden bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)] py-16 sm:py-20"
+      className="relative isolate scroll-mt-[var(--header-offset)] overflow-hidden bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)] section-py"
       aria-labelledby="testimonials-title"
     >
       <Container>
@@ -406,7 +406,7 @@ export function Testimonials({
           >
             {title} <span className="text-primary">{titleAccent}</span>
           </h2>
-          {subtitle && <p className="type-body mt-3 text-body">{subtitle}</p>}
+          {subtitle && <p className="mt-3 text-[20px] leading-[1.7] text-body">{subtitle}</p>}
           {link && (
             <a
               href={link.href}

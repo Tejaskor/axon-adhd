@@ -1,9 +1,10 @@
 "use client";
 
-import { ArrowRight, Check, ChevronDown } from "lucide-react";
+import { Check, ChevronDown } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
 import { availableStates, mapStates, stateOptions, unavailableStates } from "@/content/us-map";
 import { cn } from "@/lib/utils";
+import { ButtonLink } from "@/components/ui/Button";
 
 /**
  * Interactive US map + searchable state dropdown. The map shapes, the listbox and the availability message all read the
@@ -187,10 +188,9 @@ export function StateChecker({ bookHref }: { bookHref: string }) {
               ))}
             </ul>
           </div>
-          <a className="axn-btn" id="axn-checker-book" href={bookHref} hidden={status === "no"}>
+          <ButtonLink id="axn-checker-book" href={bookHref} hidden={status === "no"} variant="primary">
             Book $577
-            <ArrowRight size={18} strokeWidth={2.2} aria-hidden="true" />
-          </a>
+          </ButtonLink>
         </div>
 
         <p key={`${status}-${selected}`} className={cn("axn-checker__msg is-pop", `axn-checker__msg--${status}`)} role="status">

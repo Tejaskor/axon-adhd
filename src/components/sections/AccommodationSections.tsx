@@ -15,7 +15,7 @@ import { trustBar } from "@/content/trust";
 
 export const wrap = "mx-auto w-full max-w-[1372px] px-4";
 const wrapWide = "mx-auto w-full max-w-[1372px] px-4";
-export const h2 = "type-section font-display leading-[1.1] tracking-[-0.025em] text-balance text-[#123D6A]";
+export const h2 = "type-h2 text-balance text-navy";
 export const lead = "text-[17px] leading-[1.75] text-pretty text-[#44566E] sm:text-[19px]";
 export const primaryBtn = "bg-primary! text-white! shadow-[0_8px_20px_rgba(37,120,202,.28)]! hover:bg-primary-600!";
 export const lightBtn = "bg-white! text-primary-600! shadow-[0_8px_24px_rgba(8,32,64,.22)]! hover:bg-[#E8F2FC]!";
@@ -26,6 +26,7 @@ const ctaLabel = "Explore Accommodation Support";
 export function Arrow() {
   return <ArrowRight aria-hidden className="size-[18px] shrink-0 transition-transform duration-300 ease-brand group-hover:translate-x-1" />;
 }
+Arrow.displayName = "Arrow"; // read by ArrowFillContent so minified builds still recognise it
 
 export function IconChip({ children, className }: { children: ReactNode; className?: string }) {
   return (
@@ -107,7 +108,7 @@ function ReportPreview() {
       </div>
 
       <div className="flex items-center justify-end border-t border-[#EEF0F3] px-4 py-2.5 sm:px-5">
-        <ButtonLink href={checkout} size="sm" className="group gap-1.5 rounded-md! bg-[linear-gradient(90deg,#2F6B78,#3A9BB1)]! px-4 text-[12.5px]! text-white! shadow-none! hover:brightness-110">
+        <ButtonLink href={checkout} size="sm" className="group gap-1.5 rounded-[50px]! bg-[linear-gradient(90deg,#2F6B78,#3A9BB1)]! px-4! text-[12.5px]! text-white! shadow-none! hover:brightness-110">
           Add Package &amp; Continue
           <ArrowRight aria-hidden className="size-3.5 transition-transform group-hover:translate-x-0.5" />
         </ButtonLink>
@@ -120,10 +121,10 @@ export function AccommodationHero() {
   const [helpedLead, helpedTail] = trustBar.helped.split(/(?<=Helped) /);
   return (
     // Pulled up behind the floating header, on a pale blue-to-lavender gradient.
-    <section aria-labelledby="page-title" className="relative -mt-[var(--header-height)] overflow-hidden bg-[linear-gradient(115deg,#F4F7FF_0%,#E8EDFF_48%,#E6E0FF_100%)] pt-[calc(var(--header-height)+32px)] pb-14 sm:pb-16 lg:pt-[calc(var(--header-height)+40px)] lg:pb-20">
+    <section aria-labelledby="page-title" className="relative -mt-[var(--header-height)] overflow-hidden bg-[linear-gradient(115deg,#F4F7FF_0%,#E8EDFF_48%,#E6E0FF_100%)] section-hero-py">
       <div className={cn(wrapWide, "grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-14")}>
         <div className="min-w-0">
-          <h1 id="page-title" className="font-display text-[clamp(32px,4.4vw,48px)] leading-[1.3] font-medium tracking-[-0.01em] text-balance text-[#2B3238]">
+          <h1 id="page-title" className="type-h1 text-navy text-balance">
             Accommodation Documentation &amp; Advocacy
           </h1>
           <p className="mt-6 max-w-[620px] text-[17px] leading-[1.75] text-pretty text-[#5F6672] sm:text-[19px]">
@@ -133,7 +134,7 @@ export function AccommodationHero() {
             Available exclusively for individuals who have completed an AXON Comprehensive ADHD Evaluation. Accommodation decisions are made by each institution.
           </p>
           <div className="mt-7">
-            <ButtonLink href={checkout} size="lg" className="group h-14 w-full gap-2 bg-[#256ACC]! px-7! text-white! shadow-none! hover:bg-[#1E5BB4]! sm:w-auto">
+            <ButtonLink href={checkout} size="lg" className="group w-full gap-2 bg-[#256ACC]! px-4! text-white! shadow-none! hover:bg-[#1E5BB4]! sm:w-auto">
               {ctaLabel}
               <Arrow />
             </ButtonLink>
@@ -190,11 +191,11 @@ const benefitLine = [
 
 export function AccommodationBenefits() {
   return (
-    <section className="bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)] py-14 sm:py-16 lg:py-20" aria-labelledby="more-title">
+    <section className="bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)] section-py" aria-labelledby="more-title">
       <div className="mx-auto grid w-full max-w-[1372px] items-center gap-10 px-4 md:grid-cols-[44fr_56fr] lg:gap-16">
         <Reveal>
           <Eyebrow>Beyond your diagnosis</Eyebrow>
-          <h2 id="more-title" className="type-section mt-5 font-display leading-[1.08] tracking-[-0.025em] text-balance text-[#123768]">
+          <h2 id="more-title" className="type-h2 text-navy mt-5 text-balance">
             Not Another Evaluation.
           </h2>
           <p className="type-lead mt-6 max-w-[560px] text-pretty text-[#536985]">
@@ -309,16 +310,16 @@ function PackageDocument() {
 
 export function DocumentationPackage() {
   return (
-    <section id="package" className="scroll-mt-[var(--header-offset)] overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-16 sm:py-20 lg:py-24" aria-labelledby="package-title">
+    <section id="package" className="scroll-mt-[var(--header-offset)] overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! section-py" aria-labelledby="package-title">
       <div className={wrap}>
         <Reveal className="mx-auto max-w-[820px] text-center">
           <p className="inline-flex items-center gap-2.5 rounded-full border border-[#B9D0F3] bg-white/55 px-5 py-2 text-[14px] font-semibold text-[#0A4FF0] sm:text-[16px]">
             <GraduationCap aria-hidden className="size-5" strokeWidth={1.75} />
             Accommodation Support
           </p>
-          <h2 id="package-title" className={cn(h2, "mt-5 text-[#0B1F4D]")}>
+          <h2 id="package-title" className={cn(h2, "mt-5")}>
             Your Accommodation{" "}
-            <span className="relative inline-block text-[#3B2DC7]">
+            <span className="relative inline-block text-primary">
               Documentation Package
               <svg aria-hidden viewBox="0 0 300 14" preserveAspectRatio="none" className="absolute inset-x-[8%] -bottom-[0.18em] h-[0.18em] w-[84%]" fill="none">
                 <path d="M2 10 C 70 3, 190 3, 298 8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
@@ -356,7 +357,7 @@ export function DocumentationPackage() {
 
 export function AccommodationFeatureBanner() {
   return (
-    <section className="relative isolate overflow-hidden bg-[linear-gradient(110deg,#2578CA_0%,#1E64AA_50%,#19528C_100%)] py-20 text-white sm:py-24 lg:py-28" aria-labelledby="why-title">
+    <section className="relative isolate overflow-hidden bg-[linear-gradient(110deg,#2578CA_0%,#1E64AA_50%,#19528C_100%)] section-py text-white" aria-labelledby="why-title">
       <div aria-hidden className="absolute -top-32 -left-24 -z-10 size-[380px] rounded-full bg-white/[0.06]" />
       <div aria-hidden className="absolute -right-20 -bottom-40 -z-10 size-[460px] rounded-full bg-primary-300/10" />
       <div className={cn(wrap, "grid items-center gap-10 lg:grid-cols-[1.6fr_1fr] lg:gap-20")}>
@@ -399,16 +400,16 @@ const guidancePlace = ["lg:col-start-1 lg:row-start-1", "lg:col-start-3 lg:row-s
 /** Centred heading, then the photo in a white frame between four centred, tinted feature cards (two each side). */
 export function ClinicianGuidance() {
   return (
-    <section className="bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)] py-16 sm:py-20 lg:py-24" aria-labelledby="guidance-title">
+    <section className="bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)] section-py" aria-labelledby="guidance-title">
       <div className={wrap}>
         <Reveal className="mx-auto max-w-[900px] text-center">
           <p className="inline-flex items-center gap-2.5 rounded-full border border-[#B9D0F3] bg-white/55 px-5 py-2 text-[14px] font-semibold text-[#0A4FF0] sm:text-[16px]">
             <Users aria-hidden className="size-5" strokeWidth={1.75} />
             Expert Clinical Support
           </p>
-          <h2 id="guidance-title" className={cn(h2, "mt-5 text-[#0B1F4D]")}>
+          <h2 id="guidance-title" className={cn(h2, "mt-5")}>
             <span className="block">What Our Clinicians Do</span>
-            <span className="relative inline-block text-[#3B2DC7]">
+            <span className="relative inline-block text-primary">
               for This Package
               <svg aria-hidden viewBox="0 0 300 14" preserveAspectRatio="none" className="absolute inset-x-[20%] -bottom-[0.18em] h-[0.18em] w-[60%]" fill="none">
                 <path d="M2 10 C 70 3, 190 3, 298 8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
@@ -469,7 +470,7 @@ const audiences: PackageFeature[] = [
 /** "Who Is This For?": the four audiences on the left, the package summary card (price, inclusions, button) on the right. */
 export function ServiceAudience() {
   return (
-    <section className="bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)] py-16 sm:py-20 lg:py-24" aria-labelledby="audience-title">
+    <section className="bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)] section-py" aria-labelledby="audience-title">
       <div className={cn(wrap, "grid items-center gap-10 md:grid-cols-[1.05fr_1fr] lg:gap-14")}>
         <div>
           <Reveal>
@@ -477,14 +478,14 @@ export function ServiceAudience() {
               <Users aria-hidden className="size-5" strokeWidth={1.75} />
               Who It’s For
             </p>
-            <h2 id="audience-title" className={cn(h2, "mt-5 text-[#0B1F4D]")}>
+            <h2 id="audience-title" className={cn(h2, "mt-5")}>
               <span className="relative inline-block">
                 Who
                 <svg aria-hidden viewBox="0 0 300 14" preserveAspectRatio="none" className="absolute inset-x-0 -bottom-[0.18em] h-[0.18em] w-full text-[#0A4FF0]" fill="none">
                   <path d="M2 10 C 70 3, 190 3, 298 8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
                 </svg>
               </span>{" "}
-              Is This <span className="text-[#0A4FF0]">For?</span>
+              Is This <span className="text-primary">For?</span>
             </h2>
             <p className={cn(lead, "mt-5 text-[#33465E]")}>This service is ideal if you’re requesting accommodations for:</p>
           </Reveal>
@@ -543,7 +544,7 @@ export function ServiceAudience() {
 export function AccommodationCTA() {
   return (
     <section
-      className="relative isolate overflow-hidden bg-[radial-gradient(ellipse_at_85%_15%,rgba(8,122,145,.35),transparent_55%),linear-gradient(115deg,#063653_0%,#064766_52%,#075A70_100%)] py-16 text-center text-white sm:py-24 lg:py-28"
+      className="relative isolate overflow-hidden bg-[radial-gradient(ellipse_at_85%_15%,rgba(8,122,145,.35),transparent_55%),linear-gradient(115deg,#063653_0%,#064766_52%,#075A70_100%)] text-center text-white section-py"
       aria-labelledby="cta-title"
     >
       {/* Decorative shapes: partially cropped circles and thin outlines at both edges, kept low-contrast and behind the content */}
@@ -555,7 +556,7 @@ export function AccommodationCTA() {
 
       <Reveal className={wrap}>
         {/* Wide enough on desktop that the heading is one line, the paragraph two and the price note one. */}
-        <h2 id="cta-title" className="type-section mx-auto max-w-[900px] font-display leading-[1.15] tracking-[-0.02em] text-balance lg:max-w-none lg:whitespace-nowrap">
+        <h2 id="cta-title" className="type-h2 mx-auto max-w-[900px] text-balance lg:max-w-none lg:whitespace-nowrap">
           Ready to turn your diagnosis into documentation that works?
         </h2>
         <p className="type-lead mx-auto mt-6 max-w-[850px] text-pretty text-primary-100 lg:max-w-[1040px]">
@@ -649,7 +650,7 @@ export function AccommodationContact({
               {eyebrow}
             </p>
           )}
-          <h2 className={cn("font-display leading-[1.1] tracking-[-0.025em] text-balance text-[#0F2F5E]", s.title, eyebrow && "mt-5")}>Get your ADHD care right.</h2>
+          <h2 className={cn("type-h2 text-navy text-balance", s.title, eyebrow && "mt-5")}>Get your ADHD care right.</h2>
           <p className={cn("max-w-[600px] text-pretty text-[#5B6B84]", s.description)}>{description}</p>
           <ul className={s.list}>
             {contactPoints.map((c) => (
@@ -676,7 +677,7 @@ export function AccommodationContact({
         </Reveal>
         <Reveal delay={0.1}>
           <div className={contactFormSkin}>
-            <h2 id="contact-title" className="text-[clamp(24px,2.2vw,28px)] leading-tight font-medium text-[#111827]">
+            <h2 id="contact-title" className="type-h2 text-navy">
               Contact Us
             </h2>
             <p className="mt-2 mb-6 text-[14.5px] leading-relaxed text-[#4B5563]">{"We'd love to hear from you. Please fill out the form and we'll get back to you as soon as possible."}</p>

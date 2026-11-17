@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { Button, ButtonLink } from "@/components/ui/Button";
 import { useEffect, useRef, useState } from "react";
 
 export type RelatedCaseStudy = {
@@ -158,25 +159,18 @@ export function CaseStudyArticleLayout({
             <p className="case-study__desc">{description}</p>
 
             <div className="case-study__actions">
-              <a
-                className="case-study__btn case-study__btn--primary"
-                href="#download-placeholder"
-                download
-                onClick={handleDownload}
-              >
+              <ButtonLink href="#download-placeholder" download onClick={handleDownload}>
                 Download Case Study
-              </a>
+              </ButtonLink>
 
               {!isPlaying ? (
-                <button
-                  type="button"
-                  className="case-study__btn case-study__btn--secondary"
+                <Button
                   data-case-study-play
                   aria-controls="case-study-content"
                   onClick={handlePlay}
                 >
                   Read Case Study
-                </button>
+                </Button>
               ) : (
                 <div className="case-study__player" data-case-study-player>
                   {!isPaused ? (

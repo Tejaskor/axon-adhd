@@ -7,23 +7,10 @@ import { ChevronDown, Menu } from "lucide-react";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { mainNav } from "@/content/nav";
 import { ctas, site } from "@/content/site";
-import { ButtonLink } from "@/components/ui/Button";
+import ButtonAnimated from "@/components/ui/button-animated";
 import { cn } from "@/lib/utils";
 import { MegaMenu } from "./MegaMenu";
 import { MobileNav } from "./MobileNav";
-
-/**
- * Decorative pill outline for the CTA hover trace (.cta-trace-line in globals.css). rx = half the 54px button height.
- * Fail-safe without the stylesheet (e.g. a stale CSS bundle): width/height="0" keep it out of layout and fill="none"
- * keeps the rect from painting the SVG default black; the CSS overrides these presentation attributes.
- */
-function TraceLine() {
-  return (
-    <svg aria-hidden="true" focusable="false" className="cta-trace-line" width="0" height="0">
-      <rect width="100%" height="100%" rx="27" pathLength={100} fill="none" />
-    </svg>
-  );
-}
 
 export function Header() {
   const pathname = usePathname();
@@ -65,10 +52,10 @@ export function Header() {
   const isActive = (href: string) => href !== "/" && pathname.startsWith(href.replace(/\/$/, ""));
 
   return (
-    // pt-3 + h-20 + pb-1 = 96px = --header-height (globals.css), which page heroes pull up behind the header.
+    // pt-3 + h-16 + pb-1 = 80px = --header-height (globals.css), which page heroes pull up behind the header.
     // Stickiness lives on the wrapper in app/layout.tsx; the floating glass pill looks the same at the top and while scrolling.
     <header className="px-4 pt-3 pb-1">
-      <div className="relative mx-auto flex h-20 w-full max-w-[1340px] items-center justify-between gap-3 rounded-[40px] border border-white/60 bg-white/50 px-3 shadow-[0_12px_36px_rgba(15,27,46,.12),inset_0_1px_0_rgba(255,255,255,.7)] backdrop-blur-xl backdrop-saturate-150 xs:px-4 lg:gap-[clamp(10px,2.2vw,32px)]">
+      <div className="relative mx-auto flex h-16 w-full max-w-[1340px] items-center justify-between gap-3 rounded-[40px] border border-white/60 bg-white/50 px-3 shadow-[0_12px_36px_rgba(15,27,46,.12),inset_0_1px_0_rgba(255,255,255,.7)] backdrop-blur-xl backdrop-saturate-150 xs:px-4 lg:gap-[clamp(10px,2.2vw,32px)]">
         <Link href="/" aria-label={`${site.name} home`} className="shrink-0">
           <Image
             src={site.headerLogo.src}
@@ -131,14 +118,12 @@ export function Header() {
         </nav>
 
         <div className="hidden shrink-0 items-center gap-3 lg:flex xl:gap-4">
-          <ButtonLink href={ctas.evaluation.href} variant="white" size="sm" className="cta-trace h-[54px]! rounded-[9999px]! border border-line-3 [--cta-trace-color:#2578CA] [--cta-trace-offset:1px] text-[clamp(13px,1.02vw,16px)]! leading-[1.25] font-normal! text-navy! shadow-[0_1px_2px_rgba(15,27,46,.06)] hover:border-primary/30 xl:px-5">
+          <ButtonAnimated href={ctas.evaluation.href} bg="#FFFFFF" activeBg="#EFF6FF" className="text-[clamp(13px,1.02vw,16px)] text-navy shadow-[0_1px_2px_rgba(15,27,46,.06)]">
             {ctas.evaluation.label}
-            <TraceLine />
-          </ButtonLink>
-          <ButtonLink href={ctas.screening.href} size="sm" className="cta-trace h-[54px]! rounded-[9999px]! [--cta-trace-color:#C9DEF4] text-[clamp(13px,1.02vw,16px)]! leading-[1.25] font-normal! shadow-[0_6px_18px_rgba(37,120,202,.28)]! hover:shadow-[0_8px_22px_rgba(37,120,202,.34)]! xl:px-5">
+          </ButtonAnimated>
+          <ButtonAnimated href={ctas.screening.href} bg="#256ACC" activeBg="#1A56A8" className="text-[clamp(13px,1.02vw,16px)] text-white shadow-[0_6px_18px_rgba(37,120,202,.28)]">
             {ctas.screening.label}
-            <TraceLine />
-          </ButtonLink>
+          </ButtonAnimated>
         </div>
 
         <button

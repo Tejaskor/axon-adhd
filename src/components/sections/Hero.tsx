@@ -18,7 +18,7 @@ export function Hero() {
   return (
     <section
       aria-labelledby="hero-title"
-      className="relative isolate -mt-[var(--header-height)] flex min-h-[600px] items-center overflow-hidden pt-[124px] pb-14 text-white sm:min-h-[660px] sm:pt-[150px] sm:pb-16 lg:min-h-[calc(100svh-41px)] lg:pt-[140px]"
+      className="relative isolate -mt-[var(--header-height)] flex min-h-[600px] items-center overflow-hidden section-hero-py text-white sm:min-h-[660px] lg:min-h-[calc(100svh-41px)]"
     >
       {/* Media anchored right of centre so the person stays in frame as the viewport narrows. */}
       <Image src={hero.poster.src} alt="" fill priority sizes="100vw" className="-z-30 object-cover object-[68%_center]" />
@@ -59,7 +59,7 @@ export function Hero() {
               </span>
             </span>
           </h1>
-          <p className="mt-8 text-[clamp(18px,1.9vw,26px)] leading-[1.4] font-medium text-white/95 sm:mt-10">
+          <p className="mt-8 text-[26px] leading-[1.4] font-medium text-white/95 sm:mt-10">
             {hero.subtitleLines.map((line) => (
               <span key={line} className="sm:block">
                 {line}{" "}
@@ -91,7 +91,7 @@ export function Hero() {
             <li className="flex items-center gap-3">
               <Image src={trustBar.google.src} alt={trustBar.google.alt} width={44} height={44} className="size-10 lg:size-11" />
               <span className="flex flex-col">
-                <span className="text-[15px] font-semibold">{hero.trust.label}</span>
+                <span className="text-[16px] font-semibold">{hero.trust.label}</span>
                 <span className="mt-0.5 flex items-center gap-2">
                   <span className="text-[17px] font-semibold">{hero.trust.rating}</span>
                   <span className="flex gap-0.5 text-[#F0B800]" aria-hidden>
@@ -99,7 +99,7 @@ export function Hero() {
                       <Star key={i} className="size-[15px] fill-current" strokeWidth={0} />
                     ))}
                   </span>
-                  <span className="text-[13px] text-white/85">{hero.trust.reviews}</span>
+                  <span className="text-[14px] text-white/85">{hero.trust.reviews}</span>
                   <span className="sr-only"> on Google</span>
                 </span>
               </span>
@@ -111,7 +111,7 @@ export function Hero() {
                   <Image key={a.src} src={a.src} alt="" width={40} height={40} className="size-10 rounded-full border-2 border-white object-cover" />
                 ))}
               </span>
-              <span className="max-w-[170px] text-center text-[15px] leading-snug font-semibold">{trustBar.helped}</span>
+              <span className="max-w-[170px] text-center text-[16px] leading-snug font-semibold">{trustBar.helped}</span>
             </li>
             <li aria-hidden className="hidden h-16 w-px bg-white/30 sm:block" />
             <li>

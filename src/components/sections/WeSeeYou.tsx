@@ -19,7 +19,7 @@ const tones = {
 export function WeSeeYou() {
   return (
     // Same background as "Choose Your Next Step" (PricingCards).
-    <section className="relative isolate overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-16 sm:py-20" aria-labelledby="see-you-title">
+    <section className="relative isolate overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! section-py" aria-labelledby="see-you-title">
       <Container>
         <div className="grid items-center gap-12 md:grid-cols-[1.05fr_1fr] md:gap-10 lg:gap-16">
           {/* Left: photo */}
@@ -39,7 +39,7 @@ export function WeSeeYou() {
             <Reveal>
               <h2 id="see-you-title" className="type-h2 text-navy">
                 {weSeeYou.title}
-                <span className="block text-brand">{weSeeYou.subtitle}</span>
+                <span className="block text-primary">{weSeeYou.subtitle}</span>
               </h2>
             </Reveal>
 

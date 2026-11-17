@@ -85,7 +85,7 @@ export function WorkflowStack({ data }: { data: StepsSection }) {
   }, []);
 
   return (
-    <section id={data.id} className="scroll-mt-[var(--header-offset)] bg-white py-14 sm:py-20" aria-labelledby={`${data.id ?? "workflow"}-title`}>
+    <section id={data.id} className="scroll-mt-[var(--header-offset)] bg-white section-py" aria-labelledby={`${data.id ?? "workflow"}-title`}>
       <Container>
         <SectionHeading title={data.title} subtitle={data.subtitle} id={`${data.id ?? "workflow"}-title`} />
         <ol className="mt-8 sm:mt-10">

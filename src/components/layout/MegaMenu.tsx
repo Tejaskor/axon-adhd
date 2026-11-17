@@ -29,8 +29,8 @@ export function MegaMenu({ item, id, onNavigate }: { item: MegaItem; id: string;
                     <NavIcon name={link.icon} className="size-5" />
                   </span>
                   <span className="pt-px">
-                    <span className="block text-[14.5px] leading-[1.25] font-bold text-ink-menu group-hover:text-brand">{link.label}</span>
-                    <span className="mt-0.5 line-clamp-2 block text-[12.5px] leading-[1.4] text-muted">{link.description}</span>
+                    <span className="block text-[16px] leading-[1.25] font-bold text-ink-menu group-hover:text-brand">{link.label}</span>
+                    <span className="mt-0.5 line-clamp-2 block text-[14px] leading-[1.4] text-muted">{link.description}</span>
                   </span>
                 </Link>
               </li>
@@ -40,9 +40,9 @@ export function MegaMenu({ item, id, onNavigate }: { item: MegaItem; id: string;
         <div className="flex h-full flex-col overflow-hidden rounded-panel border border-white/75 bg-white/60 shadow-[0_12px_28px_rgba(15,27,46,.1)]">
           <Image src={item.featured.image.src} alt={item.featured.image.alt} width={item.featured.image.width} height={item.featured.image.height} sizes="320px" className="h-28 w-full shrink-0 object-cover" />
           <div className="flex flex-1 flex-col px-[15px] pt-[13px] pb-[15px]">
-            <p className="mb-[5px] text-[15px] leading-[1.25] font-bold text-ink-menu">{item.featured.title}</p>
-            <p className="mb-3 line-clamp-3 text-[12.5px] leading-[1.5] text-muted">{item.featured.text}</p>
-            <Link href={item.featured.cta.href} onNavigate={onNavigate} className="group/feat mt-auto inline-flex items-center gap-1.5 text-[13.5px] font-bold text-brand hover:text-primary-hover">
+            <p className="mb-[5px] text-[16px] leading-[1.25] font-bold text-ink-menu">{item.featured.title}</p>
+            <p className="mb-3 line-clamp-3 text-[14px] leading-[1.5] text-muted">{item.featured.text}</p>
+            <Link href={item.featured.cta.href} onNavigate={onNavigate} className="group/feat mt-auto inline-flex items-center gap-1.5 text-[16px] font-bold text-brand hover:text-primary-hover">
               {item.featured.cta.label}
               <ArrowRight aria-hidden className="size-4 transition-transform duration-200 ease-brand group-hover/feat:translate-x-1" />
             </Link>

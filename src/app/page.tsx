@@ -1,6 +1,6 @@
 import { ADHDMythBuster } from "@/components/sections/ADHDMythBuster";
 import { CareYouCanTrust } from "@/components/sections/CareYouCanTrust";
-import { AccommodationContact } from "@/components/sections/AccommodationSections";
+import { CoverageContact } from "@/components/sections/CoverageContact";
 import { FAQAccordion } from "@/components/sections/FAQAccordion";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { GettingHelpSimple } from "@/components/sections/GettingHelpSimple";
@@ -14,7 +14,7 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { WeSeeYou } from "@/components/sections/WeSeeYou";
 import { WhyAxon } from "@/components/sections/WhyAxon";
 import { homeFaqs } from "@/content/faqs";
-import { contactSection, faqSection, testimonialsSection } from "@/content/home";
+import { faqSection, testimonialsSection } from "@/content/home";
 import { googleRating, reviews } from "@/content/trust";
 import { pageMetadata } from "@/lib/seo";
 
@@ -42,8 +42,6 @@ export default function HomePage() {
       <Testimonials {...testimonialsSection} reviews={reviews} rating={googleRating} />
       <LatestBlogs />
       <FinalCTA />
-      {/* Accommodation-page contact design; its built-in copy is identical to `contactSection`, which supplies the rest. */}
-      <AccommodationContact eyebrow={null} description={contactSection.subtitle} compact />
       {/* Background matches "You're not broken-and we'll prove it." (FinalCTA). */}
       <FAQAccordion
         variant="split"
@@ -55,6 +53,7 @@ export default function HomePage() {
         anchors
         background="bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)]"
       />
+      <CoverageContact />
     </>
   );
 }

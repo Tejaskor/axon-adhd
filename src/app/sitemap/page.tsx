@@ -73,7 +73,7 @@ function Label({ label, href }: { label: string; href?: string }) {
 function Tree({ group, n }: { group: Group; n: number }) {
   return (
     <nav aria-labelledby={`sm-${n}`}>
-      <h2 id={`sm-${n}`} className="text-[22px] leading-tight font-bold text-primary sm:text-[24px]">
+      <h2 id={`sm-${n}`} className="type-h2 text-navy">
         {group.title}
       </h2>
       <div className="mt-6 pl-4">
@@ -113,7 +113,7 @@ export default function SitemapPage() {
   return (
     <section className="-mt-[var(--header-height)] bg-white pt-[128px] pb-20 sm:pt-[136px] sm:pb-24">
       <div className="mx-auto w-full max-w-[1372px] px-4">
-        <h1 className="text-[34px] leading-tight font-bold tracking-[-0.02em] text-navy sm:text-[40px]">
+        <h1 className="type-h1 text-navy">
           Site<span className="text-primary">Map</span>
         </h1>
         <span aria-hidden className="mt-2 block h-[3px] w-14 rounded-full bg-gradient-to-r from-[#22C083] to-primary" />

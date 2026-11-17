@@ -95,7 +95,7 @@
 .axn .axn-head__p{max-width:680px;line-height:1.55}
 
 /* ---------- Buttons (same as axonadhd.com homepage) ---------- */
-.axn .axn-btn,.axn .axn-btn-o,.axn .axn-btn-w{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--axn-b);font-size:16px;font-weight:400;line-height:1.2;padding:12px 20px;min-height:44px;border-radius:50px;border:1px solid var(--axn-blue);text-decoration:none;text-align:center;transition:background-color .2s ease,color .2s ease,border-color .2s ease;max-width:100%}
+.axn .axn-btn,.axn .axn-btn-o,.axn .axn-btn-w{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--axn-b);font-size:16px;font-weight:400;line-height:1.2;padding:10px 16px;min-height:44px;border-radius:50px;border:1px solid var(--axn-blue);text-decoration:none;text-align:center;transition:background-color .2s ease,color .2s ease,border-color .2s ease;max-width:100%}
 .axn .axn-btn{background:var(--axn-blue);color:#fff;box-shadow:0 1px 2px rgba(16,24,40,.05)}
 .axn .axn-btn:hover,.axn .axn-btn:focus-visible{background:var(--axn-navy);border-color:var(--axn-navy);color:#fff}
 .axn .axn-btn-o{background:#fff;color:var(--axn-blue)}
@@ -545,7 +545,7 @@
   .axn .axn-ready__h{font-size:22px}
   .axn .axn-sticky{padding-left:12px;padding-right:12px;gap:10px}
   .axn .axn-sticky__amt{font-size:18px}
-  .axn .axn-sticky .axn-btn{font-size:15px;padding:12px 14px}
+  .axn .axn-sticky .axn-btn{font-size:15px;padding:10px 16px}
 }
 
 /* =========================================================
@@ -592,7 +592,7 @@
    ========================================================= */
 
 /* ---------- 1) FREE ASSESSMENT + 10% OFF ---------- */
-.axn .axn-btn--green{background:var(--axn-green);border-color:var(--axn-green);color:#fff;padding:14px 28px;min-height:52px;font-size:16px;font-weight:500}
+.axn .axn-btn--green{background:var(--axn-green);border-color:var(--axn-green);color:#fff;padding:10px 16px;min-height:52px;font-size:16px;font-weight:500}
 .axn .axn-btn--green:hover,.axn .axn-btn--green:focus-visible{background:var(--axn-green-700);border-color:var(--axn-green-700);color:#fff}
 .axn .axn-bha__link{font-size:14px}
 
@@ -1482,9 +1482,9 @@
 @media (max-width:360px){
   .axn .axn-wrap,.axn .axn-wrap--d{padding:0 14px}
   .axn .axn-dhero__h1{font-size:30px}
-  .axn .axn-btn--lg{font-size:16px;padding:12px 16px}
+  .axn .axn-btn--lg{font-size:16px;padding:10px 16px}
   .axn .axn-states__list{grid-template-columns:minmax(0,1fr)}
-  .axn .axn-sticky .axn-btn{font-size:14px;padding:12px 12px}
+  .axn .axn-sticky .axn-btn{font-size:14px;padding:10px 16px}
   .axn .axn-sticky__amt{font-size:17px}
 }
 
@@ -1782,10 +1782,10 @@
   .axn .axn-dhero__grid{padding-bottom:116px;gap:28px}
   .axn .axn-sec--ref{padding:48px 0}
   .axn.axn .axn-sticky{padding-left:12px;padding-right:12px}
-  .axn.axn .axn-sticky .axn-btn{font-size:15.5px;padding:12px 14px}
+  .axn.axn .axn-sticky .axn-btn{font-size:15.5px;padding:10px 16px}
 }
 @media (max-width:360px){
-  .axn.axn .axn-sticky .axn-btn{font-size:14.5px;padding:12px 10px}
+  .axn.axn .axn-sticky .axn-btn{font-size:14.5px;padding:10px 16px}
 }
 
 /* ---------------------------------------------------------------------
@@ -1920,7 +1920,7 @@
 .axn .axn-pc__foot .axn-btn-o:hover svg{transform:translateX(4px)}
 .axn .axn-pc__fine{text-align:center;font-size:12px;line-height:1.5;color:var(--axn-muted)}
 
-.axn .axn-pc__foot .axn-btn-o{padding-inline:14px;font-size:15px;white-space:nowrap}
+.axn .axn-pc__foot .axn-btn-o{padding-inline:16px;font-size:15px;white-space:nowrap}
 
 
 /* ---------- Responsive ---------- */
@@ -1953,7 +1953,7 @@
   .axn .axn-pc__now{font-size:32px}
   .axn .axn-pc__was{font-size:18px}
   .axn .axn-pc__offer{padding:12px 14px;font-size:13.5px}
-  .axn .axn-pc__foot .axn-btn,.axn .axn-pc__foot .axn-btn-o{font-size:15px;padding:12px 14px}
+  .axn .axn-pc__foot .axn-btn,.axn .axn-pc__foot .axn-btn-o{font-size:15px;padding:10px 16px}
 }
 @media (hover:none){
   .axn .axn-pc__card:hover{transform:none}
@@ -2076,7 +2076,7 @@
    HERO CTA REFINEMENT (height, padding, type, radius, shadow, hover). Colours unchanged.
    ===================================================================== */
 .axn.axn.axn.axn .axn-dhero__ctas{gap:14px 28px;margin-top:6px}
-.axn.axn.axn.axn .axn-dhero__ctas .axn-btn{min-height:56px;padding:0 30px;gap:10px;border-radius:999px;box-shadow:0 1px 2px rgba(16,69,141,.12),0 12px 26px -14px rgba(37,106,204,.65),inset 0 1px 0 rgba(255,255,255,.2);transition:background-color .25s ease,border-color .25s ease,box-shadow .3s cubic-bezier(.16,1,.3,1),transform .3s cubic-bezier(.16,1,.3,1)}
+.axn.axn.axn.axn .axn-dhero__ctas .axn-btn{min-height:56px;padding:10px 16px;gap:10px;border-radius:50px;box-shadow:0 1px 2px rgba(16,69,141,.12),0 12px 26px -14px rgba(37,106,204,.65),inset 0 1px 0 rgba(255,255,255,.2);transition:background-color .25s ease,border-color .25s ease,box-shadow .3s cubic-bezier(.16,1,.3,1),transform .3s cubic-bezier(.16,1,.3,1)}
 .axn.axn.axn.axn .axn-dhero__ctas .axn-btn:hover,
 .axn.axn.axn.axn .axn-dhero__ctas .axn-btn:focus-visible{transform:translateY(-2px);box-shadow:0 1px 2px rgba(16,69,141,.14),0 18px 32px -14px rgba(16,69,141,.6),inset 0 1px 0 rgba(255,255,255,.2)}
 .axn.axn.axn.axn .axn-dhero__ctas .axn-btn:active{transform:translateY(0);box-shadow:0 1px 2px rgba(16,69,141,.14),0 8px 16px -10px rgba(16,69,141,.55)}
@@ -2322,3 +2322,54 @@
 
 /* Landing-page header replaces the site header on this route only (the selector needs the new header to be mounted) */
 body:has(.axn-lp-header) [data-site-header]{display:none}
+
+/* Consistent section vertical padding: Mobile 45px, Tablet 60px, Desktop 80px */
+.axn.axn.axn .axn-sec,
+.axn.axn.axn .axn-sec--64,
+.axn.axn.axn .axn-sec--72,
+.axn.axn.axn .axn-sec--80,
+.axn.axn.axn .axn-sec--88,
+.axn.axn.axn .axn-sec--ref,
+.axn.axn.axn .axn-reviews,
+.axn.axn.axn .axn-ready,
+.axn.axn.axn .axn-spec,
+.axn.axn.axn .axn-rvw,
+.axn.axn.axn .axn-fin {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+@media (max-width: 1023px) {
+  .axn.axn.axn .axn-sec,
+  .axn.axn.axn .axn-sec--64,
+  .axn.axn.axn .axn-sec--72,
+  .axn.axn.axn .axn-sec--80,
+  .axn.axn.axn .axn-sec--88,
+  .axn.axn.axn .axn-sec--ref,
+  .axn.axn.axn .axn-reviews,
+  .axn.axn.axn .axn-ready,
+  .axn.axn.axn .axn-spec,
+  .axn.axn.axn .axn-rvw,
+  .axn.axn.axn .axn-fin {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+@media (max-width: 767px) {
+  .axn.axn.axn .axn-sec,
+  .axn.axn.axn .axn-sec--64,
+  .axn.axn.axn .axn-sec--72,
+  .axn.axn.axn .axn-sec--80,
+  .axn.axn.axn .axn-sec--88,
+  .axn.axn.axn .axn-sec--ref,
+  .axn.axn.axn .axn-reviews,
+  .axn.axn.axn .axn-ready,
+  .axn.axn.axn .axn-spec,
+  .axn.axn.axn .axn-rvw,
+  .axn.axn.axn .axn-fin {
+    padding-top: 45px;
+    padding-bottom: 45px;
+  }
+}
+.axn.axn.axn .axn-sec--ref.axn-sec--nt {
+  padding-top: 0 !important;
+}

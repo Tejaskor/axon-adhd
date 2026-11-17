@@ -54,7 +54,7 @@ export function StepsJourney({ data }: { data: StepsSection }) {
   return (
     <section
       id={data.id}
-      className="relative isolate scroll-mt-[var(--header-offset)] overflow-hidden bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)]! py-16 sm:py-20 lg:py-24"
+      className="relative isolate scroll-mt-[var(--header-offset)] overflow-hidden bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)]! section-py"
       aria-labelledby={titleId}
     >
       <div className="mx-auto w-full max-w-[1372px] px-4">
@@ -65,7 +65,7 @@ export function StepsJourney({ data }: { data: StepsSection }) {
               {data.eyebrow}
             </p>
           )}
-          <h2 id={titleId} className={cn("type-section font-display leading-[1.15] tracking-[-0.02em] text-balance text-navy", data.eyebrow && "mt-4")}>
+          <h2 id={titleId} className={cn("type-h2 text-navy text-balance", data.eyebrow && "mt-4")}>
             {highlight(data.title, data.accent)}
           </h2>
           {data.subtitle && <p className="type-body mx-auto mt-4 max-w-[900px] text-pretty text-[#2B3A4F]">{data.subtitle}</p>}

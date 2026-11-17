@@ -5,7 +5,7 @@ import type { Cta } from "@/content/types";
 /** Call-to-action band ("Haven't Started Yet?", …). */
 export function CTABand({ title, subtitle, primary, secondary }: { title: string; subtitle?: string; primary: Cta; secondary?: Cta }) {
   return (
-    <section className="py-12 sm:py-16" aria-label={title}>
+    <section className="section-py" aria-label={title}>
       <Container>
         <div className="relative overflow-hidden rounded-xl2 bg-gradient-to-br from-primary to-primary-deep px-6 py-12 text-center text-white sm:px-12 sm:py-14">
           <div aria-hidden className="pointer-events-none absolute -top-24 -right-24 size-72 rounded-full bg-white/10 blur-2xl" />

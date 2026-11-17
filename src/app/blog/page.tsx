@@ -18,7 +18,7 @@ export default function BlogIndexPage() {
           <Image src={blogPage.hero.src} alt={blogPage.hero.alt} width={blogPage.hero.width} height={blogPage.hero.height} priority sizes="(max-width: 1340px) 100vw, 1100px" className="mx-auto h-auto w-full max-w-[1100px] rounded-xl2 shadow-soft" />
         </Container>
       </section>
-      <section className="py-14 sm:py-16" aria-label="Articles">
+      <section className="section-py" aria-label="Articles">
         <Container>
           <div className="grid gap-10 lg:grid-cols-[1fr_280px]">
             <ul className="grid gap-6 sm:grid-cols-2">

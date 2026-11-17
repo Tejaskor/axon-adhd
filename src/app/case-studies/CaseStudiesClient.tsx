@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { ButtonLink } from "@/components/ui/Button";
 import { useMemo, useRef, useState } from "react";
 import { caseStudies, caseStudiesPage } from "@/content/case-studies";
 
@@ -214,9 +215,9 @@ export function CaseStudiesClient() {
                       <p className="cs-card-excerpt">
                         <HighlightText text={cs.excerpt} query={searchQuery} />
                       </p>
-                      <Link className="cs-readmore" href={href}>
-                        Read More <span>&raquo;</span>
-                      </Link>
+                      <ButtonLink href={href} className="mt-auto self-start">
+                        Read More
+                      </ButtonLink>
                     </div>
                   </article>
                 );

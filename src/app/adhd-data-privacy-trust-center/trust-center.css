@@ -1985,8 +1985,12 @@ body:has(.axtc) {
   .axtc {
     --axtc-gut: 32px;
   }
-  .axtc-sec {
-    padding: 96px 0 72px;
+  .axtc-sec,
+  #axtc-assessments,
+  #axtc-practices,
+  #axtc-hipaa,
+  #axtc-docs {
+    padding: 60px 0;
   }
   .axtc-hero {
     padding-top: calc(var(--header-height, 96px) + 24px);
@@ -2015,12 +2019,6 @@ body:has(.axtc) {
   .axtc-hero__status-desc {
     font-size: 12.5px;
   }
-  #axtc-assessments {
-    padding: 72px 0;
-  }
-  #axtc-practices {
-    padding: 76px 0;
-  }
   #axtc-practices .axtc-card {
     padding: 28px 24px;
   }
@@ -2034,9 +2032,6 @@ body:has(.axtc) {
   .axtc-faq {
     grid-template-columns: 1fr;
     gap: 36px;
-  }
-  #axtc-hipaa {
-    padding: 76px 0;
   }
   #axtc-hipaa .axtc-baa {
     grid-template-columns: 1fr;
@@ -2067,9 +2062,6 @@ body:has(.axtc) {
   .axtc-baa {
     padding: 36px;
   }
-  #axtc-docs {
-    padding: 76px 0;
-  }
   #axtc-docs .axtc-grid--2 {
     grid-template-columns: 1fr;
     max-width: 680px;
@@ -2084,7 +2076,7 @@ body:has(.axtc) {
     --axtc-gut: 20px;
   }
   .axtc-sec {
-    padding: 76px 0 56px;
+    padding: 45px 0;
   }
   .axtc-hero {
     padding-top: calc(var(--header-height, 96px) + 16px);

@@ -133,6 +133,7 @@ function PlanCard({ plan }: { plan: Plan }) {
       <ButtonLink
         href={plan.cta.href}
         newTab
+        centered
         size="lg"
         variant={plan.id === "package" ? "outline" : "primary"}
         className={cn(
@@ -151,19 +152,16 @@ function PlanCard({ plan }: { plan: Plan }) {
   );
 }
 
-/** Step number colours: blue for the first two, violet for the third (matching the reference). */
-const stepTones = ["text-primary", "text-primary", "text-[#7C3AED]"];
-
-/** "Choose Your Next Step": two-tone heading, three glass plan cards (middle highlighted), then the 3-step strip. */
+/** "Choose Your Next Step": two-tone heading, three glass plan cards (middle highlighted). */
 export function PricingCards() {
   return (
-    <section id="pricing" className="relative isolate overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-16 sm:py-20 lg:py-24" aria-labelledby="pricing-title">
+    <section id="pricing" className="relative isolate overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! section-py" aria-labelledby="pricing-title">
       <div className="mx-auto w-full max-w-[1372px] px-4">
         <div className="mx-auto max-w-[820px] text-center">
-          <h2 id="pricing-title" className="type-section font-display leading-[1.1] tracking-[-0.02em] text-navy">
-            Choose Your <span className="bg-[linear-gradient(90deg,#2578CA,#5498DB)] bg-clip-text text-transparent">Next Step</span>
+          <h2 id="pricing-title" className="type-h2 text-navy">
+            Choose Your <span className="text-primary">Next Step</span>
           </h2>
-          <p className="type-lead mx-auto mt-4 max-w-[760px] text-pretty text-[#4B5B73]">{emphasise(pricing.intro, "text-primary")}</p>
+          <p className="mx-auto mt-4 text-[20px] leading-[1.65] max-w-[760px] text-pretty text-[#4B5B73]">{emphasise(pricing.intro, "text-primary")}</p>
         </div>
 
         <div className="mx-auto mt-14 grid max-w-[560px] items-stretch gap-10 md:max-w-none md:grid-cols-3 md:gap-5 lg:gap-7">
@@ -174,26 +172,6 @@ export function PricingCards() {
             </Reveal>
           ))}
         </div>
-
-        <ol className={cn("mt-10 flex flex-col gap-4 rounded-[28px] p-6 md:flex-row md:items-center md:gap-3 md:px-8 lg:mt-12", glass)}>
-          {pricing.steps.map((step, i) => {
-            const tone = stepTones[i];
-            return (
-              <Fragment key={step.title}>
-                {i > 0 && <ArrowRight aria-hidden className="mx-auto size-5 shrink-0 rotate-90 text-[#6B7A90] md:mx-1 md:rotate-0" />}
-                <li className="flex flex-1 items-center gap-3 lg:gap-4">
-                  <span aria-hidden className={cn("grid size-11 shrink-0 place-items-center rounded-full border border-white/80 bg-primary-100/80 text-[20px] shadow-[inset_0_1px_0_rgba(255,255,255,.9),0_6px_16px_rgba(37,120,202,.12)] font-bold lg:size-12", tone)}>
-                    {i + 1}
-                  </span>
-                  <div className="min-w-0">
-                    <h3 className="text-[16px] font-bold text-navy">{step.title}</h3>
-                    <p className="mt-1 text-[14px] leading-snug text-[#4B5B73]">{emphasise(step.text, "text-primary")}</p>
-                  </div>
-                </li>
-              </Fragment>
-            );
-          })}
-        </ol>
       </div>
     </section>
   );

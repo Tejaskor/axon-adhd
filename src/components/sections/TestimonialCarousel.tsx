@@ -102,11 +102,11 @@ export function TestimonialCarousel({ data }: { data: TestimonialCarouselSection
             <Users aria-hidden className="size-[18px]" />
             {data.eyebrow}
           </p>
-          <h2 id="testimonials-title" className="type-section mt-5 leading-[1.15] tracking-[-0.01em] text-[#174F38]">
+          <h2 id="testimonials-title" className="type-h2 text-navy mt-5">
             {after !== undefined ? (
               <>
                 {before}
-                <span className="font-bold text-[#E99B19]">{data.accent}</span>
+                <span className="font-bold text-primary">{data.accent}</span>
                 {after}
               </>
             ) : (

@@ -30,7 +30,7 @@ export function GradientCtaBanner({ data, accent, titleId, splitFromSm = false }
           <div className="relative z-10 mx-auto w-full max-w-[1372px] px-4 py-10 sm:py-12 lg:py-14">
             <Reveal className={splitFromSm ? "sm:w-[56%]" : "lg:w-[56%]"}>
               {data.eyebrow && <p className="inline-block rounded-full bg-white/18 px-5 py-2 text-[15px] font-medium text-white/95 backdrop-blur-sm sm:text-[17px]">{data.eyebrow}</p>}
-              <h2 id={titleId} className={cn("type-section font-display leading-[1.2] tracking-[-0.02em] text-balance", data.eyebrow && "mt-4")}>
+              <h2 id={titleId} className={cn("type-h2 text-balance", data.eyebrow && "mt-4")}>
                 {before}
                 {before !== data.title && (
                   <span className="relative inline-block text-[#4EDEFC]">

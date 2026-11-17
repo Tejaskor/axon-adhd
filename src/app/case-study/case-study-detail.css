@@ -218,7 +218,7 @@
   font-size: 16px !important;
   line-height: 1.2;
   cursor: pointer;
-  border-radius: 999px;
+  border-radius: 50px;
   transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
 }
 
@@ -228,7 +228,7 @@
   align-items: center;
   justify-content: center;
   height: 48px !important;
-  padding: 0 26px !important;
+  padding: 10px 16px !important;
   font-weight: 700;
   text-decoration: none !important;
   background: var(--cs-blue);
@@ -261,7 +261,7 @@
   align-items: center;
   justify-content: center;
   height: 48px !important;
-  padding: 0 26px !important;
+  padding: 10px 16px !important;
   font-weight: 600;
   font-size: 16px !important;
   background: #fff;

@@ -25,7 +25,7 @@ export function AssessmentOverview({ data }: { data: AssessmentOverviewSection }
 
   return (
     // Same background as "What You'll Learn from the Free Assessment" and "How we support you".
-    <section className="relative overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-14 sm:py-16 lg:py-20" aria-label={data.title}>
+    <section className="relative overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! section-py" aria-label={data.title}>
       <div className="mx-auto w-full max-w-[1372px] px-4">
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-14">
           <div>
@@ -35,7 +35,7 @@ export function AssessmentOverview({ data }: { data: AssessmentOverviewSection }
                 {data.eyebrow}
               </p>
             )}
-            <h2 className="type-section font-display leading-[1.12] tracking-[-0.02em] text-balance text-navy">
+            <h2 className="type-h2 text-navy text-balance">
               {lead}
               <span className="relative inline-block whitespace-nowrap text-primary">
                 {data.accent}

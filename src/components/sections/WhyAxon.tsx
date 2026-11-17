@@ -2,7 +2,7 @@ import { ClipboardCheck, Clock, ListChecks, Settings, type LucideIcon } from "lu
 import { whyAxon } from "@/content/home";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
-import { h2, lead } from "./AccommodationSections";
+import { h2 } from "./AccommodationSections";
 import { PathCard } from "./AdhdCareSections";
 
 const icons: Record<string, LucideIcon> = { gear: Settings, clipboard: ClipboardCheck, clock: Clock, checklist: ListChecks };
@@ -10,15 +10,17 @@ const icons: Record<string, LucideIcon> = { gear: Settings, clipboard: Clipboard
 /** "You deserve clarity not guesswork": same design as the ADHD Care page's "Your Path to Long-Term Success". */
 export function WhyAxon() {
   return (
-    <section className="bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)] py-16 sm:py-20 lg:py-24" aria-labelledby="why-title">
+    <section className="bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)] section-py" aria-labelledby="why-title">
       <div className="mx-auto w-full max-w-[1372px] px-4">
         <Reveal className="mx-auto max-w-[880px] text-center">
-          <h2 id="why-title" className={cn(h2, "text-[#0F2F55]")}>
+          <h2 id="why-title" className={cn(h2, "")}>
             {whyAxon.title.lead}
-            <span className="bg-[linear-gradient(90deg,#2578CA_0%,#3C8BD9_100%)] bg-clip-text text-transparent">{whyAxon.title.highlight}</span>
-            {whyAxon.title.tail}
+            <span className="text-primary">
+              {whyAxon.title.highlight}
+              {whyAxon.title.tail}
+            </span>
           </h2>
-          <p className={cn(lead, "mx-auto mt-4 text-[#5B6B80]")}>{whyAxon.subtitle}</p>
+          <p className="mx-auto mt-4 text-[20px] leading-[1.75] text-pretty text-[#5B6B80]">{whyAxon.subtitle}</p>
         </Reveal>
 
         <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4 lg:gap-6">

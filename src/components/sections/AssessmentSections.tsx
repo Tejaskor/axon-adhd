@@ -135,7 +135,7 @@ function AssessmentPreview() {
 export function AssessmentLearn({ data }: { data: SplitSection }) {
   const [subtitle, ...body] = data.paragraphs ?? [];
   return (
-    <section id={data.id} className="relative scroll-mt-[var(--header-offset)] overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-14 sm:py-16 lg:py-20" aria-labelledby="learn-title">
+    <section id={data.id} className="relative scroll-mt-[var(--header-offset)] overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! section-py" aria-labelledby="learn-title">
       <div className={wrap}>
         <Reveal className="mx-auto max-w-[900px] text-center lg:max-w-none">
           <h2 id="learn-title" className={cn(h2, "lg:whitespace-nowrap")}>
@@ -191,10 +191,10 @@ export function AssessmentBannerCta({ data }: { data: CtaSection }) {
 /** Same look as the "Key Benefits for University" section: pale blue gradient, centred heading, the image on the left and the benefits as glass cards on the right. */
 export function AssessmentConfidence({ data }: { data: FeaturesSection }) {
   return (
-    <section className="bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)] py-12 sm:py-14 lg:py-16" aria-labelledby="confidence-title">
+    <section className="bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)] section-py" aria-labelledby="confidence-title">
       <div className={wrap}>
         <div className="mx-auto text-center">
-          <h2 id="confidence-title" className="type-section leading-[1.1] tracking-[-0.02em] text-[#0B1F4D]">
+          <h2 id="confidence-title" className="type-h2 text-navy">
             {data.title}
           </h2>
           {data.subtitle && <p className="mx-auto mt-4 max-w-[900px] text-[16px] leading-snug text-pretty text-[#4B5C75] lg:max-w-none lg:text-[17px] lg:whitespace-nowrap">{data.subtitle}</p>}
@@ -238,7 +238,7 @@ export function AssessmentConfidence({ data }: { data: FeaturesSection }) {
 export function AssessmentOpensDoors({ data }: { data: FeaturesSection }) {
   const tones = ["blue", "green", "orange"] as const;
   return (
-    <section className="bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)] py-16 sm:py-20 lg:py-24" aria-labelledby="doors-title">
+    <section className="bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)] section-py" aria-labelledby="doors-title">
       <div className={wrap}>
         <Reveal className="mx-auto max-w-[900px] text-center">
           <h2 id="doors-title" className={h2}>
@@ -270,7 +270,7 @@ export function AssessmentOpensDoors({ data }: { data: FeaturesSection }) {
 
 export function AssessmentProcess({ data }: { data: StepsSection }) {
   return (
-    <section className="bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)] py-16 sm:py-20 lg:py-24" aria-labelledby="process-title">
+    <section className="bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)] section-py" aria-labelledby="process-title">
       {/* 1440px wide; the side padding keeps the timeline line and its dots (and their glow) well inside the container. */}
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-10">
         <Reveal className="mx-auto max-w-[900px] text-center">
