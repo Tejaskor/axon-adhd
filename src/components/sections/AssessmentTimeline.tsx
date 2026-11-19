@@ -140,11 +140,11 @@ export function AssessmentTimeline({ items }: { items: Step[] }) {
                     <Icon className="size-[18px]" strokeWidth={2} />
                   </span>
                 </div>
-                <h3 className="type-h3 mt-2 text-[#123D6A]">
+                <h3 className="mt-2 text-[20px] leading-snug font-bold text-[#123D6A]">
                   <span className="sr-only">Step {i + 1}: </span>
                   {step.title}
                 </h3>
-                <p className="mt-3 max-w-[520px] text-[16px] leading-[1.7] text-pretty text-[#44566E] sm:text-[18px]">{step.text}</p>
+                <p className="mt-3 max-w-[520px] text-[16px] leading-[1.65] text-pretty text-[#44566E]">{step.text}</p>
               </div>
             </div>
           </li>

@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Button } from "@/components/ui/Button";
 import { newsletterSchema, type NewsletterInput } from "@/lib/validators";
 
 type Status = "idle" | "success" | "error";
@@ -49,9 +50,9 @@ export function NewsletterForm() {
           {...register("email")}
         />
         <input type="text" tabIndex={-1} autoComplete="off" aria-hidden className="hidden" {...register("company")} />
-        <button type="submit" disabled={isSubmitting} className="rounded-pill bg-primary px-5 py-2.5 font-medium text-white transition-colors hover:bg-primary-hover disabled:opacity-60">
+        <Button type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Subscribing..." : "Subscribe"}
-        </button>
+        </Button>
       </div>
       <p id="newsletter-status" role="status" className="type-small mt-2 min-h-5">
         {errors.email ? <span className="text-[#FF8A8A]">{errors.email.message}</span> : status !== "idle" && <span className={status === "success" ? "text-[#65C98A]" : "text-[#FF8A8A]"}>{message}</span>}

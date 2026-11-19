@@ -4,6 +4,7 @@ import { ArrowRight, ArrowUp, ChevronLeft, ChevronRight, Users } from "lucide-re
 import { useEffect, useId, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 import type { TestimonialCarouselSection } from "@/content/pages/types";
 import { Container } from "@/components/ui/Container";
+import { TestimonialFan } from "./TestimonialFan";
 import { cn } from "@/lib/utils";
 
 type Item = TestimonialCarouselSection["items"][number];
@@ -30,6 +31,11 @@ function NavButton({ dir, onClick, className }: { dir: "prev" | "next"; onClick:
       <Icon aria-hidden className="size-5" strokeWidth={2.75} />
     </button>
   );
+}
+
+/** A "\n" in a title is a deliberate line break (ignored on phones, where the heading wraps by itself). */
+function lines(text: string) {
+  return text.split("\n").flatMap((part, i) => (i === 0 ? [part] : [" ", <br key={i} className="max-sm:hidden" />, part]));
 }
 
 const COLLAPSE_MS = 400;
@@ -98,24 +104,29 @@ export function TestimonialCarousel({ data }: { data: TestimonialCarouselSection
     <section className="relative overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! pt-12 pb-24 sm:pt-16 sm:pb-28" aria-labelledby="testimonials-title">
       <Container className="relative">
         <div className="mx-auto max-w-[960px] text-center">
-          <p className="inline-flex items-center gap-2 rounded-full border border-[#D5EDE0] bg-[#F1F8F4] px-5 py-2 text-[15px] font-semibold text-[#174F38] shadow-[0_2px_8px_-4px_rgba(23,79,56,.2)]">
-            <Users aria-hidden className="size-[18px]" />
-            {data.eyebrow}
-          </p>
-          <h2 id="testimonials-title" className="type-section mt-5 leading-[1.15] tracking-[-0.01em] text-[#174F38]">
+          {data.eyebrow && (
+            <p className="inline-flex items-center gap-2 rounded-full border border-[#D5EDE0] bg-[#F1F8F4] px-5 py-2 text-[15px] font-semibold text-[#174F38] shadow-[0_2px_8px_-4px_rgba(23,79,56,.2)]">
+              <Users aria-hidden className="size-[18px]" />
+              {data.eyebrow}
+            </p>
+          )}
+          <h2 id="testimonials-title" className={cn("type-h2 text-navy", data.eyebrow && "mt-5")}>
             {after !== undefined ? (
               <>
-                {before}
-                <span className="font-bold text-[#E99B19]">{data.accent}</span>
-                {after}
+                {lines(before)}
+                <span className="font-bold text-primary">{data.accent}</span>
+                {lines(after)}
               </>
             ) : (
-              data.title
+              lines(data.title)
             )}
           </h2>
-          <p className="type-body mx-auto mt-3 text-body">{data.subtitle}</p>
+          {data.subtitle && <p className="mx-auto mt-3 text-[20px] leading-[1.7] text-body">{data.subtitle}</p>}
         </div>
 
+        {data.variant === "fan" ? (
+          <TestimonialFan items={data.items} />
+        ) : (
         <div role="region" aria-roledescription="carousel" aria-label="Testimonials" className="mt-10 sm:mt-12">
           <div className="flex items-center gap-3 lg:gap-5">
             <NavButton dir="prev" onClick={prev} className="hidden sm:grid" />
@@ -151,6 +162,7 @@ export function TestimonialCarousel({ data }: { data: TestimonialCarouselSection
             <NavButton dir="next" onClick={next} className="sm:hidden" />
           </div>
         </div>
+        )}
       </Container>
 
     </section>

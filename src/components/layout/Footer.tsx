@@ -40,7 +40,7 @@ const complianceBadgesMeta: Record<string, { label: string; alt: string }> = {
 function FooterLinks({ title, links }: { title: string; links: Array<{ label: string; href: string }> }) {
   return (
     <div>
-      <h2 className="flex items-center font-display text-[15px] font-extrabold tracking-[0.08em] text-white uppercase lg:h-[68px]">{title}</h2>
+      <h2 className="flex items-center font-display text-[18px] font-extrabold tracking-[0.08em] text-white uppercase lg:h-[68px]">{title}</h2>
       <ul className="mt-6 space-y-4">
         {links.map((l) => (
           <li key={l.href}>
@@ -95,7 +95,7 @@ export function Footer() {
         </div>
 
         <div className="sm:col-span-2 lg:col-span-1">
-          <h2 className="flex items-center font-display text-[15px] font-extrabold tracking-[0.08em] text-white uppercase lg:h-[68px]">Contact Us</h2>
+          <h2 className="flex items-center font-display text-[18px] font-extrabold tracking-[0.08em] text-white uppercase lg:h-[68px]">Contact Us</h2>
           <address className="type-body mt-6 space-y-4 not-italic">
             <a href={`mailto:${site.email}`} className="flex items-center gap-4 text-white/95 transition-colors hover:text-[#4FC3F7] active:text-white">
               <Mail aria-hidden className="size-6 shrink-0 text-[#29B6F6]" strokeWidth={1.5} /> {site.email}
@@ -112,7 +112,7 @@ export function Footer() {
               </span>
             </a>
           </address>
-          <ul className="mt-7 flex flex-wrap items-center gap-3.5 sm:gap-4 lg:gap-3.5 xl:gap-4.5" aria-label="Compliance certifications">
+          <ul className="mt-7 flex flex-wrap items-center gap-3.5 sm:gap-4 lg:gap-3.5 xl:gap-3" aria-label="Compliance certifications">
             {complianceBadgesColor.map((b) => {
               const meta = complianceBadgesMeta[b.src] ?? {
                 label: b.alt,
@@ -132,7 +132,7 @@ export function Footer() {
                       height={b.height}
                       className={cn(
                         "transition-opacity duration-300 group-hover:opacity-95",
-                        b.src.includes("hipaa") ? "h-8 w-auto sm:h-9 lg:h-8.5 xl:h-10" : "h-10 w-auto sm:h-11 lg:h-10.5 xl:h-12",
+                        b.src.includes("hipaa") ? "h-11 w-auto sm:h-12 lg:h-9 xl:h-12" : "h-14 w-auto sm:h-16 lg:h-11 xl:h-14",
                       )}
                     />
                   </Link>

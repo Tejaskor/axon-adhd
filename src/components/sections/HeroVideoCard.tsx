@@ -8,12 +8,13 @@ import { cn } from "@/lib/utils";
  * YouTube card for photo heroes (white frame around a 16:9 player). Shows the poster with a play button; the iframe (and any audio)
  * only loads after an explicit click, so nothing autoplays on page load.
  */
-export function HeroVideoCard({ id, title, className }: { id: string; title: string; className?: string }) {
+export function HeroVideoCard({ id, title, className, frame = true, aspect }: { id: string; title: string; className?: string; frame?: boolean; aspect?: string }) {
   const [playing, setPlaying] = useState(false);
 
   return (
-    <div className={cn("min-w-0 rounded-[28px] border border-white bg-white/80 p-3 shadow-[0_24px_60px_-24px_rgba(37,120,202,.45)] sm:p-3.5", className)}>
-      <div className="relative aspect-video overflow-hidden rounded-[20px] bg-navy">
+    // `frame={false}` drops the white card behind the player but keeps its padding, so the video stays exactly the same size.
+    <div className={cn("min-w-0 rounded-[28px] border p-3 sm:p-3.5", frame ? "border-white bg-white/80 shadow-[0_24px_60px_-24px_rgba(37,120,202,.45)]" : "border-transparent", className)}>
+      <div className={cn("relative overflow-hidden rounded-[20px] bg-navy", !aspect && "aspect-video")} style={aspect ? { aspectRatio: aspect } : undefined}>
         {playing ? (
           <iframe
             src={`https://www.youtube.com/embed/${id}?autoplay=1&rel=0`}

@@ -83,7 +83,7 @@ export function Results() {
 export function HowItWorksGlass({ data }: { data: FeaturesSection }) {
   const [lead, tail] = data.accent && data.title.includes(data.accent) ? data.title.split(data.accent) : [data.title, ""];
   return (
-    <section id={data.id} className="scroll-mt-[var(--header-offset)] bg-[radial-gradient(55%_55%_at_10%_35%,rgba(37,120,202,.14),transparent),radial-gradient(45%_50%_at_92%_30%,rgba(134,182,229,.16),transparent),linear-gradient(180deg,#F6FAFF_0%,#EAF2FD_100%)] py-14 sm:py-20">
+    <section id={data.id} className="scroll-mt-[var(--header-offset)] bg-[radial-gradient(55%_55%_at_10%_35%,rgba(37,120,202,.14),transparent),radial-gradient(45%_50%_at_92%_30%,rgba(134,182,229,.16),transparent),linear-gradient(180deg,#F6FAFF_0%,#EAF2FD_100%)] section-py">
       <Container>
         <div className="mx-auto max-w-[760px] text-center">
           {data.eyebrow && (
@@ -92,12 +92,12 @@ export function HowItWorksGlass({ data }: { data: FeaturesSection }) {
               {data.eyebrow}
             </p>
           )}
-          <h2 className="type-h2 mt-4 text-balance text-navy">
+          <h2 className="type-h2 text-navy mt-4 text-balance">
             {lead}
             {data.accent && <span className="text-primary">{data.accent}</span>}
             {tail}
           </h2>
-          {data.subtitle && <p className="type-body mx-auto mt-4 max-w-[600px] text-body">{data.subtitle}</p>}
+          {data.subtitle && <p className="mx-auto mt-4 max-w-[600px] text-[20px] leading-[1.7] text-body">{data.subtitle}</p>}
         </div>
 
         <ol className="mt-12 grid gap-y-4 sm:mx-auto sm:max-w-[560px] lg:mt-14 lg:max-w-none lg:grid-cols-3 lg:gap-x-14 lg:gap-y-0">

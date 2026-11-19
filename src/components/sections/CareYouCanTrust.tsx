@@ -52,13 +52,13 @@ const featureTones = {
 export function CareYouCanTrust() {
   return (
     // Same background as "We see you." (WeSeeYou) and "Choose Your Next Step".
-    <section className="relative isolate overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-14 sm:py-20" aria-labelledby="trust-title">
+    <section className="relative isolate overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! section-py" aria-labelledby="trust-title">
       <Container>
         <Reveal className="mx-auto max-w-[820px] text-center">
           <h2 id="trust-title" className="type-h2 text-navy">
-            {careYouCanTrust.title}
+            {careYouCanTrust.title.replace(/\s*trust$/i, "")} <span className="text-[#2578CA]">trust</span>
           </h2>
-          <p className="type-body mt-3 text-pretty text-body">{careYouCanTrust.subtitle}</p>
+          <p className="mt-3 text-[20px] leading-[1.7] text-pretty text-body">{careYouCanTrust.subtitle}</p>
         </Reveal>
 
         <div className="relative mx-auto mt-10 flex max-w-[1060px] flex-col items-center gap-6 md:mt-12 md:flex-row md:justify-center md:gap-[clamp(40px,8vw,120px)]">
@@ -95,7 +95,7 @@ export function CareYouCanTrust() {
                   <span aria-hidden className={cn("grid size-16 place-items-center rounded-full lg:size-[72px]", featureTones[f.tone])}>
                     <Icon className="size-7 lg:size-8" strokeWidth={1.75} />
                   </span>
-                  <h3 className="mt-4 text-[16px] leading-snug font-bold text-balance text-navy lg:text-[clamp(15px,1.25vw,19px)]">{f.title}</h3>
+                  <h3 className="mt-4 text-[20px] leading-snug font-bold text-balance text-navy">{f.title}</h3>
                   <p className="type-small mt-2 text-balance text-body">{f.text}</p>
                 </li>
               );

@@ -4,6 +4,7 @@ import { JsonLd } from "@/components/ui/JsonLd";
 import { links } from "@/content/site";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 import "./payment.css";
+import { ButtonLink } from "@/components/ui/Button";
 
 export const metadata: Metadata = pageMetadata({
   title: "Axon ADHD Payment Portal | Secure Online Payments",
@@ -110,15 +111,7 @@ export default function PaymentPage() {
               </ul>
 
               <div className="axon-card-button-wrap">
-                <a
-                  href={links.freeScreening}
-                  className="axon-btn axon-btn-secondary"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span>Start Free Screening</span>
-                  <span className="axon-arrow" aria-hidden="true">→</span>
-                </a>
+                <ButtonLink href={links.freeScreening} variant="outline" newTab>Start Free Screening</ButtonLink>
                 <span className="axon-button-note">
                   No credit card required
                 </span>
@@ -222,15 +215,7 @@ export default function PaymentPage() {
               </ul>
 
               <div className="axon-card-button-wrap">
-                <a
-                  href={links.comprehensive}
-                  className="axon-btn axon-btn-featured"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span>Get 10% Off My Evaluation</span>
-                  <span className="axon-arrow" aria-hidden="true">→</span>
-                </a>
+                <ButtonLink href={links.comprehensive} variant="primary" newTab>Get 10% Off My Evaluation</ButtonLink>
                 <span className="axon-button-note">
                   Secure &amp; confidential &nbsp; • &nbsp; Clinician-led &nbsp; • &nbsp; Superbills provided
                 </span>
@@ -326,15 +311,7 @@ export default function PaymentPage() {
               </ul>
 
               <div className="axon-card-button-wrap">
-                <a
-                  href={links.accommodationCheckout}
-                  className="axon-btn axon-btn-outline"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span>Book Evaluation + Accommodations</span>
-                  <span className="axon-arrow" aria-hidden="true">→</span>
-                </a>
+                <ButtonLink href={links.accommodationCheckout} variant="white" newTab>Book Evaluation + Accommodations</ButtonLink>
               </div>
             </article>
           </div>

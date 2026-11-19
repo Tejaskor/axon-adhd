@@ -80,7 +80,7 @@ export const pricing = {
       icon: "home",
       price: 827,
       discounted: true,
-      breakdown: "$577 (Evaluation) + $250 (Accommodation Support)",
+      breakdown: "$527 (Evaluation) + $250 (Accommodation Support)",
       summary: "Comprehensive evaluation with documentation and ongoing support.",
       description:
         "Complete your payment within 10 minutes and save $50 (on the comprehensive evaluation).",

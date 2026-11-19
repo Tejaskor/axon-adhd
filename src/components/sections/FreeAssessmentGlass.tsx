@@ -24,7 +24,7 @@ const detailIcons: ComponentType<{ className?: string }>[] = [Clock, FileText, Z
 export function FreeAssessmentGlass({ data }: { data: SplitSection }) {
   const [lead, tail] = data.accent && data.title.includes(data.accent) ? data.title.split(data.accent) : [data.title, ""];
   return (
-    <section id={data.id} className="scroll-mt-[var(--header-offset)] bg-[radial-gradient(55%_60%_at_12%_30%,rgba(37,120,202,.14),transparent),radial-gradient(50%_55%_at_92%_70%,rgba(84,152,219,.18),transparent),linear-gradient(180deg,#F6FAFF_0%,#EAF2FD_100%)] py-12 sm:py-16">
+    <section id={data.id} className="scroll-mt-[var(--header-offset)] bg-[radial-gradient(55%_60%_at_12%_30%,rgba(37,120,202,.14),transparent),radial-gradient(50%_55%_at_92%_70%,rgba(84,152,219,.18),transparent),linear-gradient(180deg,#F6FAFF_0%,#EAF2FD_100%)] section-py">
       <Container>
         <div className="rounded-[28px] border border-white/80 bg-white/45 p-5 shadow-[0_30px_80px_rgba(37,120,202,.14)] backdrop-blur-sm sm:rounded-[36px] sm:p-8 lg:p-12">
           <div className="grid gap-8 lg:grid-cols-[1fr_1.05fr] lg:gap-12">
@@ -36,7 +36,7 @@ export function FreeAssessmentGlass({ data }: { data: SplitSection }) {
                     {data.eyebrow}
                   </p>
                 )}
-                <h2 className="type-h2 mt-5 text-balance text-navy">
+                <h2 className="type-h2 text-navy mt-5 text-balance">
                   {lead}
                   {data.accent && <span className="text-primary">{data.accent}</span>}
                   {tail}

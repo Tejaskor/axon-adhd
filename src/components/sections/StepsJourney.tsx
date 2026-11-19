@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Fragment } from "react";
 import { CalendarDays, Clock } from "lucide-react";
 import type { StepsSection } from "@/content/pages/types";
 import { Reveal } from "@/components/ui/Reveal";
@@ -28,13 +29,13 @@ const tones = [
   },
 ] as const;
 
-function highlight(title: string, accent?: string) {
+function highlight(title: string, accent?: string, colour = "text-[#0A4FF0]") {
   if (!accent || !title.includes(accent)) return title;
   const [a, b] = title.split(accent);
   return (
     <>
       {a}
-      <span className="relative inline-block text-[#0A4FF0]">
+      <span className={cn("relative inline-block", colour)}>
         {accent}
         <svg aria-hidden viewBox="0 0 300 14" preserveAspectRatio="none" className="absolute inset-x-[4%] -bottom-[0.2em] h-[0.2em] w-[92%]" fill="none">
           <path d="M2 10 C 70 3, 190 3, 298 8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
@@ -54,7 +55,7 @@ export function StepsJourney({ data }: { data: StepsSection }) {
   return (
     <section
       id={data.id}
-      className="relative isolate scroll-mt-[var(--header-offset)] overflow-hidden bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)]! py-16 sm:py-20 lg:py-24"
+      className="relative isolate scroll-mt-[var(--header-offset)] overflow-hidden bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)]! section-py"
       aria-labelledby={titleId}
     >
       <div className="mx-auto w-full max-w-[1372px] px-4">
@@ -65,16 +66,16 @@ export function StepsJourney({ data }: { data: StepsSection }) {
               {data.eyebrow}
             </p>
           )}
-          <h2 id={titleId} className={cn("type-section font-display leading-[1.15] tracking-[-0.02em] text-balance text-navy", data.eyebrow && "mt-4")}>
-            {highlight(data.title, data.accent)}
+          <h2 id={titleId} className={cn("type-h2 text-navy text-balance", data.eyebrow && "mt-4")}>
+            {highlight(data.title, data.accent, data.accentColor)}
           </h2>
-          {data.subtitle && <p className="type-body mx-auto mt-4 max-w-[900px] text-pretty text-[#2B3A4F]">{data.subtitle}</p>}
+          {data.subtitle && <p className="mx-auto mt-4 max-w-[900px] text-[20px] leading-[1.7] text-pretty text-[#2B3A4F]">{data.subtitle}</p>}
         </div>
 
         <div className="relative mt-12 sm:mt-14">
           {/* Thin line through the number discs' centres (the four columns' centres sit at 12.5% and 87.5%). */}
-          <span aria-hidden className="absolute top-6 right-[12.5%] left-[12.5%] hidden h-0.5 rounded-full bg-[linear-gradient(90deg,#307EFC,#9648E4_36%,#19B861_66%,#FC8406)] opacity-45 lg:block" />
-          <ol className="grid mx-auto max-w-[560px] gap-x-4 gap-y-12 sm:max-w-none sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-1.5">
+          {!data.hideLine && <span aria-hidden className="absolute top-6 right-[12.5%] left-[12.5%] hidden h-0.5 rounded-full bg-[linear-gradient(90deg,#307EFC,#9648E4_36%,#19B861_66%,#FC8406)] opacity-45 lg:block" />}
+          <ol className={cn("grid mx-auto max-w-[560px] gap-x-4 gap-y-12 sm:max-w-none sm:grid-cols-2 lg:grid-cols-4", data.roomy ? "lg:gap-x-6" : "lg:gap-x-1.5")}>
             {data.items.map((step, i) => {
               const t = tones[i % tones.length];
               return (
@@ -85,11 +86,17 @@ export function StepsJourney({ data }: { data: StepsSection }) {
                     </span>
                     <article className={cn("flex w-full flex-1 flex-col items-center rounded-[28px] border border-white/70 px-5 pt-11 pb-6 text-center sm:px-6", t.card)}>
                       <div className="flex-1">
-                        <h3 className="text-[clamp(20px,1.7vw,26px)] leading-tight font-bold text-balance text-navy">
+                        <h3 className={cn("font-bold text-balance text-navy", data.cardTitle20 ? "text-[20px] leading-snug" : "text-[clamp(20px,1.7vw,26px)] leading-tight")}>
                           <span className="sr-only">Step {i + 1}: </span>
-                          {step.title}
+                          {/* A "\n" in the title forces a line break (e.g. "Free ADHD\nScreening"). */}
+                          {step.title.split("\n").map((line, n) => (
+                            <Fragment key={line}>
+                              {n > 0 && <br />}
+                              {line}
+                            </Fragment>
+                          ))}
                         </h3>
-                        <p className="mt-3 text-[15px] leading-relaxed text-pretty text-[#2B3A4F] sm:text-[16px]">{step.text}</p>
+                        <p className={cn("mt-3 leading-relaxed text-pretty text-[#2B3A4F]", data.cardTitle20 ? "text-[16px]" : "text-[15px] sm:text-[16px]")}>{step.text}</p>
                       </div>
                       {step.image && (
                         <div className="mt-5 w-full overflow-hidden rounded-[18px] shadow-[0_10px_26px_-12px_rgba(11,37,75,.35)]">

@@ -49,11 +49,12 @@ export function TealBanner({ data, tone = "teal" }: { data: CtaSection; tone?: k
           {data.accent && <span className={t.accent}>{data.accent}</span>}
           {after}
         </h2>
-        {data.subtitle && <p className={cn("type-lead mx-auto mt-4 max-w-[900px] text-white", data.subtitle.length <= 120 && "lg:max-w-none lg:text-nowrap")}>{data.subtitle}</p>}
+        {data.subtitle && <p className="mx-auto mt-4 max-w-[900px] text-[20px] leading-[1.7] text-white">{data.subtitle}</p>}
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <ButtonLink
             href={data.primary.href}
             size="lg"
+            variant={data.ctaStyle === "light" ? "white" : undefined}
             className="group gap-3 border border-white/60 bg-white/15 font-semibold text-white shadow-[0_0_28px_rgba(50,230,223,.35),inset_0_1px_0_rgba(255,255,255,.4)] backdrop-blur-md hover:bg-white/25 hover:shadow-[0_0_36px_rgba(50,230,223,.5),inset_0_1px_0_rgba(255,255,255,.5)]"
           >
             {data.primary.label}
@@ -63,6 +64,7 @@ export function TealBanner({ data, tone = "teal" }: { data: CtaSection; tone?: k
             <ButtonLink
               href={data.secondary.href}
               size="lg"
+              variant={data.ctaStyle === "light" ? "white" : undefined}
               className="group gap-3 border border-white/60 bg-white/15 font-semibold text-white shadow-[0_0_28px_rgba(50,230,223,.35),inset_0_1px_0_rgba(255,255,255,.4)] backdrop-blur-md hover:bg-white/25 hover:shadow-[0_0_36px_rgba(50,230,223,.5),inset_0_1px_0_rgba(255,255,255,.5)]"
             >
               {data.secondary.label}

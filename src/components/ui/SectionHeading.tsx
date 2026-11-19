@@ -9,10 +9,12 @@ type SectionHeadingProps = {
   as?: "h1" | "h2";
   tone?: "dark" | "light";
   className?: string;
+  /** Overrides the default subtitle size/line-height (`type-body`). */
+  subtitleClassName?: string;
   id?: string;
 };
 
-export function SectionHeading({ eyebrow, title, subtitle, align = "center", as: Tag = "h2", tone = "dark", className, id }: SectionHeadingProps) {
+export function SectionHeading({ eyebrow, title, subtitle, align = "center", as: Tag = "h2", tone = "dark", className, subtitleClassName, id }: SectionHeadingProps) {
   const light = tone === "light";
   return (
     <div className={cn("mb-10 sm:mb-12", align === "center" ? "mx-auto max-w-[820px] text-center" : "max-w-[720px]", className)}>
@@ -25,7 +27,7 @@ export function SectionHeading({ eyebrow, title, subtitle, align = "center", as:
       >
         {title}
       </Tag>
-      {subtitle && <p className={cn("type-body mt-4", light ? "text-white/85" : "text-body")}>{subtitle}</p>}
+      {subtitle && <p className={cn(subtitleClassName ?? "text-[20px] leading-[1.7]", "mt-4", light ? "text-white/85" : "text-body")}>{subtitle}</p>}
     </div>
   );
 }

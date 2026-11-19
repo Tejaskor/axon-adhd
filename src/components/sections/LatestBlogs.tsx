@@ -11,11 +11,19 @@ import { BlogCard } from "./BlogCard";
 export async function LatestBlogs({ count = 3, relatedTo, title = latestBlogs.title }: { count?: number; relatedTo?: Pick<BlogPost, "slug" | "categories">; title?: string }) {
   const posts = relatedTo ? await getRelatedPosts(relatedTo, count) : (await getPosts()).slice(0, count);
   if (!posts.length) return null;
+  // Highlight the trailing "Blogs" in the default title; custom titles (e.g. "Related Articles") render as-is.
+  const headingTitle = /\s*Blogs$/i.test(title) ? (
+    <>
+      {title.replace(/\s*Blogs$/i, "")} <span className="text-[#2578CA]">Blogs</span>
+    </>
+  ) : (
+    title
+  );
   return (
     // Same background as "Care you can trust".
-    <section className="bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-16 sm:py-20" aria-labelledby="blogs-title">
+    <section className="bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! section-py" aria-labelledby="blogs-title">
       <Container>
-        <SectionHeading id="blogs-title" title={title} subtitle={latestBlogs.subtitle} />
+        <SectionHeading id="blogs-title" title={headingTitle} subtitle={latestBlogs.subtitle} subtitleClassName="text-[20px] leading-[1.7]" />
         <ul className="grid gap-6 md:grid-cols-3">
           {posts.map((post) => (
             <li key={post.slug}>

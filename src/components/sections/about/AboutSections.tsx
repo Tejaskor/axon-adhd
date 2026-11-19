@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
  */
 const vars = "[--ab-blue:#1769D2] [--ab-green:#16B65B] [--ab-orange:#F59E0B] [--ab-navy:#102B50] [--ab-soft:#F5F9FF]";
 const wrap = "mx-auto w-full max-w-[1372px] px-4";
-const h2 = "type-section leading-[1.18] tracking-[-0.02em] text-balance text-[var(--ab-navy)]";
+const h2 = "type-h2 text-balance text-navy";
 const body = "text-[16px] leading-[1.75] text-[#4A5A70] sm:text-[17px]";
 const glass = "border border-white/70 bg-white/60 shadow-[0_14px_44px_rgba(16,43,80,.09),inset_0_1px_0_rgba(255,255,255,.9)] backdrop-blur-xl";
 
@@ -135,10 +135,10 @@ function Hero({ data }: { data: PageHero }) {
       <div className={cn(wrap, "grid items-center gap-10 lg:grid-cols-[1.75fr_1fr] lg:gap-6")}>
         <Reveal>
           {data.eyebrow && <p className="inline-flex rounded-full bg-[#DCE9FB] px-5 py-2 text-[15px] font-semibold text-[#0B3FC4] shadow-[0_8px_20px_-10px_rgba(37,120,202,.5)] sm:text-[17px]">{data.eyebrow}</p>}
-          <h1 id="page-title" className={cn("max-w-[960px] text-[32px] leading-[1.18] font-semibold tracking-[-0.02em] text-[#0F1B33] sm:text-[44px] lg:text-[clamp(40px,3vw,56px)]", data.eyebrow && "mt-6")}>
+          <h1 id="page-title" className={cn("type-h1 text-navy max-w-[960px]", data.eyebrow && "mt-6")}>
             {lead.trim()}{" "}
             {accent && (
-              <span className="box-decoration-clone bg-[linear-gradient(#A9CBF8,#A9CBF8)] bg-[length:100%_3px] bg-bottom bg-no-repeat pb-1.5 font-bold text-[#0A47D6]">{accent.trim()}
+              <span className="box-decoration-clone bg-[linear-gradient(#A9CBF8,#A9CBF8)] bg-[length:100%_3px] bg-bottom bg-no-repeat pb-1.5 font-bold text-primary">{accent.trim()}
               </span>
             )}
           </h1>
@@ -187,7 +187,7 @@ function Hero({ data }: { data: PageHero }) {
 
 function Mission({ data }: { data: FeaturesSection }) {
   return (
-    <section className="relative isolate overflow-hidden bg-white py-14 sm:py-20" aria-labelledby="mission-title">
+    <section className="relative isolate overflow-hidden bg-white section-py" aria-labelledby="mission-title">
       <Glow className="-right-40 top-10 size-[420px] bg-[#F59E0B]/8" />
       <div className={wrap}>
         <Reveal className="mx-auto max-w-[860px] text-center">
@@ -236,9 +236,9 @@ function AxonName({ data }: { data: SplitSection }) {
       <div className={cn(wrap, "grid items-center gap-10 lg:grid-cols-[1.55fr_1fr] lg:gap-8")}>
         <Reveal>
           <p className="inline-flex rounded-full bg-[#DCE9FB] px-5 py-2 text-[15px] font-semibold text-[#0B3FC4] shadow-[0_8px_20px_-10px_rgba(37,120,202,.5)] sm:text-[17px]">About AXON ADHD</p>
-          <h2 id="axon-title" className="mt-5 text-[30px] leading-[1.2] font-bold tracking-[-0.02em] text-[#0F1B33] sm:text-[40px] lg:text-[clamp(36px,3vw,52px)]">
+          <h2 id="axon-title" className="type-h2 text-navy mt-5">
             {data.eyebrow}{" "}
-            <span className="box-decoration-clone bg-[linear-gradient(#A9CBF8,#A9CBF8)] bg-[length:100%_3px] bg-bottom bg-no-repeat pb-1.5 text-[#0A47D6]">{data.title}</span>
+            <span className="box-decoration-clone bg-[linear-gradient(#A9CBF8,#A9CBF8)] bg-[length:100%_3px] bg-bottom bg-no-repeat pb-1.5 text-primary">{data.title}</span>
           </h2>
           {para && (
             <p className="mt-5 max-w-[900px] text-[16px] leading-[1.7] text-[#4A5568] sm:text-[18px] lg:text-[20px]">
@@ -323,9 +323,9 @@ function Transforming({ data }: { data: SplitSection }) {
           )}
         </Reveal>
         <Reveal delay={0.08} className="min-w-0">
-          <h2 id="ab-transforming" className="text-[30px] leading-[1.2] font-bold tracking-[-0.02em] text-balance text-[#0F1B33] sm:text-[40px] lg:text-[clamp(34px,2.9vw,52px)]">
+          <h2 id="ab-transforming" className="type-h2 text-navy text-balance">
             {lead}
-            <span className="box-decoration-clone bg-[linear-gradient(#A9CBF8,#A9CBF8)] bg-[length:100%_3px] bg-bottom bg-no-repeat pb-1.5 text-[#0A47D6]">{accent}</span>
+            <span className="box-decoration-clone bg-[linear-gradient(#A9CBF8,#A9CBF8)] bg-[length:100%_3px] bg-bottom bg-no-repeat pb-1.5 text-primary">{accent}</span>
           </h2>
           <div className="mt-6 space-y-4">
             {data.paragraphs?.map((p) => (
@@ -412,9 +412,9 @@ function Connecting({ data }: { data: SplitSection }) {
           </div>
         </Reveal>
         <Reveal delay={0.08} className="min-w-0">
-          <h2 id="ab-connecting" className="text-[30px] leading-[1.2] font-bold tracking-[-0.02em] text-balance text-[#0F1B33] sm:text-[40px] lg:text-[clamp(34px,2.7vw,48px)]">
+          <h2 id="ab-connecting" className="type-h2 text-navy text-balance">
             {lead}
-            <span className="box-decoration-clone bg-[linear-gradient(#A9CBF8,#A9CBF8)] bg-[length:100%_3px] bg-bottom bg-no-repeat pb-1.5 text-[#0A47D6]">{accent}</span>
+            <span className="box-decoration-clone bg-[linear-gradient(#A9CBF8,#A9CBF8)] bg-[length:100%_3px] bg-bottom bg-no-repeat pb-1.5 text-primary">{accent}</span>
           </h2>
           {data.paragraphs?.map((p) => (
             <p key={p} className="mt-6 text-[16px] leading-[1.7] text-[#4A5568] sm:text-[18px]">
@@ -439,7 +439,7 @@ function Connecting({ data }: { data: SplitSection }) {
 
 function WhyChoose({ data }: { data: FeaturesSection }) {
   return (
-    <section className="relative isolate overflow-hidden bg-[var(--ab-soft)] py-14 sm:py-20" aria-labelledby="why-title">
+    <section className="relative isolate overflow-hidden bg-[var(--ab-soft)] section-py" aria-labelledby="why-title">
       <Glow className="-left-32 top-1/3 size-[400px] bg-[#16B65B]/10" />
       <div className={wrap}>
         <Reveal className="mx-auto max-w-[860px] text-center">
@@ -475,7 +475,7 @@ function WhyChoose({ data }: { data: FeaturesSection }) {
 
 function Founder() {
   return (
-    <section id="Meet" className="relative isolate scroll-mt-[var(--header-offset)] overflow-hidden bg-white py-14 sm:py-20" aria-labelledby="founder-title">
+    <section id="Meet" className="relative isolate scroll-mt-[var(--header-offset)] overflow-hidden bg-white section-py" aria-labelledby="founder-title">
       <Glow className="-right-32 bottom-0 size-[420px] bg-[#1769D2]/10" />
       <div className={wrap}>
         <h2 id="founder-title" className={cn(h2, "text-center")}>

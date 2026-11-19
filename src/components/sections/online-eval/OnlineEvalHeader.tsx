@@ -2,11 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { bookingHref, headerNav } from "@/content/online-evaluation";
 import { site } from "@/content/site";
+import { HeaderLightWatcher } from "@/components/layout/HeaderLightWatcher";
 
 /**
  * Landing-page header: thin green strip, floating glass pill with the logo, links to this page's sections and the
  * booking button. Replaces the site-wide header on this route (the layout's header wrapper is hidden by
- * online-evaluation.css while this component is mounted). Same 96px pill height as the site header, so the hero's
+ * online-evaluation.css while this component is mounted). Same 80px header height as the site header, so the hero's
  * `--header-height` pull-up still lines up.
  */
 export function OnlineEvalHeader() {
@@ -14,7 +15,8 @@ export function OnlineEvalHeader() {
     <div className="axn-lp-header sticky top-0 z-40">
       <div aria-hidden className="h-[6px] bg-[linear-gradient(90deg,#0B6654,#0D7C66_55%,#0A5C45)]" />
       <header className="px-4 pt-3 pb-1">
-        <div className="relative mx-auto flex h-20 w-full max-w-[1340px] items-center justify-between gap-3 rounded-[40px] border border-white/60 bg-white/50 px-3 shadow-[0_12px_36px_rgba(15,27,46,.12),inset_0_1px_0_rgba(255,255,255,.7)] backdrop-blur-xl backdrop-saturate-150 xs:px-4">
+        <div className="relative mx-auto flex h-16 w-full max-w-[1340px] items-center justify-between gap-3 rounded-[40px] border border-white/60 bg-white/50 px-3 shadow-[0_12px_36px_rgba(15,27,46,.12),inset_0_1px_0_rgba(255,255,255,.7)] backdrop-blur-xl backdrop-saturate-150 xs:px-4 transition-[background-color,border-color,box-shadow] duration-300 data-[light=true]:border-[#C6DAF1] data-[light=true]:bg-[#E3EDF9]/95 data-[light=true]:shadow-[0_12px_36px_rgba(15,27,46,.18),inset_0_1px_0_rgba(255,255,255,.7)]">
+          <HeaderLightWatcher />
           <Link href="/" aria-label={`${site.name} home`} className="shrink-0">
             <Image
               src={site.headerLogo.src}

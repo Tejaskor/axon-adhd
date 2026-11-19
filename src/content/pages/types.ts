@@ -27,6 +27,24 @@ export type PageHero = {
   background?: ImageAsset;
   /** YouTube video shown as a floating card in the `photo` variant (replaces `image` there). */
   video?: { id: string; title: string };
+  /** `false`: no white frame behind the video (the player keeps its exact size). */
+  videoFrame?: boolean;
+  /** CSS aspect-ratio of the player, e.g. "16 / 10" for a slightly taller video at the same width. Default 16 / 9. */
+  videoAspect?: string;
+  /** photo variant: set the heading in exactly two lines, breaking after this text (a substring of `title`). The type size is fitted so line 1 never wraps. */
+  breakAfter?: string;
+  /** photo variant, desktop: align the top of the heading with the top of the video instead of centring the copy beside it. */
+  alignTop?: boolean;
+  /** photo variant, with `trust`: `homepage` = the homepage hero's Google Reviews + adults helped row (dark text for this light hero). */
+  trustStyle?: "homepage";
+  /** photo variant: `homepage` = first button blue, the rest white with the #256ACC border (the homepage hero pairing). Default: every button blue. */
+  ctaStyle?: "homepage";
+  /** photo variant: intro paragraph at the homepage subtitle size (20px / 1.7) instead of 16–19px. */
+  homeType?: boolean;
+  /** photo variant: top and bottom padding of the hero in px (the top is measured below the header), and no full-viewport minimum height. */
+  sectionPaddingY?: number;
+  /** photo variant: centre the faint concentric rings exactly on the video (equal ring spacing), instead of on the section edge. */
+  ringsCentered?: boolean;
 };
 
 /** Photo + playable-laptop overview followed by four photo feature cards (see AssessmentOverview). */
@@ -64,6 +82,10 @@ export type FeaturesSection = {
   accent?: string;
   /** partner: replaces the heading; `title` then becomes the pill above it and `accent` (a substring of `text`) is shown in blue. */
   headline?: { text: string; accent: string };
+  /** partner variant: drop the pill above the headline. */
+  noPill?: boolean;
+  /** earlyReferral / universityBenefits: flat, solid card backgrounds (no corner curves). */
+  flat?: boolean;
   /** YouTube video shown with the section (ADHD Care services). */
   video?: { id: string; title: string };
   tone?: Tone;
@@ -74,8 +96,20 @@ export type FeaturesSection = {
 };
 
 export type StepsSection = {
+  /** stack: dark blue gradient cards (135deg, --color-deep-blue to --color-deep-light-blue) with white text. */
+  deepBg?: boolean;
+  /** stack: a more compact version (less padding, smaller images, type and numbers) for pages that need a shorter section. */
+  compact?: boolean;
   type: "steps";
   id?: string;
+  /** journey variant: drop the thin gradient line behind the number discs. */
+  hideLine?: boolean;
+  /** journey variant: wider gap between the cards on desktop (24px instead of 6px). */
+  roomy?: boolean;
+  /** journey variant: card headings at 20px (same as the feature cards, e.g. PathCard) instead of the fluid 20–26px. */
+  cardTitle20?: boolean;
+  /** journey variant: Tailwind text-colour class for the highlighted words of the heading (default `text-[#0A4FF0]`). */
+  accentColor?: string;
   title: string;
   subtitle?: string;
   items: Array<{ title: string; text: string; image?: ImageAsset; /** journey: time estimate shown in the pill at the bottom of the card. */ duration?: string; /** stack: extra sub-points shown under the text. */ details?: Array<{ title: string; text: string }>; /** stack: optional smaller second screenshot overlapping the main one. */ inset?: ImageAsset }>;
@@ -111,22 +145,25 @@ export type SplitSection = {
 };
 
 /** `arcs`: full-width blue banner, left-aligned copy and both buttons over concentric arcs. `screening`: gradient banner with pill, accented title, copy and CTA beside three floating glass stat cards (see ScreeningBanner). */
-export type CtaSection = { type: "cta"; title: string; subtitle?: string; primary: Cta; secondary?: Cta; note?: string; variant?: "screening" | "teal" | "blue"; eyebrow?: string; accent?: string; stats?: Array<{ value: string; label: string; accent: "cyan" | "green" | "orange" }> };
+export type CtaSection = { type: "cta"; title: string; subtitle?: string; primary: Cta; secondary?: Cta; note?: string; variant?: "screening" | "teal" | "blue" | "plain"; /** `light`: white buttons (readable on a blue / teal banner). `homepage`: first button blue, second white with the #256ACC border (the homepage hero pair). Default: blue. */ ctaStyle?: "light" | "homepage"; eyebrow?: string; accent?: string; stats?: Array<{ value: string; label: string; accent: "cyan" | "green" | "orange" }> };
 
 export type QuotesSection = { type: "quotes"; title: string; subtitle?: string; variant?: "glass" | "stacked"; accent?: string; items: Array<{ quote: string; name: string; role: string }> };
 
 /** Centered heading (pill, title with an accented lead, subtitle) over a paged testimonial carousel (see TestimonialCarousel). */
-export type TestimonialCarouselSection = { type: "testimonialCarousel"; eyebrow: string; title: string; accent: string; subtitle: string; items: Array<{ quote: string; name: string; role: string }> };
+export type TestimonialCarouselSection = { type: "testimonialCarousel"; /** `fan`: one card in front with the neighbours fanned out behind it, instead of the three-up card row. */ variant?: "fan"; eyebrow?: string; title: string; accent: string; subtitle?: string; items: Array<{ quote: string; name: string; role: string }> };
 
 /** `compliance`: pill + accented title + subtitle + note bar beside a certification orbit built from `badges` (HIPAA, GDPR, CCPA, SOC 2 order). */
-export type BadgesSection = { type: "badges"; title: string; subtitle: string; badges: ImageAsset[]; image?: ImageAsset; variant?: "compliance"; eyebrow?: string; accent?: string; note?: string; /** compliance: a shorter card (smaller badge orbit, tighter padding) for pages where it sits right under a strip. */ compact?: boolean };
+export type BadgesSection = { type: "badges"; title: string; subtitle: string; badges: ImageAsset[]; image?: ImageAsset; variant?: "compliance"; eyebrow?: string; accent?: string; note?: string; /** compliance: a shorter card (smaller badge orbit, tighter padding) for pages where it sits right under a strip. */ compact?: boolean; /** compliance: one flat colour instead of the gradient and bottom wave. */ flat?: boolean };
 
 /** `split`: centred heading (with `accent` underlined), an `aside` card on the left and a compact accordion on the right. */
 export type FaqSectionData = { type: "faq"; title: string; subtitle?: string; faqs: Faq[]; variant?: "split"; accent?: string; aside?: { title: string; text: string; link?: { label: string; href: string } }; /** Home-page styling: the 108deg pale-blue gradient background and `#question` anchors on each row. */ homeStyle?: boolean };
 
-export type SharedSection = { type: "blogs" } | { type: "contact" } | { type: "logos" } | { type: "reviewStrip"; stat: { value: string; label: string } };
+export type SharedSection = { type: "blogs" } | { type: "contact"; /** `university`: the ADHD Referral for Universities headline and campus photo on the left. */ variant?: "university" } | { type: "logos" } | { type: "reviewStrip"; stat: { value: string; label: string } };
 
-export type PageSection = PageHero | AssessmentOverviewSection | FeaturesSection | StepsSection | SplitSection | CtaSection | QuotesSection | TestimonialCarouselSection | BadgesSection | FaqSectionData | SharedSection;
+/** The home page's Google Reviews carousel (rating summary, looping cards with the Google icon); `count` limits it to the first N site reviews. */
+export type GoogleReviewsSection = { type: "googleReviews"; title: string; titleAccent: string; subtitle?: string; count?: number };
+
+export type PageSection = PageHero | GoogleReviewsSection | AssessmentOverviewSection | FeaturesSection | StepsSection | SplitSection | CtaSection | QuotesSection | TestimonialCarouselSection | BadgesSection | FaqSectionData | SharedSection;
 
 export type PageContent = {
   path: string;

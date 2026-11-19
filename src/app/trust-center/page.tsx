@@ -48,7 +48,7 @@ export default function TrustCenterPage() {
         </Container>
       </section>
 
-      <section id="axtc-assessments" className="scroll-mt-[var(--header-offset)] py-16 sm:py-20">
+      <section id="axtc-assessments" className="scroll-mt-[var(--header-offset)] section-py">
         <Container>
           <SectionHeading eyebrow={tc.assessments.eyebrow} title={tc.assessments.title} subtitle={tc.assessments.subtitle} />
           <ul className="grid gap-6 md:grid-cols-3">
@@ -83,7 +83,7 @@ export default function TrustCenterPage() {
         </Container>
       </section>
 
-      <section className="bg-surface py-16 sm:py-20">
+      <section className="bg-surface section-py">
         <Container>
           <SectionHeading eyebrow={tc.practices.eyebrow} title={tc.practices.title} subtitle={tc.practices.subtitle} />
           <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -100,7 +100,7 @@ export default function TrustCenterPage() {
         </Container>
       </section>
 
-      <section className="py-16 sm:py-20">
+      <section className="section-py">
         <Container>
           <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr]">
             <div>
@@ -137,7 +137,7 @@ export default function TrustCenterPage() {
         </Container>
       </section>
 
-      <section className="bg-navy py-16 text-white sm:py-20">
+      <section className="bg-navy text-white section-py">
         <Container>
           <SectionHeading eyebrow={tc.residency.eyebrow} title={tc.residency.title} subtitle={tc.residency.subtitle} tone="light" />
           <dl className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -151,7 +151,7 @@ export default function TrustCenterPage() {
         </Container>
       </section>
 
-      <section className="py-16 sm:py-20">
+      <section className="section-py">
         <Container>
           <SectionHeading eyebrow={tc.reports.eyebrow} title={tc.reports.title} subtitle={tc.reports.subtitle} />
           <ul className="mx-auto grid max-w-[900px] gap-6 md:grid-cols-2">
@@ -169,7 +169,7 @@ export default function TrustCenterPage() {
         </Container>
       </section>
 
-      <section className="bg-surface py-16 sm:py-20" aria-labelledby="tc-faq">
+      <section className="bg-surface section-py" aria-labelledby="tc-faq">
         <Container>
           <SectionHeading id="tc-faq" eyebrow={tc.faq.eyebrow} title={tc.faq.title} subtitle={tc.faq.subtitle} />
           <div className="grid gap-8 lg:grid-cols-[1.6fr_1fr]">

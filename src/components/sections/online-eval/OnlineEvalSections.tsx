@@ -1,4 +1,4 @@
-import { ArrowRight, Award, BadgeCheck, Check, Clock, Phone, ShieldCheck, Video, X } from "lucide-react";
+import { Award, BadgeCheck, Check, Clock, Phone, ShieldCheck, Video, X } from "lucide-react";
 import Image from "next/image";
 import {
   bookingHref,
@@ -19,8 +19,8 @@ import { availableStates } from "@/content/us-map";
 import { links } from "@/content/site";
 import { ReviewsCarousel } from "./ReviewsCarousel";
 import { StateChecker } from "./StateChecker";
+import { ButtonLink } from "@/components/ui/Button";
 
-const Arrow = () => <ArrowRight size={18} strokeWidth={2.2} aria-hidden="true" />;
 
 export function EvalHero() {
   return (
@@ -40,10 +40,9 @@ export function EvalHero() {
             The FDA-cleared QbCheck ADHD test at home, a 1:1 Zoom visit with an ADHD expert, and an official clinical report. One flat fee of $577.
           </p>
           <div className="axn-dhero__ctas axn-rise axn-d3">
-            <a className="axn-btn axn-btn--lg" href={bookingHref("hero-cta")}>
+            <ButtonLink href={bookingHref("hero-cta")} variant="primary">
               Book My Online Evaluation
-              <Arrow />
-            </a>
+            </ButtonLink>
             <a className="axn-dhero__link" href="#axn-how">
               See How it Works
             </a>
@@ -307,10 +306,9 @@ export function Pricing() {
               </ul>
             </div>
             <div className="axn-pc__foot">
-              <a className="axn-btn axn-btn--block" href={bookingHref("pricing-evaluation")}>
+              <ButtonLink href={bookingHref("pricing-evaluation")} variant="primary" className="w-full">
                 Get 10% Off My Evaluation
-                <Arrow />
-              </a>
+              </ButtonLink>
               <p className="axn-pc__fine">
                 Secure &amp; confidential <span aria-hidden="true">•</span> Clinician-led <span aria-hidden="true">•</span> Superbills provided
               </p>
@@ -344,10 +342,9 @@ export function Pricing() {
               </ul>
             </div>
             <div className="axn-pc__foot">
-              <a className="axn-btn-o axn-btn--block" href={bookingHref("pricing-package")}>
+              <ButtonLink href={bookingHref("pricing-package")} variant="outline" className="w-full">
                 Book Evaluation + Accommodations
-                <Arrow />
-              </a>
+              </ButtonLink>
             </div>
           </article>
         </div>
@@ -464,13 +461,12 @@ export function FaqSection() {
         </div>
         <div className="axn-faq-cta">
           <span>Still have a question?</span>
-          <a href={onlineEval.phoneHref} className="axn-btn-o">
+          <ButtonLink href={onlineEval.phoneHref} variant="outline">
             Call <span className="axn-tel">+1 {onlineEval.phone}</span>
-          </a>
-          <a href={bookingHref("faq-cta")} className="axn-btn">
+          </ButtonLink>
+          <ButtonLink href={bookingHref("faq-cta")} variant="primary">
             Book Your Evaluation · $577
-            <Arrow />
-          </a>
+          </ButtonLink>
         </div>
       </div>
     </section>
@@ -487,10 +483,9 @@ export function FinalCta() {
         <p className="axn-fin__p">$577 flat fee · FSA accepted · No referral needed</p>
         <div className="axn-fin__ctas">
           <span className="axn-fin__ring">
-            <a className="axn-btn axn-btn--lg" href={bookingHref("final-cta")}>
+            <ButtonLink href={bookingHref("final-cta")} variant="primary">
               Book my online evaluation
-              <Arrow />
-            </a>
+            </ButtonLink>
           </span>
           <a className="axn-fin__call" href={onlineEval.phoneHref}>
             <Phone size={18} strokeWidth={2.2} aria-hidden="true" />
@@ -512,9 +507,9 @@ export function StickyBookingBar() {
         <div className="axn-sticky__amt">$577 flat</div>
         <div className="axn-sticky__sub">100% online</div>
       </div>
-      <a href={bookingHref("mobile-sticky-bar")} className="axn-btn">
+      <ButtonLink href={bookingHref("mobile-sticky-bar")} variant="primary">
         Book My Online Evaluation
-      </a>
+      </ButtonLink>
     </div>
   );
 }

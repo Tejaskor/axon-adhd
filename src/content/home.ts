@@ -197,7 +197,7 @@ export const mythBuster = {
       height: 2588,
     },
   },
-  title: { lead: "Attention Deficit Hyperactivity", nextLine: "Disorder" },
+  title: { lead: "Attention Deficit ", highlight: "Hyperactivity", nextLine: "Disorder" },
   subtitle: "It’s not what most people think",
   infographic: {
     src: "/images/homepage/adhd-understanding/adhd-attention-effort-intelligence.webp",

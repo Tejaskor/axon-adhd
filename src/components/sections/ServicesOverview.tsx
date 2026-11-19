@@ -109,13 +109,13 @@ export function ServicesOverview() {
   }, [current, pinned, playWithSound]);
 
   return (
-    <section className="relative isolate overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-16 sm:py-20 lg:py-24" aria-labelledby="services-title">
+    <section className="relative isolate overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! section-py" aria-labelledby="services-title">
       <div className="mx-auto w-full max-w-[1372px] px-4">
         <div className="mx-auto max-w-[980px] text-center">
-          <h2 id="services-title" className="type-section font-display leading-[1.1] tracking-[-0.02em] text-balance text-navy">
-            {services.title} <span className="bg-[linear-gradient(90deg,#2578CA,#22B5D8)] bg-clip-text text-transparent">{services.titleAccent}</span>
+          <h2 id="services-title" className="type-h2 text-navy text-balance">
+            {services.title} <span className="text-primary">{services.titleAccent}</span>
           </h2>
-          <p className="type-body mx-auto mt-3 max-w-[900px] text-pretty text-[#4B5B73]">{services.subtitle}</p>
+          <p className="mx-auto mt-3 max-w-[900px] text-[20px] leading-[1.7] text-pretty text-[#4B5B73]">{services.subtitle}</p>
         </div>
 
         <ul className="mx-auto mt-10 grid max-w-[560px] gap-6 sm:mt-12 md:max-w-none md:grid-cols-3 md:gap-1">
@@ -187,9 +187,9 @@ export function ServicesOverview() {
                     </div>
 
                     {/* Text panel: title, description and a small Learn More pill. */}
-                    <div className={cn("flex flex-1 flex-col items-start rounded-[20px] px-5 pt-5 pb-5 sm:px-6", "border border-white/80 bg-[linear-gradient(160deg,rgba(255,255,255,.62)_0%,rgba(228,239,250,.40)_100%)] backdrop-blur-[20px]", t.card)}>
-                      <h3 className="text-[18px] leading-snug font-semibold text-balance text-navy">{item.title}</h3>
-                      <p className="mt-2 flex-1 text-[14px] leading-relaxed text-pretty text-[#4B5B73]">{item.text}</p>
+                    <div className={cn("flex flex-1 flex-col items-start rounded-[20px] px-5 pt-5 pb-5 sm:px-6", "border border-white/80 bg-white", t.card)}>
+                      <h3 className="text-[20px] leading-snug font-semibold text-balance text-navy">{item.title}</h3>
+                      <p className="mt-2 flex-1 text-[16px] leading-relaxed text-pretty text-[#4B5B73]">{item.text}</p>
                       <Link
                         href={item.href}
                         className={cn(

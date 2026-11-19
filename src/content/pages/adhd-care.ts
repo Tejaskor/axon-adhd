@@ -53,6 +53,7 @@ export const adhdCarePage: PageContent = {
     },
     {
       type: "cta",
+      ctaStyle: "homepage",
       title: "Haven't Started Yet?",
       subtitle: "Begin with our FREE Behavioral Health Screening to gain insights into whether you have risk factors for ADHD, depression, anxiety, or substance use issues that often co-occur.",
       primary: ctas.screening,

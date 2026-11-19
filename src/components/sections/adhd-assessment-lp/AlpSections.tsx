@@ -1,4 +1,4 @@
-import { ArrowRight, Award, BadgeCheck, Check, Clock, Phone, Video, X } from "lucide-react";
+import { Award, BadgeCheck, Check, Clock, Phone, Video, X } from "lucide-react";
 import Image from "next/image";
 import {
   bookingHref,
@@ -18,8 +18,8 @@ import {
 import { availableStates } from "@/content/us-map";
 import { links } from "@/content/site";
 import { ReviewsCarousel } from "./ReviewsCarousel";
+import { ButtonLink } from "@/components/ui/Button";
 
-const Arrow = () => <ArrowRight size={18} strokeWidth={2.2} aria-hidden="true" />;
 
 export function EvalHero() {
   return (
@@ -39,10 +39,9 @@ export function EvalHero() {
             The FDA-cleared QbCheck ADHD test at home, a 1:1 Zoom visit with an ADHD expert, and an official clinical report. One flat fee of $577.
           </p>
           <div className="alp-dhero__ctas alp-rise alp-d3">
-            <a className="alp-btn alp-btn--lg" href={bookingHref("hero-cta")}>
+            <ButtonLink href={bookingHref("hero-cta")} variant="primary">
               Book My Online Evaluation
-              <Arrow />
-            </a>
+            </ButtonLink>
             <a className="alp-dhero__link" href="#alp-how">
               See How it Works
             </a>
@@ -87,10 +86,9 @@ export function EvalHero() {
               </ul>
             </div>
             <div className="alp-pc__foot">
-              <a className="alp-btn alp-btn--block" href={bookingHref("hero-card")}>
+              <ButtonLink href={bookingHref("hero-card")} variant="primary" className="w-full">
                 Get 10% Off My Evaluation
-                <Arrow />
-              </a>
+              </ButtonLink>
               <p className="alp-pc__fine">
                 Secure &amp; confidential <span aria-hidden="true">•</span> Clinician-led <span aria-hidden="true">•</span> FSA accepted
               </p>
@@ -316,10 +314,9 @@ export function Pricing() {
               </ul>
             </div>
             <div className="alp-pc__foot">
-              <a className="alp-btn alp-btn--block" href={bookingHref("pricing-evaluation")}>
+              <ButtonLink href={bookingHref("pricing-evaluation")} variant="primary" className="w-full">
                 Get 10% Off My Evaluation
-                <Arrow />
-              </a>
+              </ButtonLink>
               <p className="alp-pc__fine">
                 Secure &amp; confidential <span aria-hidden="true">•</span> Clinician-led <span aria-hidden="true">•</span> Superbills provided
               </p>
@@ -353,10 +350,9 @@ export function Pricing() {
               </ul>
             </div>
             <div className="alp-pc__foot">
-              <a className="alp-btn-o alp-btn--block" href={bookingHref("pricing-package")}>
+              <ButtonLink href={bookingHref("pricing-package")} variant="outline" className="w-full">
                 Book Evaluation + Accommodations
-                <Arrow />
-              </a>
+              </ButtonLink>
             </div>
           </article>
         </div>
@@ -473,13 +469,12 @@ export function FaqSection() {
         </div>
         <div className="alp-faq-cta">
           <span>Still have a question?</span>
-          <a href={onlineEval.phoneHref} className="alp-btn-o">
+          <ButtonLink href={onlineEval.phoneHref} variant="outline">
             Call <span className="alp-tel">+1 {onlineEval.phone}</span>
-          </a>
-          <a href={bookingHref("faq-cta")} className="alp-btn">
+          </ButtonLink>
+          <ButtonLink href={bookingHref("faq-cta")} variant="primary">
             Book Your Evaluation · $577
-            <Arrow />
-          </a>
+          </ButtonLink>
         </div>
       </div>
     </section>
@@ -496,10 +491,9 @@ export function FinalCta() {
         <p className="alp-fin__p">$577 flat fee · FSA accepted · No referral needed</p>
         <div className="alp-fin__ctas">
           <span className="alp-fin__ring">
-            <a className="alp-btn alp-btn--lg" href={bookingHref("final-cta")}>
+            <ButtonLink href={bookingHref("final-cta")} variant="primary">
               Book my online evaluation
-              <Arrow />
-            </a>
+            </ButtonLink>
           </span>
           <a className="alp-fin__call" href={onlineEval.phoneHref}>
             <Phone size={18} strokeWidth={2.2} aria-hidden="true" />
@@ -521,9 +515,9 @@ export function StickyBookingBar() {
         <div className="alp-sticky__amt">$577 flat</div>
         <div className="alp-sticky__sub">100% online</div>
       </div>
-      <a href={bookingHref("mobile-sticky-bar")} className="alp-btn">
+      <ButtonLink href={bookingHref("mobile-sticky-bar")} variant="primary">
         Book My Online Evaluation
-      </a>
+      </ButtonLink>
     </div>
   );
 }

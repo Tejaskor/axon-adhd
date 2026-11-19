@@ -20,16 +20,16 @@ const tones: Record<string, { card: string; disc: string }> = {
 /** "Does this sound like you?": six wide sign cards (icon + heading left, photo fading in from the right) and a reassurance CTA. */
 export function SymptomChecklist() {
   return (
-    <section className="relative isolate overflow-hidden bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)] pt-10 pb-16 sm:pt-12 sm:pb-20 lg:pt-14" aria-labelledby="symptoms-title">
+    <section className="relative isolate overflow-hidden bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)] section-py" aria-labelledby="symptoms-title">
       {/* One content box for heading, grid and CTA: the header's 1340px container, with gutters only below that width. */}
       <div className="px-4">
       <div className="mx-auto w-full max-w-content">
         <Reveal className="mx-auto max-w-[900px] text-center">
-          <h2 id="symptoms-title" className="type-h2 text-balance text-navy">
+          <h2 id="symptoms-title" className="type-h2 text-navy text-balance">
             {symptoms.title.lead}
-            <span className="text-brand">{symptoms.title.highlight}</span>
+            <span className="text-primary">{symptoms.title.highlight}</span>
           </h2>
-          <p className="type-lead mx-auto mt-3 max-w-[760px] text-pretty text-body">{symptoms.subtitle}</p>
+          <p className="mx-auto mt-3 text-[20px] leading-[1.6] max-w-[760px] text-pretty text-body">{symptoms.subtitle}</p>
         </Reveal>
 
         <ul className="mt-8 grid auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-10 lg:grid-cols-3 lg:gap-5">
@@ -76,7 +76,7 @@ export function SymptomChecklist() {
 
         <Reveal className="mt-10 text-center sm:mt-12">
           <HandHeart aria-hidden className="myth-float mx-auto size-9 text-brand" strokeWidth={1.6} />
-          <p className="type-lead mt-3 font-medium text-balance text-navy lg:text-[22px]">
+          <p className="mt-3 text-[20px] leading-[1.65] font-medium text-balance text-navy">
             {symptoms.reassurance[0]}
             <br />
             <span className="text-brand">{symptoms.reassurance[1]}</span>

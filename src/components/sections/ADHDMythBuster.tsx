@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
  * Both column headings use the shared section-heading size; the deliberate <br> splits each into two lines.
  */
 const headingClass =
-  "type-section text-center leading-[1.3] tracking-[-0.5px] md:tracking-[-1px]";
+  "type-h2 text-center text-navy";
 
 const tones = { blue: "bg-brand", teal: "bg-teal", orange: "bg-orange" } as const;
 
@@ -18,7 +18,7 @@ const tones = { blue: "bg-brand", teal: "bg-teal", orange: "bg-orange" } as cons
 const glassCard =
   "relative isolate flex gap-3 rounded-[18px] border border-white/70 bg-white/45 px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,.85),0_12px_32px_-14px_rgba(11,37,75,.22)] ring-1 ring-primary-100/60 backdrop-blur-xl backdrop-saturate-150 lg:px-5";
 const cardDot = "size-3 shrink-0 rounded-full";
-const cardText = "type-body leading-snug font-medium text-navy";
+const cardText = "text-[16px] leading-snug font-medium text-navy";
 
 /*
  * Left journey geometry (≥768px). The diagram is a 100 × 76 grid where 1 unit = 1cqw of the diagram's width, so every
@@ -185,7 +185,7 @@ export function ADHDMythBuster() {
 
   return (
     <section
-      className="relative overflow-hidden bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)] py-16 sm:py-20"
+      className="relative overflow-hidden bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)] section-py"
       aria-labelledby="myth-title"
     >
       <div className="relative mx-auto w-full max-w-[1372px] px-4">
@@ -193,9 +193,9 @@ export function ADHDMythBuster() {
           {/* Left: the cycle before a diagnosis */}
           <div className="flex flex-col border-b border-primary-100 pb-12 md:border-b-0 md:pr-6 md:pb-0 lg:pr-10">
             <Reveal>
-              <h2 className={cn(headingClass, "text-navy")}>
+              <h2 className={cn(headingClass, "")}>
                 {mythBuster.question.lead}
-                <span className="text-brand">
+                <span className="text-primary">
                   {mythBuster.question.highlight}
                   <br />
                   {mythBuster.question.nextLine}
@@ -402,12 +402,15 @@ export function ADHDMythBuster() {
           {/* Right: what ADHD actually is */}
           <div className="md:pl-6 lg:pl-10">
             <Reveal>
-              <h2 id="myth-title" className={cn(headingClass, "text-brand")}>
+              <h2 id="myth-title" className={headingClass}>
                 {mythBuster.title.lead}
-                <br />
-                {mythBuster.title.nextLine}
+                <span className="text-[#2578CA]">
+                  {mythBuster.title.highlight}
+                  <br />
+                  {mythBuster.title.nextLine}
+                </span>
               </h2>
-              <p className="type-lead mt-2 text-center text-muted">{mythBuster.subtitle}</p>
+              <p className="mt-2 text-center text-[20px] leading-[1.65] text-muted">{mythBuster.subtitle}</p>
             </Reveal>
 
             <div className="mx-auto w-full max-w-[500px]">

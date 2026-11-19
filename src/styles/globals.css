@@ -48,6 +48,33 @@
   line-height: 1.6;
 }
 
+/*
+ * Consistent section vertical padding across all website sections (excluding Header & Footer):
+ * - Desktop: 80px top and bottom
+ * - Tablet: 60px top and bottom
+ * - Mobile: 45px top and bottom
+ */
+@utility section-py {
+  padding-top: var(--section-py);
+  padding-bottom: var(--section-py);
+}
+
+@utility section-hero-py {
+  padding-top: var(--section-hero-pt);
+  padding-bottom: var(--section-py);
+}
+
+/* Fallback class selectors for plain CSS / scoped environments */
+.section-py {
+  padding-top: var(--section-py);
+  padding-bottom: var(--section-py);
+}
+
+.section-hero-py {
+  padding-top: var(--section-hero-pt);
+  padding-bottom: var(--section-py);
+}
+
 /* Raw tokens as CSS variables (mirrors tailwind.config.ts) for use in plain CSS. */
 :root {
   --color-primary: #2578ca;
@@ -64,11 +91,28 @@
   --color-orange: #eb8b01;
   --color-surface: #f2f6f9;
   --content-width: 1340px;
-  /* Header flow height (12px gap + 80px pill + 4px); page heroes use -mt-[var(--header-height)] to sit behind it. */
-  --header-height: 96px;
+  /* Header flow height (12px gap + 64px pill + 4px); page heroes use -mt-[var(--header-height)] to sit behind it. */
+  --header-height: 80px;
   /* Sticky header height plus breathing room, for anchor scrolling. */
-  --header-offset: 108px;
+  --header-offset: 92px;
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  /* Consistent section vertical padding: Mobile 45px, Tablet 60px, Desktop 80px */
+  --section-py: 45px;
+  --section-hero-pt: calc(var(--header-height) + 45px);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --section-py: 60px;
+    --section-hero-pt: calc(var(--header-height) + 60px);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --section-py: 80px;
+    --section-hero-pt: calc(var(--header-height) + 80px);
+  }
 }
 
 html {

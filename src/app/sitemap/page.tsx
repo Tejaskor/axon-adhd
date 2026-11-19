@@ -73,7 +73,7 @@ function Label({ label, href }: { label: string; href?: string }) {
 function Tree({ group, n }: { group: Group; n: number }) {
   return (
     <nav aria-labelledby={`sm-${n}`}>
-      <h2 id={`sm-${n}`} className="text-[22px] leading-tight font-bold text-primary sm:text-[24px]">
+      <h2 id={`sm-${n}`} className="type-h2 text-navy">
         {group.title}
       </h2>
       <div className="mt-6 pl-4">
@@ -85,7 +85,7 @@ function Tree({ group, n }: { group: Group; n: number }) {
           {group.items.map((item, i) => (
             <li key={item.label} className="pt-3 pl-8">
               <div className="relative flex min-h-6 items-center gap-3.5 before:absolute before:top-1/2 before:-left-8 before:w-8 before:border-t before:border-[#9CA3AF]">
-                <span aria-hidden className="grid h-6 w-[35px] shrink-0 place-items-center bg-[#555] text-[11.5px] font-semibold text-white">
+                <span aria-hidden className="grid h-6 w-[35px] shrink-0 place-items-center bg-[#555] text-[12px] font-semibold text-white">
                   {n}.{i + 1}
                 </span>
                 <Label label={item.label} href={item.href} />
@@ -113,7 +113,7 @@ export default function SitemapPage() {
   return (
     <section className="-mt-[var(--header-height)] bg-white pt-[128px] pb-20 sm:pt-[136px] sm:pb-24">
       <div className="mx-auto w-full max-w-[1372px] px-4">
-        <h1 className="text-[34px] leading-tight font-bold tracking-[-0.02em] text-navy sm:text-[40px]">
+        <h1 className="type-h1 text-navy">
           Site<span className="text-primary">Map</span>
         </h1>
         <span aria-hidden className="mt-2 block h-[3px] w-14 rounded-full bg-gradient-to-r from-[#22C083] to-primary" />

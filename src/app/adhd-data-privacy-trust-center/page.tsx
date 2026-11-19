@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ButtonLink } from "@/components/ui/Button";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { breadcrumbJsonLd, faqJsonLd, pageMetadata } from "@/lib/seo";
 import type { Faq } from "@/content/types";
@@ -181,20 +182,8 @@ export default function AdhdDataPrivacyTrustCenterPage() {
               </p>
 
               <div className="axtc-cta axtc-hero__cta">
-                <a
-                  className="axtc-btn axtc-btn--p"
-                  href="https://d06ba1928e.scrut.io/"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Visit Live Trust Vault{" "}
-                  <svg className="axtc-ico" aria-hidden="true">
-                    <use href="#axtc-i-arrow" />
-                  </svg>
-                </a>
-                <a className="axtc-btn axtc-btn--o" href="#axtc-assessments">
-                  View Assessments
-                </a>
+                <ButtonLink href="https://d06ba1928e.scrut.io/" target="_blank" rel="noopener" variant="primary">Visit Live Trust Vault</ButtonLink>
+                <ButtonLink href="#axtc-assessments" variant="outline">View Assessments</ButtonLink>
               </div>
             </div>
 
@@ -523,21 +512,8 @@ export default function AdhdDataPrivacyTrustCenterPage() {
               </div>
               <h3 id="axtc-h-panel">Need a BAA or security documents?</h3>
               <p>Compliance teams, partners and providers can request our reports and agreements. We&rsquo;ll respond promptly.</p>
-              <a
-                className="axtc-btn axtc-btn--p"
-                href="mailto:info@axonadhd.com?subject=Security%20documentation%20request"
-              >
-                Request Documentation{" "}
-                <svg className="axtc-ico" aria-hidden="true">
-                  <use href="#axtc-i-arrow" />
-                </svg>
-              </a>
-              <a
-                className="axtc-btn axtc-btn--o"
-                href="mailto:info@axonadhd.com?subject=Security%20question"
-              >
-                Email the Security Team
-              </a>
+              <ButtonLink href="mailto:info@axonadhd.com?subject=Security%20documentation%20request" variant="primary">Request Documentation</ButtonLink>
+              <ButtonLink href="mailto:info@axonadhd.com?subject=Security%20question" variant="outline">Email the Security Team</ButtonLink>
             </aside>
           </div>
         </div>
@@ -613,17 +589,7 @@ export default function AdhdDataPrivacyTrustCenterPage() {
               <div>
                 <h3>HIPAA Compliance Report 2026</h3>
                 <p>Independent assessment by Aegisra Assurance LLP, completed September 2026.</p>
-                <a
-                  className="axtc-btn axtc-btn--o"
-                  href="https://d06ba1928e.scrut.io/"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Request access{" "}
-                  <svg className="axtc-ico" aria-hidden="true">
-                    <use href="#axtc-i-lock" />
-                  </svg>
-                </a>
+                <ButtonLink href="https://d06ba1928e.scrut.io/" target="_blank" rel="noopener" variant="outline">Request access</ButtonLink>
               </div>
             </article>
             <article className="axtc-card axtc-doc" data-axtc-r>
@@ -635,17 +601,7 @@ export default function AdhdDataPrivacyTrustCenterPage() {
               <div>
                 <h3>Web Application Security Report</h3>
                 <p>Vulnerability assessment and penetration test against OWASP Top 10 and ASVS, completed September 2026.</p>
-                <a
-                  className="axtc-btn axtc-btn--o"
-                  href="https://d06ba1928e.scrut.io/"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Request access{" "}
-                  <svg className="axtc-ico" aria-hidden="true">
-                    <use href="#axtc-i-lock" />
-                  </svg>
-                </a>
+                <ButtonLink href="https://d06ba1928e.scrut.io/" target="_blank" rel="noopener" variant="outline">Request access</ButtonLink>
               </div>
             </article>
           </div>
@@ -730,12 +686,7 @@ export default function AdhdDataPrivacyTrustCenterPage() {
                   Find quick answers to the most common questions about ADHD data privacy, HIPAA compliance, and security with AXON ADHD.
                 </p>
 
-                <a className="axtc-faq__aside-btn" href="/adhd-faqs/">
-                  <span>View all FAQs</span>
-                  <svg className="axtc-ico" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </a>
+                <ButtonLink href="/adhd-faqs/">View all FAQs</ButtonLink>
 
                 <div className="axtc-faq__aside-org">
                   <h4 className="axtc-faq__aside-org-title">Reviewing AXON for your organization?</h4>

@@ -73,8 +73,8 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
                         <Link href={link.href} onNavigate={onClose} className="flex items-start gap-3 rounded-[10px] px-3 py-2.5 hover:bg-primary-soft">
                           <NavIcon name={link.icon} className="mt-0.5 size-5 shrink-0 text-brand" />
                           <span>
-                            <span className="block text-[15px] font-medium text-ink-menu">{link.label}</span>
-                            <span className="block text-[13px] text-muted">{link.description}</span>
+                            <span className="block text-[16px] font-medium text-ink-menu">{link.label}</span>
+                            <span className="block text-[16px] text-muted">{link.description}</span>
                           </span>
                         </Link>
                       </li>

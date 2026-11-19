@@ -44,15 +44,15 @@ export function StackedQuotesCarousel({ data }: { data: QuotesSection }) {
   const [before, after] = data.accent && data.title.includes(data.accent) ? data.title.split(data.accent) : [data.title, undefined];
 
   return (
-    <section className="relative isolate overflow-hidden bg-white py-12 sm:py-16 lg:py-20" aria-labelledby={`${liveId}-title`}>
+    <section className="relative isolate overflow-hidden bg-white section-py" aria-labelledby={`${liveId}-title`}>
       <Container>
         <div className="mx-auto max-w-[900px] text-center">
-          <h2 id={`${liveId}-title`} className="type-h2 text-[#0B1F4D]">
+          <h2 id={`${liveId}-title`} className="type-h2 text-navy">
             {before}
             {after !== undefined && <span className="text-primary">{data.accent}</span>}
             {after}
           </h2>
-          {data.subtitle && <p className="type-body mx-auto mt-4 text-pretty text-[#4B5C75]">{data.subtitle}</p>}
+          {data.subtitle && <p className="mx-auto mt-4 text-[20px] leading-[1.7] text-pretty text-[#4B5C75]">{data.subtitle}</p>}
         </div>
 
         <div role="region" aria-roledescription="carousel" aria-label="Reviews" className="mx-auto mt-10 sm:mt-14">

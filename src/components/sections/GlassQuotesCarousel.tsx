@@ -167,12 +167,12 @@ export function GlassQuotesCarousel({ data }: { data: QuotesSection }) {
 
   return (
     <section
-      className="relative isolate overflow-hidden bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)] py-12 sm:py-16"
+      className="relative isolate overflow-hidden bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)] section-py"
       aria-labelledby="glass-quotes-title"
     >
       <Container>
         <div className="mx-auto text-center">
-          <h2 id="glass-quotes-title" className="type-h2 text-[#0B1F4D]">
+          <h2 id="glass-quotes-title" className="type-h2 text-navy">
             {before}
             {after !== undefined && (
               <span className="text-primary">{data.accent}</span>
