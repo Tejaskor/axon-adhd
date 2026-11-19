@@ -533,3 +533,311 @@ body {
     animation: qb-float calc(6s + var(--i) * 0.8s) ease-in-out calc(1.6s + var(--i) * 0.14s) infinite;
   }
 }
+
+/*
+ * WordPress article body (/blog/[slug]). Ported from the original axonadhd.com article stylesheet so the HTML from the
+ * REST API renders identically; scoped to .axon-article. FAQ, tags, share row and author card are rebuilt in the page.
+ */
+.axon-article,
+.axon-article *,
+.axon-article *::before,
+.axon-article *::after {
+  box-sizing: border-box;
+}
+.axon-article {
+  --axon-ink: #1b2733;
+  --axon-body: #37475a;
+  --axon-muted: #6b7a8d;
+  --axon-accent: #0e7490;
+  --axon-line: #e3e8ee;
+  --axon-soft: #f5f8fa;
+  width: 100%;
+  max-width: 100%;
+  color: var(--axon-body);
+  font-size: 18px;
+  line-height: 1.78;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+.axon-article h2,
+.axon-article h3,
+.axon-article h4,
+.axon-article strong {
+  color: #2c2f34;
+  font-weight: 600;
+}
+.axon-article h2 {
+  font-size: 1.6rem;
+  line-height: 1.32;
+  margin: 2.9rem 0 1.1rem;
+  scroll-margin-top: var(--header-offset);
+}
+.axon-article h3 {
+  font-size: 1.22rem;
+  line-height: 1.4;
+  margin: 2rem 0 0.6rem;
+  scroll-margin-top: var(--header-offset);
+}
+.axon-article h4 {
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: #0b5566;
+  margin: 1.6rem 0 0.5rem;
+}
+.axon-article .axon-step {
+  margin: 1.7rem 0 1.35rem;
+}
+.axon-article .axon-step h3,
+.axon-article .axon-step p {
+  display: inline;
+  margin: 0;
+}
+.axon-article .axon-step h3::after {
+  content: "\00a0";
+}
+.axon-article p {
+  margin: 0 0 1.35rem;
+  font-weight: 400;
+}
+.axon-article span {
+  font-weight: inherit !important;
+}
+.axon-article i,
+.axon-article em {
+  color: var(--axon-body);
+}
+.axon-article a {
+  color: #0669ff !important;
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.15s ease;
+}
+.axon-article ul,
+.axon-article ol {
+  margin: 0 0 1.5rem;
+  padding-left: 1.45rem;
+  list-style: revert;
+}
+.axon-article li {
+  margin: 0 0 0.65rem;
+  line-height: 1.7;
+  padding-left: 0.2rem;
+  font-weight: 400;
+}
+.axon-article li:last-child {
+  margin-bottom: 0;
+}
+.axon-article blockquote {
+  position: relative;
+  max-width: 100%;
+  margin: 1.9rem 0;
+  padding: 1.4rem 1.5rem 1.4rem 3.4rem;
+  border-left: 3px solid var(--axon-accent);
+  border-radius: 12px;
+  background: var(--axon-soft);
+  overflow: hidden;
+}
+.axon-article blockquote::before {
+  content: "\201C";
+  position: absolute;
+  top: 0.35rem;
+  left: 1rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--axon-accent);
+  opacity: 0.28;
+  pointer-events: none;
+}
+.axon-article blockquote p:last-child {
+  margin-bottom: 0;
+}
+.axon-article figure {
+  margin: 0 0 2.2rem;
+  max-width: 100%;
+}
+.axon-article img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+.axon-article figure.wp-block-image img,
+.axon-article figure.size-full img {
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(16, 40, 60, 0.1);
+}
+.axon-article .axon-table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 0 0 2rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  -webkit-overflow-scrolling: touch;
+}
+.axon-article .axon-table-wrap table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 0.97rem;
+  margin: 0;
+}
+.axon-article .axon-table-wrap td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--axon-line);
+  border-right: 1px solid var(--axon-line);
+  vertical-align: top;
+  line-height: 1.6;
+}
+.axon-article .axon-table-wrap tr td:last-child {
+  border-right: none;
+}
+.axon-article .axon-table-wrap tr:last-child td {
+  border-bottom: none;
+}
+.axon-article .axon-table-wrap td p {
+  margin: 0;
+}
+.axon-article .axon-table-wrap tr:first-child td {
+  font-weight: 700;
+  color: #000;
+}
+.axon-article .axon-table-wrap tr:nth-child(even):not(:first-child) td {
+  background: var(--axon-soft);
+}
+.axon-article .axon-table-wrap tr td:first-child {
+  font-weight: 600;
+  width: 24%;
+}
+.axon-article .axon-cta-banner {
+  position: relative;
+  margin: 2.5rem 0;
+  padding: 48px 36px;
+  border-radius: 20px;
+  background: linear-gradient(120deg, #256acc 0%, #1a4e9e 55%, #133566 100%);
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 14px 36px rgba(19, 53, 102, 0.22);
+}
+.axon-article .axon-cta-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% -20%, rgba(255, 255, 255, 0.16) 0%, transparent 55%);
+}
+.axon-article .axon-cta-banner::after {
+  content: "";
+  position: absolute;
+  bottom: -220px;
+  right: -120px;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+}
+.axon-article .axon-cta-glass {
+  position: relative;
+  z-index: 2;
+}
+.axon-article .axon-cta-banner h2 {
+  margin: 0 auto 22px;
+  color: #fff;
+  font-size: 1.8rem;
+  line-height: 1.35;
+  font-weight: 700;
+}
+.axon-article .axon-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: #fff;
+  color: #0f1b2e !important;
+  font-size: 16px;
+  line-height: 1.25;
+  white-space: nowrap;
+  border: 1px solid rgba(15, 27, 46, 0.12);
+  box-shadow: 0 8px 20px rgba(19, 53, 102, 0.28);
+  transition: background 0.18s ease;
+}
+.axon-article .axon-cta-btn::after {
+  content: "\2192";
+  font-size: 25px;
+  line-height: 0;
+}
+.axon-article .axon-cta-btn:hover {
+  background: #eff6ff;
+}
+@media (min-width: 601px) and (max-width: 1024px) {
+  .axon-article {
+    font-size: 16.5px;
+    line-height: 1.72;
+  }
+  .axon-article h2 {
+    font-size: 21px;
+    line-height: 1.35;
+    margin: 2.4rem 0 0.95rem;
+  }
+  .axon-article h3 {
+    font-size: 18px;
+    margin: 1.8rem 0 0.55rem;
+  }
+  .axon-article h4 {
+    font-size: 17px;
+  }
+  .axon-article .axon-cta-banner {
+    padding: 40px 28px;
+  }
+  .axon-article .axon-cta-banner h2 {
+    font-size: 1.55rem;
+  }
+}
+@media (max-width: 600px) {
+  .axon-article {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .axon-article p,
+  .axon-article li,
+  .axon-article blockquote,
+  .axon-article .axon-table-wrap td {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .axon-article h2,
+  .axon-article h3,
+  .axon-article h4 {
+    font-size: 18px;
+    line-height: 1.4;
+  }
+  .axon-article h2 {
+    font-weight: 700;
+    margin: 2.1rem 0 0.85rem;
+  }
+  .axon-article h3 {
+    margin: 1.6rem 0 0.5rem;
+  }
+  .axon-article blockquote {
+    margin: 1.5rem 0;
+    padding: 1.1rem 1rem 1.1rem 2.5rem;
+  }
+  .axon-article blockquote::before {
+    top: 0.3rem;
+    left: 0.6rem;
+    font-size: 2.2rem;
+  }
+  .axon-article .axon-cta-banner {
+    padding: 36px 20px;
+  }
+  .axon-article .axon-cta-banner h2 {
+    font-size: 1.3rem;
+  }
+  .axon-article .axon-cta-btn {
+    width: 100%;
+    max-width: 320px;
+    white-space: normal;
+  }
+}

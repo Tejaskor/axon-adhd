@@ -1,4 +1,4 @@
-import { blogPage, blogPosts } from "@/content/blogs";
+import { blogPage } from "@/content/blogs";
 import { caseStudies, caseStudiesPage } from "@/content/case-studies";
 import { faqTabs, homeFaqs } from "@/content/faqs";
 import { aboutPage, founder } from "@/content/pages/about";
@@ -10,6 +10,7 @@ import { trustCenter } from "@/content/pages/trust-center";
 import { faqs as onlineEvalFaqs, flowSteps, onlineEval, statesCovered } from "@/content/online-evaluation";
 import { pricing } from "@/content/pricing";
 import { site } from "@/content/site";
+import { getPosts } from "@/lib/wordpress";
 import { googleRating } from "@/content/trust";
 import { availableStates, unavailableStates } from "@/content/us-map";
 import type { Faq } from "@/content/types";
@@ -92,7 +93,8 @@ function uniqueFaqs(): Faq[] {
   });
 }
 
-export function buildLlmsFullTxt() {
+export async function buildLlmsFullTxt() {
+  const blogPosts = await getPosts();
   const faqs = uniqueFaqs();
   const out: string[] = [
     `# ${site.name}`,

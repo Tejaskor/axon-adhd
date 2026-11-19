@@ -99,7 +99,7 @@ export function blogPostingJsonLd(post: { title: string; description: string; sl
     description: post.description,
     datePublished: post.date,
     dateModified: post.date,
-    image: `${site.url}${post.image}`,
+    image: post.image.startsWith("http") ? post.image : `${site.url}${post.image}`,
     mainEntityOfPage: `${site.url}/blog/${post.slug}/`,
     author: { "@type": "Person", name: post.author },
     publisher: { "@id": `${site.url}/#organization` },

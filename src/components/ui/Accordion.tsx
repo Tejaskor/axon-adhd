@@ -16,9 +16,10 @@ export type AccordionItem = {
  * - `default`: one bordered panel with dividers (content pages, blog, trust center).
  * - `minimal`: single-column cards, Privacy-page type, "+" that turns into "×" (the /adhd-faqs page).
  * - `glassList`: compact rows in the minimal variant's card colours, with a small chevron and the blue answer bar (university FAQ split layout).
+ * - `article`: blog article FAQ (matches the original WordPress post): separate 12px-radius white cards, chevron on the right.
  * - `cards`: separate rounded cards with a rotating chevron and a blue bar beside the answer (home page FAQ and /adhd-faqs).
  */
-type Variant = "default" | "cards" | "minimal" | "glassList";
+type Variant = "default" | "cards" | "minimal" | "glassList" | "article";
 
 const styles: Record<
   Variant,
@@ -82,6 +83,13 @@ const styles: Record<
       "[&_a]:text-primary [&_a]:no-underline [&_a:hover]:underline",
     ),
   },
+  article: {
+    list: "flex flex-col gap-3",
+    item: (open) => cn("overflow-hidden rounded-xl border border-[#e3e8ee] bg-white transition-[box-shadow] duration-200", open && "shadow-[0_6px_18px_rgba(16,40,60,.07)]"),
+    button: () => "flex w-full items-center gap-3 px-4 py-3.5 text-left text-[15px] leading-[1.5] font-normal text-[#37475a] sm:px-[18px] sm:py-4 sm:text-[16px] lg:text-[17px]",
+    title: "min-w-0 flex-1",
+    body: "px-4 pb-4 text-[15px] leading-[1.68] break-words text-[#37475a] sm:px-[18px] sm:pb-[18px] sm:text-[16px] lg:text-[17px] lg:leading-[1.72] [&_a]:text-[#0669ff] [&_li]:mb-1 [&_p]:m-0 [&_p+p]:mt-3 [&_ul]:my-2 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:my-2 [&_ol]:list-decimal [&_ol]:pl-5",
+  },
   cards: {
     list: "flex flex-col gap-4",
     // Frosted glass, identical open or closed (the answer area has no fill of its own, so it shares the card's glass):
@@ -128,6 +136,9 @@ function Icon({ variant, open }: { variant: Variant; open: boolean }) {
         strokeWidth={1.25}
       />
     );
+  }
+  if (variant === "article") {
+    return <ChevronDown aria-hidden className={cn("size-5 shrink-0 text-black transition-transform duration-300", open && "rotate-180")} />;
   }
   return <ChevronDown aria-hidden className={cn("size-5 shrink-0 text-primary transition-transform duration-300 ease-brand", open && "rotate-180")} />;
 }

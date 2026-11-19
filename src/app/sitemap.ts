@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
-import { blogPosts } from "@/content/blogs";
 import { site } from "@/content/site";
+import { getPosts } from "@/lib/wordpress";
 
 /**
  * Public, indexable pages and the date their page or content module last changed (from git history, 2026-11-05).
@@ -26,7 +26,8 @@ const staticPages: Array<[path: string, lastModified: string]> = [
   ["/sitemap/", "2026-11-05"],
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const blogPosts = await getPosts();
   return [
     ...staticPages.map(([path, lastModified]) => ({ url: `${site.url}${path}`, lastModified, changeFrequency: "monthly" as const, priority: path === "/" ? 1 : 0.7 })),
     ...blogPosts.map((p) => ({ url: `${site.url}/blog/${p.slug}/`, lastModified: p.date, changeFrequency: "yearly" as const, priority: 0.6 })),

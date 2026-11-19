@@ -26,7 +26,6 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: "/blog/author/:slug*", destination: "/blog/", permanent: true },
-      { source: "/blog/category/:slug*", destination: "/blog/", permanent: false },
     ];
   },
 };

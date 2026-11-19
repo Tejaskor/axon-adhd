@@ -3,7 +3,13 @@ import { body as sleepBody } from "./posts/adhd-and-sleep-problems";
 import { body as mythsBody } from "./posts/adhd-myths-and-facts";
 import { body as womenBody } from "./posts/adhd-therapy-for-women";
 
+export type BlogCategory = { id: number; name: string; slug: string; /** Parent category id (0 / undefined for top level). */ parent?: number };
+
 export type BlogPost = {
+  /** WordPress post id (WordPress posts only). */
+  id?: number;
+  /** Page views from WordPress's Post Views Counter; undefined when unavailable (the card then hides it). */
+  views?: number;
   slug: string;
   title: string;
   /** ISO date (UTC) the post was published on the original site. */
@@ -14,6 +20,14 @@ export type BlogPost = {
   image: ImageAsset;
   tags: string[];
   body: Block[];
+  /** Set for posts that come from WordPress: categories, cleaned article HTML, its h2 headings, FAQ entries and FAQ JSON-LD. */
+  categories?: BlogCategory[];
+  html?: string;
+  headings?: Array<{ id: string; text: string; level: 2 | 3 }>;
+  faqs?: Array<{ q: string; html: string }>;
+  /** Heading of the FAQ section as written in the post (usually "Frequently Asked Questions"). */
+  faqTitle?: string;
+  faqSchema?: Array<Record<string, unknown>>;
 };
 
 export const author = {

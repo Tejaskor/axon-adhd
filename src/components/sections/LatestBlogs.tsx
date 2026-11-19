@@ -1,19 +1,23 @@
 import { ArrowRight } from "lucide-react";
-import { blogPosts } from "@/content/blogs";
+import type { BlogPost } from "@/content/blogs";
 import { latestBlogs } from "@/content/home";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { getPosts, getRelatedPosts } from "@/lib/wordpress";
 import { BlogCard } from "./BlogCard";
 
-export function LatestBlogs({ count = 3 }: { count?: number }) {
+/** The newest posts, or (with `relatedTo`) posts related to the one being read: same category first, never the post itself. */
+export async function LatestBlogs({ count = 3, relatedTo, title = latestBlogs.title }: { count?: number; relatedTo?: Pick<BlogPost, "slug" | "categories">; title?: string }) {
+  const posts = relatedTo ? await getRelatedPosts(relatedTo, count) : (await getPosts()).slice(0, count);
+  if (!posts.length) return null;
   return (
     // Same background as "Care you can trust".
     <section className="bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-16 sm:py-20" aria-labelledby="blogs-title">
       <Container>
-        <SectionHeading id="blogs-title" title={latestBlogs.title} subtitle={latestBlogs.subtitle} />
+        <SectionHeading id="blogs-title" title={title} subtitle={latestBlogs.subtitle} />
         <ul className="grid gap-6 md:grid-cols-3">
-          {blogPosts.slice(0, count).map((post) => (
+          {posts.map((post) => (
             <li key={post.slug}>
               <BlogCard post={post} />
             </li>
