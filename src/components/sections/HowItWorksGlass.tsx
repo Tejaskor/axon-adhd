@@ -97,7 +97,7 @@ export function HowItWorksGlass({ data }: { data: FeaturesSection }) {
             {data.accent && <span className="text-primary">{data.accent}</span>}
             {tail}
           </h2>
-          {data.subtitle && <p className="type-body mx-auto mt-4 max-w-[600px] text-body">{data.subtitle}</p>}
+          {data.subtitle && <p className="mx-auto mt-4 max-w-[600px] text-[20px] leading-[1.7] text-body">{data.subtitle}</p>}
         </div>
 
         <ol className="mt-12 grid gap-y-4 sm:mx-auto sm:max-w-[560px] lg:mt-14 lg:max-w-none lg:grid-cols-3 lg:gap-x-14 lg:gap-y-0">

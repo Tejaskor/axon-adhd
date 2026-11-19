@@ -3,8 +3,9 @@ import { ArrowLeft, ArrowRight, Brain, Check, ClipboardList, Heart } from "lucid
 import type { CtaSection, FeaturesSection, SplitSection, StepsSection } from "@/content/pages/types";
 import { FeatureIcon } from "@/components/ui/FeatureIcon";
 import { Reveal } from "@/components/ui/Reveal";
+import { links } from "@/content/site";
 import { cn } from "@/lib/utils";
-import { IconChip, h2, lead, wrap } from "./AccommodationSections";
+import { IconChip, h2, wrap } from "./AccommodationSections";
 import { PathCard } from "./AdhdCareSections";
 import { AssessmentTimeline } from "./AssessmentTimeline";
 import { GradientCtaBanner } from "./GradientCtaBanner";
@@ -31,9 +32,9 @@ function AccentTitle({ title, accent }: { title: string; accent?: string }) {
 /* ------------------------------------------------ What You'll Learn */
 
 const gauges = [
-  { label: "Anxiety", level: "Low", pct: 0.28, track: "#BFEFC9", arc: "#1C9B3F", chip: "bg-[#DDF6E6] text-[#1C9B3F]" },
-  { label: "Depression", level: "High", pct: 0.82, track: "#F6D2D6", arc: "#B8202D", chip: "bg-[#FDE3E6] text-[#B8202D]" },
-  { label: "ADHD", level: "Moderate", pct: 0.55, track: "#FBE7CC", arc: "#E07B0C", chip: "bg-[#FEEBD2] text-[#C26A06]" },
+  { label: "Anxiety", level: "Low", pct: 0.28, card: "bg-[#EAF7EE]", track: "#BFEFC9", arc: "#15803D", chip: "bg-[#DDF6E6] text-[#1C9B3F]" },
+  { label: "Depression", level: "High", pct: 0.82, card: "bg-[#FCECEE]", track: "#F6D2D6", arc: "#A91B28", chip: "bg-[#FDE3E6] text-[#B8202D]" },
+  { label: "ADHD", level: "Moderate", pct: 0.55, card: "bg-[#FFF2E2]", track: "#FBE7CC", arc: "#C96A08", chip: "bg-[#FEEBD2] text-[#C26A06]" },
 ] as const;
 
 const screeners = [
@@ -42,12 +43,12 @@ const screeners = [
   { name: "ASRS Adult ADHD Screening", note: "Adult ADHD Self-Report Scale" },
 ] as const;
 
-/** One donut gauge: a full track ring plus an arc for `pct`, starting at 12 o'clock, with the level chip in the middle. */
-function Gauge({ label, level, pct, track, arc, chip }: (typeof gauges)[number]) {
+/** One donut gauge on a light green / red / orange card: a pale full track ring plus a dark arc for `pct`, starting at 12 o'clock, with the level chip in the middle. */
+function Gauge({ label, level, pct, card, track, arc, chip }: (typeof gauges)[number]) {
   const r = 42;
   const c = 2 * Math.PI * r;
   return (
-    <li className="flex flex-col items-center gap-2 rounded-lg bg-[#F5F6F8] px-2 py-3 sm:gap-3 sm:py-4">
+    <li className={cn("flex flex-col items-center gap-2 rounded-lg px-2 py-3 sm:gap-3 sm:py-4", card)}>
       <span className="text-[11px] font-semibold text-[#1F2A3C] sm:text-[12px]">{label}</span>
       <span className="relative block aspect-square w-full max-w-[104px]">
         <svg aria-hidden viewBox="0 0 100 100" className="size-full -rotate-90">
@@ -63,8 +64,9 @@ function Gauge({ label, level, pct, track, arc, chip }: (typeof gauges)[number])
 /** The free-assessment dashboard drawn in code: a screening card with a score card overlapping its lower right. */
 function AssessmentPreview() {
   return (
-    <div aria-hidden className="relative mx-auto w-full max-w-[640px] pb-14 sm:pb-16 lg:max-w-none">
-      <div className="w-[88%] rounded-xl border border-[#E3E8F0] bg-white shadow-[0_18px_44px_-18px_rgba(11,37,75,.28)]">
+    <div className="relative mx-auto w-full max-w-[640px] pb-14 sm:pb-16 lg:max-w-none">
+      {/* The mock-up is decorative (hidden from screen readers) except for the "Please Proceed" link, which is a real link. */}
+      <div aria-hidden className="w-[88%] rounded-xl border border-[#E3E8F0] bg-white shadow-[0_18px_44px_-18px_rgba(11,37,75,.28)]">
         <div className="border-b border-[#EDF0F5] p-4 sm:p-5">
           <span className="grid size-8 place-items-center rounded-full bg-[#DDF6F1] text-[#12A58C]">
             <Heart className="size-4" strokeWidth={2} />
@@ -89,7 +91,7 @@ function AssessmentPreview() {
       </div>
 
       <div className="absolute right-0 bottom-0 w-[80%] rounded-xl sm:w-[64%] border border-[#E3E8F0] bg-white shadow-[0_22px_50px_-16px_rgba(11,37,75,.35)]">
-        <div className="flex items-start justify-between gap-3 border-b border-[#EDF0F5] p-3 sm:p-4">
+        <div aria-hidden className="flex items-start justify-between gap-3 border-b border-[#EDF0F5] p-3 sm:p-4">
           <div className="flex min-w-0 items-start gap-2.5">
             <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-[#E6EEFB] text-primary">
               <ClipboardList className="size-3.5" strokeWidth={2} />
@@ -104,25 +106,21 @@ function AssessmentPreview() {
             <span className="mt-0.5 block rounded-full bg-[#FEEBD2] px-1.5 py-0.5 text-[8px] font-semibold text-[#C26A06]">Moderate</span>
           </span>
         </div>
-        <ul className="grid grid-cols-3 gap-2 p-3 sm:gap-3 sm:p-4">
+        <ul aria-hidden className="grid grid-cols-3 gap-2 p-3 sm:gap-3 sm:p-4">
           {gauges.map((g) => (
             <Gauge key={g.label} {...g} />
           ))}
         </ul>
         <div className="flex items-center justify-between gap-2 border-t border-[#EDF0F5] px-3 py-2.5 sm:px-4">
-          <span className="inline-flex items-center gap-1 rounded border border-[#D5DBE6] px-2 py-1 text-[9px] font-medium text-[#1F2A3C]">
+          <span aria-hidden className="inline-flex items-center gap-1 rounded border border-[#D5DBE6] px-2 py-1 text-[9px] font-medium text-[#1F2A3C]">
             <ArrowLeft className="size-2.5" /> Back
           </span>
-          <span className="inline-flex items-center gap-1 rounded bg-primary px-2.5 py-1 text-[9px] font-semibold text-white">
+          <a href={links.comprehensive} className="inline-flex items-center gap-1 rounded bg-primary px-2.5 py-1 text-[9px] font-semibold text-white no-underline">
             <span className="sm:hidden">Proceed</span>
-            <span className="max-sm:hidden">Please Proceed with Comprehensive ADHD Assessment</span> <ArrowRight className="size-2.5" />
-          </span>
+            <span className="max-sm:hidden">Please Proceed with Comprehensive ADHD Assessment</span> <ArrowRight aria-hidden className="size-2.5" />
+          </a>
         </div>
       </div>
-
-      <span className="absolute bottom-[26%] left-0 z-10 grid size-14 place-items-center rounded-[18px] bg-white text-primary shadow-[0_14px_30px_-10px_rgba(37,120,202,.4)] sm:size-[68px] sm:rounded-[22px]">
-        <Brain className="size-7 sm:size-8" strokeWidth={1.6} />
-      </span>
     </div>
   );
 }
@@ -141,7 +139,7 @@ export function AssessmentLearn({ data }: { data: SplitSection }) {
           <h2 id="learn-title" className={cn(h2, "lg:whitespace-nowrap")}>
             <AccentTitle title={data.title} accent={data.accent} />
           </h2>
-          {subtitle && <p className={cn(lead, "mx-auto mt-4 max-w-[760px] text-[#5B6B80] lg:max-w-none lg:whitespace-nowrap")}>{subtitle}</p>}
+          {subtitle && <p className={cn("text-[20px] leading-[1.7] text-pretty", "mx-auto mt-4 max-w-[760px] text-[#5B6B80] lg:max-w-none lg:whitespace-nowrap")}>{subtitle}</p>}
         </Reveal>
 
         <div className="mt-10 grid items-center gap-12 lg:mt-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-14">
@@ -149,7 +147,7 @@ export function AssessmentLearn({ data }: { data: SplitSection }) {
             <Reveal>
               <div className="max-w-[580px] space-y-5">
                 {body.map((p) => (
-                  <p key={p} className="text-[17px] leading-[1.65] text-pretty text-[#33465E] sm:text-[19px]">
+                  <p key={p} className="text-[20px] leading-[1.7] text-pretty text-[#33465E]">
                     {p}
                   </p>
                 ))}
@@ -163,7 +161,7 @@ export function AssessmentLearn({ data }: { data: SplitSection }) {
                       <span aria-hidden className="grid size-8 shrink-0 place-items-center rounded-full bg-[#DDF6EC] text-[#16A34A] shadow-[0_6px_16px_-8px_rgba(22,163,74,.45)]">
                         <Check className="size-4" strokeWidth={3} />
                       </span>
-                      <h3 className="text-[18px] leading-snug font-bold text-[#0F2F55] sm:text-[20px]">{item}</h3>
+                      <h3 className="text-[20px] leading-snug font-medium text-[#1E242A]">{item}</h3>
                     </div>
                   </Reveal>
                 </li>
@@ -183,7 +181,7 @@ export function AssessmentLearn({ data }: { data: SplitSection }) {
 /* ------------------------------------------------ Mid-page CTA (blue banner) */
 
 export function AssessmentBannerCta({ data }: { data: CtaSection }) {
-  return <GradientCtaBanner data={data} accent="Official Diagnosis?" titleId="official-title" />;
+  return <GradientCtaBanner data={data} accent="Official Diagnosis?" titleId="official-title" plain />;
 }
 
 /* ------------------------------------------------ Understanding ADHD with Confidence */
@@ -195,9 +193,9 @@ export function AssessmentConfidence({ data }: { data: FeaturesSection }) {
       <div className={wrap}>
         <div className="mx-auto text-center">
           <h2 id="confidence-title" className="type-h2 text-navy">
-            {data.title}
+            {data.title.replace(/\s*Confidence$/, "")} <span className="text-[#2578CA]">Confidence</span>
           </h2>
-          {data.subtitle && <p className="mx-auto mt-4 max-w-[900px] text-[16px] leading-snug text-pretty text-[#4B5C75] lg:max-w-none lg:text-[17px] lg:whitespace-nowrap">{data.subtitle}</p>}
+          {data.subtitle && <p className="mx-auto mt-4 max-w-[900px] text-[20px] leading-[1.7] text-pretty text-[#4B5C75] lg:max-w-none">{data.subtitle}</p>}
         </div>
 
         <div className="mt-8 grid items-center gap-8 lg:mt-10 lg:grid-cols-[58fr_42fr] lg:gap-10">
@@ -220,8 +218,8 @@ export function AssessmentConfidence({ data }: { data: FeaturesSection }) {
                   <IconChip className="size-12 rounded-2xl sm:size-14">{item.icon && <FeatureIcon name={item.icon} className="size-6 sm:size-7" />}</IconChip>
                   <span aria-hidden className="h-12 w-px shrink-0 bg-[#1677ED]/20" />
                   <div className="min-w-0">
-                    <h3 className="text-[17px] leading-snug font-bold text-[#0B1F4D] sm:text-[18px]">{item.title}</h3>
-                    <p className="mt-1 text-[14px] leading-snug text-[#4B5C75] sm:text-[15px]">{item.text}</p>
+                    <h3 className="text-[20px] leading-snug font-bold text-[#0B1F4D]">{item.title}</h3>
+                    <p className="mt-1 text-[16px] leading-[1.6] text-[#4B5C75]">{item.text}</p>
                   </div>
                 </div>
               </li>
@@ -242,9 +240,9 @@ export function AssessmentOpensDoors({ data }: { data: FeaturesSection }) {
       <div className={wrap}>
         <Reveal className="mx-auto max-w-[900px] text-center">
           <h2 id="doors-title" className={h2}>
-            {data.title}
+            {data.title.replace(/\s*Opens Doors$/, "")} <span className="text-[#2578CA]">Opens Doors</span>
           </h2>
-          {data.subtitle && <p className={cn(lead, "mt-5")}>{data.subtitle}</p>}
+          {data.subtitle && <p className={cn("text-[20px] leading-[1.7] text-pretty", "mt-5")}>{data.subtitle}</p>}
         </Reveal>
         {/* Same cards as "You deserve clarity not guesswork": icon on top, title and text at the bottom. */}
         <ul className="mx-auto mt-10 grid max-w-[560px] gap-5 sm:mt-12 md:max-w-none md:grid-cols-3 lg:gap-6">
@@ -275,9 +273,10 @@ export function AssessmentProcess({ data }: { data: StepsSection }) {
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-10">
         <Reveal className="mx-auto max-w-[900px] text-center">
           <h2 id="process-title" className={h2}>
-            {data.title}
+            {data.title.replace(/ADHD Assessment in Arlington, VA$/, "")}
+            <span className="text-[#2578CA]">ADHD Assessment in Arlington, VA</span>
           </h2>
-          {data.subtitle && <p className={cn(lead, "mt-5")}>{data.subtitle}</p>}
+          {data.subtitle && <p className={cn("text-[20px] leading-[1.7] text-pretty", "mt-5")}>{data.subtitle}</p>}
         </Reveal>
         <AssessmentTimeline items={data.items} />
       </div>

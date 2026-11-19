@@ -1,5 +1,5 @@
 import { faqTabs } from "../faqs";
-import { complianceBadgesColor } from "../trust";
+import { complianceBadgesColor, reviews } from "../trust";
 import type { ImageAsset } from "../types";
 import type { PageContent } from "./types";
 
@@ -61,7 +61,6 @@ export const universityReferralPage: PageContent = {
     {
       type: "hero",
       variant: "network",
-      eyebrow: "FOR UNIVERSITIES",
       title: "ADHD Referral for Universities Made Simple",
       accent: "Universities",
       network: {
@@ -72,8 +71,8 @@ export const universityReferralPage: PageContent = {
           { src: "/images/trust/partners/william-and-mary-logo.svg", alt: "William & Mary logo", width: 1227, height: 126 },
           { src: "/images/trust/partners/virginia-tech-logo.svg", alt: "Virginia Tech logo", width: 248, height: 124 },
           { src: "/images/trust/partners/marymount-university-logo.svg", alt: "Marymount University logo", width: 349, height: 124 },
-          { src: "/images/trust/logo14.webp", alt: "Western Governors University logo", width: 833, height: 204 },
-          { src: "/images/trust/gw.webp", alt: "George Washington University logo", width: 1827, height: 861 },
+          { src: "/images/trust/partners/wgu-logo.svg", alt: "Western Governors University logo", width: 352, height: 123 },
+          { src: "/images/referral-for-pcp/gw-medical-faculty.webp", alt: "George Washington University Medical Faculty Associates logo", width: 289, height: 88 },
           { src: "/images/trust/logo3.webp", alt: "Northern Virginia Family Service logo", width: 433, height: 204 },
         ],
       },
@@ -81,13 +80,13 @@ export const universityReferralPage: PageContent = {
       ctas: [contact("Claim Your University Account"), howItWorks],
       image: { src: "/images/hero/ADHD-University-Referral-Support.webp", alt: "hero section referral university", width: 1672, height: 941 },
       trust: true,
-      note: "1000’s — Students & patients supported across universities and clinics",
     },
-    { type: "testimonialCarousel", eyebrow: "Trusted by Universities & Clinics", title: "1,000’s Students & Patients Supported", accent: "1,000’s", subtitle: "Across universities and clinics, professionals trust AXON ADHD to deliver timely, high-quality support.", items: universityTestimonials },
-    { type: "badges", variant: "compliance", eyebrow: "Compliance & Security", title: "Clinical Standards & Compliance You Can Trust", accent: "You Can Trust", subtitle: "We follow industry-leading medical, privacy, and security frameworks to ensure every assessment, referral, and report is handled with complete integrity.", note: "Your privacy, security, and trust are at the center of everything we do.", badges: complianceBadgesColor },
+    { type: "testimonialCarousel", variant: "fan", title: "1,000’s Students & Patients Supported", accent: "1,000’s", subtitle: "Across universities and clinics, professionals trust AXON ADHD to deliver timely, high-quality support.", items: universityTestimonials },
+    { type: "badges", variant: "compliance", flat: true, title: "Clinical Standards & Compliance You Can Trust", accent: "You Can Trust", subtitle: "We follow industry-leading medical, privacy, and security frameworks to ensure every assessment, referral, and report is handled with complete integrity.", note: "Your privacy, security, and trust are at the center of everything we do.", badges: complianceBadgesColor },
     {
       type: "features",
       title: "Why Partner With AXON ADHD",
+      noPill: true,
       subtitle: "Purpose-built to deliver high-quality ADHD support while saving time and creating value for universities and student support programs.",
       lead: "For Universities & Colleges",
       variant: "partner",
@@ -104,7 +103,6 @@ export const universityReferralPage: PageContent = {
     },
     {
       type: "features",
-      eyebrow: "The Data Behind the Need",
       title: "The Hidden ADHD Gap",
       subtitle: "Understanding the scale of undiagnosed ADHD and its impact on individuals, institutions, and healthcare systems.",
       variant: "gap",
@@ -146,10 +144,10 @@ export const universityReferralPage: PageContent = {
     },
     {
       type: "features",
-      eyebrow: "The Power of Early Referral",
       title: "Why Early Referral Matters",
       subtitle: "Early identification in primary care and universities significantly improves population health and financial outcomes.",
       variant: "earlyReferral",
+      flat: true,
       accent: "Referral Matters",
       image: { src: "/images/referral-for-universities/why-early-refferal-matters.webp", alt: "Clinicians with Patient, Clinic and University connected to the AXON ADHD brain mark", width: 1024, height: 609 },
       items: earlyReferral.map((e, i) => ({ title: e.title, text: e.text, accent: (["blue", "green", "orange", "pink", "purple"] as const)[i] })),
@@ -157,7 +155,7 @@ export const universityReferralPage: PageContent = {
     {
       type: "cta",
       variant: "screening",
-      eyebrow: "Early Action, Better Outcomes",
+      ctaStyle: "homepage",
       title: "Proactive, Free Screening is the First Step Toward Better Outcomes",
       accent: "Better Outcomes",
       subtitle: "Early identification of ADHD, depression, anxiety, and substance use supports student success while protecting family investment and preventing revenue loss from dropouts.",
@@ -172,24 +170,26 @@ export const universityReferralPage: PageContent = {
       type: "steps",
       id: "How-Referral-works",
       variant: "stack",
+      deepBg: true,
+      compact: true,
       title: "How Our Referral Workflow Works",
       subtitle: "Our automated workflow helps universities invite students to complete assessments, delivering trusted results through a behavioral health partner.",
       items: [
-        { title: "Partner with AXON ADHD", text: "At no cost to the school and easy integration with your learning management system (LMS).", image: { src: "/images/referral-for-universities/partner-with-axon-adhd.webp", alt: "AXON ADHD partnership call with Dr. Aaron Dodini", width: 820, height: 460 } },
-        { title: "University Details Entered", text: "AXON identifies your preferred workflow to make it easy for your team to provide proactive, free screenings for all your students and staff.", image: { src: "/images/referral-for-universities/university-details-entered.webp", alt: "Add New Provider Group form where the university's details are entered", width: 820, height: 539 } },
-        { title: "Magic Link Shared", text: "AXON generates a link that can be shared within your LMS messaging system to invite students to complete the free screening 2-4 weeks prior to the start of a new academic year/semester.", image: { src: "/images/referral-for-universities/magic-link-shared.webp", alt: "Send Magic Link screen for a university contact", width: 820, height: 499 } },
-        { title: "Students Complete Free Screening", text: "Students easily complete the screening on their phone or laptop in 4-5 minutes.", image: { src: "/images/referral-for-universities/student-complete-free-screening-cutout-v2.webp", alt: "Student registration form for the free screening", width: 820, height: 525 } },
-        { title: "Screening Results Automatically Shared", text: "Students/Families receive screening results. If risk is elevated, students immediately directed to an FDA-cleared, comprehensive neuropsych evaluation via provided link.", image: { src: "/images/services/Complete-Free-Assessment_11zon.webp", alt: "Welcome to Your Free ADHD Assessment screening screen", width: 1224, height: 838 } },
-        { title: "Consultation with AXON's team of Clinical Psychologists", text: "Within days, students meet virtually with an AXON psychologist to review data, confirm diagnosis, and discuss treatment. Students receive a concise report including accommodation recommendations to streamline disability support protocols within the school.", image: { src: "/images/referral-for-universities/consultation.webp", alt: "QbCheck objective result report reviewed in consultation", width: 721, height: 451 } },
+        { title: "Partner with AXON ADHD", text: "At no cost to the school and easy integration with your learning management system (LMS).", image: { src: "/images/referral-for-universities/partner-with-axon-adhd.webp", alt: "Phone screen showing a call from Dr. Aaron Dodini", width: 820, height: 460 } },
+        { title: "University Details Entered", text: "AXON identifies your preferred workflow to make it easy for your team to provide proactive, free screenings for all your students and staff.", image: { src: "/images/referral-for-universities/university-details-entered.webp", alt: "Add New Provider Group form with point-of-contact details", width: 820, height: 539 } },
+        { title: "Magic Link Shared", text: "AXON generates a link that can be shared within your LMS messaging system to invite students to complete the free screening 2-4 weeks prior to the start of a new academic year/semester.", image: { src: "/images/referral-for-universities/magic-link-shared.webp", alt: "Send Magic Link screen for a point of contact", width: 820, height: 499 } },
+        { title: "Students Complete Free Screening", text: "Students easily complete the screening on their phone or laptop in 4-5 minutes.", image: { src: "/images/referral-for-universities/student-complete-free-screening-cutout-v2.webp", alt: "Basic details form with the referral source listed as a university", width: 2449, height: 1699 } },
+        { title: "Screening Results Automatically Shared", text: "Students/Families receive screening results. If risk is elevated, students immediately directed to an FDA-cleared, comprehensive neuropsych evaluation via provided link.", image: { src: "/images/services/Complete-Free-Assessment_11zon.webp", alt: "Welcome to Your Free ADHD Assessment screen", width: 1224, height: 838 } },
+        { title: "Consultation with AXON's team of Clinical Psychologists", text: "Within days, students meet virtually with an AXON psychologist to review data, confirm diagnosis, and discuss treatment. Students receive a concise report including accommodation recommendations to streamline disability support protocols within the school.", image: { src: "/images/referral-for-universities/consultation.webp", alt: "QbCheck report with objective and detailed results", width: 721, height: 451 } },
       ],
     },
-    { type: "cta", variant: "teal", title: "You don't have to manage ADHD alone.", subtitle: "Help your students get clarity and treatment quickly through our streamlined University referral workflow.", primary: contact("Claim Your University Account"), secondary: howItWorks },
+    { type: "cta", variant: "plain", ctaStyle: "homepage", accent: "ADHD alone.", title: "You don't have to manage ADHD alone.", subtitle: "Help your students get clarity and treatment quickly through our streamlined University referral workflow.", primary: contact("Claim Your University Account"), secondary: howItWorks },
     {
       type: "features",
-      eyebrow: "Built for Campuses",
       title: "Key Benefits for University",
       subtitle: "AXON ADHD streamlines student intake, improves campus communication, and supports better student success decisions.",
       variant: "universityBenefits",
+      flat: true,
       accent: "University",
       image: { src: "/images/referral-for-universities/key-benefits-for-university.webp", alt: "Clinician smiling while speaking with a patient", width: 2916, height: 1488 },
       columns: 5,
@@ -201,10 +201,9 @@ export const universityReferralPage: PageContent = {
         { title: "Zero Setup Cost", text: "Free, fast onboarding with no technical integration required.", icon: "sparkles", accent: "purple" },
       ],
     },
-    { type: "cta", variant: "blue", accent: "Effortlessly", title: "Expand Your Referral Network Effortlessly", subtitle: "A single, secure process for onboarding referred students from universities and partnered institutions.", primary: contact("Contact Us") },
-    { type: "quotes", variant: "stacked", accent: "AXON ADHD", title: "What Universities Say About AXON ADHD", subtitle: "Academic institutions, primary care providers, and families trust AXON ADHD for clear evaluations and streamlined student referral support.", items: universityReviews },
+    { type: "testimonialCarousel", variant: "fan", accent: "AXON ADHD", title: "What Universities Say About AXON ADHD", subtitle: "Academic institutions, primary care providers, and families trust AXON ADHD for clear evaluations and streamlined student referral support.", items: universityReviews },
     { type: "faq", variant: "split", accent: "Questions", aside: { title: "Have Questions?", text: "Find quick answers to the most common questions about AXON ADHD's university partnerships." }, title: "Frequently Asked Questions", subtitle: "We have the answers for you!", faqs: faqTabs[1].items },
-    { type: "contact" },
+    { type: "contact", variant: "university" },
   ],
 };
 
@@ -220,12 +219,10 @@ export const pcpReferralPage: PageContent = {
     {
       type: "hero",
       variant: "network",
-      eyebrow: "FOR PRIMARY CARE PROVIDERS",
       title: "ADHD Referral Partner Program for Primary Care Providers",
       accent: "Primary Care Providers",
       network: {
         hubLabel: "PRIMARY CARE PROVIDERS",
-        hub: "glow",
         // Clockwise from the top, as drawn in the partner diagram further down this page.
         logos: [
           { src: "/images/referral-for-pcp/privia.webp", alt: "Privia Health logo", width: 260, height: 92 },
@@ -243,8 +240,9 @@ export const pcpReferralPage: PageContent = {
       image: { src: "/images/hero/AXON-ADHD-Referral-Program-Banner.webp", alt: "hero section primary care provider", width: 1671, height: 941 },
       trust: true,
     },
-    { type: "reviewStrip", stat: { value: "100+", label: "Providers and institutions collaborating with AXON" } },
-    { type: "badges", variant: "compliance", compact: true, eyebrow: "Compliance & Security", note: "Your privacy, security, and trust are at the center of everything we do.", accent: "You Can Trust", title: "Clinical Standards & Compliance You Can Trust", subtitle: "We follow industry-leading medical, privacy, and security frameworks to ensure every assessment, referral, and report is handled with complete integrity.", badges: complianceBadgesColor, image: img("clinical-standard.webp", "Clinical standards and compliance", 1341, 1173) },
+    // The partner count and all of the home page's Google reviews, in the same fanned-card section as the university page.
+    { type: "testimonialCarousel", variant: "fan", accent: "100+", title: "100+ Providers and institutions\ncollaborating with AXON ADHD", items: reviews.map((r) => ({ quote: r.text, name: r.name, role: "Google review" })) },
+    { type: "badges", variant: "compliance", flat: true, note: "Your privacy, security, and trust are at the center of everything we do.", accent: "You Can Trust", title: "Clinical Standards & Compliance You Can Trust", subtitle: "We follow industry-leading medical, privacy, and security frameworks to ensure every assessment, referral, and report is handled with complete integrity.", badges: complianceBadgesColor, image: img("clinical-standard.webp", "Clinical standards and compliance", 1341, 1173) },
     {
       type: "features",
       title: "Why Partner With AXON ADHD",
@@ -252,6 +250,7 @@ export const pcpReferralPage: PageContent = {
       lead: "For Primary Care Providers",
       leadIcon: "stethoscope",
       imageLabels: true,
+      noPill: true,
       variant: "partner",
       accent: "AXON ADHD",
       headline: { text: "A Trusted Partner for Primary Care Providers", accent: "Primary Care Providers" },
@@ -292,12 +291,14 @@ export const pcpReferralPage: PageContent = {
         { title: "Economic Cost", accent: "orange", text: "4× higher medical costs" },
       ],
     },
-    { type: "features", variant: "earlyReferral", eyebrow: "The Power of Early Referral", accent: "Referral Matters", title: "Why Early Referral Matters", subtitle: "Early identification in primary care significantly improves patient outcomes and reduces long-term healthcare costs.", image: { src: "/images/referral-for-universities/why-early-refferal-matters.webp", alt: "Clinicians with Patient, Clinic and University connected to the AXON ADHD brain mark", width: 1024, height: 609 }, items: earlyReferral.map((e, i) => ({ ...e, accent: (["blue", "green", "orange", "pink", "purple"] as const)[i] })) },
-    { type: "cta", variant: "blue", accent: "Better Outcomes", title: "Referral Is the First Step Toward Better Outcomes", subtitle: "Early ADHD identification improves patient health and practice outcomes. Join leading healthcare providers improving ADHD care delivery.", primary: contact("Become Referral Partner") },
+    { type: "features", variant: "earlyReferral", flat: true, accent: "Referral Matters", title: "Why Early Referral Matters", subtitle: "Early identification in primary care significantly improves patient outcomes and reduces long-term healthcare costs.", image: { src: "/images/referral-for-universities/why-early-refferal-matters.webp", alt: "Clinicians with Patient, Clinic and University connected to the AXON ADHD brain mark", width: 1024, height: 609 }, items: earlyReferral.map((e, i) => ({ ...e, accent: (["blue", "green", "orange", "pink", "purple"] as const)[i] })) },
+    { type: "cta", variant: "plain", ctaStyle: "homepage", accent: "Better Outcomes", title: "Referral Is the First Step Toward Better Outcomes", subtitle: "Early ADHD identification improves patient health and practice outcomes. Join leading healthcare providers improving ADHD care delivery.", primary: contact("Become Referral Partner") },
     {
       type: "steps",
       id: "How-Referral-works",
       variant: "stack",
+      deepBg: true,
+      compact: true,
       title: "How Our Referral Workflow Works",
       subtitle: "Our automated workflow helps providers invite patients to complete assessments, delivering trusted results through a behavioral health partner.",
       items: [
@@ -309,13 +310,13 @@ export const pcpReferralPage: PageContent = {
         { title: "Consultation with AXON's team of Clinical Psychologists", text: "Within days, patients meet virtually with an AXON psychologist to review data, confirm diagnosis, and discuss treatment. Both patient and PCP receive a concise report before the annual visit, enabling faster, confident care.", image: img("Healthcare-professionals-connected-t.webp", "", 1891, 1125) },
       ],
     },
-    { type: "cta", variant: "teal", title: "Fast, Seamless ADHD Referrals for Your Practice", subtitle: "Help your patients get clarity and treatment quickly through our streamlined PCP referral workflow.", primary: contact("Claim Your PCP Account"), secondary: howItWorks },
+    { type: "cta", variant: "plain", ctaStyle: "homepage", accent: "for Your Practice", title: "Fast, Seamless ADHD Referrals for Your Practice", subtitle: "Help your patients get clarity and treatment quickly through our streamlined PCP referral workflow.", primary: contact("Claim Your PCP Account"), secondary: howItWorks },
     {
       type: "features",
-      eyebrow: "Built for Practices",
       title: "Key Benefits for PCPs",
       subtitle: "AXON ADHD streamlines patient intake, enhances provider communication, and supports better clinical decision-making.",
       variant: "universityBenefits",
+      flat: true,
       accent: "PCPs",
       image: { src: "/images/referral-for-universities/key-benefits-for-university.webp", alt: "Clinician smiling while speaking with a patient", width: 2916, height: 1488 },
       columns: 5,
@@ -328,8 +329,8 @@ export const pcpReferralPage: PageContent = {
       ],
     },
     { type: "cta", variant: "blue", title: "Get a TRUE Collaborative Partner for Behavioral Health Needs.", subtitle: "Have confidence in the care you provide and the partners you trust to give you objective, validated diagnostic certainty.", primary: contact("Contact Us") },
-    { type: "quotes", variant: "stacked", accent: "AXON ADHD", title: "What PCPs Say About AXON ADHD", subtitle: "PCPs trust AXON ADHD for clear, accurate evaluations and seamless patient referrals.", items: endorsements },
+    { type: "testimonialCarousel", variant: "fan", accent: "AXON ADHD", title: "What PCPs Say About AXON ADHD", subtitle: "PCPs trust AXON ADHD for clear, accurate evaluations and seamless patient referrals.", items: endorsements },
     { type: "contact" },
-    { type: "faq", variant: "split", homeStyle: true, accent: "Questions", aside: { title: "Have Questions?", text: "Find quick answers to the most common questions about ADHD testing, diagnosis, and care with AXON ADHD.", link: { label: "View all FAQs", href: "/adhd-faqs/" } }, title: "Frequently Asked Questions", subtitle: "We have the answers for you!", faqs: faqTabs[0].items },
+    { type: "faq", variant: "split", accent: "Questions", aside: { title: "Have Questions?", text: "Find quick answers to the most common questions about ADHD testing, diagnosis, and care with AXON ADHD.", link: { label: "View all FAQs", href: "/adhd-faqs/" } }, title: "Frequently Asked Questions", subtitle: "We have the answers for you!", faqs: faqTabs[0].items },
   ],
 };

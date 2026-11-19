@@ -85,7 +85,7 @@ function Tree({ group, n }: { group: Group; n: number }) {
           {group.items.map((item, i) => (
             <li key={item.label} className="pt-3 pl-8">
               <div className="relative flex min-h-6 items-center gap-3.5 before:absolute before:top-1/2 before:-left-8 before:w-8 before:border-t before:border-[#9CA3AF]">
-                <span aria-hidden className="grid h-6 w-[35px] shrink-0 place-items-center bg-[#555] text-[11.5px] font-semibold text-white">
+                <span aria-hidden className="grid h-6 w-[35px] shrink-0 place-items-center bg-[#555] text-[12px] font-semibold text-white">
                   {n}.{i + 1}
                 </span>
                 <Label label={item.label} href={item.href} />

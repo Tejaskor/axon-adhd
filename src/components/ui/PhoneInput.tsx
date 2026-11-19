@@ -37,12 +37,12 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(function
   return (
     <div
       className={cn(
-        "flex rounded-lg border bg-white transition-colors focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20",
-        invalid ? "border-danger" : "border-[#D1D5DB]",
+        "flex rounded-lg border border-solid bg-white transition-colors focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20",
+        invalid ? "border-danger" : "border-[#D1D1D6]",
         className,
       )}
     >
-      <div className="relative flex shrink-0 items-center gap-1.5 border-r border-[#D1D5DB] px-3">
+      <div className="relative flex shrink-0 items-center gap-1.5 border-r border-[#D1D1D6] px-3">
         <span aria-hidden className="text-[20px] leading-none">
           {selected.flag}
         </span>

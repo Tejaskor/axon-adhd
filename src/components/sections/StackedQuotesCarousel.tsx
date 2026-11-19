@@ -52,7 +52,7 @@ export function StackedQuotesCarousel({ data }: { data: QuotesSection }) {
             {after !== undefined && <span className="text-primary">{data.accent}</span>}
             {after}
           </h2>
-          {data.subtitle && <p className="type-body mx-auto mt-4 text-pretty text-[#4B5C75]">{data.subtitle}</p>}
+          {data.subtitle && <p className="mx-auto mt-4 text-[20px] leading-[1.7] text-pretty text-[#4B5C75]">{data.subtitle}</p>}
         </div>
 
         <div role="region" aria-roledescription="carousel" aria-label="Reviews" className="mx-auto mt-10 sm:mt-14">

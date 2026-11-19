@@ -1,4 +1,4 @@
-import { AccommodationContact } from "@/components/sections/AccommodationSections";
+import { CoverageContact } from "@/components/sections/CoverageContact";
 import {
   AssessmentBannerCta,
   AssessmentClosingCta,
@@ -11,7 +11,6 @@ import { innerPageMetadata } from "@/components/sections/InnerPage";
 import { LatestBlogs } from "@/components/sections/LatestBlogs";
 import { PageSections } from "@/components/sections/PageSections";
 import { JsonLd } from "@/components/ui/JsonLd";
-import { contactSection } from "@/content/home";
 import { comprehensiveAssessmentPage } from "@/content/pages/comprehensive-assessment";
 import type { PageSection } from "@/content/pages/types";
 import { breadcrumbJsonLd } from "@/lib/seo";
@@ -40,7 +39,7 @@ export default function Page() {
       <AssessmentProcess data={at(7, "steps")} />
       <AssessmentClosingCta data={at(8, "cta")} />
       <LatestBlogs />
-      <AccommodationContact eyebrow={null} description={contactSection.subtitle} compact />
+      <CoverageContact />
 
       <JsonLd
         data={breadcrumbJsonLd([

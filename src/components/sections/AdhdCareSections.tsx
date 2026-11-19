@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from "react";
 import Image from "next/image";
-import { Brain, ClipboardList, Clock, Layers } from "lucide-react";
+import { Brain, ClipboardList, Clock, Layers, Star } from "lucide-react";
 import type { CtaSection, FeaturesSection, PageHero, SplitSection } from "@/content/pages/types";
 import { ButtonLink } from "@/components/ui/Button";
 import { FeatureIcon } from "@/components/ui/FeatureIcon";
@@ -9,7 +9,8 @@ import { cn } from "@/lib/utils";
 import { Arrow, h2, lead, wrap } from "./AccommodationSections";
 import { VideoCardPlayer } from "./AssessmentVideo";
 import { GradientCtaBanner } from "./GradientCtaBanner";
-import { TrustBar } from "./TrustBar";
+import { hero as homeHero } from "@/content/home";
+import { trustBar } from "@/content/trust";
 
 /**
  * ADHD Care page sections. All copy, images and link targets come from the page's content definition,
@@ -34,33 +35,19 @@ const qbCards = [
   { src: "image 18.webp", alt: "Total symptom level compared with the general population", width: 1048, height: 386, x: 0, y: 34, w: 28, sx: 36.4, sy: 26.5, wide: true },
 ];
 
-/**
- * Two-item restyle of the shared TrustBar for this hero only (its items: 1 Google rating · 2 divider ·
- * 3 avatars + caption · 4 divider · 5 Psychology Today badge). Items 4–5 are hidden here, so the shared
- * component keeps its badge everywhere else. One row with a divider on tablets and from 1280px, where it may run
- * past the copy column into the empty lower-left of the dashboard stage; between 1024 and 1280px the avatars wrap
- * under the rating; stacked on phones.
- */
-const heroTrust = [
-  "mt-0! flex-wrap items-center gap-x-7 gap-y-5 xl:flex-nowrap max-sm:flex-col max-sm:items-start",
-  "[&>li]:shrink-0 [&>li:nth-child(n+4)]:hidden! [&>li[aria-hidden]]:h-12 [&>li[aria-hidden]]:bg-primary/15 lg:max-xl:[&>li:nth-child(2)]:hidden",
-  // Google rating
-  "[&>li:first-child]:gap-3 [&>li:first-child>img]:size-10 [&>li:first-child_svg]:size-[18px] [&>li:first-child>span>span:first-child]:gap-0.5",
-  "[&>li:first-child>span>span:last-child]:text-[16px] [&>li:first-child>span>span:last-child]:leading-tight",
-  // Avatars + caption, side by side; the caption breaks after "Helped"
-  "[&>li:nth-child(3)]:flex-row [&>li:nth-child(3)]:gap-3.5 [&>li:nth-child(3)_img]:size-[38px] [&>li:nth-child(3)_img]:shadow-[0_3px_8px_rgba(18,61,106,.16)]",
-  "[&>li:nth-child(3)>span:last-child]:min-w-0 [&>li:nth-child(3)>span:last-child]:max-w-[190px] [&>li:nth-child(3)>span:last-child]:text-left [&>li:nth-child(3)>span:last-child]:text-[16px] [&>li:nth-child(3)>span:last-child]:leading-snug [&>li:nth-child(3)>span:last-child]:text-[#0F2F55]",
-].join(" ");
-
-export function AdhdCareHero({ data }: { data: PageHero }) {
+export function AdhdCareHero({ data, visual }: { data: PageHero; /** Replaces the dashboard stage on the right (the ADHD Referral for Universities page shows its partner network here). */ visual?: ReactNode }) {
   // "Lead: key words" titles break after the colon and highlight the key words; other titles render as-is.
   const colon = data.title.indexOf(": ");
   const titleLead = colon > 0 ? data.title.slice(0, colon + 1) : null;
   const titleKey = data.title.slice(colon + 2);
   return (
-    <section aria-labelledby="page-title" className="relative -mt-[var(--header-height)] overflow-hidden bg-[radial-gradient(ellipse_42%_55%_at_0%_0%,#D2D8FD,transparent_70%),radial-gradient(ellipse_48%_55%_at_100%_8%,#D4F8F8,transparent_72%),radial-gradient(ellipse_60%_45%_at_100%_100%,#CBE7FE,transparent_72%),linear-gradient(180deg,#D6F1FD_0%,#E6F1FE_30%,#EEF7FE_65%,#DCECFE_100%)] pt-[calc(var(--header-height)+36px)] pb-16 sm:pb-20 lg:pt-[calc(var(--header-height)+56px)] lg:pb-24">
-      <div className={cn(wrap, "relative grid items-center gap-12 sm:gap-14 lg:grid-cols-[minmax(0,44fr)_minmax(0,56fr)] lg:gap-10 xl:gap-0")}>
-        <div className="relative z-10 max-w-[620px]">
+    // Same hero as the ADHD Assessment page: pale blue ground, a 50 / 50 split (copy left, dashboard stage right) aligned at the top, 88px above and below.
+    <section aria-labelledby="page-title" className="relative isolate -mt-[var(--header-height)] w-full overflow-hidden bg-[#E8F2FF]">
+      <div
+        className={cn(wrap, "relative grid items-start gap-10 lg:grid-cols-2 lg:gap-12")}
+        style={{ paddingTop: "calc(var(--header-height) + 88px)", paddingBottom: 88 }}
+      >
+        <div className="relative z-10 min-w-0">
           {data.eyebrow && <p className="mb-4 text-[13px] font-semibold tracking-[0.14em] text-primary uppercase">{data.eyebrow}</p>}
           <h1 id="page-title" className="type-h1 text-navy qb-in text-balance lg:[text-wrap:wrap]">
             {titleLead ? (
@@ -68,48 +55,70 @@ export function AdhdCareHero({ data }: { data: PageHero }) {
                 <span className="block">{titleLead}</span>{" "}
                 <span className="box-decoration-clone text-primary">{titleKey}</span>
               </>
+            ) : data.accent && data.title.includes(data.accent) ? (
+              <>
+                {data.title.split(data.accent)[0]}
+                <span className="text-primary">{data.accent}</span>
+                {data.title.split(data.accent)[1]}
+              </>
             ) : (
               data.title
             )}
           </h1>
           {data.text.map((t) => (
-            <p key={t} className="qb-in mt-7 max-w-[490px] text-[16px] leading-[1.75] text-pretty text-[#44566E] sm:text-[17px]" style={{ "--d": 0.12 } as CSSProperties}>
+            <p key={t} className="qb-in mt-6 max-w-[640px] text-[20px] leading-[1.7] text-pretty text-[#242A3C]" style={{ "--d": 0.12 } as CSSProperties}>
               {t}
             </p>
           ))}
           {data.ctas.length > 0 && (
-            <div className="qb-in mt-7 flex flex-col items-start gap-3.5" style={{ "--d": 0.24 } as CSSProperties}>
-              {data.ctas.map((cta, i) =>
-                i === 0 ? (
-                  <ButtonLink
-                    key={cta.label}
-                    href={cta.href}
-                    size="lg"
-                    className="group min-h-14! gap-5! rounded-full! bg-[linear-gradient(90deg,#1F64B8_0%,#2578CA_55%,#3A8AD8_100%)]! py-2! pr-2.5! pl-8! text-[17px]! font-medium! text-white! shadow-[0_16px_32px_-12px_rgba(37,120,202,.65)]! transition-[translate,box-shadow]! duration-300! hover:-translate-y-0.5 hover:shadow-[0_22px_40px_-14px_rgba(37,120,202,.75)]! active:translate-y-0"
-                  >
-                    {cta.label}
-                    <span aria-hidden className="grid size-9 place-items-center rounded-full bg-white text-primary shadow-[0_4px_10px_rgba(11,37,75,.18)]">
-                      <Arrow />
-                    </span>
-                  </ButtonLink>
-                ) : (
-                  <ButtonLink key={cta.label} href={cta.href} size="lg" variant="outline" className="group border-primary! text-primary! hover:bg-primary! hover:text-white!">
-                    {cta.label}
-                    <Arrow />
-                  </ButtonLink>
-                ),
-              )}
+            <div className="qb-in mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4" style={{ "--d": 0.24 } as CSSProperties}>
+              {data.ctas.map((cta, i) => (
+                <ButtonLink key={cta.label} href={cta.href} size="lg" variant={i > 0 ? "white" : undefined} arrow={i === 0}>
+                  {cta.label}
+                </ButtonLink>
+              ))}
             </div>
           )}
           {data.note && <p className="type-small mt-3 text-[#5B6B80]">{data.note}</p>}
           {data.trust && (
-            <div className="qb-in mt-10 xl:w-max" style={{ "--d": 0.36 } as CSSProperties}>
-              <TrustBar className={heroTrust} />
-            </div>
+            // Same Google Reviews + adults-helped row as the homepage / ADHD Assessment hero, in dark text for this light hero.
+            <ul aria-label="Why people trust AXON ADHD" className="qb-in mt-10 flex flex-wrap items-center gap-x-5 gap-y-5" style={{ "--d": 0.36 } as CSSProperties}>
+              <li className="flex items-center gap-3">
+                <Image src={trustBar.google.src} alt={trustBar.google.alt} width={44} height={44} className="size-10 lg:size-11" />
+                <span className="flex flex-col">
+                  <span className="text-[16px] font-semibold text-navy">{homeHero.trust.label}</span>
+                  <span className="mt-0.5 flex items-center gap-2">
+                    <span className="text-[17px] font-semibold text-navy">{homeHero.trust.rating}</span>
+                    <span className="flex gap-0.5 text-[#F0B800]" aria-hidden>
+                      {Array.from({ length: 5 }, (_, i) => (
+                        <Star key={i} className="size-[15px] fill-current" strokeWidth={0} />
+                      ))}
+                    </span>
+                    <span className="text-[14px] text-[#4B5C75]">{homeHero.trust.reviews}</span>
+                    <span className="sr-only"> on Google</span>
+                  </span>
+                </span>
+              </li>
+              <li aria-hidden className="hidden h-12 w-px bg-[#C9DCF2] sm:block" />
+              <li className="flex items-center gap-3.5">
+                <span className="flex -space-x-2.5">
+                  {trustBar.avatars.map((av) => (
+                    <Image key={av.src} src={av.src} alt="" width={44} height={44} className="size-10 rounded-full border-[3px] border-white object-cover shadow-[0_4px_12px_rgba(11,37,75,.15)]" />
+                  ))}
+                </span>
+                <span className="leading-snug">
+                  <span className="block text-[18px] font-semibold text-navy">{trustBar.helped.split(/(?<=Helped) /)[0]}</span>
+                  <span className="block text-[18px] text-[#4B5C75]">{trustBar.helped.split(/(?<=Helped) /)[1]}</span>
+                </span>
+              </li>
+            </ul>
           )}
         </div>
 
-        <div className="qb-stage relative mx-auto grid w-full max-w-[720px] grid-cols-2 gap-3 sm:block sm:aspect-[100/73] lg:max-w-none xl:-ml-10 xl:w-[calc(100%+2.5rem)]">
+        {visual ? (
+          <div className="relative mx-auto w-full max-w-[720px] lg:max-w-none">{visual}</div>
+        ) : (
+        <div className="qb-stage relative mx-auto grid w-full max-w-[720px] grid-cols-2 gap-3 sm:block sm:aspect-[100/73] lg:max-w-none">
           {/* Glow and two faint orbit rings, centred on the dashboard */}
           <div aria-hidden className="absolute top-[47%] left-[48%] hidden size-[78cqw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(37,120,202,.16),rgba(134,182,229,.08)_45%,transparent_70%)] sm:block" />
           <div aria-hidden className="absolute top-[47%] left-[48%] hidden size-[70cqw] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/80 shadow-[inset_0_0_40px_rgba(255,255,255,.35)] sm:block" />
@@ -138,6 +147,7 @@ export function AdhdCareHero({ data }: { data: PageHero }) {
             </div>
           ))}
         </div>
+        )}
       </div>
     </section>
   );
@@ -153,46 +163,52 @@ export function AdhdCareHero({ data }: { data: PageHero }) {
 /** Item accents in reading order: blue, green, orange, purple (the PathCard tones). */
 const careTones = ["blue", "green", "orange", "purple"] as const;
 
-/** Centred heading and intro (two lines on desktop), the framed explainer video, then four centred icon cards. */
+/**
+ * Same structure and styling as the Comprehensive ADHD Assessment page's second section (AssessmentOverview): centred heading with the
+ * accent words in blue and a curved underline, a 20px intro, the plain explainer video (no frame, border or shadow, up to 1440px wide)
+ * centred below, then four icon feature cards (the shared PathCard).
+ */
 export function AdhdCareServices({ data }: { data: FeaturesSection }) {
   const [before, after] = data.accent ? data.title.split(data.accent) : [data.title];
   return (
     <section className="relative overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! section-py" aria-labelledby="services-title">
-      <div className={cn(wrap, "relative")}>
-        <Reveal className="mx-auto max-w-[1300px] text-center">
-          <h2 id="services-title" className={cn(h2, "mx-auto max-w-[880px]")}>
+      <div className="mx-auto w-full max-w-[1372px] px-4">
+        <div className="mx-auto max-w-[1160px] text-center">
+          <h2 id="services-title" className="type-h2 mx-auto max-w-[940px] text-navy text-balance">
             {after !== undefined ? (
               <>
                 {before}
-                <span className="text-primary">{data.accent}</span>
+                <span className="relative inline-block text-primary">
+                  {data.accent}
+                  <svg aria-hidden viewBox="0 0 300 14" preserveAspectRatio="none" className="absolute inset-x-0 -bottom-[0.22em] h-[0.2em] w-full text-primary/45" fill="none">
+                    <path d="M2 10 C 70 2, 190 2, 298 8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                  </svg>
+                </span>
                 {after}
               </>
             ) : (
               data.title
             )}
           </h2>
-          {data.subtitle && <p className={cn(lead, "mx-auto mt-5 max-w-[820px] text-[#1F3350] lg:max-w-[1280px] lg:text-[clamp(13px,1.15vw,15px)] lg:text-balance")}>{data.subtitle}</p>}
-        </Reveal>
+          {data.subtitle && <p className="mx-auto mt-4 max-w-[1120px] text-[20px] leading-[1.7] text-balance text-body">{data.subtitle}</p>}
+        </div>
+      </div>
 
-        {data.video && (
-          <Reveal delay={0.05}>
-            <div className="mx-auto mt-10 max-w-[980px] rounded-[30px] border border-white bg-white/70 p-2 shadow-[0_30px_70px_-24px_rgba(37,120,202,.45)] sm:p-2.5 lg:mt-12">
-              <VideoCardPlayer id={data.video.id} title={data.video.title} poster="maxres" />
-            </div>
-          </Reveal>
-        )}
+      {data.video && (
+        // Centred, at most 1440px wide and never wider than the site's content box (so no sideways overflow); 16:9 at every size.
+        <div className="mx-auto mt-10 w-full max-w-[1372px] px-4">
+          <div className="mx-auto w-full max-w-[1440px]">
+            <VideoCardPlayer id={data.video.id} title={data.video.title} poster="maxres" className="[&>div]:shadow-none" />
+          </div>
+        </div>
+      )}
 
-        <ul className="mx-auto mt-6 grid max-w-[1200px] gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+      <div className="relative mx-auto mt-12 max-w-[1372px] px-4 lg:mt-14">
+        <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {data.items.map((item, i) => (
             <li key={item.title} className="flex">
-              <Reveal delay={0.05 + i * 0.06} className="flex w-full">
-                <PathCard
-                  center
-                  tone={careTones[i % careTones.length]}
-                  icon={item.icon && <FeatureIcon name={item.icon} className="size-7" />}
-                  title={item.title}
-                  text={item.text}
-                />
+              <Reveal delay={i * 0.06} className="flex w-full">
+                <PathCard tone={careTones[i % careTones.length]} icon={item.icon && <FeatureIcon name={item.icon} className="size-7" />} title={item.title} text={item.text} />
               </Reveal>
             </li>
           ))}
@@ -221,8 +237,8 @@ export function AdhdCareSpecialized({ data }: { data: FeaturesSection }) {
   return (
     <section className="bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)] section-py" aria-labelledby="specialized-title">
       <div className={wrap}>
-        <Reveal className="mx-auto max-w-[1000px] text-center">
-          <h2 id="specialized-title" className={cn(h2, "")}>
+        <Reveal className="mx-auto max-w-[1340px] text-center">
+          <h2 id="specialized-title" className={cn(h2, "mx-auto max-w-[1000px]")}>
             {after !== undefined ? (
               <>
                 <span className="block">{before.trim()}</span>
@@ -238,13 +254,13 @@ export function AdhdCareSpecialized({ data }: { data: FeaturesSection }) {
               data.title
             )}
           </h2>
-          {data.subtitle && <p className={cn(lead, "mx-auto mt-6 max-w-[940px] text-[#33465E]")}>{data.subtitle}</p>}
+          {data.subtitle && <p className={cn(lead, "mx-auto mt-6 max-w-[1300px] text-balance text-[#33465E]")}>{data.subtitle}</p>}
         </Reveal>
 
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-12 lg:grid-cols-[0.85fr_1.75fr_0.85fr] lg:grid-rows-2 lg:gap-6">
           {data.image && (
             <Reveal delay={0.05} className="sm:col-span-2 lg:col-span-1 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-center">
-              <div className="rounded-[34px] border border-white/90 bg-white/70 p-2.5 shadow-[0_28px_64px_-24px_rgba(37,60,160,.35)] sm:p-3">
+              <div className="rounded-[26px] shadow-[0_28px_64px_-24px_rgba(37,60,160,.35)]">
                 <Image
                   src={data.image.src}
                   alt={data.image.alt}
@@ -278,9 +294,9 @@ export function AdhdCareSpecialized({ data }: { data: FeaturesSection }) {
 
 /* ------------------------------------------------ "Haven't Started Yet?" banner */
 
-/** Full-bleed blue banner shared with the assessment page's "Ready for an Official Diagnosis?" (same layout, colours and buttons). */
+/** Same banner as the Comprehensive ADHD Assessment page's "Ready for an Official Diagnosis?": gradient with the ADHD doodle pattern and AXON ADHD logos, 20px intro, homepage buttons. */
 export function AdhdCareStartCta({ data }: { data: CtaSection }) {
-  return <GradientCtaBanner data={data} accent="Started Yet?" titleId="start-title" splitFromSm />;
+  return <GradientCtaBanner data={data} accent="Started Yet?" titleId="start-title" plain scrim />;
 }
 
 /* ------------------------------------------------ Closing CTA ("You don't have to manage ADHD alone.") */
@@ -316,12 +332,12 @@ export function AdhdCareClosingCta({ data }: { data: CtaSection }) {
         </h2>
         {data.subtitle && <p className="mx-auto mt-5 max-w-[760px] text-[17px] leading-[1.7] text-pretty text-white/90 sm:text-[19px]">{data.subtitle}</p>}
         <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
-          <ButtonLink href={data.primary.href} size="lg" className={closingBtn}>
+          <ButtonLink href={data.primary.href} size="lg" variant="white" className={closingBtn}>
             {data.primary.label}
             <Arrow />
           </ButtonLink>
           {data.secondary && (
-            <ButtonLink href={data.secondary.href} size="lg" className={closingBtn}>
+            <ButtonLink href={data.secondary.href} size="lg" variant="white" className={closingBtn}>
               {data.secondary.label}
               <Arrow />
             </ButtonLink>
@@ -421,11 +437,7 @@ export function AdhdCareTools({ data }: { data: SplitSection }) {
     <section className="bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! section-py" aria-labelledby="tools-title">
       <div className={cn(wrap, "grid items-center gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-14")}>
         <Reveal>
-          <p className="inline-flex items-center gap-2.5 rounded-full border border-[#B9D0F3] bg-white/55 px-5 py-2 text-[14px] font-semibold text-[#0A4FF0] sm:text-[16px]">
-            <Layers aria-hidden className="size-5" strokeWidth={1.75} />
-            Evidence-Based Strategies
-          </p>
-          <h2 id="tools-title" className={cn(h2, "mt-5")}>
+          <h2 id="tools-title" className={h2}>
             {after !== undefined ? (
               <>
                 <span className="block">{before.trim()}</span>
@@ -465,7 +477,7 @@ export function AdhdCareTools({ data }: { data: SplitSection }) {
 
         {data.image && (
           <Reveal delay={0.1}>
-            <div className="relative mx-auto max-w-[680px] rounded-[34px] border border-white/90 bg-white/70 p-2.5 shadow-[0_28px_64px_-24px_rgba(37,60,160,.35)] sm:p-3 lg:max-w-none">
+            <div className="relative mx-auto max-w-[680px] rounded-[26px] shadow-[0_28px_64px_-24px_rgba(37,60,160,.35)] lg:max-w-none">
               <Image src={data.image.src} alt={data.image.alt} width={data.image.width} height={data.image.height} unoptimized className="aspect-[5/4] w-full rounded-[26px] object-cover" />
               <div className="absolute right-[7%] bottom-[7%] left-[7%] rounded-[16px] bg-white shadow-[0_24px_50px_-18px_rgba(18,61,106,.35)] sm:rounded-[20px]">
                 <Image src={toolsOverlay.src} alt="AXON ADHD coaching dashboard" width={toolsOverlay.width} height={toolsOverlay.height} unoptimized className="h-auto w-full rounded-[inherit]" />

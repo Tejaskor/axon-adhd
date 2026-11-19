@@ -6,18 +6,18 @@ import { cn, isExternal } from "@/lib/utils";
 type Variant = "primary" | "outline" | "glass" | "white" | "ghost" | "dark";
 type Size = "sm" | "md" | "lg";
 
-// One design everywhere (see effects/arrow-fill-button.tsx): blue→white for primary/outline/dark, white→blue for white/glass.
+// One design everywhere = the two header buttons (see effects/arrow-fill-button.tsx): primary/dark use the blue one, outline/white/glass
+// the white one with the #256ACC border. Same padding (10px 16px), 50px radius, normal weight and fluid text size as the header.
 const variants: Record<Variant, string> = {
   primary: arrowFillTone.blue,
-  outline: arrowFillTone.blue,
+  outline: arrowFillTone.white,
   glass: arrowFillTone.white,
   white: arrowFillTone.white,
   ghost: "py-2.5 text-[15px] text-primary hover:text-primary-hover underline-offset-4 hover:underline px-0! md:text-[16px]",
   dark: arrowFillTone.blue,
 };
 
-// Padding 10px 16px, 16px text; the 28px arrow circle sets the height (48px), so every button is the same height.
-const sizeClass = "min-h-11 px-4 py-2.5 text-[16px] font-semibold";
+const sizeClass = "min-h-11 px-4 py-2.5 text-[clamp(14px,1.1vw,16px)] font-normal";
 const sizes: Record<Size, string> = { sm: sizeClass, md: sizeClass, lg: sizeClass };
 
 /**
@@ -37,9 +37,9 @@ function layoutOnly(className?: string) {
 }
 
 /** Ghost (text-link) buttons keep their underline hover; every other variant gets the arrow-fill content. */
-function ButtonContent({ children, variant = "primary", centered }: { children: ReactNode; variant?: Variant; centered?: boolean }) {
+function ButtonContent({ children, variant = "primary", centered, arrow, borderColor }: { children: ReactNode; variant?: Variant; centered?: boolean; arrow?: boolean; borderColor?: string }) {
   if (variant === "ghost") return <>{children}</>;
-  return <ArrowFillContent tone={variant === "white" || variant === "glass" ? "white" : "blue"} centered={centered}>{children}</ArrowFillContent>;
+  return <ArrowFillContent tone={variant === "primary" || variant === "dark" ? "blue" : "white"} centered={centered} arrow={arrow} borderColor={borderColor}>{children}</ArrowFillContent>;
 }
 
 export function buttonClasses({ variant = "primary", size = "md", className }: { variant?: Variant; size?: Size; className?: string } = {}) {
@@ -59,33 +59,37 @@ type ButtonLinkProps = {
   className?: string;
   /** Centre the label in the button, with the arrow circle pinned to the right edge. */
   centered?: boolean;
+  /** Set false to drop the arrow circle (label centred, fill grows from the middle). */
+  arrow?: boolean;
+  /** Draw a 1px inner border in this colour (e.g. white on a blue banner). */
+  borderColor?: string;
   /** External links open in the same tab (matching the original); set to open a new one. */
   newTab?: boolean;
 } & Omit<ComponentProps<"a">, "href" | "className" | "children">;
 
 /** A link styled as a button. Internal links use next/link; external links a plain <a>. */
-export function ButtonLink({ href, children, variant, size, className, newTab, centered, ...rest }: ButtonLinkProps) {
+export function ButtonLink({ href, children, variant, size, className, newTab, centered, arrow, borderColor, ...rest }: ButtonLinkProps) {
   const classes = buttonClasses({ variant, size, className });
   if (isExternal(href)) {
     return (
       <a href={href} className={classes} {...(newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})} {...rest}>
-        <ButtonContent variant={variant} centered={centered}>{children}</ButtonContent>
+        <ButtonContent variant={variant} centered={centered} arrow={arrow} borderColor={borderColor}>{children}</ButtonContent>
       </a>
     );
   }
   return (
     <Link href={href} className={classes} {...rest}>
-      <ButtonContent variant={variant} centered={centered}>{children}</ButtonContent>
+      <ButtonContent variant={variant} centered={centered} arrow={arrow} borderColor={borderColor}>{children}</ButtonContent>
     </Link>
   );
 }
 
-type ButtonProps = { variant?: Variant; size?: Size; centered?: boolean } & ComponentProps<"button">;
+type ButtonProps = { variant?: Variant; size?: Size; centered?: boolean; arrow?: boolean } & ComponentProps<"button">;
 
-export function Button({ variant, size, className, type = "button", children, centered, ...rest }: ButtonProps) {
+export function Button({ variant, size, className, type = "button", children, centered, arrow, ...rest }: ButtonProps) {
   return (
     <button type={type} className={cn(buttonClasses({ variant, size, className }), "disabled:cursor-not-allowed disabled:opacity-60")} {...rest}>
-      <ButtonContent variant={variant} centered={centered}>{children}</ButtonContent>
+      <ButtonContent variant={variant} centered={centered} arrow={arrow}>{children}</ButtonContent>
     </button>
   );
 }

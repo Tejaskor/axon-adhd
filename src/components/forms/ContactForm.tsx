@@ -14,7 +14,7 @@ import { contactSchema, type ContactInput } from "@/lib/validators";
 const defaults: ContactInput = { firstName: "", lastName: "", email: "", countryCode: "+1", phone: "", message: "", company: "" };
 
 /** `placeholders` is opt-in so existing usages (home contact section) render exactly as before. */
-export function ContactForm({ placeholders = false }: { placeholders?: boolean } = {}) {
+export function ContactForm({ placeholders = false, submitArrow = true }: { placeholders?: boolean; submitArrow?: boolean } = {}) {
   const [success, setSuccess] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
   const {
@@ -85,7 +85,7 @@ export function ContactForm({ placeholders = false }: { placeholders?: boolean }
           </p>
         )}
 
-        <Button type="submit" size="lg" disabled={isSubmitting} className="w-full sm:w-auto sm:justify-self-start">
+        <Button type="submit" size="lg" arrow={submitArrow} disabled={isSubmitting} className="w-full sm:w-auto sm:justify-self-start">
           {isSubmitting ? "Sending..." : "Submit"}
         </Button>
         <p className="type-small text-muted">

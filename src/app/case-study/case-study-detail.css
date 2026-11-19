@@ -754,3 +754,11 @@
 .case-study [hidden] {
   display: none !important;
 }
+
+/* ---- Homepage design standards: article title = type-h1 ---- */
+.case-study__title {
+  font-size: calc(16.8px + 1.625vw) !important;
+  font-weight: 600;
+  line-height: 1.3 !important;
+  letter-spacing: -1px;
+}

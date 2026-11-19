@@ -42,7 +42,7 @@ export default function HomePage() {
       <Testimonials {...testimonialsSection} reviews={reviews} rating={googleRating} />
       <LatestBlogs />
       <FinalCTA />
-      {/* Background matches "You're not broken-and we'll prove it." (FinalCTA). */}
+      {/* Background matches the Latest Blogs section. */}
       <FAQAccordion
         variant="split"
         faqs={homeFaqs}
@@ -51,7 +51,7 @@ export default function HomePage() {
         accent={faqSection.accent}
         aside={faqSection.aside}
         anchors
-        background="bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)]"
+        background="bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]"
       />
       <CoverageContact />
     </>

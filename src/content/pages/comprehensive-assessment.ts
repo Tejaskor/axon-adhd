@@ -24,7 +24,16 @@ export const comprehensiveAssessmentPage: PageContent = {
       // Placeholder photo: swap for a woman-centred lifestyle image (see hero brief) by changing this src only.
       background: { src: "/images/hero/adhd-assessment-hero-bg.webp", alt: "", width: 2027, height: 776 },
       video: { id: "esUAxx-UXCM", title: "Could You Have Undiagnosed ADHD?" },
+      videoFrame: false,
+      videoAspect: "16 / 9.6",
+      breakAfter: "Comprehensive ADHD Assessment &",
+      alignTop: true,
+      ctaStyle: "homepage",
+      homeType: true,
+      sectionPaddingY: 88,
+      ringsCentered: true,
       trust: true,
+      trustStyle: "homepage",
     },
     {
       type: "assessmentOverview",
@@ -45,15 +54,18 @@ export const comprehensiveAssessmentPage: PageContent = {
     {
       type: "steps",
       variant: "journey",
-      eyebrow: "Your ADHD Assessment Journey",
+      hideLine: true,
+      roomy: true,
+      cardTitle20: true,
+      accentColor: "text-[#2578CA]",
       accent: "All in One Day.",
       title: "From Screening to a Personalized Care Plan — All in One Day.",
       subtitle: "A simple, clinician-guided process to assess, understand, and plan your ADHD care with Aaron.",
       items: [
-        { title: "Free ADHD Screening", text: "A quick, confidential multiple-choice questionnaire (MCQ) to check for possible ADHD symptoms.", duration: "~ 5–10 Minutes", image: { src: "/images/assessment/journey/screening.webp", alt: "Laptop showing a free ADHD screening question", width: 409, height: 215 } },
-        { title: "Comprehensive ADHD Assessment", text: "A detailed, clinically validated evaluation using the QB Check Test that measures attention, impulsivity, and activity levels.", duration: "~ 20–30 Minutes", image: { src: "/images/assessment/journey/qbcheck.webp", alt: "Person wearing headphones taking the QbCheck test on a monitor", width: 391, height: 211 } },
-        { title: "Receive Your Personalized Report", text: "Get a clear, easy-to-understand report with your results, clinical insights, and recommendations.", duration: "~ Same Day", image: { src: "/images/assessment/journey/report.webp", alt: "Hand holding an AXON ADHD assessment report", width: 388, height: 211 } },
-        { title: "30-Minute Zoom Consultation with Aaron", text: "Meet with Aaron on Zoom for 30 minutes to review your report, discuss the results, and plan your personalized next steps.", duration: "~ 30 Minutes", image: { src: "/images/assessment/journey/consultation.webp", alt: "Patient on a Zoom video consultation with a clinician", width: 406, height: 211 } },
+        { title: "Free ADHD\nScreening", text: "A quick, confidential multiple-choice questionnaire (MCQ) to check for possible ADHD symptoms.", duration: "~ 5–10 Minutes" },
+        { title: "Comprehensive ADHD Assessment", text: "A detailed, clinically validated evaluation using the QB Check Test that measures attention, impulsivity, and activity levels.", duration: "~ 20–30 Minutes" },
+        { title: "Receive Your Personalized Report", text: "Get a clear, easy-to-understand report with your results, clinical insights, and recommendations.", duration: "~ Same Day" },
+        { title: "30-Minute Zoom Consultation with Aaron", text: "Meet with Aaron on Zoom for 30 minutes to review your report, discuss the results, and plan your personalized next steps.", duration: "~ 30 Minutes" },
       ],
     },
     {
@@ -82,12 +94,13 @@ export const comprehensiveAssessmentPage: PageContent = {
     },
     {
       type: "cta",
-      eyebrow: "Get an Official ADHD Diagnosis",
+      ctaStyle: "homepage",
       title: "Ready for an Official Diagnosis?",
       subtitle:
         "Your free screening results inform whether a full evaluation is necessary, but isn’t sufficient for an official diagnosis. That requires our state of the art, FDA cleared assessment. Luckily, you can take that immediately and then meet with our licensed psychologists to discuss the results and get an official diagnosis within days.",
-      primary: ctas.screening,
-      secondary: ctas.evaluation,
+      // Same two buttons, order and styles as the homepage hero: blue "Take Comprehensive ADHD Evaluation", then white "Start Free ADHD Screening".
+      primary: ctas.evaluation,
+      secondary: ctas.screening,
     },
     {
       type: "features",
@@ -126,6 +139,7 @@ export const comprehensiveAssessmentPage: PageContent = {
     },
     {
       type: "cta",
+      ctaStyle: "light",
       title: "You don't have to manage ADHD alone.",
       subtitle: "Discover where you stand and get the support you deserve. From a free assessment to personalized treatment, AXON ADHD is here for every step of your journey.",
       primary: { label: "Start Comprehensive ADHD Evaluation", href: links.comprehensive },

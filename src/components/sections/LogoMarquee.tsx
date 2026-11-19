@@ -48,8 +48,8 @@ export function LogoMarquee() {
   );
 
   return (
-    <section aria-labelledby="partners-title" className="border-y border-line-2 bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! section-py [--logo-s:0.8] sm:[--logo-s:0.9] lg:[--logo-s:1]">
-      <p id="partners-title" className="container-content mb-7 text-center text-[20px] leading-snug font-semibold tracking-[0.14em] text-balance text-muted sm:mb-9">
+    <section aria-labelledby="partners-title" className="border-y border-line-2 bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! py-9 sm:py-11 lg:py-14 [--logo-s:0.8] sm:[--logo-s:0.9] lg:[--logo-s:1]">
+      <p id="partners-title" className="container-content mb-5 text-center text-[20px] leading-snug font-semibold tracking-[0.14em] text-balance text-muted sm:mb-7">
         {partnerLogos.title}
       </p>
       {/* Fixed-height lane so logos of different heights share one centre line. */}

@@ -1,7 +1,6 @@
 import { innerPageMetadata } from "@/components/sections/InnerPage";
 import {
   AccommodationBenefits,
-  AccommodationContact,
   AccommodationCTA,
   AccommodationFeatureBanner,
   AccommodationHero,
@@ -9,9 +8,9 @@ import {
   DocumentationPackage,
   ServiceAudience,
 } from "@/components/sections/AccommodationSections";
+import { CoverageContact } from "@/components/sections/CoverageContact";
 import { LatestBlogs } from "@/components/sections/LatestBlogs";
 import { JsonLd } from "@/components/ui/JsonLd";
-import { contactSection } from "@/content/home";
 import { accommodationPage } from "@/content/pages/accommodation";
 import { breadcrumbJsonLd } from "@/lib/seo";
 
@@ -28,7 +27,7 @@ export default function Page() {
       <ServiceAudience />
       <AccommodationCTA />
       <LatestBlogs />
-      <AccommodationContact eyebrow={null} description={contactSection.subtitle} compact />
+      <CoverageContact />
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", path: "/" },

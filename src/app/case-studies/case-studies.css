@@ -535,3 +535,11 @@
     transform: none !important;
   }
 }
+
+/* ---- Homepage design standards: page title = type-h1 ---- */
+.cs-hero-title {
+  font-size: calc(16.8px + 1.625vw);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -1px;
+}

@@ -9,6 +9,7 @@ import { mainNav } from "@/content/nav";
 import { ctas, site } from "@/content/site";
 import ButtonAnimated from "@/components/ui/button-animated";
 import { cn } from "@/lib/utils";
+import { HeaderLightWatcher } from "./HeaderLightWatcher";
 import { MegaMenu } from "./MegaMenu";
 import { MobileNav } from "./MobileNav";
 
@@ -55,7 +56,8 @@ export function Header() {
     // pt-3 + h-16 + pb-1 = 80px = --header-height (globals.css), which page heroes pull up behind the header.
     // Stickiness lives on the wrapper in app/layout.tsx; the floating glass pill looks the same at the top and while scrolling.
     <header className="px-4 pt-3 pb-1">
-      <div className="relative mx-auto flex h-16 w-full max-w-[1340px] items-center justify-between gap-3 rounded-[40px] border border-white/60 bg-white/50 px-3 shadow-[0_12px_36px_rgba(15,27,46,.12),inset_0_1px_0_rgba(255,255,255,.7)] backdrop-blur-xl backdrop-saturate-150 xs:px-4 lg:gap-[clamp(10px,2.2vw,32px)]">
+      <div className="relative mx-auto flex h-16 w-full max-w-[1340px] items-center justify-between gap-3 rounded-[40px] border border-white/60 bg-white/50 px-3 shadow-[0_12px_36px_rgba(15,27,46,.12),inset_0_1px_0_rgba(255,255,255,.7)] backdrop-blur-xl backdrop-saturate-150 xs:px-4 lg:gap-[clamp(10px,2.2vw,32px)] transition-[background-color,border-color,box-shadow] duration-300 data-[light=true]:border-[#C6DAF1] data-[light=true]:bg-[#E3EDF9]/95 data-[light=true]:shadow-[0_12px_36px_rgba(15,27,46,.18),inset_0_1px_0_rgba(255,255,255,.7)]">
+        <HeaderLightWatcher />
         <Link href="/" aria-label={`${site.name} home`} className="shrink-0">
           <Image
             src={site.headerLogo.src}
@@ -118,7 +120,7 @@ export function Header() {
         </nav>
 
         <div className="hidden shrink-0 items-center gap-3 lg:flex xl:gap-4">
-          <ButtonAnimated href={ctas.evaluation.href} bg="#FFFFFF" activeBg="#EFF6FF" className="text-[clamp(13px,1.02vw,16px)] text-navy shadow-[0_1px_2px_rgba(15,27,46,.06)]">
+          <ButtonAnimated href={ctas.evaluation.href} bg="#FFFFFF" activeBg="#DCEAFB" border="#256ACC" className="text-[clamp(13px,1.02vw,16px)] text-navy shadow-[0_1px_2px_rgba(15,27,46,.06)]">
             {ctas.evaluation.label}
           </ButtonAnimated>
           <ButtonAnimated href={ctas.screening.href} bg="#256ACC" activeBg="#1A56A8" className="text-[clamp(13px,1.02vw,16px)] text-white shadow-[0_6px_18px_rgba(37,120,202,.28)]">
