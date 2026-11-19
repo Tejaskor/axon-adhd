@@ -2,7 +2,6 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ChartNoAxesColumn } from "lucide-react";
 import type { Metadata } from "next";
-import { LatestBlogs } from "@/components/sections/LatestBlogs";
 import { Accordion } from "@/components/ui/Accordion";
 import { ArticleToc } from "@/components/ui/ArticleToc";
 import { ShareRow } from "@/components/ui/ShareRow";
@@ -114,7 +113,6 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
       </div>
     </article>
 
-      <LatestBlogs relatedTo={post} title="Related Articles" />
       <JsonLd data={blogPostingJsonLd({ title: post.title, description: post.description, slug: post.slug, date: post.date, image: post.image.src, author: author.name })} />
       {wp ? (post.faqSchema ?? []).map((data, i) => <JsonLd key={i} data={data} />) : blockFaqs.length > 0 && <JsonLd data={faqJsonLd(blockFaqs)} />}
       <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Blog", path: "/blog/" }, { name: post.title, path: `/blog/${post.slug}/` }])} />
