@@ -66,9 +66,9 @@ export function CareYouCanTrust() {
             const Icon = icons[s.icon];
             const tone = statTones[s.tone];
             return (
-              <Reveal key={s.label} delay={i * 0.08} className="relative w-full max-w-[190px] shrink-0 md:w-[20%] md:max-w-[215px]">
+              <Reveal key={s.label} delay={i * 0.08} className="relative w-full max-w-[230px] shrink-0 md:w-[clamp(190px,24%,260px)] md:max-w-none">
                 <div className={cn("aspect-square rounded-full p-[1.5px]", tone.ring, tone.glow)}>
-                  <div className={cn("relative grid size-full place-items-center overflow-hidden rounded-full px-4 text-center backdrop-blur-xl lg:px-6", tone.fill)}>
+                  <div className={cn("relative grid size-full place-items-center overflow-hidden rounded-full px-6 text-center backdrop-blur-xl lg:px-8", tone.fill)}>
                     <span aria-hidden className="pointer-events-none absolute inset-x-[18%] top-[4%] h-[34%] rounded-full bg-gradient-to-b from-white/90 to-transparent blur-md" />
                     <div className="relative">
                       <Icon aria-hidden className={cn("mx-auto size-7 lg:size-8", tone.color)} strokeWidth={1.75} />
@@ -77,7 +77,7 @@ export function CareYouCanTrust() {
                         {s.value.suffix}
                       </p>
                       <p className="mt-2 text-[clamp(15px,1.3vw,18px)] leading-tight font-bold text-navy">{s.label}</p>
-                      <p className="type-small mx-auto mt-1.5 max-w-[150px] text-pretty text-body">{s.text}</p>
+                      <p className="type-small mx-auto mt-1.5 max-w-[150px] text-pretty text-body lg:max-w-[160px]">{s.text}</p>
                     </div>
                   </div>
                 </div>

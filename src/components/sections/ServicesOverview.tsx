@@ -179,7 +179,7 @@ export function ServicesOverview() {
                         disabled={broken}
                         aria-pressed={open}
                         aria-label={broken ? `Video unavailable – ${item.title}` : `${open ? "Close" : "See"} Video – ${item.title}`}
-                        className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-white/45 px-3.5 py-2 text-[12px] leading-none font-medium tracking-[0.02em] text-[#4B4F58] uppercase shadow-[inset_0_1px_0_rgba(255,255,255,.6)] backdrop-blur-md transition-colors duration-200 hover:bg-white/70 hover:text-navy disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:bg-white/45 sm:top-4 sm:left-4"
+                        className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-white/45 px-3.5 py-2 text-[12px] leading-none font-medium tracking-[0.02em] text-[#4B4F58] uppercase shadow-[inset_0_1px_0_rgba(255,255,255,.6)] backdrop-blur-md transition-[background,color,box-shadow] duration-300 hover:bg-white/70 hover:text-navy group-hover:bg-[linear-gradient(90deg,#1E64AA_0%,#2578CA_45%,#5498DB_100%)] group-hover:text-white group-hover:shadow-[0_12px_28px_rgba(37,120,202,.35)] hover:group-hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70 disabled:group-hover:bg-white/45 disabled:group-hover:text-[#4B4F58] disabled:group-hover:shadow-none sm:top-4 sm:left-4"
                       >
                         {open ? <X aria-hidden className="size-3 shrink-0" strokeWidth={3} /> : <Play aria-hidden className="size-3 shrink-0 fill-current" />}
                         {broken ? "Video unavailable" : open ? "Close Video" : "See Video"}

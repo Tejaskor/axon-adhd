@@ -67,7 +67,7 @@ export function Footer() {
       <div className="mx-auto grid w-full max-w-[1440px] gap-10 px-4 pt-12 pb-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.7fr_0.9fr_0.9fr_1.3fr] lg:gap-12 lg:px-12 lg:pt-16 lg:pb-16">
         <div className="sm:col-span-2 lg:col-span-1">
           <Link href="/" aria-label={`${site.name} home`} className="flex h-14 items-center sm:h-[68px]">
-            <Image src={site.footerLogo.src} alt="AXON ADHD Brand Logo" width={site.footerLogo.width} height={site.footerLogo.height} className="h-14 w-auto sm:h-[68px]" />
+            <Image src={site.footerLogo.src} alt="AXON ADHD Brand Logo" width={site.footerLogo.width} height={site.footerLogo.height} className="-ml-1 h-11 w-auto sm:h-[52px]" />
           </Link>
           <p className="type-body mt-6 max-w-[520px] text-white/95">{site.blurb}</p>
           <ul className="mt-6 flex flex-wrap items-center gap-4" aria-label="Social media">

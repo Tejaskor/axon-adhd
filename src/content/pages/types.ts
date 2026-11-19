@@ -112,7 +112,7 @@ export type StepsSection = {
   accentColor?: string;
   title: string;
   subtitle?: string;
-  items: Array<{ title: string; text: string; image?: ImageAsset; /** journey: time estimate shown in the pill at the bottom of the card. */ duration?: string; /** stack: extra sub-points shown under the text. */ details?: Array<{ title: string; text: string }>; /** stack: optional smaller second screenshot overlapping the main one. */ inset?: ImageAsset }>;
+  items: Array<{ title: string; text: string; image?: ImageAsset; /** stack: a picture drawn in code instead of an image file ("form" = the Add New Provider Group form). */ mock?: "form"; /** stack: show `image` inside the frosted-glass frame (as the drawn form step does) instead of full bleed. */ framed?: boolean; /** stack: a photo shown full-height on the right, with a call card laid over it (the "Partner with AXON ADHD" step). */ portrait?: ImageAsset; /** journey: time estimate shown in the pill at the bottom of the card. */ duration?: string; /** stack: extra sub-points shown under the text. */ details?: Array<{ title: string; text: string }>; /** stack: optional smaller second screenshot overlapping the main one. */ inset?: ImageAsset }>;
   tone?: Tone;
   /** journey: numbered steps joined by a line, over tinted cards with a picture and duration pill (StepsJourney). stack: sticky, overlapping pastel cards with browser-framed screenshots (WorkflowStack). */
   variant?: "journey" | "stack";
@@ -158,7 +158,7 @@ export type BadgesSection = { type: "badges"; title: string; subtitle: string; b
 /** `split`: centred heading (with `accent` underlined), an `aside` card on the left and a compact accordion on the right. */
 export type FaqSectionData = { type: "faq"; title: string; subtitle?: string; faqs: Faq[]; variant?: "split"; accent?: string; aside?: { title: string; text: string; link?: { label: string; href: string } }; /** Home-page styling: the 108deg pale-blue gradient background and `#question` anchors on each row. */ homeStyle?: boolean };
 
-export type SharedSection = { type: "blogs" } | { type: "contact"; /** `university`: the ADHD Referral for Universities headline and campus photo on the left. */ variant?: "university" } | { type: "logos" } | { type: "reviewStrip"; stat: { value: string; label: string } };
+export type SharedSection = { type: "blogs" } | { type: "contact"; /** `university`: the ADHD Referral for Universities headline and campus photo on the left. */ variant?: "university" | "pcp" } | { type: "logos" } | { type: "reviewStrip"; stat: { value: string; label: string } };
 
 /** The home page's Google Reviews carousel (rating summary, looping cards with the Google icon); `count` limits it to the first N site reviews. */
 export type GoogleReviewsSection = { type: "googleReviews"; title: string; titleAccent: string; subtitle?: string; count?: number };
