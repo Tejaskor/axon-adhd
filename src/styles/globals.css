@@ -260,6 +260,33 @@ body {
   }
 }
 
+/*
+ * Scroll entrances driven by ScrollEffects (time-based, so they ease rather than scrub with the scrollbar, and work in every browser).
+ * A block waits at [data-fx="hidden"] until it scrolls into view, then eases up and fades in over ~1s on a long ease-out curve; siblings that
+ * enter together are staggered through --fx-delay. Anything on screen at load, anything after the effect finishes, and reduced-motion users
+ * get no styles from here.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal[data-fx],
+  h2[data-fx] {
+    animation: none; /* the old scrubbed entrance steps aside */
+  }
+  [data-fx="hidden"] {
+    opacity: 0;
+    transform: translate3d(0, 38px, 0);
+  }
+  [data-fx="in"] {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.9s cubic-bezier(0.25, 1, 0.33, 1) var(--fx-delay, 0ms),
+      transform 1.1s cubic-bezier(0.25, 1, 0.33, 1) var(--fx-delay, 0ms);
+  }
+  [data-parallax="on"] {
+    will-change: translate;
+  }
+}
+
 /* Connector lines / progress bars draw in with the section (same progressive-enhancement gate as .reveal). */
 @keyframes draw-x {
   from {

@@ -4,6 +4,7 @@ import "@/styles/globals.css";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { JsonLd } from "@/components/ui/JsonLd";
+import { ScrollEffects } from "@/components/ui/ScrollEffects";
 import { site } from "@/content/site";
 import { organizationJsonLd } from "@/lib/seo";
 
@@ -47,6 +48,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <Footer />
+        <ScrollEffects />
         <JsonLd data={organizationJsonLd()} />
       </body>
     </html>
