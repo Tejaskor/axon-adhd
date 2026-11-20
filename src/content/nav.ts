@@ -1,6 +1,9 @@
 import type { Cta, ImageAsset } from "./types";
 
-export type MegaLink = { label: string; description: string; href: string; icon: "assessment" | "care" | "advocacy" | "university" | "pcp" | "blog" | "case" };
+export type MegaFeatured = { image: ImageAsset; title: string; text: string; cta: Cta };
+
+/** `featured` (optional) is the preview card shown on the right while this link is hovered or focused; without it the menu's default card stays. */
+export type MegaLink = { label: string; description: string; href: string; icon: "assessment" | "care" | "advocacy" | "university" | "pcp" | "blog" | "case"; featured?: MegaFeatured };
 
 export type NavItem =
   | { label: string; href: string; kind: "link" }
@@ -10,7 +13,7 @@ export type NavItem =
       kind: "mega";
       eyebrow: string;
       links: MegaLink[];
-      featured: { image: ImageAsset; title: string; text: string; cta: Cta };
+      featured: MegaFeatured;
     };
 
 export const mainNav: NavItem[] = [
@@ -21,11 +24,33 @@ export const mainNav: NavItem[] = [
     eyebrow: "Our Services",
     links: [
       { label: "ADHD Assessments", description: "Comprehensive evaluations for accurate ADHD diagnosis.", href: "/comprehensive-adhd-assessment/", icon: "assessment" },
-      { label: "ADHD Care", description: "Personalized treatment and ongoing support for lasting success.", href: "/adhd-care/", icon: "care" },
-      { label: "Accommodation & Advocacy", description: "Reports that meet ADA & Section 504 standards.", href: "/accommodation-documentation-advocacy/", icon: "advocacy" },
+      {
+        label: "ADHD Care",
+        description: "Personalized treatment and ongoing support for lasting success.",
+        href: "/adhd-care/",
+        icon: "care",
+        featured: {
+          image: { src: "/images/header/ADHD%20Care_%20Personalized%20Student%20Support.webp", alt: "ADHD Care: personalized treatment and ongoing support", width: 1774, height: 887 },
+          title: "ADHD Care",
+          text: "Personalized treatment and ongoing support for lasting success.",
+          cta: { label: "View ADHD Care", href: "/adhd-care/" },
+        },
+      },
+      {
+        label: "Accommodation & Advocacy",
+        description: "Reports that meet ADA & Section 504 standards.",
+        href: "/accommodation-documentation-advocacy/",
+        icon: "advocacy",
+        featured: {
+          image: { src: "/images/header/ADHD%20Academic%20Support%20Study%20Scene.webp", alt: "ADHD accommodations: academic support, workplace accommodations and personalized recommendations", width: 1672, height: 941 },
+          title: "Accommodation & Advocacy",
+          text: "Reports that meet ADA & Section 504 standards.",
+          cta: { label: "View Accommodation & Advocacy", href: "/accommodation-documentation-advocacy/" },
+        },
+      },
     ],
     featured: {
-      image: { src: "/images/services/nav-mega-menu-services-assessment.webp", alt: "Comprehensive ADHD Assessment", width: 1774, height: 887 },
+      image: { src: "/images/header/Student%20Success_%20Comprehensive%20ADHD%20Support.webp", alt: "Comprehensive ADHD Assessment: in-depth evaluation, personalized plan and ongoing support", width: 1536, height: 1024 },
       title: "Comprehensive ADHD Assessment",
       text: "Documentation and advocacy for school and workplace accommodations.",
       cta: { label: "View ADHD Assessment", href: "/comprehensive-adhd-assessment/" },
@@ -37,11 +62,33 @@ export const mainNav: NavItem[] = [
     href: "/adhd-referral-for-universities/",
     eyebrow: "Refer to AXON",
     links: [
-      { label: "Referral University", description: "Educational resources for healthcare professionals.", href: "/adhd-referral-for-universities/", icon: "university" },
-      { label: "Referral PCP", description: "Resources and guidance for primary care providers.", href: "/referral-adhd-partners/", icon: "pcp" },
+      {
+        label: "Referral University",
+        description: "Educational resources for healthcare professionals.",
+        href: "/adhd-referral-for-universities/",
+        icon: "university",
+        featured: {
+          image: { src: "/images/referral-for-universities/university-referral-contact-section.webp", alt: "Students looking toward a university hall", width: 1774, height: 887 },
+          title: "Referral University",
+          text: "Educational resources for healthcare professionals.",
+          cta: { label: "Learn More About Referral University", href: "/adhd-referral-for-universities/" },
+        },
+      },
+      {
+        label: "Referral PCP",
+        description: "Resources and guidance for primary care providers.",
+        href: "/referral-adhd-partners/",
+        icon: "pcp",
+        featured: {
+          image: { src: "/images/hero/pcpsubmenu.webp", alt: "Referral PCP", width: 1533, height: 1026 },
+          title: "Referral PCP",
+          text: "Resources and guidance for primary care providers.",
+          cta: { label: "Learn More About Referral PCP", href: "/referral-adhd-partners/" },
+        },
+      },
     ],
     featured: {
-      image: { src: "/images/services/nav-mega-menu-referral-partner.webp", alt: "Become a Referral Partner", width: 1484, height: 1060 },
+      image: { src: "/images/referral-for-universities/university-referral-contact-section.webp", alt: "Become a Referral Partner: students looking toward a university hall", width: 1774, height: 887 },
       title: "Become a Referral Partner",
       text: "Give your patients, students, and clients a fast, reliable ADHD pathway. Tell us about your practice and we'll tailor it.",
       cta: { label: "Learn More About Referral University", href: "/adhd-referral-for-universities/" },
