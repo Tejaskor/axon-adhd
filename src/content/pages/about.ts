@@ -82,7 +82,7 @@ export const aboutPage: PageContent = {
         "With AXON, geographic and scheduling barriers are no longer obstacles. Patients can connect with licensed professionals safely, efficiently, and confidentially at their convenience.",
       ],
       list: ["HIPAA-compliant platform", "Secure, encrypted data and communication", "Continuity of care anytime, anywhere"],
-      image: { src: "/images/services/Transforming-ADHD-Care-with-Science-and-Compassion-.webp", alt: "Transforming ADHD Care with Science and Compassion", width: 1875, height: 1563 },
+      image: { src: "/images/about/overcoming-barriers-collaborative-care.webp", alt: "Transforming ADHD Care with Science and Compassion", width: 1536, height: 1024 },
     },
     {
       type: "features",
@@ -103,7 +103,7 @@ export const aboutPage: PageContent = {
         "Our model helps users stay consistent with care, supporting meaningful progress and improved mental wellness over time.",
       ],
       list: ["Flexible and convenient care", "Access from home, work, or on the go", "Improved engagement and long-term outcomes"],
-      image: { src: "/images/services/Overcoming-Barriers-to-Collaborative-Care.webp", alt: "Overcoming Barriers to Collaborative Care", width: 1913, height: 1050 },
+      image: { src: "/images/about/transforming-adhd-care-science-compassion.webp", alt: "Overcoming Barriers to Collaborative Care", width: 1716, height: 916 },
       reverse: true,
     },
     {

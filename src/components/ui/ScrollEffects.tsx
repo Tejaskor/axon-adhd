@@ -18,7 +18,7 @@ const STAGGER_MS = 90;
 const MAX_STAGGER = 6;
 const PARALLAX_PX = 16;
 
-const REVEAL_SELECTOR = ".reveal, main section h2";
+const REVEAL_SELECTOR = ".reveal, main section h2, [data-fx-item]";
 const PARALLAX_SKIP = ".marquee, ol, [aria-roledescription='carousel'], .myth-diagram, .qb-stage, [data-no-parallax], header, footer, nav";
 
 export function ScrollEffects() {
@@ -68,6 +68,7 @@ export function ScrollEffects() {
         if (el.dataset.fx) return;
         // An h2 inside a Reveal (or any block already revealing) rides with its parent.
         if (el.tagName === "H2" && el.closest(".reveal")) return;
+        // Opt-in list items stagger one by one; the rest of their column still rides with its own Reveal.
         const r = el.getBoundingClientRect();
         if (r.height === 0 || (r.top < vh() && r.bottom > 0)) {
           el.dataset.fx = "seen"; // on screen already: no hide, no flash
