@@ -301,7 +301,7 @@ body:has(.axtc) {
   padding-top: calc(var(--header-height, 96px) + 36px);
   padding-bottom: 60px;
   background-color: #d8ecfd;
-  background-image: url("/images/trust-center/axon-trust-center-hero-background.webp");
+  background-image: url("/images/trust-center/trust-center-hero-background.webp");
   background-size: cover;
   background-position: center bottom;
   background-repeat: no-repeat;

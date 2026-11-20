@@ -6,8 +6,8 @@ export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.axonadhd.com",
   logo: { src: "/images/brand/Axon-Digital-Health-Ek-Mukta-font-ADHD.webp", width: 454, height: 160 },
   /** Vector logo for the header + mobile menu (JSON-LD keeps the raster `logo`). */
-  headerLogo: { src: "/images/header/logo.svg", width: 114, height: 40 },
-  footerLogo: { src: "/images/brand/axonadhd.svg", width: 136, height: 48 },
+  headerLogo: { src: "/images/header/axon-adhd-header-logo.svg", width: 114, height: 40 },
+  footerLogo: { src: "/images/brand/axon-adhd-footer-logo.svg", width: 136, height: 48 },
   ogImage: "/images/brand/Understand-ADHD-Find-Your-Next-Step.webp",
   email: "info@axonadhd.com",
   supportEmail: "support@axonadhd.com",

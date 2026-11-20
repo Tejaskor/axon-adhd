@@ -8,13 +8,13 @@ export const metadata = pageMetadata({
   description:
     "Successful with ADHD? Discover how high-achieving adults can be organized, productive, and still have ADHD. Read this real-life ADHD case study.",
   path: "/case-study/can-you-be-successful-organized-and-still-have-adhd/",
-  image: "/images/blog/can-you-be-successful-organized-and-still-have-adhd.webp",
+  image: "/images/blog/case-study-successful-organized-still-adhd-cover.webp",
 });
 
 const relatedCards: RelatedCaseStudy[] = [
   {
     href: "/case-study/undiagnosed-adult-adhd-diagnosis/",
-    image: "/images/blog/undiagnosed-adhd-adults-20-years.webp",
+    image: "/images/blog/case-study-undiagnosed-adult-adhd-20-years-cover.webp",
     alt: "Diagnosed in Days, After 20 Years of Waiting",
     width: 1672,
     height: 941,
@@ -25,7 +25,7 @@ const relatedCards: RelatedCaseStudy[] = [
   },
   {
     href: "/case-study/veteran-adhd-army-mechanic-entrepreneur/",
-    image: "/images/blog/army-mechanic-to-entrepreneur-veteran-undiagnosed-adhd-stor.webp",
+    image: "/images/blog/case-study-veteran-army-mechanic-entrepreneur-cover.webp",
     alt: "From Army Mechanic to Entrepreneur: A Veteran's Undiagnosed ADHD Story",
     width: 1746,
     height: 901,
@@ -36,7 +36,7 @@ const relatedCards: RelatedCaseStudy[] = [
   },
   {
     href: "/case-study/i-thought-it-was-anxiety-it-was-adhd-at-39/",
-    image: "/images/blog/I-Thought-It-Was-Anxiety-It-Was-ADHD-at-39.webp",
+    image: "/images/blog/case-study-anxiety-or-adhd-at-39-cover.webp",
     alt: "I Thought It Was Anxiety, It Was ADHD at 39",
     width: 1536,
     height: 1024,
@@ -54,7 +54,7 @@ export default function SuccessfulOrganizedAdhdPage() {
         title="Can You Be Successful, Organized, and Still Have ADHD?"
         description="On paper, Daniel had it handled. An operations director at 41, five direct reports who adored him, a calendar blocked in fifteen-minute increments, and a personal system of labeled folders ....."
         heroImage={{
-          src: "/images/blog/can-you-be-successful-organized-and-still-have-adhd.webp",
+          src: "/images/blog/case-study-successful-organized-still-adhd-cover.webp",
           alt: "A professionally dressed middle-aged person gestures while speaking at a table in an office with a bulletin board in the background.",
           width: 1729,
           height: 910,

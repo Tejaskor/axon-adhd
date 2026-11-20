@@ -18,7 +18,7 @@ export const adhdCarePage: PageContent = {
         "Explore personalized ADHD treatment for adults with care options designed around your needs. Learn about ADHD therapy for adults, ADHD coaching for adults, medication management, and practical strategies to help you navigate everyday challenges.",
       ],
       ctas: [{ label: "Free ADHD Screening", href: links.freeScreening }],
-      image: { src: "/images/adhdcare/qbcheck-dashboard-overview 1.webp", alt: "QbCheck dashboard showing ADHD assessment totals, symptom analysis and attention and activity results", width: 1466, height: 959 },
+      image: { src: "/images/adhdcare/adhd-care-qbcheck-dashboard-overview.webp", alt: "QbCheck dashboard showing ADHD assessment totals, symptom analysis and attention and activity results", width: 1466, height: 959 },
       trust: true,
     },
     {
@@ -43,7 +43,7 @@ export const adhdCarePage: PageContent = {
       subtitle:
         "The research is very clear. The best treatment for ADHD should include medication, coaching, self care strategies, executive function skills training, and other therapies. AXON ADHD has a team of partners who can provide all this and more. We can also coordinate care with your current team of physicians, coaches, and therapists. The goal is to help you thrive with this amazing ADHD brain.",
       tone: "surface",
-      image: { src: "/images/services/The-ADHD-brain-is-specialized.webp", alt: "The ADHD brain is specialized", width: 1912, height: 1337 },
+      image: { src: "/images/services/adhd-care-brain-is-specialized.webp", alt: "The ADHD brain is specialized", width: 1912, height: 1337 },
       items: [
         { title: "Medications", text: "Whether stimulant or non-stimulant medications, they are an effective way to improve attention, focus, and effectiveness.", icon: "pill" },
         { title: "Coaching", text: "Individual coaching helps you identify brain strengths and learn executive function skills that make a difference. Group coaching provides additional learning, support, accountability, and a community who \"gets it\".", icon: "users" },
@@ -77,7 +77,7 @@ export const adhdCarePage: PageContent = {
       accent: "Everyday Success",
       paragraphs: ["Your coach doesn’t just talk they equip you with actionable strategies you can use immediately. From morning routines to project management, you’ll learn what truly works for your brain."],
       list: ["Task prioritization techniques", "Time management frameworks", "Emotional regulation strategies", "Habit formation systems"],
-      image: { src: "/images/adhdcare/adhd-coaching-session.webp", alt: "ADHD coaching session with practical tools", width: 1536, height: 1024 },
+      image: { src: "/images/adhdcare/adhd-care-coaching-session.webp", alt: "ADHD coaching session with practical tools", width: 1536, height: 1024 },
       reverse: true,
       tone: "soft",
     },

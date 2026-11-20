@@ -103,7 +103,7 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
         <aside className="flex flex-col gap-5 p-2.5 lg:sticky lg:top-[var(--header-offset)] lg:w-[30%] lg:shrink-0">
           <ArticleToc items={toc} />
           <div className="flex flex-col items-center rounded-[6px] border border-[#E3E6EF] bg-[#F8FBFF] pb-[15px]">
-            <Image src="/images/blog/Group-1000001129.webp" alt="Complete Guide to ADHD" width={259} height={324} className="h-auto w-[259px] max-w-full" />
+            <Image src="/images/blog/blog-post-free-guide-complete-guide-to-adhd.webp" alt="Complete Guide to ADHD" width={259} height={324} className="h-auto w-[259px] max-w-full" />
             <h2 className="mt-1 px-4 text-center text-[18px] leading-[29px] font-bold text-[#0A0A0A] lg:text-[22px]">Free Guide to ADHD Diagnosis</h2>
             <a href={links.freeScreening} target="_blank" rel="noopener noreferrer" className="mt-3 rounded-full border border-[#256ACC] bg-[#256ACC] px-4 py-2.5 text-[16px] font-medium text-white transition-colors hover:bg-[#669CE4]">
               Download Now

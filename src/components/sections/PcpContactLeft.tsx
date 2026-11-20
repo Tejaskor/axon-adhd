@@ -38,7 +38,7 @@ export function PcpContactLeft() {
         </ul>
         <div className="mt-6 -ml-2 sm:-ml-4">
           <Image
-            src="/images/referral-for-pcp/pcp conatct from.webp"
+            src="/images/referral-for-pcp/pcp-referral-contact-doctor-and-patient.webp"
             alt="A smiling doctor speaking with a patient in a bright clinic"
             width={1949}
             height={807}

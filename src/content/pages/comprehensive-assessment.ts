@@ -22,7 +22,7 @@ export const comprehensiveAssessmentPage: PageContent = {
       ctas: [ctas.evaluation, ctas.screening],
       image: { src: "/images/hero/Comprehensive-ADHD-Assessment-Made-Simple.webp", alt: "Comprehensive ADHD Assessment Made Simple", width: 1672, height: 941 },
       // Placeholder photo: swap for a woman-centred lifestyle image (see hero brief) by changing this src only.
-      background: { src: "/images/hero/adhd-assessment-hero-bg.webp", alt: "", width: 2027, height: 776 },
+      background: { src: "/images/hero/comprehensive-assessment-hero-background.webp", alt: "", width: 2027, height: 776 },
       video: { id: "esUAxx-UXCM", title: "Could You Have Undiagnosed ADHD?" },
       videoFrame: false,
       videoAspect: "16 / 9.6",
@@ -41,14 +41,14 @@ export const comprehensiveAssessmentPage: PageContent = {
       accent: "Arlington, VA",
       subtitle: "A complete assessment designed to bring accuracy, clarity, and direction to your ADHD journey.",
       checks: ["Evidence-based", "Clinically validated", "Personalized insights"],
-      background: { src: "/images/assessment/adhd-evaluation-workspace-bg.webp", alt: "Laptop on a sunlit desk beside a plant, books and a notebook", width: 1774, height: 887 },
+      background: { src: "/images/assessment/comprehensive-assessment-workspace-background.webp", alt: "Laptop on a sunlit desk beside a plant, books and a notebook", width: 1774, height: 887 },
       video: { id: "DY1l9JxNwms", title: "AXON ADHD Comprehensive Assessment Video" },
       // Card copy is the page's existing approved wording (carried over from the features block this section replaces).
       items: [
-        { title: "Licensed Clinicians", text: "Board-certified professionals with ADHD expertise", icon: "clinician", image: { src: "/images/assessment/features/licensed-adhd-clinician.webp", alt: "Female clinician speaking with an adult patient in a bright, modern consultation room", width: 1536, height: 1024 } },
-        { title: "HIPAA Compliant", text: "Your health data is fully protected and encrypted", icon: "shield", image: { src: "/images/assessment/features/hipaa-data-security.webp", alt: "Laptop displaying a digital security shield on a desk in a modern workspace", width: 1536, height: 1024 } },
-        { title: "Insurance Accepted", text: "Most insurance plans reimburse this comprehensive evaluation.", icon: "insurance", image: { src: "/images/assessment/features/adhd-insurance-coverage.webp", alt: "Insurance coverage paperwork and a pen on a desk in a bright office", width: 1536, height: 1024 } },
-        { title: "Official Documentation", text: "Diagnosis and report for care and accommodations.", icon: "document", image: { src: "/images/assessment/features/adhd-evaluation-report.webp", alt: "Comprehensive ADHD evaluation report on a desk beside a laptop, notebook, and pen", width: 1536, height: 1024 } },
+        { title: "Licensed Clinicians", text: "Board-certified professionals with ADHD expertise", icon: "clinician", image: { src: "/images/assessment/features/comprehensive-assessment-feature-licensed-clinician.webp", alt: "Female clinician speaking with an adult patient in a bright, modern consultation room", width: 1536, height: 1024 } },
+        { title: "HIPAA Compliant", text: "Your health data is fully protected and encrypted", icon: "shield", image: { src: "/images/assessment/features/comprehensive-assessment-feature-hipaa-data-security.webp", alt: "Laptop displaying a digital security shield on a desk in a modern workspace", width: 1536, height: 1024 } },
+        { title: "Insurance Accepted", text: "Most insurance plans reimburse this comprehensive evaluation.", icon: "insurance", image: { src: "/images/assessment/features/comprehensive-assessment-feature-insurance-coverage.webp", alt: "Insurance coverage paperwork and a pen on a desk in a bright office", width: 1536, height: 1024 } },
+        { title: "Official Documentation", text: "Diagnosis and report for care and accommodations.", icon: "document", image: { src: "/images/assessment/features/comprehensive-assessment-feature-evaluation-report.webp", alt: "Comprehensive ADHD evaluation report on a desk beside a laptop, notebook, and pen", width: 1536, height: 1024 } },
       ],
     },
     {
@@ -90,7 +90,7 @@ export const comprehensiveAssessmentPage: PageContent = {
         { title: "Self-report questionnaires", text: "Clinically validated" },
         { title: "Instant feedback", text: "Get your results right away" },
       ],
-      image: { src: "/images/free-assessment-preview.webp", alt: "Preview of the free ADHD assessment and screening results", width: 2473, height: 1707 },
+      image: { src: "/images/assessment/free-assessment-results-preview.webp", alt: "Preview of the free ADHD assessment and screening results", width: 2473, height: 1707 },
     },
     {
       type: "cta",
@@ -106,7 +106,7 @@ export const comprehensiveAssessmentPage: PageContent = {
       type: "features",
       title: "Understanding ADHD with Confidence",
       subtitle: "Learn how AXON ADHD delivers trusted, secure, expert-guided care to achieve better outcomes.",
-      image: { src: "/images/services/Understanding-ADHD-with-Confidence.webp", alt: "Understanding ADHD with Confidence", width: 1505, height: 688 },
+      image: { src: "/images/services/comprehensive-assessment-understanding-adhd-with-confidence.webp", alt: "Understanding ADHD with Confidence", width: 1505, height: 688 },
       items: [
         { title: "Clinically Validated", text: "FDA cleared, evidence-based tools trusted by healthcare professionals", icon: "flask" },
         { title: "Confidential & Secure", text: "Your privacy is protected with secure data handling and encryption", icon: "lock" },
@@ -131,10 +131,10 @@ export const comprehensiveAssessmentPage: PageContent = {
         "Our process guides you from scheduling your assessment to completing your clinician consultation, receiving your detailed report, and beginning your personalized care plan.",
       tone: "white",
       items: [
-        { title: "Complete QbCheck & Schedule Review", text: "Take the QbCheck any time you like, and then schedule a time to meet virtually with a psychologist to discuss the results.", image: { src: "/images/services/Book-Your-Assessment-scaled.webp", alt: "", width: 2560, height: 1315 } },
-        { title: "Meet Your Clinician", text: "Attend a 30-minute video consultation with a licensed ADHD specialist to review your results and discuss your personalized treatment plan.", image: { src: "/images/services/Meet-Your-Clinician-scaled.webp", alt: "", width: 2560, height: 1395 } },
-        { title: "Receive Your Report", text: "Receive a detailed diagnosis, personalized care plan, and accommodation documentation within minutes of completing your video consultation.", image: { src: "/images/services/Receive-Your-Report-scaled.webp", alt: "", width: 2560, height: 1547 } },
-        { title: "Begin Treatment", text: "We coordinate care with your provider or connect you with an AXON ADHD expert.", image: { src: "/images/services/Begin-Treatment-scaled.webp", alt: "", width: 2560, height: 1491 } },
+        { title: "Complete QbCheck & Schedule Review", text: "Take the QbCheck any time you like, and then schedule a time to meet virtually with a psychologist to discuss the results.", image: { src: "/images/services/comprehensive-assessment-step-book-assessment.webp", alt: "", width: 2560, height: 1315 } },
+        { title: "Meet Your Clinician", text: "Attend a 30-minute video consultation with a licensed ADHD specialist to review your results and discuss your personalized treatment plan.", image: { src: "/images/services/comprehensive-assessment-step-meet-clinician.webp", alt: "", width: 2560, height: 1395 } },
+        { title: "Receive Your Report", text: "Receive a detailed diagnosis, personalized care plan, and accommodation documentation within minutes of completing your video consultation.", image: { src: "/images/services/comprehensive-assessment-step-receive-report.webp", alt: "", width: 2560, height: 1547 } },
+        { title: "Begin Treatment", text: "We coordinate care with your provider or connect you with an AXON ADHD expert.", image: { src: "/images/services/comprehensive-assessment-step-begin-treatment.webp", alt: "", width: 2560, height: 1491 } },
       ],
     },
     {

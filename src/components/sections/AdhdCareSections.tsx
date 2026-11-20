@@ -27,12 +27,12 @@ import { trustBar } from "@/content/trust";
  */
 const QB = "/images/adhdcare/";
 const qbCards = [
-  { src: "qbcheck-symptom-analysis-chart 1.webp", alt: "Symptom analysis chart tracking focus and impulsivity over six months", width: 1036, height: 505, x: 11, y: 55.5, w: 33.5, sx: 46.8, sy: 38.4, wide: true },
-  { src: "qbcheck-report-completion 1.webp", alt: "87% report completion", width: 1041, height: 382, x: 65.5, y: 0, w: 28, sx: 71.2, sy: 26.5 },
-  { src: "qbcheck-high-symptom-level 1.webp", alt: "19 assessments with a high symptom level, up 5 this week", width: 1044, height: 383, x: 74, y: 26.3, w: 26, sx: 59.6, sy: 26.5 },
-  { src: "qbcheck-detailed-assessment-reports 1.webp", alt: "Detailed assessment reports", width: 1046, height: 383, x: 4.6, y: 1.3, w: 28, sx: 23.6, sy: 25.7 },
-  { src: "qbcheck-attention-activity-analysis 1.webp", alt: "Attention and activity plot comparing a result with the reference range", width: 1041, height: 379, x: 67, y: 58.5, w: 29, sx: 70, sy: 40.8 },
-  { src: "image 18.webp", alt: "Total symptom level compared with the general population", width: 1048, height: 386, x: 0, y: 34, w: 28, sx: 36.4, sy: 26.5, wide: true },
+  { src: "adhd-care-qbcheck-symptom-analysis-chart.webp", alt: "Symptom analysis chart tracking focus and impulsivity over six months", width: 1036, height: 505, x: 11, y: 55.5, w: 33.5, sx: 46.8, sy: 38.4, wide: true },
+  { src: "adhd-care-qbcheck-report-completion.webp", alt: "87% report completion", width: 1041, height: 382, x: 65.5, y: 0, w: 28, sx: 71.2, sy: 26.5 },
+  { src: "adhd-care-qbcheck-high-symptom-level.webp", alt: "19 assessments with a high symptom level, up 5 this week", width: 1044, height: 383, x: 74, y: 26.3, w: 26, sx: 59.6, sy: 26.5 },
+  { src: "adhd-care-qbcheck-detailed-assessment-reports.webp", alt: "Detailed assessment reports", width: 1046, height: 383, x: 4.6, y: 1.3, w: 28, sx: 23.6, sy: 25.7 },
+  { src: "adhd-care-qbcheck-attention-activity-analysis.webp", alt: "Attention and activity plot comparing a result with the reference range", width: 1041, height: 379, x: 67, y: 58.5, w: 29, sx: 70, sy: 40.8 },
+  { src: "adhd-care-qbcheck-total-symptom-level.webp", alt: "Total symptom level compared with the general population", width: 1048, height: 386, x: 0, y: 34, w: 28, sx: 36.4, sy: 26.5, wide: true },
 ];
 
 export function AdhdCareHero({ data, visual }: { data: PageHero; /** Replaces the dashboard stage on the right (the ADHD Referral for Universities page shows its partner network here). */ visual?: ReactNode }) {
@@ -420,7 +420,7 @@ export function AdhdCarePath({ data }: { data: FeaturesSection }) {
 /* ------------------------------------------------ "Practical Tools for Everyday Success" */
 
 /** AXON ADHD dashboard card overlaid on the lower-left of the coaching photo (the artwork carries its own card and shadow). */
-const toolsOverlay = { src: "/images/adhdcare/axon-adhd-dashboard-ui.webp", width: 1890, height: 832 };
+const toolsOverlay = { src: "/images/adhdcare/adhd-care-tools-dashboard-overlay.webp", width: 1890, height: 832 };
 
 /** Icon tile and tint for each of the four tools, in list order. */
 const toolCards = [

@@ -42,7 +42,7 @@ export function UniversityContactLeft() {
           style={{ borderRadius: "0 0 50% 50% / 0 0 26% 26%" }}
         >
           <Image
-            src="/images/referral-for-universities/adhd-referral-for-universities-contact-section.webp"
+            src="/images/referral-for-universities/university-referral-contact-section.webp"
             alt="Four students with backpacks looking toward a university hall on a sunny campus"
             width={1774}
             height={887}

@@ -16,7 +16,7 @@ export const onlineEval = {
   phone: site.phone,
   phoneHref: site.phoneHref,
   email: site.email,
-  doctorImage: { src: "/images/adhd-assessment-lp/meet-aaron-dodini.webp", alt: "Dr. Aaron Dodini, PhD", width: 970, height: 970 },
+  doctorImage: { src: "/images/adhd-assessment-lp/adhd-assessment-lp-clinician-dr-aaron-dodini.webp", alt: "Dr. Aaron Dodini, PhD", width: 970, height: 970 },
 };
 
 /** Links in the landing-page header, in order; each target is a section id on this page. */

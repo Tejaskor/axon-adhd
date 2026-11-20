@@ -8,13 +8,13 @@ export const metadata = pageMetadata({
   description:
     "Discover how Marcus, an Army veteran, overcame undiagnosed ADHD and became an entrepreneur after receiving an accurate ADHD diagnosis.",
   path: "/case-study/veteran-adhd-army-mechanic-entrepreneur/",
-  image: "/images/blog/army-mechanic-to-entrepreneur-veteran-undiagnosed-adhd-stor.webp",
+  image: "/images/blog/case-study-veteran-army-mechanic-entrepreneur-cover.webp",
 });
 
 const relatedCards: RelatedCaseStudy[] = [
   {
     href: "/case-study/undiagnosed-adult-adhd-diagnosis/",
-    image: "/images/blog/undiagnosed-adhd-adults-20-years.webp",
+    image: "/images/blog/case-study-undiagnosed-adult-adhd-20-years-cover.webp",
     alt: "Diagnosed in Days, After 20 Years of Waiting",
     width: 1672,
     height: 941,
@@ -25,7 +25,7 @@ const relatedCards: RelatedCaseStudy[] = [
   },
   {
     href: "/case-study/missed-for-decades-a-womans-adhd-diagnosis-at-age-41/",
-    image: "/images/blog/Missed-for-Decades-A-Womans-ADHD-Diagnosis-at-Age-41-0A.webp",
+    image: "/images/blog/case-study-missed-for-decades-diagnosis-at-41-cover.webp",
     alt: "Missed for Decades: A Woman's ADHD Diagnosis at Age 41",
     width: 1725,
     height: 912,
@@ -36,7 +36,7 @@ const relatedCards: RelatedCaseStudy[] = [
   },
   {
     href: "/case-study/can-you-be-successful-organized-and-still-have-adhd/",
-    image: "/images/blog/can-you-be-successful-organized-and-still-have-adhd.webp",
+    image: "/images/blog/case-study-successful-organized-still-adhd-cover.webp",
     alt: "Can You Be Successful, Organized, and Still Have ADHD?",
     width: 1729,
     height: 910,
@@ -54,7 +54,7 @@ export default function VeteranAdhdPage() {
         title="From Army Mechanic to Entrepreneur: A Veteran's Undiagnosed ADHD Story"
         description="After fifteen years in uniform, Marcus lost the structure that had quietly been holding everything together. A comprehensive evaluation at AXON finally named what had been there all along — combined-type ADHD."
         heroImage={{
-          src: "/images/blog/army-mechanic-to-entrepreneur-veteran-undiagnosed-adhd-stor.webp",
+          src: "/images/blog/case-study-veteran-army-mechanic-entrepreneur-cover.webp",
           alt: "Former Army mechanic standing outside his successful auto repair shop, illustrating a veteran's journey from undiagnosed ADHD to business ownership.",
           width: 1746,
           height: 901,

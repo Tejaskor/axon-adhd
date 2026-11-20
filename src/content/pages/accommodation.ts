@@ -42,7 +42,7 @@ export const accommodationPage: PageContent = {
       subtitle: "Everything an institution needs to evaluate your request prepared and reviewed by the psychologist who knows your case.",
       tone: "surface",
       variant: "check",
-      image: { src: "/images/services/AccommodationDocumentation.webp", alt: "Accommodation documentation package", width: 2320, height: 2329 },
+      image: { src: "/images/services/accommodation-documentation-package.webp", alt: "Accommodation documentation package", width: 2320, height: 2329 },
       items: [
         { title: "Individualized accommodations report" },
         { title: "Objective data supporting each recommendation" },
@@ -59,7 +59,7 @@ export const accommodationPage: PageContent = {
       paragraphs: [
         "Not everyone diagnosed with ADHD needs formal accommodations. Rather than including this service in every evaluation, we offer it only to those who plan to request accommodations from a school, standardized testing organization, professional licensing board, or employer. Preparing accommodations documentation requires considerably more work than simply sharing your diagnostic report.",
       ],
-      image: { src: "/images/services/Accommodation_Documentation.webp", alt: "Accommodation documentation", width: 2113, height: 2200 },
+      image: { src: "/images/services/accommodation-optional-add-on.webp", alt: "Accommodation documentation", width: 2113, height: 2200 },
       ctas: [checkout("Add Accommodation Support")],
     },
     {
@@ -72,7 +72,7 @@ export const accommodationPage: PageContent = {
         "Identify appropriate accommodations supported by objective findings",
         "Complete institution-specific forms & supporting documentation",
       ],
-      image: { src: "/images/services/Whatour.webp", alt: "What our clinicians do for the accommodation package", width: 2540, height: 1448 },
+      image: { src: "/images/services/accommodation-what-our-clinicians-do.webp", alt: "What our clinicians do for the accommodation package", width: 2540, height: 1448 },
       reverse: true,
       tone: "soft",
       ctas: [checkout("Add AXON Accommodation & Advocacy Package")],

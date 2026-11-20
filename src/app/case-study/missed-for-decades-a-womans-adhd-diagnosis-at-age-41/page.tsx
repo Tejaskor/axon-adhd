@@ -9,13 +9,13 @@ export const metadata = pageMetadata({
   description:
     "ADHD diagnosis at age 41: Discover how a woman was finally diagnosed after decades of overlooked symptoms. Read this real-life ADHD case study.",
   path: "/case-study/missed-for-decades-a-womans-adhd-diagnosis-at-age-41/",
-  image: "/images/blog/Missed-for-Decades-A-Womans-ADHD-Diagnosis-at-Age-41-0A.webp",
+  image: "/images/blog/case-study-missed-for-decades-diagnosis-at-41-cover.webp",
 });
 
 const relatedCards: RelatedCaseStudy[] = [
   {
     href: "/case-study/can-you-be-successful-organized-and-still-have-adhd/",
-    image: "/images/blog/can-you-be-successful-organized-and-still-have-adhd.webp",
+    image: "/images/blog/case-study-successful-organized-still-adhd-cover.webp",
     alt: "Can You Be Successful, Organized, and Still Have ADHD?",
     width: 1729,
     height: 910,
@@ -26,7 +26,7 @@ const relatedCards: RelatedCaseStudy[] = [
   },
   {
     href: "/case-study/veteran-adhd-army-mechanic-entrepreneur/",
-    image: "/images/blog/army-mechanic-to-entrepreneur-veteran-undiagnosed-adhd-stor.webp",
+    image: "/images/blog/case-study-veteran-army-mechanic-entrepreneur-cover.webp",
     alt: "From Army Mechanic to Entrepreneur: A Veteran's Undiagnosed ADHD Story",
     width: 1746,
     height: 901,
@@ -37,7 +37,7 @@ const relatedCards: RelatedCaseStudy[] = [
   },
   {
     href: "/case-study/i-thought-it-was-anxiety-it-was-adhd-at-39/",
-    image: "/images/blog/I-Thought-It-Was-Anxiety-It-Was-ADHD-at-39.webp",
+    image: "/images/blog/case-study-anxiety-or-adhd-at-39-cover.webp",
     alt: "I Thought It Was Anxiety, It Was ADHD at 39",
     width: 1536,
     height: 1024,
@@ -55,7 +55,7 @@ export default function WomansAdhdDiagnosisPage() {
         title="Missed for Decades: A Woman's ADHD Diagnosis at Age 41"
         description="Elena was doing just fine, or so everyone thought. A senior marketing manager, a mother of two, and the friend who always remembered everyone's birthday and who hosted the most wonderful holidays. But behind closed doors, she was drowning ....."
         heroImage={{
-          src: "/images/blog/Missed-for-Decades-A-Womans-ADHD-Diagnosis-at-Age-41-0A.webp",
+          src: "/images/blog/case-study-missed-for-decades-diagnosis-at-41-cover.webp",
           alt: "A woman sits thoughtfully at a desk, reflecting on her late ADHD diagnosis at age 41.",
           width: 1725,
           height: 912,

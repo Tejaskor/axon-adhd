@@ -14,8 +14,8 @@ function PlainBannerLogos() {
     <svg aria-hidden className="pointer-events-none absolute inset-0 -z-10 size-full opacity-[.26]" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <pattern id="axon-adhd-logos" width="420" height="250" patternUnits="userSpaceOnUse" patternTransform="rotate(-8)">
-          <image href="/images/brand/axonadhd.svg" x="20" y="24" width={LOGO_W} height={LOGO_H} />
-          <image href="/images/brand/axonadhd.svg" x="230" y="146" width={LOGO_W} height={LOGO_H} />
+          <image href="/images/brand/axon-adhd-footer-logo.svg" x="20" y="24" width={LOGO_W} height={LOGO_H} />
+          <image href="/images/brand/axon-adhd-footer-logo.svg" x="230" y="146" width={LOGO_W} height={LOGO_H} />
         </pattern>
       </defs>
       <rect width="100%" height="100%" fill="url(#axon-adhd-logos)" />
@@ -46,7 +46,7 @@ export function GradientCtaBanner({ data, accent, titleId, splitFromSm = false, 
               <div
                 aria-hidden
                 className="pointer-events-none absolute inset-0 -z-10 opacity-[.45] mix-blend-screen [filter:invert(1)_brightness(5)_blur(1px)]"
-                style={{ backgroundImage: "url(/images/assessment/adhd-doodle-pattern.webp)", backgroundSize: "640px auto", backgroundRepeat: "repeat" }}
+                style={{ backgroundImage: "url(/images/assessment/cta-banner-doodle-pattern.webp)", backgroundSize: "640px auto", backgroundRepeat: "repeat" }}
               />
               <PlainBannerLogos />
               {scrim && (
@@ -114,7 +114,7 @@ export function GradientCtaBanner({ data, accent, titleId, splitFromSm = false, 
                     : "relative aspect-[739/728] [mask-image:linear-gradient(to_bottom,transparent_0%,#000_22%)] lg:absolute lg:inset-y-0 lg:right-0 lg:aspect-[739/728] lg:[mask-image:linear-gradient(to_right,transparent_0%,#000_24%)]"
                 }
               >
-                <Image src="/images/assessment/journey/official-diagnosis.webp" alt="ADHD Assessment Summary clipboard showing attention, impulsivity and activity level bars with a completed clinical evaluation checklist" fill sizes={splitFromSm ? "(min-width: 768px) 640px, 100vw" : "(min-width: 1024px) 640px, 100vw"} className="object-cover object-[60%_center]" />
+                <Image src="/images/assessment/journey/cta-banner-official-diagnosis-summary.webp" alt="ADHD Assessment Summary clipboard showing attention, impulsivity and activity level bars with a completed clinical evaluation checklist" fill sizes={splitFromSm ? "(min-width: 768px) 640px, 100vw" : "(min-width: 1024px) 640px, 100vw"} className="object-cover object-[60%_center]" />
               </div>
             </>
           )}
