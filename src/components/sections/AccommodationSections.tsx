@@ -398,7 +398,7 @@ export function ClinicianGuidance() {
           <Reveal delay={0.05} className="sm:col-span-2 lg:col-span-1 lg:col-start-2 lg:row-span-2 lg:row-start-1">
             <div className="h-full rounded-[26px] shadow-[0_28px_64px_-24px_rgba(37,60,160,.35)]">
               <Image
-                src="/images/services/Whatour.webp"
+                src="/images/services/accommodation-what-our-clinicians-do.webp"
                 alt="Clinician at a desk in an office reviewing printed evaluation reports and writing notes beside a monitor"
                 width={2540}
                 height={1448}

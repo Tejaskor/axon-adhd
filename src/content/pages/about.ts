@@ -4,7 +4,7 @@ import type { PageContent } from "./types";
 export const founder = {
   name: "Dr. Aaron Dodini",
   title: "Ph.D. Licensed Clinical Psychologist, Founder, AXON ADHD",
-  image: { src: "/images/blog/meet-our-Dr-aron.png", alt: "Dr. Aaron Dodini", width: 243, height: 243 },
+  image: { src: "/images/blog/dr-aaron-dodini-headshot.png", alt: "Dr. Aaron Dodini", width: 243, height: 243 },
   bio: "Dr. Aaron Dodini is a licensed clinical psychologist and marriage and family therapist who founded Dodini Behavioral Health in 2001 to provide exceptional individual, couples, and group psychotherapy. Driven by his own family experience and frustrated by outdated, costly and unreliable ADHD evaluation models, Dr. Dodini built AXON Digital Health & Diagnosis (AXON ADHD) combining clinical expertise with innovative digital tools to deliver faster, less expensive, and more accurate ADHD diagnoses. His work bridges behavioral health, primary care, and higher education to improve outcomes and deliver meaningful results at scale. Through AXON, he is redefining how individuals, primary care providers, and universities move from confusion to clarity and from diagnosis to meaningful change.",
 };
 
@@ -26,7 +26,7 @@ export const aboutPage: PageContent = {
         { label: "Start Free ADHD Screening", href: links.freeScreening },
         { label: "Take a Comprehensive Evaluation", href: links.comprehensive },
       ],
-      image: { src: "/images/hero/about hero section.webp", alt: "Illustrated brain with glowing neural pathways", width: 1272, height: 1236 },
+      image: { src: "/images/hero/about-hero-brain-illustration.webp", alt: "Illustrated brain with glowing neural pathways", width: 1272, height: 1236 },
       variant: "banner",
     },
     {
@@ -55,7 +55,7 @@ export const aboutPage: PageContent = {
         { title: "Better Mental Health", text: "We deliver clarity, speed, and understanding to support better mental-health care.", icon: "heart" },
         { title: "Move Forward", text: "Our mission is to help people move forward with confidence and thrive.", icon: "users" },
       ],
-      image: { src: "/images/about/AxonGIF.gif", alt: "Animated neuron sending a signal along its axon", width: 271, height: 540 },
+      image: { src: "/images/about/about-axon-neuron-signal-animation.gif", alt: "Animated neuron sending a signal along its axon", width: 271, height: 540 },
     },
     {
       type: "split",
@@ -63,7 +63,7 @@ export const aboutPage: PageContent = {
       paragraphs: [
         "Our companion platform, AXON Digital Health & Diagnosis, advances this mission by building HIPAA-compliant connections across patients, clinicians, universities, and primary care providers ensuring critical data flows securely to the right people at the right time.",
       ],
-      image: { src: "/images/referral-for-universities/why-early-refferal-matters.webp", alt: "Clinicians with Patient, Clinic and University connected to the AXON ADHD brain mark", width: 1024, height: 609 },
+      image: { src: "/images/referral-for-universities/referral-why-early-referral-matters.webp", alt: "Clinicians with Patient, Clinic and University connected to the AXON ADHD brain mark", width: 1024, height: 609 },
       reverse: true,
     },
     {
@@ -82,7 +82,7 @@ export const aboutPage: PageContent = {
         "With AXON, geographic and scheduling barriers are no longer obstacles. Patients can connect with licensed professionals safely, efficiently, and confidentially at their convenience.",
       ],
       list: ["HIPAA-compliant platform", "Secure, encrypted data and communication", "Continuity of care anytime, anywhere"],
-      image: { src: "/images/services/Transforming-ADHD-Care-with-Science-and-Compassion-.webp", alt: "Transforming ADHD Care with Science and Compassion", width: 1875, height: 1563 },
+      image: { src: "/images/services/about-science-and-compassion.webp", alt: "Transforming ADHD Care with Science and Compassion", width: 1875, height: 1563 },
     },
     {
       type: "features",
@@ -103,7 +103,7 @@ export const aboutPage: PageContent = {
         "Our model helps users stay consistent with care, supporting meaningful progress and improved mental wellness over time.",
       ],
       list: ["Flexible and convenient care", "Access from home, work, or on the go", "Improved engagement and long-term outcomes"],
-      image: { src: "/images/services/Overcoming-Barriers-to-Collaborative-Care.webp", alt: "Overcoming Barriers to Collaborative Care", width: 1913, height: 1050 },
+      image: { src: "/images/services/about-overcoming-barriers-collaborative-care.webp", alt: "Overcoming Barriers to Collaborative Care", width: 1913, height: 1050 },
       reverse: true,
     },
     {
@@ -114,7 +114,7 @@ export const aboutPage: PageContent = {
         "Patients can access therapy and assessments when they need them, while clinicians manage appointments, documentation, and outcomes within a single secure platform. The system also allows care teams to coordinate seamlessly with external collaborative care partners.",
         "This flexible platform empowers both patients and providers by supporting clear communication, strengthening collaboration, and improving continuity of care and long-term treatment outcomes.",
       ],
-      image: { src: "/images/services/Seamless-Solutions-for-Clinicians-and-Clients.webp", alt: "Seamless Solutions for Clinicians and Clients", width: 607, height: 365 },
+      image: { src: "/images/services/about-seamless-solutions-clinicians-clients.webp", alt: "Seamless Solutions for Clinicians and Clients", width: 607, height: 365 },
       tone: "soft",
     },
   ],

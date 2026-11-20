@@ -19,19 +19,19 @@ const socialStyle: Record<string, string> = {
 };
 
 const complianceBadgesMeta: Record<string, { label: string; alt: string }> = {
-  "/images/badges/color/hipaa.png": {
+  "/images/badges/color/compliance-badge-hipaa-color.png": {
     label: "HIPAA Compliant",
     alt: "HIPAA Compliant certification badge",
   },
-  "/images/badges/color/gdpr.png": {
+  "/images/badges/color/compliance-badge-gdpr-color.png": {
     label: "EU GDPR Compliance",
     alt: "EU GDPR Compliance certification badge",
   },
-  "/images/badges/color/ccpa.png": {
+  "/images/badges/color/compliance-badge-ccpa-color.png": {
     label: "CCPA Compliant",
     alt: "CCPA Compliant certification badge",
   },
-  "/images/badges/color/soc2.png": {
+  "/images/badges/color/compliance-badge-soc2-color.png": {
     label: "SOC 2 Type 2",
     alt: "SOC 2 Type 2 certification badge",
   },

@@ -34,7 +34,7 @@ export const author = {
   name: "Dr. Aaron Dodini",
   shortName: "Aaron Dodini",
   title: "Ph.D. Licensed Clinical Psychologist,Founder, AXON ADHD",
-  image: { src: "/images/blog/meet-our-Dr-aron.png", alt: "Dr. Aaron Dodini", width: 243, height: 243 },
+  image: { src: "/images/blog/dr-aaron-dodini-headshot.png", alt: "Dr. Aaron Dodini", width: 243, height: 243 },
 };
 
 /**
@@ -51,7 +51,7 @@ const posts: BlogPost[] = [
     excerpt: "Ever feel exhausted all day but suddenly wide awake when it is time to go",
     description:
       "Why adults with ADHD struggle to fall asleep and wake up, common sleep problems that occur with ADHD, and small changes that make bedtime easier.",
-    image: { src: "/images/blog/adhd-sleep-problems-what-keeps-you-up.webp", alt: "ADHD and Sleep Problems: Understanding What Keeps You Awake", width: 1672, height: 941 },
+    image: { src: "/images/blog/blog-adhd-sleep-problems-cover.webp", alt: "ADHD and Sleep Problems: Understanding What Keeps You Awake", width: 1672, height: 941 },
     tags: ["ADHDAwareness", "SleepHealth", "AdultADHD", "Insomnia", "ADHDTreatment", "HealthySleepHabits"],
     body: sleepBody,
   },
@@ -62,7 +62,7 @@ const posts: BlogPost[] = [
     author: author.shortName,
     excerpt: "Ever feel exhausted all day but suddenly wide awake when it is time to go",
     description: "Fifteen common ADHD myths — about who gets ADHD, what causes it, and how it is treated — and the facts that replace them.",
-    image: { src: "/images/blog/adhd-myths-and-facts-15-myths-october.webp", alt: "adhd-myths-and-facts-15-myths-october", width: 2048, height: 1366 },
+    image: { src: "/images/blog/blog-adhd-myths-and-facts-cover.webp", alt: "adhd-myths-and-facts-15-myths-october", width: 2048, height: 1366 },
     tags: ["ADHD", "ADHDAwareness", "ADHDMyths", "ADHDFacts", "AdultADHD", "ADHDAwarenessMonth", "Neurodiversity"],
     body: mythsBody,
   },
@@ -74,7 +74,7 @@ const posts: BlogPost[] = [
     excerpt: "You make a plan, grab a new planner, and vow this week will be different.",
     description: "Comparing therapy, coaching and other support options for women with ADHD, and how to choose the approach that fits you.",
     image: {
-      src: "/images/blog/ADHD-Therapy-for-Women.webp",
+      src: "/images/blog/blog-adhd-therapy-for-women-cover.webp",
       alt: "ADHD Therapy for Women: Which Type Works Best: a woman sitting at a desk looking distracted, with visual icons representing inattention, impulsivity, restlessness, and emotional dysregulation.",
       width: 2048,
       height: 1365,
@@ -105,7 +105,7 @@ export function splitPostFaq(body: Block[]): { content: Block[]; faqs: Faq[] } {
 export const blogPage = {
   title: "The AXON ADHD Blog",
   intro: "Expert-written guides on symptoms, focus strategies, and living well with ADHD — clear, practical, and clinically grounded.",
-  hero: { src: "/images/hero/The-AXON-ADHD-Blog-Banner.webp", alt: "The AXON ADHD Blog", width: 1671, height: 941 },
+  hero: { src: "/images/hero/blog-hero.webp", alt: "The AXON ADHD Blog", width: 1671, height: 941 },
   categories: ["ADHD", "ADHD in Adults", "ADHD Symptoms", "ADHD Testing Costs", "ADHD Treatment", "Mental health"],
   freeGuide: { title: "Free Guide to ADHD Diagnosis", cta: "Download Now" },
 };

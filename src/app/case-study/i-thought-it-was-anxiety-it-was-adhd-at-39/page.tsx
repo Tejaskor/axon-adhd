@@ -9,13 +9,13 @@ export const metadata = pageMetadata({
   description:
     "Sophia spent years treating anxiety before discovering she had ADHD at 39. See how the right diagnosis brought clarity, effective treatment, and lasting change.",
   path: "/case-study/i-thought-it-was-anxiety-it-was-adhd-at-39/",
-  image: "/images/blog/I-Thought-It-Was-Anxiety-It-Was-ADHD-at-39.webp",
+  image: "/images/blog/case-study-anxiety-or-adhd-at-39-cover.webp",
 });
 
 const relatedCards: RelatedCaseStudy[] = [
   {
     href: "/case-study/undiagnosed-adult-adhd-diagnosis/",
-    image: "/images/blog/undiagnosed-adhd-adults-20-years.webp",
+    image: "/images/blog/case-study-undiagnosed-adult-adhd-20-years-cover.webp",
     alt: "Diagnosed in Days, After 20 Years of Waiting",
     width: 1672,
     height: 941,
@@ -26,7 +26,7 @@ const relatedCards: RelatedCaseStudy[] = [
   },
   {
     href: "/case-study/missed-for-decades-a-womans-adhd-diagnosis-at-age-41/",
-    image: "/images/blog/Missed-for-Decades-A-Womans-ADHD-Diagnosis-at-Age-41-0A.webp",
+    image: "/images/blog/case-study-missed-for-decades-diagnosis-at-41-cover.webp",
     alt: "Missed for Decades: A Woman's ADHD Diagnosis at Age 41",
     width: 1725,
     height: 912,
@@ -37,7 +37,7 @@ const relatedCards: RelatedCaseStudy[] = [
   },
   {
     href: "/case-study/can-you-be-successful-organized-and-still-have-adhd/",
-    image: "/images/blog/can-you-be-successful-organized-and-still-have-adhd.webp",
+    image: "/images/blog/case-study-successful-organized-still-adhd-cover.webp",
     alt: "Can You Be Successful, Organized, and Still Have ADHD?",
     width: 1729,
     height: 910,
@@ -55,7 +55,7 @@ export default function AnxietyItWasAdhdPage() {
         title="I Thought It Was Anxiety—It Was ADHD at 39"
         description="Sophia sat in her car in the office parking lot at 8:52 a.m., gripping the wheel, heart racing. She'd already rehearsed the day three times in her head and hadn't started any of it. .."
         heroImage={{
-          src: "/images/blog/I-Thought-It-Was-Anxiety-It-Was-ADHD-at-39.webp",
+          src: "/images/blog/case-study-anxiety-or-adhd-at-39-cover.webp",
           alt: "I Thought It Was Anxiety — It Was ADHD at 39",
           width: 1536,
           height: 1024,

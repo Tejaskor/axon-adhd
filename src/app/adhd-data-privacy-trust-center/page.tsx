@@ -191,7 +191,7 @@ export default function AdhdDataPrivacyTrustCenterPage() {
             <div className="axtc-hero__visual">
               <div className="axtc-hero__art-wrap">
                 <Image
-                  src="/images/trust-center/axon-trust-center-brain-security.webp"
+                  src="/images/trust-center/trust-center-hero-brain-security.webp"
                   alt="AXON ADHD 3D glowing brain on pedestal protected by security shield and padlock, certified for HIPAA, HITECH, SOC 2, and GDPR"
                   width={1536}
                   height={1024}

@@ -21,7 +21,7 @@ export const caseStudiesPage = {
   title: "ADHD Case Studies: Real Adult Diagnosis Stories",
   subtitle: "Stories of Strategic Impact",
   description: "Real patient journeys and real ADHD success stories — adults who found clarity after years of misdiagnosis through AXON ADHD’s comprehensive evaluation.",
-  hero: { src: "/images/hero/Real-Stories-Real-Progress.webp", alt: "Real Stories, Real Progress", width: 1672, height: 941 },
+  hero: { src: "/images/hero/case-studies-hero.webp", alt: "Real Stories, Real Progress", width: 1672, height: 941 },
   baseUrl: "https://www.axonadhd.com/case-study/",
 };
 
@@ -37,7 +37,7 @@ export const caseStudies: CaseStudy[] = [
     category: "ADHD Adult",
     rawDate: "2026-08-20",
     localHref: "/case-study/undiagnosed-adult-adhd-diagnosis/",
-    image: { src: "/images/blog/undiagnosed-adhd-adults-20-years.webp", alt: "Diagnosed in Days, After 20 Years of Waiting", width: 1672, height: 941 },
+    image: { src: "/images/blog/case-study-undiagnosed-adult-adhd-20-years-cover.webp", alt: "Diagnosed in Days, After 20 Years of Waiting", width: 1672, height: 941 },
   },
   {
     slug: "missed-for-decades-a-womans-adhd-diagnosis-at-age-41",
@@ -50,7 +50,7 @@ export const caseStudies: CaseStudy[] = [
     category: "ADHD Adult",
     rawDate: "2026-08-05",
     localHref: "/case-study/missed-for-decades-a-womans-adhd-diagnosis-at-age-41/",
-    image: { src: "/images/blog/Missed-for-Decades-A-Womans-ADHD-Diagnosis-at-Age-41-0A.webp", alt: "Missed for Decades: A Woman's ADHD Diagnosis at Age 41", width: 1725, height: 912 },
+    image: { src: "/images/blog/case-study-missed-for-decades-diagnosis-at-41-cover.webp", alt: "Missed for Decades: A Woman's ADHD Diagnosis at Age 41", width: 1725, height: 912 },
   },
   {
     slug: "can-you-be-successful-organized-and-still-have-adhd",
@@ -63,7 +63,7 @@ export const caseStudies: CaseStudy[] = [
     category: "ADHD Adult",
     rawDate: "2026-07-30",
     localHref: "/case-study/can-you-be-successful-organized-and-still-have-adhd/",
-    image: { src: "/images/blog/can-you-be-successful-organized-and-still-have-adhd.webp", alt: "Can You Be Successful, Organized, and Still Have ADHD?", width: 1729, height: 910 },
+    image: { src: "/images/blog/case-study-successful-organized-still-adhd-cover.webp", alt: "Can You Be Successful, Organized, and Still Have ADHD?", width: 1729, height: 910 },
   },
   {
     slug: "from-army-mechanic-to-entrepreneur-a-veterans-undiagnosed-adhd-story",
@@ -76,7 +76,7 @@ export const caseStudies: CaseStudy[] = [
     category: "Undiagnosed ADHD",
     rawDate: "2026-07-23",
     localHref: "/case-study/veteran-adhd-army-mechanic-entrepreneur/",
-    image: { src: "/images/blog/army-mechanic-to-entrepreneur-veteran-undiagnosed-adhd-stor.webp", alt: "From Army Mechanic to Entrepreneur: A Veteran's Undiagnosed ADHD Story", width: 1746, height: 901 },
+    image: { src: "/images/blog/case-study-veteran-army-mechanic-entrepreneur-cover.webp", alt: "From Army Mechanic to Entrepreneur: A Veteran's Undiagnosed ADHD Story", width: 1746, height: 901 },
   },
   {
     slug: "i-thought-it-was-anxiety-it-was-adhd-at-39",
@@ -89,6 +89,6 @@ export const caseStudies: CaseStudy[] = [
     category: "ADHD Adult",
     rawDate: "2026-07-06",
     localHref: "/case-study/i-thought-it-was-anxiety-it-was-adhd-at-39/",
-    image: { src: "/images/blog/I-Thought-It-Was-Anxiety-It-Was-ADHD-at-39.webp", alt: "I Thought It Was Anxiety, It Was ADHD at 39", width: 1536, height: 1024 },
+    image: { src: "/images/blog/case-study-anxiety-or-adhd-at-39-cover.webp", alt: "I Thought It Was Anxiety, It Was ADHD at 39", width: 1536, height: 1024 },
   },
 ];

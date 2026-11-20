@@ -8,11 +8,11 @@ export const hero = {
   /** Each entry is its own line from sm up. */
   subtitleLines: ["You’re exhausted but you’re not broken.", "We can prove it."],
   trust: { label: "Google Reviews", rating: "4.9", reviews: "(100+ reviews)" },
-  video: "/videos/hero-section-new-2.webm",
-  poster: { src: "/images/hero/herofollback.webp", alt: "", width: 1710, height: 926 },
+  video: "/videos/home-hero-background.webm",
+  poster: { src: "/images/hero/home-hero-video-poster.webp", alt: "", width: 1710, height: 926 },
 };
 
-const signImage = (name: string, alt: string, width = 1672, height = 941) => ({ src: `/images/homepage/adhd-signs/${name}.webp`, alt, width, height });
+const signImage = (name: string, alt: string, width = 1672, height = 941) => ({ src: `/images/homepage/adhd-signs/home-adhd-signs-${name}.webp`, alt, width, height });
 
 export const symptoms = {
   title: { lead: "Does this ", highlight: "sound like you?" },
@@ -23,37 +23,37 @@ export const symptoms = {
       title: "I start tasks but don’t finish",
       icon: "todo",
       tone: "green",
-      image: signImage("adhd-task-initiation", "Woman resting her chin on her hand, distracted from her work", 1816, 866),
+      image: signImage("task-initiation", "Woman resting her chin on her hand, distracted from her work", 1816, 866),
     },
     {
       title: "My mind feels constantly busy",
       icon: "mind",
       tone: "blue",
-      image: signImage("adhd-racing-thoughts-man", "Man deep in thought with a tangled thought bubble"),
+      image: signImage("racing-thoughts", "Man deep in thought with a tangled thought bubble"),
     },
     {
       title: "I feel overwhelmed by simple things",
       icon: "overwhelm",
       tone: "orange",
-      image: signImage("adhd-overwhelmed-woman", "Woman holding her head, feeling overwhelmed"),
+      image: signImage("overwhelmed", "Woman holding her head, feeling overwhelmed"),
     },
     {
       title: "I struggle with time and deadlines",
       icon: "hourglass",
       tone: "purple",
-      image: signImage("adhd-time-management-still-life", "Desk calendar with sticky notes beside an alarm clock"),
+      image: signImage("time-management", "Desk calendar with sticky notes beside an alarm clock"),
     },
     {
       title: "I feel frustrated with myself",
       icon: "frown",
       tone: "coral",
-      image: signImage("adhd-self-frustration-man", "Man resting his head on his hand, looking frustrated"),
+      image: signImage("self-frustration", "Man resting his head on his hand, looking frustrated"),
     },
     {
       title: "I’ve wondered if it’s ADHD",
       icon: "question",
       tone: "yellow",
-      image: signImage("adhd-self-discovery-woman", "Woman looking thoughtful beside floating question marks"),
+      image: signImage("self-discovery", "Woman looking thoughtful beside floating question marks"),
     },
   ] satisfies Array<{ title: string; icon: IconName; tone: string; image: unknown }>,
   reassurance: ["You’re not lazy. You’re not broken.", "You may just need the right support."],
@@ -72,8 +72,8 @@ export const services = {
       text: "A quick online screener to help identify if your symptoms may be ADHD-related.",
       href: "/comprehensive-adhd-assessment/",
       icon: "screening",
-      video: "/videos/patient.mp4",
-      thumbnail: "/images/homepage/how-we-support-you/Behavioral-Health-Screening.webp",
+      video: "/videos/home-support-behavioral-health-screening.mp4",
+      thumbnail: "/images/homepage/how-we-support-you/home-support-behavioral-health-screening.webp",
       tone: "blue",
     },
     {
@@ -82,8 +82,8 @@ export const services = {
       text: "A clinical evaluation with certified professionals for clear diagnosis and tailored treatment.",
       href: "/comprehensive-adhd-assessment/",
       icon: "assessment",
-      video: "/videos/Comprehensive-ADHD-Evaluation-snippit.mp4",
-      thumbnail: "/images/homepage/how-we-support-you/Comprehensive-ADHD-Assessment.webp",
+      video: "/videos/home-support-comprehensive-assessment.mp4",
+      thumbnail: "/images/homepage/how-we-support-you/home-support-comprehensive-assessment.webp",
       tone: "teal",
     },
     {
@@ -92,14 +92,14 @@ export const services = {
       text: "Ongoing support to improve focus, build structure, and thrive in everyday life.",
       href: "/adhd-care/",
       icon: "care",
-      video: "/videos/ADHD-Care-snippit-1.mp4",
-      thumbnail: "/images/homepage/how-we-support-you/ADHD-Care.webp",
+      video: "/videos/home-support-adhd-care.mp4",
+      thumbnail: "/images/homepage/how-we-support-you/home-support-adhd-care.webp",
       tone: "violet",
     },
   ] as const,
 };
 
-const journeyImage = (name: string, alt: string) => ({ src: `/images/homepage/journey-to-clarity/journey-${name}.webp`, alt, width: 1672, height: 941 });
+const journeyImage = (name: string, alt: string) => ({ src: `/images/homepage/journey-to-clarity/home-journey-${name}.webp`, alt, width: 1672, height: 941 });
 
 export const journeyToClarity = {
   /** Rendered as `title` + " " + `titleAccent`, with the accent in the same gradient as "support you". */
@@ -147,7 +147,7 @@ export const mythBuster = {
   question: { lead: "Why can’t I ", highlight: "figure this", nextLine: "out?!" },
   feelings: ["Confusion", "Guessing", "Frustration"],
   confused: {
-    src: "/images/homepage/adhd-understanding/adhd-confusion-woman.webp",
+    src: "/images/homepage/adhd-understanding/home-understanding-confusion.webp",
     alt: "Woman resting her chin in her hands, looking up in confusion beneath question marks",
     width: 2280,
     height: 2524,
@@ -158,7 +158,7 @@ export const mythBuster = {
       key: "symptoms",
       title: "Many different symptoms",
       image: {
-        src: "/images/homepage/adhd-understanding/adhd-symptoms-illustration.webp",
+        src: "/images/homepage/adhd-understanding/home-understanding-symptoms-illustration.webp",
         alt: "A worried face, a brain, a thought cloud, a checklist and puzzle pieces",
         width: 1536,
         height: 1024,
@@ -169,7 +169,7 @@ export const mythBuster = {
       key: "frustration",
       title: "Frustration and hopelessness",
       image: {
-        src: "/images/homepage/adhd-understanding/adhd-frustration-woman.webp",
+        src: "/images/homepage/adhd-understanding/home-understanding-frustration.webp",
         alt: "Woman holding her head in frustration under a tangled scribble",
         width: 1784,
         height: 2116,
@@ -179,7 +179,7 @@ export const mythBuster = {
       key: "exhaustion",
       title: "Exhaustion",
       image: {
-        src: "/images/homepage/adhd-understanding/adhd-exhaustion-woman.webp",
+        src: "/images/homepage/adhd-understanding/home-understanding-exhaustion.webp",
         alt: "Woman asleep on a stack of books beside a laptop",
         width: 2500,
         height: 1460,
@@ -189,9 +189,9 @@ export const mythBuster = {
   clarity: {
     label: "Diagnostic clarity",
     text: "A clearer understanding can help guide the next step.",
-    image: { src: "/images/homepage/adhd-understanding/adhd-diagnostic-clarity.webp", width: 1309, height: 1201 },
+    image: { src: "/images/homepage/adhd-understanding/home-understanding-diagnostic-clarity.webp", width: 1309, height: 1201 },
     relief: {
-      src: "/images/homepage/adhd-understanding/adhd-relief-woman.webp",
+      src: "/images/homepage/adhd-understanding/home-understanding-relief.webp",
       alt: "Woman smiling calmly with her hands over her heart",
       width: 1964,
       height: 2588,
@@ -200,7 +200,7 @@ export const mythBuster = {
   title: { lead: "Attention Deficit ", highlight: "Hyperactivity", nextLine: "Disorder" },
   subtitle: "It’s not what most people think",
   infographic: {
-    src: "/images/homepage/adhd-understanding/adhd-attention-effort-intelligence.webp",
+    src: "/images/homepage/adhd-understanding/home-understanding-attention-effort-intelligence.webp",
     alt: "A brain surrounded by distractions such as notifications, alarms, messages, games and music, labelled Attention, Effort and Intelligence",
     width: 544,
     height: 458,
@@ -226,7 +226,7 @@ export const weSeeYou = {
     { title: "You’re not alone", icon: "people", tone: "orange" },
     { title: "There’s a reason it feels hard", icon: "bulb", tone: "purple" },
   ],
-  image: { src: "/images/services/ImageWithFallback-1.webp", alt: "A smiling woman talking with an ADHD clinician who is taking notes", width: 592, height: 444 },
+  image: { src: "/images/services/home-not-alone-clinician-consultation.webp", alt: "A smiling woman talking with an ADHD clinician who is taking notes", width: 592, height: 444 },
   cta: ctas.evaluation,
 } as const;
 
@@ -293,7 +293,7 @@ export const finalCta = {
   lead: "Take the next step with our comprehensive diagnostic evaluation.",
   primary: { label: "Start Comprehensive Assessment", href: links.comprehensive },
   secondary: { label: "Start Free Assessment", href: links.freeScreening },
-  image: { src: "/images/services/adult-adhd-diagnostic-evaluatio.webp", alt: "Adult ADHD Diagnostic Evaluation", width: 569, height: 582 },
+  image: { src: "/images/services/home-comprehensive-evaluation-cta.webp", alt: "Adult ADHD Diagnostic Evaluation", width: 569, height: 582 },
 };
 
 export const contactSection = {

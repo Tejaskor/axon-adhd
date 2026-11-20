@@ -1,17 +1,17 @@
 import type { ImageAsset } from "./types";
 
 export const trustBar = {
-  google: { src: "/images/trust/google1.svg", alt: "Google", width: 14, height: 14 },
+  google: { src: "/images/trust/trust-google-logo.svg", alt: "Google", width: 14, height: 14 },
   rating: "4.9/5",
   reviews: "(100+ reviews)",
   avatars: [
-    { src: "/images/trust/Avatar.webp", alt: "", width: 128, height: 128 },
-    { src: "/images/trust/Avatar2.webp", alt: "", width: 128, height: 128 },
-    { src: "/images/trust/Avatar1.webp", alt: "", width: 128, height: 128 },
-    { src: "/images/trust/Avatar4.webp", alt: "", width: 128, height: 128 },
+    { src: "/images/trust/trust-review-strip-avatar-1.webp", alt: "", width: 128, height: 128 },
+    { src: "/images/trust/trust-review-strip-avatar-2.webp", alt: "", width: 128, height: 128 },
+    { src: "/images/trust/trust-review-strip-avatar-3.webp", alt: "", width: 128, height: 128 },
+    { src: "/images/trust/trust-review-strip-avatar-4.webp", alt: "", width: 128, height: 128 },
   ] satisfies ImageAsset[],
   helped: "1,000+ Adults Helped Find Clarity",
-  psychologyToday: { src: "/images/trust/psychology-Photoroom.webp", alt: "Verified by Psychology Today", width: 1808, height: 870 },
+  psychologyToday: { src: "/images/trust/trust-psychology-today-verified-badge.webp", alt: "Verified by Psychology Today", width: 1808, height: 870 },
 };
 
 /**
@@ -21,39 +21,39 @@ export const trustBar = {
 export const partnerLogos = {
   title: "TRUSTED BY LEADING PRIMARY CARE GROUPS & UNIVERSITIES",
   logos: [
-    { src: "/images/trust/partners/logo15.webp", alt: "Inova Logo", width: 1151, height: 192, scale: 1.2 },
-    { src: "/images/trust/partners/logo13.webp", alt: "University Logo", width: 192, height: 192 },
-    { src: "/images/trust/partners/logo12.webp", alt: "George Mason University Disability Services logo", width: 531, height: 144, scale: 1.5 },
-    { src: "/images/trust/partners/logo11.webp", alt: "Julia Stanford, MD Concierge Medicine logo", width: 390, height: 192, scale: 1.4 },
-    { src: "/images/trust/partners/logo14.webp", alt: "Western Governors University logo", width: 820, height: 192, scale: 1.2 },
-    { src: "/images/trust/partners/logo10.webp", alt: "Partner logo", width: 399, height: 192 },
-    { src: "/images/trust/partners/logo8.webp", alt: "PAPA Health Logo", width: 641, height: 190, scale: 1.25 },
-    { src: "/images/trust/partners/logo9.webp", alt: "Privia Health Logo", width: 825, height: 192, scale: 1.5 },
-    { src: "/images/trust/partners/logo7.webp", alt: "CloseKnit Logo", width: 1069, height: 192, scale: 1.2 },
-    { src: "/images/trust/partners/logo5.webp", alt: "Accessibility Services Logo", width: 820, height: 158, scale: 1.6 },
-    { src: "/images/trust/partners/logo4.webp", alt: "Medical Services Icon", width: 190, height: 180 },
-    { src: "/images/trust/partners/logo3.webp", alt: "Northern Virginia Family Service logo", width: 389, height: 122, scale: 1.2 },
-    { src: "/images/trust/partners/logo6.webp", alt: "Marymount University Logo", width: 563, height: 192, scale: 1.3 },
-    { src: "/images/trust/partners/logo2.webp", alt: "DV Logo", width: 810, height: 182 },
-    { src: "/images/trust/partners/logo1.webp", alt: "American University Logo", width: 1563, height: 192, scale: 1.6 },
-    { src: "/images/trust/partners/gw.webp", alt: "George Washington University Logo", width: 748, height: 549 },
-    { src: "/images/trust/partners/vhc.webp", alt: "VHC Medical Faculty Associates Logo", width: 778, height: 254, scale: 1.1 },
+    { src: "/images/trust/partners/inova-logo.webp", alt: "Inova Logo", width: 1151, height: 192, scale: 1.2 },
+    { src: "/images/trust/partners/university-logo-unidentified-b.webp", alt: "University Logo", width: 192, height: 192 },
+    { src: "/images/trust/partners/george-mason-university-disability-services-logo.webp", alt: "George Mason University Disability Services logo", width: 531, height: 144, scale: 1.5 },
+    { src: "/images/trust/partners/julia-stanford-md-concierge-medicine-logo.webp", alt: "Julia Stanford, MD Concierge Medicine logo", width: 390, height: 192, scale: 1.4 },
+    { src: "/images/trust/partners/western-governors-university-logo.webp", alt: "Western Governors University logo", width: 820, height: 192, scale: 1.2 },
+    { src: "/images/trust/partners/partner-logo-unidentified-a.webp", alt: "Partner logo", width: 399, height: 192 },
+    { src: "/images/trust/partners/papa-health-logo.webp", alt: "PAPA Health Logo", width: 641, height: 190, scale: 1.25 },
+    { src: "/images/trust/partners/privia-health-logo.webp", alt: "Privia Health Logo", width: 825, height: 192, scale: 1.5 },
+    { src: "/images/trust/partners/closeknit-logo.webp", alt: "CloseKnit Logo", width: 1069, height: 192, scale: 1.2 },
+    { src: "/images/trust/partners/accessibility-services-logo.webp", alt: "Accessibility Services Logo", width: 820, height: 158, scale: 1.6 },
+    { src: "/images/trust/partners/medical-services-icon-logo.webp", alt: "Medical Services Icon", width: 190, height: 180 },
+    { src: "/images/trust/partners/northern-virginia-family-service-logo.webp", alt: "Northern Virginia Family Service logo", width: 389, height: 122, scale: 1.2 },
+    { src: "/images/trust/partners/marymount-university-logo.webp", alt: "Marymount University Logo", width: 563, height: 192, scale: 1.3 },
+    { src: "/images/trust/partners/dv-logo.webp", alt: "DV Logo", width: 810, height: 182 },
+    { src: "/images/trust/partners/american-university-logo.webp", alt: "American University Logo", width: 1563, height: 192, scale: 1.6 },
+    { src: "/images/trust/partners/george-washington-university-logo.webp", alt: "George Washington University Logo", width: 748, height: 549 },
+    { src: "/images/trust/partners/vhc-health-logo.webp", alt: "VHC Medical Faculty Associates Logo", width: 778, height: 254, scale: 1.1 },
   ] satisfies Array<ImageAsset & { scale?: number }>,
 };
 
 export const complianceBadges = [
-  { src: "/images/badges/hipaa.webp", alt: "HIPAA compliant badge", width: 529, height: 116 },
-  { src: "/images/badges/cdpr.webp", alt: "GDPR compliant badge", width: 376, height: 144 },
-  { src: "/images/badges/ccpa.webp", alt: "CCPA compliant badge", width: 376, height: 149 },
-  { src: "/images/badges/soc2.webp", alt: "SOC 2 certified badge", width: 448, height: 218 },
+  { src: "/images/badges/compliance-badge-hipaa.webp", alt: "HIPAA compliant badge", width: 529, height: 116 },
+  { src: "/images/badges/compliance-badge-gdpr.webp", alt: "GDPR compliant badge", width: 376, height: 144 },
+  { src: "/images/badges/compliance-badge-ccpa.webp", alt: "CCPA compliant badge", width: 376, height: 149 },
+  { src: "/images/badges/compliance-badge-soc2.webp", alt: "SOC 2 certified badge", width: 448, height: 218 },
 ] satisfies ImageAsset[];
 
 /** Full-colour versions of the compliance badges (footer). */
 export const complianceBadgesColor = [
-  { src: "/images/badges/color/hipaa.png", alt: "HIPAA compliant badge", width: 379, height: 189 },
-  { src: "/images/badges/color/gdpr.png", alt: "EU GDPR compliant badge", width: 332, height: 327 },
-  { src: "/images/badges/color/ccpa.png", alt: "CCPA compliant badge", width: 468, height: 454 },
-  { src: "/images/badges/color/soc2.png", alt: "SOC 2 Type 2 certified badge", width: 251, height: 414 },
+  { src: "/images/badges/color/compliance-badge-hipaa-color.png", alt: "HIPAA compliant badge", width: 379, height: 189 },
+  { src: "/images/badges/color/compliance-badge-gdpr-color.png", alt: "EU GDPR compliant badge", width: 332, height: 327 },
+  { src: "/images/badges/color/compliance-badge-ccpa-color.png", alt: "CCPA compliant badge", width: 468, height: 454 },
+  { src: "/images/badges/color/compliance-badge-soc2-color.png", alt: "SOC 2 Type 2 certified badge", width: 251, height: 414 },
 ] satisfies ImageAsset[];
 
 /** `date` is the Google post date (ISO, from the widget's `data-time`). */
