@@ -32,7 +32,7 @@ export const mainNav: NavItem[] = [
         featured: {
           image: { src: "/images/header/ADHD%20Care_%20Personalized%20Student%20Support.webp", alt: "ADHD Care: personalized treatment and ongoing support", width: 1774, height: 887 },
           title: "ADHD Care",
-          text: "Personalized treatment and ongoing support for lasting success.",
+          text: "Personalized treatment and ongoing support to improve focus, build structure, and thrive in everyday life.",
           cta: { label: "View ADHD Care", href: "/adhd-care/" },
         },
       },
@@ -44,7 +44,7 @@ export const mainNav: NavItem[] = [
         featured: {
           image: { src: "/images/header/ADHD%20Academic%20Support%20Study%20Scene.webp", alt: "ADHD accommodations: academic support, workplace accommodations and personalized recommendations", width: 1672, height: 941 },
           title: "Accommodation & Advocacy",
-          text: "Reports that meet ADA & Section 504 standards.",
+          text: "Reports that meet ADA & Section 504 standards, with documentation and advocacy for school and work accommodations.",
           cta: { label: "View Accommodation & Advocacy", href: "/accommodation-documentation-advocacy/" },
         },
       },
@@ -52,7 +52,7 @@ export const mainNav: NavItem[] = [
     featured: {
       image: { src: "/images/header/Student%20Success_%20Comprehensive%20ADHD%20Support.webp", alt: "Comprehensive ADHD Assessment: in-depth evaluation, personalized plan and ongoing support", width: 1536, height: 1024 },
       title: "Comprehensive ADHD Assessment",
-      text: "Documentation and advocacy for school and workplace accommodations.",
+      text: "A clinical evaluation with certified professionals for a clear diagnosis, tailored treatment, and accommodation support.",
       cta: { label: "View ADHD Assessment", href: "/comprehensive-adhd-assessment/" },
     },
   },
@@ -70,7 +70,7 @@ export const mainNav: NavItem[] = [
         featured: {
           image: { src: "/images/referral-for-universities/university-referral-contact-section.webp", alt: "Students looking toward a university hall", width: 1774, height: 887 },
           title: "Referral University",
-          text: "Educational resources for healthcare professionals.",
+          text: "Educational resources for healthcare professionals, giving students a fast, reliable ADHD pathway to evaluation and care.",
           cta: { label: "Learn More About Referral University", href: "/adhd-referral-for-universities/" },
         },
       },
@@ -82,7 +82,7 @@ export const mainNav: NavItem[] = [
         featured: {
           image: { src: "/images/hero/pcpsubmenu.webp", alt: "Referral PCP", width: 1533, height: 1026 },
           title: "Referral PCP",
-          text: "Resources and guidance for primary care providers.",
+          text: "Resources and guidance for primary care providers, giving patients a fast, reliable ADHD pathway to evaluation and care.",
           cta: { label: "Learn More About Referral PCP", href: "/referral-adhd-partners/" },
         },
       },
@@ -100,12 +100,34 @@ export const mainNav: NavItem[] = [
     href: "/blog/",
     eyebrow: "Learn & Explore",
     links: [
-      { label: "Blogs", description: "Stay informed with expert ADHD insights and tips.", href: "/blog/", icon: "blog" },
-      { label: "Case Studies", description: "Real patient journeys. Real ADHD success stories.", href: "/case-studies/", icon: "case" },
+      {
+        label: "Blogs",
+        description: "Stay informed with expert ADHD insights and tips.",
+        href: "/blog/",
+        icon: "blog",
+        featured: {
+          image: { src: "/images/header/nav-mega-menu-resources-blogs.webp", alt: "ADHD Blog: expert insights on symptoms, focus strategies and living well with ADHD", width: 1672, height: 941 },
+          title: "ADHD Blog",
+          text: "Expert-written guides on symptoms, focus strategies, and living well with ADHD — clear, practical, and clinically grounded.",
+          cta: { label: "Explore Our ADHD Blog", href: "/blog/" },
+        },
+      },
+      {
+        label: "Case Studies",
+        description: "Real patient journeys. Real ADHD success stories.",
+        href: "/case-studies/",
+        icon: "case",
+        featured: {
+          image: { src: "/images/header/nav-mega-menu-resources-case-studies.webp", alt: "ADHD Case Studies: real patient journeys and success stories", width: 1672, height: 941 },
+          title: "ADHD Case Studies",
+          text: "Real patient journeys and ADHD success stories, showing how evaluation, care, and the right support change everyday life.",
+          cta: { label: "Read Case Studies", href: "/case-studies/" },
+        },
+      },
     ],
     featured: {
-      image: { src: "/images/services/nav-mega-menu-blog-guides.webp", alt: "ADHD Guides and Articles", width: 1492, height: 1054 },
-      title: "ADHD Guides & Articles",
+      image: { src: "/images/header/nav-mega-menu-resources-blogs.webp", alt: "ADHD Blog: expert insights on symptoms, focus strategies and living well with ADHD", width: 1672, height: 941 },
+      title: "ADHD Blog",
       text: "Expert-written guides on symptoms, focus strategies, and living well with ADHD — clear, practical, and clinically grounded.",
       cta: { label: "Explore Our ADHD Blog", href: "/blog/" },
     },

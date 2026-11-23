@@ -32,11 +32,13 @@ export async function getTotalBlogPages(categorySlug?: string) {
 const archiveBase = (categorySlug?: string) => (categorySlug ? `/blog/category/${categorySlug}/` : "/blog/");
 const pageHref = (base: string, n: number) => (n === 1 ? base : `${base}page/${n}/`);
 
-/** Page numbers with "…" gaps, e.g. 1 2 3 … 7 (first/last always shown, two neighbours either side of the current page). */
-function pageItems(current: number, total: number) {
+/** Page numbers with "…" gaps on both sides, e.g. 1 2 3 … 7, then 1 … 3 4 5 … 7, then 1 … 5 6 7 (first/last always shown, plus a `size`-page window around the current page). */
+function pageItems(current: number, total: number, size = 3) {
+  const start = Math.max(1, Math.min(current - Math.floor((size - 1) / 2), total - size + 1));
+  const end = Math.min(total, start + size - 1);
   const items: Array<number | "dots"> = [];
   for (let p = 1; p <= total; p++) {
-    if (p === 1 || p === total || Math.abs(p - current) <= 2) items.push(p);
+    if (p === 1 || p === total || (p >= start && p <= end)) items.push(p);
     else if (items[items.length - 1] !== "dots") items.push("dots");
   }
   return items;
@@ -53,6 +55,24 @@ const pageDots = `${pageBtn} ${pageNum} border-transparent text-[#6B7280]`;
 
 function Pagination({ current, total, base }: { current: number; total: number; base: string }) {
   if (total <= 1) return null;
+  const renderItems = (items: Array<number | "dots">) =>
+    items.map((item, i) =>
+      item === "dots" ? (
+        <span key={`d${i}`} aria-hidden className={pageDots}>
+          …
+        </span>
+      ) : item === current ? (
+        <span key={item} aria-current="page" className={pageBtnCurrent}>
+          <span className="sr-only">Page </span>
+          {item}
+        </span>
+      ) : (
+        <Link key={item} href={pageHref(base, item)} className={`${pageBtnLink} ${pageNum}`}>
+          <span className="sr-only">Page </span>
+          {item}
+        </Link>
+      ),
+    );
   return (
     <nav aria-label="Pagination" className="mt-6 flex flex-wrap items-center justify-center gap-1 sm:mt-[30px] sm:gap-2">
       {current > 1 ? (
@@ -64,23 +84,9 @@ function Pagination({ current, total, base }: { current: number; total: number; 
           Previous
         </span>
       )}
-      {pageItems(current, total).map((item, i) =>
-        item === "dots" ? (
-          <span key={`d${i}`} aria-hidden className={pageDots}>
-            …
-          </span>
-        ) : item === current ? (
-          <span key={item} aria-current="page" className={pageBtnCurrent}>
-            <span className="sr-only">Page </span>
-            {item}
-          </span>
-        ) : (
-          <Link key={item} href={pageHref(base, item)} className={`${pageBtnLink} ${pageNum}`}>
-            <span className="sr-only">Page </span>
-            {item}
-          </Link>
-        ),
-      )}
+      {/* Phones show only the current page between 1 … and the last page; larger screens show a 3-page window. */}
+      <span className="contents sm:hidden">{renderItems(pageItems(current, total, 1))}</span>
+      <span className="hidden sm:contents">{renderItems(pageItems(current, total))}</span>
       {current < total ? (
         <Link href={pageHref(base, current + 1)} rel="next" className={pageBtnLink}>
           Next
@@ -94,11 +100,11 @@ function Pagination({ current, total, base }: { current: number; total: number; 
   );
 }
 
-const widgetBox = "rounded-[6px] border border-[#D7DDE6] bg-white px-[22px] py-4";
-const widgetTitle = "border-b border-[#E5E7EB] pb-4 text-[18px] font-bold text-[#1F2937] uppercase sm:text-[20px]";
+const widgetBox = "rounded-[12px] border border-[#B7D1F4] bg-[#F8FBFF] px-[22px] py-4";
+const widgetTitle = "border-b border-[#E5E7EB] pb-1 text-[18px] font-bold text-[#1F2937] sm:text-[22px]";
 const widgetItem =
   "relative py-2.5 pl-5 before:absolute before:top-1/2 before:left-0 before:-translate-y-1/2 before:text-[16px] before:text-[#1F2937] before:content-['›'] sm:before:text-[18px]";
-const widgetLink = "text-[16px] text-[#1F2937] transition-colors hover:text-[#2563EB] sm:text-[18px]";
+const widgetLink = "text-[15px] text-[#1F2937] transition-colors hover:text-[#2563EB] sm:text-[16px]";
 
 /** The /blog/ archive (WordPress posts): post list + pagination on the left, Categories and Recent Posts on the right. */
 export async function BlogArchive({ page, categorySlug }: { page: number; categorySlug?: string }) {
@@ -107,7 +113,7 @@ export async function BlogArchive({ page, categorySlug }: { page: number; catego
   const totalPages = Math.max(1, Math.ceil(listed.length / POSTS_PER_PAGE));
   const posts = listed.slice((page - 1) * POSTS_PER_PAGE, page * POSTS_PER_PAGE);
   return (
-    <section className="-mt-[var(--header-height)] pt-[150px] pb-[60px] max-md:pt-[200px]" aria-label="Blog articles">
+    <section className="-mt-[var(--header-height)] bg-white pt-[150px] pb-[60px] max-md:pt-[200px]" aria-label="Blog articles">
       <div className="container-content flex flex-col gap-5 md:flex-row md:gap-0">
         <div className="p-2.5 md:w-[70%]">
           <h1 className="sr-only">{archive ? `${archive.category.name} – ${blogPage.title}` : blogPage.title}</h1>
@@ -123,12 +129,12 @@ export async function BlogArchive({ page, categorySlug }: { page: number; catego
         </div>
         <aside className="flex flex-col gap-5 p-2.5 md:w-[30%]">
           <div className={widgetBox}>
-            <h2 className={widgetTitle}>Categories</h2>
+            <h2 className={`${widgetTitle} border-b-0`}>Categories</h2>
             <nav aria-label="Categories">
               <ul>
                 {categories.map((c) => (
                   <li key={c.slug} className={widgetItem}>
-                    <Link href={`/blog/category/${c.slug}/`} aria-current={c.slug === categorySlug ? "page" : undefined} className={`${widgetLink} ${c.slug === categorySlug ? "font-semibold text-[#2563EB]" : ""}`}>
+                    <Link href={`/blog/category/${c.slug}/`} aria-current={c.slug === categorySlug ? "page" : undefined} className={`${widgetLink} ${c.slug === categorySlug ? "text-[#2563EB]" : ""}`}>
                       {c.name}
                     </Link>
                   </li>
@@ -137,7 +143,7 @@ export async function BlogArchive({ page, categorySlug }: { page: number; catego
             </nav>
           </div>
           <div className={widgetBox}>
-            <h2 className={widgetTitle}>Recent Posts</h2>
+            <h2 className={`${widgetTitle} border-b-0`}>Recent posts</h2>
             <ul>
               {allPosts.slice(0, 5).map((p) => (
                 <li key={p.slug} className={widgetItem}>

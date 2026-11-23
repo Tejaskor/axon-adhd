@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CalendarDays, ChartNoAxesColumn, ChevronsRight, UserRound } from "lucide-react";
+import { CalendarDays, ChevronsRight, UserRound, CircleUserRound } from "lucide-react";
 import type { BlogPost } from "@/content/blogs";
 import { formatDate } from "@/lib/utils";
 
@@ -8,14 +8,14 @@ import { formatDate } from "@/lib/utils";
 export function BlogRowCard({ post }: { post: BlogPost }) {
   const href = `/blog/${post.slug}/`;
   return (
-    <article className="group flex flex-col overflow-hidden rounded-[6px] border border-[#E2E5E8] bg-white transition-shadow hover:shadow-soft md:flex-row">
-      <Link href={href} tabIndex={-1} aria-hidden className="block overflow-hidden p-2.5 md:w-[46%] md:shrink-0">
-        <Image src={post.image.src} alt="" width={post.image.width} height={post.image.height} sizes="(max-width: 767px) 100vw, 480px" className="aspect-[16/9] h-auto w-full rounded-[6px] object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+    <article className="group flex flex-col overflow-hidden rounded-[12px] border border-[#E2E5E8] bg-white transition-shadow hover:shadow-soft md:flex-row">
+      <Link href={href} tabIndex={-1} aria-hidden className="block overflow-hidden p-4 md:w-1/2 md:shrink-0">
+        <Image src={post.image.src} alt="" width={post.image.width} height={post.image.height} sizes="(max-width: 767px) 100vw, 560px" className="aspect-[16/9] h-auto w-full rounded-[6px] object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
       </Link>
-      <div className="flex flex-1 flex-col justify-start gap-2.5 p-2.5">
+      <div className="flex flex-1 flex-col justify-center gap-3.5 p-4 md:py-5 md:pr-6 md:pl-2">
         <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[12px] text-[#70777D] sm:text-[14px]">
           <span className="inline-flex items-center gap-1.5">
-            <UserRound aria-hidden className="size-4 text-[#1D3C67]" /> {post.author}
+            <CircleUserRound aria-hidden className="size-4 text-[#1D3C67]" /> {post.author}
           </span>
           <span className="inline-flex items-center gap-1.5">
             <CalendarDays aria-hidden className="size-4 text-[#1D3C67]" />
@@ -23,7 +23,11 @@ export function BlogRowCard({ post }: { post: BlogPost }) {
           </span>
           {post.views !== undefined && (
             <span className="inline-flex items-center gap-1.5 ml-auto" title="Views">
-              <ChartNoAxesColumn aria-hidden className="size-4 text-[#1D3C67]" />
+              <svg aria-hidden viewBox="0 0 24 16" className="h-[13px] w-[19px] text-[#666]" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M1.6 8C5 3.4 8.4 2 12 2s7 1.4 10.4 6C19 12.6 15.6 14 12 14S5 12.6 1.6 8Z" strokeWidth="2.2" />
+                <circle cx="12" cy="8" r="4.7" fill="currentColor" stroke="none" />
+                <path d="M9.5 8.2c0-1.6.9-2.6 2.5-2.9" stroke="#fff" strokeWidth="1.1" />
+              </svg>
               <span className="sr-only">Views: </span>
               {post.views}
             </span>
@@ -34,9 +38,9 @@ export function BlogRowCard({ post }: { post: BlogPost }) {
             {post.title}
           </Link>
         </h2>
-        <p className="text-[14px] text-body sm:text-[16px]">{post.excerpt}</p>
-        <Link href={href} className="mt-1 inline-flex w-fit rounded-full bg-[#256ACC] px-4 py-2.5 text-[15px] font-medium text-white transition-colors hover:bg-[#1A56A8]">
-          Read More <ChevronsRight aria-hidden className="ml-1 size-4 self-center" />
+        <p className="line-clamp-3 text-[14px] text-body sm:text-[16px]">{post.excerpt}</p>
+        <Link href={href} className="mt-1 inline-flex w-fit rounded-full bg-[linear-gradient(90deg,#1E64AA_0%,#2578CA_45%,#5498DB_100%)] px-3.5 py-2 text-[14px] font-medium text-white transition-[filter] hover:brightness-110">
+          Read More <ChevronsRight aria-hidden className="ml-1 size-3.5 self-center" />
           <span className="sr-only">about {post.title}</span>
         </Link>
       </div>
