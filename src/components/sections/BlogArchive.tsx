@@ -120,7 +120,7 @@ export async function BlogArchive({ page, categorySlug }: { page: number; catego
           <ul className="flex flex-col gap-5">
             {posts.map((post) => (
               <li key={post.slug}>
-                <BlogRowCard post={post} />
+                <BlogRowCard post={post} eager />
               </li>
             ))}
           </ul>
@@ -136,6 +136,7 @@ export async function BlogArchive({ page, categorySlug }: { page: number; catego
                   <li key={c.slug} className={widgetItem}>
                     <Link href={`/blog/category/${c.slug}/`} aria-current={c.slug === categorySlug ? "page" : undefined} className={`${widgetLink} ${c.slug === categorySlug ? "text-[#2563EB]" : ""}`}>
                       {c.name}
+                      {c.count !== undefined && ` (${c.count})`}
                     </Link>
                   </li>
                 ))}

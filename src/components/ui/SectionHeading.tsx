@@ -27,7 +27,7 @@ export function SectionHeading({ eyebrow, title, subtitle, align = "center", as:
       >
         {title}
       </Tag>
-      {subtitle && <p className={cn(subtitleClassName ?? "text-[20px] leading-[1.7]", "mt-4", light ? "text-white/85" : "text-body")}>{subtitle}</p>}
+      {subtitle && <p className={cn(subtitleClassName ?? "text-[16px] leading-[1.7] sm:text-[20px]", "mt-4", light ? "text-white/85" : "text-body")}>{subtitle}</p>}
     </div>
   );
 }

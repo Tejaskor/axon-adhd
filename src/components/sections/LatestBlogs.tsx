@@ -23,7 +23,7 @@ export async function LatestBlogs({ count = 3, relatedTo, title = latestBlogs.ti
     // Same background as "Care you can trust".
     <section className="bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! section-py" aria-labelledby="blogs-title">
       <Container>
-        <SectionHeading id="blogs-title" title={headingTitle} subtitle={latestBlogs.subtitle} subtitleClassName="text-[20px] leading-[1.7]" />
+        <SectionHeading id="blogs-title" title={headingTitle} subtitle={latestBlogs.subtitle} subtitleClassName="text-[16px] leading-[1.7] sm:text-[20px]" />
         <ul className="grid gap-6 md:grid-cols-3">
           {posts.map((post) => (
             <li key={post.slug}>

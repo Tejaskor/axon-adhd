@@ -115,7 +115,7 @@ export function ServicesOverview() {
           <h2 id="services-title" className="type-h2 text-navy text-balance">
             {services.title} <span className="text-primary">{services.titleAccent}</span>
           </h2>
-          <p className="mx-auto mt-3 max-w-[900px] text-[20px] leading-[1.7] text-pretty text-[#4B5B73]">{services.subtitle}</p>
+          <p className="mx-auto mt-3 max-w-[900px] text-[16px] leading-[1.7] sm:text-[20px] text-pretty text-[#4B5B73]">{services.subtitle}</p>
         </div>
 
         <ul className="mx-auto mt-10 grid max-w-[560px] gap-6 sm:mt-12 md:max-w-none md:grid-cols-3 md:gap-1">

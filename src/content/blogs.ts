@@ -3,7 +3,7 @@ import { body as sleepBody } from "./posts/adhd-and-sleep-problems";
 import { body as mythsBody } from "./posts/adhd-myths-and-facts";
 import { body as womenBody } from "./posts/adhd-therapy-for-women";
 
-export type BlogCategory = { id: number; name: string; slug: string; /** Parent category id (0 / undefined for top level). */ parent?: number };
+export type BlogCategory = { id: number; name: string; slug: string; /** Parent category id (0 / undefined for top level). */ parent?: number; /** Posts directly in the category (WordPress only; shown in the sidebar chip). */ count?: number };
 
 export type BlogPost = {
   /** WordPress post id (WordPress posts only). */

@@ -190,7 +190,7 @@ export function AdhdCareServices({ data }: { data: FeaturesSection }) {
               data.title
             )}
           </h2>
-          {data.subtitle && <p className="mx-auto mt-4 max-w-[1120px] text-[20px] leading-[1.7] text-balance text-body">{data.subtitle}</p>}
+          {data.subtitle && <p className="mx-auto mt-4 max-w-[1120px] text-[16px] leading-[1.7] sm:text-[20px] text-balance text-body">{data.subtitle}</p>}
         </div>
       </div>
 

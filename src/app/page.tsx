@@ -10,7 +10,7 @@ import { LogoMarquee } from "@/components/sections/LogoMarquee";
 import { PricingCards } from "@/components/sections/PricingCards";
 import { ServicesOverview } from "@/components/sections/ServicesOverview";
 import { SymptomChecklist } from "@/components/sections/SymptomChecklist";
-import { Testimonials } from "@/components/sections/Testimonials";
+import { TestimonialArc } from "@/components/sections/TestimonialArc";
 import { WeSeeYou } from "@/components/sections/WeSeeYou";
 import { WhyAxon } from "@/components/sections/WhyAxon";
 import { homeFaqs } from "@/content/faqs";
@@ -39,7 +39,7 @@ export default function HomePage() {
       <WeSeeYou />
       <WhyAxon />
       <CareYouCanTrust />
-      <Testimonials {...testimonialsSection} reviews={reviews} rating={googleRating} />
+      <TestimonialArc {...testimonialsSection} reviews={reviews} rating={googleRating} />
       <LatestBlogs />
       <FinalCTA />
       {/* Background matches the Latest Blogs section. */}

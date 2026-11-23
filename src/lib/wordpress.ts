@@ -289,7 +289,7 @@ export async function getCategories(): Promise<BlogCategory[]> {
     const res = await wpFetch("/categories", { per_page: "100", hide_empty: "true", orderby: "name", _fields: "id,name,slug,count,parent" });
     if (!Array.isArray(res.data)) throw new Error("unexpected payload");
     cacheLife(LIVE);
-    return (res.data as WpTerm[]).map((c) => ({ id: c.id, name: decodeEntities(c.name), slug: c.slug, parent: c.parent }));
+    return (res.data as WpTerm[]).map((c) => ({ id: c.id, name: decodeEntities(c.name), slug: c.slug, parent: c.parent, count: c.count }));
   } catch (error) {
     fallBack("categories", error);
     cacheLife(RETRY);

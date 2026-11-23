@@ -78,7 +78,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(function
         autoComplete="tel-national"
         aria-invalid={invalid || undefined}
         aria-describedby={invalid ? `${id}-error` : undefined}
-        className="min-w-0 flex-1 rounded-r-lg bg-transparent px-2 py-2.5 text-[15px] text-ink-2 placeholder:text-muted-2 focus:outline-none"
+        className="w-0 min-w-0 flex-1 rounded-r-lg bg-transparent px-2 py-2.5 text-[15px] text-ink-2 placeholder:text-muted-2 focus:outline-none"
         {...rest}
       />
     </div>

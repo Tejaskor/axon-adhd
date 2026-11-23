@@ -43,7 +43,7 @@ export function AssessmentOverview({ data }: { data: AssessmentOverviewSection }
             </span>
             {accent}
           </h2>
-          <p className="mx-auto mt-4 max-w-[760px] text-[20px] leading-[1.7] text-pretty text-body">{data.subtitle}</p>
+          <p className="mx-auto mt-4 max-w-[760px] text-[16px] leading-[1.7] sm:text-[20px] text-pretty text-body">{data.subtitle}</p>
         </div>
 
       </div>

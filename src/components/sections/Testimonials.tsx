@@ -406,7 +406,7 @@ export function Testimonials({
           >
             {title} <span className="text-primary">{titleAccent}</span>
           </h2>
-          {subtitle && <p className="mt-3 text-[20px] leading-[1.7] text-body">{subtitle}</p>}
+          {subtitle && <p className="mt-3 text-[16px] leading-[1.7] sm:text-[20px] text-body">{subtitle}</p>}
           {link && (
             <a
               href={link.href}

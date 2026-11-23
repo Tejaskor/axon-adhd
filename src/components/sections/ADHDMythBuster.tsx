@@ -203,9 +203,9 @@ export function ADHDMythBuster() {
               </h2>
             </Reveal>
             <Reveal delay={0.05} className="mt-4 flex justify-center">
-              <p className="type-body inline-flex flex-wrap items-center justify-center gap-x-4 gap-y-1 rounded-pill border border-primary-100 bg-primary-soft px-7 py-2.5 font-medium text-navy">
+              <p className="type-body inline-flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 rounded-pill border border-primary-100 bg-primary-soft px-4 py-2.5 font-medium text-navy max-[374px]:gap-x-2 max-[374px]:px-3 max-[374px]:text-[13px] xs:gap-x-4 xs:px-7">
                 {mythBuster.feelings.map((feeling, i) => (
-                  <span key={feeling} className="inline-flex items-center gap-4">
+                  <span key={feeling} className="inline-flex items-center gap-2.5 max-[374px]:gap-2 xs:gap-4">
                     {i > 0 && <ArrowRight aria-hidden className="size-4 text-brand-2" strokeWidth={2.25} />}
                     {feeling}
                   </span>

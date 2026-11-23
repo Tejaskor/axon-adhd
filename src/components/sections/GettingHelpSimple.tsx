@@ -5,7 +5,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 
 /**
- * "Your Journey to Clarity": six numbered photo cards (3 × 2 from md) and two CTAs. Container and card-grid widths match
+ * "Your Journey to Clarity": six numbered photo cards (2 × 3 from sm, 3 × 2 from md) and two CTAs. Container and card-grid widths match
  * "How we support you" (`ServicesOverview`): 1440px container, grid capped at 560px below md and 1250px from md.
  */
 export function GettingHelpSimple() {
@@ -17,10 +17,10 @@ export function GettingHelpSimple() {
           <h2 id="journey-title" className="type-h2 text-navy">
             {journeyToClarity.title} <span className="text-primary">{journeyToClarity.titleAccent}</span>
           </h2>
-          <p className="mt-2 text-[20px] leading-[1.7] text-muted">{journeyToClarity.subtitle}</p>
+          <p className="mt-2 text-[16px] leading-[1.7] sm:text-[20px] text-muted">{journeyToClarity.subtitle}</p>
         </Reveal>
 
-        <ol className="mx-auto mt-10 grid max-w-[560px] gap-4 sm:mt-12 md:max-w-none md:grid-cols-3 lg:gap-5">
+        <ol className="mx-auto mt-10 grid max-w-[560px] gap-4 sm:mt-12 sm:max-w-none sm:grid-cols-2 md:grid-cols-3 lg:gap-5">
           {steps.map((step, i) => (
             <li key={step.title} className="flex">
               <Reveal delay={(i % 3) * 0.06} className="flex w-full">

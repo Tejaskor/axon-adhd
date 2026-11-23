@@ -105,13 +105,14 @@ export function Hero() {
               </span>
             </li>
             <li aria-hidden className="hidden h-12 w-px bg-[#4C92BF]/70 sm:block" />
-            <li className="flex flex-col items-center gap-2">
-              <span className="flex -space-x-2.5">
+            {/* Phones: avatars and text side by side (like the Google item above); from sm, the text sits centred below the avatars. */}
+            <li className="flex items-center gap-3 sm:flex-col sm:gap-2">
+              <span className="flex shrink-0 -space-x-2.5">
                 {trustBar.avatars.map((a) => (
                   <Image key={a.src} src={a.src} alt="" width={40} height={40} className="size-10 rounded-full border-2 border-white object-cover" />
                 ))}
               </span>
-              <span className="max-w-[170px] text-center text-[16px] leading-snug font-semibold">{trustBar.helped}</span>
+              <span className="max-w-[170px] text-left text-[16px] leading-snug font-semibold sm:text-center">{trustBar.helped}</span>
             </li>
             <li aria-hidden className="hidden h-16 w-px bg-white/30 sm:block" />
             <li>

@@ -139,7 +139,7 @@ export function AssessmentLearn({ data }: { data: SplitSection }) {
           <h2 id="learn-title" className={cn(h2, "lg:whitespace-nowrap")}>
             <AccentTitle title={data.title} accent={data.accent} />
           </h2>
-          {subtitle && <p className={cn("text-[20px] leading-[1.7] text-pretty", "mx-auto mt-4 max-w-[760px] text-[#5B6B80] lg:max-w-none lg:whitespace-nowrap")}>{subtitle}</p>}
+          {subtitle && <p className={cn("text-[16px] leading-[1.7] sm:text-[20px] text-pretty", "mx-auto mt-4 max-w-[760px] text-[#5B6B80] lg:max-w-none lg:whitespace-nowrap")}>{subtitle}</p>}
         </Reveal>
 
         <div className="mt-10 grid items-center gap-12 lg:mt-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-14">
@@ -195,7 +195,7 @@ export function AssessmentConfidence({ data }: { data: FeaturesSection }) {
           <h2 id="confidence-title" className="type-h2 text-navy">
             {data.title.replace(/\s*Confidence$/, "")} <span className="text-[#2578CA]">Confidence</span>
           </h2>
-          {data.subtitle && <p className="mx-auto mt-4 max-w-[900px] text-[20px] leading-[1.7] text-pretty text-[#4B5C75] lg:max-w-none">{data.subtitle}</p>}
+          {data.subtitle && <p className="mx-auto mt-4 max-w-[900px] text-[16px] leading-[1.7] sm:text-[20px] text-pretty text-[#4B5C75] lg:max-w-none">{data.subtitle}</p>}
         </div>
 
         <div className="mt-8 grid items-center gap-8 lg:mt-10 lg:grid-cols-[58fr_42fr] lg:gap-10">
@@ -242,7 +242,7 @@ export function AssessmentOpensDoors({ data }: { data: FeaturesSection }) {
           <h2 id="doors-title" className={h2}>
             {data.title.replace(/\s*Opens Doors$/, "")} <span className="text-[#2578CA]">Opens Doors</span>
           </h2>
-          {data.subtitle && <p className={cn("text-[20px] leading-[1.7] text-pretty", "mt-5")}>{data.subtitle}</p>}
+          {data.subtitle && <p className={cn("text-[16px] leading-[1.7] sm:text-[20px] text-pretty", "mt-5")}>{data.subtitle}</p>}
         </Reveal>
         {/* Same cards as "You deserve clarity not guesswork": icon on top, title and text at the bottom. */}
         <ul className="mx-auto mt-10 grid max-w-[560px] gap-5 sm:mt-12 md:max-w-none md:grid-cols-3 lg:gap-6">
@@ -276,7 +276,7 @@ export function AssessmentProcess({ data }: { data: StepsSection }) {
             {data.title.replace(/ADHD Assessment in Arlington, VA$/, "")}
             <span className="text-[#2578CA]">ADHD Assessment in Arlington, VA</span>
           </h2>
-          {data.subtitle && <p className={cn("text-[20px] leading-[1.7] text-pretty", "mt-5")}>{data.subtitle}</p>}
+          {data.subtitle && <p className={cn("text-[16px] leading-[1.7] sm:text-[20px] text-pretty", "mt-5")}>{data.subtitle}</p>}
         </Reveal>
         <AssessmentTimeline items={data.items} />
       </div>
