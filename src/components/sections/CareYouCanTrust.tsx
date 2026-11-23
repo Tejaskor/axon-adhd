@@ -58,7 +58,7 @@ export function CareYouCanTrust() {
           <h2 id="trust-title" className="type-h2 text-navy">
             {careYouCanTrust.title.replace(/\s*trust$/i, "")} <span className="text-[#2578CA]">trust</span>
           </h2>
-          <p className="mt-3 text-[20px] leading-[1.7] text-pretty text-body">{careYouCanTrust.subtitle}</p>
+          <p className="mt-3 text-[16px] leading-[1.7] sm:text-[20px] text-pretty text-body">{careYouCanTrust.subtitle}</p>
         </Reveal>
 
         <div className="relative mx-auto mt-10 flex max-w-[1060px] flex-col items-center gap-6 md:mt-12 md:flex-row md:justify-center md:gap-[clamp(40px,8vw,120px)]">
@@ -87,11 +87,12 @@ export function CareYouCanTrust() {
         </div>
 
         <Reveal delay={0.1} className="mt-10 lg:mt-12">
-          <ul className="grid grid-cols-2 gap-x-4 gap-y-8 rounded-[28px] border border-white/90 bg-white/55 px-4 py-8 shadow-[0_24px_60px_rgba(37,120,202,.10),inset_0_1px_0_rgba(255,255,255,.9)] backdrop-blur-xl sm:grid-cols-3 sm:px-8 lg:grid-cols-6 lg:gap-x-0 lg:px-4 lg:py-10">
+          <ul className="grid grid-cols-1 gap-x-4 gap-y-8 rounded-[28px] border border-white/90 bg-white/55 px-4 py-8 max-xs:gap-y-0 max-xs:py-2 xs:grid-cols-2 shadow-[0_24px_60px_rgba(37,120,202,.10),inset_0_1px_0_rgba(255,255,255,.9)] backdrop-blur-xl sm:grid-cols-3 sm:px-8 lg:grid-cols-6 lg:gap-x-0 lg:px-4 lg:py-10">
             {careYouCanTrust.features.map((f, i) => {
               const Icon = icons[f.icon];
               return (
-                <li key={f.title} className={cn("flex flex-col items-center px-2 text-center lg:px-4", i > 0 && "lg:border-l lg:border-primary-150")}>
+                // Phones: one column, each item full width, split by the same thin rule the desktop row uses between items.
+                <li key={f.title} className={cn("flex flex-col items-center px-2 text-center max-xs:py-6 lg:px-4", i > 0 && "max-xs:border-t max-xs:border-primary-150 lg:border-l lg:border-primary-150")}>
                   <span aria-hidden className={cn("grid size-16 place-items-center rounded-full lg:size-[72px]", featureTones[f.tone])}>
                     <Icon className="size-7 lg:size-8" strokeWidth={1.75} />
                   </span>

@@ -14,8 +14,8 @@ const socialStyle: Record<string, string> = {
   LinkedIn: "bg-[#1A9BEF] text-[#0B2A4F]",
   Instagram: "bg-[radial-gradient(circle_at_30%_110%,#FDD835_0%,#F56040_35%,#C13584_65%,#5851DB_100%)] text-white",
   YouTube: "bg-[#21407A] text-[#FF0000]",
-  X: "border border-white/25 bg-black text-white",
-  TikTok: "border border-white/25 bg-black text-white",
+  X: "bg-[#21407A] text-white",
+  TikTok: "bg-[#21407A]",
 };
 
 const complianceBadgesMeta: Record<string, { label: string; alt: string }> = {
@@ -80,7 +80,7 @@ export function Footer() {
                   aria-label={s.label}
                   className={cn("grid size-10 place-items-center rounded-full transition-transform duration-200 ease-brand hover:-translate-y-0.5 hover:scale-105", socialStyle[s.label])}
                 >
-                  <SocialIcon name={s.label} className="size-[18px]" />
+                  <SocialIcon name={s.label} color className="size-[18px]" />
                 </a>
               </li>
             ))}

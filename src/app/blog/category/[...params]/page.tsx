@@ -7,6 +7,10 @@ import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 import { getCategories } from "@/lib/wordpress";
 
 // /blog/category/<slug>/ and /blog/category/<slug>/page/<n>/ (one optional catch-all keeps both in a single file).
+// Every path is prerendered by generateStaticParams, so this route is allowed to block on its `params` (no Suspense
+// placeholder needed); this only opts it out of the dev-time instant-navigation validation.
+export const instant = false;
+
 export async function generateStaticParams() {
   const out: Array<{ params: string[] }> = [];
   for (const c of await getCategories()) {

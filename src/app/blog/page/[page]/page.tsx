@@ -5,6 +5,10 @@ import { JsonLd } from "@/components/ui/JsonLd";
 import { blogPage } from "@/content/blogs";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
+// Every page number is prerendered by generateStaticParams, so this route is allowed to block on its `params` (no Suspense
+// placeholder needed); this only opts it out of the dev-time instant-navigation validation.
+export const instant = false;
+
 // Pages 2..N. Page 1 lives at /blog/. Cache Components needs at least one param, so when there is only one page
 // "1" is returned and rendered as a 404 below.
 export async function generateStaticParams() {

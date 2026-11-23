@@ -121,7 +121,7 @@ export function TestimonialCarousel({ data }: { data: TestimonialCarouselSection
               lines(data.title)
             )}
           </h2>
-          {data.subtitle && <p className="mx-auto mt-3 text-[20px] leading-[1.7] text-body">{data.subtitle}</p>}
+          {data.subtitle && <p className="mx-auto mt-3 text-[16px] leading-[1.7] sm:text-[20px] text-body">{data.subtitle}</p>}
         </div>
 
         {data.variant === "fan" ? (

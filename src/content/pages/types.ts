@@ -74,6 +74,8 @@ export type FeaturesSection = {
   leadIcon?: IconName;
   /** partner variant: the photo has labels baked into its top-right corner, so only its left edge is bowed and it is anchored right. */
   imageLabels?: boolean;
+  /** partner variant: glassmorphism labels floated over the top-right of the photo. */
+  imageChips?: { label: string; icon: "graduation" | "repeat" | "wallet" | "star" | "trend" | "user-minus" }[];
   items: FeatureItem[];
   columns?: 2 | 3 | 4 | 5 | 6;
   /** card: icon card · stat: big number title · check: compact checklist · flow: arrowed chain · mission: glass cards on the green/blue/orange brand gradient */

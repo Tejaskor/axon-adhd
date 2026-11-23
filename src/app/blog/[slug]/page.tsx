@@ -14,6 +14,10 @@ import { formatDate, slugify } from "@/lib/utils";
 import { getPost, getPosts } from "@/lib/wordpress";
 
 // Unknown slugs fall through to notFound() below (dynamicParams is not allowed with Cache Components).
+// Every path is prerendered by generateStaticParams, so this route is allowed to block on its `params` (no Suspense
+// placeholder needed); this only opts it out of the dev-time instant-navigation validation.
+export const instant = false;
+
 export async function generateStaticParams() {
   return (await getPosts()).map((p) => ({ slug: p.slug }));
 }

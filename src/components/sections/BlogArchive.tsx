@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { blogPage, type BlogCategory, type BlogPost } from "@/content/blogs";
+import { cn } from "@/lib/utils";
 import { getCategories, getPosts } from "@/lib/wordpress";
 import { BlogRowCard } from "./BlogCard";
 
@@ -114,7 +115,7 @@ export async function BlogArchive({ page, categorySlug }: { page: number; catego
           <ul className="flex flex-col gap-5">
             {posts.map((post) => (
               <li key={post.slug}>
-                <BlogRowCard post={post} />
+                <BlogRowCard post={post} eager />
               </li>
             ))}
           </ul>
@@ -125,14 +126,26 @@ export async function BlogArchive({ page, categorySlug }: { page: number; catego
           <div className={widgetBox}>
             <h2 className={widgetTitle}>Categories</h2>
             <nav aria-label="Categories">
-              <ul>
-                {categories.map((c) => (
-                  <li key={c.slug} className={widgetItem}>
-                    <Link href={`/blog/category/${c.slug}/`} aria-current={c.slug === categorySlug ? "page" : undefined} className={`${widgetLink} ${c.slug === categorySlug ? "font-semibold text-[#2563EB]" : ""}`}>
-                      {c.name}
-                    </Link>
-                  </li>
-                ))}
+              {/* Tag chips: name plus post count in brackets, wrapping to as many rows as needed. */}
+              <ul className="mt-5 flex flex-wrap gap-x-2.5 gap-y-3">
+                {categories.map((c) => {
+                  const current = c.slug === categorySlug;
+                  return (
+                    <li key={c.slug}>
+                      <Link
+                        href={`/blog/category/${c.slug}/`}
+                        aria-current={current ? "page" : undefined}
+                        className={cn(
+                          "inline-block rounded-[4px] border px-3 py-1.5 text-[14px] leading-snug transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
+                          current ? "border-[#2563EB] bg-[#2563EB] text-white" : "border-[#E2E5E8] bg-[#F7F8FA] text-[#1F2937] hover:border-[#2563EB] hover:bg-white hover:text-[#2563EB]",
+                        )}
+                      >
+                        {c.name}
+                        {c.count !== undefined && ` (${c.count})`}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </nav>
           </div>

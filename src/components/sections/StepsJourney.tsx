@@ -69,7 +69,7 @@ export function StepsJourney({ data }: { data: StepsSection }) {
           <h2 id={titleId} className={cn("type-h2 text-navy text-balance", data.eyebrow && "mt-4")}>
             {highlight(data.title, data.accent, data.accentColor)}
           </h2>
-          {data.subtitle && <p className="mx-auto mt-4 max-w-[900px] text-[20px] leading-[1.7] text-pretty text-[#2B3A4F]">{data.subtitle}</p>}
+          {data.subtitle && <p className="mx-auto mt-4 max-w-[900px] text-[16px] leading-[1.7] sm:text-[20px] text-pretty text-[#2B3A4F]">{data.subtitle}</p>}
         </div>
 
         <div className="relative mt-12 sm:mt-14">

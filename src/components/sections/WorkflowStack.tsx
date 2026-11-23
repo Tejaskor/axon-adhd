@@ -68,22 +68,23 @@ function PortraitPanel({ image, left = false, framed = false }: { image: NonNull
       <div className={cn("absolute inset-0 overflow-hidden rounded-[22px]", side.clip)}>
         <Image src={image.src} alt={image.alt} width={image.width} height={image.height} sizes="(max-width: 767px) 92vw, 760px" className="size-full object-cover object-[28%_35%]" />
       </div>
-      <div className={cn("absolute top-[12%] w-[min(38%,270px)] rounded-[20px] bg-white px-4 py-5 text-center shadow-[0_20px_44px_-18px_rgba(10,40,110,.55)] max-sm:w-[46%]", side.calling)}>
-        <p className="text-[13px] font-semibold text-[#6B7280]">Calling......</p>
-        <span aria-hidden className="mx-auto mt-2 grid size-14 place-items-center rounded-full bg-[linear-gradient(160deg,#4DB0F7,#1E6FD9)] text-white sm:size-16">
-          <User className="size-7 fill-white sm:size-8" strokeWidth={1.5} />
+      {/* Framed below md (phones and small tablets, where the frame is narrow): a compact card (no number or hang-up button) so it clears the pill below. */}
+      <div className={cn("absolute top-[12%] w-[min(38%,270px)] rounded-[20px] bg-white px-4 py-5 text-center shadow-[0_20px_44px_-18px_rgba(10,40,110,.55)] max-sm:w-[46%]", framed && "max-md:top-[6%] max-md:rounded-[14px] max-md:px-2 max-md:py-2.5", side.calling)}>
+        <p className={cn("text-[13px] font-semibold text-[#6B7280]", framed && "max-md:text-[11px]")}>Calling......</p>
+        <span aria-hidden className={cn("mx-auto mt-2 grid size-14 place-items-center rounded-full bg-[linear-gradient(160deg,#4DB0F7,#1E6FD9)] text-white sm:size-16", framed && "max-md:mt-1.5 max-md:size-9")}>
+          <User className={cn("size-7 fill-white sm:size-8", framed && "max-md:size-5")} strokeWidth={1.5} />
         </span>
-        <p className="mt-2.5 text-[16px] leading-tight font-bold text-[#1F2937] sm:text-[19px]">Dr. Aaron Dodini</p>
-        <p className="mt-0.5 text-[13px] text-[#8A8F98]">(703) 909-5101</p>
-        <span aria-hidden className="mx-auto mt-3.5 grid size-11 place-items-center rounded-full bg-[#E5323B] text-white sm:size-12">
+        <p className={cn("mt-2.5 text-[16px] leading-tight font-bold text-[#1F2937] sm:text-[19px]", framed && "max-md:mt-1.5 max-md:text-[12.5px]")}>Dr. Aaron Dodini</p>
+        <p className={cn("mt-0.5 text-[13px] text-[#8A8F98]", framed && "max-md:hidden")}>(703) 909-5101</p>
+        <span aria-hidden className={cn("mx-auto mt-3.5 grid size-11 place-items-center rounded-full bg-[#E5323B] text-white sm:size-12", framed && "max-md:hidden")}>
           <PhoneOff className="size-5" strokeWidth={2} />
         </span>
       </div>
-      <div className={cn("absolute bottom-[9%] flex items-center gap-3.5 rounded-[18px] bg-white px-5 py-3.5 shadow-[0_18px_38px_-16px_rgba(10,40,110,.5)]", side.pill)}>
-        <Phone aria-hidden className="size-7 shrink-0 text-[#0F766E]" strokeWidth={1.8} />
+      <div className={cn("absolute bottom-[9%] flex items-center gap-3.5 rounded-[18px] bg-white px-5 py-3.5 shadow-[0_18px_38px_-16px_rgba(10,40,110,.5)]", framed && "max-md:bottom-[6%] max-md:gap-2 max-md:rounded-[12px] max-md:px-2.5 max-md:py-2", side.pill)}>
+        <Phone aria-hidden className={cn("size-7 shrink-0 text-[#0F766E]", framed && "max-md:size-4")} strokeWidth={1.8} />
         <div className="leading-tight">
-          <p className="text-[13px] text-[#374151] sm:text-[14px]">Dr. Aaron Dodini</p>
-          <p className="mt-0.5 text-[16px] font-medium text-[#1F2937] sm:text-[20px]">(703) 909-5101</p>
+          <p className={cn("text-[13px] text-[#374151] sm:text-[14px]", framed && "max-md:text-[10.5px]")}>Dr. Aaron Dodini</p>
+          <p className={cn("mt-0.5 text-[16px] font-medium text-[#1F2937] sm:text-[20px]", framed && "max-md:text-[12.5px]")}>(703) 909-5101</p>
         </div>
       </div>
     </div>
@@ -91,9 +92,9 @@ function PortraitPanel({ image, left = false, framed = false }: { image: NonNull
 }
 
 /** A step whose picture is drawn in code: the drawing sits inside a frosted-glass frame inset in the card (not full bleed), as in the design. */
-function MockPanel({ children }: { children: ReactNode }) {
+function MockPanel({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <div className="relative mx-auto aspect-[609/346] w-full lg:h-[368px] lg:w-auto lg:max-w-full">
+    <div className={cn("relative mx-auto aspect-[609/346] w-full lg:h-[368px] lg:w-auto lg:max-w-full", className)}>
       <span aria-hidden className="absolute inset-0 rounded-[26px] border border-white/80 bg-white/40 shadow-[0_34px_70px_-34px_rgba(120,80,220,.4),inset_0_1px_0_rgba(255,255,255,.95)] backdrop-blur-md sm:rounded-[36px]" />
       <div className="absolute inset-[1.2%] overflow-hidden rounded-[20px] sm:rounded-[28px]">{children}</div>
     </div>
@@ -314,7 +315,8 @@ export function WorkflowStack({ data }: { data: StepsSection }) {
                       ))}
                     </div>
                     {step.portrait && (
-                      <MockPanel>
+                      // Taller frame below lg (phones and tablets), so the call card and number pill both fit over the portrait.
+                      <MockPanel className="max-lg:aspect-[5/4]">
                         <PortraitPanel image={step.portrait} left={flip} framed />
                       </MockPanel>
                     )}

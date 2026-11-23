@@ -501,7 +501,7 @@ export function ServiceAudience() {
             {/* Plain link, not ButtonLink: the shared button forces the site's blue, and this card follows its own lavender/violet design. */}
             <a
               href={checkout}
-              className="group mt-5 inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-full border-2 border-white/80 bg-[linear-gradient(90deg,#8040EA,#6B2BD6)] px-5 text-center text-[clamp(14px,1.05vw,15px)] font-medium text-white shadow-[0_14px_28px_-10px_rgba(110,43,214,.6)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
+              className="group mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2.5 rounded-full border-2 border-white/80 bg-[linear-gradient(90deg,#8040EA,#6B2BD6)] px-5 py-2.5 text-center leading-snug text-[clamp(14px,1.05vw,15px)] font-medium text-white shadow-[0_14px_28px_-10px_rgba(110,43,214,.6)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
             >
               Add AXON Accommodation &amp; Advocacy Package
               <ArrowRight aria-hidden className="size-5 shrink-0 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2} />

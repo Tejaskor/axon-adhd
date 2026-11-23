@@ -25,7 +25,7 @@ export function OnlineEvalHeader() {
               height={site.headerLogo.height}
               priority
               unoptimized
-              className="h-[39px] w-auto xs:h-[52px] lg:h-11"
+              className="h-[39px] w-auto max-[374px]:h-8 xs:h-[52px] lg:h-11"
             />
           </Link>
 
@@ -43,7 +43,7 @@ export function OnlineEvalHeader() {
 
           <a
             href={bookingHref("header-cta")}
-            className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-full bg-[#256ACC] px-4 py-2.5 text-[13px] leading-[1.2] font-normal whitespace-nowrap text-white shadow-[0_8px_20px_-8px_rgba(37,106,204,.7)] transition-colors duration-200 hover:bg-[#1D57AB] xs:px-5 xs:text-[15px] lg:min-h-[54px] lg:px-6 lg:text-[16px]"
+            className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-full bg-[#256ACC] px-4 py-2.5 text-[13px] leading-[1.2] max-[374px]:px-3 max-[374px]:text-[12px] font-normal whitespace-nowrap text-white shadow-[0_8px_20px_-8px_rgba(37,106,204,.7)] transition-colors duration-200 hover:bg-[#1D57AB] xs:px-5 xs:text-[15px] lg:min-h-[54px] lg:px-6 lg:text-[16px]"
           >
             Book an Evaluation — $577
           </a>

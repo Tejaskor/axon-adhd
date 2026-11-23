@@ -5,12 +5,12 @@ import type { BlogPost } from "@/content/blogs";
 import { formatDate } from "@/lib/utils";
 
 /** Horizontal archive card used on /blog/ (image left, details right; stacks on mobile). */
-export function BlogRowCard({ post }: { post: BlogPost }) {
+export function BlogRowCard({ post, eager = false }: { post: BlogPost; /** Load the image eagerly (archive pages show only three cards, and any of them can be the largest paint). */ eager?: boolean }) {
   const href = `/blog/${post.slug}/`;
   return (
     <article className="group flex flex-col overflow-hidden rounded-[6px] border border-[#E2E5E8] bg-white transition-shadow hover:shadow-soft md:flex-row">
       <Link href={href} tabIndex={-1} aria-hidden className="block overflow-hidden p-2.5 md:w-[46%] md:shrink-0">
-        <Image src={post.image.src} alt="" width={post.image.width} height={post.image.height} sizes="(max-width: 767px) 100vw, 480px" className="aspect-[16/9] h-auto w-full rounded-[6px] object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+        <Image src={post.image.src} alt="" width={post.image.width} height={post.image.height} loading={eager ? "eager" : undefined} sizes="(max-width: 767px) 100vw, 480px" className="aspect-[16/9] h-auto w-full rounded-[6px] object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
       </Link>
       <div className="flex flex-1 flex-col justify-start gap-2.5 p-2.5">
         <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[12px] text-[#70777D] sm:text-[14px]">

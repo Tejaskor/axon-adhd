@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import type { CtaSection } from "@/content/pages/types";
 import { ButtonLink } from "@/components/ui/Button";
+import { ExpandOnScroll } from "@/components/ui/ExpandOnScroll";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
 import { Arrow } from "./AccommodationSections";
@@ -37,7 +38,7 @@ export function GradientCtaBanner({ data, accent, titleId, splitFromSm = false, 
   return (
     // Full-bleed band: no outer padding, so it sits flush against the sections above and below.
     <section aria-labelledby={titleId}>
-      <div>
+      <ExpandOnScroll>
         <div className={cn("relative isolate overflow-hidden text-white", plain ? "bg-[linear-gradient(100deg,#2B72DB_0%,#2060C4_45%,#1A4789_100%)]" : "bg-[linear-gradient(110deg,#0160CC_0%,#013A94_36%,#0148B8_68%,#0A6FDC_100%)]")}>
           {plain ? (
             // Soft, blurred ADHD doodle pattern (brain, tangled lines, "bouncy mind", lightbulb...) across the whole band: the light-on-white sketch
@@ -80,7 +81,7 @@ export function GradientCtaBanner({ data, accent, titleId, splitFromSm = false, 
                 )}
                 {after}
               </h2>
-              {data.subtitle && <p className={cn("mt-5 text-pretty text-white/92", aside ? "max-w-[780px]" : "max-w-[640px]", plain ? "text-[20px] leading-[1.7]" : "text-[16px] leading-[1.65] sm:text-[18px]")}>{data.subtitle}</p>}
+              {data.subtitle && <p className={cn("mt-5 text-pretty text-white/92", aside ? "max-w-[780px]" : "max-w-[640px]", plain ? "text-[16px] leading-[1.7] sm:text-[20px]" : "text-[16px] leading-[1.65] sm:text-[18px]")}>{data.subtitle}</p>}
               {(!aside || actionsWithAside) && (
               <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
                 <ButtonLink href={data.primary.href} size="lg" variant={data.ctaStyle === "light" ? "white" : undefined} borderColor={data.ctaStyle === "homepage" ? "#FFFFFF" : undefined} className={cn(pill, "bg-white! font-semibold text-[#0A4FF0]! shadow-[0_10px_26px_-8px_rgba(0,20,80,.5)]! hover:bg-[#EAF2FF]!")}>
@@ -119,7 +120,7 @@ export function GradientCtaBanner({ data, accent, titleId, splitFromSm = false, 
             </>
           )}
         </div>
-      </div>
+      </ExpandOnScroll>
     </section>
   );
 }

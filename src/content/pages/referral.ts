@@ -92,7 +92,12 @@ export const universityReferralPage: PageContent = {
       variant: "partner",
       accent: "AXON ADHD",
       headline: { text: "A Trusted Partner for Universities", accent: "Universities" },
-      image: { src: "/images/referral-for-universities/WhyPartnerWithAxonADHD.webp", alt: "Two university students talking at a library table, with labels for student success, retention and financial protection", width: 820, height: 667 },
+      image: { src: "/images/referral-for-universities/A Trusted Partner for Universities.webp", alt: "Two university students talking at a library table", width: 1536, height: 1024 },
+      imageChips: [
+        { label: "Student success", icon: "graduation" },
+        { label: "Retention", icon: "repeat" },
+        { label: "Financial protection", icon: "wallet" },
+      ],
       items: [
         { title: "Early Identification of at risk students", text: "ADHD, depression, anxiety, and substance abuse are the leading causes of drop out.", icon: "user" },
         { title: "Protect the Investment", text: "A lost semester can cost families dearly and the school risks losing the student entirely.", icon: "shield" },
@@ -249,12 +254,16 @@ export const pcpReferralPage: PageContent = {
       subtitle: "Purpose-built to deliver high-quality ADHD support while saving time and creating value for primary care practices and your patients.",
       lead: "For Primary Care Providers",
       leadIcon: "stethoscope",
-      imageLabels: true,
       noPill: true,
       variant: "partner",
       accent: "AXON ADHD",
       headline: { text: "A Trusted Partner for Primary Care Providers", accent: "Primary Care Providers" },
-      image: { src: "/images/referral-for-pcp/pcp.webp", alt: "A primary care physician reviewing results on a tablet with a patient, with labels for high-quality care, new revenue and reduced workload", width: 2048, height: 1754 },
+      image: { src: "/images/referral-for-pcp/A Trusted Partner for Primary Care Providers.webp", alt: "A primary care physician reviewing results on a tablet with a patient", width: 1533, height: 1026 },
+      imageChips: [
+        { label: "High-quality care", icon: "star" },
+        { label: "New revenue", icon: "trend" },
+        { label: "Reduced workload", icon: "user-minus" },
+      ],
       items: [
         { title: "Early Identification", text: "of ADHD and co-occurring conditions", icon: "users" },
         { title: "Reduce Repeat Visits", text: "and diagnostic uncertainty", icon: "shield" },

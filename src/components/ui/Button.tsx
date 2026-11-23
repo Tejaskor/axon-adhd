@@ -44,9 +44,12 @@ function ButtonContent({ children, variant = "primary", centered, arrow, borderC
 
 export function buttonClasses({ variant = "primary", size = "md", className }: { variant?: Variant; size?: Size; className?: string } = {}) {
   return cn(
-    "group/btn relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full font-sans leading-snug whitespace-nowrap max-sm:whitespace-normal transition-colors duration-500 ease-brand focus-visible:outline-offset-4",
+    "group/btn relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full font-sans leading-snug max-w-full whitespace-normal sm:shrink-0 transition-colors duration-500 ease-brand focus-visible:outline-offset-4",
     variants[variant],
     variant === "ghost" ? undefined : sizes[size],
+    // Phones: every (non-text-link) button spans its container, so stacked pairs line up at one width. Desktop/tablet untouched.
+    // ...and on the narrowest phones (<375px) a touch less padding and type, so the longest labels stay on one line and pairs keep one height.
+    variant === "ghost" ? undefined : "max-xs:w-full max-[374px]:px-3 max-[374px]:text-[13px]",
     variant === "ghost" ? className : layoutOnly(className),
   );
 }

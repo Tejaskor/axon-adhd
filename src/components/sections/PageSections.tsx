@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import type { ImageAsset } from "@/content/types";
-import { ArrowRight, BriefcaseMedical, Brain, CheckCircle2, Coins, Frown, ChartColumn, GraduationCap, Handshake, HeartPulse, Lock, Quote, Shield, ShieldCheck, ShieldPlus, Star, Stethoscope, Target, TrendingDown, TrendingUp, TriangleAlert, Users } from "lucide-react";
+import { ArrowRight, BriefcaseMedical, Brain, CheckCircle2, Coins, Frown, ChartColumn, GraduationCap, Handshake, HeartPulse, Lock, Quote, Repeat, Shield, ShieldCheck, ShieldPlus, Star, Stethoscope, Target, TrendingDown, TrendingUp, TriangleAlert, UserMinus, Users, Wallet } from "lucide-react";
 import type { BadgesSection, CtaSection, FeatureItem, FeaturesSection, PageHero as PageHeroData, PageSection, QuotesSection, SplitSection, StepsSection, Tone } from "@/content/pages/types";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -283,7 +283,7 @@ function NetworkLogoCard({ logo, className, style, roomy }: { logo: ImageAsset; 
   return (
     <div style={style} className={cn("isolate", roomy ? "rounded-[12px] bg-white shadow-[0_8px_24px_-12px_rgba(20,70,150,.3)]" : cn("rounded-[14px] sm:rounded-[16px]", glassCard), className)}>
       {!roomy && <span aria-hidden className="absolute inset-0 -z-10 rounded-[inherit] bg-[linear-gradient(145deg,rgba(255,255,255,.98),rgba(244,249,255,.96))]" />}
-      <Image src={logo.src} alt={logo.alt} fill sizes={roomy ? "(min-width: 1024px) 420px, 320px" : "260px"} quality={roomy ? 95 : undefined} className={cn("object-contain", roomy ? "p-[3.5%_4.5%]" : "p-[3%_5%] mix-blend-multiply brightness-[1.06]")} />
+      <Image src={logo.src} alt={logo.alt} fill sizes={roomy ? "(min-width: 1024px) 420px, 320px" : "260px"} className={cn("object-contain", roomy ? "p-[3.5%_4.5%]" : "p-[3%_5%] mix-blend-multiply brightness-[1.06]")} />
     </div>
   );
 }
@@ -560,7 +560,7 @@ function MissionFeatures({ data }: { data: FeaturesSection }) {
             </div>
           )}
           <h2 className="type-h2 text-navy mt-6 text-balance">{data.title}</h2>
-          {data.subtitle && <p className="mx-auto mt-5 max-w-[900px] text-[20px] leading-[1.7] text-pretty text-body">{data.subtitle}</p>}
+          {data.subtitle && <p className="mx-auto mt-5 max-w-[900px] text-[16px] leading-[1.7] sm:text-[20px] text-pretty text-body">{data.subtitle}</p>}
         </div>
         <ul className="mx-auto mt-10 grid max-w-[640px] gap-5 sm:mt-12 lg:max-w-none lg:grid-cols-3 lg:gap-5 xl:gap-6">
           {data.items.map((item, i) => (
@@ -579,6 +579,8 @@ function MissionFeatures({ data }: { data: FeaturesSection }) {
 /** White split card on a pale-blue band: lead + check list + quote on the left, a full-height photo on the right (stacked below md). */
 /** Icon-tile tints for the partner list, in item order: green, blue, purple, orange. */
 const partnerTiles = ["bg-[#DDF6E6] text-[#1C9B3F]", "bg-[#E3EFFC] text-[#1766D6]", "bg-[#EEE9FF] text-[#6D4AE0]", "bg-[#FFEBCB] text-[#EB8B01]"] as const;
+
+const chipIcons = { graduation: GraduationCap, repeat: Repeat, wallet: Wallet, star: Star, trend: TrendingUp, "user-minus": UserMinus } as const;
 
 /**
  * "Why Partner With AXON ADHD": pill + heading + intro, then one white card. Left: the audience header, a list of four icon
@@ -624,7 +626,7 @@ function PartnerFeatures({ data }: { data: FeaturesSection }) {
               )}
             </h2>
           )}
-          {data.subtitle && <p className="mx-auto mt-4 max-w-[860px] text-[20px] leading-[1.7] text-pretty text-[#44546E]">{data.subtitle}</p>}
+          {data.subtitle && <p className="mx-auto mt-4 max-w-[860px] text-[16px] leading-[1.7] sm:text-[20px] text-pretty text-[#44546E]">{data.subtitle}</p>}
         </div>
 
         <div className="mt-8 grid overflow-hidden rounded-[28px] border border-white bg-white/80 shadow-[0_24px_60px_-28px_rgba(20,70,150,.35)] sm:mt-10 md:grid-cols-[1.05fr_1fr]">
@@ -664,12 +666,29 @@ function PartnerFeatures({ data }: { data: FeaturesSection }) {
             </div>
           )}
           {data.image && data.image.width / data.image.height >= 1.15 && (
-            <div className="relative aspect-[820/667] md:aspect-auto md:min-h-[440px] md:p-4 md:pl-0">
-              <div className={cn("relative size-full overflow-hidden md:rounded-r-[22px] md:[clip-path:ellipse(64%_78%_at_72%_50%)]", data.imageLabels && "md:[clip-path:ellipse(100%_75%_at_100%_50%)]!")}>
-                <Image src={data.image.src} alt={data.image.alt} fill sizes="(max-width: 767px) 100vw, 50vw" className={cn("object-cover object-[60%_center]", data.imageLabels && "object-[100%_0%]")} />
+            <div className="relative aspect-[820/667] md:aspect-auto md:min-h-[440px]">
+              <div className={cn("relative size-full overflow-hidden md:[clip-path:ellipse(64%_78%_at_72%_50%)]", data.imageLabels && "md:[clip-path:ellipse(100%_75%_at_100%_50%)]!")}>
+                <Image src={data.image.src} alt={data.image.alt} fill sizes="(max-width: 767px) 100vw, 50vw" className={cn("object-cover object-[60%_center]", data.imageLabels && "object-[100%_0%]", data.imageChips && !data.imageLabels && "object-[62%_center]!")} />
+                {data.imageChips && (
+                  // Glass labels hang off the photo's top-right edge (flat on the right, rounded on the left), staggered by their own widths.
+                  <ul className="absolute top-2 right-0 flex flex-col items-end gap-1 sm:top-4 sm:gap-2.5 lg:top-4 lg:gap-2">
+                    {data.imageChips.map((chip) => {
+                      const Icon = chipIcons[chip.icon];
+                      return (
+                        <li
+                          key={chip.label}
+                          className="flex items-center gap-1.5 rounded-l-full border border-r-0 border-white/70 bg-white/65 py-0.5 pr-3 pl-2.5 text-[11.5px] font-medium whitespace-nowrap text-[#1B5FC4] shadow-[0_8px_24px_-10px_rgba(11,31,77,.35),inset_0_1px_0_rgba(255,255,255,.85)] backdrop-blur-xl sm:gap-2.5 sm:py-2 sm:pr-6 sm:pl-4 sm:text-[16px] lg:py-1.5 lg:text-[15px]"
+                        >
+                          <Icon aria-hidden className="size-3.5 shrink-0 sm:size-5 lg:size-5" strokeWidth={1.8} />
+                          {chip.label}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
               </div>
               {/* Blue arc just outside the image's bowed left edge (desktop). */}
-              <svg aria-hidden viewBox="0 0 100 100" preserveAspectRatio="none" fill="none" className="pointer-events-none absolute inset-y-4 left-0 hidden h-[calc(100%-2rem)] w-[calc(100%-1rem)] md:block">
+              <svg aria-hidden viewBox="0 0 100 100" preserveAspectRatio="none" fill="none" className="pointer-events-none absolute inset-0 hidden size-full md:block">
                 <path d={data.imageLabels ? "M25.5 0A100 75 0 0 0 25.5 100" : "M23.5 0A64 78 0 0 0 23.5 100"} stroke="#6FB0F8" strokeWidth="4" strokeLinecap="round" vectorEffect="non-scaling-stroke" transform="translate(-1.6 0)" />
               </svg>
             </div>
@@ -719,7 +738,7 @@ function GapFeatures({ data }: { data: FeaturesSection }) {
               data.title
             )}
           </h2>
-          {data.subtitle && <p className="mx-auto mt-6 text-[20px] leading-[1.7] text-pretty text-[#465A78]">{data.subtitle}</p>}
+          {data.subtitle && <p className="mx-auto mt-6 text-[16px] leading-[1.7] sm:text-[20px] text-pretty text-[#465A78]">{data.subtitle}</p>}
         </div>
 
         <ul className="mt-10 grid gap-5 sm:mt-14 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
@@ -796,7 +815,7 @@ function RibbonFeatures({ data }: { data: FeaturesSection }) {
                 data.title
               )}
             </h2>
-            {data.subtitle && <p className="mx-auto mt-4 text-[20px] leading-[1.7] text-pretty text-[#465A78]">{data.subtitle}</p>}
+            {data.subtitle && <p className="mx-auto mt-4 text-[16px] leading-[1.7] sm:text-[20px] text-pretty text-[#465A78]">{data.subtitle}</p>}
           </div>
 
           <ol className="mt-10 grid gap-x-3 gap-y-8 sm:grid-cols-2 lg:mt-12 lg:flex lg:gap-0">
@@ -924,7 +943,7 @@ function EarlyReferralFeatures({ data, stretchImage }: { data: FeaturesSection; 
               data.title
             )}
           </h2>
-          {data.subtitle && <p className="mx-auto mt-5 text-[20px] leading-[1.7] text-pretty text-[#44546E]">{data.subtitle}</p>}
+          {data.subtitle && <p className="mx-auto mt-5 text-[16px] leading-[1.7] sm:text-[20px] text-pretty text-[#44546E]">{data.subtitle}</p>}
         </div>
 
         <div className={cn("mt-10 grid gap-6 sm:mt-12", data.image ? "lg:grid-cols-[1.32fr_1fr] lg:items-center" : "")}>

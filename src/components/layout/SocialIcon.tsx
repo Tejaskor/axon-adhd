@@ -12,7 +12,19 @@ const paths: Record<string, string> = {
     "M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.6 2.6 0 0 1-2.6-2.6 2.6 2.6 0 0 1 3.37-2.48V9.66a5.7 5.7 0 0 0-.77-.05 5.73 5.73 0 0 0-5.72 5.73A5.73 5.73 0 0 0 9.86 21a5.73 5.73 0 0 0 5.72-5.73V8.94a7.33 7.33 0 0 0 4.3 1.38V7.25a4.3 4.3 0 0 1-3.28-1.43Z",
 };
 
-export function SocialIcon({ name, className }: { name: string; className?: string }) {
+/** TikTok's official lockup: the white note with its cyan (#25F4EE) and red (#FE2C55) offset copies behind it. The reverse (white-note) version, for dark discs. */
+function TikTokColor({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden className={className}>
+      <path d={paths.TikTok} fill="#25F4EE" transform="translate(-.7 -.7)" />
+      <path d={paths.TikTok} fill="#FE2C55" transform="translate(.7 .7)" />
+      <path d={paths.TikTok} fill="#fff" />
+    </svg>
+  );
+}
+
+export function SocialIcon({ name, className, color = false }: { name: string; className?: string; /** TikTok only: render the official multi-colour mark instead of a single-colour glyph. */ color?: boolean }) {
+  if (color && name === "TikTok") return <TikTokColor className={className} />;
   return (
     <svg viewBox="0 0 24 24" aria-hidden className={className} fill="currentColor">
       <path d={paths[name]} />

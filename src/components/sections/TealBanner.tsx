@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 import type { CtaSection } from "@/content/pages/types";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { ExpandOnScroll } from "@/components/ui/ExpandOnScroll";
 import { cn } from "@/lib/utils";
 
 const tones = {
@@ -30,6 +31,7 @@ export function TealBanner({ data, tone = "teal" }: { data: CtaSection; tone?: k
   const t = tones[tone];
   const [before, after] = data.accent && data.title.includes(data.accent) ? data.title.split(data.accent) : [data.title];
   return (
+    <ExpandOnScroll>
     <section aria-label={data.title} className={cn("relative isolate overflow-hidden px-4 py-16 text-center sm:py-20 lg:py-24", t.bg)}>
       <div aria-hidden className={cn("pointer-events-none absolute -top-40 -right-32 -z-10 size-[520px] rounded-full blur-[110px]", t.glowA)} />
       <div aria-hidden className={cn("pointer-events-none absolute -bottom-48 -left-24 -z-10 size-[520px] rounded-full blur-[110px]", t.glowB)} />
@@ -49,7 +51,7 @@ export function TealBanner({ data, tone = "teal" }: { data: CtaSection; tone?: k
           {data.accent && <span className={t.accent}>{data.accent}</span>}
           {after}
         </h2>
-        {data.subtitle && <p className="mx-auto mt-4 max-w-[900px] text-[20px] leading-[1.7] text-white">{data.subtitle}</p>}
+        {data.subtitle && <p className="mx-auto mt-4 max-w-[900px] text-[16px] leading-[1.7] sm:text-[20px] text-white">{data.subtitle}</p>}
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <ButtonLink
             href={data.primary.href}
@@ -74,5 +76,6 @@ export function TealBanner({ data, tone = "teal" }: { data: CtaSection; tone?: k
         </div>
       </Container>
     </section>
+    </ExpandOnScroll>
   );
 }
