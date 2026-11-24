@@ -898,7 +898,15 @@ function CampusBannerFeatures({ data }: { data: FeaturesSection }) {
         </ul>
 
         {data.footnote && (
-          <p className="mt-8 rounded-[10px] bg-[linear-gradient(100deg,#4AA35C_0%,#3A8C8C_50%,#2468CC_100%)] px-5 py-4 text-center text-[15px] leading-snug font-bold text-white sm:px-8 sm:text-[17px]">{data.footnote}</p>
+          <div className="relative isolate mt-8 flex items-center gap-3 overflow-hidden rounded-[40px] border-2 border-white/80 bg-[radial-gradient(120%_160%_at_85%_120%,rgba(255,255,255,.22)_0%,transparent_55%),radial-gradient(90%_140%_at_10%_-30%,rgba(255,255,255,.28)_0%,transparent_60%),linear-gradient(100deg,#27BC97_0%,#1FA6BE_45%,#1E69F2_100%)] p-2 pr-5 shadow-[0_14px_34px_-12px_rgba(30,105,242,.55)] sm:gap-5 sm:p-2.5 sm:pr-8">
+            <span aria-hidden className="grid size-11 shrink-0 place-items-center rounded-full bg-white/30 text-white shadow-[inset_0_1px_0_rgba(255,255,255,.5)] sm:size-[60px]">
+              <GraduationCap className="size-6 sm:size-8" strokeWidth={1.8} />
+            </span>
+            <span aria-hidden className="hidden h-10 w-px shrink-0 bg-white/45 sm:block" />
+            <p className="min-w-0 flex-1 text-[14px] leading-snug text-white sm:text-[17px]">
+              {data.footnote.split(/(\$[\d.]+K?\s*[–-]\s*\$[\d.]+K)/).map((part, i) => (i % 2 ? <strong key={i} className="font-bold whitespace-nowrap">{part}</strong> : part))}
+            </p>
+          </div>
         )}
       </Container>
     </section>
@@ -1287,7 +1295,7 @@ function ComplianceBadges({ data }: { data: BadgesSection }) {
   return (
     <section className={cn("bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)] py-10 sm:py-14", data.compact && "pt-5 sm:pt-6 bg-[linear-gradient(108deg,#dfeaf4_19.84%,hsla(0,0%,100%,0.2)_62.33%)]!")} aria-labelledby="compliance-title">
       <Container>
-        <div className={cn("relative isolate overflow-hidden rounded-[24px] bg-[linear-gradient(115deg,#BDDCFB_0%,#D3E7FC_40%,#E8F2FE_100%)] shadow-[0_24px_60px_-34px_rgba(20,90,200,.5)] px-5 py-10 sm:rounded-[30px] sm:px-8 sm:py-14 lg:px-12 lg:py-16", data.compact && "border border-white bg-[linear-gradient(115deg,#E6F1FD_0%,#EEF5FE_45%,#F6FAFF_100%)]! lg:py-9", data.flat && "bg-[#D9E9FB]!")}>
+        <div className={cn("relative isolate overflow-hidden rounded-[24px] bg-[linear-gradient(115deg,#BDDCFB_0%,#D3E7FC_40%,#E8F2FE_100%)] shadow-[0_24px_60px_-34px_rgba(20,90,200,.5)] px-5 py-10 sm:rounded-[30px] sm:px-8 sm:py-14 lg:px-12 lg:py-16", data.compact && "border border-white bg-[linear-gradient(115deg,#E6F1FD_0%,#EEF5FE_45%,#F6FAFF_100%)]! lg:py-9", data.flat && !data.lightCard && "bg-[#D9E9FB]!", data.lightCard && "bg-[linear-gradient(278.65deg,#F8FBFF_-0.01%,#F2F7FF_99.99%)]!")}>
           {/* Bright-blue wave rising along the bottom edge, strongest at the right (hidden when the card is flat). */}
           <svg aria-hidden viewBox="0 0 1440 160" preserveAspectRatio="none" fill="none" className={cn("pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-24 w-full sm:h-32", data.flat && "hidden")}>
             <path d="M0 120C300 80 560 90 860 125S1260 140 1440 70V160H0Z" fill="#A9D3FD" fillOpacity=".55" />

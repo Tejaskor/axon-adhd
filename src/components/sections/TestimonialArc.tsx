@@ -242,15 +242,15 @@ export function TestimonialArc({ title, titleAccent, subtitle, link, reviews, ra
 
           {/* Quote card */}
           <figure
-            className="relative min-w-0 rounded-[28px] border border-white/90 bg-white/75 px-6 py-8 shadow-[0_24px_60px_-20px_rgba(37,106,204,.25)] backdrop-blur-xl sm:px-10 sm:py-10"
+            className="relative min-w-0 rounded-[28px] border border-[#34365B] bg-[linear-gradient(145deg,#080B2E_0%,#151137_45%,#333354_75%,#514F79_100%)] px-6 py-8 shadow-[0_24px_60px_-20px_rgba(8,11,46,.55)] sm:px-10 sm:py-10"
             aria-live={paused ? "polite" : "off"}
           >
-            <Quote aria-hidden className="size-9 fill-current sm:size-11" style={{ color: ARC }} />
+            <Quote aria-hidden className="size-9 fill-current sm:size-11" style={{ color: "#8482B8" }} />
             <blockquote
               key={active}
               className="mt-3 max-h-[300px] animate-[fadeIn_.5s_ease-out] overflow-y-auto pr-2 pl-0 [scrollbar-width:thin] sm:pl-4"
             >
-              <p className="text-[20px] leading-[1.7] text-body italic">{current.text}</p>
+              <p className="text-[20px] leading-[1.7] text-white/90 italic">{current.text}</p>
             </blockquote>
             <figcaption className="sr-only">{current.name}</figcaption>
           </figure>

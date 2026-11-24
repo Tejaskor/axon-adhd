@@ -82,7 +82,7 @@ export const universityReferralPage: PageContent = {
       trust: true,
     },
     { type: "testimonialCarousel", variant: "fan", title: "1,000’s Students & Patients Supported", accent: "1,000’s", subtitle: "Across universities and clinics, professionals trust AXON ADHD to deliver timely, high-quality support.", items: universityTestimonials },
-    { type: "badges", variant: "compliance", flat: true, title: "Clinical Standards & Compliance You Can Trust", accent: "You Can Trust", subtitle: "We follow industry-leading medical, privacy, and security frameworks to ensure every assessment, referral, and report is handled with complete integrity.", note: "Your privacy, security, and trust are at the center of everything we do.", badges: complianceBadgesColor },
+    { type: "badges", variant: "compliance", flat: true, lightCard: true, title: "Clinical Standards & Compliance You Can Trust", accent: "You Can Trust", subtitle: "We follow industry-leading medical, privacy, and security frameworks to ensure every assessment, referral, and report is handled with complete integrity.", note: "Your privacy, security, and trust are at the center of everything we do.", badges: complianceBadgesColor },
     {
       type: "features",
       title: "Why Partner With AXON ADHD",
@@ -247,7 +247,7 @@ export const pcpReferralPage: PageContent = {
     },
     // The partner count and all of the home page's Google reviews, in the same fanned-card section as the university page.
     { type: "testimonialCarousel", variant: "fan", accent: "100+", title: "100+ Providers and institutions\ncollaborating with AXON ADHD", items: reviews.map((r) => ({ quote: r.text, name: r.name, role: "Google review" })) },
-    { type: "badges", variant: "compliance", flat: true, note: "Your privacy, security, and trust are at the center of everything we do.", accent: "You Can Trust", title: "Clinical Standards & Compliance You Can Trust", subtitle: "We follow industry-leading medical, privacy, and security frameworks to ensure every assessment, referral, and report is handled with complete integrity.", badges: complianceBadgesColor, image: img("referral-clinical-standards-compliance.webp", "Clinical standards and compliance", 1341, 1173) },
+    { type: "badges", variant: "compliance", flat: true, lightCard: true, note: "Your privacy, security, and trust are at the center of everything we do.", accent: "You Can Trust", title: "Clinical Standards & Compliance You Can Trust", subtitle: "We follow industry-leading medical, privacy, and security frameworks to ensure every assessment, referral, and report is handled with complete integrity.", badges: complianceBadgesColor, image: img("referral-clinical-standards-compliance.webp", "Clinical standards and compliance", 1341, 1173) },
     {
       type: "features",
       title: "Why Partner With AXON ADHD",
