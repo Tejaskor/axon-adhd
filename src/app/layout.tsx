@@ -3,6 +3,7 @@ import { Manrope } from "next/font/google";
 import "@/styles/globals.css";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { MobileStickyCta } from "@/components/layout/MobileStickyCta";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { ScrollEffects } from "@/components/ui/ScrollEffects";
 import { site } from "@/content/site";
@@ -48,6 +49,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <Footer />
+        <MobileStickyCta />
         <ScrollEffects />
         <JsonLd data={organizationJsonLd()} />
       </body>

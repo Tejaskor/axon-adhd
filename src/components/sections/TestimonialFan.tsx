@@ -94,7 +94,7 @@ export function TestimonialFan({ items }: { items: Item[] }) {
                 inert={!active}
                 onClick={!active && pose ? () => go(k) : undefined}
                 className={cn(
-                  "col-start-1 row-start-1 w-[min(460px,78vw)] self-stretch transition-[transform,opacity] duration-500 ease-brand motion-reduce:transition-none",
+                  "col-start-1 row-start-1 w-[min(420px,78vw)] self-stretch transition-[transform,opacity] duration-500 ease-brand motion-reduce:transition-none",
                   !pose && "pointer-events-none opacity-0",
                   pose && !active && "cursor-pointer",
                 )}
@@ -103,7 +103,7 @@ export function TestimonialFan({ items }: { items: Item[] }) {
                   zIndex: pose?.z ?? 0,
                 }}
               >
-                <figure className={cn("flex h-full min-h-[360px] flex-col rounded-[24px] p-6 transition-colors duration-500 sm:p-8", pose?.tone, Math.abs(d) === 2 && "max-sm:hidden")}>
+                <figure className={cn("flex h-full min-h-[320px] flex-col rounded-[22px] p-5 transition-colors duration-500 sm:p-7", pose?.tone, Math.abs(d) === 2 && "max-sm:hidden")}>
                   <div aria-hidden className="flex items-center justify-between">
                     <div className="flex gap-1 text-[#F5A623]">
                       {Array.from({ length: 5 }, (_, s) => (

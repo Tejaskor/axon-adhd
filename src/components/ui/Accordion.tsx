@@ -76,8 +76,9 @@ const styles: Record<
     title: "min-w-0 flex-1 text-[16px] leading-snug font-medium text-pretty text-[#0B1F4D] sm:text-[18px]",
     body: cn(
       "px-5 pb-6 text-left text-[15px] break-words text-[#4B5C75] sm:px-7 sm:text-[16px]",
-      "[&>*]:relative [&>*]:m-0 [&>*]:pl-4",
-      "[&>*]:before:absolute [&>*]:before:inset-y-0 [&>*]:before:left-0 [&>*]:before:w-[3px] [&>*]:before:rounded-full [&>*]:before:bg-primary [&>*]:before:content-['']",
+      "[&>*]:m-0 [&>*]:pl-4 [&>*+*]:mt-3",
+      // One bar for the whole answer, not one per paragraph.
+      "relative before:absolute before:top-0 before:bottom-6 before:left-5 before:w-4 before:rounded-l-[16px] before:border-l-[4px] before:border-primary before:content-[''] sm:before:left-7",
       "[&_p]:leading-[1.75] [&_strong]:font-bold [&_strong]:text-[#0B1F4D]",
       "[&_ol]:list-decimal [&_ol]:pl-[calc(16px+1.25em)] [&_ul]:list-disc [&_ul]:pl-[calc(16px+1.25em)] [&_li]:leading-[1.75]",
       "[&_a]:text-primary [&_a]:no-underline [&_a:hover]:underline",
