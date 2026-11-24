@@ -18,16 +18,16 @@ const groups: Group[] = [
       {
         label: "Services",
         children: [
-          { label: "ADHD Assessments", href: "/comprehensive-adhd-assessment/" },
+          { label: "ADHD Assessments", href: "/adult-adhd-assessment/" },
           { label: "ADHD Care", href: "/adhd-care/" },
-          { label: "Accommodation Documentation & Advocacy", href: "/accommodation-documentation-advocacy/" },
+          { label: "Accommodation Documentation & Advocacy", href: "/adhd-accommodations-documentation/" },
         ],
       },
       {
         label: "Referral",
         children: [
           { label: "Referral University", href: "/adhd-referral-for-universities/" },
-          { label: "Referral PCP", href: "/referral-adhd-partners/" },
+          { label: "Referral PCP", href: "/adhd-referral-for-primary-care/" },
         ],
       },
       {

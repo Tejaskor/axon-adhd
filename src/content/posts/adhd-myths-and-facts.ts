@@ -212,7 +212,7 @@ export const body: Block[] = [
   },
   {
     "type": "p",
-    "text": "**For you:** AXON's [comprehensive ADHD evaluation](/comprehensive-adhd-assessment/) pairs the FDA-cleared QbCheck with a clinical interview. Be wary of any diagnosis from a quiz alone."
+    "text": "**For you:** AXON's [comprehensive ADHD evaluation](/adult-adhd-assessment/) pairs the FDA-cleared QbCheck with a clinical interview. Be wary of any diagnosis from a quiz alone."
   },
   {
     "type": "p",
@@ -232,7 +232,7 @@ export const body: Block[] = [
   },
   {
     "type": "p",
-    "text": "Start by making small, manageable changes to your sleep routine and tracking your sleep patterns. If sleep problems persist, consider speaking with a healthcare professional. If you suspect ADHD may be contributing to your difficulties, a [comprehensive ADHD evaluation](/comprehensive-adhd-assessment/) may help you better understand your symptoms and identify appropriate next steps."
+    "text": "Start by making small, manageable changes to your sleep routine and tracking your sleep patterns. If sleep problems persist, consider speaking with a healthcare professional. If you suspect ADHD may be contributing to your difficulties, a [comprehensive ADHD evaluation](/adult-adhd-assessment/) may help you better understand your symptoms and identify appropriate next steps."
   },
   {
     "type": "p",
@@ -272,7 +272,7 @@ export const body: Block[] = [
   },
   {
     "type": "p",
-    "text": "Yes. More than half of adults with ADHD were diagnosed in adulthood. A clinician assesses current symptoms and history since childhood, as explained in our [comprehensive ADHD assessment](/comprehensive-adhd-assessment/) overview."
+    "text": "Yes. More than half of adults with ADHD were diagnosed in adulthood. A clinician assesses current symptoms and history since childhood, as explained in our [comprehensive ADHD assessment](/adult-adhd-assessment/) overview."
   },
   {
     "type": "q",

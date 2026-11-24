@@ -50,7 +50,8 @@ If neither email provider is configured, contact submissions are logged to the s
 
 ```
 public/
-  images/{brand,hero,services,trust,blog,badges}/   original assets from wp-content/uploads
+  images/<topic>/   page-specific images (about, accommodation, adhdcare, assessment, homepage, referral-for-pcp, referral-for-universities, referral-shared, ...)
+  images/{brand,hero,header,trust,blog,badges}/   shared brand, hero, nav, trust and blog assets (lowercase-kebab-case filenames)
   icons/                                            favicons
   videos/                                           hero + service clips
 src/

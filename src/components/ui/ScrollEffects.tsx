@@ -9,6 +9,8 @@ import { useEffect } from "react";
  *  1. Entrance reveals: every `.reveal` block (the site's existing Reveal wrapper) and every section heading outside one eases up and fades in
  *     once, when it scrolls into view. Blocks that enter together (a row of cards, a list) are staggered. A long ease-out curve gives the
  *     smooth, soft landing.
+ *  1b. Cards that share a row enter from their own side (left card from the left, right card from the right, the middle ones rise); a single
+ *     card or a stacked mobile column just rises. Photographs below the fold fade and settle (scale 1.06 → 1) as they scroll in.
  *  2. Gentle parallax: large in-flow photographs drift a few pixels against the scroll.
  *
  * Content that is already on screen at load is left alone (no flash), and with reduced motion, or before this script runs, everything is
@@ -19,7 +21,7 @@ const MAX_STAGGER = 6;
 const PARALLAX_PX = 16;
 
 const REVEAL_SELECTOR = ".reveal, main section h2, [data-fx-item]";
-const PARALLAX_SKIP = ".marquee, ol, [aria-roledescription='carousel'], .myth-diagram, .qb-stage, [data-no-parallax], header, footer, nav";
+const PARALLAX_SKIP = "[data-no-fx], .marquee, ol, [aria-roledescription='carousel'], .myth-diagram, .qb-stage, [data-no-parallax], header, footer, nav";
 
 export function ScrollEffects() {
   const pathname = usePathname();
@@ -63,9 +65,63 @@ export function ScrollEffects() {
       { rootMargin: "0px 0px -9% 0px", threshold: 0.06 },
     );
 
+    /* ---------- Directional cards + image reveals ---------- */
+    const isCard = (el: HTMLElement, r: DOMRect) => el.tagName !== "H2" && r.width >= 180 && r.width <= 640 && r.height >= 100;
+    const markDirections = (items: HTMLElement[]) => {
+      if (window.innerWidth < 640) return; // stacked column: every card simply rises
+      const rows = new Map<number, HTMLElement[]>();
+      for (const el of items) {
+        const r = el.getBoundingClientRect();
+        if (!isCard(el, r)) continue;
+        const key = Math.round((r.top + window.scrollY) / 24);
+        rows.set(key, [...(rows.get(key) ?? []), el]);
+      }
+      rows.forEach((row) => {
+        if (row.length < 2) return;
+        row.sort((a, b) => a.getBoundingClientRect().left - b.getBoundingClientRect().left);
+        row[0].dataset.fxDir = "l";
+        row[row.length - 1].dataset.fxDir = "r";
+      });
+    };
+    const ioImg = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (!e.isIntersecting) continue;
+          ioImg.unobserve(e.target);
+          const img = e.target as HTMLElement;
+          img.dataset.fxImg = "in";
+          done.push(window.setTimeout(() => (img.dataset.fxImg = "seen"), 1400));
+        }
+      },
+      { rootMargin: "0px 0px -6% 0px", threshold: 0.08 },
+    );
+    const prepareImages = (root: ParentNode) => {
+      root.querySelectorAll<HTMLImageElement>("main img").forEach((img) => {
+        if (img.dataset.fxImg || img.dataset.fx || img.closest(PARALLAX_SKIP) || img.closest("[data-fx='hidden'], [data-fx='in']")) return;
+        const r = img.getBoundingClientRect();
+        if (r.width < 240 || r.height < 120 || r.bottom <= 0 || r.top < vh()) return; // small icons, and anything already on screen, are left alone
+        if (getComputedStyle(img).position === "fixed") return;
+        img.dataset.fxImg = "hidden";
+        ioImg.observe(img);
+      });
+    };
+    // Cards with no transition of their own get a gentle lift on hover (cards that already define hover styles are left as they are).
+    const markLiftable = (root: ParentNode) => {
+      root.querySelectorAll<HTMLElement>(".reveal, [data-fx-item]").forEach((el) => {
+        if (el.dataset.card) return;
+        const r = el.getBoundingClientRect();
+        if (!isCard(el, r)) return;
+        const cs = getComputedStyle(el);
+        if (cs.transitionDuration !== "0s" || (cs.borderTopWidth === "0px" && cs.boxShadow === "none" && cs.backgroundColor === "rgba(0, 0, 0, 0)")) return;
+        el.dataset.card = "lift";
+      });
+    };
+
     const prepare = (root: ParentNode) => {
+      const fresh: HTMLElement[] = [];
       root.querySelectorAll<HTMLElement>(REVEAL_SELECTOR).forEach((el) => {
         if (el.dataset.fx) return;
+        if (el.closest("[data-no-fx]")) return; // sections that run their own entrance (e.g. the journey heading)
         // An h2 inside a Reveal (or any block already revealing) rides with its parent.
         if (el.tagName === "H2" && el.closest(".reveal")) return;
         // Opt-in list items stagger one by one; the rest of their column still rides with its own Reveal.
@@ -79,8 +135,12 @@ export function ScrollEffects() {
           return;
         }
         el.dataset.fx = "hidden";
+        fresh.push(el);
         io.observe(el);
       });
+      markDirections(fresh);
+      prepareImages(root);
+      markLiftable(root);
     };
 
     /* ---------- Parallax ---------- */
@@ -116,12 +176,14 @@ export function ScrollEffects() {
     // Start only once the page has fully hydrated: touching server-rendered markup earlier would make React report a mismatch.
     let startTimer = 0;
     const start = () => {
-      startTimer = window.setTimeout(() => {
+      const run = () => {
         prepare(document);
         collectImages();
         tick();
         mo.observe(document.querySelector("main") ?? document.body, { childList: true, subtree: true });
-      }, 900);
+      };
+      // After the 900ms grace period, wait for an idle moment too, so a slow device still busy hydrating is never touched mid-hydration.
+      startTimer = window.setTimeout(() => ("requestIdleCallback" in window ? window.requestIdleCallback(run, { timeout: 3000 }) : run()), 900);
     };
     if (document.readyState === "complete") start();
     else window.addEventListener("load", start, { once: true });
@@ -140,6 +202,7 @@ export function ScrollEffects() {
     window.addEventListener("resize", onScroll);
     return () => {
       io.disconnect();
+      ioImg.disconnect();
       mo.disconnect();
       window.clearTimeout(flush);
       window.clearTimeout(startTimer);

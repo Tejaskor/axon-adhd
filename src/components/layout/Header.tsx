@@ -81,7 +81,7 @@ export function Header() {
                     <Link
                       href={item.href}
                       aria-current={isActive(item.href) ? "page" : undefined}
-                      className="rounded-pill px-2.5 py-1.5 text-[16px] leading-[1.2] font-normal text-ink-menu hover:text-brand aria-[current=page]:text-brand xl:px-3"
+                      className="rounded-pill px-2.5 py-1.5 text-[16px] leading-[1.2] font-normal text-ink-menu transition-colors duration-200 hover:text-brand aria-[current=page]:text-brand xl:px-3"
                     >
                       {item.label}
                     </Link>

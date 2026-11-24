@@ -13,6 +13,7 @@ import { LatestBlogs } from "@/components/sections/LatestBlogs";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { accommodationPage } from "@/content/pages/accommodation";
 import { breadcrumbJsonLd } from "@/lib/seo";
+import { SeoJsonLd } from "@/components/ui/SeoJsonLd";
 
 export const metadata = innerPageMetadata(accommodationPage);
 
@@ -28,6 +29,7 @@ export default function Page() {
       <AccommodationCTA />
       <LatestBlogs />
       <CoverageContact />
+      <SeoJsonLd path="/adhd-accommodations-documentation/" />
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", path: "/" },

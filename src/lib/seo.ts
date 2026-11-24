@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { founder } from "@/content/pages/about";
+import { keywordsFor, pageSeo } from "@/content/seo";
 import { site } from "@/content/site";
 import type { Block, Faq } from "@/content/types";
 
@@ -11,10 +13,21 @@ type PageMetaInput = {
   /** Use the title verbatim (no " | AXON ADHD" suffix). */
   absoluteTitle?: boolean;
   publishedTime?: string;
+  /** Override the default (indexable) robots directive, e.g. `{ index: false, follow: true }` for a duplicate landing page. */
+  robots?: Metadata["robots"];
 };
 
-export function pageMetadata({ title, description, path, image = site.ogImage, type = "website", absoluteTitle, publishedTime }: PageMetaInput): Metadata {
+export function pageMetadata(input: PageMetaInput): Metadata {
+  // Keyword-mapped pages (content/seo.ts) take their title and description from that sheet, verbatim (no suffix added).
+  const seo = pageSeo[input.path];
+  const { path, image = site.ogImage, type = "website", publishedTime, robots } = input;
+  const title = seo?.title ?? input.title;
+  const description = seo?.description ?? input.description;
+  const absoluteTitle = seo ? true : input.absoluteTitle;
+  const keywords = keywordsFor(path);
   return {
+    ...(keywords ? { keywords } : {}),
+    ...(robots ? { robots } : {}),
     title: absoluteTitle ? { absolute: title } : title,
     description,
     alternates: { canonical: path },
@@ -103,5 +116,53 @@ export function blogPostingJsonLd(post: { title: string; description: string; sl
     mainEntityOfPage: `${site.url}/blog/${post.slug}/`,
     author: { "@type": "Person", name: post.author },
     publisher: { "@id": `${site.url}/#organization` },
+  };
+}
+
+/** WebPage schema for keyword-mapped pages: name/description match the metadata, `keywords` carries the page's primary + secondary terms. */
+export function webPageJsonLd(path: string) {
+  const seo = pageSeo[path];
+  if (!seo) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": seo.schemaType ?? "WebPage",
+    "@id": `${site.url}${path}#webpage`,
+    url: `${site.url}${path}`,
+    name: seo.title,
+    description: seo.description,
+    keywords: [seo.primary, ...seo.secondary].join(", "),
+    inLanguage: "en-US",
+    isPartOf: { "@id": `${site.url}/#website` },
+    publisher: { "@id": `${site.url}/#organization` },
+    ...(seo.service
+      ? { mainEntity: { "@type": "Service", name: seo.service.name, serviceType: seo.service.serviceType, provider: { "@id": `${site.url}/#organization` }, areaServed: { "@type": "Country", name: "United States" }, url: `${site.url}${path}` } }
+      : {}),
+  };
+}
+
+/** Site-level WebSite entity that every WebPage points at via isPartOf. */
+export function websiteJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${site.url}/#website`,
+    url: site.url,
+    name: site.name,
+    inLanguage: "en-US",
+    publisher: { "@id": `${site.url}/#organization` },
+  };
+}
+
+/** Founder profile (About page). Only facts stated on the page: name, title line, photo, employer. */
+export function founderPersonJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${site.url}/about-adhd-evaluation/#founder`,
+    name: founder.name,
+    jobTitle: founder.title,
+    image: `${site.url}${founder.image.src}`,
+    url: `${site.url}/about-adhd-evaluation/`,
+    worksFor: { "@id": `${site.url}/#organization` },
   };
 }

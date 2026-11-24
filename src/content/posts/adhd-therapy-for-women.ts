@@ -326,7 +326,7 @@ export const body: Block[] = [
   },
   {
     "type": "p",
-    "text": "A screening can give you a rough idea of whether further evaluation might be a good idea, but it can't diagnose ADHD a proper [comprehensive adult ADHD assessment](/comprehensive-adhd-assessment/?utm_source=chatgpt.com) will look at your symptoms, history, functioning, and all the things that might be going on."
+    "text": "A screening can give you a rough idea of whether further evaluation might be a good idea, but it can't diagnose ADHD a proper [comprehensive adult ADHD assessment](/adult-adhd-assessment/?utm_source=chatgpt.com) will look at your symptoms, history, functioning, and all the things that might be going on."
   },
   {
     "type": "p",

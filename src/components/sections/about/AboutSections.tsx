@@ -111,7 +111,7 @@ function Hero({ data }: { data: PageHero }) {
         </Reveal>
         <Reveal delay={0.1} className="relative mx-auto w-full max-w-[640px] lg:max-w-none">
           <video
-            src="/images/about/Aboutgif.mp4"
+            src="/images/about/about-axon-neuron-signal-animation.mp4"
             autoPlay
             muted
             loop

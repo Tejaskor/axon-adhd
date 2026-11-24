@@ -286,6 +286,36 @@ body {
     opacity: 0;
     transform: translate3d(0, 38px, 0);
   }
+  /* Cards sharing a row enter from their own side (set by ScrollEffects); the rest rise as above. Shorter travel on small screens. */
+  [data-fx="hidden"][data-fx-dir="l"] {
+    transform: translate3d(calc(var(--fx-x, 64px) * -1), 0, 0);
+  }
+  [data-fx="hidden"][data-fx-dir="r"] {
+    transform: translate3d(var(--fx-x, 64px), 0, 0);
+  }
+  @media (max-width: 1023px) {
+    [data-fx="hidden"] {
+      transform: translate3d(0, 28px, 0);
+    }
+    [data-fx="hidden"][data-fx-dir="l"] {
+      transform: translate3d(-36px, 0, 0);
+    }
+    [data-fx="hidden"][data-fx-dir="r"] {
+      transform: translate3d(36px, 0, 0);
+    }
+  }
+  /* Photographs below the fold: soft fade with a slow settle. `scale` is its own property, so it never fights a transform or the parallax `translate`. */
+  [data-fx-img="hidden"] {
+    opacity: 0;
+    scale: 1.06;
+  }
+  [data-fx-img="in"] {
+    opacity: 1;
+    scale: 1;
+    transition:
+      opacity 0.9s cubic-bezier(0.25, 1, 0.33, 1),
+      scale 1.3s cubic-bezier(0.25, 1, 0.33, 1);
+  }
   [data-fx="in"] {
     opacity: 1;
     transform: none;
@@ -923,3 +953,347 @@ body {
     white-space: normal;
   }
 }
+
+/* ---------- Hover: gentle card lift (uses `translate`, so it never clashes with the entrance transforms) ---------- */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  :where(main article:not(.cs-card)),
+  [data-card="lift"][data-fx="seen"],
+  [data-card="lift"]:not([data-fx]) {
+    transition:
+      translate 0.35s var(--ease),
+      box-shadow 0.35s var(--ease);
+  }
+  :where(main article:not(.cs-card)):hover,
+  [data-card="lift"][data-fx="seen"]:hover,
+  [data-card="lift"]:not([data-fx]):hover {
+    translate: 0 -4px;
+    box-shadow: 0 18px 40px -18px rgba(18, 61, 106, 0.28);
+  }
+}
+
+/* ---------- Page load: main heading and the line under it fade up right away (no delay before they start; ~0.7s long) ---------- */
+@keyframes load-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  main h1:not([data-no-load-fx]) {
+    animation: load-up 0.7s cubic-bezier(0.25, 1, 0.33, 1) both;
+  }
+  main h1:not([data-no-load-fx]) + p {
+    animation: load-up 0.7s cubic-bezier(0.25, 1, 0.33, 1) 0.12s both;
+  }
+  /* Mega menu panels ease down into place when they open. */
+  .mega-in {
+    animation: mega-in 0.22s cubic-bezier(0.25, 1, 0.33, 1) both;
+  }
+}
+@keyframes mega-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -8px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* "Your Journey to Clarity": the step card cross-fades when another step is selected. */
+@keyframes journey-swap {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .journey-swap {
+    animation: journey-swap 0.45s cubic-bezier(0.25, 1, 0.33, 1) both;
+  }
+}
+
+/* "Your Journey to Clarity": on screens tall enough (and without reduced motion) the section pins while the scroll picks the steps; it then releases. */
+@media (min-width: 768px) and (min-height: 620px) and (prefers-reduced-motion: no-preference) {
+  .journey-pin {
+    height: calc(100dvh - var(--header-height) + var(--journey-scroll, 275vh));
+  }
+  .journey-stick {
+    position: sticky;
+    top: var(--header-height);
+    height: calc(100dvh - var(--header-height));
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* journey pin */
+
+/* Entrance animations slide cards in from the sides: clip (not hide, so sticky sections keep working) anything that is still off-screen. */
+main {
+  overflow-x: clip;
+}
+/* main clip */
+
+/* Phones: leave room for the fixed bottom "Start Free Assessment" bar (72px + safe area) so the pinned journey never hides behind it. */
+@media (max-width: 767px) and (min-height: 800px) and (prefers-reduced-motion: no-preference) {
+  .journey-pin {
+    height: calc(100dvh - var(--header-height) - 76px + var(--journey-scroll, 275vh));
+  }
+  .journey-stick {
+    position: sticky;
+    top: var(--header-height);
+    display: flex;
+    align-items: center;
+    height: calc(100dvh - var(--header-height) - 76px);
+  }
+}
+/* phone pin */
+/* journey size */
+/* journey size 2 */
+/* journey size 3 */
+/* journey size 4 */
+
+/* journey compact */
+/* journey pin thresholds */
+/* thresholds 2 */
+/* phone sticky */
+/* poke */
+/* compact range */
+/* poke 2 */
+/* phone threshold 800 */
+/* poke 1 */
+/* ref match 1 */
+/* ref match 2 */
+/* btn 1 */
+/* btn 2 */
+/* phone card 1 */
+/* phone card 2 */
+/* phone card 3 */
+
+/* ---------- "Your Journey to Clarity" step animations (timings measured from the reference site) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  /* Heading words rise out of their masks once the section is in view; the line below follows. Visible by default without JS. */
+  .journey-armed:not(.journey-seen) .journey-word {
+    transform: translateY(105%);
+  }
+  .journey-armed:not(.journey-seen) .journey-lead {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .journey-seen .journey-word {
+    animation: journey-word 0.8s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0ms) both;
+  }
+  .journey-seen .journey-lead {
+    animation: journey-text 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
+  }
+  /* Card swap: old content fades out (with a light blur), the new text rises in, the picture opens from a circle. */
+  .journey-fade-out {
+    animation: journey-fade-out 0.18s ease-in both;
+  }
+  .journey-text-in {
+    animation: journey-text 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .journey-clip-in {
+    animation: journey-clip 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  /* Step counter digits roll vertically. */
+  .journey-roll-in-up {
+    animation: journey-roll-in-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .journey-roll-out-up {
+    animation: journey-roll-out-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .journey-roll-in-down {
+    animation: journey-roll-in-down 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .journey-roll-out-down {
+    animation: journey-roll-out-down 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+@keyframes journey-word {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes journey-text {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: none;
+  }
+}
+@keyframes journey-fade-out {
+  to {
+    opacity: 0;
+    filter: blur(4px);
+    transform: translateY(-6px);
+  }
+}
+@keyframes journey-clip {
+  from {
+    clip-path: circle(0% at 50% 50%);
+    opacity: 0;
+    transform: translateY(4%);
+  }
+  to {
+    clip-path: circle(120% at 50% 50%);
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes journey-roll-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes journey-roll-out-up {
+  to {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+@keyframes journey-roll-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes journey-roll-out-down {
+  to {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+/* journey ref anim 1 */
+/* journey ref anim 2 */
+/* journey ref anim 3 */
+/* j fix 1 */
+/* j fix 2 */
+/* j small 1 */
+/* j small 2 */
+
+/* Short laptop screens (e.g. 1181×720): the card lays the picture beside the text so the pinned section stays fully visible. */
+@media (min-width: 1181px) and (max-height: 760px) {
+  .journey-card {
+    max-width: none;
+    flex-direction: row;
+    align-items: center;
+  }
+  .journey-card .journey-imgbox {
+    width: 46%;
+  }
+  .journey-card h3 {
+    margin-top: 8px;
+    font-size: 24px;
+  }
+  .journey-card h3 + p {
+    font-size: 17px;
+  }
+}
+/* j short 1 */
+/* j short 2 */
+/* j row 1 */
+/* j row 2 */
+/* j row 1 */
+/* j row 2 */
+/* phone big 1 */
+/* phone big 2 */
+
+/* restore */
+/* path 1 */
+/* path 2 */
+
+/* Assessment path section: phones keep it in normal flow (its heading and card are too tall to pin), and shorter desktop screens tighten it so the pinned view stays fully visible. */
+@media (max-width: 767px) {
+  .journey-pin.assess-pin {
+    height: auto;
+  }
+  .journey-pin.assess-pin .journey-stick {
+    position: static;
+    height: auto;
+  }
+}
+@media (min-width: 1181px) and (max-height: 900px) {
+  .assess-pin .assess-imgbox {
+    height: 30vh;
+  }
+  .assess-pin .assess-pathbox {
+    height: min(48vh, 540px);
+  }
+  .assess-pin h2 + p {
+    margin-top: 8px;
+    font-size: 17px;
+    line-height: 1.55;
+  }
+  .assess-pin article {
+    padding: 14px;
+  }
+  .assess-pin article h3 {
+    margin-top: 6px;
+    font-size: 26px;
+  }
+  .assess-pin .assess-text {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+/* assess 1 */
+/* assess 2 */
+@media (min-width: 1181px) and (max-height: 760px) {
+  .assess-pin .assess-imgbox {
+    height: 23vh;
+  }
+  .assess-pin h2 + p {
+    font-size: 16px;
+  }
+  .assess-pin .assess-pathbox {
+    height: min(46vh, 540px);
+  }
+}
+/* assess short */
+/* assess poke 1 */
+/* assess poke 2 */
+/* assess poke 3 */
+/* assess cols 1 */
+/* assess cols 2 */
+/* imgbox 1 */
+/* imgbox 2 */
+/* imgbox 3 */
+/* imgbox fix 1 */
+/* imgbox fix 2 */
+/* imgbox fix 3 */
+@media (min-width: 1181px) and (min-height: 761px) and (max-height: 820px) {
+  .assess-pin .assess-imgbox {
+    height: 26vh;
+  }
+}
+/* imgbox big 1 */
+/* imgbox big 2 */
+/* imgbox big 3 */

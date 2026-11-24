@@ -141,7 +141,7 @@ export default function AnxietyItWasAdhdPage() {
         <p>The diagnosis wasn&apos;t a magic switch, but the shift was substantial.</p>
         <p>
           With her psychiatrist, Sophia tried a stimulant medication. Medication affects everyone differently. Finding the right medication or deciding medication isn&apos;t the best option often involves careful discussion and adjustment with a clinician. Using{" "}
-          <Link href="/comprehensive-adhd-assessment/">
+          <Link href="/adult-adhd-assessment/">
             FDA-cleared objective tests for ADHD
           </Link>{" "}
           (e.g., QbCheck) also allows for an initial test for baseline and follow-up tests while on medicine to get the type and dose of medication dialed in perfectly.

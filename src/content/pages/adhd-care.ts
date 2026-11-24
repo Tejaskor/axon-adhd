@@ -8,7 +8,7 @@ export const adhdCarePage: PageContent = {
     title: "ADHD Treatment for Adults: Personalized Care, Therapy & Coaching",
     description:
       "Explore personalized ADHD treatment for adults: ADHD therapy, ADHD coaching, medication management, and practical strategies to help you navigate everyday challenges.",
-    image: "/images/hero/AXON-ADHD-Personalized-Care-Banner.webp",
+    image: "/images/hero/axon-adhd-personalized-care-banner.webp",
   },
   sections: [
     {
@@ -43,7 +43,7 @@ export const adhdCarePage: PageContent = {
       subtitle:
         "The research is very clear. The best treatment for ADHD should include medication, coaching, self care strategies, executive function skills training, and other therapies. AXON ADHD has a team of partners who can provide all this and more. We can also coordinate care with your current team of physicians, coaches, and therapists. The goal is to help you thrive with this amazing ADHD brain.",
       tone: "surface",
-      image: { src: "/images/services/adhd-care-brain-is-specialized.webp", alt: "The ADHD brain is specialized", width: 1912, height: 1337 },
+      image: { src: "/images/adhdcare/adhd-care-brain-is-specialized.webp", alt: "The ADHD brain is specialized", width: 1912, height: 1337 },
       items: [
         { title: "Medications", text: "Whether stimulant or non-stimulant medications, they are an effective way to improve attention, focus, and effectiveness.", icon: "pill" },
         { title: "Coaching", text: "Individual coaching helps you identify brain strengths and learn executive function skills that make a difference. Group coaching provides additional learning, support, accountability, and a community who \"gets it\".", icon: "users" },

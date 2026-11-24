@@ -6,13 +6,14 @@ import type { Faq } from "@/content/types";
 import { AxtcFaqAccordion } from "./AxtcFaqAccordion";
 import type { FaqItem } from "./AxtcFaqAccordion";
 import "./trust-center.css";
+import { SeoJsonLd } from "@/components/ui/SeoJsonLd";
 
 export const metadata = pageMetadata({
   title: "ADHD Data Privacy & HIPAA Compliance | Axon ADHD",
   description:
     "Axon ADHD Trust Center explains our ADHD data privacy, HIPAA compliance, security practices, and how we protect your personal health information.",
   path: "/adhd-data-privacy-trust-center/",
-  image: "/images/hero/Futuristic-Healthcare-Cybersecurity-Shield.webp",
+  image: "/images/hero/futuristic-healthcare-cybersecurity-shield.webp",
   absoluteTitle: true,
 });
 
@@ -711,6 +712,7 @@ export default function AdhdDataPrivacyTrustCenterPage() {
       </section>
 
       {/* Structured Data */}
+      <SeoJsonLd path="/adhd-data-privacy-trust-center/" />
       <JsonLd data={faqJsonLd(faqsForSchema)} />
       <JsonLd
         data={breadcrumbJsonLd([

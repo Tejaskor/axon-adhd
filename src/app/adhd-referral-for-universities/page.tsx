@@ -4,6 +4,7 @@ import { UniversityReferralHero } from "@/components/sections/UniversityReferral
 import { JsonLd } from "@/components/ui/JsonLd";
 import { universityReferralPage } from "@/content/pages/referral";
 import { breadcrumbJsonLd } from "@/lib/seo";
+import { SeoJsonLd } from "@/components/ui/SeoJsonLd";
 
 export const metadata = innerPageMetadata(universityReferralPage);
 
@@ -15,6 +16,7 @@ export default function Page() {
     <>
       <UniversityReferralHero data={hero} />
       <PageSections sections={rest} />
+      <SeoJsonLd path="/adhd-referral-for-universities/" />
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", path: "/" },

@@ -3,7 +3,7 @@ import { complianceBadgesColor, reviews } from "../trust";
 import type { ImageAsset } from "../types";
 import type { PageContent } from "./types";
 
-const img = (src: string, alt: string, width: number, height: number): ImageAsset => ({ src: `/images/services/${src}`, alt, width, height });
+const img = (src: string, alt: string, width: number, height: number): ImageAsset => ({ src: `/images/${src}`, alt, width, height });
 
 
 /** Endorsements shown in the hero carousel of both referral pages. */
@@ -55,7 +55,7 @@ export const universityReferralPage: PageContent = {
   meta: {
     title: "ADHD Referral for Universities Made Simple",
     description: "AXON ADHD catches early signals and connects students to free screening and fast, affordable ADHD evaluations before issues escalate — at no cost to the university.",
-    image: "/images/hero/ADHD-University-Referral-Support.webp",
+    image: "/images/hero/adhd-university-referral-support.webp",
   },
   sections: [
     {
@@ -78,7 +78,7 @@ export const universityReferralPage: PageContent = {
       },
       text: ["Universities don’t have a visibility problem they have a timing problem. Students are often identified too late, when they’re already behind and at risk. AXON ADHD catches early signals and connects them to support before issues escalate."],
       ctas: [contact("Claim Your University Account"), howItWorks],
-      image: { src: "/images/hero/ADHD-University-Referral-Support.webp", alt: "hero section referral university", width: 1672, height: 941 },
+      image: { src: "/images/hero/adhd-university-referral-support.webp", alt: "ADHD testing for college students: university ADHD referral pathway for disability services", width: 1672, height: 941 },
       trust: true,
     },
     { type: "testimonialCarousel", variant: "fan", title: "1,000’s Students & Patients Supported", accent: "1,000’s", subtitle: "Across universities and clinics, professionals trust AXON ADHD to deliver timely, high-quality support.", items: universityTestimonials },
@@ -92,7 +92,7 @@ export const universityReferralPage: PageContent = {
       variant: "partner",
       accent: "AXON ADHD",
       headline: { text: "A Trusted Partner for Universities", accent: "Universities" },
-      image: { src: "/images/referral-for-universities/A Trusted Partner for Universities.webp", alt: "Two university students talking at a library table", width: 1536, height: 1024 },
+      image: { src: "/images/referral-for-universities/university-referral-trusted-partner-universities.webp", alt: "Two university students talking at a library table", width: 1536, height: 1024 },
       imageChips: [
         { label: "Student success", icon: "graduation" },
         { label: "Retention", icon: "repeat" },
@@ -184,7 +184,7 @@ export const universityReferralPage: PageContent = {
         { title: "University Details Entered", text: "AXON identifies your preferred workflow to make it easy for your team to provide proactive, free screenings for all your students and staff.", mock: "form" },
         { title: "Magic Link Shared", text: "AXON generates a link that can be shared within your LMS messaging system to invite students to complete the free screening 2-4 weeks prior to the start of a new academic year/semester.", framed: true, image: { src: "/images/referral-for-universities/university-referral-workflow-magic-link.webp", alt: "Send Magic Link screen for a point of contact", width: 820, height: 499 } },
         { title: "Students Complete Free Screening", text: "Students easily complete the screening on their phone or laptop in 4-5 minutes.", image: { src: "/images/referral-for-universities/university-referral-workflow-student-free-screening.webp", alt: "Basic details form with the referral source listed as a university", width: 2449, height: 1699 } },
-        { title: "Screening Results Automatically Shared", text: "Students/Families receive screening results. If risk is elevated, students immediately directed to an FDA-cleared, comprehensive neuropsych evaluation via provided link.", image: { src: "/images/services/referral-workflow-complete-free-assessment.webp", alt: "Welcome to Your Free ADHD Assessment screen", width: 1224, height: 838 } },
+        { title: "Screening Results Automatically Shared", text: "Students/Families receive screening results. If risk is elevated, students immediately directed to an FDA-cleared, comprehensive neuropsych evaluation via provided link.", image: { src: "/images/referral-shared/referral-workflow-complete-free-assessment.webp", alt: "Welcome to Your Free ADHD Assessment screen", width: 1224, height: 838 } },
         { title: "Consultation with AXON's team of Clinical Psychologists", text: "Within days, students meet virtually with an AXON psychologist to review data, confirm diagnosis, and discuss treatment. Students receive a concise report including accommodation recommendations to streamline disability support protocols within the school.", image: { src: "/images/referral-for-universities/university-referral-workflow-consultation-report.webp", alt: "QbCheck report with objective and detailed results", width: 721, height: 451 } },
       ],
     },
@@ -213,12 +213,12 @@ export const universityReferralPage: PageContent = {
 };
 
 export const pcpReferralPage: PageContent = {
-  path: "/referral-adhd-partners/",
+  path: "/adhd-referral-for-primary-care/",
   breadcrumb: "Referral PCP",
   meta: {
     title: "ADHD Referral Partner Program for Primary Care Providers",
     description: "Partner with AXON ADHD to identify at-risk patients early and gain diagnostic clarity before visits at no cost — freeing staff, reducing strain, and improving patient care and revenue.",
-    image: "/images/hero/AXON-ADHD-Referral-Program-Banner.webp",
+    image: "/images/hero/axon-adhd-referral-program-banner.webp",
   },
   sections: [
     {
@@ -242,12 +242,12 @@ export const pcpReferralPage: PageContent = {
       },
       text: ["Partner with AXON ADHD through our ADHD Referral Partners Program to identify at-risk patients early and gain diagnostic clarity before visits at no cost. Our ADHD Referral Partners solution helps free up staff, reduce strain, and improve patient care and revenue."],
       ctas: [contact("Claim Your PCP Account"), howItWorks],
-      image: { src: "/images/hero/AXON-ADHD-Referral-Program-Banner.webp", alt: "hero section primary care provider", width: 1671, height: 941 },
+      image: { src: "/images/hero/axon-adhd-referral-program-banner.webp", alt: "ADHD assessment referral for primary care providers: objective adult ADHD testing partner", width: 1671, height: 941 },
       trust: true,
     },
     // The partner count and all of the home page's Google reviews, in the same fanned-card section as the university page.
     { type: "testimonialCarousel", variant: "fan", accent: "100+", title: "100+ Providers and institutions\ncollaborating with AXON ADHD", items: reviews.map((r) => ({ quote: r.text, name: r.name, role: "Google review" })) },
-    { type: "badges", variant: "compliance", flat: true, lightCard: true, note: "Your privacy, security, and trust are at the center of everything we do.", accent: "You Can Trust", title: "Clinical Standards & Compliance You Can Trust", subtitle: "We follow industry-leading medical, privacy, and security frameworks to ensure every assessment, referral, and report is handled with complete integrity.", badges: complianceBadgesColor, image: img("referral-clinical-standards-compliance.webp", "Clinical standards and compliance", 1341, 1173) },
+    { type: "badges", variant: "compliance", flat: true, lightCard: true, note: "Your privacy, security, and trust are at the center of everything we do.", accent: "You Can Trust", title: "Clinical Standards & Compliance You Can Trust", subtitle: "We follow industry-leading medical, privacy, and security frameworks to ensure every assessment, referral, and report is handled with complete integrity.", badges: complianceBadgesColor, image: img("referral-shared/referral-clinical-standards-compliance.webp", "Clinical standards and compliance", 1341, 1173) },
     {
       type: "features",
       title: "Why Partner With AXON ADHD",
@@ -258,7 +258,7 @@ export const pcpReferralPage: PageContent = {
       variant: "partner",
       accent: "AXON ADHD",
       headline: { text: "A Trusted Partner for Primary Care Providers", accent: "Primary Care Providers" },
-      image: { src: "/images/referral-for-pcp/A Trusted Partner for Primary Care Providers.webp", alt: "A primary care physician reviewing results on a tablet with a patient", width: 1533, height: 1026 },
+      image: { src: "/images/referral-for-pcp/pcp-referral-trusted-partner-primary-care-providers.webp", alt: "A primary care physician reviewing results on a tablet with a patient", width: 1533, height: 1026 },
       imageChips: [
         { label: "High-quality care", icon: "star" },
         { label: "New revenue", icon: "trend" },
@@ -311,12 +311,12 @@ export const pcpReferralPage: PageContent = {
       title: "How Our Referral Workflow Works",
       subtitle: "Our automated workflow helps providers invite patients to complete assessments, delivering trusted results through a behavioral health partner.",
       items: [
-        { title: "Partner with AXON ADHD", text: "We integrate with your EHR at no cost to your practice.", portrait: { src: "/images/referral-for-universities/referral-workflow-dr-dodini-portrait.webp", alt: "Dr. Aaron Dodini smiling in a bright office", width: 1540, height: 950 }, image: img("pcp-referral-workflow-partner-with-axon.webp", "", 2593, 1454) },
+        { title: "Partner with AXON ADHD", text: "We integrate with your EHR at no cost to your practice.", portrait: { src: "/images/referral-for-universities/referral-workflow-dr-dodini-portrait.webp", alt: "Dr. Aaron Dodini smiling in a bright office", width: 1540, height: 950 }, image: img("referral-for-pcp/pcp-referral-workflow-partner-with-axon.webp", "Phone call screen showing Dr. Aaron Dodini's number, (703) 909-5101, for partner practices to contact AXON ADHD", 2593, 1454) },
         { title: "Provider Details Entered", text: "AXON identifies your preferred workflow to make it easy for your team to provide proactive, free screenings for all your patients.", mock: "form" },
-        { title: "Magic Link Shared", text: "AXON generates a link that can be shared within your EHR messaging system to invite patients to complete the free screening two weeks prior to their annual visit.", framed: true, image: img("pcp-referral-workflow-magic-link.webp", "", 2400, 1460) },
-        { title: "Patients Complete Free Assessment", text: "Patients easily complete the screening on their phone or laptop in 4–5 minutes.", image: img("referral-workflow-complete-free-assessment.webp", "", 1224, 838) },
-        { title: "Screening Results Automatically Shared", text: "All parties receive screening results. If risk is elevated, patients are immediately directed to an FDA-cleared neuropsych evaluation via a provided link.", image: img("pcp-referral-workflow-receive-result.webp", "", 1168, 820) },
-        { title: "Consultation with AXON's team of Clinical Psychologists", text: "Within days, patients meet virtually with an AXON psychologist to review data, confirm diagnosis, and discuss treatment. Both patient and PCP receive a concise report before the annual visit, enabling faster, confident care.", image: img("pcp-referral-workflow-clinician-consultation.webp", "", 1891, 1125) },
+        { title: "Magic Link Shared", text: "AXON generates a link that can be shared within your EHR messaging system to invite patients to complete the free screening two weeks prior to their annual visit.", framed: true, image: img("referral-for-pcp/pcp-referral-workflow-magic-link.webp", "Partner practice referral form with patient contact details and a Send Magic Link button", 2400, 1460) },
+        { title: "Patients Complete Free Assessment", text: "Patients easily complete the screening on their phone or laptop in 4–5 minutes.", image: img("referral-shared/referral-workflow-complete-free-assessment.webp", "Welcome screen of the free ADHD assessment showing it takes 5 to 10 minutes and 20 simple questions", 1224, 838) },
+        { title: "Screening Results Automatically Shared", text: "All parties receive screening results. If risk is elevated, patients are immediately directed to an FDA-cleared neuropsych evaluation via a provided link.", image: img("referral-for-pcp/pcp-referral-workflow-receive-result.webp", "Assessment results screen showing a moderate overall risk and PHQ-9, GAD-7 and ASRS screening scores", 1168, 820) },
+        { title: "Consultation with AXON's team of Clinical Psychologists", text: "Within days, patients meet virtually with an AXON psychologist to review data, confirm diagnosis, and discuss treatment. Both patient and PCP receive a concise report before the annual visit, enabling faster, confident care.", image: img("referral-for-pcp/pcp-referral-workflow-clinician-consultation.webp", "AXON ADHD clinicians standing together around a diagram linking patient, clinic and university", 1891, 1125) },
       ],
     },
     { type: "cta", variant: "plain", ctaStyle: "homepage", accent: "for Your Practice", title: "Fast, Seamless ADHD Referrals for Your Practice", subtitle: "Help your patients get clarity and treatment quickly through our streamlined PCP referral workflow.", primary: contact("Claim Your PCP Account"), secondary: howItWorks },

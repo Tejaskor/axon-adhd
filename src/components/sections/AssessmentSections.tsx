@@ -7,7 +7,7 @@ import { links } from "@/content/site";
 import { cn } from "@/lib/utils";
 import { IconChip, h2, wrap } from "./AccommodationSections";
 import { PathCard } from "./AdhdCareSections";
-import { AssessmentTimeline } from "./AssessmentTimeline";
+import { AssessmentPath } from "./AssessmentPath";
 import { GradientCtaBanner } from "./GradientCtaBanner";
 import { TealBanner } from "./TealBanner";
 
@@ -269,16 +269,20 @@ export function AssessmentOpensDoors({ data }: { data: FeaturesSection }) {
 export function AssessmentProcess({ data }: { data: StepsSection }) {
   return (
     <section className="bg-[linear-gradient(140deg,#dfeaf4_13.61%,hsla(0,0%,100%,0.2)_45.13%)] section-py" aria-labelledby="process-title">
-      {/* 1440px wide; the side padding keeps the timeline line and its dots (and their glow) well inside the container. */}
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-10">
-        <Reveal className="mx-auto max-w-[900px] text-center">
-          <h2 id="process-title" className={h2}>
-            {data.title.replace(/ADHD Assessment in Arlington, VA$/, "")}
-            <span className="text-[#2578CA]">ADHD Assessment in Arlington, VA</span>
-          </h2>
-          {data.subtitle && <p className={cn("text-[16px] leading-[1.7] sm:text-[20px] text-pretty", "mt-5")}>{data.subtitle}</p>}
-        </Reveal>
-        <AssessmentTimeline items={data.items} />
+        {/* Steps on a winding path with the selected step's card beside it; the section pins while scrolling walks through them. */}
+        <AssessmentPath
+          items={data.items}
+          heading={
+            <Reveal className="mx-auto max-w-[900px] text-center">
+              <h2 id="process-title" className={h2}>
+                {data.title.replace(/ADHD Assessment in Arlington, VA$/, "")}
+                <span className="text-[#2578CA]">ADHD Assessment in Arlington, VA</span>
+              </h2>
+              {data.subtitle && <p className={cn("text-[16px] leading-[1.7] sm:text-[20px] text-pretty", "mt-5")}>{data.subtitle}</p>}
+            </Reveal>
+          }
+        />
       </div>
     </section>
   );

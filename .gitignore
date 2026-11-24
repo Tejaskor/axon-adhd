@@ -48,3 +48,6 @@ next-env.d.ts
 
 # Rune plugin: auto-generated session logs, rewritten every session (caused repeated merge/switch conflicts)
 /.rune/
+
+# Local tooling metrics (were being served from /public)
+public/videos/.rune/

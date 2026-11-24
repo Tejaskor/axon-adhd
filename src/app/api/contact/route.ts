@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { readJsonBody } from "@/lib/api-guard";
 import { escapeHtml, sendMail } from "@/lib/mailer";
 import { clientIp, rateLimit } from "@/lib/rate-limit";
 import { contactSchema } from "@/lib/validators";
@@ -9,12 +10,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "Too many submissions. Please try again later." }, { status: 429, headers: { "Retry-After": String(limit.retryAfter ?? 600) } });
   }
 
-  let body: unknown;
-  try {
-    body = await request.json();
-  } catch {
-    return NextResponse.json({ message: "Invalid request." }, { status: 400 });
-  }
+  const read = await readJsonBody(request);
+  if ("error" in read) return read.error;
+  const body = read.body;
 
   const parsed = contactSchema.safeParse(body);
   if (!parsed.success) {

@@ -3,7 +3,7 @@ import { CareYouCanTrust } from "@/components/sections/CareYouCanTrust";
 import { CoverageContact } from "@/components/sections/CoverageContact";
 import { FAQAccordion } from "@/components/sections/FAQAccordion";
 import { FinalCTA } from "@/components/sections/FinalCTA";
-import { GettingHelpSimple } from "@/components/sections/GettingHelpSimple";
+import { JourneyToClarity } from "@/components/sections/JourneyToClarity";
 import { Hero } from "@/components/sections/Hero";
 import { LatestBlogs } from "@/components/sections/LatestBlogs";
 import { LogoMarquee } from "@/components/sections/LogoMarquee";
@@ -17,6 +17,7 @@ import { homeFaqs } from "@/content/faqs";
 import { faqSection, testimonialsSection } from "@/content/home";
 import { googleRating, reviews } from "@/content/trust";
 import { pageMetadata } from "@/lib/seo";
+import { SeoJsonLd } from "@/components/ui/SeoJsonLd";
 
 export const metadata = pageMetadata({
   title: "Online ADHD Testing for Adults | Diagnosis in Days | AXON",
@@ -33,7 +34,7 @@ export default function HomePage() {
       <LogoMarquee />
       <SymptomChecklist />
       <ServicesOverview />
-      <GettingHelpSimple />
+      <JourneyToClarity />
       <PricingCards />
       <ADHDMythBuster />
       <WeSeeYou />
@@ -54,6 +55,7 @@ export default function HomePage() {
         background="bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]"
       />
       <CoverageContact />
+      <SeoJsonLd path="/" />
     </>
   );
 }

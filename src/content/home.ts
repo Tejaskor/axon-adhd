@@ -70,7 +70,7 @@ export const services = {
       title: "Behavioral Health Screening",
       tagline: "Depression? Anxiety? ADHD?",
       text: "A quick online screener to help identify if your symptoms may be ADHD-related.",
-      href: "/comprehensive-adhd-assessment/",
+      href: "/adult-adhd-assessment/",
       icon: "screening",
       video: "/videos/home-support-behavioral-health-screening.mp4",
       thumbnail: "/images/homepage/how-we-support-you/home-support-behavioral-health-screening.webp",
@@ -80,7 +80,7 @@ export const services = {
       title: "Comprehensive ADHD Assessment",
       tagline: "Go deeper with a full evaluation.",
       text: "A clinical evaluation with certified professionals for clear diagnosis and tailored treatment.",
-      href: "/comprehensive-adhd-assessment/",
+      href: "/adult-adhd-assessment/",
       icon: "assessment",
       video: "/videos/home-support-comprehensive-assessment.mp4",
       thumbnail: "/images/homepage/how-we-support-you/home-support-comprehensive-assessment.webp",
@@ -226,7 +226,7 @@ export const weSeeYou = {
     { title: "You’re not alone", icon: "people", tone: "orange" },
     { title: "There’s a reason it feels hard", icon: "bulb", tone: "purple" },
   ],
-  image: { src: "/images/services/home-not-alone-clinician-consultation.webp", alt: "A smiling woman talking with an ADHD clinician who is taking notes", width: 592, height: 444 },
+  image: { src: "/images/homepage/home-not-alone-clinician-consultation.webp", alt: "A smiling woman talking with an ADHD clinician who is taking notes", width: 592, height: 444 },
   cta: ctas.evaluation,
 } as const;
 
@@ -293,7 +293,7 @@ export const finalCta = {
   lead: "Take the next step with our comprehensive diagnostic evaluation.",
   primary: { label: "Start Comprehensive Assessment", href: links.comprehensive },
   secondary: { label: "Start Free Assessment", href: links.freeScreening },
-  image: { src: "/images/services/home-comprehensive-evaluation-cta.webp", alt: "Adult ADHD Diagnostic Evaluation", width: 569, height: 582 },
+  image: { src: "/images/homepage/home-comprehensive-evaluation-cta.webp", alt: "Adult ADHD Diagnostic Evaluation", width: 569, height: 582 },
 };
 
 export const contactSection = {

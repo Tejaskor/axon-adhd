@@ -7,13 +7,13 @@ export const trustCenter = {
   meta: {
     title: "AXON ADHD Trust Center | HIPAA, Security & Compliance",
     description: "AXON Digital Health & Diagnosis is a HIPAA-compliant platform for ADHD assessment and care. All PHI is processed and stored exclusively on U.S. AWS infrastructure.",
-    image: "/images/hero/Futuristic-Healthcare-Cybersecurity-Shield.webp",
+    image: "/images/hero/futuristic-healthcare-cybersecurity-shield.webp",
   },
   hero: {
     eyebrow: "Trust & Compliance",
     title: "AXON ADHD Trust Center",
     text: "AXON Digital Health & Diagnosis is a HIPAA-compliant platform for ADHD assessment and care. All Protected Health Information is processed and stored exclusively on U.S. AWS infrastructure, under security controls aligned with HIPAA, HITECH, SOC 2 and GDPR.",
-    image: { src: "/images/hero/Futuristic-Healthcare-Cybersecurity-Shield.webp", alt: "Healthcare cybersecurity shield", width: 1672, height: 941 },
+    image: { src: "/images/hero/futuristic-healthcare-cybersecurity-shield.webp", alt: "Healthcare cybersecurity shield", width: 1672, height: 941 },
     ctas: [
       { label: "Visit Live Trust Vault", href: trustVaultUrl },
       { label: "View Assessments", href: "#axtc-assessments" },

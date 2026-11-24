@@ -22,7 +22,7 @@ export function MegaMenu({ item, id, onNavigate }: { item: MegaItem; id: string;
   const stacked = true;
   const featured = (active !== null ? item.links[active]?.featured : undefined) ?? item.featured;
   return (
-    <div id={id} className="absolute inset-x-0 top-full z-50 mx-auto w-[min(1320px,calc(100%-32px))] rounded-[20px] border border-white/70 bg-white p-[22px] shadow-panel">
+    <div id={id} className="mega-in absolute inset-x-0 top-full z-50 mx-auto w-[min(1320px,calc(100%-32px))] rounded-[20px] border border-white/70 bg-white p-[22px] shadow-panel">
       <div className={cn("grid h-[368px] gap-[26px]", stacked ? "grid-cols-[1fr_380px]" : "grid-cols-[1fr_320px]")} onMouseLeave={() => setActive(null)} onBlur={(e) => !e.currentTarget.contains(e.relatedTarget) && setActive(null)}>
         <div>
           <p className="mb-1 px-1.5 text-[12px] font-bold tracking-[0.09em] text-muted uppercase">{item.eyebrow}</p>

@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { faqTabs } from "@/content/faqs";
 import { breadcrumbJsonLd, faqJsonLd, pageMetadata } from "@/lib/seo";
+import { SeoJsonLd } from "@/components/ui/SeoJsonLd";
 
 export const metadata = pageMetadata({
   title: "ADHD FAQs | Adult ADHD Testing, Referrals & Care",
@@ -26,6 +27,7 @@ export default function FaqPage() {
           </div>
         </Container>
       </section>
+      <SeoJsonLd path="/adhd-faqs/" />
       <JsonLd data={faqJsonLd(faqTabs.flatMap((t) => t.items))} />
       <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "FAQs", path: "/adhd-faqs/" }])} />
     </>

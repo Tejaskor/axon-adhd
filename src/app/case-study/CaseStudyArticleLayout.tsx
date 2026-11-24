@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { ChevronsRight } from "lucide-react";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { useEffect, useRef, useState } from "react";
 
@@ -342,8 +343,8 @@ export function CaseStudyArticleLayout({
                       <div className="case-study__card-tags">
                         <span className="case-study__tag">{card.tag}</span>
                       </div>
-                      <Link className="case-study__card-more" href={card.href}>
-                        Read More &raquo;
+                      <Link className="inline-flex w-fit items-center leading-[1.5] rounded-full bg-[linear-gradient(90deg,#1E64AA_0%,#2578CA_45%,#5498DB_100%)] px-3.5 py-2 text-[14px] font-medium text-white transition-[filter] hover:brightness-110 mt-auto self-start !text-white" href={card.href}>
+                        Read More <ChevronsRight aria-hidden className="ml-1 size-3.5 self-center" />
                       </Link>
                     </div>
                   </article>

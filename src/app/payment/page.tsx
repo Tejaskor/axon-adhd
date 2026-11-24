@@ -5,6 +5,7 @@ import { links } from "@/content/site";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 import "./payment.css";
 import { ButtonLink } from "@/components/ui/Button";
+import { SeoJsonLd } from "@/components/ui/SeoJsonLd";
 
 export const metadata: Metadata = pageMetadata({
   title: "Axon ADHD Payment Portal | Secure Online Payments",
@@ -361,6 +362,8 @@ export default function PaymentPage() {
           </div>
         </div>
       </section>
+
+      <SeoJsonLd path="/payment/" />
 
       <JsonLd
         data={breadcrumbJsonLd([

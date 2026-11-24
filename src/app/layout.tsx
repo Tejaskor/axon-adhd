@@ -7,7 +7,7 @@ import { MobileStickyCta } from "@/components/layout/MobileStickyCta";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { ScrollEffects } from "@/components/ui/ScrollEffects";
 import { site } from "@/content/site";
-import { organizationJsonLd } from "@/lib/seo";
+import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
 // Manrope is the only family (headings, body, nav, buttons, footer) — variable font includes all weights (200-800).
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope", display: "swap" });
@@ -52,6 +52,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <MobileStickyCta />
         <ScrollEffects />
         <JsonLd data={organizationJsonLd()} />
+        <JsonLd data={websiteJsonLd()} />
       </body>
     </html>
   );

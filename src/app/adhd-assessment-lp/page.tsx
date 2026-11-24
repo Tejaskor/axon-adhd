@@ -23,6 +23,8 @@ export const metadata = pageMetadata({
   title: onlineEval.title,
   description: onlineEval.description,
   path: onlineEval.path,
+  // Paid-traffic landing page that duplicates /online-adhd-evaluation/ (same title and description): keep it out of the index.
+  robots: { index: false, follow: true },
 });
 
 /** ADHD assessment landing page: hero + pricing card, stats, steps, comparison, pricing, specialist, reviews, coverage, FAQ, closing CTA. Self-contained; shares nothing with /online-adhd-evaluation. */

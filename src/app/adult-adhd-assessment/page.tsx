@@ -14,6 +14,7 @@ import { JsonLd } from "@/components/ui/JsonLd";
 import { comprehensiveAssessmentPage } from "@/content/pages/comprehensive-assessment";
 import type { PageSection } from "@/content/pages/types";
 import { breadcrumbJsonLd } from "@/lib/seo";
+import { SeoJsonLd } from "@/components/ui/SeoJsonLd";
 
 export const metadata = innerPageMetadata(comprehensiveAssessmentPage);
 
@@ -40,6 +41,8 @@ export default function Page() {
       <AssessmentClosingCta data={at(8, "cta")} />
       <LatestBlogs />
       <CoverageContact />
+
+      <SeoJsonLd path="/adult-adhd-assessment/" />
 
       <JsonLd
         data={breadcrumbJsonLd([

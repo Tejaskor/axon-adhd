@@ -14,7 +14,7 @@ export const aboutPage: PageContent = {
   meta: {
     title: "About AXON ADHD | Clarity, Connection, Care & ADHD Evaluation",
     description: "AXON ADHD combines objective testing, expert clinical insight, and fast, accessible evaluations to help people move from confusion to clarity. Meet founder Dr. Aaron Dodini.",
-    image: "/images/hero/AXON-ADHD-Evaluation-Overview.webp",
+    image: "/images/hero/axon-adhd-evaluation-overview.webp",
   },
   sections: [
     {
@@ -114,7 +114,7 @@ export const aboutPage: PageContent = {
         "Patients can access therapy and assessments when they need them, while clinicians manage appointments, documentation, and outcomes within a single secure platform. The system also allows care teams to coordinate seamlessly with external collaborative care partners.",
         "This flexible platform empowers both patients and providers by supporting clear communication, strengthening collaboration, and improving continuity of care and long-term treatment outcomes.",
       ],
-      image: { src: "/images/services/about-seamless-solutions-clinicians-clients.webp", alt: "Seamless Solutions for Clinicians and Clients", width: 607, height: 365 },
+      image: { src: "/images/about/about-seamless-solutions-clinicians-clients.webp", alt: "Seamless Solutions for Clinicians and Clients", width: 607, height: 365 },
       tone: "soft",
     },
   ],

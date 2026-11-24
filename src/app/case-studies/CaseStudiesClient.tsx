@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ButtonLink } from "@/components/ui/Button";
+import { ChevronsRight } from "lucide-react";
 import { useMemo, useRef, useState } from "react";
 import { caseStudies, caseStudiesPage } from "@/content/case-studies";
 
@@ -107,7 +107,9 @@ export function CaseStudiesClient() {
       {/* Hero Section */}
       <section className="cs-hero-section">
         <div className="cs-hero-inner">
-          <h1 className="cs-hero-title">ADHD Case Studies: Real Adult Diagnosis Stories</h1>
+          <h1 className="type-h1 m-0 text-balance text-navy">
+            ADHD Case Studies: <span className="text-primary">Real Adult Diagnosis Stories</span>
+          </h1>
           <p className="cs-hero-sub">Stories of Strategic Impact</p>
 
           {/* Search Box */}
@@ -215,9 +217,9 @@ export function CaseStudiesClient() {
                       <p className="cs-card-excerpt">
                         <HighlightText text={cs.excerpt} query={searchQuery} />
                       </p>
-                      <ButtonLink href={href} className="mt-auto self-start">
-                        Read More
-                      </ButtonLink>
+                      <Link href={href} className="inline-flex w-fit items-center leading-[1.5] rounded-full bg-[linear-gradient(90deg,#1E64AA_0%,#2578CA_45%,#5498DB_100%)] px-3.5 py-2 text-[14px] font-medium text-white transition-[filter] hover:brightness-110 mt-auto self-start !text-white">
+                        Read More <ChevronsRight aria-hidden className="ml-1 size-3.5 self-center" />
+                      </Link>
                     </div>
                   </article>
                 );

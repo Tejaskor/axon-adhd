@@ -183,7 +183,7 @@ export const body: Block[] = [
   },
   {
     "type": "p",
-    "text": "Start with small changes, pay attention to your sleep patterns, and seek professional advice if the problem continues. If you suspect ADHD may be contributing to your difficulties, consider a [comprehensive ADHD assessment](/comprehensive-adhd-assessment/)."
+    "text": "Start with small changes, pay attention to your sleep patterns, and seek professional advice if the problem continues. If you suspect ADHD may be contributing to your difficulties, consider a [comprehensive ADHD assessment](/adult-adhd-assessment/)."
   },
   {
     "type": "p",

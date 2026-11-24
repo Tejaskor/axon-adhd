@@ -143,7 +143,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/10">
+      <div>
         <div className="type-body mx-auto flex w-full max-w-[1440px] flex-col items-center gap-4 px-4 py-7 sm:px-6 lg:flex-row lg:justify-between lg:px-12">
           <p className="text-white/95">{site.copyright}</p>
           <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">

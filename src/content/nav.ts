@@ -20,17 +20,17 @@ export const mainNav: NavItem[] = [
   {
     kind: "mega",
     label: "Services",
-    href: "/comprehensive-adhd-assessment/",
+    href: "/adult-adhd-assessment/",
     eyebrow: "Our Services",
     links: [
-      { label: "ADHD Assessments", description: "Comprehensive evaluations for accurate ADHD diagnosis.", href: "/comprehensive-adhd-assessment/", icon: "assessment" },
+      { label: "ADHD Assessments", description: "Comprehensive evaluations for accurate ADHD diagnosis.", href: "/adult-adhd-assessment/", icon: "assessment" },
       {
         label: "ADHD Care",
         description: "Personalized treatment and ongoing support for lasting success.",
         href: "/adhd-care/",
         icon: "care",
         featured: {
-          image: { src: "/images/header/ADHD%20Care_%20Personalized%20Student%20Support.webp", alt: "ADHD Care: personalized treatment and ongoing support", width: 1774, height: 887 },
+          image: { src: "/images/header/nav-mega-menu-adhd-care-personalized-student-support.webp", alt: "ADHD Care: personalized treatment and ongoing support", width: 1774, height: 887 },
           title: "ADHD Care",
           text: "Personalized treatment and ongoing support to improve focus, build structure, and thrive in everyday life.",
           cta: { label: "View ADHD Care", href: "/adhd-care/" },
@@ -39,21 +39,21 @@ export const mainNav: NavItem[] = [
       {
         label: "Accommodation & Advocacy",
         description: "Reports that meet ADA & Section 504 standards.",
-        href: "/accommodation-documentation-advocacy/",
+        href: "/adhd-accommodations-documentation/",
         icon: "advocacy",
         featured: {
-          image: { src: "/images/header/ADHD%20Academic%20Support%20Study%20Scene.webp", alt: "ADHD accommodations: academic support, workplace accommodations and personalized recommendations", width: 1672, height: 941 },
+          image: { src: "/images/header/nav-mega-menu-adhd-academic-support-study-scene.webp", alt: "ADHD accommodations: academic support, workplace accommodations and personalized recommendations", width: 1672, height: 941 },
           title: "Accommodation & Advocacy",
           text: "Reports that meet ADA & Section 504 standards, with documentation and advocacy for school and work accommodations.",
-          cta: { label: "View Accommodation & Advocacy", href: "/accommodation-documentation-advocacy/" },
+          cta: { label: "View Accommodation & Advocacy", href: "/adhd-accommodations-documentation/" },
         },
       },
     ],
     featured: {
-      image: { src: "/images/header/Student%20Success_%20Comprehensive%20ADHD%20Support.webp", alt: "Comprehensive ADHD Assessment: in-depth evaluation, personalized plan and ongoing support", width: 1536, height: 1024 },
+      image: { src: "/images/header/nav-mega-menu-comprehensive-adhd-support-student-success.webp", alt: "Comprehensive ADHD Assessment: in-depth evaluation, personalized plan and ongoing support", width: 1536, height: 1024 },
       title: "Comprehensive ADHD Assessment",
       text: "A clinical evaluation with certified professionals for a clear diagnosis, tailored treatment, and accommodation support.",
-      cta: { label: "View ADHD Assessment", href: "/comprehensive-adhd-assessment/" },
+      cta: { label: "View ADHD Assessment", href: "/adult-adhd-assessment/" },
     },
   },
   {
@@ -77,13 +77,13 @@ export const mainNav: NavItem[] = [
       {
         label: "Referral PCP",
         description: "Resources and guidance for primary care providers.",
-        href: "/referral-adhd-partners/",
+        href: "/adhd-referral-for-primary-care/",
         icon: "pcp",
         featured: {
-          image: { src: "/images/hero/pcpsubmenu.webp", alt: "Referral PCP", width: 1533, height: 1026 },
+          image: { src: "/images/referral-for-pcp/pcp-referral-trusted-partner-primary-care-providers.webp", alt: "Referral PCP", width: 1533, height: 1026 },
           title: "Referral PCP",
           text: "Resources and guidance for primary care providers, giving patients a fast, reliable ADHD pathway to evaluation and care.",
-          cta: { label: "Learn More About Referral PCP", href: "/referral-adhd-partners/" },
+          cta: { label: "Learn More About Referral PCP", href: "/adhd-referral-for-primary-care/" },
         },
       },
     ],
@@ -138,10 +138,10 @@ export const mainNav: NavItem[] = [
 export const footerNav = {
   quickLinks: [
     { label: "Home", href: "/" },
-    { label: "ADHD Assessments", href: "/comprehensive-adhd-assessment/" },
+    { label: "ADHD Assessments", href: "/adult-adhd-assessment/" },
     { label: "ADHD Care", href: "/adhd-care/" },
     { label: "Referral University", href: "/adhd-referral-for-universities/" },
-    { label: "Referral PCP", href: "/referral-adhd-partners/" },
+    { label: "Referral PCP", href: "/adhd-referral-for-primary-care/" },
   ],
   company: [
     { label: "About", href: "/about-adhd-evaluation/" },

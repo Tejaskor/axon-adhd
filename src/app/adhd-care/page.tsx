@@ -6,6 +6,7 @@ import { JsonLd } from "@/components/ui/JsonLd";
 import { adhdCarePage } from "@/content/pages/adhd-care";
 import type { PageSection } from "@/content/pages/types";
 import { breadcrumbJsonLd } from "@/lib/seo";
+import { SeoJsonLd } from "@/components/ui/SeoJsonLd";
 
 export const metadata = innerPageMetadata(adhdCarePage);
 
@@ -30,6 +31,8 @@ export default function Page() {
       <AdhdCareClosingCta data={at(6, "cta")} />
       <LatestBlogs />
       <CoverageContact />
+
+      <SeoJsonLd path="/adhd-care/" />
 
       <JsonLd
         data={breadcrumbJsonLd([

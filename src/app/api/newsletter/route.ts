@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { readJsonBody } from "@/lib/api-guard";
 import { getNewsletterProvider } from "@/lib/newsletter";
 import { clientIp, rateLimit } from "@/lib/rate-limit";
 import { newsletterSchema } from "@/lib/validators";
@@ -7,12 +8,9 @@ export async function POST(request: Request) {
   const limit = rateLimit(`newsletter:${clientIp(request)}`, 5, 10 * 60 * 1000);
   if (!limit.ok) return NextResponse.json({ message: "Too many requests. Please try again later." }, { status: 429 });
 
-  let body: unknown;
-  try {
-    body = await request.json();
-  } catch {
-    return NextResponse.json({ message: "Invalid request." }, { status: 400 });
-  }
+  const read = await readJsonBody(request);
+  if ("error" in read) return read.error;
+  const body = read.body;
 
   const parsed = newsletterSchema.safeParse(body);
   if (!parsed.success) return NextResponse.json({ message: parsed.error.issues[0]?.message ?? "Invalid email." }, { status: 422 });

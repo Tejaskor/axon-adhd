@@ -2,13 +2,13 @@ import { ctas, links } from "../site";
 import type { PageContent } from "./types";
 
 export const comprehensiveAssessmentPage: PageContent = {
-  path: "/comprehensive-adhd-assessment/",
+  path: "/adult-adhd-assessment/",
   breadcrumb: "ADHD Assessments",
   meta: {
     title: "Comprehensive ADHD Assessment & Evaluation in Arlington, VA",
     description:
       "Start with a free behavioral health check, then move to a full, clinically validated ADHD assessment and evaluation in Arlington, VA, with accurate diagnoses and personalized treatment recommendations.",
-    image: "/images/hero/Comprehensive-ADHD-Assessment-Made-Simple.webp",
+    image: "/images/hero/comprehensive-adhd-assessment-made-simple.webp",
   },
   sections: [
     {
@@ -20,7 +20,7 @@ export const comprehensiveAssessmentPage: PageContent = {
         "Start with a free behavioral health check, then move to a full, clinically validated ADHD assessment and evaluation in Arlington, VA, designed to provide accurate diagnoses and personalized treatment recommendations.",
       ],
       ctas: [ctas.evaluation, ctas.screening],
-      image: { src: "/images/hero/Comprehensive-ADHD-Assessment-Made-Simple.webp", alt: "Comprehensive ADHD Assessment Made Simple", width: 1672, height: 941 },
+      image: { src: "/images/hero/comprehensive-adhd-assessment-made-simple.webp", alt: "Adult ADHD assessment online: comprehensive ADHD evaluation with QbCheck testing", width: 1672, height: 941 },
       // Placeholder photo: swap for a woman-centred lifestyle image (see hero brief) by changing this src only.
       background: { src: "/images/hero/comprehensive-assessment-hero-background.webp", alt: "", width: 2027, height: 776 },
       video: { id: "esUAxx-UXCM", title: "Could You Have Undiagnosed ADHD?" },
@@ -106,7 +106,7 @@ export const comprehensiveAssessmentPage: PageContent = {
       type: "features",
       title: "Understanding ADHD with Confidence",
       subtitle: "Learn how AXON ADHD delivers trusted, secure, expert-guided care to achieve better outcomes.",
-      image: { src: "/images/services/comprehensive-assessment-understanding-adhd-with-confidence.webp", alt: "Understanding ADHD with Confidence", width: 1505, height: 688 },
+      image: { src: "/images/assessment/comprehensive-assessment-understanding-adhd-with-confidence.webp", alt: "Understanding ADHD with Confidence", width: 1505, height: 688 },
       items: [
         { title: "Clinically Validated", text: "FDA cleared, evidence-based tools trusted by healthcare professionals", icon: "flask" },
         { title: "Confidential & Secure", text: "Your privacy is protected with secure data handling and encryption", icon: "lock" },
@@ -131,10 +131,10 @@ export const comprehensiveAssessmentPage: PageContent = {
         "Our process guides you from scheduling your assessment to completing your clinician consultation, receiving your detailed report, and beginning your personalized care plan.",
       tone: "white",
       items: [
-        { title: "Complete QbCheck & Schedule Review", text: "Take the QbCheck any time you like, and then schedule a time to meet virtually with a psychologist to discuss the results.", image: { src: "/images/services/comprehensive-assessment-step-book-assessment.webp", alt: "", width: 2560, height: 1315 } },
-        { title: "Meet Your Clinician", text: "Attend a 30-minute video consultation with a licensed ADHD specialist to review your results and discuss your personalized treatment plan.", image: { src: "/images/services/comprehensive-assessment-step-meet-clinician.webp", alt: "", width: 2560, height: 1395 } },
-        { title: "Receive Your Report", text: "Receive a detailed diagnosis, personalized care plan, and accommodation documentation within minutes of completing your video consultation.", image: { src: "/images/services/comprehensive-assessment-step-receive-report.webp", alt: "", width: 2560, height: 1547 } },
-        { title: "Begin Treatment", text: "We coordinate care with your provider or connect you with an AXON ADHD expert.", image: { src: "/images/services/comprehensive-assessment-step-begin-treatment.webp", alt: "", width: 2560, height: 1491 } },
+        { title: "Complete QbCheck & Schedule Review", text: "Take the QbCheck any time you like, and then schedule a time to meet virtually with a psychologist to discuss the results.", image: { src: "/images/assessment/comprehensive-assessment-step-book-assessment.webp", alt: "Appointment booking screen with a calendar and available time slots for scheduling an ADHD assessment", width: 2560, height: 1315 } },
+        { title: "Meet Your Clinician", text: "Attend a 30-minute video consultation with a licensed ADHD specialist to review your results and discuss your personalized treatment plan.", image: { src: "/images/assessment/comprehensive-assessment-step-meet-clinician.webp", alt: "Video consultation between an AXON ADHD clinician and a patient", width: 2560, height: 1395 } },
+        { title: "Receive Your Report", text: "Receive a detailed diagnosis, personalized care plan, and accommodation documentation within minutes of completing your video consultation.", image: { src: "/images/assessment/comprehensive-assessment-step-receive-report.webp", alt: "QbCheck ADHD report showing a total symptom level chart and results", width: 2560, height: 1547 } },
+        { title: "Begin Treatment", text: "We coordinate care with your provider or connect you with an AXON ADHD expert.", image: { src: "/images/assessment/comprehensive-assessment-step-begin-treatment.webp", alt: "Two people talking at home beside an AXON ADHD report with treatment next steps", width: 2560, height: 1491 } },
       ],
     },
     {

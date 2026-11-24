@@ -4,13 +4,13 @@ import type { PageContent } from "./types";
 const checkout = (label: string) => ({ label, href: links.accommodationCheckout });
 
 export const accommodationPage: PageContent = {
-  path: "/accommodation-documentation-advocacy/",
+  path: "/adhd-accommodations-documentation/",
   breadcrumb: "Accommodation & Advocacy",
   meta: {
     title: "Accommodation Documentation & Advocacy",
     description:
       "Turn your AXON Comprehensive ADHD Evaluation into professional documentation that supports academic, standardized testing, and workplace accommodation requests (ADA & Section 504).",
-    image: "/images/hero/AXON-ADHD-Support-Services-Banner.webp",
+    image: "/images/hero/axon-adhd-support-services-banner.webp",
   },
   sections: [
     {
@@ -21,7 +21,7 @@ export const accommodationPage: PageContent = {
         "This specialized report is available exclusively for individuals who have completed an AXON Comprehensive ADHD Evaluation.",
       ],
       ctas: [checkout("Add the Accommodation Documentation & Advocacy Package to My Evaluation")],
-      image: { src: "/images/hero/AXON-ADHD-Support-Services-Banner.webp", alt: "AXON ADHD accommodation documentation and advocacy support", width: 1672, height: 941 },
+      image: { src: "/images/hero/axon-adhd-support-services-banner.webp", alt: "ADHD accommodations documentation for school, college and workplace (ADA and Section 504)", width: 1672, height: 941 },
       trust: true,
     },
     {
@@ -42,7 +42,7 @@ export const accommodationPage: PageContent = {
       subtitle: "Everything an institution needs to evaluate your request prepared and reviewed by the psychologist who knows your case.",
       tone: "surface",
       variant: "check",
-      image: { src: "/images/services/accommodation-documentation-package.webp", alt: "Accommodation documentation package", width: 2320, height: 2329 },
+      image: { src: "/images/accommodation/accommodation-documentation-package.webp", alt: "Accommodation documentation package", width: 2320, height: 2329 },
       items: [
         { title: "Individualized accommodations report" },
         { title: "Objective data supporting each recommendation" },
@@ -59,7 +59,7 @@ export const accommodationPage: PageContent = {
       paragraphs: [
         "Not everyone diagnosed with ADHD needs formal accommodations. Rather than including this service in every evaluation, we offer it only to those who plan to request accommodations from a school, standardized testing organization, professional licensing board, or employer. Preparing accommodations documentation requires considerably more work than simply sharing your diagnostic report.",
       ],
-      image: { src: "/images/services/accommodation-optional-add-on.webp", alt: "Accommodation documentation", width: 2113, height: 2200 },
+      image: { src: "/images/accommodation/accommodation-optional-add-on.webp", alt: "Accommodation documentation", width: 2113, height: 2200 },
       ctas: [checkout("Add Accommodation Support")],
     },
     {
@@ -72,7 +72,7 @@ export const accommodationPage: PageContent = {
         "Identify appropriate accommodations supported by objective findings",
         "Complete institution-specific forms & supporting documentation",
       ],
-      image: { src: "/images/services/accommodation-what-our-clinicians-do.webp", alt: "What our clinicians do for the accommodation package", width: 2540, height: 1448 },
+      image: { src: "/images/accommodation/accommodation-what-our-clinicians-do.webp", alt: "What our clinicians do for the accommodation package", width: 2540, height: 1448 },
       reverse: true,
       tone: "soft",
       ctas: [checkout("Add AXON Accommodation & Advocacy Package")],
