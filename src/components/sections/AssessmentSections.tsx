@@ -5,10 +5,11 @@ import { FeatureIcon } from "@/components/ui/FeatureIcon";
 import { Reveal } from "@/components/ui/Reveal";
 import { links } from "@/content/site";
 import { cn } from "@/lib/utils";
-import { IconChip, h2, wrap } from "./AccommodationSections";
+import { h2, wrap } from "./AccommodationSections";
 import { PathCard } from "./AdhdCareSections";
 import { AssessmentPath } from "./AssessmentPath";
 import { GradientCtaBanner } from "./GradientCtaBanner";
+import { earlyAccents } from "./PageSections";
 import { TealBanner } from "./TealBanner";
 
 /**
@@ -212,18 +213,27 @@ export function AssessmentConfidence({ data }: { data: FeaturesSection }) {
             </div>
           )}
           <ul className="grid gap-4">
-            {data.items.map((item) => (
-              <li key={item.title} className="flex">
-                <div className="group flex w-full items-center gap-4 rounded-[24px] border border-white/80 bg-white/55 px-4 py-4 shadow-[0_14px_34px_-18px_rgba(37,120,202,.35),inset_0_1px_0_rgba(255,255,255,.9)] backdrop-blur-[12px] sm:px-6 sm:py-5">
-                  <IconChip className="size-12 rounded-2xl sm:size-14">{item.icon && <FeatureIcon name={item.icon} className="size-6 sm:size-7" />}</IconChip>
-                  <span aria-hidden className="h-12 w-px shrink-0 bg-[#1677ED]/20" />
-                  <div className="min-w-0">
-                    <h3 className="text-[20px] leading-snug font-bold text-[#0B1F4D]">{item.title}</h3>
-                    <p className="mt-1 text-[16px] leading-[1.6] text-[#4B5C75]">{item.text}</p>
+            {data.items.map((item, i) => {
+              // Same pastel card colours as "Why Early Referral Matters" (blue, green, orange, …), one per card.
+              const a = earlyAccents[(["blue", "green", "orange", "pink", "purple"] as const)[i % 5]];
+              return (
+                <li key={item.title} className="flex">
+                  <div
+                    className="group flex w-full items-center gap-4 rounded-[24px] border px-4 py-4 shadow-[0_14px_32px_-18px_rgba(20,90,200,.35)] sm:px-6 sm:py-5"
+                    style={{ backgroundColor: a.flat, borderColor: a.border }}
+                  >
+                    <span className="grid size-12 shrink-0 place-items-center rounded-2xl sm:size-14" style={{ backgroundColor: a.pale, color: a.color }}>
+                      {item.icon && <FeatureIcon name={item.icon} className="size-6 sm:size-7" />}
+                    </span>
+                    <span aria-hidden className="h-12 w-px shrink-0" style={{ backgroundColor: a.color, opacity: 0.55 }} />
+                    <div className="min-w-0">
+                      <h3 className="text-[20px] leading-snug font-bold text-[#0B1F4D]">{item.title}</h3>
+                      <p className="mt-1 text-[16px] leading-[1.6] text-[#4B5C75]">{item.text}</p>
+                    </div>
                   </div>
-                </div>
-              </li>
-            ))}
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>

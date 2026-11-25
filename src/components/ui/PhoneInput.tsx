@@ -27,7 +27,7 @@ type PhoneInputProps = ComponentProps<"input"> & {
  * accessible option list), the dial code as a prefix, then the national number input. Defaults to 🇺🇸 +1.
  */
 export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(function PhoneInput(
-  { className, invalid, id, countryCode, onCountryCodeChange, ...rest },
+  { className, invalid, id, countryCode, onCountryCodeChange, onChange, ...rest },
   ref,
 ) {
   // Tracked by name because several countries share a dial code (US and Canada are both +1).
@@ -80,6 +80,13 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(function
         aria-describedby={invalid ? `${id}-error` : undefined}
         className="w-0 min-w-0 flex-1 rounded-r-lg bg-transparent px-2 py-2.5 text-[15px] text-ink-2 placeholder:text-muted-2 focus:outline-none"
         {...rest}
+        // Only digits and the usual separators (space, - . ( )) can be typed or pasted (letters and other characters are dropped as they arrive,
+        // extra spaces collapse), up to 20 characters, matching the phone rule in lib/validators.ts.
+        onChange={(e) => {
+          const clean = e.target.value.replace(/[^\d\s().-]/g, "").replace(/^\s+/, "").replace(/\s{2,}/g, " ").slice(0, 20);
+          if (clean !== e.target.value) e.target.value = clean;
+          onChange?.(e);
+        }}
       />
     </div>
   );

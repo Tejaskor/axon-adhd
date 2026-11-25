@@ -566,8 +566,8 @@ const contactPoints = [
 /** Form styling is scoped here (via the wrapper) so the shared form and input components stay untouched. */
 /** Form card styling (matches the Contact Us reference): light grey card, grey labels, 8px fields, full-width pill submit. */
 const contactFormSkin = [
-  // Same glass card + field styling as the homepage contact section.
-  "rounded-[28px] border border-white/80 bg-white/70 p-6 shadow-[0_24px_60px_rgba(37,120,202,.12),inset_0_1px_0_rgba(255,255,255,.9)] backdrop-blur-xl sm:p-8",
+  // Same 3D card + field styling as every other contact form (.form-3d in globals.css).
+  "form-3d p-6 sm:p-8",
   "[&_form]:gap-4 [&_label]:text-[14px] [&_label]:font-semibold [&_label]:text-navy",
   "[&_input:not([type=tel])]:rounded-[16px] [&_textarea]:rounded-[16px] [&_input:not([type=tel])]:border-[#D1D1D6] [&_textarea]:border-[#D1D1D6] [&_input]:py-2.5 [&_textarea]:min-h-[120px]",
   "[&_form>button[type=submit]]:w-full [&_form>button[type=submit]]:justify-self-stretch",
@@ -654,7 +654,7 @@ export function AccommodationContact({
         </Reveal>
         )}
         <Reveal delay={0.1}>
-          <div className={cn(contactFormSkin, !!left && "bg-white/80 sm:rounded-[44px] sm:p-10 sm:shadow-[0_40px_90px_-40px_rgba(37,120,202,.35)] [&_form]:gap-5")}>
+          <div className={cn(contactFormSkin, !!left && "sm:p-10 [&_form]:gap-5")}>
             <h2 id="contact-title" className={"type-h2 text-center text-navy"}>
               Contact Us
             </h2>

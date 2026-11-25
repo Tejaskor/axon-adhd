@@ -10,7 +10,6 @@ import { availableStates, mapStates, stateOptions, unavailableStates } from "@/c
 import { links } from "@/content/site";
 import { cn } from "@/lib/utils";
 
-const glassCard = "rounded-[28px] border border-white/80 bg-white/70 shadow-[0_24px_60px_rgba(37,120,202,.12),inset_0_1px_0_rgba(255,255,255,.9)] backdrop-blur-xl";
 
 /** "Where we can see you online" card: blue = available, grey = not yet. The map and the state dropdown share one `selected` state, so each updates the other. */
 function StateCoverage() {
@@ -251,7 +250,7 @@ export function CoverageContact() {
             <StateCoverage />
           </Reveal>
           <Reveal delay={0.1}>
-            <div className={cn(glassCard, "p-6 sm:p-8", formSkin)}>
+            <div className={cn("form-3d p-6 sm:p-8", formSkin)}>
               <p className="mb-6 text-[16px] leading-relaxed text-[#4B5B73]">We&apos;d love to hear from you. Please fill out the form and we&apos;ll get back to you as soon as possible.</p>
               <ContactForm placeholders submitArrow={false} />
             </div>

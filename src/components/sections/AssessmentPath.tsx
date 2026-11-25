@@ -368,7 +368,7 @@ export function AssessmentPath({
                   </p>
                   {/* One fixed-size picture box for every step; each picture sits inside it whole (object-contain, never cropped)
                       and is revealed through an expanding circle. */}
-                  <div className="assess-imgbox relative mt-6 aspect-[16/9] w-full overflow-hidden rounded-[16px] bg-primary-soft/50 sm:mt-7 lg:aspect-auto lg:h-[min(36vh,380px)]">
+                  <div className="assess-imgbox relative mt-6 aspect-[16/9] w-full overflow-hidden rounded-[16px] sm:mt-7 lg:aspect-auto lg:h-[min(36vh,380px)]">
                     {step.image && (
                       <div
                         key={`img-${shown}`}

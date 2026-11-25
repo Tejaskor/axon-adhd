@@ -913,7 +913,7 @@ function CampusBannerFeatures({ data }: { data: FeaturesSection }) {
   );
 }
 
-const earlyAccents = {
+export const earlyAccents = {
   blue: { icon: Target, color: "#2A7BEA", pale: "#E1EEFD", bg: "rgba(236,245,255,.9)", flat: "#ECF5FF", border: "#D3E4FA" },
   green: { icon: ShieldPlus, color: "#2BB24C", pale: "#DDF6E4", bg: "rgba(238,250,241,.9)", flat: "#EEFAF1", border: "#D2EFDA" },
   orange: { icon: GraduationCap, color: "#F59A1B", pale: "#FEEBCF", bg: "rgba(255,247,235,.9)", flat: "#FFF7EB", border: "#F8E4C6" },

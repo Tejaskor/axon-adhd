@@ -475,13 +475,16 @@ export function JourneyToClarity() {
                         phase === "in" ? "journey-text-in" : "journey-fade-out",
                       )}
                     >
-                      <p className="inline-flex items-center gap-1.5 rounded-full bg-primary-soft px-2.5 py-1 font-display text-[13px] font-semibold text-primary tabular-nums sm:gap-2 sm:px-3.5 sm:py-1.5 sm:text-[15px]">
-                        <StepIcon aria-hidden className="size-[17px]" />
-                        {pad(shown + 1)} <span aria-hidden>/</span> {pad(n)}
-                      </p>
-                      <h3 className="mt-2 text-[19px] leading-tight font-bold text-navy sm:mt-3 sm:text-[30px]">
-                        {step.title}
-                      </h3>
+                      {/* Title first, step counter after it, on one line (the counter wraps under a long title only if it can't fit). */}
+                      <div className="flex flex-wrap items-center gap-x-5 gap-y-2.5 sm:gap-x-6">
+                        <h3 className="text-[19px] leading-tight font-bold text-navy sm:text-[30px]">
+                          {step.title}
+                        </h3>
+                        <p className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-primary-soft px-2.5 py-1 font-display text-[13px] font-semibold text-primary tabular-nums sm:gap-2 sm:px-3.5 sm:py-1.5 sm:text-[15px]">
+                          <StepIcon aria-hidden className="size-[17px]" />
+                          {pad(shown + 1)} <span aria-hidden>/</span> {pad(n)}
+                        </p>
+                      </div>
                       <p className="mt-1 text-[14px] leading-[1.45] text-muted sm:mt-2 sm:text-[19px] sm:leading-[1.55]">
                         {step.text}
                       </p>
