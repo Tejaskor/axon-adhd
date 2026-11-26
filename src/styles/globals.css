@@ -1396,3 +1396,12 @@ main {
 /* form3d 1 */
 /* form3d 2 */
 /* form3d 3 */
+
+/* ADHD transformation scene: pulse ring around the lit AXON logo discs. */
+@keyframes axon-logo-ping {
+  from { opacity: 0.75; transform: scale(1); }
+  to { opacity: 0; transform: scale(1.8); }
+}
+@media (prefers-reduced-motion: reduce) {
+  [class*="axon-logo-ping"] { animation: none; }
+}

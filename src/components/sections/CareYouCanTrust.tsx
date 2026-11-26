@@ -67,9 +67,8 @@ export function CareYouCanTrust() {
             const tone = statTones[s.tone];
             return (
               <Reveal key={s.label} delay={i * 0.08} className="relative w-full max-w-[230px] shrink-0 md:w-[clamp(190px,24%,260px)] md:max-w-none">
-                <div className={cn("aspect-square rounded-full p-[1.5px]", tone.ring, tone.glow)}>
-                  <div className={cn("relative grid size-full place-items-center overflow-hidden rounded-full px-6 text-center backdrop-blur-xl lg:px-8", tone.fill)}>
-                    <span aria-hidden className="pointer-events-none absolute inset-x-[18%] top-[4%] h-[34%] rounded-full bg-gradient-to-b from-white/90 to-transparent blur-md" />
+                <div>
+                  <div className="relative grid place-items-center px-6 text-center lg:px-8">
                     <div className="relative">
                       <Icon aria-hidden className={cn("mx-auto size-7 lg:size-8", tone.color)} strokeWidth={1.75} />
                       <p className={cn("mt-2 font-display text-[clamp(26px,2.7vw,38px)] leading-none font-extrabold tracking-[-0.02em]", tone.color)}>
