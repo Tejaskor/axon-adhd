@@ -31,6 +31,8 @@ export type PageHero = {
   videoFrame?: boolean;
   /** CSS aspect-ratio of the player, e.g. "16 / 10" for a slightly taller video at the same width. Default 16 / 9. */
   videoAspect?: string;
+  /** photo variant: show the video on the screen of a drawn desktop monitor (bezel, chin, stand and base). */
+  videoDevice?: "desktop";
   /** photo variant: set the heading in exactly two lines, breaking after this text (a substring of `title`). The type size is fitted so line 1 never wraps. */
   breakAfter?: string;
   /** photo variant, desktop: align the top of the heading with the top of the video instead of centring the copy beside it. */

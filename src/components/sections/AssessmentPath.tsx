@@ -27,12 +27,58 @@ const X_B = 150;
 const Y0 = 34;
 const Y1 = 524;
 /** Scroll distance (px) between two steps while the section is pinned (the reference pins for 667px over five steps). */
-const SCROLL_PER_STEP = 170;
-const FOLLOW = 0.12;
-const OUT_MS = 180;
+const SCROLL_PER_STEP = 230;
+/** Smoothing for the path's progress dot and line (lower = softer, more gradual follow). */
+const FOLLOW = 0.07;
+/** Must match the `.assess-pin .journey-fade-out` duration in globals.css. */
+const OUT_MS = 300;
 const AUTOPLAY_MS = 5500;
 
 const pad = (n: number) => String(n).padStart(2, "0");
+
+/**
+ * Step pictures carry transparent padding around the artwork. Visible-content box of each (x0, y0, x1, y1 in source px) and the
+ * source size, measured from the files, so the artwork itself (not the padding) can cover the picture box.
+ */
+const CONTENT: Record<string, { w: number; h: number; box: [number, number, number, number] }> = {
+  "/images/assessment/comprehensive-assessment-step-book-assessment.webp": { w: 2560, h: 1315, box: [46, 46, 2514, 1315] },
+  "/images/assessment/comprehensive-assessment-step-meet-clinician.webp": { w: 2560, h: 1395, box: [45, 37, 2532, 1367] },
+  "/images/assessment/comprehensive-assessment-step-receive-report.webp": { w: 2560, h: 1547, box: [61, 98, 2481, 1453] },
+  "/images/assessment/comprehensive-assessment-step-begin-treatment.webp": { w: 2560, h: 1491, box: [103, 0, 2560, 1387] },
+};
+
+/**
+ * Picture that covers its box (a size container) edge to edge. For known pictures the visible artwork is what covers the box, so the
+ * transparent padding never shows as an empty margin; anything else falls back to a plain centred cover.
+ */
+function CoverImage({ src, alt }: { src: string; alt: string }) {
+  const c = CONTENT[src];
+  if (!c) return <Image src={src} alt={alt} fill sizes="(max-width: 767px) 92vw, 600px" className="object-cover" />;
+  const [x0, y0, x1, y1] = c.box;
+  const cw = x1 - x0;
+  const ch = y1 - y0;
+  const ratio = cw / ch;
+  return (
+    // Artwork frame: the smallest box with the artwork's proportions that covers the container (CSS "cover"), centred.
+    <div
+      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+      style={{ width: `max(100cqw, calc(100cqh * ${ratio.toFixed(4)}))`, height: `max(100cqh, calc(100cqw / ${ratio.toFixed(4)}))` }}
+    >
+      {/* Whole file, scaled and offset so its artwork lands exactly on the frame (its padding falls outside and is clipped). */}
+      <div
+        className="absolute"
+        style={{
+          left: `${((-x0 / cw) * 100).toFixed(3)}%`,
+          top: `${((-y0 / ch) * 100).toFixed(3)}%`,
+          width: `${((c.w / cw) * 100).toFixed(3)}%`,
+          height: `${((c.h / ch) * 100).toFixed(3)}%`,
+        }}
+      >
+        <Image src={src} alt={alt} fill sizes="(max-width: 767px) 100vw, 640px" className="object-fill" />
+      </div>
+    </div>
+  );
+}
 
 function nodes(n: number) {
   return Array.from({ length: n }, (_, i) => ({
@@ -328,7 +374,7 @@ export function AssessmentPath({
                         >
                           <span
                             className={cn(
-                              "relative grid size-10 place-items-center rounded-full border-2 font-display text-[16px] font-bold transition-[background-color,border-color,color,scale,box-shadow] duration-500 ease-brand",
+                              "relative grid size-10 place-items-center rounded-full border-2 font-display text-[16px] font-bold transition-[background-color,border-color,color,scale,box-shadow] duration-700 ease-brand",
                               on
                                 ? "scale-[1.15] border-[#2578CA] bg-[linear-gradient(145deg,#2578CA,#19528C)] text-white shadow-[0_0_0_5px_rgba(37,120,202,.16),0_10px_22px_-8px_rgba(25,82,140,.5)]"
                                 : "border-[#B9D3EE] bg-white text-primary group-hover:border-[#7FAEDF]",
@@ -362,13 +408,9 @@ export function AssessmentPath({
                   aria-live="polite"
                   className="relative mx-auto max-w-[600px] rounded-[24px] border border-white bg-white/85 p-4 shadow-[0_22px_56px_-24px_rgba(25,82,140,.35)] backdrop-blur-xl sm:p-5 lg:mx-0"
                 >
-                  <p className="absolute top-4 right-5 z-10 font-display text-[14px] font-semibold text-primary tabular-nums sm:top-5 sm:right-6">
-                    {pad(shown + 1)}{" "}
-                    <span className="text-muted">/ {pad(n)}</span>
-                  </p>
-                  {/* One fixed-size picture box for every step; each picture sits inside it whole (object-contain, never cropped)
-                      and is revealed through an expanding circle. */}
-                  <div className="assess-imgbox relative mt-6 aspect-[16/9] w-full overflow-hidden rounded-[16px] sm:mt-7 lg:aspect-auto lg:h-[min(36vh,380px)]">
+                  {/* One fixed-shape picture box for every step (close to the pictures' own proportions). Each picture's visible
+                      content (its transparent padding skipped) covers the box edge to edge; revealed through an expanding circle. */}
+                  <div className="assess-imgbox relative aspect-[1.84] w-full overflow-hidden rounded-[16px] [container-type:size]">
                     {step.image && (
                       <div
                         key={`img-${shown}`}
@@ -379,13 +421,7 @@ export function AssessmentPath({
                             : "journey-fade-out",
                         )}
                       >
-                        <Image
-                          src={step.image.src}
-                          alt={step.image.alt}
-                          fill
-                          sizes="(max-width: 767px) 92vw, 600px"
-                          className="object-contain"
-                        />
+                        <CoverImage src={step.image.src} alt={step.image.alt} />
                       </div>
                     )}
                   </div>
@@ -396,9 +432,16 @@ export function AssessmentPath({
                       phase === "in" ? "journey-text-in" : "journey-fade-out",
                     )}
                   >
-                    <h3 className="text-[24px] leading-tight font-bold text-navy sm:text-[32px]">
-                      {step.title}
-                    </h3>
+                    {/* Title, then the step counter right after it (wraps under a long title only if it can't fit). */}
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5">
+                      <h3 className="text-[22px] leading-tight font-bold text-navy sm:text-[28px]">
+                        {step.title}
+                      </h3>
+                      <p className="shrink-0 rounded-full bg-primary-soft px-3 py-1 font-display text-[14px] font-semibold text-primary tabular-nums">
+                        {pad(shown + 1)}{" "}
+                        <span className="text-muted">/ {pad(n)}</span>
+                      </p>
+                    </div>
                     <p className="assess-text mt-2 max-w-[46ch] text-[16px] leading-[1.6] text-muted sm:text-[18px]">
                       {step.text}
                     </p>

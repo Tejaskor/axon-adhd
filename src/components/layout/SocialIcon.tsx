@@ -25,6 +25,14 @@ function TikTokColor({ className }: { className?: string }) {
 
 export function SocialIcon({ name, className, color = false }: { name: string; className?: string; /** TikTok only: render the official multi-colour mark instead of a single-colour glyph. */ color?: boolean }) {
   if (color && name === "TikTok") return <TikTokColor className={className} />;
+  // YouTube's full-colour mark: red rounded play button with a white triangle (the plain glyph leaves the triangle see-through).
+  if (color && name === "YouTube")
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden className={className}>
+        <path d={paths.YouTube} fill="#FF0000" />
+        <path d="M9.7 15.1V8.9L15.5 12l-5.8 3.1Z" fill="#fff" />
+      </svg>
+    );
   return (
     <svg viewBox="0 0 24 24" aria-hidden className={className} fill="currentColor">
       <path d={paths[name]} />

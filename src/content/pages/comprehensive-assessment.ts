@@ -26,6 +26,7 @@ export const comprehensiveAssessmentPage: PageContent = {
       video: { id: "esUAxx-UXCM", title: "Could You Have Undiagnosed ADHD?" },
       videoFrame: false,
       videoAspect: "16 / 9.6",
+      videoDevice: "desktop",
       breakAfter: "Comprehensive ADHD Assessment &",
       alignTop: true,
       ctaStyle: "homepage",

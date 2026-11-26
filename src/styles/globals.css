@@ -1240,9 +1240,25 @@ main {
     height: auto;
   }
 }
+/* Assessment path: a calmer card swap than "Your Journey to Clarity" (same keyframes, longer and softer). */
+@media (prefers-reduced-motion: no-preference) {
+  .assess-pin .journey-fade-out {
+    animation-duration: 0.3s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+  }
+  .assess-pin .journey-text-in {
+    animation-duration: 0.85s;
+    animation-delay: 0.08s;
+  }
+  .assess-pin .journey-clip-in {
+    animation-duration: 1.15s;
+    animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+  }
+}
+/* Short desktop screens cap the picture's height by narrowing the card (the picture box keeps its 1.84 shape, so no side gaps). */
 @media (min-width: 1181px) and (max-height: 900px) {
-  .assess-pin .assess-imgbox {
-    height: 30vh;
+  .assess-pin article {
+    max-width: calc(30vh * 1.84 + 28px);
   }
   .assess-pin .assess-pathbox {
     height: min(48vh, 540px);
@@ -1257,7 +1273,7 @@ main {
   }
   .assess-pin article h3 {
     margin-top: 6px;
-    font-size: 26px;
+    font-size: 24px;
   }
   .assess-pin .assess-text {
     font-size: 16px;
@@ -1267,8 +1283,8 @@ main {
 /* assess 1 */
 /* assess 2 */
 @media (min-width: 1181px) and (max-height: 760px) {
-  .assess-pin .assess-imgbox {
-    height: 23vh;
+  .assess-pin article {
+    max-width: calc(23vh * 1.84 + 28px);
   }
   .assess-pin h2 + p {
     font-size: 16px;
@@ -1290,8 +1306,8 @@ main {
 /* imgbox fix 2 */
 /* imgbox fix 3 */
 @media (min-width: 1181px) and (min-height: 761px) and (max-height: 820px) {
-  .assess-pin .assess-imgbox {
-    height: 26vh;
+  .assess-pin article {
+    max-width: calc(26vh * 1.84 + 28px);
   }
 }
 /* imgbox big 1 */

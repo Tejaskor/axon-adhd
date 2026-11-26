@@ -268,7 +268,7 @@ function PhotoHero({ data }: { data: PageHeroData }) {
                 ))}
               </svg>
             )}
-            <HeroVideoCard id={data.video.id} title={data.video.title} frame={data.videoFrame} aspect={data.videoAspect} className="mx-auto w-full max-w-[720px] lg:max-w-none" />
+            <HeroVideoCard id={data.video.id} title={data.video.title} frame={data.videoFrame} aspect={data.videoAspect} device={data.videoDevice} className="mx-auto w-full max-w-[720px] lg:max-w-none" />
           </div>
         )}
       </div>
