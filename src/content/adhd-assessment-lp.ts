@@ -141,9 +141,9 @@ export const reviews: Review[] = [
     role: "Parent of a teen",
     text: `"We are grateful that we found out about Dr. Dodini’s services. He is really amazing and I cannot recommend him enough. It is the most efficient process doing all this online and his assessment is so spot on.
 
-We wasted several years getting misdiagnosis or not a complete diagnosis. It was a lot of trial and error on my teenage son’s expense. Let me tell you, it cost us thousands of dollars in the process. I wish we knew that our son had ADHD earlier. It would have redirected our efforts.
+We wasted several years getting misdiagnosis or not a complete diagnosis. It was a lot of trial and error at my teenage son’s expense. Let me tell you, it cost us thousands of dollars in the process. I wish we knew that our son had ADHD earlier. It would have redirected our efforts.
 
-Dr Dodini’s assessment is based on analytics from what I can tell, but I can tell you qualitatively that it is very accurate. I am amazed how much he knew about Adam in such a short period of time based on his analysis from the online test.
+Dr. Dodini’s assessment is based on analytics from what I can tell, but I can tell you qualitatively that it is very accurate. I am amazed how much he knew about Adam in such a short period of time based on his analysis from the online test.
 
 His prices are reasonable especially compared to other ADHD assessments which are north of $4k. I would highly recommend his services. He knows what he is doing and is very smart."`,
   },
@@ -159,7 +159,7 @@ His prices are reasonable especially compared to other ADHD assessments which ar
     avatar: "sky",
     name: "Brett Hammer",
     role: "Google review",
-    text: "Incredible experience. I did the self test and had thought I no symptoms of ADHD. Then I took the objective test and definitely showed symptoms. I truly had no clue I had adhd and going through this process taught me so much and has helped me learn how to handle some of the things that come with ADHD. 10/10 highly recommend!",
+    text: "Incredible experience. I did the self test and had thought I had no symptoms of ADHD. Then I took the objective test and definitely showed symptoms. I truly had no clue I had ADHD and going through this process taught me so much and has helped me learn how to handle some of the things that come with ADHD. 10/10 highly recommend!",
   },
   {
     initials: "JG",

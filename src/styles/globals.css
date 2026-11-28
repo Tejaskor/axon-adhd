@@ -1421,3 +1421,9 @@ main {
 @media (prefers-reduced-motion: reduce) {
   [class*="axon-logo-ping"] { animation: none; }
 }
+
+/* "How we support you" full-video popup: fade + gentle rise on open. */
+@keyframes video-modal-in {
+  from { opacity: 0; transform: translateY(14px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}

@@ -23,7 +23,7 @@ export const site = {
     mapUrl: "https://maps.app.goo.gl/ZBpoutfR9UrnyxPX9",
   },
   blurb:
-    "AXON ADHD has been helping adults overcome the struggles of ADHD through our signature, state-of-the-art approach of proactive screening, objective data driven diagnosis, and collaborative treatment with primary care. With AXON ADHD you can thrive with ADHD.",
+    "AXON ADHD has been helping adults overcome the struggles of ADHD through our signature, state-of-the-art approach of proactive screening, objective, data-driven diagnosis, and collaborative treatment with primary care. With AXON ADHD you can thrive with ADHD.",
   copyright: "© Copyright 2026, All Rights Reserved",
   psychologyTodayUrl: "https://www.psychologytoday.com/profile/55035",
   social: [

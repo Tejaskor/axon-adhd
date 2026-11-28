@@ -75,14 +75,14 @@ export const comprehensiveAssessmentPage: PageContent = {
       accent: "Free Assessment",
       title: "What You'll Learn from the Free Assessment",
       paragraphs: [
-        "Comprehensive, personalised, and evidence-based ADHD support designed to help you thrive.",
+        "Comprehensive, personalized, and evidence-based ADHD support designed to help you thrive.",
         "Our free screening identifies common ADHD symptoms, depression, anxiety, and substance use issues.",
         "In just a few minutes, you’ll receive a score indicating your risk for ADHD or related conditions, helping you take the first step toward a clear diagnosis.",
       ],
-      list: ["Clinically validated self report questionnaires", "Instant feedback on results", "Personalised summary and next steps"],
+      list: ["Clinically validated self-report questionnaires", "Instant feedback on results", "Personalized summary and next steps"],
       features: [
         { title: "Guided Screening", text: "Short, structured questions about your symptoms and experiences." },
-        { title: "Personalised Summary", text: "A clear overview of your screening results." },
+        { title: "Personalized Summary", text: "A clear overview of your screening results." },
         { title: "Suggested Next Steps", text: "Information on potential follow-up options such as evaluation, treatment, and support." },
       ],
       // Quick facts use details already on this page ("5-10 minutes", "Instant feedback on results", "Clinically validated self report questionnaires"); no question count is published, so none is shown.
@@ -98,7 +98,7 @@ export const comprehensiveAssessmentPage: PageContent = {
       ctaStyle: "homepage",
       title: "Ready for an Official Diagnosis?",
       subtitle:
-        "Your free screening results inform whether a full evaluation is necessary, but isn’t sufficient for an official diagnosis. That requires our state of the art, FDA cleared assessment. Luckily, you can take that immediately and then meet with our licensed psychologists to discuss the results and get an official diagnosis within days.",
+        "Your free screening results inform whether a full evaluation is necessary, but aren’t sufficient for an official diagnosis. That requires our state-of-the-art, FDA-cleared assessment. Luckily, you can take that immediately and then meet with our licensed psychologists to discuss the results and get an official diagnosis within days.",
       // Same two buttons, order and styles as the homepage hero: blue "Take Comprehensive ADHD Evaluation", then white "Start Free ADHD Screening".
       primary: ctas.evaluation,
       secondary: ctas.screening,
@@ -109,7 +109,7 @@ export const comprehensiveAssessmentPage: PageContent = {
       subtitle: "Learn how AXON ADHD delivers trusted, secure, expert-guided care to achieve better outcomes.",
       image: { src: "/images/assessment/comprehensive-assessment-understanding-adhd-with-confidence.webp", alt: "Understanding ADHD with Confidence", width: 1505, height: 688 },
       items: [
-        { title: "Clinically Validated", text: "FDA cleared, evidence-based tools trusted by healthcare professionals", icon: "flask" },
+        { title: "Clinically Validated", text: "FDA-cleared, evidence-based tools trusted by healthcare professionals", icon: "flask" },
         { title: "Confidential & Secure", text: "Your privacy is protected with secure data handling and encryption", icon: "lock" },
         { title: "Expert Support", text: "Certified specialists ready to guide you through your ADHD journey", icon: "user" },
       ],
@@ -117,7 +117,7 @@ export const comprehensiveAssessmentPage: PageContent = {
     {
       type: "features",
       title: "A Diagnosis That Opens Doors",
-      subtitle: "An official ADHD diagnosis provides more than just answers it unlocks access to support, accommodations, and treatments that can transform your daily life.",
+      subtitle: "An official ADHD diagnosis provides more than just answers—it unlocks access to support, accommodations, and treatments that can transform your daily life.",
       tone: "soft",
       items: [
         { title: "Access medication and treatment options", text: "Get prescriptions and explore evidence-based treatments tailored to your diagnosis", icon: "pill" },

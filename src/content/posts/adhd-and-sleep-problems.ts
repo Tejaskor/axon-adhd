@@ -28,7 +28,7 @@ export const body: Block[] = [
   },
   {
     "type": "p",
-    "text": "**Your mind does not seem to switch off.** The moment your surroundings become quiet, unfinished tasks, tomorrow's plans, or random thoughts may start competing for attention. Instead of relaxing, you find yourself mentally reviewing the day or planning the next one. For many, bedtime is just the preamble to self evaluation and thinking of all the things you didn't get done or the \"stupid\" thing you said to your boss. RSD can really put a damper on a good night's rest!"
+    "text": "**Your mind does not seem to switch off.** The moment your surroundings become quiet, unfinished tasks, tomorrow's plans, or random thoughts may start competing for attention. Instead of relaxing, you find yourself mentally reviewing the day or planning the next one. For many, bedtime is just the preamble to self-evaluation and thinking of all the things you didn't get done or the \"stupid\" thing you said to your boss. RSD can really put a damper on a good night's rest!"
   },
   {
     "type": "p",
@@ -36,7 +36,7 @@ export const body: Block[] = [
   },
   {
     "type": "p",
-    "text": "A version of these experiences affect most everyone with ADHD, and they can make a regular sleep schedule harder to maintain."
+    "text": "A version of these experiences affects most everyone with ADHD, and they can make a regular sleep schedule harder to maintain."
   },
   {
     "type": "h2",

@@ -136,7 +136,7 @@ export const termsBlocks: Block[] = [
     "items": [
       "After the consultation/meeting stage is completed, the patient receives an SMS requesting feedback or a Google review.",
       "This message includes a secure link to submit their review.",
-      "This is typically a one-time message and no repeated reminders are sent."
+      "This is typically a one-time message, and no repeated reminders are sent."
     ]
   },
   {

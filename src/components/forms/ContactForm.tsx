@@ -60,7 +60,7 @@ export function ContactForm({ placeholders = false, submitArrow = true }: { plac
           </Field>
         </div>
         <Field label="Email" id="email" required error={errors.email?.message}>
-          <Input id="email" type="email" autoComplete="email" placeholder={placeholders ? "eg. johndoe@example.com" : undefined} invalid={!!errors.email} aria-required {...register("email")} />
+          <Input id="email" type="email" autoComplete="email" placeholder={placeholders ? "e.g. johndoe@example.com" : undefined} invalid={!!errors.email} aria-required {...register("email")} />
         </Field>
         <Field label="Phone Number" id="phone" error={errors.phone?.message}>
           <Controller

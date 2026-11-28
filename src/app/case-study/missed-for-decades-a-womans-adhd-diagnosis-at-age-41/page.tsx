@@ -69,7 +69,7 @@ export default function WomansAdhdDiagnosisPage() {
           Elena was doing just fine, or so everyone thought. A senior marketing manager, a mother of two, and the friend who always remembered everyone&apos;s birthday and who hosted the most wonderful holidays. But behind closed doors, she was drowning. It was a feeling she&apos;d experienced her whole life.
         </p>
         <p>
-          Years of abandoned projects. A shelf full of self-help books on organization that she&apos;d somehow never gotten round to reading. Endless sleepless nights replaying every awkward conversation she&apos;d ever had. And the exhaustion! Just keeping every part of her life functioning and having everyone tell her how fabulous she was, when in reality she was barely keeping everything together.
+          Years of abandoned projects. A shelf full of self-help books on organization that she&apos;d somehow never gotten around to reading. Endless sleepless nights replaying every awkward conversation she&apos;d ever had. And the exhaustion! Just keeping every part of her life functioning and having everyone tell her how fabulous she was, when in reality she was barely keeping everything together.
         </p>
         <p>
           For forty years she&apos;d had explanations for it all. She was a worrier, a perfectionist, and a bit scatterbrained. &ldquo;You&apos;re just like that&rdquo; was the standard line. And nobody ever mentioned the word that finally fit at 41: ADHD.

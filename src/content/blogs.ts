@@ -33,7 +33,7 @@ export type BlogPost = {
 export const author = {
   name: "Dr. Aaron Dodini",
   shortName: "Aaron Dodini",
-  title: "Ph.D. Licensed Clinical Psychologist,Founder, AXON ADHD",
+  title: "Ph.D. Licensed Clinical Psychologist, Founder, AXON ADHD",
   image: { src: "/images/blog/dr-aaron-dodini-headshot.png", alt: "Dr. Aaron Dodini", width: 243, height: 243 },
 };
 

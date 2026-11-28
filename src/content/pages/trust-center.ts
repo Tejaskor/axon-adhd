@@ -29,7 +29,7 @@ export const trustCenter = {
     title: "Independently verified, not just promised",
     subtitle: "Third-party assessments of the AXON platform, tracked in our Scrut Trust Center. Full reports are available on request.",
     items: [
-      { status: "Completed", title: "HIPAA Compliance Assessment", text: "Independent assessment of the AXON platform: telehealth services, patient portal, FDA-cleared ADHD diagnostic tools (QbCheck), patient communication scheduling and clinical data management.", by: "By Aegisra Assurance LLP · September 2026" },
+      { status: "Completed", title: "HIPAA Compliance Assessment", text: "Independent assessment of the AXON platform: telehealth services, patient portal, FDA-cleared ADHD diagnostic tools (QbCheck), patient communication, scheduling, and clinical data management.", by: "By Aegisra Assurance LLP · September 2026" },
       { status: "Completed", title: "Vulnerability Assessment & Penetration Test", text: "Independent VAPT of our telehealth and patient portal platform against the OWASP Top 10 and OWASP ASVS benchmarks, using industry-standard penetration testing methodology.", by: "By Scrut · September 2026" },
       { status: "In progress", title: "SOC 2 Type II", text: "Our security controls are aligned with the SOC 2 framework, and our Type II attestation is currently in progress. We update this page and our Trust Vault as it advances.", by: "Status tracked in the Trust Vault" },
     ],

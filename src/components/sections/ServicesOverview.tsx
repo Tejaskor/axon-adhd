@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Play, X } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { services } from "@/content/home";
 import { Reveal } from "@/components/ui/Reveal";
+import { VideoModal } from "@/components/ui/VideoModal";
 import { cn } from "@/lib/utils";
 
 /** Per-card glow colour: brand blue, teal (assessment) and violet (care). */
@@ -31,27 +32,28 @@ const ctaButton =
  *
  * Video behaviour: every card shows its thumbnail until someone interacts; nothing autoplays or loops.
  * - Hovering a video panel with a mouse plays that video with sound; leaving pauses it, rewinds it and shows the thumbnail again.
- * - "See Video" pins playback with sound (and native controls) so it keeps playing after the pointer leaves; the same button
- *   closes it. Touch devices have no reliable hover, so tapping it is how they play a video.
- * - Only one video plays at a time: a hover preview of another card pauses a pinned one, which resumes when the preview ends.
+ * - "See Video" opens the complete video (YouTube, with full playback controls) in a full-screen popup; the card's own
+ *   clip is only a ~5s preview. Closing the popup stops the video.
  * - Browsers block sound until the visitor has clicked, tapped or pressed a key on the page. A hover before that plays muted,
  *   and sound switches on at that first interaction.
  */
 export function ServicesOverview() {
   const [hovered, setHovered] = useState<number | null>(null);
-  const [pinned, setPinned] = useState<number | null>(null);
+  /** Full-length video shown in the popup, or null when it is closed. */
+  const [modal, setModal] = useState<(typeof services.items)[number]["fullVideo"] | null>(null);
   /** Last video to actually start rendering frames; its thumbnail fades out only once it does. */
   const [started, setStarted] = useState<number | null>(null);
   const [failed, setFailed] = useState<number[]>([]);
   const videos = useRef<Array<HTMLVideoElement | null>>([]);
   /** Videos the browser forced to play muted; they are unmuted on the visitor's first click, tap or key press. */
   const autoMuted = useRef(new Set<number>());
-  const current = hovered ?? pinned;
+  // No hover preview plays (or makes sound) behind the open popup.
+  const current = modal ? null : hovered;
+  const closeModal = useCallback(() => setModal(null), []);
 
-  // A video that can't load or play keeps its thumbnail and its button is disabled.
+  // A preview clip that can't load or play keeps its thumbnail.
   const fail = useCallback((i: number) => {
     setHovered((cur) => (cur === i ? null : cur));
-    setPinned((cur) => (cur === i ? null : cur));
     setFailed((cur) => (cur.includes(i) ? cur : [...cur, i]));
   }, []);
 
@@ -100,13 +102,13 @@ export function ServicesOverview() {
       if (!v) return;
       if (i === current) {
         playWithSound(i);
-      } else if (!v.paused || (i !== pinned && v.currentTime > 0.1)) {
+      } else if (!v.paused || v.currentTime > 0.1) {
         v.pause();
-        // A pinned video keeps its place while another card previews; a finished preview starts over next time.
-        if (i !== pinned) v.currentTime = 0.1;
+        // A finished or interrupted preview starts over next time.
+        v.currentTime = 0.1;
       }
     });
-  }, [current, pinned, playWithSound]);
+  }, [current, playWithSound]);
 
   return (
     <section className="relative isolate overflow-hidden bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! section-py" aria-labelledby="services-title">
@@ -120,9 +122,8 @@ export function ServicesOverview() {
 
         <ul className="mx-auto mt-10 grid max-w-[560px] gap-6 sm:mt-12 md:max-w-none md:grid-cols-3 md:gap-1">
           {services.items.map((item, i) => {
-            const open = pinned === i;
             const broken = failed.includes(i);
-            const showVideo = started === i && (current === i || open);
+            const showVideo = started === i && current === i;
             const t = tones[item.tone];
             return (
               <li key={item.title} className="flex">
@@ -143,13 +144,9 @@ export function ServicesOverview() {
                         src={`${item.video}#t=0.1`}
                         playsInline
                         preload="metadata"
-                        controls={open}
                         aria-label={`${item.title} video`}
                         onPlaying={() => setStarted(i)}
-                        onEnded={() => {
-                          setPinned((cur) => (cur === i ? null : cur));
-                          setStarted((cur) => (cur === i ? null : cur));
-                        }}
+                        onEnded={() => setStarted((cur) => (cur === i ? null : cur))}
                         onError={() => fail(i)}
                       />
                       <Image
@@ -166,23 +163,16 @@ export function ServicesOverview() {
                       <button
                         type="button"
                         onClick={() => {
-                          if (open) {
-                            // Closing also ends any hover preview, so the video stops even with the pointer still over it.
-                            setHovered(null);
-                            setPinned(null);
-                            return;
-                          }
-                          // Start playback inside the click itself: the click is what lets the browser play sound.
-                          playWithSound(i);
-                          setPinned(i);
+                          // End the hover preview so it doesn't resume under the pointer after the popup closes.
+                          setHovered(null);
+                          setModal(item.fullVideo);
                         }}
-                        disabled={broken}
-                        aria-pressed={open}
-                        aria-label={broken ? `Video unavailable – ${item.title}` : `${open ? "Close" : "See"} Video – ${item.title}`}
+                        aria-haspopup="dialog"
+                        aria-label={`See Full Video – ${item.title}`}
                         className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-white/45 px-3.5 py-2 text-[12px] leading-none font-medium tracking-[0.02em] text-[#4B4F58] uppercase shadow-[inset_0_1px_0_rgba(255,255,255,.6)] backdrop-blur-md transition-[background,color,box-shadow] duration-300 hover:bg-white/70 hover:text-navy group-hover:bg-[linear-gradient(90deg,#1E64AA_0%,#2578CA_45%,#5498DB_100%)] group-hover:text-white group-hover:shadow-[0_12px_28px_rgba(37,120,202,.35)] hover:group-hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70 disabled:group-hover:bg-white/45 disabled:group-hover:text-[#4B4F58] disabled:group-hover:shadow-none sm:top-4 sm:left-4"
                       >
-                        {open ? <X aria-hidden className="size-3 shrink-0" strokeWidth={3} /> : <Play aria-hidden className="size-3 shrink-0 fill-current" />}
-                        {broken ? "Video unavailable" : open ? "Close Video" : "See Video"}
+                        <Play aria-hidden className="size-3 shrink-0 fill-current" />
+                        See Full Video
                       </button>
                     </div>
 
@@ -208,6 +198,8 @@ export function ServicesOverview() {
           })}
         </ul>
       </div>
+
+      <VideoModal video={modal} onClose={closeModal} />
     </section>
   );
 }

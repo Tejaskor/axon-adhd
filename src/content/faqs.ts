@@ -9,7 +9,7 @@ export const homeFaqs: Faq[] = [
     "a": [
       {
         "type": "p",
-        "text": "AXON ADHD provides accurate, data-driven ADULT ADHD evaluations and ongoing support. We combine clinical expertise, standardized psychological tools, and cutting-edge FDA cleared technology to deliver a precise ADHD diagnosis and actionable treatment plans with access to ADHD medications and ADHD accommodations. We believe proactive ADHD screening is an essential part of making ADHD assessment more accessible to all people. It helps identify ADULT ADHD symptoms for men and women. ADHD has been called one of the most over diagnosed and underdiagnosed conditions within behavioral health. AXON ADHD can change this. We can give people the most accurate ADULT ADHD diagnosis information available and help the millions of people who struggle without a clear diagnosis. 8 of 9 adults who have ADHD have never been accurately diagnosed. We want to change this."
+        "text": "AXON ADHD provides accurate, data-driven ADULT ADHD evaluations and ongoing support. We combine clinical expertise, standardized psychological tools, and cutting-edge FDA-cleared technology to deliver a precise ADHD diagnosis and actionable treatment plans with access to ADHD medications and ADHD accommodations. We believe proactive ADHD screening is an essential part of making ADHD assessment more accessible to all people. It helps identify ADULT ADHD symptoms for men and women. ADHD has been called one of the most overdiagnosed and underdiagnosed conditions within behavioral health. AXON ADHD can change this. We can give people the most accurate ADULT ADHD diagnosis information available and help the millions of people who struggle without a clear diagnosis. 8 of 9 adults who have ADHD have never been accurately diagnosed. We want to change this."
       }
     ]
   },
@@ -22,7 +22,7 @@ export const homeFaqs: Faq[] = [
       },
       {
         "type": "p",
-        "text": "Only 1 in 9 ADHDers have actually been diagnosed! The other 8 in 9 may have been told they are lazy, don’t work hard, are neurotic or overly sensitive. People without treatment for ADHD are at significant risk for higher rates of depression, anxiety, substance abuse, and accidents. They have lower lifetime earnings, higher drop out rates, higher divorce rates, and even lower life expectancy. By proactively screening for ADHD, depression, anxiety, and substance use issues we can identify those at risk, get them accurate diagnoses and provide treatments that will significantly reduce these risks. With clarity and real answers, we help ADHDers thrive."
+        "text": "Only 1 in 9 ADHDers have actually been diagnosed! The other 8 in 9 may have been told they are lazy, don’t work hard, are neurotic or overly sensitive. People without treatment for ADHD are at significant risk for higher rates of depression, anxiety, substance abuse, and accidents. They have lower lifetime earnings, higher dropout rates, higher divorce rates, and even lower life expectancy. By proactively screening for ADHD, depression, anxiety, and substance use issues we can identify those at risk, get them accurate diagnoses and provide treatments that will significantly reduce these risks. With clarity and real answers, we help ADHDers thrive."
       }
     ]
   },
@@ -31,15 +31,15 @@ export const homeFaqs: Faq[] = [
     "a": [
       {
         "type": "p",
-        "text": "Our proactive process starts with a FREE behavioral health screening to identify individuals at risk for ADHD, depression, anxiety, and substance use issues. We then incorporate the gold standard comprehensive ADHD evaluation by blending objective data, clinical interviews, and research validated ADHD screening tools into one streamlined experience."
+        "text": "Our proactive process starts with a FREE behavioral health screening to identify individuals at risk for ADHD, depression, anxiety, and substance use issues. We then incorporate the gold-standardcomprehensive ADHD evaluation by blending objective data, clinical interviews, and research-validated ADHD screening tools into one streamlined experience."
       },
       {
         "type": "p",
-        "text": "We use the world’s only FDA cleared online ADHD assessment tool that simultaneously measures hyperactivity, inattention, and impulse control. This tool provides clear, objective data about the core symptoms of ADHD. We also use validated rating scales like the ASRS, PHQ-9, and GAD-7, and structured diagnostic interviews. The result: a comprehensive, personalized report that’s fast, clear, and clinically rigorous."
+        "text": "We use the world’s only FDA-cleared online ADHD assessment tool that simultaneously measures hyperactivity, inattention, and impulse control. This tool provides clear, objective data about the core symptoms of ADHD. We also use validated rating scales like the ASRS, PHQ-9, and GAD-7, and structured diagnostic interviews. The result: a comprehensive, personalized report that’s fast, clear, and clinically rigorous."
       },
       {
         "type": "p",
-        "text": "We DON’T include IQ tests or tests of academic achievement that were the old way (and unfortunately still in use today) because IQ and academic performance, and work ethic are NOT associated with ADHD. Those tests drive up the costs for ADHD assessment and are not valid measures of ADHD."
+        "text": "We DON’T include IQ tests or tests of academic achievement that were the old way (and unfortunately still in use today) because IQ, academic performance, and work ethic are NOT associated with ADHD. Those tests drive up the costs for ADHD assessment and are not valid measures of ADHD."
       }
     ]
   },
@@ -48,7 +48,7 @@ export const homeFaqs: Faq[] = [
     "a": [
       {
         "type": "p",
-        "text": "QbCheck is an FDA-cleared, computer-based test that objectively measures attention, impulsivity, and movement patterns. It provides clinicians with quantifiable data that complement self-report and interview information—helping ensure your diagnosis is accurate and defensible for workplace, school, or medical accommodations. Subjective measures just aren’t valid indicators of ADHD symptoms. A person’s experience and history of struggles are important aspects of any ADHD evaluation, but the foundation of good diagnostic data is clear–objective, valid measures."
+        "text": "QbCheck is an FDA-cleared, computer-based test that objectively measures attention, impulsivity, and movement patterns. It provides clinicians with quantifiable data that complement self-report and interview information—helping ensure your diagnosis is accurate and defensible for workplace, school, or medical accommodations. Subjective measures just aren’t valid indicators of ADHD symptoms. A person’s experience and history of struggles are important aspects of any ADHD evaluation, but the foundation of good diagnostic data is clear, objective, valid measures."
       }
     ]
   },
@@ -86,7 +86,7 @@ export const homeFaqs: Faq[] = [
     "a": [
       {
         "type": "p",
-        "text": "Most clients complete their entire evaluation—including testing, questionnaires, and review—within days. The intake forms and self report measures may take 5-10 minutes total time and the full ADHD test (QbCheck) will require about 40 minutes total time to review the instructions, validate your computer meets minimum requirements, and complete the 20 minute actual test."
+        "text": "Most clients complete their entire evaluation—including testing, questionnaires, and review—within days. The intake forms and self-report measures may take 5-10 minutes total time and the full ADHD test (QbCheck) will require about 40 minutes total time to review the instructions, validate that your computer meets minimum requirements, and complete the 20-minute actual test."
       }
     ]
   },
@@ -143,11 +143,11 @@ export const homeFaqs: Faq[] = [
       },
       {
         "type": "p",
-        "text": "Visit [: www.axonadhd.com](https://www.axonadhd.com)."
+        "text": "Visit [www.axonadhd.com](https://www.axonadhd.com)."
       },
       {
         "type": "p",
-        "text": "Click : [Start Your Free Evaluation](https://prp.axondigitalhealth.ai/free-assessment)."
+        "text": "Click [Start Your Free Evaluation](https://prp.axondigitalhealth.ai/free-assessment)."
       },
       {
         "type": "p",
@@ -169,7 +169,7 @@ export const homeFaqs: Faq[] = [
     "a": [
       {
         "type": "p",
-        "text": "We combine science, compassion, and clarity all for a cost that is 90% less than the old school ways and gives you results in days if not hours!"
+        "text": "We combine science, compassion, and clarity all for a cost that is 90% less than the old-school ways and gives you results in days if not hours!"
       },
       {
         "type": "p",
@@ -198,7 +198,7 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "ADHD often overlaps with mood, anxiety, trauma, and substance-use disorders, making accurate diagnosis difficult within a short primary care visit. Nearly **12% of the population** meets ADHD criteria, yet **only 1 in 9 adults** are properly diagnosed and treated. Untreated ADHD increases risks for **depression, anxiety, obesity, hypertension**, and **substance abuse**, and reduces life expectancy by **8–13 years**. AXON ADHD helps PCPs manage these complex cases without adding burden or liability ."
+            "text": "ADHD often overlaps with mood, anxiety, trauma, and substance-use disorders, making accurate diagnosis difficult within a short primary care visit. Nearly **12% of the population** meets ADHD criteria, yet **only 1 in 9 adults** are properly diagnosed and treated. Untreated ADHD increases risks for **depression, anxiety, obesity, hypertension**, and **substance abuse**, and reduces life expectancy by **8–13 years**. AXON ADHD helps PCPs manage these complex cases without adding burden or liability."
           }
         ]
       },
@@ -212,7 +212,7 @@ export const faqTabs: FaqTab[] = [
           {
             "type": "ol",
             "items": [
-              "**Free Pre-visit screening** (PHQ-9, GAD-7, ASRS, DAST etc.) — auto-administered annually or pre-visit.",
+              "**Free Pre-visit screening** (PHQ-9, GAD-7, ASRS, DAST, etc.) — auto-administered annually or pre-visit.",
               "**Automated referral** — patients meeting validated thresholds are referred to AXON ADHD for full evaluation.",
               "**Comprehensive testing & reporting** — we conduct objective testing (QbCheck), structured interviews, and produce a full report and treatment plan.",
               "**Collaborative treatment** — results are sent back to the PCP for review, documentation, and follow-up prescribing as desired. We can even retest on medication to help with medication titration and document efficacy of treatments."
@@ -249,7 +249,7 @@ export const faqTabs: FaqTab[] = [
           },
           {
             "type": "p",
-            "text": "These can generate **+$50 per patient** for screenings you already perform, and increase hourly reimbursement by **up to $70/hour** for 16% of visits involving behavioral health ."
+            "text": "These can generate **+$50 per patient** for screenings you already perform, and increase hourly reimbursement by **up to $70/hour** for 16% of visits involving behavioral health."
           }
         ]
       },
@@ -262,7 +262,7 @@ export const faqTabs: FaqTab[] = [
               "**Clinical Confidence:** Objective data and standardized assessments improve diagnostic accuracy and treatment decisions.",
               "**Operational Efficiency:** Automated referrals and integrated workflows eliminate bottlenecks.",
               "**Economic Benefit:** Shifts time from behavioral health cases to higher-level medical care, increasing billable value.",
-              "**Patient Impact:** Early identification reduces medical complications, accidents, and comorbidities while improving adherence and quality of life ."
+              "**Patient Impact:** Early identification reduces medical complications, accidents, and comorbidities while improving adherence and quality of life."
             ]
           }
         ]
@@ -280,7 +280,7 @@ export const faqTabs: FaqTab[] = [
               "**Pathway Mapping:** We review your current workflow to identify integration points.",
               "**Configuration & Dry Run:** We test the referral process for accuracy and robustness.",
               "**Clinician Education:** We hold brief training sessions to onboard your staff.",
-              "**Go-Live:** We launch and monitor for continuous optimization and reimbursement accuracy ."
+              "**Go-Live:** We launch and monitor for continuous optimization and reimbursement accuracy."
             ]
           }
         ]
@@ -344,11 +344,11 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "AXON ADHD provides accurate, data-driven **ADULT** **ADHD evaluations** and ongoing support. We combine clinical expertise, standardized psychological tools, and cutting-edge **FDA cleared** technology to deliver a precise **ADHD diagnosis** and actionable treatment plans with access to **ADHD medications** and **ADHD accommodations**."
+            "text": "AXON ADHD provides accurate, data-driven **ADULT** **ADHD evaluations** and ongoing support. We combine clinical expertise, standardized psychological tools, and cutting-edge **FDA-cleared** technology to deliver a precise **ADHD diagnosis** and actionable treatment plans with access to **ADHD medications** and **ADHD accommodations**."
           },
           {
             "type": "p",
-            "text": "We believe **proactive ADHD screening** is an essential part of making ADHD assessment more accessible to all people. It helps identify **ADULT** **ADHD symptoms** **for men and women**. ADHD has been called one of the most over diagnosed *and* underdiagnosed conditions within behavioral health. AXON ADHD can change this. We can give people the most accurate **ADULT** **ADHD diagnosis** information available and help the millions of people who struggle without a clear diagnosis. 8 of 9 adults who have ADHD have never been accurately diagnosed. We want to change this."
+            "text": "We believe **proactive ADHD screening** is an essential part of making ADHD assessment more accessible to all people. It helps identify **ADULT** **ADHD symptoms** **for men and women**. ADHD has been called one of the most overdiagnosed *and* underdiagnosed conditions within behavioral health. AXON ADHD can change this. We can give people the most accurate **ADULT** **ADHD diagnosis** information available and help the millions of people who struggle without a clear diagnosis. 8 of 9 adults who have ADHD have never been accurately diagnosed. We want to change this."
           }
         ]
       },
@@ -367,9 +367,9 @@ export const faqTabs: FaqTab[] = [
             "type": "ul",
             "items": [
               "Estimated 3,734 students have undiagnosed ADHD.",
-              "2,240 of those students are at risk for drop out.",
+              "2,240 of those students are at risk for dropout.",
               "Annual lost tuition: **$24.5 million**.",
-              "Four-year cumulative loss: **~$100 million**\nBeyond tuition, attrition lowers alumni engagement, affects institutional rankings, and risks Title IV eligibility."
+              "Four-year cumulative loss: **~$100 million**.\nBeyond tuition, attrition lowers alumni engagement, affects institutional rankings, and risks Title IV eligibility."
             ]
           }
         ]
@@ -392,7 +392,7 @@ export const faqTabs: FaqTab[] = [
           },
           {
             "type": "p",
-            "text": "**Training and consultation** for faculty, advisors, and student affairs professionals ."
+            "text": "**Training and consultation** for faculty, advisors, and student affairs professionals."
           }
         ]
       },
@@ -409,7 +409,7 @@ export const faqTabs: FaqTab[] = [
               "**Pathway Mapping:** We review existing systems and workflows.",
               "**Configuration & Dry Run:** We customize the communication and referral flow.",
               "**Staff Information Sessions:** We train campus teams on the pathway and ADHD care.",
-              "**Go-Live:** We launch a seamless, automated system that continuously monitors outcomes and improves over time ."
+              "**Go-Live:** We launch a seamless, automated system that continuously monitors outcomes and improves over time."
             ]
           }
         ]
@@ -426,7 +426,7 @@ export const faqTabs: FaqTab[] = [
             "items": [
               "Screenings are **free for all students and staff**.",
               "Full evaluations are paid by students or families, with **superbills to seek reimbursement** from health insurance plans.",
-              "A non-profit arm seeks **grant funding** to ensure access for low-income and underserved students ."
+              "A non-profit arm seeks **grant funding** to ensure access for low-income and underserved students."
             ]
           }
         ]
@@ -458,7 +458,7 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "Any incoming or returning student can have free, rapid access to evidence-based assessments and treatment recommendations, empowering them to thrive academically. Families gain peace of mind knowing their student’s university is proactive about mental health, ensuring higher satisfaction and retention. For families, AXON ADHD’s approach offers clarity, affordability, and trust. For many families, the investment they are making in their students’ education is their most signficant financial invesmetment. Proactive screening is an “insurance” against the loss of entire sememsters or years of educational costs as a result of undiagnosed ADHD."
+            "text": "Any incoming or returning student can have free, rapid access to evidence-based assessments and treatment recommendations, empowering them to thrive academically. Families gain peace of mind knowing their student’s university is proactive about mental health, ensuring higher satisfaction and retention. For families, AXON ADHD’s approach offers clarity, affordability, and trust. For many families, the investment they are making in their students’ education is their most significant financial investment. Proactive screening is an “insurance” against the loss of entire semesters or years of educational costs as a result of undiagnosed ADHD."
           }
         ]
       },
@@ -528,11 +528,11 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "AXON ADHD provides accurate, data-driven **ADULT** **ADHD evaluations** and ongoing support. We combine clinical expertise, standardized psychological tools, and cutting-edge **FDA cleared** technology to deliver a precise **ADHD diagnosis** and actionable treatment plans with access to **ADHD medications** and **ADHD accommodations**."
+            "text": "AXON ADHD provides accurate, data-driven **ADULT** **ADHD evaluations** and ongoing support. We combine clinical expertise, standardized psychological tools, and cutting-edge **FDA-cleared** technology to deliver a precise **ADHD diagnosis** and actionable treatment plans with access to **ADHD medications** and **ADHD accommodations**."
           },
           {
             "type": "p",
-            "text": "We believe **proactive ADHD screening** is an essential part of making ADHD assessment more accessible to all people. It helps identify **ADULT** **ADHD symptoms** **for men and women**. ADHD has been called one of the most over diagnosed *and* underdiagnosed conditions within behavioral health. AXON ADHD can change this. We can give people the most accurate **ADULT** **ADHD diagnosis** information available and help the millions of people who struggle without a clear diagnosis. 8 of 9 adults who have ADHD have never been accurately diagnosed. We want to change this."
+            "text": "We believe **proactive ADHD screening** is an essential part of making ADHD assessment more accessible to all people. It helps identify **ADULT** **ADHD symptoms** **for men and women**. ADHD has been called one of the most overdiagnosed *and* underdiagnosed conditions within behavioral health. AXON ADHD can change this. We can give people the most accurate **ADULT** **ADHD diagnosis** information available and help the millions of people who struggle without a clear diagnosis. 8 of 9 adults who have ADHD have never been accurately diagnosed. We want to change this."
           }
         ]
       },
@@ -545,7 +545,7 @@ export const faqTabs: FaqTab[] = [
           },
           {
             "type": "p",
-            "text": "Only 1 in 9 ADHDers have actually been diagnosed! The other 8 in 9 may have been told they are lazy, don’t work hard, are neurotic or overly sensitive. People without **treatment for ADHD** are at significant risk for higher rates of **depression, anxiety, substance abuse**, and accidents. They have lower lifetime earnings, higher drop out rates, higher divorce rates, and even lower life expectancy. By proactively screening for ADHD, depression, anxiety, and substance use issues we can identify those at risk, get them accurate diagnoses and provide treatments that will significantly reduce these risks. With clarity and real answers, we help ADHDers thrive."
+            "text": "Only 1 in 9 ADHDers have actually been diagnosed! The other 8 in 9 may have been told they are lazy, don’t work hard, are neurotic or overly sensitive. People without **treatment for ADHD** are at significant risk for higher rates of **depression, anxiety, substance abuse**, and accidents. They have lower lifetime earnings, higher dropout rates, higher divorce rates, and even lower life expectancy. By proactively screening for ADHD, depression, anxiety, and substance use issues we can identify those at risk, get them accurate diagnoses and provide treatments that will significantly reduce these risks. With clarity and real answers, we help ADHDers thrive."
           }
         ]
       },
@@ -554,15 +554,15 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "Our proactive process starts with a **FREE behavioral health screening** to identify individuals at risk for ADHD, depression, anxiety, and substance use issues. We then incorporate the gold standard **comprehensive ADHD evaluation** by blending **objective data**, **clinical interviews**, and **research** **validated ADHD screening tools** into one streamlined experience."
+            "text": "Our proactive process starts with a **FREE behavioral health screening** to identify individuals at risk for ADHD, depression, anxiety, and substance use issues. We then incorporate the gold-standard**comprehensive ADHD evaluation** by blending **objective data**, **clinical interviews**, and **research** **validated ADHD screening tools** into one streamlined experience."
           },
           {
             "type": "p",
-            "text": "We use the world’s only **FDA cleared online ADHD assessment** tool that simultaneously measures hyperactivity, inattention, and impulse control. This tool provides clear, objective data about the core symptoms of ADHD. We also use validated rating scales like the ASRS, PHQ-9, and GAD-7, and structured diagnostic interviews. The result: a comprehensive, personalized report that’s fast, clear, and clinically rigorous."
+            "text": "We use the world’s only **FDA-cleared online ADHD assessment** tool that simultaneously measures hyperactivity, inattention, and impulse control. This tool provides clear, objective data about the core symptoms of ADHD. We also use validated rating scales like the ASRS, PHQ-9, and GAD-7, and structured diagnostic interviews. The result: a comprehensive, personalized report that’s fast, clear, and clinically rigorous."
           },
           {
             "type": "p",
-            "text": "We DON’T include IQ tests or tests of academic achievement that were the old way (and unfortunately still in use today) because IQ and academic performance, and work ethic are NOT associated with ADHD. Those tests drive up the costs for ADHD assessment and are not valid measures of ADHD."
+            "text": "We DON’T include IQ tests or tests of academic achievement that were the old way (and unfortunately still in use today) because IQ, academic performance, and work ethic are NOT associated with ADHD. Those tests drive up the costs for ADHD assessment and are not valid measures of ADHD."
           }
         ]
       },
@@ -571,7 +571,7 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "**QbCheck is an FDA-cleared,** computer-based test that objectively measures attention, impulsivity, and movement patterns. It provides clinicians with quantifiable data that complement self-report and interview information—helping ensure your diagnosis is accurate and defensible for workplace, school, or medical **accommodations**. Subjective measures just aren’t valid indicators of ADHD symptoms. A person’s experience and history of struggles are important aspects of any ADHD evaluation, but the foundation of good diagnostic data is clear–objective, valid measures."
+            "text": "**QbCheck is an FDA-cleared,** computer-based test that objectively measures attention, impulsivity, and movement patterns. It provides clinicians with quantifiable data that complement self-report and interview information—helping ensure your diagnosis is accurate and defensible for workplace, school, or medical **accommodations**. Subjective measures just aren’t valid indicators of ADHD symptoms. A person’s experience and history of struggles are important aspects of any ADHD evaluation, but the foundation of good diagnostic data is clear, objective, valid measures."
           }
         ]
       },
@@ -593,7 +593,7 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "Yes. Our reports are written to meet the standards of the ADA, Section 504, and higher-education disability offices. We provide the objective documentation often required to support requests for extended testing time, distraction-reduced environments, or other accommodations. We assist folks obtain **accommodations for exams like the GRE, LSAT, MCAT, SAT, ACT,** **BAR exam**, etc."
+            "text": "Yes. Our reports are written to meet the standards of the ADA, Section 504, and higher-education disability offices. We provide the objective documentation often required to support requests for extended testing time, distraction-reduced environments, or other accommodations. We assist folks in obtaining **accommodations for exams like the GRE, LSAT, MCAT, SAT, ACT,** **BAR exam**, etc."
           }
         ]
       },
@@ -618,7 +618,7 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "Most clients complete their entire evaluation—including testing, questionnaires, and review—within **days**. The intake forms and self report measures may take 5-10 minutes total time and the full ADHD test (QbCheck) will require about 40 minutes total time to review the instructions, validate your computer meets minimum requirements, and complete the 20 minute actual test."
+            "text": "Most clients complete their entire evaluation—including testing, questionnaires, and review—within **days**. The intake forms and self-report measures may take 5-10 minutes total time and the full ADHD test (QbCheck) will require about 40 minutes total time to review the instructions, validate that your computer meets minimum requirements, and complete the 20-minute actual test."
           }
         ]
       },
@@ -697,7 +697,7 @@ export const faqTabs: FaqTab[] = [
         "a": [
           {
             "type": "p",
-            "text": "We combine science, compassion, and clarity all for a cost that is 90% less than the old school ways and gives you results in days if not hours!"
+            "text": "We combine science, compassion, and clarity all for a cost that is 90% less than the old-school ways and gives you results in days if not hours!"
           },
           {
             "type": "p",

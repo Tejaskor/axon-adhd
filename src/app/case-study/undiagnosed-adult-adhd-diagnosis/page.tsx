@@ -153,7 +153,7 @@ export default function RyanCaseStudyPage() {
           <li>You&apos;ve built elaborate systems to stay on top of things, but they never quite stick.</li>
           <li>You&apos;ve been told you just need to be more disciplined.</li>
           <li>You&apos;ve been told you&apos;re just a bit disorganized or anxious.</li>
-          <li>Restlessness that got you redirected as a kid never really went away; it just found a new hiding place</li>
+          <li>Restlessness that got you redirected as a kid never really went away; it just found a new hiding place.</li>
           <li>
             You treat asking for help as a last resort instead of a first action. None of this is a diagnosis, but it might be high time to start questioning the idea that all of this is your own personal failing, especially if you&apos;ve been carrying that assumption around for the last 20 to 30 years.
           </li>

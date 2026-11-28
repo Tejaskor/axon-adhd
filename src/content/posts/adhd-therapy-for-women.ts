@@ -32,7 +32,7 @@ export const body: Block[] = [
   },
   {
     "type": "p",
-    "text": "Good [adult ADHD](/blog/adhd-in-adults/) therapy starts with understanding your actual difficulties, not some preconceived idea of what you need. It all starts with a comprehensive ADHD evaluation that can discern between what is ADHD-related and what could be something else — anxiety, stress, depression, perimenopause, sleep issues, or relationship challenges. Often untreated ADHD can mimic all of the above and vice-versa! So step one — get a good, objective evaluation."
+    "text": "Good [adult ADHD](/blog/adhd-in-adults/) therapy starts with understanding your actual difficulties, not some preconceived idea of what you need. It all starts with a comprehensive ADHD evaluation that can discern between what is ADHD-related and what could be something else — anxiety, stress, depression, perimenopause, sleep issues, or relationship challenges. Often, untreated ADHD can mimic all of the above and vice-versa! So step one — get a good, objective evaluation."
   },
   {
     "type": "h2",
@@ -131,7 +131,7 @@ export const body: Block[] = [
   },
   {
     "type": "p",
-    "text": "A licensed therapist can also help you explore how past experiences, repeated criticism, or long-standing difficulties have shaped the way you see yourself. People with untreated ADHD are 5X's more likely to have depression, anxiety, and substance use issues and experience trauma."
+    "text": "A licensed therapist can also help you explore how past experiences, repeated criticism, or long-standing difficulties have shaped the way you see yourself. People with untreated ADHD are 5X more likely to have depression, anxiety, and substance use issues and experience trauma."
   },
   {
     "type": "h3",
@@ -322,11 +322,11 @@ export const body: Block[] = [
   },
   {
     "type": "p",
-    "text": "If you haven't had an assessment, you might want to look into a [free ADHD screening](/blog/do-i-have-adult-adhd-take-a-free-screening-to-find-out/) . These can give you a bit of a steer on whether it might be worth speaking to a professional."
+    "text": "If you haven't had an assessment, you might want to look into a [free ADHD screening](/blog/do-i-have-adult-adhd-take-a-free-screening-to-find-out/). These can give you a bit of a steer on whether it might be worth speaking to a professional."
   },
   {
     "type": "p",
-    "text": "A screening can give you a rough idea of whether further evaluation might be a good idea, but it can't diagnose ADHD a proper [comprehensive adult ADHD assessment](/adult-adhd-assessment/?utm_source=chatgpt.com) will look at your symptoms, history, functioning, and all the things that might be going on."
+    "text": "A screening can give you a rough idea of whether further evaluation might be a good idea, but it can't diagnose ADHD; a proper [comprehensive adult ADHD assessment](/adult-adhd-assessment/?utm_source=chatgpt.com) will look at your symptoms, history, functioning, and all the things that might be going on."
   },
   {
     "type": "p",
@@ -410,7 +410,7 @@ export const body: Block[] = [
   },
   {
     "type": "p",
-    "text": "ADHD-informed therapy can help you recognise what sets off your emotions, challenge that inner critic that can make things so much worse, communicate more clearly, and just take a deep breath before reacting to stuff. But if you're dealing with some really intense emotional stuff, then you should probably get in touch with a professional."
+    "text": "ADHD-informed therapy can help you recognize what sets off your emotions, challenge that inner critic that can make things so much worse, communicate more clearly, and just take a deep breath before reacting to stuff. But if you're dealing with some really intense emotional stuff, then you should probably get in touch with a professional."
   },
   {
     "type": "q",
@@ -418,7 +418,7 @@ export const body: Block[] = [
   },
   {
     "type": "p",
-    "text": "Therapy is going to address your mental health, your relationships, how you feel about yourself, and how you behave. Coaching, on the other hand, is about setting goals, getting more organised, getting someone to hold you accountable, and helping you get things done on a day-to-day basis. Coaching is not a replacement for therapy if you need that."
+    "text": "Therapy is going to address your mental health, your relationships, how you feel about yourself, and how you behave. Coaching, on the other hand, is about setting goals, getting more organized, getting someone to hold you accountable, and helping you get things done on a day-to-day basis. Coaching is not a replacement for therapy if you need that."
   },
   {
     "type": "q",
@@ -434,7 +434,7 @@ export const body: Block[] = [
   },
   {
     "type": "p",
-    "text": "Totally yes. Some people use both together, while others use therapy in combination with coaching, some behavioral techniques, or just getting some extra support for getting organised. What's most important is that you get a care plan that is based on a proper evaluation, and get regular reviews to make sure it's working."
+    "text": "Totally yes. Some people use both together, while others use therapy in combination with coaching, some behavioral techniques, or just getting some extra support for getting organized. What's most important is that you get a care plan that is based on a proper evaluation, and get regular reviews to make sure it's working."
   },
   {
     "type": "q",

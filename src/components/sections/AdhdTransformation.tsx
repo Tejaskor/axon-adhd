@@ -294,8 +294,6 @@ export function AdhdTransformation() {
     };
   }, []);
 
-  const current = stages[stage];
-
   return (
     <section data-no-fx aria-labelledby="transformation-title" className="relative isolate overflow-clip bg-[linear-gradient(249deg,#dfeaf4_24.89%,hsla(0,0%,100%,0.2)_64.07%)]! text-navy">
       <div ref={pinRef} className="relative" style={{ height: `calc(100svh + ${LAST * STEP_SVH}svh)` }}>

@@ -5,7 +5,7 @@ export const founder = {
   name: "Dr. Aaron Dodini",
   title: "Ph.D. Licensed Clinical Psychologist, Founder, AXON ADHD",
   image: { src: "/images/blog/dr-aaron-dodini-headshot.png", alt: "Dr. Aaron Dodini", width: 243, height: 243 },
-  bio: "Dr. Aaron Dodini is a licensed clinical psychologist and marriage and family therapist who founded Dodini Behavioral Health in 2001 to provide exceptional individual, couples, and group psychotherapy. Driven by his own family experience and frustrated by outdated, costly and unreliable ADHD evaluation models, Dr. Dodini built AXON Digital Health & Diagnosis (AXON ADHD) combining clinical expertise with innovative digital tools to deliver faster, less expensive, and more accurate ADHD diagnoses. His work bridges behavioral health, primary care, and higher education to improve outcomes and deliver meaningful results at scale. Through AXON, he is redefining how individuals, primary care providers, and universities move from confusion to clarity and from diagnosis to meaningful change.",
+  bio: "Dr. Aaron Dodini is a licensed clinical psychologist and marriage and family therapist who founded Dodini Behavioral Health in 2001 to provide exceptional individual, couples, and group psychotherapy. Driven by his own family experience and frustrated by outdated, costly and unreliable ADHD evaluation models, Dr. Dodini built AXON Digital Health & Diagnosis (AXON ADHD), combining clinical expertise with innovative digital tools to deliver faster, less expensive, and more accurate ADHD diagnoses. His work bridges behavioral health, primary care, and higher education to improve outcomes and deliver meaningful results at scale. Through AXON, he is redefining how individuals, primary care providers, and universities move from confusion to clarity and from diagnosis to meaningful change.",
 };
 
 export const aboutPage: PageContent = {
@@ -35,7 +35,7 @@ export const aboutPage: PageContent = {
       title: "Turning Confusion into Clarity",
       subtitle: "At AXON ADHD, we’re redefining how people understand their minds. By combining objective testing, expert clinical insight, and fast, accessible evaluations, we help individuals move from confusion to action and from struggle to success.",
       items: [
-        { title: "Standard Testing", text: "FDA Cleared Objective Testing", icon: "brain" },
+        { title: "Standard Testing", text: "FDA-Cleared Objective Testing", icon: "brain" },
         { title: "Expert Insight", text: "ADHD Experts at your fingertips", icon: "stethoscope" },
         { title: "Fast & Accessible", text: "No waiting, no barriers.", icon: "clock" },
       ],
@@ -49,7 +49,7 @@ export const aboutPage: PageContent = {
       paragraphs: ["Axons are the brain’s communication highways. We chose the name AXON because we deliver clarity, connection, understanding, and action FAST!"],
       highlight: "FAST",
       features: [
-        { title: "Fast Communication", text: "Axons are the brain’s communication highways fast, efficient messengers.", icon: "zap" },
+        { title: "Fast Communication", text: "Axons are the brain’s communication highways—fast, efficient messengers.", icon: "zap" },
         { title: "Clear Information Flow", text: "They keep information flowing clearly and precisely between neurons.", icon: "network" },
         { title: "Our Core Purpose", text: "We chose the name AXON because it reflects our core purpose.", icon: "target" },
         { title: "Better Mental Health", text: "We deliver clarity, speed, and understanding to support better mental-health care.", icon: "heart" },
@@ -61,7 +61,7 @@ export const aboutPage: PageContent = {
       type: "split",
       title: "Connecting Patients, Clinics & Universities Through AXON",
       paragraphs: [
-        "Our companion platform, AXON Digital Health & Diagnosis, advances this mission by building HIPAA-compliant connections across patients, clinicians, universities, and primary care providers ensuring critical data flows securely to the right people at the right time.",
+        "Our companion platform, AXON Digital Health & Diagnosis, advances this mission by building HIPAA-compliant connections across patients, clinicians, universities, and primary care providers, ensuring critical data flows securely to the right people at the right time.",
       ],
       image: { src: "/images/referral-for-universities/referral-why-early-referral-matters.webp", alt: "Clinicians with Patient, Clinic and University connected to the AXON ADHD brain mark", width: 1024, height: 609 },
       reverse: true,
@@ -69,7 +69,7 @@ export const aboutPage: PageContent = {
     {
       type: "cta",
       title: "Moving Forward with Confidence",
-      subtitle: "Clear communication drives effective care and just like biological axons, our digital pathways help people move forward with confidence, direction, and momentum.",
+      subtitle: "Clear communication drives effective care, and just like biological axons, our digital pathways help people move forward with confidence, direction, and momentum.",
       primary: { label: "Start Free Screening", href: links.freeScreening },
       secondary: { label: "Meet Our Team", href: "#Meet" },
     },
@@ -77,22 +77,22 @@ export const aboutPage: PageContent = {
       type: "split",
       title: "Transforming ADHD Care with Science and Compassion",
       paragraphs: [
-        "At AXON adhd evaluation process Digital Health, we’re redefining how clinicians deliver ADHD care by combining science-backed assessments, secure online therapy, and accessible digital tools. Our platform seamlessly connects patients with their care teams, making collaborative care a reality.",
-        "Our HIPAA-compliant platform enables patients to receive personalized mental and behavioral health care from anywhere through secure, encrypted audio and video sessions.",
+        "AXON Digital Health & Diagnosis is redefining how clinicians deliver ADHD care by combining science-backed, secure online assessments and accessible digital tools. Our platform seamlessly connects patients and their care teams with AXON ADHD experts, making collaborative care a reality.",
+        "Our HIPAA-compliant platform enables patients to receive personalized behavioral health care from anywhere.",
         "With AXON, geographic and scheduling barriers are no longer obstacles. Patients can connect with licensed professionals safely, efficiently, and confidentially at their convenience.",
       ],
-      list: ["HIPAA-compliant platform", "Secure, encrypted data and communication", "Continuity of care anytime, anywhere"],
+      list: ["HIPAA-compliant and SOC 2 certified platform", "Secure, encrypted data and communication", "Continuity of care anytime, anywhere"],
       image: { src: "/images/about/overcoming-barriers-collaborative-care.webp", alt: "Transforming ADHD Care with Science and Compassion", width: 1536, height: 1024 },
     },
     {
       type: "features",
-      title: "Why Clinics & Universities Choose AXON ADHD",
+      title: "Why Primary Care Groups, Telehealth Companies, and Universities Choose AXON ADHD",
       subtitle: "A comprehensive ADHD platform designed to improve outcomes while saving time and unlocking measurable financial value.",
       tone: "surface",
       items: [
         { title: "High-Quality, Evidence-Based Care", text: "Comprehensive ADHD assessments and therapy, delivered by qualified clinicians using evidence-based protocols, drive better clinical, academic, and long-term health outcomes.", icon: "award" },
         { title: "New Revenue & Measurable Cost Savings", text: "AXON creates new revenue opportunities for primary care providers and clinics while helping universities save millions by reducing dropout rates, missed diagnoses, and unmanaged mental health costs.", icon: "trend" },
-        { title: "Saves Time. Reduces Lost Revenue.", text: "Automated screenings, streamlined workflows, and easy scheduling reduce staff burden, missed appointments, and delays in care allowing teams to focus on patient care, not administration.", icon: "clock" },
+        { title: "Saves Time. Reduces Lost Revenue.", text: "Automated screenings, streamlined workflows, and easy scheduling reduce staff burden, missed appointments, and delays in care, allowing teams to focus on patient care, not administration.", icon: "clock" },
       ],
     },
     {

@@ -29,7 +29,7 @@ export const accommodationPage: PageContent = {
       title: "Not Another Evaluation.",
       subtitle:
         "This is a specialized accommodations report created from the results of your completed AXON Comprehensive ADHD Evaluation. Because we already have comprehensive objective testing, clinical interviews, and documentation of functional impairment, we can prepare individualized recommendations.",
-      lead: "This report is designed to help support accommodation requests not repeat the evaluation you’ve already completed.",
+      lead: "This report is designed to help support accommodation requests, not repeat the evaluation you’ve already completed.",
       items: [
         { title: "How ADHD impacts", text: "your academic and testing performance", icon: "trend" },
         { title: "Which accommodations", text: "are medically appropriate", icon: "clipboard" },
@@ -39,7 +39,7 @@ export const accommodationPage: PageContent = {
     {
       type: "features",
       title: "Your Accommodations Documentation Package",
-      subtitle: "Everything an institution needs to evaluate your request prepared and reviewed by the psychologist who knows your case.",
+      subtitle: "Everything an institution needs to evaluate your request, prepared and reviewed by the psychologist who knows your case.",
       tone: "surface",
       variant: "check",
       image: { src: "/images/accommodation/accommodation-documentation-package.webp", alt: "Accommodation documentation package", width: 2320, height: 2329 },
@@ -92,7 +92,7 @@ export const accommodationPage: PageContent = {
     {
       type: "cta",
       title: "Ready to turn your diagnosis into documentation that works?",
-      subtitle: "Your evaluation is done. Let your evaluating psychologist prepare the report, data, and forms that institutions actually accept and advocate for the accommodations you’re entitled to.",
+      subtitle: "Your evaluation is done. Let your evaluating psychologist prepare the report, data, and forms that institutions actually accept, and advocate for the accommodations you’re entitled to.",
       primary: checkout("Add the Accommodation Documentation & Advocacy Package"),
       note: "$250 one-time · taxes included · available only after your Comprehensive ADHD Evaluation",
     },

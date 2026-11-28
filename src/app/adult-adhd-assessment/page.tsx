@@ -1,4 +1,3 @@
-import { AdhdTransformation } from "@/components/sections/AdhdTransformation";
 import { CoverageContact } from "@/components/sections/CoverageContact";
 import {
   AssessmentBannerCta,
@@ -34,8 +33,6 @@ export default function Page() {
       {/* Hero, overview and journey sections above "What You'll Learn" are unchanged. */}
       <PageSections sections={sections.slice(0, 3)} />
 
-      {/* Pinned "struggle → better you" scene, directly above "What You'll Learn". */}
-      <AdhdTransformation />
       <AssessmentLearn data={at(3, "split")} />
       <AssessmentBannerCta data={at(4, "cta")} />
       <AssessmentConfidence data={at(5, "features")} />

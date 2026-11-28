@@ -361,8 +361,25 @@ export const pathTones = {
 const pathToneOrder = ["blue", "green", "purple", "orange"] as const;
 
 /** Translucent card with a pastel icon badge and a corner curve. Also used by the home page's WhyAxon. */
-export function PathCard({ tone, icon, title, text, center }: { tone: keyof typeof pathTones; icon: ReactNode; title: string; text?: string; center?: boolean }) {
+export function PathCard({ tone, icon, title, text, center, inline }: { tone: keyof typeof pathTones; icon: ReactNode; title: string; text?: string; center?: boolean; /** Icon badge sits beside the title instead of above it. */ inline?: boolean }) {
   const t = pathTones[tone];
+  if (inline) {
+    return (
+      // No border at all (not even on hover); the card is defined by its fill and shadow.
+      <div className="group relative isolate flex w-full flex-col overflow-hidden rounded-[24px] border-0 bg-white/70 p-6 shadow-[0_18px_40px_-24px_rgba(18,61,106,.3)] outline-none backdrop-blur-md transition-[translate,box-shadow] duration-300 ease-brand hover:-translate-y-1 hover:shadow-[0_28px_52px_-24px_rgba(37,120,202,.42)] sm:p-7">
+        <svg aria-hidden viewBox="0 0 200 140" preserveAspectRatio="none" className="absolute right-0 bottom-0 -z-10 h-[46%] w-[62%] transition-transform duration-500 ease-brand group-hover:scale-105" style={{ transformOrigin: "100% 100%" }}>
+          <path d="M200 0C150 20 150 80 95 105S20 130 0 140H200Z" fill={t.curve} fillOpacity=".75" />
+        </svg>
+        <div className="flex items-center gap-4">
+          <span aria-hidden className={cn("grid size-14 shrink-0 place-items-center rounded-full", t.badge)}>
+            {icon}
+          </span>
+          <h3 className="font-display text-[20px] leading-snug font-bold text-[#0F2F55]">{title}</h3>
+        </div>
+        {text && <p className="mt-4 text-[16px] leading-[1.65] text-pretty text-[#5B6B80]">{text}</p>}
+      </div>
+    );
+  }
   return (
     <div className={cn("group relative isolate flex w-full flex-col overflow-hidden rounded-[24px] border border-primary-100 bg-white/70 p-7 shadow-[0_18px_40px_-24px_rgba(18,61,106,.3)] backdrop-blur-md transition-[translate,box-shadow,border-color] duration-300 ease-brand hover:-translate-y-1 hover:border-primary-200 hover:shadow-[0_28px_52px_-24px_rgba(37,120,202,.42)] sm:p-8", center && "items-center p-6 text-center sm:p-6")}>
       <svg aria-hidden viewBox="0 0 200 140" preserveAspectRatio="none" className="absolute right-0 bottom-0 -z-10 h-[46%] w-[62%] transition-transform duration-500 ease-brand group-hover:scale-105" style={{ transformOrigin: "100% 100%" }}>

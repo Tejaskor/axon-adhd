@@ -6,7 +6,7 @@ export const hero = {
   /** Rendered in light blue; `underline` gets the hand-drawn curve beneath it. */
   titleAccent: { lead: "It’s an ", underline: "Identity Problem." },
   /** Each entry is its own line from sm up. */
-  subtitleLines: ["You’re exhausted but you’re not broken.", "We can prove it."],
+  subtitleLines: ["You’re exhausted, but you’re not broken.", "We can prove it."],
   trust: { label: "Google Reviews", rating: "4.9", reviews: "(100+ reviews)" },
   video: "/videos/home-hero-background.webm",
   poster: { src: "/images/hero/home-hero-video-poster.webp", alt: "", width: 1710, height: 926 },
@@ -16,20 +16,20 @@ const signImage = (name: string, alt: string, width = 1672, height = 941) => ({ 
 
 export const symptoms = {
   title: { lead: "Does this ", highlight: "sound like you?" },
-  subtitle: "Many adults experience these signs. They can be part of ADHD and you’re not alone.",
+  subtitle: "Many adults experience these signs. They can be part of ADHD, and you’re not alone.",
   /** In order; `icon` is a FeatureIcon name and `tone` picks the card accent. */
   items: [
     {
       title: "I start tasks but don’t finish",
       icon: "todo",
       tone: "green",
-      image: signImage("task-initiation", "Woman resting her chin on her hand, distracted from her work", 1816, 866),
+      image: signImage("task-initiation-2", "Woman in a green sweater resting her chin on her hand, lost in thought", 1536, 1024),
     },
     {
       title: "My mind feels constantly busy",
       icon: "mind",
       tone: "blue",
-      image: signImage("racing-thoughts", "Man deep in thought with a tangled thought bubble"),
+      image: signImage("racing-thoughts-2", "Man in glasses and a denim shirt deep in thought, his hand on his chin", 1536, 1024),
     },
     {
       title: "I feel overwhelmed by simple things",
@@ -53,7 +53,8 @@ export const symptoms = {
       title: "I’ve wondered if it’s ADHD",
       icon: "question",
       tone: "yellow",
-      image: signImage("self-discovery", "Woman looking thoughtful beside floating question marks"),
+      // `position` keeps both her face and the question marks inside the card's crop.
+      image: { ...signImage("self-discovery-2", "Woman looking thoughtful beside floating question marks", 1536, 1024), position: "45% 20%" },
     },
   ] satisfies Array<{ title: string; icon: IconName; tone: string; image: unknown }>,
   reassurance: ["You’re not lazy. You’re not broken.", "You may just need the right support."],
@@ -73,7 +74,9 @@ export const services = {
       href: "/adult-adhd-assessment/",
       icon: "screening",
       video: "/videos/home-support-behavioral-health-screening.mp4",
-      thumbnail: "/images/homepage/how-we-support-you/home-support-behavioral-health-screening.webp",
+      thumbnail: "/images/homepage/how-we-support-you/home-support-behavioral-health-screening-student.webp",
+      /** Full-length YouTube video opened by "See Video" (the `video` file above is only a ~5s hover preview). */
+      fullVideo: { id: "esUAxx-UXCM", title: "Could You Have Undiagnosed ADHD?" },
       tone: "blue",
     },
     {
@@ -84,6 +87,7 @@ export const services = {
       icon: "assessment",
       video: "/videos/home-support-comprehensive-assessment.mp4",
       thumbnail: "/images/homepage/how-we-support-you/home-support-comprehensive-assessment.webp",
+      fullVideo: { id: "DY1l9JxNwms", title: "AXON ADHD Comprehensive Assessment Video" },
       tone: "teal",
     },
     {
@@ -94,6 +98,7 @@ export const services = {
       icon: "care",
       video: "/videos/home-support-adhd-care.mp4",
       thumbnail: "/images/homepage/how-we-support-you/home-support-adhd-care.webp",
+      fullVideo: { id: "go27SIWS4sQ", title: "How AXON ADHD supports adults with ADHD" },
       tone: "violet",
     },
   ] as const,
@@ -201,7 +206,7 @@ export const mythBuster = {
   subtitle: "It’s not what most people think",
   infographic: {
     src: "/images/homepage/adhd-understanding/home-understanding-attention-effort-intelligence.webp",
-    alt: "A brain surrounded by distractions such as notifications, alarms, messages, games and music, labelled Attention, Effort and Intelligence",
+    alt: "A brain surrounded by distractions such as notifications, alarms, messages, games and music, labeled Attention, Effort and Intelligence",
     width: 544,
     height: 458,
   },
@@ -235,7 +240,7 @@ export const whyAxon = {
   subtitle: "What makes AXON different",
   /** `icon`/`tone` are picked up by WhyAxon. */
   points: [
-    { title: "Science-backed ADHD testing", text: "FDA Cleared adhd test, state of the art ADHD assessment.", icon: "gear", tone: "blue" },
+    { title: "Science-backed ADHD testing", text: "FDA-cleared ADHD test, state-of-the-art ADHD assessment.", icon: "gear", tone: "blue" },
     { title: "Clear, defensible diagnosis", text: "A report you can trust and share with providers.", icon: "clipboard", tone: "green" },
     { title: "Fast results in days", text: "No months-long wait. Answers when you need them.", icon: "clock", tone: "orange" },
     { title: "Personalized treatment plan", text: "Tailored next steps built for your life.", icon: "checklist", tone: "purple" },
@@ -244,20 +249,21 @@ export const whyAxon = {
 
 export const careYouCanTrust = {
   title: "Care you can trust",
-  subtitle: "Built on clinical standards, advanced technology and a patient-first approach.",
-  /** `icon`/`tone` are picked up by CareYouCanTrust. */
+  subtitle: "Built on clinical standards you can rely on",
+  /** Each stat headline reads `prefix value suffix label`, e.g. "Costs 90% less"; `text` is the gray line below. */
   stats: [
-    { label: "Clients", value: { count: 1000, suffix: "+" }, text: "Gained clarity on their ADHD journey.", icon: "users", tone: "blue" },
-    { label: "Lower Cost", value: { count: 90, suffix: "%" }, text: "Than traditional testing.", icon: "coins", tone: "teal" },
-    { label: "Online Testing", value: { count: 100, suffix: "%" }, text: "No traffic, no waiting rooms, no hassle.", icon: "laptop", tone: "orange" },
+    { value: "1,000", suffix: "+", label: "Clients", text: "Gained clarity" },
+    { prefix: "Costs", value: "90", suffix: "%", label: "less", text: "Than traditional testing." },
+    { value: "100", suffix: "%", label: "Online Testing", text: "No Traffic, No Hassle" },
   ],
+  /** `icon`/`tone` are picked up by CareYouCanTrust. */
   features: [
-    { title: "Licensed ADHD specialists", text: "Fully accredited clinicians.", icon: "shield", tone: "blue" },
-    { title: "Evidence-based assessments", text: "FDA cleared device for accurate data.", icon: "assessment", tone: "teal" },
+    { title: "Licensed ADHD specialists", text: "Fully accredited clinicians specializing in ADHD.", icon: "shield", tone: "blue" },
+    { title: "Evidence-based assessments", text: "FDA-cleared device provides accurate, objective data and a clear diagnosis.", icon: "award", tone: "green" },
     { title: "Fast appointment availability", text: "Most patients seen within days.", icon: "calendar", tone: "blue" },
-    { title: "Insurance-friendly options", text: "Superbill provided for reimbursement.", icon: "card", tone: "orange" },
-    { title: "HIPAA secure and private", text: "End-to-end encryption.", icon: "lock", tone: "pink" },
-    { title: "Comprehensive ADHD care", text: "Assessment, diagnosis, and treatment in one place.", icon: "care", tone: "purple" },
+    { title: "Insurance-friendly options", text: "Superbill provided for insurance reimbursement.", icon: "card", tone: "orange" },
+    { title: "HIPAA secure and private", text: "End-to-end encryption to protect your information.", icon: "lock", tone: "green" },
+    { title: "Comprehensive ADHD care", text: "Assessment, diagnosis, and personalized treatment in one place.", icon: "clipboard", tone: "purple" },
   ],
 } as const;
 
@@ -269,7 +275,7 @@ export const testimonialsSection = {
 
 export const latestBlogs = {
   title: "Latest Blogs",
-  subtitle: "Access our growing list of free case study’s to simplify your everyday.",
+  subtitle: "Access our growing list of free case studies to simplify your everyday.",
   cta: { label: "Explore All Blogs", href: "/blog/" },
 };
 

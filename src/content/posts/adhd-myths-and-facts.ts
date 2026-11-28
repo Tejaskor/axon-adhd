@@ -16,7 +16,7 @@ export const body: Block[] = [
   },
   {
     "type": "p",
-    "text": "As we recognize ADHD Awareness Month, it’s also important to separate facts from common misconceptions about ADHD. Read our blog on [ ADHD Myths and Facts: 15 Myths Worth Retiring This October](/blog/adhd-myths-and-facts/) This October to learn more about ADHD and challenge common myths."
+    "text": "As we recognize ADHD Awareness Month, it’s also important to separate facts from common misconceptions about ADHD. Read our blog on [ ADHD Myths and Facts: 15 Myths Worth Retiring This October](/blog/adhd-myths-and-facts/) to learn more about ADHD and challenge common myths."
   },
   {
     "type": "h2",
@@ -28,7 +28,7 @@ export const body: Block[] = [
   },
   {
     "type": "p",
-    "text": "**Fact:** We are born with the brain type we have. An ADHD brain type may exhibit symptoms in childhood or they may not be visible due to compensatory habits or environmental factors. ADHD symptoms can begin in childhood and continue into adulthood or they can emerge at any point in a person's life. Across the lifespan, symptoms can evolve and change just as our environments and circumstances change."
+    "text": "**Fact:** We are born with the brain type we have. An ADHD brain type may exhibit symptoms in childhood or they may not be visible due to compensatory habits or environmental factors. ADHD symptoms can begin in childhood and continue into adulthood, or they can emerge at any point in a person's life. Across the lifespan, symptoms can evolve and change just as our environments and circumstances change."
   },
   {
     "type": "p",
@@ -52,7 +52,7 @@ export const body: Block[] = [
   },
   {
     "type": "p",
-    "text": "**Fact:** Boys are diagnosed more often in childhood (13 percent versus 7 percent of girls), yet 44.2 percent of adults with a current diagnosis are women. ADHD can look different in girls and women. Many women, especially high achieving girls or women who seek help for ADHD are misdiagnosed with depression or anxiety."
+    "text": "**Fact:** Boys are diagnosed more often in childhood (13 percent versus 7 percent of girls), yet 44.2 percent of adults with a current diagnosis are women. ADHD can look different in girls and women. Many women, especially high-achieving girls or women who seek help for ADHD are misdiagnosed with depression or anxiety."
   },
   {
     "type": "p",
@@ -68,7 +68,7 @@ export const body: Block[] = [
   },
   {
     "type": "p",
-    "text": "**For you:** Describe the effort required to \"keep up\", not your résumé. See [ADHD at work](/blog/impact-of-adhd-at-work/)."
+    "text": "**For you:** Describe the effort required to \"keep up,\" not your résumé. See [ADHD at work](/blog/impact-of-adhd-at-work/)."
   },
   {
     "type": "h2",
@@ -144,7 +144,7 @@ export const body: Block[] = [
   },
   {
     "type": "p",
-    "text": "**Fact:** Sugar is often used as a self medication strategy along with caffeine, nicotine, and simple carbs. Many ADHDers find themselves drawn to stimulants, but find them inconsistent—think of the sugar or coffee \"high\" and the subsequent \"crash\". This swing, not the use of sugar per se can actually exacerbate ADHD symptoms."
+    "text": "**Fact:** Sugar is often used as a self-medication strategy along with caffeine, nicotine, and simple carbs. Many ADHDers find themselves drawn to stimulants, but find them inconsistent—think of the sugar or coffee \"high\" and the subsequent \"crash\". This swing, not the use of sugar per se, can actually exacerbate ADHD symptoms."
   },
   {
     "type": "p",
@@ -168,11 +168,11 @@ export const body: Block[] = [
   },
   {
     "type": "p",
-    "text": "**Fact:** An estimated 15.5 million U.S. adults (6.0 percent) have a current diagnosis, and 36.5 percent of them received no treatment in the past year. This isn't a trend, it's a reality for millions of people."
+    "text": "**Fact:** An estimated 15.5 million U.S. adults (6.0 percent) have a current diagnosis, and 36.5 percent of them received no treatment in the past year. This isn't a trend; it's a reality for millions of people."
   },
   {
     "type": "p",
-    "text": "**For you:** Treat social media as a prompt to get an evaluation, not a self diagnosis."
+    "text": "**For you:** Treat social media as a prompt to get an evaluation, not a self-diagnosis."
   },
   {
     "type": "h2",
@@ -184,7 +184,7 @@ export const body: Block[] = [
   },
   {
     "type": "p",
-    "text": "**Fact:** Medication and psychosocial treatments are standard ADHD care, and 33.4 percent of adults with ADHD took a prescribed stimulant in the past year. Misuse is a real risk, so monitoring matters, but the risks of NOT treating ADHD are significant—higher rates of depression, anxiety, substance abuse, debt, accidents, and divorce along with lower annual earnings, lower life expectancy."
+    "text": "**Fact:** Medication and psychosocial treatments are standard ADHD care, and 33.4 percent of adults with ADHD took a prescribed stimulant in the past year. Misuse is a real risk, so monitoring matters, but the risks of NOT treating ADHD are significant—higher rates of depression, anxiety, substance abuse, debt, accidents, and divorce along with lower annual earnings, and lower life expectancy."
   },
   {
     "type": "p",
@@ -264,7 +264,7 @@ export const body: Block[] = [
   },
   {
     "type": "p",
-    "text": "About 6.0 percent of U.S. adults, or 15.5 million people, had a current diagnosis in 2023. About half were diagnosed as adults. More recent studies suggest the real prevalence rate is between 8 and 12% of Americans have ADHD. Read more in our guide to [ADHD in adults](/blog/adhd-in-adults/)."
+    "text": "About 6.0 percent of U.S. adults, or 15.5 million people, had a current diagnosis in 2023. About half were diagnosed as adults. More recent studies suggest the real prevalence rate is between 8 and 12% of Americans. Read more in our guide to [ADHD in adults](/blog/adhd-in-adults/)."
   },
   {
     "type": "q",
@@ -276,7 +276,7 @@ export const body: Block[] = [
   },
   {
     "type": "q",
-    "text": "5. Where can I find more ADHD awareness month resources?"
+    "text": "5. Where can I find more ADHD Awareness Month resources?"
   },
   {
     "type": "p",

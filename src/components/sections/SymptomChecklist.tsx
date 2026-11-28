@@ -52,6 +52,7 @@ export function SymptomChecklist() {
                         width={item.image.width}
                         height={item.image.height}
                         sizes="(max-width: 767px) 40vw, (max-width: 1023px) 20vw, 260px"
+                        style={"position" in item.image ? { objectPosition: item.image.position } : undefined}
                         className="size-full object-cover object-[70%_20%] transition-transform duration-700 ease-brand group-hover:scale-[1.05]"
                       />
                     </div>

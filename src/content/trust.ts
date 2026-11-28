@@ -19,7 +19,7 @@ export const trustBar = {
  * `scale` enlarges text-heavy logos whose fine lettering is unreadable at the shared visual weight.
  */
 export const partnerLogos = {
-  title: "TRUSTED BY LEADING PRIMARY CARE GROUPS & UNIVERSITIES",
+  title: "TRUSTED BY LEADING PRIMARY CARE GROUPS, TELEHEALTH PROVIDERS & UNIVERSITIES",
   logos: [
     { src: "/images/trust/partners/inova-logo.webp", alt: "Inova Logo", width: 1151, height: 192, scale: 1.2 },
     { src: "/images/trust/partners/university-logo-unidentified-b.webp", alt: "University Logo", width: 192, height: 192 },
